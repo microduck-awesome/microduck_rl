@@ -33,7 +33,7 @@ def program_env(task="recovery", n=14):
 def report_for(env, step):
     env.common_step_counter = step
     state = mdp.sc0090_program_state(env)
-    request = dict(schema=2, task=state["task"], program_hash=state["program_hash"],
+    request = dict(schema=3, task=state["task"], program_hash=state["program_hash"],
         phase_index=state["phase_index"], global_step=step, iteration=step//24,
         checkpoint_sha256="checkpoint", config_sha256="config", seeds=[101, 102],
         samples_per_group=128, duration_s=8.)
@@ -185,6 +185,7 @@ def test_body_commands_wait_for_recovery_and_rehearsal_stays_neutral():
     command.cfg = NS(tracking_enabled=True, recovery=True)
     command._command = torch.ones(4,6)*.1
     mdp._sc0090_recovery_state(env).success[:] = torch.tensor([False, True, True, True])
+    mdp._sc0090_recovery_state(env).hold[:] = torch.tensor([0, 25, 25, 25])
     mdp.sc0090_program_buffers(env)["rehearsal"][2] = True
     env.scene["robot"].data.root_link_quat_w[3] = torch.tensor([0., 1., 0., 0.])
     expected = torch.zeros(4,6)
@@ -227,6 +228,7 @@ def test_commanded_crouch_gets_target_reward_without_changing_nominal_recovery_g
     env.scene["robot"].data.root_link_pos_w[:, 2] = .095
     state = mdp._sc0090_recovery_state(env)
     state.success[0] = True  # This world previously completed a nominal recovery.
+    mdp.sc0090_program_buffers(env)["body_ready"][0] = True
     for _ in range(25):
         reward = mdp.sc0090_program_stable_standing(env)
     assert reward.tolist() == [1., 0.]
@@ -234,8 +236,9 @@ def test_commanded_crouch_gets_target_reward_without_changing_nominal_recovery_g
     assert state.hold.tolist() == [0, 0]  # Neither currently meets nominal z >= .105.
 
 
-@pytest.mark.parametrize("actor_only", [False, True])
-def test_full_resume_restores_adaptive_lr_and_uses_next_iteration(monkeypatch, actor_only):
+@pytest.mark.parametrize("load_cfg", [None, {"actor": True},
+                                     {"actor": True, "critic": True, "optimizer": True, "iteration": True}])
+def test_full_resume_restores_adaptive_lr_and_uses_next_iteration(monkeypatch, tmp_path, load_cfg):
     from mjlab_microduck.tasks.program_runner import SC0090ProgramRunner
     from mjlab_microduck.tasks import SC0090FineTuneRunner
     env = program_env()
@@ -247,17 +250,311 @@ def test_full_resume_restores_adaptive_lr_and_uses_next_iteration(monkeypatch, a
     runner.cfg = asdict(make_program_rl_cfg("recovery"))
     runner._abi = {"actor_obs": 61, "actions": 14, "motor_sha256": "motor"}
     runner.alg = NS(learning_rate=.0002, optimizer=NS(param_groups=[{"lr": .00003}]))
-    infos = {"sc0090_recovery": {"stage": 5, "polish": True}}
-    monkeypatch.setattr(torch, "load", lambda *args, **kwargs: {"iter": 5999, "infos": infos})
+    infos = {"sc0090_recovery": {"stage": 5, "polish": True},
+             "env_state": {"common_step_counter": 144000}}
+    path = tmp_path / 'model_5999.pt'
+    torch.save({"iter": 5999, "infos": infos, "optimizer_state_dict": {"param_groups": [{"lr": .00003}]}}, path)
     def load(self, *args, **kwargs):
         env.common_step_counter = 144000
-        if kwargs.get("load_cfg") is None:
+        if kwargs.get("load_cfg") is None or kwargs["load_cfg"].get("iteration"):
             self.current_learning_iteration = 5999
         return infos
     monkeypatch.setattr(SC0090FineTuneRunner, "load", load)
-    runner.load("model_5999.pt", load_cfg={"actor": True} if actor_only else None)
+    runner.load(path, load_cfg=load_cfg)
+    actor_only = load_cfg == {"actor": True}
     assert runner.current_learning_iteration == (0 if actor_only else 6000)
     assert runner.alg.learning_rate == (.0002 if actor_only else .00003)
     assert env.common_step_counter == 144000
     assert reset_phases == ["consolidate"]
     assert mdp.sc0090_program_state(env)["phase_enter_step"] == 144000
+
+
+def test_v4_budget_is_explicit_and_distributed_rejection_precedes_nccl(monkeypatch):
+    from mjlab_microduck.tasks.program_runner import SC0090ProgramRunner, validate_runner_config
+    from mjlab_microduck.tasks import SC0090FineTuneRunner
+    cfg = asdict(make_program_rl_cfg("walk"))
+    assert cfg["max_iterations"] is None
+    with pytest.raises(ValueError, match="max-iterations"):
+        validate_runner_config(cfg, "cuda:0", training=True)
+    cfg["max_iterations"] = 17
+    validate_runner_config(cfg, "cuda:0", training=True)
+    monkeypatch.setenv("WORLD_SIZE", "2")
+    monkeypatch.setattr(SC0090FineTuneRunner, "__init__", lambda *a, **k: pytest.fail("entered NCCL constructor"))
+    with pytest.raises(ValueError, match="single CUDA"):
+        SC0090ProgramRunner(None, cfg, "log", "cuda:0")
+
+
+@pytest.mark.parametrize("field,value", [("interval_iterations", True), ("interval_iterations", .5),
+    ("interval_iterations", 0), ("seeds", (1, 1)), ("seeds", (-1, 2)), ("timeout_seconds", float("inf"))])
+def test_bad_scheduling_configuration_rejected(field, value):
+    from mjlab_microduck.tasks.program_runner import validate_runner_config
+    cfg = asdict(make_program_rl_cfg("walk"))
+    cfg["training_program"][field] = value
+    with pytest.raises(ValueError):
+        validate_runner_config(cfg, "cuda:0", training=False)
+
+
+def test_completion_does_not_move_smoothing_baseline_again():
+    env = program_env()
+    state = mdp.sc0090_program_state(env)
+    state["phase_index"] = len(mdp.sc0090_program_spec(env)["phases"])-1
+    reference = dict(action_delta_rms=.2, torque_delta_rms=.02, settled_ang_rms=.2, rise_time_p95=2.)
+    state["reference_metrics"] = deepcopy(reference)
+    for step in (2400, 4800, 7200):
+        request, report = report_for(env, step)
+        state = mdp.sc0090_program_apply_evaluation(env, report, request)
+        assert state["last_result"]["passed"]
+        assert state["reference_metrics"] == reference
+    assert state["complete"]
+
+
+def test_rms_is_pooled_in_squared_units_and_latency_uses_worst_seed():
+    env = program_env()
+    request, report = report_for(env, 2400)
+    report["cases"][0]["metrics"].update(action_delta_rms=0., rise_time_p95=1.)
+    report["cases"][1]["metrics"].update(action_delta_rms=2., rise_time_p95=3.)
+    before = deepcopy(mdp.sc0090_program_state(env))
+    updated = mdp.sc0090_program_apply_evaluation(env, report, request, commit=False)
+    assert mdp.sc0090_program_state(env) == before
+    assert updated["last_result"]["metrics"]["action_delta_rms"] == pytest.approx(2**.5)
+    assert updated["last_result"]["metrics"]["rise_time_p95"] == 3.
+
+
+def test_torque_cost_does_not_compare_unrelated_episodes_or_charge_first_sample():
+    env = program_env(n=2)
+    data = env.scene["robot"].data
+    data.actuator_force = torch.full((2, 14), 2.)
+    assert mdp.sc0090_program_torque_rate(env).tolist() == [0., 0.]
+    data.actuator_force += 1
+    assert mdp.sc0090_program_torque_rate(env).tolist() == [14., 14.]
+    mdp.sc0090_program_reset(env, torch.tensor([0]))
+    data.actuator_force += 2
+    assert mdp.sc0090_program_torque_rate(env).tolist() == [0., 56.]
+
+
+def test_body_command_requires_new_nominal_hold_after_falling():
+    env = program_env(n=1)
+    buffers = mdp.sc0090_program_buffers(env)
+    state = mdp._sc0090_recovery_state(env)
+    state.hold[:] = 25
+    state.success[:] = True
+    buffers["body_ready"].copy_(mdp.sc0090_program_body_ready(env))
+    state.hold[:] = 0
+    env.scene["robot"].data.root_link_quat_w[:] = torch.tensor([0., 1., 0., 0.])
+    buffers["body_ready"].copy_(mdp.sc0090_program_body_ready(env))
+    env.scene["robot"].data.root_link_quat_w[:] = torch.tensor([1., 0., 0., 0.])
+    assert not mdp.sc0090_program_body_ready(env).item()
+    state.hold[:] = 24
+    assert not mdp.sc0090_program_body_ready(env).item()
+    state.hold[:] = 25
+    assert mdp.sc0090_program_body_ready(env).item()
+
+
+def test_pose_target_change_restarts_continuous_hold():
+    env = program_env(n=1)
+    env.command_manager.get_term("body_pose").cfg.tracking_enabled = True
+    command = torch.zeros(1, 6)
+    env.command_manager.get_command = lambda _: command
+    mdp.sc0090_program_buffers(env)["body_ready"][:] = True
+    for _ in range(25):
+        mdp.sc0090_program_stable_standing(env)
+    assert mdp.sc0090_program_buffers(env)["pose_hold"].item() == 25
+    command[:, 2] = .001  # Remains in tolerance, but it is a new requested target.
+    assert mdp.sc0090_program_stable_standing(env).item() == 0.
+    assert mdp.sc0090_program_buffers(env)["pose_hold"].item() == 1
+
+
+def test_fixed_eval_commands_are_written_during_reset_only_to_selected_worlds():
+    n = len(mdp.SC0090_PROGRAM_WALK_COMMANDS)*4
+    env = program_env("walk", n=n)
+    term = object.__new__(mdp.SC0090ProgramVelocityCommand)
+    term._env = env
+    term.vel_command_b = torch.full((n,3), -9.)
+    term.vel_command_w = term.vel_command_b.clone()
+    for name in ("is_heading_env", "is_world_env", "is_forward_env", "is_standing_env"):
+        setattr(term, name, torch.ones(n, dtype=torch.bool))
+    env._sc0090_program_eval_samples = 2
+    ids = torch.tensor([0, 4, 35, 43])
+    term._resample_command(ids)
+    expected = torch.tensor([v for _,v in mdp.SC0090_PROGRAM_WALK_COMMANDS])[ids//4]
+    assert torch.equal(term.vel_command_b[ids], expected)
+    assert torch.equal(term.vel_command_w[ids], expected)
+    assert torch.all(term.vel_command_b[1] == -9.)
+
+
+def test_checkpoint_atomic_publish_keeps_old_file_on_interruption(tmp_path):
+    from mjlab_microduck.tasks.program_runner import atomic_write
+    path = tmp_path/'model.pt'
+    atomic_write(path, lambda f: f.write(b"complete old checkpoint"))
+    def interrupted(stream):
+        stream.write(b"partial new checkpoint")
+        raise KeyboardInterrupt
+    with pytest.raises(KeyboardInterrupt):
+        atomic_write(path, interrupted)
+    assert path.read_bytes() == b"complete old checkpoint"
+    assert list(tmp_path.iterdir()) == [path]
+    atomic_write(path, lambda f: f.write(b"complete new checkpoint"))
+    assert path.read_bytes() == b"complete new checkpoint"
+
+
+def test_run_directory_has_one_writer_without_waiting(tmp_path):
+    from mjlab_microduck.tasks.program_runner import acquire_run_lock
+    first = acquire_run_lock(tmp_path)
+    try:
+        with pytest.raises(BlockingIOError):
+            acquire_run_lock(tmp_path)
+    finally:
+        first.close()
+    acquire_run_lock(tmp_path).close()
+
+
+def test_nonfinite_checkpoint_rejected_before_parent_load(monkeypatch, tmp_path):
+    from mjlab_microduck.tasks.program_runner import SC0090ProgramRunner
+    from mjlab_microduck.tasks import SC0090FineTuneRunner
+    path = tmp_path/'bad.pt'
+    torch.save({"actor_state_dict": {"weight": torch.tensor([float("nan")])}}, path)
+    runner = object.__new__(SC0090ProgramRunner)
+    monkeypatch.setattr(SC0090FineTuneRunner, "load", lambda *a, **k: pytest.fail("mutated live model"))
+    with pytest.raises(ValueError, match="nonfinite"):
+        runner.load(path)
+
+
+def test_old_assessment_baseline_blocks_training_but_allows_actor_only_play(monkeypatch, tmp_path):
+    from mjlab_microduck.tasks.program_runner import SC0090ProgramRunner
+    from mjlab_microduck.tasks import SC0090FineTuneRunner
+    env = program_env()
+    env.common_step_counter = 144000
+    env.reset = lambda: None
+    state = mdp.sc0090_program_state(env)
+    state.update(phase_index=20, reference_metrics={'settled_ang_rms': .2})
+    runner = object.__new__(SC0090ProgramRunner)
+    runner.env, runner.device = NS(unwrapped=env), 'cpu'
+    runner.cfg = asdict(make_program_rl_cfg('recovery'))
+    runner._abi = {}
+    runner.current_learning_iteration = 0
+    runner.alg = NS(learning_rate=.0002)
+    infos = {'env_state': {'common_step_counter':144000}, 'sc0090_program': state,
+             'sc0090_program_runner': {'abi': {}, 'evaluation_protocol': 2}}
+    path = tmp_path/'old.pt'
+    torch.save({'iter':5999,'infos':infos,'optimizer_state_dict':{'param_groups':[{'lr':.00003}]}}, path)
+    loaded = []
+    def parent_load(*args, **kwargs):
+        loaded.append(kwargs['load_cfg'])
+        return infos
+    monkeypatch.setattr(SC0090FineTuneRunner, 'load', parent_load)
+    with pytest.raises(ValueError, match='protocol 2'):
+        runner.load(path)
+    assert not loaded
+    runner.load(path, load_cfg={'actor':True})
+    assert loaded == [{'actor':True}]
+    assert mdp.sc0090_program_state(env)['phase_index'] == 20
+    assert mdp.sc0090_program_state(env)['reference_metrics'] == {}
+
+
+def test_eval_timeout_reaps_real_child(tmp_path):
+    import os, subprocess, sys
+    from mjlab_microduck.tasks.program_runner import run_evaluation_process
+    path = tmp_path/'child.log'
+    with path.open('w') as stream, pytest.raises(subprocess.TimeoutExpired):
+        run_evaluation_process([sys.executable, '-c',
+            'import os,time; print(os.getpid(), flush=True); time.sleep(30)'], dict(os.environ), stream, .5)
+    pid = int(path.read_text().strip())
+    with pytest.raises(ProcessLookupError):
+        os.kill(pid, 0)
+
+
+@pytest.mark.parametrize("stuck", [False, True])
+def test_eval_interrupt_cleans_process_group_with_bounded_wait(monkeypatch, stuck):
+    import subprocess
+    from mjlab_microduck.tasks import program_runner as module
+    waits, killed = [], []
+    def wait(timeout):
+        waits.append(timeout)
+        if len(waits) == 1:
+            raise KeyboardInterrupt
+        if stuck:
+            raise subprocess.TimeoutExpired('child', timeout)
+        return -9
+    monkeypatch.setattr(module.subprocess, 'Popen', lambda *a, **k: NS(pid=123, wait=wait, poll=lambda: None))
+    monkeypatch.setattr(module.os, 'killpg', lambda *args: killed.append(args))
+    with pytest.raises(module.EvaluationCleanupError if stuck else KeyboardInterrupt):
+        module.run_evaluation_process(['child'], {}, None, 300.)
+    assert waits == [300., 10.] and killed == [(123, module.signal.SIGKILL)]
+
+
+@pytest.mark.parametrize("failure", [True, False])
+def test_assessment_transaction_preserves_live_observations_until_reset(monkeypatch, tmp_path, failure):
+    from mjlab_microduck.tasks import program_runner as module
+    env = program_env()
+    env.common_step_counter = 2400
+    state = mdp.sc0090_program_state(env)
+    state.update(passes=1, phase_enter_step=0)
+    runner = object.__new__(module.SC0090ProgramRunner)
+    runner.env, runner.device = NS(unwrapped=env), 'cpu'
+    runner.cfg = asdict(make_program_rl_cfg('recovery'))
+    runner.cfg['upload_model'] = False
+    runner._evaluation_train_cfg = deepcopy(runner.cfg)
+    runner._abi = {}
+    runner.alg = NS(learning_rate=.0002, save=lambda: {"weight": torch.tensor([3.])})
+    runner.current_learning_iteration = 99
+    runner.logger = NS(writer=None)
+    runner._export_checkpoint = lambda path: None
+    def evaluate(command, *_):
+        if failure:
+            raise ValueError('bad report')
+        from pathlib import Path
+        request_path = Path(command[-1])
+        request = json.loads(request_path.read_text())
+        _, report = report_for(env, env.common_step_counter)
+        report.update(request)
+        for seed, case in zip(request['seeds'], report['cases']):
+            case['seed'] = seed
+        (request_path.parent/'report.json').write_text(json.dumps(report))
+    monkeypatch.setattr(module, 'run_evaluation_process', evaluate)
+    runner.save(tmp_path/'model.pt')
+    saved = torch.load(tmp_path/'model.pt', weights_only=False)
+    assert saved['infos']['sc0090_program']['passes'] == 0
+    assert saved['infos']['sc0090_program']['last_result']['passed'] is (not failure)
+    assert saved['infos']['sc0090_program']['phase_index'] == (0 if failure else 1)
+    assert saved['infos']['sc0090_program']['last_attempt_step'] == 2400
+    assert env.reward_manager.get_term_cfg('action_rate_l2').weight == 0.
+    assert (tmp_path/'last_qualified.pt').exists() is (not failure)
+    if not failure:
+        qualified = torch.load(tmp_path/'last_qualified.pt', weights_only=False)
+        assert qualified['infos'] == saved['infos']
+        assert torch.equal(qualified['weight'], saved['weight'])
+
+
+def test_automatic_eval_resets_preserve_observation_delay_clock():
+    if not torch.cuda.is_available():
+        pytest.skip('CUDA unavailable')
+    from mjlab.envs import ManagerBasedRlEnv
+    from mjlab.managers import TerminationTermCfg
+    from mjlab.rl import RslRlVecEnvWrapper
+    cfg = make_sc0090_v4_env_cfg('walk')
+    cfg.scene.num_envs = len(mdp.SC0090_PROGRAM_WALK_COMMANDS)*4
+    # Permanently fail half the worlds every step, while the others continue.
+    cfg.terminations = {'forced': TerminationTermCfg(
+        func=lambda env: torch.arange(env.num_envs, device=env.device)%2 == 0)}
+    env = ManagerBasedRlEnv(cfg, device='cuda:0')
+    try:
+        env._sc0090_program_eval_samples = 2
+        with torch.inference_mode():
+            vec = RslRlVecEnvWrapper(env)
+            expected = torch.tensor([v for _,v in mdp.SC0090_PROGRAM_WALK_COMMANDS], device=env.device).repeat_interleave(4,0)
+            initial_obs = vec.get_observations()
+            torch.testing.assert_close(initial_obs['actor'][:, 48:51], expected, rtol=0, atol=0)
+            original_compute = env.observation_manager.compute
+            ticks = []
+            def compute(update_history=False):
+                if update_history:
+                    ticks.append(env.common_step_counter)
+                return original_compute(update_history=update_history)
+            env.observation_manager.compute = compute
+            for _ in range(5):
+                obs, _, done, _ = vec.step(torch.zeros((env.num_envs,14),device=env.device))
+                assert done[::2].all()
+                torch.testing.assert_close(obs['actor'][:, 48:51], expected, rtol=0, atol=0)
+            assert ticks == [1,2,3,4,5]
+    finally:
+        env.close()

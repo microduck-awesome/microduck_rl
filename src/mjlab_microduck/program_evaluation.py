@@ -12,6 +12,7 @@ import time
 import torch
 import warp as wp
 from mjlab.envs import ManagerBasedRlEnv
+from mjlab.managers import EventTermCfg
 from mjlab.rl import RslRlVecEnvWrapper
 from mjlab.utils.torch import configure_torch_backends
 from mjlab_microduck.tasks import SC0090FineTuneRunner, mdp
@@ -23,7 +24,12 @@ def evaluate_seed(request, configs, seed):
     names = mdp.SC0090_RECOVERY_BUCKETS if recovery else tuple(k for k, _ in mdp.SC0090_PROGRAM_WALK_COMMANDS)
     samples = request["samples_per_group"]
     cfg.scene.num_envs = len(names)*2*samples
-    cfg.seed, cfg.auto_reset, cfg.episode_length_s = seed, False, 10.
+    # Use the training reset path: manual reset() advances observation delays
+    # for the entire batch a second time, including worlds that did not fail.
+    cfg.seed, cfg.auto_reset, cfg.episode_length_s = seed, True, 10.
+    cfg.events["assessment_pushes"] = EventTermCfg(
+        func=mdp.sc0090_program_evaluation_push_step, mode="step",
+        params={"push_times": (3., 5.)})
     for command in cfg.commands.values():
         command.resampling_time_range = (1000., 1000.)
     if recovery:
@@ -42,7 +48,7 @@ def evaluate_seed(request, configs, seed):
         policy = runner.get_inference_policy(device=request["device"])
         with torch.inference_mode():
             env.reset(seed=seed)
-            mdp.sc0090_program_evaluation_commands(env, samples)
+            env._sc0090_program_evaluation_start_step = env.common_step_counter
             obs = vec.get_observations()
             if obs["actor"].shape != (env.num_envs, 61):
                 raise ValueError("Actor observation contract changed")
@@ -56,47 +62,52 @@ def evaluate_seed(request, configs, seed):
             xy_error = torch.zeros(n, device=device)
             yaw_error = torch.zeros(n, device=device)
             pose_error = torch.zeros(n, 3, device=device)
+            delta_count = torch.zeros(n, device=device)
+            settled_count = torch.zeros(n, device=device)
             previous_action = previous_torque = None
             steps = round(8./env.step_dt)
             settled_steps = 0
-            push_times = {round(3./env.step_dt): 0, round(5./env.step_dt): 1}
             for step in range(steps):
-                if step in push_times:
-                    mdp.sc0090_program_evaluation_push(env, push_times[step])
-                    obs = vec.get_observations()
                 actions = policy(obs, stochastic_output=False)
                 if actions.shape != (n, 14) or not torch.isfinite(actions).all().item():
                     raise ValueError("Invalid policy actions")
                 obs, reward, done, _ = vec.step(actions)
-                values = [reward, env.sim.data.qpos, env.sim.data.qvel, *obs.values()]
+                # Auto-reset has already replaced failed physics states. Keep
+                # the termination manager's pre-reset NaN evidence; a numeric
+                # failure must invalidate assessment, not hide within the
+                # allowed ordinary-fall percentage.
+                if ("nan_state" in env.termination_manager.active_terms
+                        and env.termination_manager.get_term("nan_state").any().item()):
+                    raise ValueError("Nonfinite physics terminated an assessment world")
+                values = [reward, env.sim.data.qpos, env.sim.data.qvel,
+                          env.scene["robot"].data.actuator_force, *obs.values()]
                 if not all(torch.isfinite(v).all().item() for v in values):
                     raise ValueError("Nonfinite assessment rollout")
                 data = env.scene["robot"].data
                 torque = data.actuator_force
+                # Never include the reset discontinuity or a retry episode in
+                # metrics. Success remains permanently false after first done.
+                failed |= done.bool()
+                active = ~failed
+                applied_actions = env.action_manager.action
                 if previous_action is not None:
-                    action_ss += (actions-previous_action).square().mean(-1)
-                    torque_ss += (torque-previous_torque).square().mean(-1)
-                previous_action, previous_torque = actions.clone(), torque.clone()
+                    action_ss += torch.where(active, (applied_actions-previous_action).square().mean(-1), 0.)
+                    torque_ss += torch.where(active, (torque-previous_torque).square().mean(-1), 0.)
+                    delta_count += active
+                previous_action, previous_torque = applied_actions.clone(), torque.clone()
                 if recovery:
                     success = mdp._sc0090_recovery_state(env).success
                     first_rise = torch.where(success & ~seen_rise & ~failed,
                                               torch.full_like(first_rise, (step+1)*env.step_dt), first_rise)
-                    seen_rise |= success
+                    seen_rise |= success & active
                 if step >= round(6./env.step_dt):
                     settled_steps += 1
-                    settled_ss += data.root_link_ang_vel_b.square().mean(-1)
+                    settled_ss += torch.where(active, data.root_link_ang_vel_b.square().mean(-1), 0.)
+                    settled_count += active
                     cmd = env.command_manager.get_command("twist")
                     xy_error += (data.root_link_lin_vel_b[:, :2]-cmd[:, :2]).norm(dim=-1)
                     yaw_error += (data.root_link_ang_vel_b[:, 2]-cmd[:, 2]).abs()
                     pose_error += torch.stack(mdp.sc0090_program_pose_errors(env), -1).abs()
-                failed |= done.bool()
-                if done.any().item():
-                    # Terminated worlds are permanent failures for this trial.
-                    # Reset only to satisfy mjlab's manual-reset API; do not
-                    # count a second episode or discard a difficult start.
-                    env.reset(env_ids=done.nonzero().squeeze(-1))
-                    mdp.sc0090_program_evaluation_commands(env, samples)
-                    obs = vec.get_observations()
             phase = mdp.sc0090_program_phase(env)
             rehearsal = mdp.sc0090_program_buffers(env)["rehearsal"]
             if recovery:
@@ -122,9 +133,9 @@ def evaluate_seed(request, configs, seed):
                     result[profile][name] = {"trials": int(selected.sum()), "wins": int(success[selected].sum())}
             challenge = ~rehearsal
             result["metrics"] = {
-                "action_delta_rms": float((action_ss[challenge].mean()/max(steps-1, 1)).sqrt()),
-                "torque_delta_rms": float((torque_ss[challenge].mean()/max(steps-1, 1)).sqrt()),
-                "settled_ang_rms": float((settled_ss[challenge].mean()/settled_steps).sqrt()),
+                "action_delta_rms": float((action_ss[challenge].sum()/delta_count[challenge].sum().clamp_min(1)).sqrt()),
+                "torque_delta_rms": float((torque_ss[challenge].sum()/delta_count[challenge].sum().clamp_min(1)).sqrt()),
+                "settled_ang_rms": float((settled_ss[challenge].sum()/settled_count[challenge].sum().clamp_min(1)).sqrt()),
                 "rise_time_p95": float(torch.quantile(first_rise[challenge], .95)) if recovery else 0.,
             }
             print(f"[Program evaluation seed {seed}] {result}", flush=True)
@@ -140,7 +151,7 @@ def main():
     parser.add_argument("request", type=Path)
     args = parser.parse_args()
     request = json.loads(args.request.read_text())
-    if request["schema"] != 2 or request["duration_s"] != 8.:
+    if request["schema"] != 3 or request["duration_s"] != 8.:
         raise ValueError("Unsupported assessment protocol")
     for key in ("config", "checkpoint"):
         if hashlib.sha256(Path(request[key]).read_bytes()).hexdigest() != request[key+"_sha256"]:

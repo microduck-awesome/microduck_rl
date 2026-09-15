@@ -1,9 +1,34 @@
-# SC0090 V4: from scratch or continuation after 6000 updates
+# SC0090 V4: from scratch or checkpoint continuation
 
 V4 makes the same training program usable from random weights, from an existing
 SC0090 expert, and after interrupting a V4 run. It adds new task IDs and leaves
 the currently running V2 walking / V3 recovery jobs on their existing recipes.
 There is no automatic launch when those jobs finish.
+
+## Budgets, cadence, and learning criteria are different parameters
+
+**6000 is the existing V2/V3 job budget**, not a convergence theorem or a phase
+trigger. **2000 and 12000 in the examples are illustrative additional
+budgets**, not required amounts. V4 now requires an explicit positive
+`--agent.max-iterations`; it no longer inherits V2's default of 6000. Pick a
+budget for the available compute, inspect measured progress, then resume if
+needed. Exhausting the budget does not mark the program complete.
+
+**200 is the configurable default number of PPO updates between assessments**,
+chosen to amortize the measured 1–3 minute assessment cost. It is an operational
+heuristic, not a learning threshold. With 24 steps/update, it equals 4800 control
+steps per environment (96 simulated seconds at 50 Hz); 8192 environments collect
+39,321,600 transitions in that interval. Change it with
+`--agent.training-program.interval-iterations`. Actual execution waits for the
+next checkpoint save; the startup log prints both settings and their units.
+The initial saved checkpoint is assessed immediately.
+
+The phase criteria live separately in `make_training_program()`: minimum 2400
+steps per environment (48 simulated seconds), two consecutive passing reports,
+and explicit success thresholds. These are initial empirical settings, not
+universal constants. Changing that phase plan changes its checkpoint fingerprint.
+Increasing the assessment interval reduces overhead but delays promotion and
+detection of regressions; decreasing it does the reverse.
 
 | Task | Local launcher | Registered task |
 | --- | --- | --- |
@@ -99,6 +124,8 @@ height/upright rewards are reduced as commanded-posture reward rises. A legitima
 crouch has its own target-relative stability reward and does not create a false
 nominal recovery success. The motor model, 80 rpm active-drive limit, 61D actor
 observations, 14 actions and lack of action filtering stay unchanged.
+After another fall, posture commands require a new nominal hold before being
+enabled again. Target changes restart the target-relative hold timer.
 
 ## Evaluation gates and limits
 
@@ -111,7 +138,10 @@ Recovery has seven spawn groups; walking has eleven fixed velocity commands.
 DR and sensor noise remain active. Retention has no push/body command; challenge
 uses current body targets and guaranteed cardinal pushes at 3 and 5 seconds,
 then measures the final settled behavior. Failed episodes remain failures if
-their worlds must be reset to continue the batched simulation.
+their worlds must be reset to continue the batched simulation. Automatic resets
+use the normal training step path, so healthy worlds do not receive extra
+observation-delay updates. Fixed walking commands are installed during command
+reset, before observations; timed pushes occur inside the control step.
 
 - Foundation/roll stages require ≥70% success per required group in each seed;
   recovery's yet-unlearned exact side/back groups are still reported.
@@ -121,23 +151,39 @@ their worlds must be reset to continue the batched simulation.
   the current phase are required. A report can advance only one phase.
 - Smoothing additionally requires ≥1% improvement of its relevant measured RMS
   quantity compared with the preceding qualified phase. Recovery's 95th-percentile
-  nominal rise time may grow at most 15% + 0.1 s. Thresholds are initial settings
+  nominal rise time (worst seed) may grow at most 15% + 0.1 s. Thresholds are initial settings
   for evaluation, not claims that all robots can achieve them.
 - Reports with a wrong checkpoint/config hash, phase, counter, missing group,
   insufficient samples or nonfinite values cannot promote. Errors are recorded
-  separately and leave the phase unchanged.
+  separately, break the passing streak, invalidate the latest qualification,
+  and leave the phase unchanged.
 
-Reports and frozen inputs are under `program_evaluations/step_XXXXXXXXX/`.
+Torque-change rewards skip the first sample after each episode reset because
+there is no within-episode predecessor. Assessment RMS uses only first-episode
+transitions, excluding reset discontinuities and retries; independent-seed RMS
+values are pooled in squared units. Completing the final phase retains its
+entrance baseline, so unchanged qualified performance remains qualified.
+Phase changes take effect through the next normal environment reset, avoiding
+an action computed from an observation cached under different live commands.
+
+Reports and frozen inputs are under `program_evaluations/step_XXXXXXXXX_<unique>/`.
 `last_qualified.pt` retains the latest policy that passed the current gate. To
 roll back, explicitly resume that checkpoint with the same plan. There is no
 silent weight replacement during PPO updates. The `complete` flag records that
 all phases have passed; use the latest `last_result.passed` as well when deciding
 whether the current policy is acceptable. Release evaluation should additionally
 use held-out seeds, intermediate push strengths and videos.
+Checkpoint and ONNX publication use same-directory atomic renames. A nonblocking
+run-directory lock prevents two V4 writers from publishing into the same run. The loader
+validates and loads one byte snapshot, rejecting invalid counters, nonfinite
+state and inconsistent learning rates before overwriting the live learner.
 
 V4 currently requires a single CUDA training GPU with room for the temporary
 assessment process. The evaluator bypasses shared MPS; the default timeout is
-300 s. In this L40 smoke run, recovery assessments took about 59–64 s, walking
+300 s. Unsupported distributed configuration is rejected before the runner can
+initialize NCCL. On timeout or interruption the evaluator process group is
+terminated and reaped with a bounded wait; unsuccessful cleanup stops training
+with a saved checkpoint. In the initial L40 smoke run, recovery assessments took about 59–64 s, walking
 expert assessment 69 s, and random walking policy assessment 153 s (frequent
 terminal resets are more expensive). These are observed smoke timings, not
 portable performance guarantees. Increasing the interval reduces this overhead.
@@ -149,6 +195,15 @@ mjlab, so a resumed trajectory is not claimed to be bitwise identical to an
 uninterrupted run. The evaluator itself cannot update the parent's policy,
 optimizer, normalizers or environment counter.
 
+The reviewed evaluator uses protocol 3. Initial V4 protocol-2 reports are not
+comparable because they could advance delay buffers during manual resets and
+include retry episodes in smoothing metrics. Protocol-2 V4 checkpoints without
+a smoothing reference can load their model/optimizer/phase, with the old pass
+streak cleared and a fresh assessment due. Checkpoints containing such a
+reference are rejected for training explicitly; use the original recipe or import
+the original V2/V3 expert. Actor-only play/export can still load them, discarding
+obsolete assessment metrics. Protocol-3 V4 resumes retain their state normally.
+
 At deployment, the recovery command sender must use neutral body commands until
 nominal standing is stable, and clear them when the robot falls again. This is
 command scheduling, not action filtering; the 61D ONNX interface is unchanged.
@@ -157,24 +212,27 @@ new posture/push ranges.
 
 ## Validation
 
-Full regression suite: **331 passed, 1 skipped**. Seven real 64-environment ×
+Reviewed regression suite: **355 passed, 1 skipped**. Eight real 64-environment ×
 5-update smokes covered fresh walking/recovery, legacy walking/recovery import,
-V4 walking/recovery resume, and a synthetic advanced-phase fixture exercising
-posture and smoothing rewards. The fixture changes only test checkpoint phase
-metadata; it is not a trained advanced expert or a production checkpoint.
+V4 walking/recovery resume, a synthetic advanced-phase fixture exercising
+posture and smoothing rewards, and an actual promotion in the training loop.
+The two fixtures change only checkpoint phase metadata; they are not trained
+advanced experts or production checkpoints.
 
 Checkpoint validation checks finite tensors, +100 optimizer steps, +7680
 normalizer samples, +120 environment steps, correct next iteration labels,
 preserved phase clocks/cadence and finite normalized 61→14 ONNX inference.
 Across the assessments, policy, critic and optimizer remain bitwise unchanged.
-Artifacts: `logs/sc0090_setup/v4_compatibility/{validation.json,full_tests.log}`.
+Artifacts: `logs/sc0090_setup/v4_review/{validation.json,full_tests.log}`.
 Fresh runs correctly remain in foundation; the walking expert remains in
 consolidation when its direction-specific retention fails the stricter gate.
 An additional full advanced-phase assessment exercised posture commands and
 forced pushes on the synthetic fixture with finite results; its low challenge
 success correctly distinguishes nominal recovery from commanded-pose ability.
-An actor-only load/rollout check restored the advanced phase without loading
-optimizer state or updating observation normalization, covering play/export use.
+The suite also checks atomic checkpoint interruption, one-writer locks, bounded
+child cleanup, fail-before-NCCL validation, explicit partial/full load modes,
+and observation-delay clocks under repeated partial episode failure.
+See [the review record](sc0090-v4-review.md) for findings and compatibility notes.
 
 Before any long V4 launch, run its own 64-environment × 5-update smoke using the
 same task, checkpoint and overrides, as required by `AGENTS.md`.

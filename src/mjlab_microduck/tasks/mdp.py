@@ -7808,6 +7808,12 @@ def sc0090_program_restore(env, saved, legacy_recovery=None):
         for key in ("last_attempt_step", "last_eval_step"):
             if type(saved.get(key)) is not int or not -1 <= saved[key] <= env.common_step_counter:
                 raise ValueError(f"Invalid evaluation counter: {key}")
+        reference = saved.get("reference_metrics")
+        if (not isinstance(reference, dict)
+                or any(type(value) not in (float, int) or not math.isfinite(value) or value < 0
+                       for value in reference.values())
+                or (saved["complete"] and saved["phase_index"] != len(program["phases"])-1)):
+            raise ValueError("Invalid program completion/smoothing reference")
         env._sc0090_program = deepcopy(saved)
     else:
         # Legacy experts already saw the final head/CoM randomization. Keep it.
@@ -7835,7 +7841,9 @@ def sc0090_program_buffers(env):
     if not hasattr(env, "_sc0090_program_buffers"):
         env._sc0090_program_buffers = {
             "rehearsal": torch.zeros(env.num_envs, dtype=torch.bool, device=env.device),
-            "pose_hold": torch.zeros(env.num_envs, dtype=torch.long, device=env.device)}
+            "pose_hold": torch.zeros(env.num_envs, dtype=torch.long, device=env.device),
+            "body_ready": torch.zeros(env.num_envs, dtype=torch.bool, device=env.device),
+            "torque_valid": torch.zeros(env.num_envs, dtype=torch.bool, device=env.device)}
     return env._sc0090_program_buffers
 
 
@@ -7851,8 +7859,23 @@ def sc0090_program_reset(env, env_ids):
         probability = sc0090_program_spec(env)["rehearsal_probability"]
         buffers["rehearsal"][env_ids] = torch.rand(len(env_ids), device=env.device) < probability
     buffers["pose_hold"][env_ids] = 0
+    buffers["body_ready"][env_ids] = False
+    buffers["torque_valid"][env_ids] = False
     if hasattr(env, "_prev_actuator_forces"):
         env._prev_actuator_forces[env_ids] = 0
+
+
+def sc0090_program_torque_rate(env):
+    """Within-episode torque differences; the first sample has no predecessor."""
+    current = env.scene["robot"].data.actuator_force
+    buffers = sc0090_program_buffers(env)
+    if "previous_torque" not in buffers:
+        buffers["previous_torque"] = current.clone()
+    cost = (current - buffers["previous_torque"]).square().sum(-1)
+    cost = torch.where(buffers["torque_valid"], cost, 0.)
+    buffers["previous_torque"].copy_(current)
+    buffers["torque_valid"].fill_(True)
+    return cost
 
 
 def sc0090_program_curriculum(env, env_ids, program):
@@ -7917,11 +7940,7 @@ class SC0090ProgramBodyCommand(UniformPoseCommand):
         else:
             ready = ~buffers["rehearsal"]
             if self.cfg.recovery:
-                data = self._env.scene["robot"].data
-                q = data.root_link_quat_w
-                ready = (ready & _sc0090_recovery_state(self._env).success
-                         & (1-2*(q[:, 1].square()+q[:, 2].square()) > math.cos(math.radians(50)))
-                         & (data.root_link_pos_w[:, 2]-self._env.scene.env_origins[:, 2] > .065))
+                ready = ready & sc0090_program_body_ready(self._env)
             command = torch.where(ready[:, None], self._command, 0.)
         if getattr(self._env, "_sc0090_program_eval_samples", 0):
             command = torch.where(buffers["rehearsal"][:, None], 0., command)
@@ -7959,10 +7978,22 @@ def sc0090_program_pose_errors(env):
     return height-(.115+cmd[:, 2]), wrap_to_pi(roll-cmd[:, 3]), wrap_to_pi(pitch-cmd[:, 4])
 
 
+def sc0090_program_body_ready(env):
+    """Re-arm posture commands after each fall only after a new nominal hold."""
+    data = env.scene["robot"].data
+    q = data.root_link_quat_w
+    upright = ((1-2*(q[:, 1].square()+q[:, 2].square()) > math.cos(math.radians(50)))
+               & (data.root_link_pos_w[:, 2]-env.scene.env_origins[:, 2] > .065))
+    nominal_hold = _sc0090_recovery_state(env).hold >= math.ceil(.5/env.step_dt)
+    return upright & (sc0090_program_buffers(env)["body_ready"] | nominal_hold)
+
+
 def sc0090_program_stable_standing(env):
     # Keep the original nominal recovery latch, including its exact 0.5 s
     # criterion. Afterwards a commanded crouch/tilt has its own target reward.
     nominal = sc0090_stable_standing(env)
+    buffers = sc0090_program_buffers(env)
+    buffers["body_ready"].copy_(sc0090_program_body_ready(env))
     if not env.command_manager.get_term("body_pose").cfg.tracking_enabled:
         return nominal
     z, roll, pitch = sc0090_program_pose_errors(env)
@@ -7971,10 +8002,15 @@ def sc0090_program_stable_standing(env):
     stable = ((z.abs() <= .01) & (roll.abs() <= math.radians(5)) & (pitch.abs() <= math.radians(5))
               & (data.root_link_lin_vel_b.norm(dim=1) < .15)
               & (data.root_link_ang_vel_b.norm(dim=1) < 1.5) & feet)
-    buffers = sc0090_program_buffers(env)
-    buffers["pose_hold"] = torch.where(stable, buffers["pose_hold"]+1, 0)
+    active = buffers["body_ready"] & ~buffers["rehearsal"]
+    target = env.command_manager.get_command("body_pose")
+    if "pose_target" not in buffers:
+        buffers["pose_target"] = target.clone()
+    same_target = (target == buffers["pose_target"]).all(-1)
+    buffers["pose_hold"] = torch.where(stable & active,
+        torch.where(same_target, buffers["pose_hold"]+1, 1), 0)
+    buffers["pose_target"].copy_(target)
     completed = (buffers["pose_hold"] >= math.ceil(.5/env.step_dt)).float()
-    active = _sc0090_recovery_state(env).success & ~buffers["rehearsal"]
     return torch.where(active, completed, nominal)
 
 
@@ -7987,17 +8023,50 @@ SC0090_PROGRAM_WALK_COMMANDS = (
     ("curve_right", (.2, 0., -.5)))
 
 
-def sc0090_program_evaluation_commands(env, samples):
+class SC0090ProgramVelocityCommand(SC0090VelocityCommand):
+    def _resample_command(self, env_ids):
+        samples = getattr(self._env, "_sc0090_program_eval_samples", 0)
+        if samples:
+            sc0090_program_evaluation_commands(self._env, samples, env_ids, term=self)
+        else:
+            super()._resample_command(env_ids)
+
+
+@dataclass(kw_only=True)
+class SC0090ProgramVelocityCommandCfg(SC0090VelocityCommandCfg):
+    def build(self, env):
+        if (len(self.bucket_probabilities) != len(SC0090_WALK_BUCKETS)
+                or min(self.bucket_probabilities) <= 0
+                or not math.isclose(sum(self.bucket_probabilities), 1.0)):
+            raise ValueError("Invalid walking bucket probabilities")
+        return SC0090ProgramVelocityCommand(self, env)
+
+
+def sc0090_program_evaluation_commands(env, samples, env_ids=None, term=None):
     if sc0090_program_spec(env)["task"] != "walk":
         return
-    term = env.command_manager.get_term("twist")
-    index = torch.arange(env.num_envs, device=env.device) // (2*samples)
+    if term is None:
+        term = env.command_manager.get_term("twist")
+    if env_ids is None:
+        env_ids = torch.arange(env.num_envs, device=env.device)
+    index = env_ids // (2*samples)
     commands = torch.tensor([v for _, v in SC0090_PROGRAM_WALK_COMMANDS], device=env.device)[index]
-    term.vel_command_b[:] = commands
-    term.vel_command_w[:] = commands
+    term.vel_command_b[env_ids] = commands
+    term.vel_command_w[env_ids] = commands
     for name in ("is_heading_env", "is_world_env", "is_forward_env"):
-        getattr(term, name)[:] = False
-    term.is_standing_env[:] = index == 0
+        getattr(term, name)[env_ids] = False
+    term.is_standing_env[env_ids] = index == 0
+
+
+def sc0090_program_evaluation_push_step(env, env_ids, push_times):
+    """Push inside the control step, before the single observation-buffer update."""
+    del env_ids
+    start = getattr(env, "_sc0090_program_evaluation_start_step", None)
+    if start is not None:
+        elapsed = env.common_step_counter - start
+        for index, seconds in enumerate(push_times):
+            if elapsed == round(seconds/env.step_dt):
+                sc0090_program_evaluation_push(env, index)
 
 
 def sc0090_program_evaluation_push(env, index):
@@ -8010,10 +8079,9 @@ def sc0090_program_evaluation_push(env, index):
     velocity[torch.arange(len(selected), device=env.device), axis] += sign * sc0090_program_phase(env)["push"]
     env.scene["robot"].write_root_link_velocity_to_sim(velocity, env_ids=selected)
     env.sim.forward()
-    env.sim.sense()
 
 
-def sc0090_program_apply_evaluation(env, report, request):
+def sc0090_program_apply_evaluation(env, report, request, *, commit=True):
     """All validation precedes mutation; only consecutive independent passes advance."""
     from copy import deepcopy
     program = sc0090_program_spec(env)
@@ -8022,7 +8090,7 @@ def sc0090_program_apply_evaluation(env, report, request):
                 "checkpoint_sha256", "config_sha256", "seeds", "samples_per_group", "duration_s"):
         if report.get(key) != request[key]:
             raise ValueError(f"Program assessment mismatch: {key}")
-    if (report["schema"] != 2 or report["task"] != program["task"]
+    if (report["schema"] != 3 or report["task"] != program["task"]
             or report["program_hash"] != state["program_hash"]
             or report["phase_index"] != state["phase_index"] or report["duration_s"] != 8.
             or report["global_step"] != env.common_step_counter
@@ -8062,7 +8130,11 @@ def sc0090_program_apply_evaluation(env, report, request):
             if type(value) not in (float, int) or not math.isfinite(value) or value < 0:
                 raise ValueError("Missing/nonfinite assessment metrics")
             metrics[key].append(value)
-    means = {k: sum(v)/len(v) for k, v in metrics.items()}
+    # Equal weighting of independent seeds: pool mean-square quantities before
+    # taking their root. An arithmetic mean of RMS values understates energy.
+    # A mean of P95s is not a P95; use the worst seed for the latency constraint.
+    means = {k: (max(v) if k == "rise_time_p95" else math.hypot(*v)/math.sqrt(len(v)))
+             for k, v in metrics.items()}
     if phase["kind"] == "smooth":
         metric = ("torque_delta_rms" if phase["name"] == "smooth_torque" else
                   "settled_ang_rms" if phase["name"] == "smooth_arrival" else "action_delta_rms")
@@ -8071,18 +8143,23 @@ def sc0090_program_apply_evaluation(env, report, request):
         if program["task"] == "recovery":
             passed &= bool(reference) and means["rise_time_p95"] <= reference.get("rise_time_p95", 0.)*1.15+.1
     updated = deepcopy(state)
-    updated["passes"] = state["passes"]+1 if passed else 0
+    updated["passes"] = min(state["passes"]+1, program["required_passes"]) if passed else 0
     advance = (not state["complete"] and updated["passes"] >= program["required_passes"]
                and env.common_step_counter-state["phase_enter_step"] >= program["min_phase_steps"])
     if advance:
         updated["complete"] = state["phase_index"] == len(program["phases"])-1
         updated["phase_index"] = min(state["phase_index"]+1, len(program["phases"])-1)
         updated["phase_enter_step"] = env.common_step_counter
-        updated["reference_metrics"] = means
+        # Completing the last phase must keep its entrance baseline. Replacing
+        # it demands another 1% improvement on every subsequent assessment.
+        if not updated["complete"]:
+            updated["reference_metrics"] = means
         updated["passes"] = 0
     updated["last_eval_step"] = env.common_step_counter
+    updated.pop("last_error", None)
     updated["last_result"] = dict(passed=bool(passed), advanced=bool(advance),
         assessed_phase=phase["name"], counts=sums, metrics=means,
         checkpoint_sha256=report["checkpoint_sha256"])
-    env._sc0090_program = updated
+    if commit:
+        env._sc0090_program = updated
     return updated

@@ -14,6 +14,9 @@ from .microduck_sc0090_recovery_v3_env_cfg import make_sc0090_recovery_v3_env_cf
 @dataclass
 class TrainingProgramRunnerCfg:
     checkpoint: str | None = None
+    # Scheduling only: at 24 steps/update this is 4800 steps per environment.
+    # Chosen to amortize the measured 1–3 minute assessment, not to gate learning.
+    # Actual assessments occur at the first checkpoint save after this interval.
     interval_iterations: int = 200
     samples_per_group: int = 128
     seeds: tuple[int, ...] = (2026091501, 2026091502)
@@ -25,6 +28,9 @@ class TrainingProgramRunnerCfg:
 
 @dataclass
 class SC0090ProgramRunnerCfg(RslRlOnPolicyRunnerCfg):
+    # Training budget must be explicit; inheriting the V2 expert's 6000-update
+    # budget could stop a fresh V4 run before its longer program finished.
+    max_iterations: int | None = None
     training_program: TrainingProgramRunnerCfg = field(default_factory=TrainingProgramRunnerCfg)
 
 
@@ -79,6 +85,11 @@ def make_sc0090_v4_env_cfg(task, play=False, rough=False):
     cfg.curriculum = {"training_program": CurriculumTermCfg(
         func=mdp.sc0090_program_curriculum, params={"program": make_training_program(task)})}
     cfg.events["program_episode"] = EventTermCfg(func=mdp.sc0090_program_reset, mode="reset")
+    if task == "walk":
+        velocity = cfg.commands["twist"]
+        cfg.commands["twist"] = mdp.SC0090ProgramVelocityCommandCfg(**{
+            f.name: deepcopy(getattr(velocity, f.name)) for f in fields(velocity)
+        })
     if "push_robot" in cfg.events:
         cfg.events["push_robot"].func = mdp.sc0090_program_push
     body = cfg.commands["body_pose"]
@@ -90,7 +101,7 @@ def make_sc0090_v4_env_cfg(task, play=False, rough=False):
         params={"command_name": "body_pose", "nominal_height": .115,
                 "z_std": .01, "angle_std": .08726646259971647,
                 "axis_weights": (0., 0., 1., 1., 1., 0.), "vel_gate_command_name": None})
-    cfg.rewards["joint_torque_rate_l2"] = RewardTermCfg(func=mdp.joint_torque_rate_l2, weight=0.)
+    cfg.rewards["joint_torque_rate_l2"] = RewardTermCfg(func=mdp.sc0090_program_torque_rate, weight=0.)
     if task == "recovery":
         cfg.rewards["stable_standing"].func = mdp.sc0090_program_stable_standing
     return cfg
@@ -110,6 +121,7 @@ def make_program_rl_cfg(task):
                                   for f in fields(RslRlOnPolicyRunnerCfg)})
     cfg.experiment_name = f"sc0090_{task}_v4"
     cfg.run_name = "staged_training"
+    cfg.max_iterations = None
     return cfg
 
 

@@ -1,5 +1,8 @@
 # SC0090 12 V training
 
+For code supporting both fresh training and staged strengthening after 6000
+updates, see [SC0090 V4 startup and resume](sc0090-staged-training.md).
+
 For the failure-focused continuation launched after the initial evaluation,
 see [SC0090 V2 training](sc0090-failure-finetune.md). The original runs described
 below are preserved as baselines; the current jobs are recorded separately in

@@ -118,6 +118,19 @@ register_mjlab_task(
     rl_cfg=SC0090RecoveryV3RlCfg, runner_cls=SC0090RecoveryEvalRunner,
 )
 
+from .microduck_sc0090_v4_env_cfg import (
+    make_sc0090_walk_v4_env_cfg, make_sc0090_recovery_v4_env_cfg,
+    SC0090WalkV4RlCfg, SC0090RecoveryV4RlCfg,
+)
+from .program_runner import SC0090ProgramRunner
+
+for task_id, factory, rl_cfg in (
+    ("Mjlab-Velocity-Flat-MicroDuck-SC0090-V4", make_sc0090_walk_v4_env_cfg, SC0090WalkV4RlCfg),
+    ("Mjlab-StandUp-Flat-MicroDuck-SC0090-V4", make_sc0090_recovery_v4_env_cfg, SC0090RecoveryV4RlCfg),
+):
+    register_mjlab_task(task_id=task_id, env_cfg=factory(), play_env_cfg=factory(play=True),
+                       rl_cfg=rl_cfg, runner_cls=SC0090ProgramRunner)
+
 for task_id, factory, rl_cfg in (
     ("Mjlab-Velocity-Flat-MicroDuck-SC0090-V2", make_sc0090_walk_v2_env_cfg, SC0090WalkV2RlCfg),
     ("Mjlab-StandUp-Flat-MicroDuck-SC0090-V2", make_sc0090_recovery_v2_env_cfg, SC0090RecoveryV2RlCfg),

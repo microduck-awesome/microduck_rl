@@ -14,6 +14,34 @@ budgets**, not required amounts. V4 now requires an explicit positive
 budget for the available compute, inspect measured progress, then resume if
 needed. Exhausting the budget does not mark the program complete.
 
+The current jobs inherit the preceding overnight training. Their V2 warm start
+loaded walking `model_4050.pt` and recovery `model_3750.pt`, retaining the
+learner while zeroing the iteration and recipe step counters. Those sources
+already contained **4051 / 3751 PPO updates**, verified independently from
+optimizer steps and observation-normalizer counts at the same 8192×24 rollout
+and 5×4 optimizer-update settings. Thus today's 6000-label target is a
+continuation budget, not the policy's lifetime training age. Walking
+`model_5999.pt` actually contains **10052 cumulative PPO updates**: its retained
+optimizer counter is 201040 and normalizer sample count is 1,976,303,616.
+The old resume path repeated an update label, so filename arithmetic is not
+an authoritative cumulative counter.
+
+Keep three quantities separate when designing schedules: retained cumulative
+experience, the checkpoint's current recipe clock, and exposure since entering
+the current phase. V4 restores the saved recipe clock; it cannot reconstruct
+history that an earlier warm start already removed from that clock. Optimizer
+and normalizer counters retain that history in these specific runs. On other
+runs, resets, normalizer update limits, or changed batch/epoch settings can make
+that conversion invalid; missing history must be reported as unknown.
+
+Existing experts retain their learned frontier, head/DR difficulty and adaptive
+learning rate, then pass a baseline assessment. Time spent on newly introduced
+push/posture objectives starts at their phase entry. Prior experience informs
+the continuation budget and avoids repeating discovery; it is not counted as
+exposure to a newly introduced challenge. This also means that a trained
+checkpoint need not consume another fixed 6000/2000 updates before assessment.
+The audit is saved in `logs/sc0090_setup/v4_review/training_history_audit.json`.
+
 **200 is the configurable default number of PPO updates between assessments**,
 chosen to amortize the measured 1–3 minute assessment cost. It is an operational
 heuristic, not a learning threshold. With 24 steps/update, it equals 4800 control
@@ -66,7 +94,7 @@ iteration target of 2000. It does not promise every phase will finish in that
 budget. Use the walking task's own checkpoint with `walk_v4` for walking.
 
 The loader retains actor, critic, optimizer moments, observation normalizers and
-global simulation-step count. It restores both the optimizer LR and PPO's
+the checkpoint's recipe simulation-step count. It restores both the optimizer LR and PPO's
 separate adaptive LR scalar. A mature V3 recovery expert / V2 walking expert
 enters consolidation at the current global step, then must pass assessment
 before strengthening. An unfinished legacy recovery frontier is retained.
@@ -87,7 +115,7 @@ env -u MICRODUCK_WARM_START scripts/train_sc0090_local.sh recovery_v4 \
 Do not combine this explicit-path option with `--agent.resume True`; native
 `--agent.resume` / `--agent.load-run` / `--agent.load-checkpoint` remain available
 for checkpoints inside the same experiment directory. V4 rejects
-`MICRODUCK_WARM_START`: starting a new phase does not reset global history.
+`MICRODUCK_WARM_START`: starting a new phase does not reset the saved recipe clock.
 Use each task's own normalizers. V4 task tags or legacy `params/agent.yaml`
 establish provenance; legacy recovery checkpoints also carry a recovery tag.
 If a legacy file was copied without its sidecar, explicitly supply

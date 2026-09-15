@@ -192,7 +192,18 @@ Never launch a long run without one.
 
 ## Curricula
 
-- Steps are env steps: `iteration × 24` (`NUM_STEPS_PER_ENV = 24`).
+- Curriculum steps are per-environment control steps (24 per PPO update in
+  the current recipe). Read the checkpoint counter; iteration labels can repeat
+  on legacy resume, and warm starts can zero the recipe clock.
+- **Account for inherited training before choosing budgets or schedules.** The
+  current SC0090 jobs continue earlier experts: their V2 warm start retained
+  weights, optimizer and normalization while restarting iteration/recipe clocks.
+  Keep cumulative learner history, recipe steps, and current-phase steps distinct.
+  Audit source checkpoints plus optimizer/normalizer counters; convert these to
+  PPO updates only when batch/epoch settings and retained-state continuity are
+  verified. Missing history is unknown, never implicitly zero. New challenges
+  need their own exposure/evaluation gates; resume must preserve learned skill
+  difficulty and adaptive LR rather than replaying a fresh-policy schedule.
 - Use the proven split: `microduck_mdp.reward_weight` for weight schedules, a
   dedicated params-curriculum for command/event ranges. `mdp.reward_weight` is
   a step function, not an interpolation — discretize ramps into stages.
@@ -231,8 +242,10 @@ Never launch a long run without one.
   (total reward can rise purely on regularizers while the trick never happens).
   `Episode_Reward/<term>` logs the WEIGHTED value — a term at weight 0 reads 0
   regardless of behavior, so interpret against the weight schedule.
-- Budgets: simple episodic tricks ≈ 1000 iters at 4096 envs; gaits and
-  curriculum-heavy recovery need 4000–6000.
+- Budget references: simple episodic tricks ≈ 1000 iters at 4096 envs; gaits and
+  curriculum-heavy recovery often use 4000–6000. These are empirical examples,
+  not default additional budgets for an already trained checkpoint. Include
+  inherited experience and current measured failures when budgeting continuation.
 - **Measure before theorizing.** When a run "fails", run a headless eval of the
   actual checkpoint (per-spawn-type batteries, end-state clusters, angular-rate
   profiles) before changing rewards: past "failures" turned out to be early

@@ -1,0 +1,90 @@
+[
+  {
+    "label": "idle",
+    "title": "原地站立",
+    "file": "walk_idle.mp4",
+    "sample_env": 0,
+    "duration_s": 12.0,
+    "checkpoint": "logs/rsl_rl/sc0090_walk/2026-09-15_03-00-03_sc0090_12v_m6/model_3450.pt"
+  },
+  {
+    "label": "forward_010",
+    "title": "前进 0.10 m/s",
+    "file": "walk_forward_010.mp4",
+    "sample_env": 32,
+    "duration_s": 12.0,
+    "checkpoint": "logs/rsl_rl/sc0090_walk/2026-09-15_03-00-03_sc0090_12v_m6/model_3450.pt"
+  },
+  {
+    "label": "forward_020",
+    "title": "前进 0.20 m/s",
+    "file": "walk_forward_020.mp4",
+    "sample_env": 64,
+    "duration_s": 12.0,
+    "checkpoint": "logs/rsl_rl/sc0090_walk/2026-09-15_03-00-03_sc0090_12v_m6/model_3450.pt"
+  },
+  {
+    "label": "forward_030",
+    "title": "前进 0.30 m/s",
+    "file": "walk_forward_030.mp4",
+    "sample_env": 96,
+    "duration_s": 12.0,
+    "checkpoint": "logs/rsl_rl/sc0090_walk/2026-09-15_03-00-03_sc0090_12v_m6/model_3450.pt"
+  },
+  {
+    "label": "forward_040",
+    "title": "前进 0.40 m/s",
+    "file": "walk_forward_040.mp4",
+    "sample_env": 128,
+    "duration_s": 12.0,
+    "checkpoint": "logs/rsl_rl/sc0090_walk/2026-09-15_03-00-03_sc0090_12v_m6/model_3450.pt"
+  },
+  {
+    "label": "backward_020",
+    "title": "后退 0.20 m/s",
+    "file": "walk_backward_020.mp4",
+    "sample_env": 160,
+    "duration_s": 12.0,
+    "checkpoint": "logs/rsl_rl/sc0090_walk/2026-09-15_03-00-03_sc0090_12v_m6/model_3450.pt"
+  },
+  {
+    "label": "left_015",
+    "title": "左侧移 0.15 m/s",
+    "file": "walk_left_015.mp4",
+    "sample_env": 192,
+    "duration_s": 12.0,
+    "checkpoint": "logs/rsl_rl/sc0090_walk/2026-09-15_03-00-03_sc0090_12v_m6/model_3450.pt"
+  },
+  {
+    "label": "right_015",
+    "title": "右侧移 0.15 m/s",
+    "file": "walk_right_015.mp4",
+    "sample_env": 224,
+    "duration_s": 12.0,
+    "checkpoint": "logs/rsl_rl/sc0090_walk/2026-09-15_03-00-03_sc0090_12v_m6/model_3450.pt"
+  },
+  {
+    "label": "turn_left",
+    "title": "原地左转 0.60 rad/s",
+    "file": "walk_turn_left.mp4",
+    "sample_env": 256,
+    "duration_s": 12.0,
+    "checkpoint": "logs/rsl_rl/sc0090_walk/2026-09-15_03-00-03_sc0090_12v_m6/model_3450.pt"
+  },
+  {
+    "label": "turn_right",
+    "title": "原地右转 0.60 rad/s",
+    "file": "walk_turn_right.mp4",
+    "sample_env": 288,
+    "duration_s": 12.0,
+    "checkpoint": "logs/rsl_rl/sc0090_walk/2026-09-15_03-00-03_sc0090_12v_m6/model_3450.pt"
+  },
+  {
+    "label": "curve_left",
+    "title": "左转弯 0.20 m/s + 0.60 rad/s",
+    "file": "walk_curve_left.mp4",
+    "sample_env": 320,
+    "duration_s": 12.0,
+    "checkpoint": "logs/rsl_rl/sc0090_walk/2026-09-15_03-00-03_sc0090_12v_m6/model_3450.pt"
+  }
+]

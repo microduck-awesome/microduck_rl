@@ -1,0 +1,230 @@
+{
+  "kt": 0.89240515,
+  "R": 28.399408707518813,
+  "armature": 0.0008504834303836771,
+  "pwm_per_p_count": 0.0009999912428605628,
+  "derivative_seconds": 4.52340973281647e-06,
+  "feedback_bias": -0.009219501334150627,
+  "feedback_scale": 1.066039713178076,
+  "q_offset": -0.018084158306380355,
+  "command_delay": 0.0,
+  "friction_base": 5.6033818117243375e-08,
+  "friction_stribeck": 0.012505262279747574,
+  "load_friction_motor": 0.0771659467352288,
+  "load_friction_external": 0.032117601558835064,
+  "load_friction_motor_stribeck": 0.0,
+  "load_friction_external_stribeck": 0.4770043488654286,
+  "load_friction_motor_quad": 0.0005908851622746373,
+  "load_friction_external_quad": 0.001447954642451427,
+  "dtheta_stribeck": 0.9675530947126256,
+  "alpha": 1.266934514807272,
+  "friction_viscous": 0.013790576993705965,
+  "model": "m6",
+  "actuator": "sc0090_feedback_v1",
+  "bam_revision": "3505fba49a8aa41f47c9a729c495f0c083757b0b",
+  "operating_point": {
+    "kp": 20,
+    "kd": 30,
+    "ki": 0,
+    "vin": 12.4,
+    "inertia_kg_m2": 0.0022265600000000007,
+    "gravity_moment_kg_m": 0.016576,
+    "servo_radians_per_count": 0.005782163964207939,
+    "deadband_count": 2.0,
+    "max_pwm": 1.0,
+    "goal_profile_zeroed": true,
+    "pendulum_model": "bam_pendulum",
+    "mass": 0.10400000000000001,
+    "arm_mass": 0.028800000000000003,
+    "length": 0.14,
+    "calibration": {
+      "schema": "sc0090-brt-bench-v1",
+      "mount_id": "web-acceptance-fixed-20260912",
+      "calibration_assist": {
+        "direction": {
+          "sign": 1,
+          "forward_delta_count": 963.0,
+          "return_delta_count": -1148.0,
+          "closure_error_count": -185.0,
+          "minimum_signal_count": 128,
+          "closure_limit_count": 337.04999999999995,
+          "convention": "Positive joint direction follows increasing servo goal count",
+          "note": "Direction only; not a gravity zero or servo angle-scale calibration",
+          "mount_id": "web-acceptance-fixed-20260912",
+          "recorded_at": "2026-09-12T13:27:01.557049+00:00",
+          "source": "bounded_out_and_back"
+        },
+        "zero": {
+          "phase": "downward_zero",
+          "goal_count": null,
+          "encoder_unwrapped_median": 59345.0,
+          "encoder_raw_count": 59345,
+          "spread_count": 0,
+          "samples_count": 60,
+          "observation_start_ns": 8250669384734,
+          "observation_end_ns": 8251319215228,
+          "zero_count": 59345,
+          "mount_id": "web-acceptance-fixed-20260912",
+          "recorded_at": "2026-09-12T18:17:36.453480+00:00",
+          "source": "confirmed_downward_stable_samples",
+          "mapping_rebase": {
+            "previous_encoder_zero_count": 59041,
+            "encoder_zero_count": 59345,
+            "previous_servo_zero_count": 503.405674743886,
+            "radians_per_count": 0.005782163964207939,
+            "method": "same_mount_angle_origin_shift",
+            "status": "rebased",
+            "encoder_delta_count": 304,
+            "angle_shift_rad": 0.02914563496982718,
+            "servo_zero_count": 508.4462849981508
+          }
+        },
+        "range_lower": {
+          "phase": "initial",
+          "goal_count": 171,
+          "encoder_unwrapped_median": 40239.0,
+          "encoder_raw_count": 40239,
+          "spread_count": 5,
+          "samples_count": 60,
+          "observation_start_ns": 6171455180822,
+          "observation_end_ns": 6172165440110,
+          "servo_position_count": 170.0,
+          "recorded_at": "2026-09-12T17:42:57.300380+00:00",
+          "mount_id": "web-acceptance-fixed-20260912",
+          "source": "user_confirmed_current_target",
+          "clearance_confirmed": true
+        },
+        "range_upper": {
+          "phase": "initial",
+          "goal_count": 811,
+          "encoder_unwrapped_median": 11554.0,
+          "encoder_raw_count": 11554,
+          "spread_count": 0,
+          "samples_count": 60,
+          "observation_start_ns": 6264910974956,
+          "observation_end_ns": 6265622729409,
+          "servo_position_count": 811.0,
+          "recorded_at": "2026-09-12T17:44:30.757931+00:00",
+          "mount_id": "web-acceptance-fixed-20260912",
+          "source": "user_confirmed_current_target",
+          "clearance_confirmed": true
+        },
+        "range": null
+      },
+      "setup": {
+        "fixture_fixed": true,
+        "motion_clearance_confirmed": true,
+        "gravity_aligned_servo_count_reported": 511,
+        "downward_direction_confirmed": true,
+        "camera_observation_authorized": true,
+        "note": "User confirmed 511 can be treated as approximate downward zero, 2026-09-12. Local arc checked, fixture fixed. External zero sampled at settled target 511; BAM q_offset retains residual uncertainty."
+      },
+      "servo": {
+        "device": "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5AE6023870-if00",
+        "baudrate": 500000,
+        "id": 1,
+        "min_count": 150,
+        "max_count": 850,
+        "limits_source": "User reported controllable range 150..850, 2026-09-12; not proof of installed pendulum clearance",
+        "calibration": {
+          "zero_count": 508.4462849981508,
+          "radians_per_count": 0.005782163964207939
+        }
+      },
+      "encoder": {
+        "channel": "can0",
+        "bitrate": 500000,
+        "id": 1,
+        "counts_per_rev": 65536,
+        "turns": 1,
+        "shaft_ratio": 1.0,
+        "sign": 1,
+        "zero_count": 59345,
+        "max_delta_counts": 10000,
+        "product_description": "BRT micro single-turn absolute CAN encoder, 3mm shaft, 15mm housing, 16bit",
+        "specification_source": "User order screenshot and explicit 1:1 coupling confirmation, 2026-09-12; exact manufacturer part number not shown",
+        "specification_source_image": "/home/frank/.config/DingTalk/9e18a8e198b35fcc6084_v3/resource_cache/2f/2f3b121e8f12e83bd4220449583d4406.jpg"
+      },
+      "pendulum": {
+        "inertia_kg_m2": 0.0022265600000000007,
+        "gravity_moment_kg_m": 0.016576,
+        "downward_zero_confirmed": true,
+        "model": "bam_pendulum",
+        "calculation": {
+          "model": "bam_pendulum",
+          "status": "computed",
+          "inputs": {
+            "mass": 0.10400000000000001,
+            "arm_mass": 0.028800000000000003,
+            "length": 0.14
+          },
+          "inertia_kg_m2": 0.0022265600000000007,
+          "gravity_moment_kg_m": 0.016576,
+          "arm_com_model_m": 0.07,
+          "total_mass_kg": 0.1328,
+          "assembly_com_radius_m": 0.12481927710843374,
+          "gravity_torque_amplitude_nm": 0.1625550304,
+          "inertia_about_com_kg_m2": 0.000157555662650603,
+          "missing": [],
+          "warnings": [],
+          "blocking_reasons": [],
+          "source": {
+            "symbol": "bam.testbench.Pendulum",
+            "file": "/home/frank/Documents/ai-test/microduck/servo_bam/.venv/lib/python3.12/site-packages/bam/testbench.py",
+            "revision": "3505fba49a8aa41f47c9a729c495f0c083757b0b",
+            "sha256": "ec697f7def24ff4cc6455b3c77f9d31b1ca8c6b2212de604201dacc54f09b003",
+            "gravity_m_s2": 9.80665
+          },
+          "formulas": {
+            "J": "mass * length**2 + (arm_mass / 3) * length**2",
+            "H": "(mass + arm_mass / 2) * length",
+            "gravity_torque": "-9.80665 * H * sin(q)"
+          },
+          "assumptions": [
+            "BAM 标准模型：均匀摆杆，杆质心位于 length/2。",
+            "末端配重及其夹具等效为 length 处的质点，忽略其绕自身质心的惯量。",
+            "所有外部转动部件均应计入摆杆或配重，不重复计质量。",
+            "这是模型计算值，不是额外称量或从视频测得的参数；电机反射惯量由执行器模型另计。"
+          ]
+        }
+      },
+      "supply": {
+        "voltage_v": 12.4,
+        "measured": true
+      },
+      "experiment": {
+        "group_id": "L14_M100",
+        "arm_id": "arm14",
+        "weight_ids": [
+          "weight100"
+        ],
+        "user_confirmed_at": "2026-09-12T20:44:35.864963+00:00",
+        "confirmation_note": "User confirmed current 14 cm arm and nominal 100 g weight on 2026-09-12. Measured masses, holder contribution, installed COM radius, gravity zero and dynamics still unverified. Initial bounded calibration/preflight only.",
+        "measurements": {
+          "payload_mass_kg": 0.10400000000000001,
+          "payload_mass_includes_holder": true,
+          "payload_com_radius_m": 0.14,
+          "payload_inertia_about_com_kg_m2": null,
+          "arm_mass_kg": 0.028800000000000003,
+          "arm_com_radius_m": 0.07,
+          "arm_inertia_about_com_kg_m2": null,
+          "other_rotating_components": [],
+          "uncertainty_notes": "User confirmed current 14 cm arm and nominal 100 g weight on 2026-09-12. Measured masses, holder contribution, installed COM radius, gravity zero and dynamics still unverified. Initial bounded calibration/preflight only."
+        }
+      },
+      "note": "Encoder single-turn 16bit and 1:1 coupling confirmed by user 2026-09-12. Direction, downward zero, geometry, voltage and current loaded configuration remain unconfirmed. Current ID1 PID was 15/15/0; no gain writes. Inventory/planned combinations are not measured physics."
+    }
+  },
+  "identification_status": "converged_candidate_requires_physical_validation",
+  "physical_qualification": {
+    "qualified": false
+  },
+  "comparison_source": {
+    "model_sha256": "4c74f0347e1306f16f13c3d7285b8ed6f0740bec81eebc786edabe175ec40f9d",
+    "protocol_sha256": "0b21d5c28e53726d32d7fd4eb1777259f42a23e848bf50ecc599a2b4f8a1ff40",
+    "case": "actual48",
+    "method": "custom",
+    "seed": 1
+  },
+  "operating_point_policy": "First training record for diagnostic pendulum smoke; robot joint calibration and control settings must be explicit"
+}

@@ -1,0 +1,222 @@
+{
+  "kind": "walk",
+  "checkpoint": "logs/rsl_rl/sc0090_walk/2026-09-15_03-00-03_sc0090_12v_m6/model_3450.pt",
+  "checkpoint_sha256": "83f4adefc7f0c9681749012f05e7ed9b3fd2660cfa63a5d8ccacdc2b4f16ce04",
+  "evaluated_unix": 1789429200.1652434,
+  "duration_s": 12.0,
+  "discard_initial_walk_s": 2,
+  "seed": 20260915,
+  "conditions": "Task physics and configured randomizations retained; no external pushes; zero head/body commands; deterministic policy; no auto-reset.",
+  "stable_stand_definition": "height >= 0.105 m, tilt <= 20 deg, linear speed < 0.15 m/s, angular speed < 1.5 rad/s, both feet contacting ground, all held continuously for 0.5 s; time includes that hold.",
+  "rows": [
+    {
+      "label": "idle",
+      "command": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "trials": 32,
+      "completed_without_fall": 32,
+      "mean_forward_speed_all_m_s": -5.810341463075019e-06,
+      "mean_forward_speed_survivors_m_s": -5.810341463075019e-06,
+      "mean_lateral_speed_m_s": 2.0391400539665483e-05,
+      "mean_yaw_rate_rad_s": 0.00018322269897907972,
+      "net_world_x_speed_m_s": -1.7464160464442102e-06,
+      "forward_speed_p10_p90_m_s": [
+        -3.84798815503018e-05,
+        2.3377907928079375e-05
+      ]
+    },
+    {
+      "label": "forward_010",
+      "command": [
+        0.1,
+        0.0,
+        0.0
+      ],
+      "trials": 32,
+      "completed_without_fall": 32,
+      "mean_forward_speed_all_m_s": 1.927459925354924e-05,
+      "mean_forward_speed_survivors_m_s": 1.927459925354924e-05,
+      "mean_lateral_speed_m_s": 7.765154805383645e-06,
+      "mean_yaw_rate_rad_s": 0.00048271880950778723,
+      "net_world_x_speed_m_s": 1.7762184143066406e-05,
+      "forward_speed_p10_p90_m_s": [
+        -5.166128321434371e-05,
+        6.938293809071183e-05
+      ]
+    },
+    {
+      "label": "forward_020",
+      "command": [
+        0.2,
+        0.0,
+        0.0
+      ],
+      "trials": 32,
+      "completed_without_fall": 32,
+      "mean_forward_speed_all_m_s": 0.17557504773139954,
+      "mean_forward_speed_survivors_m_s": 0.17557504773139954,
+      "mean_lateral_speed_m_s": 0.01065791118890047,
+      "mean_yaw_rate_rad_s": 0.041619185358285904,
+      "net_world_x_speed_m_s": 0.09277543425559998,
+      "forward_speed_p10_p90_m_s": [
+        0.1489993914961815,
+        0.19890691787004472
+      ]
+    },
+    {
+      "label": "forward_030",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "trials": 32,
+      "completed_without_fall": 32,
+      "mean_forward_speed_all_m_s": 0.2927873432636261,
+      "mean_forward_speed_survivors_m_s": 0.2927873432636261,
+      "mean_lateral_speed_m_s": 0.009916185401380062,
+      "mean_yaw_rate_rad_s": -0.11420582979917526,
+      "net_world_x_speed_m_s": 0.12495440244674683,
+      "forward_speed_p10_p90_m_s": [
+        0.26848437190055846,
+        0.31546890139579775
+      ]
+    },
+    {
+      "label": "forward_040",
+      "command": [
+        0.4,
+        0.0,
+        0.0
+      ],
+      "trials": 32,
+      "completed_without_fall": 32,
+      "mean_forward_speed_all_m_s": 0.3483496904373169,
+      "mean_forward_speed_survivors_m_s": 0.3483496904373169,
+      "mean_lateral_speed_m_s": 0.009295054711401463,
+      "mean_yaw_rate_rad_s": -0.03943974897265434,
+      "net_world_x_speed_m_s": 0.15101003646850586,
+      "forward_speed_p10_p90_m_s": [
+        0.30864876210689546,
+        0.3813477069139481
+      ]
+    },
+    {
+      "label": "backward_020",
+      "command": [
+        -0.2,
+        0.0,
+        0.0
+      ],
+      "trials": 32,
+      "completed_without_fall": 32,
+      "mean_forward_speed_all_m_s": -0.1930987685918808,
+      "mean_forward_speed_survivors_m_s": -0.1930987685918808,
+      "mean_lateral_speed_m_s": -0.0032876129262149334,
+      "mean_yaw_rate_rad_s": -0.049513716250658035,
+      "net_world_x_speed_m_s": -0.12820003926753998,
+      "forward_speed_p10_p90_m_s": [
+        -0.20803796052932738,
+        -0.1713892340660095
+      ]
+    },
+    {
+      "label": "left_015",
+      "command": [
+        0.0,
+        0.15,
+        0.0
+      ],
+      "trials": 32,
+      "completed_without_fall": 32,
+      "mean_forward_speed_all_m_s": -0.008566804230213165,
+      "mean_forward_speed_survivors_m_s": -0.008566804230213165,
+      "mean_lateral_speed_m_s": 0.059874460101127625,
+      "mean_yaw_rate_rad_s": 0.10354834794998169,
+      "net_world_x_speed_m_s": -0.033123597502708435,
+      "forward_speed_p10_p90_m_s": [
+        -0.04656401611864567,
+        0.028291878476738946
+      ]
+    },
+    {
+      "label": "right_015",
+      "command": [
+        0.0,
+        -0.15,
+        0.0
+      ],
+      "trials": 32,
+      "completed_without_fall": 32,
+      "mean_forward_speed_all_m_s": -0.013349978253245354,
+      "mean_forward_speed_survivors_m_s": -0.013349978253245354,
+      "mean_lateral_speed_m_s": -0.06344220042228699,
+      "mean_yaw_rate_rad_s": 0.0838029757142067,
+      "net_world_x_speed_m_s": 0.008066873997449875,
+      "forward_speed_p10_p90_m_s": [
+        -0.035907547920942307,
+        0.018380421586334718
+      ]
+    },
+    {
+      "label": "turn_left",
+      "command": [
+        0.0,
+        0.0,
+        0.6
+      ],
+      "trials": 32,
+      "completed_without_fall": 32,
+      "mean_forward_speed_all_m_s": -0.010546045377850533,
+      "mean_forward_speed_survivors_m_s": -0.010546045377850533,
+      "mean_lateral_speed_m_s": 0.006053436081856489,
+      "mean_yaw_rate_rad_s": 0.2930574417114258,
+      "net_world_x_speed_m_s": -0.0017959685064852238,
+      "forward_speed_p10_p90_m_s": [
+        -0.03605547323822975,
+        0.022873195260763177
+      ]
+    },
+    {
+      "label": "turn_right",
+      "command": [
+        0.0,
+        0.0,
+        -0.6
+      ],
+      "trials": 32,
+      "completed_without_fall": 32,
+      "mean_forward_speed_all_m_s": -0.006569056771695614,
+      "mean_forward_speed_survivors_m_s": -0.006569056771695614,
+      "mean_lateral_speed_m_s": -0.001111108809709549,
+      "mean_yaw_rate_rad_s": -0.15297260880470276,
+      "net_world_x_speed_m_s": -0.0053470078855752945,
+      "forward_speed_p10_p90_m_s": [
+        -0.03382130526006222,
+        0.02560128793120385
+      ]
+    },
+    {
+      "label": "curve_left",
+      "command": [
+        0.2,
+        0.0,
+        0.6
+      ],
+      "trials": 32,
+      "completed_without_fall": 32,
+      "mean_forward_speed_all_m_s": 0.17496618628501892,
+      "mean_forward_speed_survivors_m_s": 0.17496618628501892,
+      "mean_lateral_speed_m_s": 0.010245167650282383,
+      "mean_yaw_rate_rad_s": 0.2643919587135315,
+      "net_world_x_speed_m_s": 0.014542033895850182,
+      "forward_speed_p10_p90_m_s": [
+        0.1549707293510437,
+        0.1958267480134964
+      ]
+    }
+  ]
+}

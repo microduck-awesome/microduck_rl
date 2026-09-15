@@ -1,3 +1,5 @@
+> SC0090 12 V variant: [walking and recovery videos](https://microduck-awesome.github.io/microduck_rl/), [motor model and training setup](docs/sc0090-training.md), and [failure-focused continuation](docs/sc0090-failure-finetune.md). The videos show fixed baseline checkpoints, including failed attempts; they are simulation recordings.
+
 # Microduck RL
 
 <img width="2215" height="884" alt="image" src="https://github.com/user-attachments/assets/5db7cc83-b3ce-4f7c-83f0-0572a63baed7" />
@@ -28,8 +30,11 @@ Requires a CUDA GPU (training runs through MuJoCo Warp) and [uv](https://docs.as
 > Export `UV_HTTP_TIMEOUT=600` for the first sync. 
 
 ```bash
-git clone https://github.com/pollen-robotics/microduck_rl
+git clone https://github.com/microduck-awesome/sc0090-toolkit
+git -C sc0090-toolkit checkout 80e4a870cf1e760c33fefa468fd77c48f9546c40
+git clone --branch sc0090-training-pages https://github.com/microduck-awesome/microduck_rl
 cd microduck_rl
+uv sync --frozen
 
 # train the walking policy (uses your GPU; ~1-2 h for a usable gait at 4096 envs)
 uv run train Mjlab-Velocity-Flat-MicroDuck --env.scene.num-envs 4096
@@ -90,9 +95,9 @@ uv run scripts/infer_policy.py --walking walk.onnx --standing stand.onnx \
 
 Keyboard-driven (velocity commands, `G` ground pick, `Y` sit/stand, `R` roulade,
 `K`/`L` kicks); `--debug`, `--save-csv`, `--record` support sim2real comparisons.
-The servos are simulated with the same BAM M6 XL330 model the policies are
-trained against (voltage control + load-dependent friction, via
-`bam.mujoco.MujocoController`); `--vin` / `--vin-drop-gain` / `--kp-fw` pin the
+The servos are simulated with the same SC0090 M6 model the policies are
+trained against (voltage control + load-dependent friction, via the
+SC0090 toolkit's MuJoCo controller); `--vin` / `--vin-drop-gain` / `--kp-fw` pin the
 training DR ranges to one value, `--no-bam` falls back to the XML PD actuators.
 
 ### Backlash variants
@@ -111,10 +116,11 @@ See `src/mjlab_microduck/tasks/backlash.py`.
 
 ## Actuator model
 
-All tasks use the [BAM](https://github.com/Rhoban/bam) M6 actuator model for
-the Dynamixel XL330 (voltage control law, back-EMF, Coulomb/Stribeck/load-dependent
-friction), with per-env domain randomization on battery voltage, voltage sag
-under load, command delay, and friction magnitude
+All tasks use the [SC0090 toolkit](https://github.com/microduck-awesome/sc0090-toolkit)
+M6 actuator model built on [BAM](https://github.com/Rhoban/bam) (voltage control
+law, back-EMF, Coulomb/Stribeck/load-dependent friction), with nominal 12 V supply,
+an 80 rpm active-drive limit, and per-env randomization on battery voltage,
+voltage sag under load, and friction magnitude. The fitted command delay is zero
 (`FrictionDRBamActuator` in `src/mjlab_microduck/actuator/`).
 
 At this scale — tiny servos driving a ~800 g biped — actuator fidelity is most

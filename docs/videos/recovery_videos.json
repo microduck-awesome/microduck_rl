@@ -1,0 +1,50 @@
+[
+  {
+    "label": "sitting",
+    "title": "坐姿起身",
+    "file": "recovery_sitting.mp4",
+    "sample_env": 0,
+    "duration_s": 6.0,
+    "checkpoint": "logs/rsl_rl/sc0090_recovery/2026-09-15_03-00-03_sc0090_12v_m6/model_3200.pt"
+  },
+  {
+    "label": "prone",
+    "title": "趴倒起身",
+    "file": "recovery_prone.mp4",
+    "sample_env": 32,
+    "duration_s": 6.0,
+    "checkpoint": "logs/rsl_rl/sc0090_recovery/2026-09-15_03-00-03_sc0090_12v_m6/model_3200.pt"
+  },
+  {
+    "label": "supine",
+    "title": "仰倒起身",
+    "file": "recovery_supine.mp4",
+    "sample_env": 64,
+    "duration_s": 6.0,
+    "checkpoint": "logs/rsl_rl/sc0090_recovery/2026-09-15_03-00-03_sc0090_12v_m6/model_3200.pt"
+  },
+  {
+    "label": "supine_roll",
+    "title": "仰倒并带侧滚角起身",
+    "file": "recovery_supine_roll.mp4",
+    "sample_env": 96,
+    "duration_s": 6.0,
+    "checkpoint": "logs/rsl_rl/sc0090_recovery/2026-09-15_03-00-03_sc0090_12v_m6/model_3200.pt"
+  },
+  {
+    "label": "right_side",
+    "title": "右侧倒起身",
+    "file": "recovery_right_side.mp4",
+    "sample_env": 128,
+    "duration_s": 6.0,
+    "checkpoint": "logs/rsl_rl/sc0090_recovery/2026-09-15_03-00-03_sc0090_12v_m6/model_3200.pt"
+  },
+  {
+    "label": "left_side",
+    "title": "左侧倒起身",
+    "file": "recovery_left_side.mp4",
+    "sample_env": 160,
+    "duration_s": 6.0,
+    "checkpoint": "logs/rsl_rl/sc0090_recovery/2026-09-15_03-00-03_sc0090_12v_m6/model_3200.pt"
+  }
+]

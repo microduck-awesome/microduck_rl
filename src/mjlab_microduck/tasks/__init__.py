@@ -23,6 +23,32 @@ class MicroduckOnPolicyRunner(VelocityOnPolicyRunner):
             alg["symmetry_cfg"] = {k: v for k, v in sym.items() if k != "_env"}
 
 
+class SC0090FineTuneRunner(MicroduckOnPolicyRunner):
+    """Persist the success-based recovery frontier alongside normal mjlab state."""
+
+    def save(self, path, infos=None):
+        state = getattr(self.env.unwrapped, "_sc0090_recovery", None)
+        if state is not None:
+            infos = {**(infos or {}), "sc0090_recovery": state.state_dict()}
+        super().save(path, infos)
+
+    def load(self, path, load_cfg=None, strict=True, map_location=None):
+        import os
+        from .mdp import _sc0090_recovery_state
+
+        infos = super().load(path, load_cfg, strict, map_location)
+        warm_start = os.environ.get("MICRODUCK_WARM_START", "0") not in ("", "0")
+        if load_cfg is None and infos and "sc0090_recovery" in infos and not warm_start:
+            _sc0090_recovery_state(self.env.unwrapped).load_state_dict(infos["sc0090_recovery"])
+        if warm_start:
+            # Retain optimizer moments, but use this fine-tuning task's learning
+            # rate from its first update rather than the source optimizer's LR.
+            self.alg.learning_rate = self.cfg["algorithm"]["learning_rate"]
+            for group in self.alg.optimizer.param_groups:
+                group["lr"] = self.alg.learning_rate
+        return infos
+
+
 from .microduck_velocity_env_cfg import (
     make_microduck_velocity_env_cfg,
     MicroduckRlCfg,
@@ -76,6 +102,17 @@ from .microduck_roulade_env_cfg import (
     MicroduckRouladeRlCfg,
 )
 from .backlash import make_backlash_variant
+from .microduck_sc0090_finetune_env_cfg import (
+    make_sc0090_walk_v2_env_cfg, make_sc0090_recovery_v2_env_cfg,
+    SC0090WalkV2RlCfg, SC0090RecoveryV2RlCfg,
+)
+
+for task_id, factory, rl_cfg in (
+    ("Mjlab-Velocity-Flat-MicroDuck-SC0090-V2", make_sc0090_walk_v2_env_cfg, SC0090WalkV2RlCfg),
+    ("Mjlab-StandUp-Flat-MicroDuck-SC0090-V2", make_sc0090_recovery_v2_env_cfg, SC0090RecoveryV2RlCfg),
+):
+    register_mjlab_task(task_id=task_id, env_cfg=factory(), play_env_cfg=factory(play=True),
+                       rl_cfg=rl_cfg, runner_cls=SC0090FineTuneRunner)
 
 # Standard velocity task
 register_mjlab_task(

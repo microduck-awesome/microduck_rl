@@ -40,7 +40,7 @@ FLAMINGO = {
         "body": "unused (zeros)",
         "idle": [0, 0, 0],
     },
-    "robot": {"model": "microduck", "hw_rev": 1, "servos": "xl330", "control_hz": 50},
+    "robot": {"model": "microduck", "hw_rev": 1, "servos": "sc0090", "control_hz": 50},
     "training": {"task_id": "Mjlab-FlamingoCycleHard-Flat-MicroDuck"},
 }
 
@@ -50,7 +50,7 @@ OFFICIAL_SET = {
     "model_api": 1,
     "obs_len": 61,
     "action_len": 14,
-    "robot": {"model": "microduck", "hw_rev": 1, "servos": "xl330", "control_hz": 50},
+    "robot": {"model": "microduck", "hw_rev": 1, "servos": "sc0090", "control_hz": 50},
     "policies": [
         {"file": "alpha_walking.onnx", "kind": "perpetual"},
         {"file": "alpha_sitstand.onnx", "name": "sitstand", "kind": "scripted",

@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 
 import mujoco
-from mjlab.actuator import XmlActuatorCfg
+from mjlab_microduck.actuator.sc0090 import SC0090_MODEL_PATH, SC0090_VIN, SC0090_KP, SC0090_KD
 from mjlab_microduck.actuator import (
     BacklashEncoderBamActuatorCfg,
     FrictionDRBamActuatorCfg,
@@ -153,25 +153,22 @@ FULL_COLLISION = CollisionCfg(
     # base_cfg=XmlPositionActuatorCfg(joint_names_expr=(r".*",)),
 # )
 
-# -- BAM M6 actuator (full voltage control + load-dependent friction) --
-# Exclude passive_* joints (jaw linkage in the new model has no XML actuator).
-# Voltage domain randomization (mirrors mjlab_microban):
-#   - vin_range: per-env battery voltage sampled at startup (replaces fixed vin)
-#   - vin_drop_gain_range: load-dependent voltage sag V_drop = gain * sum(|tau|)
-#   - vin_min: hard floor on the effective voltage after sag
-# kp_fw kept at 200 (microduck's preserved firmware stiffness; microban uses 125).
+# SC0090 12 V M6, all 14 servos on one shared supply. Geometry and policy
+# conventions are unchanged. The fitted model remains explicitly unqualified
+# for physical deployment; these configs authorize the requested RL simulation.
 _BAM_ACTUATOR_KWARGS = dict(
-    motor_name="xl330",
-    model="m6",
+    json_path=str(SC0090_MODEL_PATH),
     target_names_expr=(r"^(?!passive_).*",),
-    kp_fw=200.0,  # microduck's preserved firmware stiffness (microban uses 125)
-    # vin_range=(6.9, 7.9),
-    vin_range=(6.5, 8.2),
-    vin_drop_gain_range=(0.0, 0.2),
-    vin_min=6.0,
-    # max_current=1.75,
-    delay_min_lag=3,
-    delay_max_lag=6,
+    require_physical_qualification=False,
+    kp_fw=SC0090_KP,
+    kd_fw=SC0090_KD,
+    vin=SC0090_VIN,
+    vin_range=(10.8, 12.6),
+    vin_drop_resistance_range=(0.0, 0.2),
+    vin_min=10.0,
+    use_identified_delay=True,
+    delay_min_lag=0,
+    delay_max_lag=0,
 )
 actuators = FrictionDRBamActuatorCfg(**_BAM_ACTUATOR_KWARGS)
 

@@ -1,12 +1,15 @@
 # AGENTS.md
 
 RL training environments for Microduck — a ~800 g, ~25 cm tall bipedal
-robot with 14 Dynamixel XL330 servos — built on [mjlab](https://github.com/mujocolab/mjlab)
+robot with 14 SC0090 servos (local 12 V model migration) — built on [mjlab](https://github.com/mujocolab/mjlab)
 (MuJoCo Warp) with PPO (rsl_rl). Policies are trained here at 50 Hz, exported to
 ONNX, and deployed by the runtime in the `pollen-robotics/microduck` repo on
 the real robot. Sim2real transfer
 is the whole point: every convention below exists because breaking it produced a
 policy that worked in the viewer and failed on hardware.
+
+See `docs/sc0090-training.md` for model provenance and the current supply/control settings.
+The existing CAD housing meshes keep the `xl330` name; this migration changes actuator physics only.
 
 ## Commands
 
@@ -66,7 +69,7 @@ Never launch a long run without one.
   Every actuator/obs/reward selector uses `^(?!passive_).*` — keep the prefix
   convention when adding joints, and new `passive_` regexes must not
   accidentally match backlash joints (`^passive_.*wheel`, not `^passive_.*`).
-- **Actuators are BAM** (voltage-controlled XL330 model, friction computed by
+- **Actuators are BAM** (SC0090 M6 from the sibling sc0090-toolkit, friction computed by
   the actuator). Two consequences: any STANDALONE env cfg must register the
   `expand_bam_friction_fields` startup event, and joint-friction DR must scale
   the actuator's `friction_scale` — `dof_frictionloss` is zeroed under BAM, so

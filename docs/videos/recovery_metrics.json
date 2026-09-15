@@ -1,0 +1,80 @@
+{
+  "kind": "recovery",
+  "checkpoint": "logs/rsl_rl/sc0090_recovery/2026-09-15_03-00-03_sc0090_12v_m6/model_3200.pt",
+  "checkpoint_sha256": "09313c37cd6d99ccdbb843091d486eef09c3c536bf0b112d0e8c298ead4f9c5f",
+  "evaluated_unix": 1789429132.7209718,
+  "duration_s": 6.0,
+  "discard_initial_walk_s": 2,
+  "seed": 20260915,
+  "conditions": "Task physics and configured randomizations retained; no external pushes; zero head/body commands; deterministic policy; no auto-reset.",
+  "stable_stand_definition": "height >= 0.105 m, tilt <= 20 deg, linear speed < 0.15 m/s, angular speed < 1.5 rad/s, both feet contacting ground, all held continuously for 0.5 s; time includes that hold.",
+  "rows": [
+    {
+      "pose": "sitting",
+      "trials": 32,
+      "stood_within_6s": 31,
+      "median_stable_stand_time_s": 0.8799999952316284,
+      "p10_p90_stable_stand_time_s": [
+        0.800000011920929,
+        0.9800000190734863
+      ],
+      "stable_at_end": 31,
+      "mean_final_height_m": 0.11382028460502625,
+      "mean_final_tilt_deg": 2.668302059173584
+    },
+    {
+      "pose": "prone",
+      "trials": 32,
+      "stood_within_6s": 32,
+      "median_stable_stand_time_s": 0.8999999761581421,
+      "p10_p90_stable_stand_time_s": [
+        0.8819999933242798,
+        0.9800000190734863
+      ],
+      "stable_at_end": 32,
+      "mean_final_height_m": 0.1157592162489891,
+      "mean_final_tilt_deg": 0.7742745876312256
+    },
+    {
+      "pose": "supine",
+      "trials": 32,
+      "stood_within_6s": 0,
+      "median_stable_stand_time_s": null,
+      "p10_p90_stable_stand_time_s": null,
+      "stable_at_end": 0,
+      "mean_final_height_m": 0.05908946320414543,
+      "mean_final_tilt_deg": 64.41883850097656
+    },
+    {
+      "pose": "supine_roll",
+      "trials": 32,
+      "stood_within_6s": 0,
+      "median_stable_stand_time_s": null,
+      "p10_p90_stable_stand_time_s": null,
+      "stable_at_end": 0,
+      "mean_final_height_m": 0.05923675745725632,
+      "mean_final_tilt_deg": 63.769290924072266
+    },
+    {
+      "pose": "right_side",
+      "trials": 32,
+      "stood_within_6s": 0,
+      "median_stable_stand_time_s": null,
+      "p10_p90_stable_stand_time_s": null,
+      "stable_at_end": 0,
+      "mean_final_height_m": 0.05927497521042824,
+      "mean_final_tilt_deg": 63.701942443847656
+    },
+    {
+      "pose": "left_side",
+      "trials": 32,
+      "stood_within_6s": 0,
+      "median_stable_stand_time_s": null,
+      "p10_p90_stable_stand_time_s": null,
+      "stable_at_end": 0,
+      "mean_final_height_m": 0.059444498270750046,
+      "mean_final_tilt_deg": 63.46559143066406
+    }
+  ],
+  "side_pose_convention": "Body +y is left; positive 90 degree roll is right-side-down."
+}

@@ -7389,3 +7389,270 @@ def roulade_lateral_velocity_penalty(
     """Body-frame lateral (y) linear velocity² — keeps the roll straight."""
     asset: Entity = env.scene[asset_cfg.name]
     return torch.nan_to_num(asset.data.root_link_lin_vel_b[:, 1].pow(2), nan=0.0)
+
+
+# ── SC0090 failure-focused fine-tuning ──────────────────────────────────────
+
+SC0090_WALK_BUCKETS = ("idle", "slow_forward", "slow_backward", "forward",
+                      "backward", "lateral", "turn", "mixed")
+SC0090_RECOVERY_BUCKETS = ("standing", "sitting", "prone", "frontier",
+                          "left_side", "right_side", "supine")
+SC0090_ROLL_FRONTIERS = (150.0, 120.0, 90.0, 60.0, 30.0, 0.0)
+
+
+def sc0090_sample_walk_commands(n, device, probabilities):
+    """Exclusive buckets; samples are body-frame m/s and rad/s."""
+    probs = torch.tensor(probabilities, device=device)
+    bucket = torch.multinomial(probs, n, replacement=True)
+    u = torch.rand(n, 3, device=device)
+    sign = torch.where(torch.rand(n, device=device) < 0.5, -1.0, 1.0)
+    command = torch.zeros(n, 3, device=device)
+    for index, direction, low, high in ((1, 1, .03, .15), (2, -1, .03, .15),
+                                       (3, 1, .15, .4), (4, -1, .15, .35)):
+        command[:, 0] = torch.where(bucket == index,
+                                   direction * (low + u[:, 0] * (high - low)),
+                                   command[:, 0])
+    command[:, 1] = torch.where(bucket == 5, sign * (.03 + u[:, 1] * .17), 0.0)
+    command[:, 2] = torch.where(bucket == 6, sign * (.2 + u[:, 2] * .8), 0.0)
+    mixed = torch.stack((-.3 + .7 * u[:, 0], -.15 + .3 * u[:, 1],
+                         -.7 + 1.4 * u[:, 2]), dim=1)
+    command = torch.where((bucket == 7)[:, None], mixed, command)
+    return command, bucket
+
+
+class SC0090VelocityCommand(VelocityCommandCommandOnly):
+    def __init__(self, cfg, env):
+        super().__init__(cfg, env)
+        self.bucket = torch.zeros(self.num_envs, dtype=torch.long, device=self.device)
+
+    def _resample_command(self, env_ids):
+        command, bucket = sc0090_sample_walk_commands(
+            len(env_ids), self.device, self.cfg.bucket_probabilities)
+        self.vel_command_b[env_ids] = command
+        self.vel_command_w[env_ids] = command
+        self.bucket[env_ids] = bucket
+        self.is_standing_env[env_ids] = bucket == 0
+        self.is_heading_env[env_ids] = False
+        self.is_world_env[env_ids] = False
+        self.is_forward_env[env_ids] = False
+
+    def _update_metrics(self):
+        super()._update_metrics()
+        error = self.vel_command_b - torch.cat((
+            self.robot.data.root_link_lin_vel_b[:, :2],
+            self.robot.data.root_link_ang_vel_b[:, 2:3]), dim=1)
+        for i, name in enumerate(SC0090_WALK_BUCKETS):
+            mask = (self.bucket == i).float()
+            count = mask.sum().clamp_min(1)
+            self._env.extras["log"][f"Tracking/{name}/xy_error"] = (
+                error[:, :2].norm(dim=1) * mask).sum() / count
+            self._env.extras["log"][f"Tracking/{name}/yaw_error"] = (
+                error[:, 2].abs() * mask).sum() / count
+
+
+@_dataclass(kw_only=True)
+class SC0090VelocityCommandCfg(VelocityCommandCommandOnlyCfg):
+    bucket_probabilities: tuple[float, ...] = (.15, .25, .08, .12, .07, .13, .13, .07)
+
+    def build(self, env):
+        if (len(self.bucket_probabilities) != len(SC0090_WALK_BUCKETS)
+                or min(self.bucket_probabilities) <= 0
+                or not math.isclose(sum(self.bucket_probabilities), 1.0)):
+            raise ValueError("SC0090 command buckets must be positive and sum to one")
+        return SC0090VelocityCommand(self, env)
+
+
+def sc0090_track_linear_velocity(env, command_name="twist", absolute_std=.035,
+                                  relative_std=.45):
+    command = env.command_manager.get_command(command_name)[:, :2]
+    actual = env.scene["robot"].data.root_link_lin_vel_b[:, :2]
+    std = absolute_std + relative_std * command.norm(dim=1)
+    return torch.exp(-((actual - command) ** 2).sum(dim=1) / std.square())
+
+
+def sc0090_track_yaw_velocity(env, command_name="twist", std=.3):
+    error = sc0090_yaw_error(env, command_name)
+    return torch.exp(-error.square() / std**2)
+
+
+def sc0090_yaw_error(env, command_name="twist"):
+    """Nonnegative yaw-only cost; gait roll/pitch have separate small penalties."""
+    return (env.command_manager.get_command(command_name)[:, 2]
+            - env.scene["robot"].data.root_link_ang_vel_b[:, 2]).abs()
+
+
+def sc0090_feet_air_time(env, sensor_name, threshold_min=.075, threshold_max=.3,
+                          command_name="twist", command_threshold=.01):
+    from mjlab.tasks.velocity.mdp.rewards import feet_air_time
+    reward = feet_air_time(env, sensor_name, threshold_min, threshold_max,
+                           command_name, command_threshold)
+    command = env.command_manager.get_command(command_name)
+    speed = command[:, :2].norm(dim=1) + .15 * command[:, 2].abs()
+    return reward * (speed / .2).clamp(.2, 1.0)
+
+
+class SC0090RecoveryState:
+    """Episode buffers plus checkpointable success-driven curriculum statistics."""
+
+    def __init__(self, env):
+        n, device = env.num_envs, env.device
+        self.bucket = torch.full((n,), -1, dtype=torch.long, device=device)
+        self.spawn_stage = torch.zeros(n, dtype=torch.long, device=device)
+        self.hold = torch.zeros(n, dtype=torch.long, device=device)
+        self.success = torch.zeros(n, dtype=torch.bool, device=device)
+        self.valid = torch.zeros(n, dtype=torch.bool, device=device)
+        self.stage = 0
+        self.last_assessment_step = 0
+        self.polish = False
+        self.trials = [0] * 7
+        self.wins = [0] * 7
+        self.rates = [0.0] * 7
+        self.total_trials = [0] * 7
+
+    def state_dict(self):
+        return {k: getattr(self, k) for k in (
+            "stage", "last_assessment_step", "polish", "trials", "wins",
+            "rates", "total_trials")}
+
+    def load_state_dict(self, state):
+        for key in self.state_dict():
+            setattr(self, key, state[key])
+        # Physics/episodes are not serialized by mjlab. Never count an episode
+        # from before restart toward the restored frontier's success rate.
+        self.valid.zero_()
+        self.hold.zero_()
+        self.success.zero_()
+
+
+def _sc0090_recovery_state(env):
+    if not hasattr(env, "_sc0090_recovery"):
+        env._sc0090_recovery = SC0090RecoveryState(env)
+    return env._sc0090_recovery
+
+
+def sc0090_reset_recovery(env, env_ids, asset_cfg=_DEFAULT_ASSET_CFG,
+                          prone_z_min=.05, prone_z_max=.09,
+                          sitting_z_min=.05, sitting_z_max=.09,
+                          standing_z_min=.11, standing_z_max=.12,
+                          sitting_joint_overrides=None, sitting_joint_noise_std=.12,
+                          sitting_tilt_max=math.radians(10)):
+    if env_ids is None:
+        env_ids = torch.arange(env.num_envs, device=env.device)
+    state = _sc0090_recovery_state(env)
+    # Rehearse known skills (25%); explore a reachable roll frontier (40%);
+    # always train actual left/right/full-back failures (35%).
+    bucket = torch.multinomial(torch.tensor((.05, .10, .10, .40, .10, .10, .15),
+                                            device=env.device), len(env_ids), True)
+    state.bucket[env_ids] = bucket
+    state.spawn_stage[env_ids] = state.stage
+    state.hold[env_ids] = 0
+    state.success[env_ids] = False
+    state.valid[env_ids] = True
+    for group in range(7):
+        ids = env_ids[bucket == group]
+        if not len(ids):
+            continue
+        set_random_ground_state(
+            env, ids, asset_cfg=asset_cfg, standing_prob=float(group == 0),
+            sitting_prob=float(group == 1), face_down_prob=float(group == 2),
+            face_up_prob=float(group >= 3), face_up_roll_max=0.0,
+            prone_z_min=prone_z_min, prone_z_max=prone_z_max,
+            sitting_z_min=sitting_z_min, sitting_z_max=sitting_z_max,
+            standing_z_min=standing_z_min, standing_z_max=standing_z_max,
+            sitting_joint_overrides=sitting_joint_overrides,
+            sitting_joint_noise_std=sitting_joint_noise_std,
+            sitting_tilt_max=sitting_tilt_max,
+        )
+        if group in (3, 4, 5):
+            if group == 3:
+                low = SC0090_ROLL_FRONTIERS[state.stage]
+                angle = torch.deg2rad(low + 30 * torch.rand(len(ids), device=env.device))
+                angle *= torch.where(torch.rand_like(angle) < .5, -1.0, 1.0)
+            else:
+                # +90 about body z from supine puts body +y (left) down.
+                angle = torch.full((len(ids),), math.pi / 2 * (1 if group == 4 else -1),
+                                   device=env.device)
+            ct, st = torch.cos(angle / 2), torch.sin(angle / 2)
+            w, x, y, z = env.sim.data.qpos[ids, 3:7].unbind(dim=1)
+            env.sim.data.qpos[ids, 3:7] = torch.stack((w*ct-z*st, x*ct+y*st,
+                                                     y*ct-x*st, w*st+z*ct), dim=1)
+
+
+def sc0090_recovery_potential(quat, height):
+    # gravity in body x: -1 supine, 0 side, +1 prone. Upright remains the
+    # best potential, so completing prone->stand does not give progress back.
+    gravity_x = 2 * (quat[:, 0] * quat[:, 2] - quat[:, 1] * quat[:, 3])
+    belly = .5 * (1 + gravity_x.clamp(-1, 1))
+    cos_tilt = 1 - 2 * (quat[:, 1].square() + quat[:, 2].square())
+    standing = 2 * ((height - .06) / .055).clamp(0, 1) * cos_tilt.clamp(0, 1)
+    return torch.maximum(belly, standing)
+
+
+def sc0090_recovery_progress(env):
+    """Signed potential change per second: stationary/closed-loop poses cannot farm it."""
+    robot = env.scene["robot"].data
+    height = robot.root_link_pos_w[:, 2] - env.scene.env_origins[:, 2]
+    potential = torch.nan_to_num(sc0090_recovery_potential(robot.root_link_quat_w, height))
+    previous = getattr(env, "_sc0090_potential_prev", potential)
+    delta = potential - previous
+    delta = torch.where(env.episode_length_buf <= 1, 0.0, delta)
+    env._sc0090_potential_prev = potential.clone()
+    return delta / env.step_dt
+
+
+def sc0090_stable_standing(env):
+    """Continuous 0.5 s stability, not a one-frame height crossing or a jackpot."""
+    state = _sc0090_recovery_state(env)
+    robot = env.scene["robot"].data
+    q = robot.root_link_quat_w
+    cosine = 1 - 2 * (q[:, 1].square() + q[:, 2].square())
+    height = robot.root_link_pos_w[:, 2] - env.scene.env_origins[:, 2]
+    feet = env.scene["feet_ground_contact"].data.found.reshape(env.num_envs, 2, -1)
+    stable = ((height >= .105) & (cosine >= math.cos(math.radians(20)))
+              & (robot.root_link_lin_vel_b.norm(dim=1) < .15)
+              & (robot.root_link_ang_vel_b.norm(dim=1) < 1.5)
+              & feet.bool().any(dim=2).all(dim=1))
+    state.hold = torch.where(stable, state.hold + 1, 0)
+    completed = state.hold >= math.ceil(.5 / env.step_dt)
+    state.success |= completed
+    return completed.float()
+
+
+def sc0090_recovery_curriculum(env, env_ids, min_frontier_trials=256,
+                                min_stage_steps=2400, success_threshold=.7):
+    state = _sc0090_recovery_state(env)
+    if env_ids is None:
+        env_ids = slice(None)
+    valid = state.valid[env_ids]
+    buckets = state.bucket[env_ids]
+    # Exclude episodes spawned on an older frontier after a stage change.
+    valid &= (buckets != 3) | (state.spawn_stage[env_ids] == state.stage)
+    trials = torch.bincount(buckets[valid], minlength=7).tolist()
+    wins = torch.bincount(buckets[valid & state.success[env_ids]], minlength=7).tolist()
+    state.valid[env_ids] = False  # consume once, before reset event assigns new states
+    for i in range(7):
+        state.trials[i] += trials[i]
+        state.total_trials[i] += trials[i]
+        state.wins[i] += wins[i]
+    step = env.common_step_counter
+    if (step - state.last_assessment_step >= min_stage_steps
+            and state.trials[3] >= min_frontier_trials):
+        state.rates = [w / max(n, 1) for w, n in zip(state.wins, state.trials)]
+        if state.rates[3] >= success_threshold and state.stage < len(SC0090_ROLL_FRONTIERS)-1:
+            state.stage += 1
+        elif (state.stage == len(SC0090_ROLL_FRONTIERS)-1
+              and min(state.trials[i] for i in (4, 5, 6)) >= 64
+              and min(state.rates[i] for i in (3, 4, 5, 6)) >= success_threshold):
+            state.polish = True
+        state.last_assessment_step = step
+        state.trials = [0] * 7
+        state.wins = [0] * 7
+    # Apply every time, including the first reset after checkpoint restoration.
+    for name, weight in (("action_rate_l2", -.5 if state.polish else -.2),
+                         ("arrival_damping", -.025 if state.polish else 0.),
+                         ("joint_torque_rate_l2", -.0005 if state.polish else 0.)):
+        env.reward_manager.get_term_cfg(name).weight = weight
+    return {"stage": state.stage, "frontier_min_deg": SC0090_ROLL_FRONTIERS[state.stage],
+            "polish": float(state.polish),
+            **{f"success_{name}": state.rates[i] for i, name in enumerate(SC0090_RECOVERY_BUCKETS)},
+            **{f"trials_{name}": state.total_trials[i] for i, name in enumerate(SC0090_RECOVERY_BUCKETS)}}

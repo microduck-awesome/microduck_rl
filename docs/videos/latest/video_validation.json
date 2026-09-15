@@ -1,0 +1,149 @@
+{
+  "passed": true,
+  "dynamics_revision": 2,
+  "all_videos_decoded": true,
+  "videos": [
+    {
+      "file": "walk_idle.mp4",
+      "frames": 200,
+      "duration_s": 8.0,
+      "sha256": "509cb4b00f29b4d2d4da8f93490ca3edd6c13a72048861257e5178caac3b3d57",
+      "decoded": true
+    },
+    {
+      "file": "walk_forward_003.mp4",
+      "frames": 200,
+      "duration_s": 8.0,
+      "sha256": "dde5129572d2afd81003c37fde80508656d920ab99281a389130adcb8e3430e3",
+      "decoded": true
+    },
+    {
+      "file": "walk_forward_008.mp4",
+      "frames": 200,
+      "duration_s": 8.0,
+      "sha256": "0198b7e3d9b478990cd8003f0244999d657696994e6ee744b752f2b24c924d2a",
+      "decoded": true
+    },
+    {
+      "file": "walk_forward_010.mp4",
+      "frames": 200,
+      "duration_s": 8.0,
+      "sha256": "a9ec61f416f580f2f3e098250849f83e73b9f62802df2c3730facd5c0debe3e2",
+      "decoded": true
+    },
+    {
+      "file": "walk_forward_020.mp4",
+      "frames": 200,
+      "duration_s": 8.0,
+      "sha256": "efbc7354e1cf41ad6115f43443eccbfcfd0fe9435307ff089d7176e9baffe8a4",
+      "decoded": true
+    },
+    {
+      "file": "walk_forward_030.mp4",
+      "frames": 200,
+      "duration_s": 8.0,
+      "sha256": "bdb9bb09f49c2f734efba97040bb4c221af0a90617e5590a0b0133ff220c152c",
+      "decoded": true
+    },
+    {
+      "file": "walk_backward.mp4",
+      "frames": 200,
+      "duration_s": 8.0,
+      "sha256": "60bd5a7d15c2a820aba5e81001dca466dc5e597c37e3f96113b65cba2aa4cd93",
+      "decoded": true
+    },
+    {
+      "file": "walk_left.mp4",
+      "frames": 200,
+      "duration_s": 8.0,
+      "sha256": "701db91ee05e18e95b29f2fb7e65ce936b860501fbfb3508a9524d5e1d801e86",
+      "decoded": true
+    },
+    {
+      "file": "walk_right.mp4",
+      "frames": 200,
+      "duration_s": 8.0,
+      "sha256": "b51c874ea429c1c0253cba9434e4077a7abfb9d35abc0ccaffa79bf545af771f",
+      "decoded": true
+    },
+    {
+      "file": "walk_turn_left.mp4",
+      "frames": 200,
+      "duration_s": 8.0,
+      "sha256": "43af5baa3a90cc0f210285d9a3e854917c9d358c23ce2bf9a2ce4e58a01246c0",
+      "decoded": true
+    },
+    {
+      "file": "walk_turn_right.mp4",
+      "frames": 200,
+      "duration_s": 8.0,
+      "sha256": "99acf4144925f690728fd0f244a2b4fea1e25b8a6d5b60e970ea3f1bd4556484",
+      "decoded": true
+    },
+    {
+      "file": "walk_curve.mp4",
+      "frames": 200,
+      "duration_s": 8.0,
+      "sha256": "0fd1ae5edc03fb09afcc72d65a9e065b32f94b067671d7f8ab20b1696f11911c",
+      "decoded": true
+    },
+    {
+      "file": "walk_start.mp4",
+      "frames": 200,
+      "duration_s": 8.0,
+      "sha256": "30b023f56b57080480fa92d81f3b09d5abe0852d81d1a404721706401dac2c6f",
+      "decoded": true
+    },
+    {
+      "file": "walk_stop.mp4",
+      "frames": 200,
+      "duration_s": 8.0,
+      "sha256": "5e4fed6420d04f959fe90de8fdb0953d60e7d6be5f111dca2002273ae147f5f0",
+      "decoded": true
+    },
+    {
+      "file": "recovery_sitting.mp4",
+      "frames": 100,
+      "duration_s": 4.0,
+      "sha256": "46116c8e3ba88d629e18c4881eaeec4daf012bd08b70e26c336ae719c329783d",
+      "decoded": true
+    },
+    {
+      "file": "recovery_prone.mp4",
+      "frames": 100,
+      "duration_s": 4.0,
+      "sha256": "0fe496a76c6d09f017476d7a711382765e2563b4df654bb2fd01438dd4649d29",
+      "decoded": true
+    },
+    {
+      "file": "recovery_supine.mp4",
+      "frames": 100,
+      "duration_s": 4.0,
+      "sha256": "eeb4bac90d6d9cb3e6cc77575983a1515f878ba956afa2efd74ba0c2ed18424a",
+      "decoded": true
+    },
+    {
+      "file": "recovery_left_side.mp4",
+      "frames": 100,
+      "duration_s": 4.0,
+      "sha256": "b00d7d25e05b9ba2dc6d78255b99b8c391c4b34afb4b04581014fa8a175a4b1e",
+      "decoded": true
+    },
+    {
+      "file": "recovery_right_side.mp4",
+      "frames": 100,
+      "duration_s": 4.0,
+      "sha256": "c7f3e92f87112fbb3c7b7d91954d0d4513a7d8e172fe1dda1a415e1a11f76322",
+      "decoded": true
+    },
+    {
+      "file": "exploration.mp4",
+      "frames": 1500,
+      "duration_s": 60.0,
+      "sha256": "b2a06cb1719ba8f71fdb10024ea95d7cd488c9dc4cedc439927ba02605db1ebe",
+      "decoded": true
+    }
+  ],
+  "full_exploration_s": 60,
+  "exploration_all_five_poses": true
+}

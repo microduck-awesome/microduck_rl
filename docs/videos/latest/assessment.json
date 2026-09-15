@@ -1,0 +1,1597 @@
+{
+  "schema": 1,
+  "dynamics_revision": 2,
+  "training_source_commit": "185caa6d7c13a3d367deaa2af7978b3f41acfe89",
+  "additional_updates": 401,
+  "display_status": "本轮续训预算已完成。行走仍未通过转身验收；起身通过当前抗扰阶段的首轮评估，尚未完成全部加强阶段。",
+  "walking": {
+    "checkpoint": "logs/rsl_rl/sc0090_walk_v4/2026-09-15_18-01-30_dynamics2_walk_continuation/model_6400.pt",
+    "checkpoint_sha256": "10f69ec43d5b149cf2e74258745926a0efaf6e41602564e77b6c118c188ef421",
+    "actor_matches_assessed_snapshot_exactly": true,
+    "summary": {
+      "passed": false,
+      "advanced": false,
+      "assessed_phase": "consolidate",
+      "counts": {
+        "retention": {
+          "idle": [
+            256,
+            256
+          ],
+          "slow_forward": [
+            256,
+            250
+          ],
+          "slow_backward": [
+            256,
+            241
+          ],
+          "forward": [
+            256,
+            213
+          ],
+          "backward": [
+            256,
+            218
+          ],
+          "left": [
+            256,
+            225
+          ],
+          "right": [
+            256,
+            234
+          ],
+          "turn_left": [
+            256,
+            1
+          ],
+          "turn_right": [
+            256,
+            2
+          ],
+          "curve_left": [
+            256,
+            232
+          ],
+          "curve_right": [
+            256,
+            214
+          ],
+          "forward_010": [
+            256,
+            254
+          ],
+          "start_forward": [
+            256,
+            250
+          ],
+          "stop_forward": [
+            256,
+            254
+          ]
+        },
+        "challenge": {
+          "idle": [
+            256,
+            256
+          ],
+          "slow_forward": [
+            256,
+            253
+          ],
+          "slow_backward": [
+            256,
+            237
+          ],
+          "forward": [
+            256,
+            226
+          ],
+          "backward": [
+            256,
+            217
+          ],
+          "left": [
+            256,
+            233
+          ],
+          "right": [
+            256,
+            236
+          ],
+          "turn_left": [
+            256,
+            0
+          ],
+          "turn_right": [
+            256,
+            2
+          ],
+          "curve_left": [
+            256,
+            240
+          ],
+          "curve_right": [
+            256,
+            215
+          ],
+          "forward_010": [
+            256,
+            253
+          ],
+          "start_forward": [
+            256,
+            253
+          ],
+          "stop_forward": [
+            256,
+            256
+          ]
+        }
+      },
+      "metrics": {
+        "action_delta_rms": 0.07002252619075386,
+        "torque_delta_rms": 0.06422413910162819,
+        "settled_ang_rms": 0.4647040735903661,
+        "rise_time_p95": 0.0
+      },
+      "checkpoint_sha256": "1ecee69882afdabac75f5cec3c7fe3b8cd042bf4c4047815666c7d739445981b",
+      "nominal_counts": {
+        "idle": [
+          2,
+          2
+        ],
+        "slow_forward": [
+          2,
+          2
+        ],
+        "slow_backward": [
+          2,
+          2
+        ],
+        "forward": [
+          2,
+          2
+        ],
+        "backward": [
+          2,
+          2
+        ],
+        "left": [
+          2,
+          2
+        ],
+        "right": [
+          2,
+          2
+        ],
+        "turn_left": [
+          2,
+          0
+        ],
+        "turn_right": [
+          2,
+          0
+        ],
+        "curve_left": [
+          2,
+          2
+        ],
+        "curve_right": [
+          2,
+          2
+        ],
+        "forward_010": [
+          2,
+          2
+        ],
+        "start_forward": [
+          2,
+          2
+        ],
+        "stop_forward": [
+          2,
+          2
+        ]
+      }
+    },
+    "report": {
+      "schema": 3,
+      "task": "walk",
+      "program_hash": "ea35ebb4c89a843bca93f82039f63c345d86c5d5f78d144f86b91b2ce9d7b21b",
+      "phase_index": 4,
+      "global_step": 153648,
+      "iteration": 6400,
+      "checkpoint": "logs/rsl_rl/sc0090_walk_v4/2026-09-15_18-01-30_dynamics2_walk_continuation/program_evaluations/step_000153648_dpp9xqu0/model.pt",
+      "checkpoint_sha256": "1ecee69882afdabac75f5cec3c7fe3b8cd042bf4c4047815666c7d739445981b",
+      "config": "logs/rsl_rl/sc0090_walk_v4/2026-09-15_18-01-30_dynamics2_walk_continuation/program_evaluations/step_000153648_dpp9xqu0/config.pkl",
+      "config_sha256": "db0412712f76bfacc434914e61b7e43a5dd9f25314ff78c51a9b4a987f420529",
+      "seeds": [
+        2026091501,
+        2026091502
+      ],
+      "samples_per_group": 128,
+      "duration_s": 8.0,
+      "device": "cuda:0",
+      "cases": [
+        {
+          "seed": 2026091501,
+          "finite": true,
+          "tracking": {
+            "retention/idle": {
+              "mean_velocity": [
+                6.389660120476037e-05,
+                -4.7681655814812984e-06,
+                0.00018433858349453658
+              ],
+              "mean_xy_error": 0.0012565779034048319,
+              "mean_yaw_error": 0.006392939947545528
+            },
+            "retention/slow_forward": {
+              "mean_velocity": [
+                0.0789039134979248,
+                -0.000575110549107194,
+                0.009785943664610386
+              ],
+              "mean_xy_error": 0.014948560856282711,
+              "mean_yaw_error": 0.08098729699850082
+            },
+            "retention/slow_backward": {
+              "mean_velocity": [
+                -0.07735514640808105,
+                0.0021309375297278166,
+                -0.017231158912181854
+              ],
+              "mean_xy_error": 0.016036944463849068,
+              "mean_yaw_error": 0.10611272603273392
+            },
+            "retention/forward": {
+              "mean_velocity": [
+                0.2896910011768341,
+                -0.0010532252490520477,
+                0.0026528765447437763
+              ],
+              "mean_xy_error": 0.027469614520668983,
+              "mean_yaw_error": 0.12039784342050552
+            },
+            "retention/backward": {
+              "mean_velocity": [
+                -0.19775792956352234,
+                0.0008959275437518954,
+                0.006112022791057825
+              ],
+              "mean_xy_error": 0.022254176437854767,
+              "mean_yaw_error": 0.11983423680067062
+            },
+            "retention/left": {
+              "mean_velocity": [
+                0.00046781994751654565,
+                0.1454668939113617,
+                0.023978354409337044
+              ],
+              "mean_xy_error": 0.018017921596765518,
+              "mean_yaw_error": 0.11522338539361954
+            },
+            "retention/right": {
+              "mean_velocity": [
+                -0.0013800945598632097,
+                -0.14556658267974854,
+                -0.006492363288998604
+              ],
+              "mean_xy_error": 0.017985409125685692,
+              "mean_yaw_error": 0.1153922751545906
+            },
+            "retention/turn_left": {
+              "mean_velocity": [
+                -0.0007927826372906566,
+                -0.00033757369965314865,
+                0.33124542236328125
+              ],
+              "mean_xy_error": 0.0077915131114423275,
+              "mean_yaw_error": 0.295601487159729
+            },
+            "retention/turn_right": {
+              "mean_velocity": [
+                8.761325443629175e-05,
+                0.00045570958172902465,
+                -0.3125975430011749
+              ],
+              "mean_xy_error": 0.006865441799163818,
+              "mean_yaw_error": 0.3176807761192322
+            },
+            "retention/curve_left": {
+              "mean_velocity": [
+                0.1982872486114502,
+                -0.0060245441272854805,
+                0.45825499296188354
+              ],
+              "mean_xy_error": 0.020153861492872238,
+              "mean_yaw_error": 0.13718557357788086
+            },
+            "retention/curve_right": {
+              "mean_velocity": [
+                0.19622685015201569,
+                0.0033306414261460304,
+                -0.42985302209854126
+              ],
+              "mean_xy_error": 0.01851501688361168,
+              "mean_yaw_error": 0.1461198329925537
+            },
+            "retention/forward_010": {
+              "mean_velocity": [
+                0.09997165203094482,
+                0.00026192498626187444,
+                0.009122204035520554
+              ],
+              "mean_xy_error": 0.014092501252889633,
+              "mean_yaw_error": 0.07559855282306671
+            },
+            "retention/start_forward": {
+              "mean_velocity": [
+                0.07921881228685379,
+                0.00032486923737451434,
+                0.010080363601446152
+              ],
+              "mean_xy_error": 0.013516589999198914,
+              "mean_yaw_error": 0.08058562874794006
+            },
+            "retention/stop_forward": {
+              "mean_velocity": [
+                3.779692997341044e-05,
+                -5.153969141247217e-06,
+                0.0002254302380606532
+              ],
+              "mean_xy_error": 0.001252050045877695,
+              "mean_yaw_error": 0.0069849141873419285
+            },
+            "challenge/idle": {
+              "mean_velocity": [
+                9.5877650892362e-05,
+                -8.783986231719609e-07,
+                0.00014507098239846528
+              ],
+              "mean_xy_error": 0.001298872521147132,
+              "mean_yaw_error": 0.006803245283663273
+            },
+            "challenge/slow_forward": {
+              "mean_velocity": [
+                0.07977747917175293,
+                -0.0007718248525634408,
+                0.005616872571408749
+              ],
+              "mean_xy_error": 0.013669716194272041,
+              "mean_yaw_error": 0.08065364509820938
+            },
+            "challenge/slow_backward": {
+              "mean_velocity": [
+                -0.07732799649238586,
+                0.0013271286152303219,
+                -0.012927526608109474
+              ],
+              "mean_xy_error": 0.01608334667980671,
+              "mean_yaw_error": 0.10695918649435043
+            },
+            "challenge/forward": {
+              "mean_velocity": [
+                0.28901129961013794,
+                -0.0004283644084353,
+                0.002844015834853053
+              ],
+              "mean_xy_error": 0.027502289041876793,
+              "mean_yaw_error": 0.11862881481647491
+            },
+            "challenge/backward": {
+              "mean_velocity": [
+                -0.19997341930866241,
+                0.0016932254657149315,
+                -0.0004476101603358984
+              ],
+              "mean_xy_error": 0.021564790979027748,
+              "mean_yaw_error": 0.12180055677890778
+            },
+            "challenge/left": {
+              "mean_velocity": [
+                0.0004787647631019354,
+                0.1451932042837143,
+                0.01981036178767681
+              ],
+              "mean_xy_error": 0.017813876271247864,
+              "mean_yaw_error": 0.11315599083900452
+            },
+            "challenge/right": {
+              "mean_velocity": [
+                -0.001557350275106728,
+                -0.14671123027801514,
+                -0.007209283299744129
+              ],
+              "mean_xy_error": 0.01751537434756756,
+              "mean_yaw_error": 0.11138526350259781
+            },
+            "challenge/turn_left": {
+              "mean_velocity": [
+                -0.0004851018311455846,
+                -0.0004041782231070101,
+                0.32064586877822876
+              ],
+              "mean_xy_error": 0.007064139470458031,
+              "mean_yaw_error": 0.3030552864074707
+            },
+            "challenge/turn_right": {
+              "mean_velocity": [
+                0.0002790330909192562,
+                0.0005746409296989441,
+                -0.3139374852180481
+              ],
+              "mean_xy_error": 0.006527947261929512,
+              "mean_yaw_error": 0.3111002743244171
+            },
+            "challenge/curve_left": {
+              "mean_velocity": [
+                0.19709864258766174,
+                -0.004906998947262764,
+                0.4593730568885803
+              ],
+              "mean_xy_error": 0.02044137939810753,
+              "mean_yaw_error": 0.13291536271572113
+            },
+            "challenge/curve_right": {
+              "mean_velocity": [
+                0.1979134976863861,
+                0.0035887255799025297,
+                -0.4258255362510681
+              ],
+              "mean_xy_error": 0.019142230972647667,
+              "mean_yaw_error": 0.1446172446012497
+            },
+            "challenge/forward_010": {
+              "mean_velocity": [
+                0.1001552939414978,
+                0.00016101746587082744,
+                0.0034318501129746437
+              ],
+              "mean_xy_error": 0.014536330476403236,
+              "mean_yaw_error": 0.0761268138885498
+            },
+            "challenge/start_forward": {
+              "mean_velocity": [
+                0.07944879680871964,
+                -0.0002260451583424583,
+                0.008853426203131676
+              ],
+              "mean_xy_error": 0.014116165228188038,
+              "mean_yaw_error": 0.08102183789014816
+            },
+            "challenge/stop_forward": {
+              "mean_velocity": [
+                7.762174936942756e-05,
+                -4.098377758054994e-06,
+                0.0003173782315570861
+              ],
+              "mean_xy_error": 0.001280879252590239,
+              "mean_yaw_error": 0.006924616172909737
+            }
+          },
+          "retention": {
+            "idle": {
+              "trials": 128,
+              "wins": 128
+            },
+            "slow_forward": {
+              "trials": 128,
+              "wins": 128
+            },
+            "slow_backward": {
+              "trials": 128,
+              "wins": 117
+            },
+            "forward": {
+              "trials": 128,
+              "wins": 105
+            },
+            "backward": {
+              "trials": 128,
+              "wins": 111
+            },
+            "left": {
+              "trials": 128,
+              "wins": 110
+            },
+            "right": {
+              "trials": 128,
+              "wins": 117
+            },
+            "turn_left": {
+              "trials": 128,
+              "wins": 0
+            },
+            "turn_right": {
+              "trials": 128,
+              "wins": 2
+            },
+            "curve_left": {
+              "trials": 128,
+              "wins": 115
+            },
+            "curve_right": {
+              "trials": 128,
+              "wins": 106
+            },
+            "forward_010": {
+              "trials": 128,
+              "wins": 128
+            },
+            "start_forward": {
+              "trials": 128,
+              "wins": 125
+            },
+            "stop_forward": {
+              "trials": 128,
+              "wins": 127
+            }
+          },
+          "challenge": {
+            "idle": {
+              "trials": 128,
+              "wins": 128
+            },
+            "slow_forward": {
+              "trials": 128,
+              "wins": 126
+            },
+            "slow_backward": {
+              "trials": 128,
+              "wins": 122
+            },
+            "forward": {
+              "trials": 128,
+              "wins": 113
+            },
+            "backward": {
+              "trials": 128,
+              "wins": 106
+            },
+            "left": {
+              "trials": 128,
+              "wins": 121
+            },
+            "right": {
+              "trials": 128,
+              "wins": 116
+            },
+            "turn_left": {
+              "trials": 128,
+              "wins": 0
+            },
+            "turn_right": {
+              "trials": 128,
+              "wins": 1
+            },
+            "curve_left": {
+              "trials": 128,
+              "wins": 121
+            },
+            "curve_right": {
+              "trials": 128,
+              "wins": 110
+            },
+            "forward_010": {
+              "trials": 128,
+              "wins": 127
+            },
+            "start_forward": {
+              "trials": 128,
+              "wins": 127
+            },
+            "stop_forward": {
+              "trials": 128,
+              "wins": 128
+            }
+          },
+          "metrics": {
+            "action_delta_rms": 0.0699923187494278,
+            "torque_delta_rms": 0.06422975659370422,
+            "settled_ang_rms": 0.4647851586341858,
+            "rise_time_p95": 0.0
+          },
+          "nominal": {
+            "idle": {
+              "trials": 1,
+              "wins": 1
+            },
+            "slow_forward": {
+              "trials": 1,
+              "wins": 1
+            },
+            "slow_backward": {
+              "trials": 1,
+              "wins": 1
+            },
+            "forward": {
+              "trials": 1,
+              "wins": 1
+            },
+            "backward": {
+              "trials": 1,
+              "wins": 1
+            },
+            "left": {
+              "trials": 1,
+              "wins": 1
+            },
+            "right": {
+              "trials": 1,
+              "wins": 1
+            },
+            "turn_left": {
+              "trials": 1,
+              "wins": 0
+            },
+            "turn_right": {
+              "trials": 1,
+              "wins": 0
+            },
+            "curve_left": {
+              "trials": 1,
+              "wins": 1
+            },
+            "curve_right": {
+              "trials": 1,
+              "wins": 1
+            },
+            "forward_010": {
+              "trials": 1,
+              "wins": 1
+            },
+            "start_forward": {
+              "trials": 1,
+              "wins": 1
+            },
+            "stop_forward": {
+              "trials": 1,
+              "wins": 1
+            }
+          },
+          "nominal_tracking": {
+            "idle": {
+              "mean_velocity": [
+                0.00020278047304600477,
+                -1.021728621708462e-05,
+                -0.0010239437688142061
+              ],
+              "mean_xy_error": 0.0010245161829516292,
+              "mean_yaw_error": 0.00647800974547863
+            },
+            "slow_forward": {
+              "mean_velocity": [
+                0.08103037625551224,
+                -0.00031873612897470593,
+                0.02376939170062542
+              ],
+              "mean_xy_error": 0.0073172710835933685,
+              "mean_yaw_error": 0.05609579756855965
+            },
+            "slow_backward": {
+              "mean_velocity": [
+                -0.08023405820131302,
+                0.000861185893882066,
+                -0.027426764369010925
+              ],
+              "mean_xy_error": 0.010761714540421963,
+              "mean_yaw_error": 0.08770235627889633
+            },
+            "forward": {
+              "mean_velocity": [
+                0.29563242197036743,
+                -0.0007189906318672001,
+                -0.006122577469795942
+              ],
+              "mean_xy_error": 0.013682068325579166,
+              "mean_yaw_error": 0.07078277319669724
+            },
+            "backward": {
+              "mean_velocity": [
+                -0.20582014322280884,
+                0.0028458561282604933,
+                0.00746948504820466
+              ],
+              "mean_xy_error": 0.013199061155319214,
+              "mean_yaw_error": 0.0853302925825119
+            },
+            "left": {
+              "mean_velocity": [
+                0.0008252619300037622,
+                0.15148913860321045,
+                0.042305152863264084
+              ],
+              "mean_xy_error": 0.011629258282482624,
+              "mean_yaw_error": 0.08960489928722382
+            },
+            "right": {
+              "mean_velocity": [
+                -0.0015865836758166552,
+                -0.1521156281232834,
+                -0.008082193322479725
+              ],
+              "mean_xy_error": 0.012703407555818558,
+              "mean_yaw_error": 0.08494700491428375
+            },
+            "turn_left": {
+              "mean_velocity": [
+                -0.0014813587768003345,
+                -0.0014545806916430593,
+                0.35066112875938416
+              ],
+              "mean_xy_error": 0.005928798113018274,
+              "mean_yaw_error": 0.26450830698013306
+            },
+            "turn_right": {
+              "mean_velocity": [
+                -0.00021193388965912163,
+                -0.00016323241288773715,
+                -0.005212424788624048
+              ],
+              "mean_xy_error": 0.0003680278023239225,
+              "mean_yaw_error": 0.5947876572608948
+            },
+            "curve_left": {
+              "mean_velocity": [
+                0.2042849063873291,
+                -0.006197936367243528,
+                0.4823419153690338
+              ],
+              "mean_xy_error": 0.012036656960844994,
+              "mean_yaw_error": 0.07947592437267303
+            },
+            "curve_right": {
+              "mean_velocity": [
+                0.19974377751350403,
+                0.001931564649567008,
+                -0.455295592546463
+              ],
+              "mean_xy_error": 0.008826346136629581,
+              "mean_yaw_error": 0.0991501584649086
+            },
+            "forward_010": {
+              "mean_velocity": [
+                0.10231424123048782,
+                0.0001887925318442285,
+                0.011276459321379662
+              ],
+              "mean_xy_error": 0.007624328136444092,
+              "mean_yaw_error": 0.06443388015031815
+            },
+            "start_forward": {
+              "mean_velocity": [
+                0.08106494694948196,
+                -0.0014260102761909366,
+                0.015362532809376717
+              ],
+              "mean_xy_error": 0.007405896671116352,
+              "mean_yaw_error": 0.054726336151361465
+            },
+            "stop_forward": {
+              "mean_velocity": [
+                -0.00017430202569812536,
+                -8.137571967381518e-06,
+                0.002273538149893284
+              ],
+              "mean_xy_error": 0.001405026181600988,
+              "mean_yaw_error": 0.005593548063188791
+            }
+          }
+        },
+        {
+          "seed": 2026091502,
+          "finite": true,
+          "tracking": {
+            "retention/idle": {
+              "mean_velocity": [
+                9.290459274780005e-05,
+                -3.3034859825420426e-06,
+                7.706508040428162e-05
+              ],
+              "mean_xy_error": 0.0012719585793092847,
+              "mean_yaw_error": 0.006778104230761528
+            },
+            "retention/slow_forward": {
+              "mean_velocity": [
+                0.07875531166791916,
+                -0.0005509609472937882,
+                0.008969157934188843
+              ],
+              "mean_xy_error": 0.014047848992049694,
+              "mean_yaw_error": 0.08670499920845032
+            },
+            "retention/slow_backward": {
+              "mean_velocity": [
+                -0.07805749773979187,
+                0.001697239000350237,
+                -0.01458175852894783
+              ],
+              "mean_xy_error": 0.016188496723771095,
+              "mean_yaw_error": 0.10529904812574387
+            },
+            "retention/forward": {
+              "mean_velocity": [
+                0.288738489151001,
+                -0.0005347241531126201,
+                0.009666459634900093
+              ],
+              "mean_xy_error": 0.02768772467970848,
+              "mean_yaw_error": 0.11838822811841965
+            },
+            "retention/backward": {
+              "mean_velocity": [
+                -0.19853943586349487,
+                0.001489725662395358,
+                0.0009397372487001121
+              ],
+              "mean_xy_error": 0.020795803517103195,
+              "mean_yaw_error": 0.12240900844335556
+            },
+            "retention/left": {
+              "mean_velocity": [
+                0.0011669578962028027,
+                0.14518752694129944,
+                0.01891440339386463
+              ],
+              "mean_xy_error": 0.018184779211878777,
+              "mean_yaw_error": 0.11047201603651047
+            },
+            "retention/right": {
+              "mean_velocity": [
+                -0.002096777781844139,
+                -0.1456471085548401,
+                -0.008597306907176971
+              ],
+              "mean_xy_error": 0.017719902098178864,
+              "mean_yaw_error": 0.11553461104631424
+            },
+            "retention/turn_left": {
+              "mean_velocity": [
+                -0.00012891204096376896,
+                -0.0006511853425763547,
+                0.32855576276779175
+              ],
+              "mean_xy_error": 0.007621078751981258,
+              "mean_yaw_error": 0.2960140109062195
+            },
+            "retention/turn_right": {
+              "mean_velocity": [
+                0.00021683110389858484,
+                0.0004232055798638612,
+                -0.31267809867858887
+              ],
+              "mean_xy_error": 0.006115526892244816,
+              "mean_yaw_error": 0.31409332156181335
+            },
+            "retention/curve_left": {
+              "mean_velocity": [
+                0.1979062557220459,
+                -0.005532151088118553,
+                0.44964519143104553
+              ],
+              "mean_xy_error": 0.020403709262609482,
+              "mean_yaw_error": 0.13950994610786438
+            },
+            "retention/curve_right": {
+              "mean_velocity": [
+                0.19768035411834717,
+                0.0041545070707798,
+                -0.4297998547554016
+              ],
+              "mean_xy_error": 0.019048849120736122,
+              "mean_yaw_error": 0.14642830193042755
+            },
+            "retention/forward_010": {
+              "mean_velocity": [
+                0.09981060028076172,
+                0.0006850534118711948,
+                0.007220169063657522
+              ],
+              "mean_xy_error": 0.013871648348867893,
+              "mean_yaw_error": 0.07525250315666199
+            },
+            "retention/start_forward": {
+              "mean_velocity": [
+                0.0803021639585495,
+                -0.00012576562585309148,
+                0.01148899644613266
+              ],
+              "mean_xy_error": 0.014218701981008053,
+              "mean_yaw_error": 0.08255193382501602
+            },
+            "retention/stop_forward": {
+              "mean_velocity": [
+                4.566831194097176e-05,
+                -3.0556905130652012e-06,
+                0.0005559895653277636
+              ],
+              "mean_xy_error": 0.0012785021681338549,
+              "mean_yaw_error": 0.007098902948200703
+            },
+            "challenge/idle": {
+              "mean_velocity": [
+                9.342103294329718e-05,
+                -4.363202606327832e-06,
+                0.000295035308226943
+              ],
+              "mean_xy_error": 0.0013592516770586371,
+              "mean_yaw_error": 0.0070790378376841545
+            },
+            "challenge/slow_forward": {
+              "mean_velocity": [
+                0.08031796663999557,
+                -0.000480794464237988,
+                0.00746841449290514
+              ],
+              "mean_xy_error": 0.013448609970510006,
+              "mean_yaw_error": 0.07847630232572556
+            },
+            "challenge/slow_backward": {
+              "mean_velocity": [
+                -0.07626550644636154,
+                0.0016117081977427006,
+                -0.022269727662205696
+              ],
+              "mean_xy_error": 0.016145450994372368,
+              "mean_yaw_error": 0.10755714774131775
+            },
+            "challenge/forward": {
+              "mean_velocity": [
+                0.2885259687900543,
+                -0.0006187571561895311,
+                0.009632186032831669
+              ],
+              "mean_xy_error": 0.02694719098508358,
+              "mean_yaw_error": 0.11701532453298569
+            },
+            "challenge/backward": {
+              "mean_velocity": [
+                -0.1985241323709488,
+                0.0012937170686200261,
+                0.008687891066074371
+              ],
+              "mean_xy_error": 0.021668577566742897,
+              "mean_yaw_error": 0.12024752050638199
+            },
+            "challenge/left": {
+              "mean_velocity": [
+                0.0006784575525671244,
+                0.14543476700782776,
+                0.02307126484811306
+              ],
+              "mean_xy_error": 0.01829489879310131,
+              "mean_yaw_error": 0.1160234808921814
+            },
+            "challenge/right": {
+              "mean_velocity": [
+                -0.0018718458013609052,
+                -0.14674589037895203,
+                -0.008213130757212639
+              ],
+              "mean_xy_error": 0.017635799944400787,
+              "mean_yaw_error": 0.11337757855653763
+            },
+            "challenge/turn_left": {
+              "mean_velocity": [
+                -0.0004580493550747633,
+                -0.0005017996300011873,
+                0.3237724304199219
+              ],
+              "mean_xy_error": 0.007191937882453203,
+              "mean_yaw_error": 0.2987252473831177
+            },
+            "challenge/turn_right": {
+              "mean_velocity": [
+                0.0005831380840390921,
+                0.0007116787601262331,
+                -0.31816476583480835
+              ],
+              "mean_xy_error": 0.006422009784728289,
+              "mean_yaw_error": 0.3109210431575775
+            },
+            "challenge/curve_left": {
+              "mean_velocity": [
+                0.19773618876934052,
+                -0.0053927903063595295,
+                0.4531461000442505
+              ],
+              "mean_xy_error": 0.019907452166080475,
+              "mean_yaw_error": 0.13693135976791382
+            },
+            "challenge/curve_right": {
+              "mean_velocity": [
+                0.19714683294296265,
+                0.003090213518589735,
+                -0.4198799431324005
+              ],
+              "mean_xy_error": 0.01976594887673855,
+              "mean_yaw_error": 0.15129967033863068
+            },
+            "challenge/forward_010": {
+              "mean_velocity": [
+                0.10055383294820786,
+                0.00042829904123209417,
+                0.005838100798428059
+              ],
+              "mean_xy_error": 0.013846154324710369,
+              "mean_yaw_error": 0.07693475484848022
+            },
+            "challenge/start_forward": {
+              "mean_velocity": [
+                0.08091190457344055,
+                2.6141242415178567e-05,
+                0.0056649972684681416
+              ],
+              "mean_xy_error": 0.014018268324434757,
+              "mean_yaw_error": 0.08242328464984894
+            },
+            "challenge/stop_forward": {
+              "mean_velocity": [
+                7.076395559124649e-05,
+                -1.1377779628674034e-05,
+                0.0003297289367765188
+              ],
+              "mean_xy_error": 0.0012878235429525375,
+              "mean_yaw_error": 0.006682176608592272
+            }
+          },
+          "retention": {
+            "idle": {
+              "trials": 128,
+              "wins": 128
+            },
+            "slow_forward": {
+              "trials": 128,
+              "wins": 122
+            },
+            "slow_backward": {
+              "trials": 128,
+              "wins": 124
+            },
+            "forward": {
+              "trials": 128,
+              "wins": 108
+            },
+            "backward": {
+              "trials": 128,
+              "wins": 107
+            },
+            "left": {
+              "trials": 128,
+              "wins": 115
+            },
+            "right": {
+              "trials": 128,
+              "wins": 117
+            },
+            "turn_left": {
+              "trials": 128,
+              "wins": 1
+            },
+            "turn_right": {
+              "trials": 128,
+              "wins": 0
+            },
+            "curve_left": {
+              "trials": 128,
+              "wins": 117
+            },
+            "curve_right": {
+              "trials": 128,
+              "wins": 108
+            },
+            "forward_010": {
+              "trials": 128,
+              "wins": 126
+            },
+            "start_forward": {
+              "trials": 128,
+              "wins": 125
+            },
+            "stop_forward": {
+              "trials": 128,
+              "wins": 127
+            }
+          },
+          "challenge": {
+            "idle": {
+              "trials": 128,
+              "wins": 128
+            },
+            "slow_forward": {
+              "trials": 128,
+              "wins": 127
+            },
+            "slow_backward": {
+              "trials": 128,
+              "wins": 115
+            },
+            "forward": {
+              "trials": 128,
+              "wins": 113
+            },
+            "backward": {
+              "trials": 128,
+              "wins": 111
+            },
+            "left": {
+              "trials": 128,
+              "wins": 112
+            },
+            "right": {
+              "trials": 128,
+              "wins": 120
+            },
+            "turn_left": {
+              "trials": 128,
+              "wins": 0
+            },
+            "turn_right": {
+              "trials": 128,
+              "wins": 1
+            },
+            "curve_left": {
+              "trials": 128,
+              "wins": 119
+            },
+            "curve_right": {
+              "trials": 128,
+              "wins": 105
+            },
+            "forward_010": {
+              "trials": 128,
+              "wins": 126
+            },
+            "start_forward": {
+              "trials": 128,
+              "wins": 126
+            },
+            "stop_forward": {
+              "trials": 128,
+              "wins": 128
+            }
+          },
+          "metrics": {
+            "action_delta_rms": 0.07005272060632706,
+            "torque_delta_rms": 0.06421852111816406,
+            "settled_ang_rms": 0.46462297439575195,
+            "rise_time_p95": 0.0
+          },
+          "nominal": {
+            "idle": {
+              "trials": 1,
+              "wins": 1
+            },
+            "slow_forward": {
+              "trials": 1,
+              "wins": 1
+            },
+            "slow_backward": {
+              "trials": 1,
+              "wins": 1
+            },
+            "forward": {
+              "trials": 1,
+              "wins": 1
+            },
+            "backward": {
+              "trials": 1,
+              "wins": 1
+            },
+            "left": {
+              "trials": 1,
+              "wins": 1
+            },
+            "right": {
+              "trials": 1,
+              "wins": 1
+            },
+            "turn_left": {
+              "trials": 1,
+              "wins": 0
+            },
+            "turn_right": {
+              "trials": 1,
+              "wins": 0
+            },
+            "curve_left": {
+              "trials": 1,
+              "wins": 1
+            },
+            "curve_right": {
+              "trials": 1,
+              "wins": 1
+            },
+            "forward_010": {
+              "trials": 1,
+              "wins": 1
+            },
+            "start_forward": {
+              "trials": 1,
+              "wins": 1
+            },
+            "stop_forward": {
+              "trials": 1,
+              "wins": 1
+            }
+          },
+          "nominal_tracking": {
+            "idle": {
+              "mean_velocity": [
+                0.00030947860796004534,
+                -1.1992889994871803e-05,
+                -0.002151730703189969
+              ],
+              "mean_xy_error": 0.0011840861989185214,
+              "mean_yaw_error": 0.006039267871528864
+            },
+            "slow_forward": {
+              "mean_velocity": [
+                0.08018116652965546,
+                -0.0009386587189510465,
+                0.02773773856461048
+              ],
+              "mean_xy_error": 0.007432897109538317,
+              "mean_yaw_error": 0.054630305618047714
+            },
+            "slow_backward": {
+              "mean_velocity": [
+                -0.07847574353218079,
+                0.002337249694392085,
+                -0.03208896145224571
+              ],
+              "mean_xy_error": 0.010061568580567837,
+              "mean_yaw_error": 0.0856676772236824
+            },
+            "forward": {
+              "mean_velocity": [
+                0.29790252447128296,
+                -0.0020946599543094635,
+                0.004824427887797356
+              ],
+              "mean_xy_error": 0.017497308552265167,
+              "mean_yaw_error": 0.07172764092683792
+            },
+            "backward": {
+              "mean_velocity": [
+                -0.20766550302505493,
+                0.0023788840044289827,
+                0.012986366637051105
+              ],
+              "mean_xy_error": 0.013720889575779438,
+              "mean_yaw_error": 0.09093383699655533
+            },
+            "left": {
+              "mean_velocity": [
+                0.0006787479505874217,
+                0.15222419798374176,
+                0.03457384556531906
+              ],
+              "mean_xy_error": 0.011930875480175018,
+              "mean_yaw_error": 0.08482084423303604
+            },
+            "right": {
+              "mean_velocity": [
+                -0.00012613263970706612,
+                -0.15038354694843292,
+                -0.0009686316479928792
+              ],
+              "mean_xy_error": 0.011972849257290363,
+              "mean_yaw_error": 0.08903757482767105
+            },
+            "turn_left": {
+              "mean_velocity": [
+                -0.001330939936451614,
+                -0.0009185138042084873,
+                0.3426613211631775
+              ],
+              "mean_xy_error": 0.0059448592364788055,
+              "mean_yaw_error": 0.27608129382133484
+            },
+            "turn_right": {
+              "mean_velocity": [
+                -0.00028086325619369745,
+                -0.0002195307897636667,
+                -0.007609947584569454
+              ],
+              "mean_xy_error": 0.0005239238380454481,
+              "mean_yaw_error": 0.5923901796340942
+            },
+            "curve_left": {
+              "mean_velocity": [
+                0.20368626713752747,
+                -0.0047094738110899925,
+                0.48243796825408936
+              ],
+              "mean_xy_error": 0.011443731375038624,
+              "mean_yaw_error": 0.08211106061935425
+            },
+            "curve_right": {
+              "mean_velocity": [
+                0.2003672569990158,
+                0.0007952154846861959,
+                -0.4592999517917633
+              ],
+              "mean_xy_error": 0.008821539580821991,
+              "mean_yaw_error": 0.09552149474620819
+            },
+            "forward_010": {
+              "mean_velocity": [
+                0.101204514503479,
+                -0.0023202821612358093,
+                0.018235303461551666
+              ],
+              "mean_xy_error": 0.007915971800684929,
+              "mean_yaw_error": 0.052977997809648514
+            },
+            "start_forward": {
+              "mean_velocity": [
+                0.08123473078012466,
+                -8.574977982789278e-06,
+                0.03207949921488762
+              ],
+              "mean_xy_error": 0.007515819277614355,
+              "mean_yaw_error": 0.059964537620544434
+            },
+            "stop_forward": {
+              "mean_velocity": [
+                -0.00020808387489523739,
+                1.9423974663368426e-05,
+                0.0008374840836040676
+              ],
+              "mean_xy_error": 0.0012202743673697114,
+              "mean_yaw_error": 0.006944557186216116
+            }
+          }
+        }
+      ],
+      "wall_seconds": 79.50207833305467,
+      "protocol": "retention: no push/body command; challenge: phase body commands, forced pushes at 3/5 s; full DR/noise"
+    }
+  },
+  "recovery": {
+    "checkpoint": "logs/rsl_rl/sc0090_recovery_v4/2026-09-15_18-01-29_dynamics2_recovery_continuation/model_6400.pt",
+    "checkpoint_sha256": "061718c19b73aaffd84b029554e3af4622cb1f16b81ba7a369f1f6f010d22bb0",
+    "actor_matches_assessed_snapshot_exactly": true,
+    "summary": {
+      "passed": true,
+      "advanced": false,
+      "assessed_phase": "push_10",
+      "counts": {
+        "retention": {
+          "standing": [
+            256,
+            256
+          ],
+          "sitting": [
+            256,
+            256
+          ],
+          "prone": [
+            256,
+            256
+          ],
+          "frontier": [
+            256,
+            256
+          ],
+          "left_side": [
+            256,
+            256
+          ],
+          "right_side": [
+            256,
+            256
+          ],
+          "supine": [
+            256,
+            256
+          ]
+        },
+        "challenge": {
+          "standing": [
+            256,
+            255
+          ],
+          "sitting": [
+            256,
+            256
+          ],
+          "prone": [
+            256,
+            256
+          ],
+          "frontier": [
+            256,
+            256
+          ],
+          "left_side": [
+            256,
+            256
+          ],
+          "right_side": [
+            256,
+            256
+          ],
+          "supine": [
+            256,
+            256
+          ]
+        }
+      },
+      "metrics": {
+        "action_delta_rms": 0.04655692907967035,
+        "torque_delta_rms": 0.03619319813919145,
+        "settled_ang_rms": 0.021465568920340933,
+        "rise_time_p95": 1.399999976158142
+      },
+      "checkpoint_sha256": "a14224bc395b30a86a6fca754af1e3593b730de6d484f8d5472fdf6f6d6bcef5"
+    },
+    "report": {
+      "schema": 3,
+      "task": "recovery",
+      "program_hash": "dfbb6872eb4c178209295cf63afff0bcf3afc86a3860f6fe6303dada51d7e6b4",
+      "phase_index": 10,
+      "global_step": 153672,
+      "iteration": 6400,
+      "checkpoint": "logs/rsl_rl/sc0090_recovery_v4/2026-09-15_18-01-29_dynamics2_recovery_continuation/program_evaluations/step_000153672_iprlyhk_/model.pt",
+      "checkpoint_sha256": "a14224bc395b30a86a6fca754af1e3593b730de6d484f8d5472fdf6f6d6bcef5",
+      "config": "logs/rsl_rl/sc0090_recovery_v4/2026-09-15_18-01-29_dynamics2_recovery_continuation/program_evaluations/step_000153672_iprlyhk_/config.pkl",
+      "config_sha256": "fca43a343b24b9e3679476f9edb9b31dc7ba293dd13dab445c6e7297c44ce14c",
+      "seeds": [
+        2026091501,
+        2026091502
+      ],
+      "samples_per_group": 128,
+      "duration_s": 8.0,
+      "device": "cuda:0",
+      "cases": [
+        {
+          "seed": 2026091501,
+          "finite": true,
+          "retention": {
+            "standing": {
+              "trials": 128,
+              "wins": 128
+            },
+            "sitting": {
+              "trials": 128,
+              "wins": 128
+            },
+            "prone": {
+              "trials": 128,
+              "wins": 128
+            },
+            "frontier": {
+              "trials": 128,
+              "wins": 128
+            },
+            "left_side": {
+              "trials": 128,
+              "wins": 128
+            },
+            "right_side": {
+              "trials": 128,
+              "wins": 128
+            },
+            "supine": {
+              "trials": 128,
+              "wins": 128
+            }
+          },
+          "challenge": {
+            "standing": {
+              "trials": 128,
+              "wins": 128
+            },
+            "sitting": {
+              "trials": 128,
+              "wins": 128
+            },
+            "prone": {
+              "trials": 128,
+              "wins": 128
+            },
+            "frontier": {
+              "trials": 128,
+              "wins": 128
+            },
+            "left_side": {
+              "trials": 128,
+              "wins": 128
+            },
+            "right_side": {
+              "trials": 128,
+              "wins": 128
+            },
+            "supine": {
+              "trials": 128,
+              "wins": 128
+            }
+          },
+          "metrics": {
+            "action_delta_rms": 0.04644983634352684,
+            "torque_delta_rms": 0.0360916331410408,
+            "settled_ang_rms": 0.004668237641453743,
+            "rise_time_p95": 1.3799999952316284
+          }
+        },
+        {
+          "seed": 2026091502,
+          "finite": true,
+          "retention": {
+            "standing": {
+              "trials": 128,
+              "wins": 128
+            },
+            "sitting": {
+              "trials": 128,
+              "wins": 128
+            },
+            "prone": {
+              "trials": 128,
+              "wins": 128
+            },
+            "frontier": {
+              "trials": 128,
+              "wins": 128
+            },
+            "left_side": {
+              "trials": 128,
+              "wins": 128
+            },
+            "right_side": {
+              "trials": 128,
+              "wins": 128
+            },
+            "supine": {
+              "trials": 128,
+              "wins": 128
+            }
+          },
+          "challenge": {
+            "standing": {
+              "trials": 128,
+              "wins": 127
+            },
+            "sitting": {
+              "trials": 128,
+              "wins": 128
+            },
+            "prone": {
+              "trials": 128,
+              "wins": 128
+            },
+            "frontier": {
+              "trials": 128,
+              "wins": 128
+            },
+            "left_side": {
+              "trials": 128,
+              "wins": 128
+            },
+            "right_side": {
+              "trials": 128,
+              "wins": 128
+            },
+            "supine": {
+              "trials": 128,
+              "wins": 128
+            }
+          },
+          "metrics": {
+            "action_delta_rms": 0.04666377604007721,
+            "torque_delta_rms": 0.03629447892308235,
+            "settled_ang_rms": 0.029995813965797424,
+            "rise_time_p95": 1.399999976158142
+          }
+        }
+      ],
+      "wall_seconds": 27.41142227698583,
+      "protocol": "retention: no push/body command; challenge: phase body commands, forced pushes at 3/5 s; full DR/noise"
+    }
+  }
+}

@@ -54,6 +54,8 @@ Never launch a long run without one.
   Its Node dependencies and browser rendering are separate from training imports.
   Reuse SC0090 BAM and the normalized exporter; HTTP callbacks must never mutate
   live MuJoCo state. The simulator's main thread owns physics and policy inference.
+  Random exploration schedules command/reset events on that same thread; timeout
+  failures remain visible and must not be hidden by automatic resets.
 - `tests/` — cfg-invariant and mdp-function regression tests (CPU, no GPU needed).
 
 ## Invariants — do not break these

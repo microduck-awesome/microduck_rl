@@ -63,6 +63,16 @@ def test_checkpoint_selection_is_queued_once():
         box.submit(message(2, load={'slot':'other','id':'bad'}),1.2)
 
 
+def test_exploration_lease_timeout_and_new_browser_stop_autonomy():
+    options=dict(id='run', seed=1, duration=2, recovery_timeout=12, recoveries=True)
+    box = server.Mailbox()
+    box.submit(message(1, explore=options), 1.)
+    assert box.consume(1.1)[0]['explore'] == options
+    assert box.consume(1.5)[0]['explore'] is None
+    box.submit(message(1, client='b'), 1.6)
+    assert box.consume(1.7)[0]['explore'] is None
+
+
 @pytest.fixture(scope='module')
 def demo():
     if not (ROOT / 'models/manifest.json').is_file():
@@ -168,3 +178,24 @@ def test_rejected_policy_load_preserves_current_model_and_state(demo, tmp_path):
         demo.load_policy('walking',bad)
     assert demo.sessions['walking'] is old_session
     np.testing.assert_array_equal(demo.data.qpos,old_state)
+
+
+def test_live_exploration_sequence_uses_real_recovery_and_bounded_commands(demo):
+    planner = server.Exploration()
+    planner.sync(dict(id='live',seed=1,duration=2,recovery_timeout=12,recoveries=True))
+    demo.reset('standing'); demo.mode = 'auto'
+    seen, resets = set(), set()
+    for _ in range(4500):
+        twist,event = planner.step(demo.status(), server.CONTROL_DT, .1, .6)
+        if planner.action:
+            seen.add(planner.action)
+        if event in server.POSES:
+            resets.add(event); demo.reset(event)
+        elif event == 'push':
+            demo.push()
+        assert planner.active, planner.status()
+        demo.step(twist)
+        if planner.count >= 17:
+            break
+    assert len(seen) == 16 and resets == set(server.POSES)-{'standing'}
+    assert len(planner.history) <= 6

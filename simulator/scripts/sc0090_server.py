@@ -30,6 +30,7 @@ import onnxruntime as ort
 
 import infer_policy as rehearsal
 from checkpoint_library import CheckpointLibrary
+from exploration import Exploration, validate_request
 
 CONTROL_DT = 0.02  # Trained 50 Hz policy, four 5 ms physics steps.
 PHYSICS_DT = 0.005
@@ -90,7 +91,11 @@ class Mailbox:
         state = {
             "twist": finite_vector(message.get("twist", [0, 0, 0]), 3, [.3, .15, 1.0]),
             "mode": mode,
+            "explore": validate_request(message.get('explore')),
+            "explore_limits": finite_vector(message.get('explore_limits', [.1, .6]), 2, [.3, 1.]),
         }
+        if any(value < 0 for value in state['explore_limits']):
+            raise ValueError('Exploration speed limits must be nonnegative')
         event = message.get("event")
         if event is not None and event not in (*POSES, "push", "pause"):
             raise ValueError("Invalid event")
@@ -122,6 +127,7 @@ class Mailbox:
             events, self.events = self.events, []
             if now - self.received >= COMMAND_TIMEOUT:
                 state["twist"] = [0., 0., 0.]
+                state['explore'] = None
                 events = []  # Never execute stale reset/push after a stalled loop.
         return state, events
 
@@ -310,6 +316,8 @@ class Demo:
                 "paused": self.paused, "height": height, "tilt": math.degrees(tilt),
                 "velocity": velocity, "command": self.policy.command[:3].tolist(),
                 "rise_time": self.rise_time, "hold": self.hold, "models": self.labels,
+                "recovering": self.recovering,
+                "stable": self.hold + 1e-9 >= STABLE_HOLD,
                 "spawn": self.spawn, "error": self.error,
                 "position": self.data.qpos[self.policy._trunk_qpos_adr:self.policy._trunk_qpos_adr+3].tolist(),
                 "quaternion": q.tolist(),
@@ -388,6 +396,7 @@ def main():
         if not path.is_file():
             parser.error(f"Missing {path}; export a checkpoint with scripts/export.py, then pass --walking / --recovery")
     demo = Demo(args.walking, args.recovery)
+    exploration = Exploration()
     library = CheckpointLibrary(REPO)
     for slot, path in zip(('walking','recovery'), (args.walking,args.recovery)):
         if path.resolve() != (REPO / 'models' / library.manifest['policies'][slot]['file']).resolve():
@@ -405,12 +414,15 @@ def main():
         if result is not None:
             entry, path = result
             demo.load_policy(entry['slot'], path)
+            exploration.stop('模型已切换，探索已停止')
             library.loaded(entry)
     try:
         while not args.seconds or time.monotonic() - start < args.seconds:
             now = time.monotonic()
             controls, events = mailbox.consume(now)
+            exploration.sync(controls.get('explore'))
             for event in events:
+                exploration.stop('已切换为手动控制')
                 if isinstance(event, dict):
                     try:
                         apply_loaded(library.begin(event['load']['slot'], event['load']['id']))
@@ -427,14 +439,26 @@ def main():
                 apply_loaded(library.poll())
             except Exception as exc:
                 library.failed(exc)
-            demo.mode = controls.get("mode", demo.mode)
+            demo.mode = 'auto' if exploration.active else controls.get("mode", demo.mode)
             if now >= next_step:
                 if not demo.paused:
                     try:
-                        demo.step(controls.get("twist", [0., 0., 0.]))
+                        twist = controls.get("twist", [0., 0., 0.])
+                        if exploration.active:
+                            twist, event = exploration.step(demo.status(), CONTROL_DT,
+                                                           *controls.get('explore_limits', [.1, .6]))
+                            if event in POSES:
+                                demo.reset(event)
+                            elif event == 'push':
+                                demo.push()
+                            if exploration.failed:
+                                demo.paused = True  # Preserve a failed recovery for inspection.
+                        if not demo.paused:
+                            demo.step(twist)
                         last_status = demo.status()
                     except FloatingPointError as exc:
                         demo.paused, demo.error = True, str(exc)
+                        exploration.stop('数值异常，探索已停止', failed=True)
                         print(f"ERROR: {exc}", flush=True)
                 # Slower hosts slow wall-clock playback, never enlarge dt or
                 # skip physics/policy steps to catch up to rendering.
@@ -445,7 +469,8 @@ def main():
                 last_status.update(paused=demo.paused, error=demo.error)
                 rendered += 1
                 mailbox.publish({"frame": rendered, **last_status,
-                                 'selected_models': dict(library.current), 'model_load': library.status})
+                                 'selected_models': dict(library.current), 'model_load': library.status,
+                                 'exploration': exploration.status()})
                 next_frame = now + 1/25
             time.sleep(max(0., min(next_step, next_frame) - time.monotonic()))
     except KeyboardInterrupt:

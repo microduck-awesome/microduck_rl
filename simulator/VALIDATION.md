@@ -14,9 +14,11 @@ Node.js 22.22、Chromium（无头 SwiftShader）。浏览器渲染、物理执�
 
 ## 自动检查
 
-- Python：**27 passed**，覆盖输入序号、控制权交接、断连与过期事件、并发提交、非法数值、
+- Python：**40 passed**，覆盖输入序号、控制权交接、断连与过期事件、并发提交、非法数值、
   BAM 状态重置、80 rpm 参数、低速策略选择、模型加载校验失败保留原状态、各起身姿态、
   checkpoint 任务分离、源文件变化、无训练日志的克隆、CPU 导出进程隔离及超时退出。
+  自由探索检查覆盖随机序列复现、整轮动作覆盖、指令边界、物理步长对应的完整动作时长、
+  暂停不推进计时、等待起身、失败锁定、停止后不重播、断连退出及真实策略的完整 16 种动作序列。
 - 前端：**10 passed**，包含键盘映射、低速和组合指令、原始关节角与四元数绘制。
 - `npm run build`：通过。
 - 数值对照：最终行走/起身、旧行走 `4050`、中途起身 `5300` 共 **4 份不同模型**，
@@ -48,6 +50,11 @@ Chromium 检查通过：三维资源加载、键盘前进和转向、松键和�
 本机首次 CPU 导出分别约 **18.8 s / 18.6 s**；缓存加载约 **0.56 s / 0.80 s**。
 时间随主机负载和编译缓存变化，不是固定性能承诺。
 
+自由探索浏览器检查通过：随机连续完成转弯、停步、仰卧/俯卧起身、后退、右侧卧/坐姿起身，
+再进入绕弯；相同序列编号复现首段动作。停止按钮、方向键接管、失焦、控制连接中断及
+加载 checkpoint 均退出探索，不会在恢复连接后自行重启。桌面/手机布局无横向溢出，
+无 JavaScript 异常。原手动键盘及五种起身浏览器检查也再次通过。
+
 ## 复现
 
 ```bash
@@ -65,6 +72,7 @@ cd ../..
 uv run --no-project --with playwright playwright install chromium
 uv run --no-project --with playwright python simulator/tests/browser_check.py
 uv run --no-project --with playwright python simulator/tests/checkpoint_browser_check.py
+uv run --no-project --with playwright python simulator/tests/exploration_browser_check.py
 .venv/bin/python simulator/tests/policy_parity_check.py --include-cache
 ```
 

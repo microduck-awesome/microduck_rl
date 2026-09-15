@@ -87,7 +87,27 @@ export default function Sc0090Demo() {
   const [turn, setTurn] = useState(.6), [mode, setMode] = useState('auto');
   const [catalog, setCatalog] = useState({walking:[], recovery:[]});
   const [choices, setChoices] = useState({});
+  const exploration = useRef(null);
+  const [exploring, setExploring] = useState(false);
+  const [exploreConfig, setExploreConfig] = useState({seed:1, duration:4, recovery_timeout:12, recoveries:true});
   const sendNow = useRef(() => {});
+  function cancelExploration() {
+    exploration.current = null;
+    setExploring(false);
+  }
+  function toggleExploration() {
+    keys.current.clear(); pending.current = [];
+    if (exploration.current) cancelExploration();
+    else {
+      exploration.current = {...exploreConfig, id:crypto.randomUUID()};
+      setExploring(true); setMode('auto'); controls.current.mode = 'auto';
+    }
+    sendNow.current();
+  }
+  function configureExploration(key, value) {
+    cancelExploration(); keys.current.clear();
+    setExploreConfig(previous => ({...previous,[key]:value})); sendNow.current();
+  }
   async function refreshCatalog() {
     try {
       const response = await fetch('/api/checkpoints', {signal:AbortSignal.timeout(5000)});
@@ -99,11 +119,13 @@ export default function Sc0090Demo() {
   function loadCheckpoint(slot) {
     const id = choices[slot] || state?.selected_models?.[slot];
     if (!id) return;
+    cancelExploration();
     keys.current.clear();
     if (pending.current.length < 16) pending.current.push({load:{slot,id}});
     sendNow.current();
   }
   function event(name) {
+    cancelExploration();
     keys.current.clear();
     if (pending.current.length < 16) pending.current.push(name);
     sendNow.current();
@@ -117,9 +139,12 @@ export default function Sc0090Demo() {
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const next = await response.json();
         if (!next.position) throw new Error('等待仿真初始化');
-        if (!disposed) { live.current = next; setState(next); setConnected(true); }
+        if (!disposed) {
+          live.current = next; setState(next); setConnected(true);
+          if (exploration.current?.id === next.exploration?.request_id && !next.exploration.active) cancelExploration();
+        }
       } catch {
-        if (!disposed) setConnected(false);
+        if (!disposed) { setConnected(false); cancelExploration(); }
       }
       if (!disposed) frameTimer = setTimeout(poll, 30);
     }
@@ -133,26 +158,28 @@ export default function Sc0090Demo() {
           method: 'POST', headers: {'Content-Type': 'application/json'},
           signal: AbortSignal.timeout(1000),
           body: JSON.stringify({client, seq: ++seq, mode,
+            explore:exploration.current, explore_limits:[speed,turn],
             ...(typeof action === 'string' ? {event:action} : action || {}),
             twist: movement(keys.current, speed, turn)}),
         });
         if (!disposed) {
           setBusy(response.status === 409);
+          if (!response.ok) cancelExploration();
           if (!response.ok && response.status !== 409) setError(`控制请求失败：HTTP ${response.status}`);
         }
       } catch {
-        if (!disposed) setConnected(false);
+        if (!disposed) { setConnected(false); cancelExploration(); }
       } finally { inFlight = false; }
     }
     function tick() {
       if (!document.hidden && document.hasFocus()) send();
       controlTimer = setTimeout(tick, 100);
     }
-    const stop = () => { keys.current.clear(); pending.current = []; send(); };
+    const stop = () => { cancelExploration(); keys.current.clear(); pending.current = []; send(); };
     function keydown(e) {
       if (e.target.matches('input:not([type="range"]), select, textarea')) return;
       if (e.target.matches('input[type="range"]') && e.code.startsWith('Arrow')) return;
-      if (MOVE_KEYS.has(e.code)) { e.preventDefault(); keys.current.add(e.code); send(); }
+      if (MOVE_KEYS.has(e.code)) { e.preventDefault(); cancelExploration(); keys.current.add(e.code); send(); }
       else if (e.code === 'Space') { e.preventDefault(); stop(); }
       else if (EVENT_KEYS[e.code] && !e.repeat) { e.preventDefault(); event(EVENT_KEYS[e.code]); }
     }
@@ -195,6 +222,28 @@ export default function Sc0090Demo() {
       <div className="model-note"><span>{state?.model_load?.message || '选择并加载后重置为站立；编号属于各自训练运行。首次加载会在后台导出并缓存。'}</span>
         <button onClick={refreshCatalog}>刷新列表</button></div>
     </section>
+    <section className="explore-panel" aria-label="自由探索">
+      <div className="explore-title"><div><b>自由探索</b><p>随机组合行走、转弯、停步和扰动；相同序列编号可用于比较不同模型。</p></div>
+        <button aria-label={exploring ? '停止自由探索' : '开始自由探索'}
+          disabled={!connected || busy || state?.paused || !!state?.error || state?.model_load?.state === 'loading'}
+          onClick={toggleExploration}>{exploring ? '停止探索' : '开始探索'}</button></div>
+      <div className="explore-settings">
+        <label>序列编号<input aria-label="探索序列编号" type="number" min="0" max="4294967295" step="1"
+          value={exploreConfig.seed} onChange={e => configureExploration('seed', Math.max(0,Math.min(4294967295,Math.trunc(+e.target.value))))}/></label>
+        <label>每段指令（秒）<input aria-label="探索动作时长" type="number" min="2" max="10" step="1"
+          value={exploreConfig.duration} onChange={e => configureExploration('duration', Math.max(2,Math.min(10,+e.target.value)))}/></label>
+        <label>起身等待上限（秒）<input aria-label="探索起身等待上限" type="number" min="2" max="60" step="1"
+          value={exploreConfig.recovery_timeout} onChange={e => configureExploration('recovery_timeout', Math.max(2,Math.min(60,+e.target.value)))}/></label>
+        <label className="explore-check"><input type="checkbox" checked={exploreConfig.recoveries}
+          onChange={e => configureExploration('recoveries', e.target.checked)}/>包含倒地姿态重置与起身测试</label>
+      </div>
+      <p className={`explore-status ${state?.exploration?.failed ? 'failed' : ''}`}>
+        {state?.exploration?.number > 0 ? `第 ${state.exploration.number} 段 · ` : ''}{state?.exploration?.label || '尚未开始'}
+        {state?.exploration?.active ? ` · ${value(state.exploration.elapsed,1)} s` : ''}</p>
+      <p className="hint">速度上限沿用控制台滑块。方向键、姿态按钮、窗口失焦或断连会退出探索；起身超时会暂停仿真并保留现场。</p>
+      {state?.exploration?.history?.length > 0 && <ol className="explore-history">{state.exploration.history.map(item =>
+        <li key={item.number}>#{item.number} {item.label} · {item.outcome}</li>)}</ol>}
+    </section>
     <section className="stage" aria-label="机器人三维仿真">
       <Canvas shadows camera={{position:[.65,.4,.65],fov:42,near:.02,far:30}} dpr={[1,2]}>
         <Scene live={live} onReady={() => setReady(true)} onError={setError}/>
@@ -212,6 +261,7 @@ export default function Sc0090Demo() {
     <aside>
       <div className="panel-title"><span>控制台</span><small>策略 50 Hz · 实时物理</small></div>
       <label>控制模式<select aria-label="控制模式" value={mode} onChange={e => {
+        cancelExploration();
         setMode(e.target.value); controls.current.mode=e.target.value; keys.current.clear(); sendNow.current(); e.target.blur();
       }}>{Object.entries(NAMES).map(([id,name]) => <option key={id} value={id}>{name}</option>)}</select></label>
       <p className="hint">自动模式在跌倒后调用起身模型，稳定站立后回到行走模型。</p>

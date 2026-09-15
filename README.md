@@ -2,7 +2,7 @@
 
 > Local keyboard demo: run `./scripts/play_sc0090_local.sh` and open http://127.0.0.1:8080/.
 > It uses the trained SC0090 walking/recovery policies, with the official web simulator's 3D robot.
-> Choose checkpoints in the page, or start seeded random exploration with optional recovery trials.
+> Choose checkpoints in the page, or start seeded random exploration combining walking, falls and recovery.
 > See [simulator setup and controls](simulator/README.md) for the first build, remote access and model updates.
 
 # Microduck RL

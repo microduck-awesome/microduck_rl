@@ -89,7 +89,7 @@ export default function Sc0090Demo() {
   const [choices, setChoices] = useState({});
   const exploration = useRef(null);
   const [exploring, setExploring] = useState(false);
-  const [exploreConfig, setExploreConfig] = useState({seed:1, duration:4, recovery_timeout:12, recoveries:true});
+  const [exploreConfig, setExploreConfig] = useState({seed:1, duration:4, recovery_timeout:12});
   const sendNow = useRef(() => {});
   function cancelExploration() {
     exploration.current = null;
@@ -223,7 +223,7 @@ export default function Sc0090Demo() {
         <button onClick={refreshCatalog}>刷新列表</button></div>
     </section>
     <section className="explore-panel" aria-label="自由探索">
-      <div className="explore-title"><div><b>自由探索</b><p>随机组合行走、转弯、停步和扰动；相同序列编号可用于比较不同模型。</p></div>
+      <div className="explore-title"><div><b>自由探索</b><p>自动随机组合行走、倒地、起身、转弯和扰动，起身稳定后继续探索。</p></div>
         <button aria-label={exploring ? '停止自由探索' : '开始自由探索'}
           disabled={!connected || busy || state?.paused || !!state?.error || state?.model_load?.state === 'loading'}
           onClick={toggleExploration}>{exploring ? '停止探索' : '开始探索'}</button></div>
@@ -234,9 +234,8 @@ export default function Sc0090Demo() {
           value={exploreConfig.duration} onChange={e => configureExploration('duration', Math.max(2,Math.min(10,+e.target.value)))}/></label>
         <label>起身等待上限（秒）<input aria-label="探索起身等待上限" type="number" min="2" max="60" step="1"
           value={exploreConfig.recovery_timeout} onChange={e => configureExploration('recovery_timeout', Math.max(2,Math.min(60,+e.target.value)))}/></label>
-        <label className="explore-check"><input type="checkbox" checked={exploreConfig.recoveries}
-          onChange={e => configureExploration('recoveries', e.target.checked)}/>包含倒地姿态重置与起身测试</label>
       </div>
+      <p className="hint">每轮自动包含坐姿、俯卧、仰卧和左右侧卧：设置倒地初始姿态后，由当前模型自行起身。相同序列编号可用于比较不同 checkpoint。</p>
       <p className={`explore-status ${state?.exploration?.failed ? 'failed' : ''}`}>
         {state?.exploration?.number > 0 ? `第 ${state.exploration.number} 段 · ` : ''}{state?.exploration?.label || '尚未开始'}
         {state?.exploration?.active ? ` · ${value(state.exploration.elapsed,1)} s` : ''}</p>

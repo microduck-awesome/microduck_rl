@@ -24,13 +24,11 @@ def validate_request(value):
         raise ValueError('Invalid exploration ID')
     if type(value.get('seed')) is not int or not 0 <= value['seed'] < 2**32:
         raise ValueError('Exploration seed must be a uint32')
-    if type(value.get('recoveries')) is not bool:
-        raise ValueError('Invalid recovery option')
     for key, minimum, maximum in (('duration', 2, 10), ('recovery_timeout', 2, 60)):
         number = value.get(key)
         if type(number) not in (float, int) or not minimum <= number <= maximum:
             raise ValueError(f'Invalid exploration {key}')
-    return {key: value[key] for key in ('id', 'seed', 'duration', 'recovery_timeout', 'recoveries')}
+    return {key: value[key] for key in ('id', 'seed', 'duration', 'recovery_timeout')}
 
 
 class Exploration:
@@ -91,9 +89,7 @@ class Exploration:
             return [0., 0., 0.], None
         if self.action is None:
             if not self.bag:
-                self.bag = list(MOVES) + ['push']
-                if self.request['recoveries']:
-                    self.bag += list(RECOVERIES)
+                self.bag = list(MOVES) + ['push'] + list(RECOVERIES)
                 self.rng.shuffle(self.bag)
             self.action = self.bag.pop()
             self.count += 1

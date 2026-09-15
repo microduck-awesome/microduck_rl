@@ -8,17 +8,17 @@ from exploration import Exploration, MOVES, RECOVERIES, validate_request
 
 
 def request(**values):
-    return dict(id='run-1', seed=1, duration=2, recovery_timeout=3, recoveries=True, **values)
+    return dict(id='run-1', seed=1, duration=2, recovery_timeout=3, **values)
 
 
 def state(**values):
     return dict(dict(paused=False, error=None, recovering=False, stable=True, time=10.), **values)
 
 
-def cycle(seed, recoveries=True):
+def cycle(seed):
     planner = Exploration()
     options = request()
-    options.update(seed=seed, recoveries=recoveries)
+    options.update(seed=seed)
     planner.sync(options)
     actions, commands = [], []
     for _ in range(2000):
@@ -27,7 +27,7 @@ def cycle(seed, recoveries=True):
         commands.append(twist)
         if planner.count > len(actions):
             actions.append((planner.action, event))
-        if len(actions) == len(MOVES) + 1 + len(RECOVERIES)*recoveries:
+        if len(actions) == len(MOVES) + 1 + len(RECOVERIES):
             break
     return actions, commands
 
@@ -39,7 +39,8 @@ def test_seed_replays_complete_action_bag_and_speed_bounds():
     assert {action for action,event in first[0]} == set(MOVES) | set(RECOVERIES) | {'push'}
     for vx,vy,yaw in first[1]:
         assert abs(vx) <= .3 and abs(vy) <= .15 and abs(yaw) <= 1.
-    assert {event for action,event in cycle(1,False)[0]} == {None, 'push'}
+    # Stale browser tabs cannot disable the mandatory recovery segments.
+    assert validate_request(request(recoveries=False)) == request()
 
 
 def test_fall_waits_for_standing_before_next_action_and_does_not_reset():
@@ -91,7 +92,7 @@ def test_command_duration_covers_the_complete_physics_interval():
 
 
 @pytest.mark.parametrize('key,value', [('seed',-1),('seed',True),('duration',float('nan')),
-                                      ('recovery_timeout',float('inf')),('recoveries',1),('id','')])
+                                      ('recovery_timeout',float('inf')),('seed',2**32),('id','')])
 def test_invalid_schedule_is_rejected(key,value):
     options=request(); options[key]=value
     with pytest.raises(ValueError):

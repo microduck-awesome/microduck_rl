@@ -64,7 +64,7 @@ def test_checkpoint_selection_is_queued_once():
 
 
 def test_exploration_lease_timeout_and_new_browser_stop_autonomy():
-    options=dict(id='run', seed=1, duration=2, recovery_timeout=12, recoveries=True)
+    options=dict(id='run', seed=1, duration=2, recovery_timeout=12)
     box = server.Mailbox()
     box.submit(message(1, explore=options), 1.)
     assert box.consume(1.1)[0]['explore'] == options
@@ -182,7 +182,7 @@ def test_rejected_policy_load_preserves_current_model_and_state(demo, tmp_path):
 
 def test_live_exploration_sequence_uses_real_recovery_and_bounded_commands(demo):
     planner = server.Exploration()
-    planner.sync(dict(id='live',seed=1,duration=2,recovery_timeout=12,recoveries=True))
+    planner.sync(dict(id='live',seed=1,duration=2,recovery_timeout=12))
     demo.reset('standing'); demo.mode = 'auto'
     seen, resets = set(), set()
     for _ in range(4500):

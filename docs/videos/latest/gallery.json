@@ -1,0 +1,624 @@
+{
+  "recorded_at": "2026-09-15T09:00:21.985798+00:00",
+  "source_commit": "95fecc511ae3ed80c7fa746fea079df8dbde6801",
+  "recorder_sha256": "d2b5b459be583bb5a3046ea830a10361e962d09009a2af594b9898272820b4a1",
+  "models": {
+    "schema": 1,
+    "policies": {
+      "walking": {
+        "file": "walking_model_5999_20919458db8d.onnx",
+        "task": "Mjlab-Velocity-Flat-MicroDuck-SC0090-V2",
+        "checkpoint": "logs/rsl_rl/sc0090_walk_v2/2026-09-15_11-27-55_optimized_mps_resume_20260915_112113/model_5999.pt",
+        "checkpoint_sha256": "36855e70cad462d09845ed48399d85cb7612b11a2077b867867ad1444e61d818",
+        "sha256": "20919458db8da2fcaed81f72c4eeddd7e34c62a52e1364b659cf906b35cfe2d1",
+        "export_source_commit": "a022de33c53784616e3607f65c7cb9b112ecf255"
+      },
+      "recovery": {
+        "file": "recovery_model_5999_c438797d3df7.onnx",
+        "task": "Mjlab-StandUp-Flat-MicroDuck-SC0090-V3",
+        "checkpoint": "logs/rsl_rl/sc0090_recovery_v3/2026-09-15_12-51-48_evaluated_frontier_resume_2150/model_5999.pt",
+        "checkpoint_sha256": "be273fcd3d567523c5427cd45bdd0d2ea520cf3dbcd3d30e480e529801955bf5",
+        "sha256": "c438797d3df768b02bc086bd518902ca7d07ad9020b2fd5dde12a681e55116a5",
+        "export_source_commit": "a022de33c53784616e3607f65c7cb9b112ecf255"
+      }
+    },
+    "exported_at": "2026-09-15T08:06:28.534077+00:00",
+    "motor_model_sha256": "6efbe8f2c1a1f7dbb6518f8e43693d1c6e3694eee4b3f2dce009e3bba6b97466",
+    "policy_hz": 50,
+    "motor_max_speed_rpm": 80,
+    "observation_dim": 61,
+    "action_dim": 14
+  },
+  "physics": "CPU MuJoCo + SC0090 BAM, same as local simulator; nominal parameters; no domain randomization",
+  "playback_fps": 25,
+  "policy_hz": 50,
+  "walk_measurement_window_s": [
+    2,
+    8
+  ],
+  "videos": [
+    {
+      "id": "walk_idle",
+      "title": "站立",
+      "kind": "walking",
+      "file": "walk_idle.mp4",
+      "poster": "walk_idle.jpg",
+      "duration_s": 8.0,
+      "frames": 200,
+      "sha256": "4c3f572af1235f8786fc26702332574ba00510a216fc69d9f63251c28364ce76",
+      "samples": 1,
+      "pose_resets": [],
+      "failed": null,
+      "final_height_m": 0.11596924129920555,
+      "final_tilt_deg": 2.2184968132024068,
+      "command": [
+        0,
+        0,
+        0
+      ],
+      "mean_velocity_m_s": [
+        -2.05520261007817e-05,
+        -1.617002864393533e-06
+      ],
+      "mean_yaw_rate_rad_s": -0.00017009013802938474,
+      "fell": false
+    },
+    {
+      "id": "walk_forward_003",
+      "title": "低速前进 0.03 m/s",
+      "kind": "walking",
+      "file": "walk_forward_003.mp4",
+      "poster": "walk_forward_003.jpg",
+      "duration_s": 8.0,
+      "frames": 200,
+      "sha256": "e7f6ce55a4720e650c2fe987f319bad4619f481165220437f5e6ad8e62f0521c",
+      "samples": 1,
+      "pose_resets": [],
+      "failed": null,
+      "final_height_m": 0.11524714966004182,
+      "final_tilt_deg": 1.725670557864365,
+      "command": [
+        0.03,
+        0,
+        0
+      ],
+      "mean_velocity_m_s": [
+        0.00032373102202180604,
+        -5.125123707290974e-05
+      ],
+      "mean_yaw_rate_rad_s": -0.0018326017671764323,
+      "fell": false
+    },
+    {
+      "id": "walk_forward_010",
+      "title": "前进 0.10 m/s",
+      "kind": "walking",
+      "file": "walk_forward_010.mp4",
+      "poster": "walk_forward_010.jpg",
+      "duration_s": 8.0,
+      "frames": 200,
+      "sha256": "df6ea86756b860079a5faf5af9c976d2b8a9c8914515ac3f83e1680bd53da595",
+      "samples": 1,
+      "pose_resets": [],
+      "failed": null,
+      "final_height_m": 0.11521183875685537,
+      "final_tilt_deg": 0.6611601635285344,
+      "command": [
+        0.1,
+        0,
+        0
+      ],
+      "mean_velocity_m_s": [
+        0.09090212630680033,
+        0.0009595917970674628
+      ],
+      "mean_yaw_rate_rad_s": -0.0484834770000695,
+      "fell": false
+    },
+    {
+      "id": "walk_forward_020",
+      "title": "前进 0.20 m/s",
+      "kind": "walking",
+      "file": "walk_forward_020.mp4",
+      "poster": "walk_forward_020.jpg",
+      "duration_s": 8.0,
+      "frames": 200,
+      "sha256": "c2dfad632c9b57c0efdd633c480f93195ea617050c04f29090162cd6846b5710",
+      "samples": 1,
+      "pose_resets": [],
+      "failed": null,
+      "final_height_m": 0.11655188723108864,
+      "final_tilt_deg": 2.206199943331069,
+      "command": [
+        0.2,
+        0,
+        0
+      ],
+      "mean_velocity_m_s": [
+        0.18877063857511875,
+        -0.003924777744010654
+      ],
+      "mean_yaw_rate_rad_s": -0.04818707920039742,
+      "fell": false
+    },
+    {
+      "id": "walk_forward_030",
+      "title": "前进 0.30 m/s",
+      "kind": "walking",
+      "file": "walk_forward_030.mp4",
+      "poster": "walk_forward_030.jpg",
+      "duration_s": 8.0,
+      "frames": 200,
+      "sha256": "92103c54e2f17dc07afe643f622526dd1b7d016ea1ff853191fa17c05747633a",
+      "samples": 1,
+      "pose_resets": [],
+      "failed": null,
+      "final_height_m": 0.11717360835457556,
+      "final_tilt_deg": 1.572589936010127,
+      "command": [
+        0.3,
+        0,
+        0
+      ],
+      "mean_velocity_m_s": [
+        0.28037901941387183,
+        -0.0016041322925326117
+      ],
+      "mean_yaw_rate_rad_s": 0.02678129592910409,
+      "fell": false
+    },
+    {
+      "id": "walk_backward",
+      "title": "后退 0.10 m/s",
+      "kind": "walking",
+      "file": "walk_backward.mp4",
+      "poster": "walk_backward.jpg",
+      "duration_s": 8.0,
+      "frames": 200,
+      "sha256": "35559ec37f5ceafae23640697de79c0a987ffbf44c24ee5492d61b94624cbb1c",
+      "samples": 1,
+      "pose_resets": [],
+      "failed": null,
+      "final_height_m": 0.11754943118945153,
+      "final_tilt_deg": 2.4867181760728116,
+      "command": [
+        -0.1,
+        0,
+        0
+      ],
+      "mean_velocity_m_s": [
+        -0.12686729062572769,
+        -0.005198149869175009
+      ],
+      "mean_yaw_rate_rad_s": -0.03520748343570934,
+      "fell": false
+    },
+    {
+      "id": "walk_left",
+      "title": "左侧移 0.10 m/s",
+      "kind": "walking",
+      "file": "walk_left.mp4",
+      "poster": "walk_left.jpg",
+      "duration_s": 8.0,
+      "frames": 200,
+      "sha256": "47546188b28e4547949b09637c5cb1a0ae85208f49b161715a95a6d5814c2690",
+      "samples": 1,
+      "pose_resets": [],
+      "failed": null,
+      "final_height_m": 0.11541750665136989,
+      "final_tilt_deg": 1.34333766109439,
+      "command": [
+        0,
+        0.1,
+        0
+      ],
+      "mean_velocity_m_s": [
+        -0.008203672616530218,
+        0.11144164221311603
+      ],
+      "mean_yaw_rate_rad_s": 0.11649537076746734,
+      "fell": false
+    },
+    {
+      "id": "walk_right",
+      "title": "右侧移 0.10 m/s",
+      "kind": "walking",
+      "file": "walk_right.mp4",
+      "poster": "walk_right.jpg",
+      "duration_s": 8.0,
+      "frames": 200,
+      "sha256": "652a23c649941ae0500b5b887b51e74d7d26c215f6c17308bcdf2a1e6ded47c8",
+      "samples": 1,
+      "pose_resets": [],
+      "failed": null,
+      "final_height_m": 0.11671965580431674,
+      "final_tilt_deg": 1.7183972993314338,
+      "command": [
+        0,
+        -0.1,
+        0
+      ],
+      "mean_velocity_m_s": [
+        -0.010068637056771175,
+        -0.12141893758816531
+      ],
+      "mean_yaw_rate_rad_s": -0.1627087512984872,
+      "fell": false
+    },
+    {
+      "id": "walk_turn_left",
+      "title": "左转 0.60 rad/s",
+      "kind": "walking",
+      "file": "walk_turn_left.mp4",
+      "poster": "walk_turn_left.jpg",
+      "duration_s": 8.0,
+      "frames": 200,
+      "sha256": "9bb9c5263b535e8a3887937cce73aef58ad3ad23fe7012a157e3e022ca39b24d",
+      "samples": 1,
+      "pose_resets": [],
+      "failed": null,
+      "final_height_m": 0.11486753285988238,
+      "final_tilt_deg": 1.571843111149735,
+      "command": [
+        0,
+        0,
+        0.6
+      ],
+      "mean_velocity_m_s": [
+        -0.001076709847880591,
+        -0.00022779888599141213
+      ],
+      "mean_yaw_rate_rad_s": 0.47200997015150886,
+      "fell": false
+    },
+    {
+      "id": "walk_turn_right",
+      "title": "右转 0.60 rad/s",
+      "kind": "walking",
+      "file": "walk_turn_right.mp4",
+      "poster": "walk_turn_right.jpg",
+      "duration_s": 8.0,
+      "frames": 200,
+      "sha256": "f0e092e812b63f0ed422a24d2e56cbaeda3109753f97c774bcada6b1e67927fc",
+      "samples": 1,
+      "pose_resets": [],
+      "failed": null,
+      "final_height_m": 0.11363000236312316,
+      "final_tilt_deg": 0.46393828577858687,
+      "command": [
+        0,
+        0,
+        -0.6
+      ],
+      "mean_velocity_m_s": [
+        -0.00018888325716644218,
+        -0.00020845900611431346
+      ],
+      "mean_yaw_rate_rad_s": -0.016915750723816625,
+      "fell": false
+    },
+    {
+      "id": "walk_curve",
+      "title": "行走并转弯",
+      "kind": "walking",
+      "file": "walk_curve.mp4",
+      "poster": "walk_curve.jpg",
+      "duration_s": 8.0,
+      "frames": 200,
+      "sha256": "e9782bb931b4e61fd669b1e5d48442e77c88d15cf0dfe19d8edc861538ec2951",
+      "samples": 1,
+      "pose_resets": [],
+      "failed": null,
+      "final_height_m": 0.11520043091505235,
+      "final_tilt_deg": 1.0336294984408596,
+      "command": [
+        0.1,
+        0,
+        0.3
+      ],
+      "mean_velocity_m_s": [
+        0.09079400608691854,
+        0.0021932297043129327
+      ],
+      "mean_yaw_rate_rad_s": 0.19004317064381515,
+      "fell": false
+    },
+    {
+      "id": "recovery_sitting",
+      "title": "坐姿起身",
+      "kind": "recovery",
+      "file": "recovery_sitting.mp4",
+      "poster": "recovery_sitting.jpg",
+      "duration_s": 4.0,
+      "frames": 100,
+      "sha256": "b73118227db0c930b9585e928d3e24c4a91730773c4fe43687bb6e2efd132db8",
+      "samples": 1,
+      "pose_resets": [],
+      "failed": null,
+      "final_height_m": 0.11582905811210686,
+      "final_tilt_deg": 1.2370136611208769,
+      "pose": "sitting",
+      "rise_time_s": 0.8800000000000007,
+      "stable_at_end": true
+    },
+    {
+      "id": "recovery_prone",
+      "title": "俯卧起身",
+      "kind": "recovery",
+      "file": "recovery_prone.mp4",
+      "poster": "recovery_prone.jpg",
+      "duration_s": 4.0,
+      "frames": 100,
+      "sha256": "d50593d43c9b313d5862302721a7f8e423c1f43c0ae9821a2e00a824d844947a",
+      "samples": 1,
+      "pose_resets": [],
+      "failed": null,
+      "final_height_m": 0.11595053414740603,
+      "final_tilt_deg": 0.8706561481588345,
+      "pose": "prone",
+      "rise_time_s": 1.2399999999999956,
+      "stable_at_end": true
+    },
+    {
+      "id": "recovery_supine",
+      "title": "仰卧起身",
+      "kind": "recovery",
+      "file": "recovery_supine.mp4",
+      "poster": "recovery_supine.jpg",
+      "duration_s": 4.0,
+      "frames": 100,
+      "sha256": "7015b5c4dfbd03f4ef5e4c0901de00774163f7aa5847a8b4ea611235a64281d1",
+      "samples": 1,
+      "pose_resets": [],
+      "failed": null,
+      "final_height_m": 0.11598728291575446,
+      "final_tilt_deg": 0.8098755817083083,
+      "pose": "supine",
+      "rise_time_s": 1.2599999999999951,
+      "stable_at_end": true
+    },
+    {
+      "id": "recovery_left_side",
+      "title": "左侧卧起身",
+      "kind": "recovery",
+      "file": "recovery_left_side.mp4",
+      "poster": "recovery_left_side.jpg",
+      "duration_s": 4.0,
+      "frames": 100,
+      "sha256": "4eb75c0b0a200c6c49d0549116c94851b499129092f17be9a78a18cbdb9d3777",
+      "samples": 1,
+      "pose_resets": [],
+      "failed": null,
+      "final_height_m": 0.11594395512985792,
+      "final_tilt_deg": 0.9528546977490109,
+      "pose": "left_side",
+      "rise_time_s": 1.1799999999999968,
+      "stable_at_end": true
+    },
+    {
+      "id": "recovery_right_side",
+      "title": "右侧卧起身",
+      "kind": "recovery",
+      "file": "recovery_right_side.mp4",
+      "poster": "recovery_right_side.jpg",
+      "duration_s": 4.0,
+      "frames": 100,
+      "sha256": "c803046cf8698c6bfaed9439738cd6fc5d5ae95cb4d596549d1bfc6d796b343e",
+      "samples": 1,
+      "pose_resets": [],
+      "failed": null,
+      "final_height_m": 0.11599421454230373,
+      "final_tilt_deg": 0.9408683558654611,
+      "pose": "right_side",
+      "rise_time_s": 1.2999999999999943,
+      "stable_at_end": true
+    },
+    {
+      "id": "exploration",
+      "title": "自由探索 · 行走、倒地与起身",
+      "kind": "exploration",
+      "file": "exploration.mp4",
+      "poster": "exploration.jpg",
+      "duration_s": 60.0,
+      "frames": 1500,
+      "sha256": "f5bf795dba1d54957559d7ae98870c0e62a101d3cb56fc5a31e0f59c559fa454",
+      "samples": 1,
+      "pose_resets": [
+        {
+          "time": 8.040000000000001,
+          "pose": "supine",
+          "reason": "explicit exploration pose reset"
+        },
+        {
+          "time": 9.34,
+          "pose": "prone",
+          "reason": "explicit exploration pose reset"
+        },
+        {
+          "time": 14.64,
+          "pose": "right_side",
+          "reason": "explicit exploration pose reset"
+        },
+        {
+          "time": 15.98,
+          "pose": "sitting",
+          "reason": "explicit exploration pose reset"
+        },
+        {
+          "time": 37.0,
+          "pose": "left_side",
+          "reason": "explicit exploration pose reset"
+        },
+        {
+          "time": 42.24,
+          "event": "horizontal velocity impulse 0.2 m/s"
+        },
+        {
+          "time": 50.82,
+          "pose": "right_side",
+          "reason": "explicit exploration pose reset"
+        },
+        {
+          "time": 52.160000000000004,
+          "pose": "left_side",
+          "reason": "explicit exploration pose reset"
+        },
+        {
+          "time": 53.38,
+          "event": "horizontal velocity impulse 0.2 m/s"
+        },
+        {
+          "time": 58.08,
+          "pose": "supine",
+          "reason": "explicit exploration pose reset"
+        }
+      ],
+      "failed": null,
+      "final_height_m": 0.11534968067809165,
+      "final_tilt_deg": 1.5619766233924839,
+      "sequence_seed": 1,
+      "action_duration_s": 4,
+      "recovery_timeout_s": 12,
+      "actions": [
+        {
+          "number": 1,
+          "action": "turn_left",
+          "label": "向左转",
+          "time": 0.0
+        },
+        {
+          "number": 2,
+          "action": "idle",
+          "label": "停步站立",
+          "time": 4.0200000000000005
+        },
+        {
+          "number": 3,
+          "action": "supine",
+          "label": "重置为仰卧，等待模型起身",
+          "time": 8.040000000000001
+        },
+        {
+          "number": 4,
+          "action": "prone",
+          "label": "重置为俯卧，等待模型起身",
+          "time": 9.34
+        },
+        {
+          "number": 5,
+          "action": "backward",
+          "label": "后退",
+          "time": 10.620000000000001
+        },
+        {
+          "number": 6,
+          "action": "right_side",
+          "label": "重置为右侧卧，等待模型起身",
+          "time": 14.64
+        },
+        {
+          "number": 7,
+          "action": "sitting",
+          "label": "重置为坐姿，等待模型起身",
+          "time": 15.98
+        },
+        {
+          "number": 8,
+          "action": "curve_right",
+          "label": "向右绕弯",
+          "time": 16.9
+        },
+        {
+          "number": 9,
+          "action": "slow_forward",
+          "label": "低速前进",
+          "time": 20.92
+        },
+        {
+          "number": 10,
+          "action": "right",
+          "label": "向右侧移",
+          "time": 24.94
+        },
+        {
+          "number": 11,
+          "action": "turn_right",
+          "label": "向右转",
+          "time": 28.96
+        },
+        {
+          "number": 12,
+          "action": "curve_left",
+          "label": "向左绕弯",
+          "time": 32.980000000000004
+        },
+        {
+          "number": 13,
+          "action": "left_side",
+          "label": "重置为左侧卧，等待模型起身",
+          "time": 37.0
+        },
+        {
+          "number": 14,
+          "action": "forward",
+          "label": "前进",
+          "time": 38.22
+        },
+        {
+          "number": 15,
+          "action": "push",
+          "label": "侧向扰动，等待稳定",
+          "time": 42.24
+        },
+        {
+          "number": 16,
+          "action": "left",
+          "label": "向左侧移",
+          "time": 42.78
+        },
+        {
+          "number": 17,
+          "action": "forward",
+          "label": "前进",
+          "time": 46.800000000000004
+        },
+        {
+          "number": 18,
+          "action": "right_side",
+          "label": "重置为右侧卧，等待模型起身",
+          "time": 50.82
+        },
+        {
+          "number": 19,
+          "action": "left_side",
+          "label": "重置为左侧卧，等待模型起身",
+          "time": 52.160000000000004
+        },
+        {
+          "number": 20,
+          "action": "push",
+          "label": "侧向扰动，等待稳定",
+          "time": 53.38
+        },
+        {
+          "number": 21,
+          "action": "slow_forward",
+          "label": "低速前进",
+          "time": 54.06
+        },
+        {
+          "number": 22,
+          "action": "supine",
+          "label": "重置为仰卧，等待模型起身",
+          "time": 58.08
+        },
+        {
+          "number": 23,
+          "action": "curve_left",
+          "label": "向左绕弯",
+          "time": 59.38
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3373 @@
+{
+  "date": "2026-09-15",
+  "official_hub_revision": "1b56c396825c052a4e26e95cf2b8d8298af9e9b4",
+  "official_rl_revision": "cb70b792312d559a4da09064d92009079671815f",
+  "official_velstand_source_revision": "cb70b792312d559a4da09064d92009079671815f",
+  "official_bam_fit_revision": "62bd8ce12154340be97e06f7f41a0ca8f116d967",
+  "conditions": {
+    "policy_hz": 50.0,
+    "physics_hz": 200.0,
+    "duration_s": 32.0,
+    "settle_s": 2.0,
+    "window_s": 10.0,
+    "observation": "61D, projected gravity, zero head/body commands",
+    "environment": "flat, foot friction 1, no DR, no pushes, deterministic HOME init",
+    "controls": "no recovery switches, resets or extra action delay during rollout",
+    "interpretation": "windows are one continuous trajectory, not independent seeds"
+  },
+  "provenance": [
+    {
+      "profile": {
+        "label": "sc0090_pages6400",
+        "policy": "simulator/models/walking_model_6400_6f0fe37e691d.onnx",
+        "scene": "src/mjlab_microduck/robot/microduck/scene.xml",
+        "motor": "sc0090",
+        "kp": 20.0,
+        "vin": 12.0,
+        "vin_min": 10.0,
+        "supply_resistance_ohm": 0.1,
+        "action_scale": 1.0,
+        "head_alpha": 1.0,
+        "legs_alpha": 1.0,
+        "velocity_obs_lag": 1
+      },
+      "sha256": {
+        "simulator/models/walking_model_6400_6f0fe37e691d.onnx": "6f0fe37e691dc88ca40161b6a46ee62a161d22a54c581fef791965bec539b009",
+        "src/mjlab_microduck/robot/microduck/scene.xml": "9a85461121ba8273083c482c166f27e143ca386993b3ec8f8d97eb09aa257d31",
+        "src/mjlab_microduck/actuator/sc0090_m6.json": "6efbe8f2c1a1f7dbb6518f8e43693d1c6e3694eee4b3f2dce009e3bba6b97466"
+      },
+      "model_mass_kg": 0.7372431799999999,
+      "neck_joint_names": [
+        "neck_pitch",
+        "head_pitch",
+        "head_yaw",
+        "head_roll"
+      ]
+    },
+    {
+      "profile": {
+        "label": "official_alpha",
+        "policy": "logs/sc0090_setup/official_gait_comparison/alpha_walking.onnx",
+        "scene": "src/mjlab_microduck/robot/microduck/scene_walk.xml",
+        "motor": "xl330",
+        "kp": 200.0,
+        "vin": 7.4,
+        "vin_min": 6.0,
+        "supply_resistance_ohm": 0.0,
+        "action_scale": 1.0,
+        "head_alpha": 1.0,
+        "legs_alpha": 1.0,
+        "velocity_obs_lag": 1,
+        "motor_json": "logs/sc0090_setup/official_gait_comparison/official_xl330_m6.json",
+        "motor_json_sha256": "61c699362fb3fabdde93eeba5e1ad3bf4ef9ca2f71d03e316b1924ff005b20d3"
+      },
+      "sha256": {
+        "logs/sc0090_setup/official_gait_comparison/alpha_walking.onnx": "e36332d383997d51401897734cd3e79cf5038406feddb18b4d57ecfb141daa6c",
+        "src/mjlab_microduck/robot/microduck/scene_walk.xml": "6e23146c1a5025473b55ec94cbe37b08104ca388b7eb005ea277f8230736c8be",
+        "logs/sc0090_setup/official_gait_comparison/official_xl330_m6.json": "61c699362fb3fabdde93eeba5e1ad3bf4ef9ca2f71d03e316b1924ff005b20d3"
+      },
+      "model_mass_kg": 0.7372431799999999,
+      "neck_joint_names": [
+        "neck_pitch",
+        "head_pitch",
+        "head_yaw",
+        "head_roll"
+      ]
+    },
+    {
+      "profile": {
+        "label": "official_velstand",
+        "policy": "logs/sc0090_setup/official_gait_comparison/velstand.onnx",
+        "scene": "src/mjlab_microduck/robot/microduck/scene_allcollisions.xml",
+        "motor": "xl330",
+        "kp": 200.0,
+        "vin": 7.4,
+        "vin_min": 6.0,
+        "supply_resistance_ohm": 0.0,
+        "action_scale": 1.0,
+        "head_alpha": 1.0,
+        "legs_alpha": 1.0,
+        "velocity_obs_lag": 1,
+        "motor_json": "logs/sc0090_setup/official_gait_comparison/official_xl330_m6.json",
+        "motor_json_sha256": "61c699362fb3fabdde93eeba5e1ad3bf4ef9ca2f71d03e316b1924ff005b20d3"
+      },
+      "sha256": {
+        "logs/sc0090_setup/official_gait_comparison/velstand.onnx": "1c659be55da94bc5753b707de5c6a3e7c49931e05ca3b6991615cef1a8ba9a45",
+        "src/mjlab_microduck/robot/microduck/scene_allcollisions.xml": "0d2f58227a3e1c4caae4e847a368ae83516d0f398f428c4e96737b67dd894ef1",
+        "logs/sc0090_setup/official_gait_comparison/official_xl330_m6.json": "61c699362fb3fabdde93eeba5e1ad3bf4ef9ca2f71d03e316b1924ff005b20d3"
+      },
+      "model_mass_kg": 0.7372431799999999,
+      "neck_joint_names": [
+        "neck_pitch",
+        "head_pitch",
+        "head_yaw",
+        "head_roll"
+      ]
+    },
+    {
+      "profile": {
+        "label": "official_velstand_output_preset",
+        "policy": "logs/sc0090_setup/official_gait_comparison/velstand.onnx",
+        "scene": "src/mjlab_microduck/robot/microduck/scene_allcollisions.xml",
+        "motor": "xl330",
+        "kp": 200.0,
+        "vin": 7.4,
+        "vin_min": 6.0,
+        "supply_resistance_ohm": 0.0,
+        "action_scale": 0.9,
+        "head_alpha": 0.5,
+        "legs_alpha": 0.7,
+        "velocity_obs_lag": 1,
+        "motor_json": "logs/sc0090_setup/official_gait_comparison/official_xl330_m6.json",
+        "motor_json_sha256": "61c699362fb3fabdde93eeba5e1ad3bf4ef9ca2f71d03e316b1924ff005b20d3"
+      },
+      "sha256": {
+        "logs/sc0090_setup/official_gait_comparison/velstand.onnx": "1c659be55da94bc5753b707de5c6a3e7c49931e05ca3b6991615cef1a8ba9a45",
+        "src/mjlab_microduck/robot/microduck/scene_allcollisions.xml": "0d2f58227a3e1c4caae4e847a368ae83516d0f398f428c4e96737b67dd894ef1",
+        "logs/sc0090_setup/official_gait_comparison/official_xl330_m6.json": "61c699362fb3fabdde93eeba5e1ad3bf4ef9ca2f71d03e316b1924ff005b20d3"
+      },
+      "model_mass_kg": 0.7372431799999999,
+      "neck_joint_names": [
+        "neck_pitch",
+        "head_pitch",
+        "head_yaw",
+        "head_roll"
+      ]
+    }
+  ],
+  "matched_actual_speed": [
+    {
+      "profile": "sc0090_pages6400",
+      "command_m_s": 0.11,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.11085263229534542,
+          "touchdowns_per_s": 10.6,
+          "median_same_foot_stride_m": 0.020594529631962087,
+          "median_flight_s": 0.08,
+          "double_support_fraction": 0.114,
+          "head_angular_speed_rms_rad_s": 3.2981877323757374,
+          "torso_angular_speed_rms_rad_s": 0.697064094403363,
+          "head_angular_acceleration_rms_rad_s2": 116.61551196822998,
+          "neck_joint_rpm_rms": [
+            0.8118410721707354,
+            0.3712468826172643,
+            11.780510350255343,
+            23.2895927326596
+          ],
+          "neck_action_delta_rms_rad": 0.04459460824728012,
+          "head_position_range_m": [
+            0.0014891358462638254,
+            0.0025768997005769234,
+            0.000686604082914169
+          ],
+          "head_angular_velocity_peak_hz": 5.4,
+          "head_angular_velocity_power_above_6hz_fraction": 0.045839260689881,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 2.7344015863319777
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.1095830839081869,
+          "touchdowns_per_s": 10.5,
+          "median_same_foot_stride_m": 0.02051771770663183,
+          "median_flight_s": 0.08,
+          "double_support_fraction": 0.1,
+          "head_angular_speed_rms_rad_s": 3.300713671510422,
+          "torso_angular_speed_rms_rad_s": 0.695128681057081,
+          "head_angular_acceleration_rms_rad_s2": 116.82863917946946,
+          "neck_joint_rpm_rms": [
+            0.7151552083864587,
+            0.4361355944103725,
+            11.918886236927742,
+            23.23761147160972
+          ],
+          "neck_action_delta_rms_rad": 0.04420110583305359,
+          "head_position_range_m": [
+            0.0011275602088428125,
+            0.0025133718522111635,
+            0.0005130748447165073
+          ],
+          "head_angular_velocity_peak_hz": 5.300000000000001,
+          "head_angular_velocity_power_above_6hz_fraction": 0.04488322845048433,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 2.7360455431982227
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.10992145847163592,
+          "touchdowns_per_s": 10.6,
+          "median_same_foot_stride_m": 0.020474064310802467,
+          "median_flight_s": 0.08,
+          "double_support_fraction": 0.104,
+          "head_angular_speed_rms_rad_s": 3.3047276001328827,
+          "torso_angular_speed_rms_rad_s": 0.6895302150718582,
+          "head_angular_acceleration_rms_rad_s2": 116.52078803949874,
+          "neck_joint_rpm_rms": [
+            0.7341127784884047,
+            0.3920998041135699,
+            11.925645944646577,
+            23.306486915891455
+          ],
+          "neck_action_delta_rms_rad": 0.04433484375476837,
+          "head_position_range_m": [
+            0.0011772210126505655,
+            0.0027169823138501054,
+            0.0005385959346458496
+          ],
+          "head_angular_velocity_peak_hz": 5.4,
+          "head_angular_velocity_power_above_6hz_fraction": 0.04870469665326826,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 2.7426686018341666
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 0.11011905822505609,
+        "touchdowns_per_s": 10.666666666666666,
+        "median_same_foot_stride_m": 0.02052639470956255,
+        "median_flight_s": 0.08,
+        "double_support_fraction": 0.106,
+        "head_angular_speed_rms_rad_s": 3.3012107662881136,
+        "torso_angular_speed_rms_rad_s": 0.6939150169945358,
+        "head_angular_acceleration_rms_rad_s2": 116.61559245124526,
+        "neck_joint_rpm_rms": [
+          0.7548630052500864,
+          0.400741296828193,
+          11.875202516706318,
+          23.277915491722034
+        ],
+        "neck_action_delta_rms_rad": 0.04436207190155983,
+        "head_position_range_m": [
+          0.0015114207995090886,
+          0.0027169823138501054,
+          0.0006920754242600302
+        ],
+        "head_angular_velocity_peak_hz": 5.333333333333333,
+        "head_angular_velocity_power_above_6hz_fraction": 0.03543979460720999,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 2.7377075756477156
+      }
+    },
+    {
+      "profile": "official_alpha",
+      "command_m_s": 0.275,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.10815122067452754,
+          "touchdowns_per_s": 4.4,
+          "median_same_foot_stride_m": 0.04542964515856923,
+          "median_flight_s": 0.22,
+          "double_support_fraction": 0.04,
+          "head_angular_speed_rms_rad_s": 1.431619352763015,
+          "torso_angular_speed_rms_rad_s": 0.938779336720247,
+          "head_angular_acceleration_rms_rad_s2": 29.219990925554498,
+          "neck_joint_rpm_rms": [
+            1.763718626502927,
+            0.8711987895214165,
+            6.997908361599488,
+            3.8924358582559178
+          ],
+          "neck_action_delta_rms_rad": 0.04043753817677498,
+          "head_position_range_m": [
+            0.004194346260354447,
+            0.002732403316872312,
+            0.0012897115443868262
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.055139274259010815,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.8636364794900392
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.10785088817235387,
+          "touchdowns_per_s": 4.4,
+          "median_same_foot_stride_m": 0.045708077569219886,
+          "median_flight_s": 0.22,
+          "double_support_fraction": 0.032,
+          "head_angular_speed_rms_rad_s": 1.439048713750009,
+          "torso_angular_speed_rms_rad_s": 0.9455888988910035,
+          "head_angular_acceleration_rms_rad_s2": 29.121260485173853,
+          "neck_joint_rpm_rms": [
+            1.7214935963918139,
+            0.8515423076386115,
+            7.034812428711773,
+            3.9077681959001205
+          ],
+          "neck_action_delta_rms_rad": 0.04020364582538605,
+          "head_position_range_m": [
+            0.005111636149441687,
+            0.002820299165764102,
+            0.0015467518809106212
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.0530703057865257,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.8663526615161579
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.1071977245798261,
+          "touchdowns_per_s": 4.4,
+          "median_same_foot_stride_m": 0.045141223141395674,
+          "median_flight_s": 0.22,
+          "double_support_fraction": 0.028,
+          "head_angular_speed_rms_rad_s": 1.4267225776068835,
+          "torso_angular_speed_rms_rad_s": 0.9327057371065148,
+          "head_angular_acceleration_rms_rad_s2": 27.892705389970505,
+          "neck_joint_rpm_rms": [
+            1.858058792477788,
+            0.822719456145178,
+            6.967476662488394,
+            3.84808233436178
+          ],
+          "neck_action_delta_rms_rad": 0.039640191942453384,
+          "head_position_range_m": [
+            0.004943173233921211,
+            0.0028555047634640437,
+            0.0015138170352433783
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.049163845100956824,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.8604694698807381
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 0.1077332778089025,
+        "touchdowns_per_s": 4.5,
+        "median_same_foot_stride_m": 0.045369226382555895,
+        "median_flight_s": 0.22,
+        "double_support_fraction": 0.03333333333333333,
+        "head_angular_speed_rms_rad_s": 1.432472511103835,
+        "torso_angular_speed_rms_rad_s": 0.9390394029344056,
+        "head_angular_acceleration_rms_rad_s2": 28.73848193369708,
+        "neck_joint_rpm_rms": [
+          1.7820050572501573,
+          0.8487203968488664,
+          7.0001199605631035,
+          3.882844611688364
+        ],
+        "neck_action_delta_rms_rad": 0.04009213671088219,
+        "head_position_range_m": [
+          0.0051694680580174415,
+          0.00286844035491511,
+          0.00156822393488254
+        ],
+        "head_angular_velocity_peak_hz": 2.2666666666666666,
+        "head_angular_velocity_power_above_6hz_fraction": 0.05074932315845488,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.8634895504905117
+      }
+    },
+    {
+      "profile": "official_velstand",
+      "command_m_s": 0.3,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.10792222476385058,
+          "touchdowns_per_s": 4.6,
+          "median_same_foot_stride_m": 0.044441418452642406,
+          "median_flight_s": 0.2,
+          "double_support_fraction": 0.02,
+          "head_angular_speed_rms_rad_s": 1.3989507802559624,
+          "torso_angular_speed_rms_rad_s": 0.9641492358405693,
+          "head_angular_acceleration_rms_rad_s2": 31.630852877088447,
+          "neck_joint_rpm_rms": [
+            1.7911584273681942,
+            0.6731765081729487,
+            8.642389890018167,
+            3.777134478395664
+          ],
+          "neck_action_delta_rms_rad": 0.04274042323231697,
+          "head_position_range_m": [
+            0.0043639643299019345,
+            0.003196630044886586,
+            0.0012521668840021483
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.08394287990531892,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 1.010303896557423
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.10960463326428793,
+          "touchdowns_per_s": 4.6,
+          "median_same_foot_stride_m": 0.04533829647516261,
+          "median_flight_s": 0.2,
+          "double_support_fraction": 0.02,
+          "head_angular_speed_rms_rad_s": 1.3855947028467435,
+          "torso_angular_speed_rms_rad_s": 0.9616006037488861,
+          "head_angular_acceleration_rms_rad_s2": 31.654322260741157,
+          "neck_joint_rpm_rms": [
+            1.726815337699737,
+            0.7323876563392995,
+            8.67262293097134,
+            3.7340302989822782
+          ],
+          "neck_action_delta_rms_rad": 0.04297645017504692,
+          "head_position_range_m": [
+            0.004343023873569667,
+            0.003063737848016684,
+            0.0012424789508031914
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.08522032170160543,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 1.0103099755779212
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.10851470066053762,
+          "touchdowns_per_s": 4.6,
+          "median_same_foot_stride_m": 0.04469674988554477,
+          "median_flight_s": 0.2,
+          "double_support_fraction": 0.018,
+          "head_angular_speed_rms_rad_s": 1.389538743315735,
+          "torso_angular_speed_rms_rad_s": 0.9541029192345605,
+          "head_angular_acceleration_rms_rad_s2": 31.377802612231175,
+          "neck_joint_rpm_rms": [
+            1.750912227608674,
+            0.6370495070858351,
+            8.636858177749437,
+            3.724337442695519
+          ],
+          "neck_action_delta_rms_rad": 0.04288153350353241,
+          "head_position_range_m": [
+            0.004927356973429832,
+            0.0030835813705579144,
+            0.0014297881700520848
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.08517992787452607,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 1.0066375734951358
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 0.10868051956289204,
+        "touchdowns_per_s": 4.666666666666667,
+        "median_same_foot_stride_m": 0.0447651520271099,
+        "median_flight_s": 0.2,
+        "double_support_fraction": 0.019333333333333334,
+        "head_angular_speed_rms_rad_s": 1.3913726897457768,
+        "torso_angular_speed_rms_rad_s": 0.9599603899109737,
+        "head_angular_acceleration_rms_rad_s2": 31.541421888446212,
+        "neck_joint_rpm_rms": [
+          1.7564958820747563,
+          0.6820044879599159,
+          8.650637947505283,
+          3.7452377106874777
+        ],
+        "neck_action_delta_rms_rad": 0.042858630418777466,
+        "head_position_range_m": [
+          0.004994407407193938,
+          0.003196630044886586,
+          0.001448617344376027
+        ],
+        "head_angular_velocity_peak_hz": 2.3666666666666667,
+        "head_angular_velocity_power_above_6hz_fraction": 0.08330848107203216,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 1.0090852977694778
+      }
+    }
+  ],
+  "same_command": [
+    {
+      "profile": "sc0090_pages6400",
+      "command_m_s": 0.08,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.0780287371416899,
+          "touchdowns_per_s": 11.5,
+          "median_same_foot_stride_m": 0.013489982148847569,
+          "median_flight_s": 0.08,
+          "double_support_fraction": 0.134,
+          "head_angular_speed_rms_rad_s": 3.2263410600730045,
+          "torso_angular_speed_rms_rad_s": 0.6878780829482697,
+          "head_angular_acceleration_rms_rad_s2": 122.12015055634097,
+          "neck_joint_rpm_rms": [
+            0.4587404011964442,
+            0.6194176695335188,
+            7.829165307104907,
+            23.93785141908906
+          ],
+          "neck_action_delta_rms_rad": 0.045100849121809006,
+          "head_position_range_m": [
+            0.0009956246552396374,
+            0.001970888529468644,
+            0.0004896033542940437
+          ],
+          "head_angular_velocity_peak_hz": 5.800000000000001,
+          "head_angular_velocity_power_above_6hz_fraction": 0.03037427030331282,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 2.638739700965331
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.07826155116146871,
+          "touchdowns_per_s": 11.5,
+          "median_same_foot_stride_m": 0.013502689013895612,
+          "median_flight_s": 0.08,
+          "double_support_fraction": 0.13,
+          "head_angular_speed_rms_rad_s": 3.2216622416874103,
+          "torso_angular_speed_rms_rad_s": 0.6849369216140646,
+          "head_angular_acceleration_rms_rad_s2": 121.95240505680786,
+          "neck_joint_rpm_rms": [
+            0.49818530351051893,
+            0.6123498369903584,
+            7.778236486555019,
+            23.92422529718546
+          ],
+          "neck_action_delta_rms_rad": 0.044893812388181686,
+          "head_position_range_m": [
+            0.0011229936037880743,
+            0.0015457143803626438,
+            0.0005463358865840234
+          ],
+          "head_angular_velocity_peak_hz": 5.800000000000001,
+          "head_angular_velocity_power_above_6hz_fraction": 0.03213378081132591,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 2.6357913424579547
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.07765949693349597,
+          "touchdowns_per_s": 11.4,
+          "median_same_foot_stride_m": 0.013433846048974865,
+          "median_flight_s": 0.08,
+          "double_support_fraction": 0.13,
+          "head_angular_speed_rms_rad_s": 3.2251242446037303,
+          "torso_angular_speed_rms_rad_s": 0.6826656124736337,
+          "head_angular_acceleration_rms_rad_s2": 121.95642513813428,
+          "neck_joint_rpm_rms": [
+            0.5135394533774498,
+            0.61006803306361,
+            7.904871065276616,
+            23.917692708506532
+          ],
+          "neck_action_delta_rms_rad": 0.04499291256070137,
+          "head_position_range_m": [
+            0.0013433077247465564,
+            0.0016608330809444083,
+            0.0006341276313780314
+          ],
+          "head_angular_velocity_peak_hz": 5.800000000000001,
+          "head_angular_velocity_power_above_6hz_fraction": 0.030789557741901778,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 2.6391690528653466
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 0.07798326174555152,
+        "touchdowns_per_s": 11.566666666666666,
+        "median_same_foot_stride_m": 0.013489366266916167,
+        "median_flight_s": 0.08,
+        "double_support_fraction": 0.13133333333333333,
+        "head_angular_speed_rms_rad_s": 3.224376457991949,
+        "torso_angular_speed_rms_rad_s": 0.6851635284233828,
+        "head_angular_acceleration_rms_rad_s2": 121.95322393386702,
+        "neck_joint_rpm_rms": [
+          0.4906981837134213,
+          0.6139580814025648,
+          7.837596970275139,
+          23.92659128202636
+        ],
+        "neck_action_delta_rms_rad": 0.04497474059462547,
+        "head_position_range_m": [
+          0.001447737471196777,
+          0.001970888529468644,
+          0.0007041411606002884
+        ],
+        "head_angular_velocity_peak_hz": 5.8,
+        "head_angular_velocity_power_above_6hz_fraction": 0.030874642396846456,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 2.6379004593318203
+      }
+    },
+    {
+      "profile": "sc0090_pages6400",
+      "command_m_s": 0.1,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.09935133220922601,
+          "touchdowns_per_s": 10.8,
+          "median_same_foot_stride_m": 0.018175769137035638,
+          "median_flight_s": 0.08,
+          "double_support_fraction": 0.126,
+          "head_angular_speed_rms_rad_s": 3.2599167095481976,
+          "torso_angular_speed_rms_rad_s": 0.6859899382286591,
+          "head_angular_acceleration_rms_rad_s2": 117.46665364914361,
+          "neck_joint_rpm_rms": [
+            0.7058778767635447,
+            0.5324851551852879,
+            10.675546001248131,
+            23.40795387983243
+          ],
+          "neck_action_delta_rms_rad": 0.04414326325058937,
+          "head_position_range_m": [
+            0.001220419077347443,
+            0.002130658662314156,
+            0.0005660649330123113
+          ],
+          "head_angular_velocity_peak_hz": 5.5,
+          "head_angular_velocity_power_above_6hz_fraction": 0.04239618451634598,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 2.6955056421542496
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.09944379607582113,
+          "touchdowns_per_s": 10.8,
+          "median_same_foot_stride_m": 0.018238657854711827,
+          "median_flight_s": 0.08,
+          "double_support_fraction": 0.12,
+          "head_angular_speed_rms_rad_s": 3.2771723656448395,
+          "torso_angular_speed_rms_rad_s": 0.6795252897866957,
+          "head_angular_acceleration_rms_rad_s2": 117.74416144595449,
+          "neck_joint_rpm_rms": [
+            0.6567322287839341,
+            0.4763872372386766,
+            10.64434067156416,
+            23.615688872097063
+          ],
+          "neck_action_delta_rms_rad": 0.04425521939992905,
+          "head_position_range_m": [
+            0.001035828288001913,
+            0.0022875215705053936,
+            0.0004957654718531629
+          ],
+          "head_angular_velocity_peak_hz": 5.5,
+          "head_angular_velocity_power_above_6hz_fraction": 0.038066685007834236,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 2.713733033602986
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.09973930451032521,
+          "touchdowns_per_s": 10.8,
+          "median_same_foot_stride_m": 0.018299812792262588,
+          "median_flight_s": 0.08,
+          "double_support_fraction": 0.11,
+          "head_angular_speed_rms_rad_s": 3.2585832094022775,
+          "torso_angular_speed_rms_rad_s": 0.6801635269359254,
+          "head_angular_acceleration_rms_rad_s2": 117.31882440717266,
+          "neck_joint_rpm_rms": [
+            0.6658699114301475,
+            0.5311205243694349,
+            10.797563448991198,
+            23.373892683499854
+          ],
+          "neck_action_delta_rms_rad": 0.044050414115190506,
+          "head_position_range_m": [
+            0.0015889501005182573,
+            0.0022788591129934317,
+            0.0007398645855649782
+          ],
+          "head_angular_velocity_peak_hz": 5.5,
+          "head_angular_velocity_power_above_6hz_fraction": 0.03626241719479614,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 2.6974748519057847
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 0.09951147759845745,
+        "touchdowns_per_s": 10.9,
+        "median_same_foot_stride_m": 0.018255145737119317,
+        "median_flight_s": 0.08,
+        "double_support_fraction": 0.11866666666666667,
+        "head_angular_speed_rms_rad_s": 3.2652350706565363,
+        "torso_angular_speed_rms_rad_s": 0.6818991221054548,
+        "head_angular_acceleration_rms_rad_s2": 117.53889791008145,
+        "neck_joint_rpm_rms": [
+          0.6764967445538119,
+          0.513995542037433,
+          10.706020847978806,
+          23.46608847481701
+        ],
+        "neck_action_delta_rms_rad": 0.04415028169751167,
+        "head_position_range_m": [
+          0.0015889501005182573,
+          0.002299114048048958,
+          0.0007398645855649782
+        ],
+        "head_angular_velocity_peak_hz": 5.466666666666667,
+        "head_angular_velocity_power_above_6hz_fraction": 0.03122522135408819,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 2.7022501871105864
+      }
+    },
+    {
+      "profile": "sc0090_pages6400",
+      "command_m_s": 0.2,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.2002474278275199,
+          "touchdowns_per_s": 8.9,
+          "median_same_foot_stride_m": 0.04451073290105369,
+          "median_flight_s": 0.1,
+          "double_support_fraction": 0.072,
+          "head_angular_speed_rms_rad_s": 3.905296953438085,
+          "torso_angular_speed_rms_rad_s": 0.9230198640407813,
+          "head_angular_acceleration_rms_rad_s2": 121.4263825903784,
+          "neck_joint_rpm_rms": [
+            1.2180914731838068,
+            0.5690747930202921,
+            21.44895614644214,
+            22.59253249117714
+          ],
+          "neck_action_delta_rms_rad": 0.04874120652675629,
+          "head_position_range_m": [
+            0.0015809735351134035,
+            0.004886983947868073,
+            0.0006455902229286631
+          ],
+          "head_angular_velocity_peak_hz": 4.5,
+          "head_angular_velocity_power_above_6hz_fraction": 0.038534784062655265,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 3.26279531267587
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.2006368291177855,
+          "touchdowns_per_s": 8.9,
+          "median_same_foot_stride_m": 0.04438268807200232,
+          "median_flight_s": 0.1,
+          "double_support_fraction": 0.066,
+          "head_angular_speed_rms_rad_s": 3.904841784248125,
+          "torso_angular_speed_rms_rad_s": 0.9345142013848262,
+          "head_angular_acceleration_rms_rad_s2": 120.71378861912982,
+          "neck_joint_rpm_rms": [
+            1.2684502578446408,
+            0.5192458927108458,
+            21.308831029009884,
+            22.61302586333947
+          ],
+          "neck_action_delta_rms_rad": 0.04795179143548012,
+          "head_position_range_m": [
+            0.0015827491038286337,
+            0.004653568214223184,
+            0.0006129869946658179
+          ],
+          "head_angular_velocity_peak_hz": 4.5,
+          "head_angular_velocity_power_above_6hz_fraction": 0.03617771762437482,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 3.254261636569715
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.19933107048784032,
+          "touchdowns_per_s": 8.9,
+          "median_same_foot_stride_m": 0.043962713611051335,
+          "median_flight_s": 0.1,
+          "double_support_fraction": 0.084,
+          "head_angular_speed_rms_rad_s": 3.912486694235373,
+          "torso_angular_speed_rms_rad_s": 0.9324097744729457,
+          "head_angular_acceleration_rms_rad_s2": 123.08871096815426,
+          "neck_joint_rpm_rms": [
+            1.257503857519745,
+            0.5406970964557894,
+            21.502129218766623,
+            22.569878802375275
+          ],
+          "neck_action_delta_rms_rad": 0.04931413382291794,
+          "head_position_range_m": [
+            0.0017844899074384458,
+            0.004806339431402981,
+            0.0007307900499439468
+          ],
+          "head_angular_velocity_peak_hz": 4.5,
+          "head_angular_velocity_power_above_6hz_fraction": 0.04586422115615902,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 3.2648959723072415
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 0.20007177581104854,
+        "touchdowns_per_s": 9.0,
+        "median_same_foot_stride_m": 0.044215169127949434,
+        "median_flight_s": 0.1,
+        "double_support_fraction": 0.074,
+        "head_angular_speed_rms_rad_s": 3.907543379461138,
+        "torso_angular_speed_rms_rad_s": 0.9299947042029274,
+        "head_angular_acceleration_rms_rad_s2": 121.74489501798503,
+        "neck_joint_rpm_rms": [
+          1.2482025537209185,
+          0.5433892917801174,
+          21.420127299150437,
+          22.59181925841643
+        ],
+        "neck_action_delta_rms_rad": 0.04866189882159233,
+        "head_position_range_m": [
+          0.0017844899074384458,
+          0.004944950935957397,
+          0.0007307900499439468
+        ],
+        "head_angular_velocity_peak_hz": 4.533333333333333,
+        "head_angular_velocity_power_above_6hz_fraction": 0.03950761322480806,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 3.260654216649223
+      }
+    },
+    {
+      "profile": "sc0090_pages6400",
+      "command_m_s": 0.3,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.29798964249971255,
+          "touchdowns_per_s": 8.0,
+          "median_same_foot_stride_m": 0.07287042951503614,
+          "median_flight_s": 0.12,
+          "double_support_fraction": 0.04,
+          "head_angular_speed_rms_rad_s": 4.602971242103468,
+          "torso_angular_speed_rms_rad_s": 0.9821161734817723,
+          "head_angular_acceleration_rms_rad_s2": 132.13402763389593,
+          "neck_joint_rpm_rms": [
+            1.950782798888113,
+            1.5323549520925857,
+            32.21281553237483,
+            21.854551607112846
+          ],
+          "neck_action_delta_rms_rad": 0.058523546904325485,
+          "head_position_range_m": [
+            0.0026823309964889974,
+            0.007358264882701485,
+            0.0009001992023315586
+          ],
+          "head_angular_velocity_peak_hz": 4.1000000000000005,
+          "head_angular_velocity_power_above_6hz_fraction": 0.05215561687209343,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 4.075996544014761
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.2992051595824806,
+          "touchdowns_per_s": 8.1,
+          "median_same_foot_stride_m": 0.07279507305237035,
+          "median_flight_s": 0.12,
+          "double_support_fraction": 0.048,
+          "head_angular_speed_rms_rad_s": 4.578567435802492,
+          "torso_angular_speed_rms_rad_s": 0.981517461201789,
+          "head_angular_acceleration_rms_rad_s2": 132.64388738972056,
+          "neck_joint_rpm_rms": [
+            1.925371716571854,
+            1.5231014020713436,
+            31.907222598289763,
+            21.843589965823654
+          ],
+          "neck_action_delta_rms_rad": 0.05878324806690216,
+          "head_position_range_m": [
+            0.0025150021023335146,
+            0.00711342974188209,
+            0.0009015827902513346
+          ],
+          "head_angular_velocity_peak_hz": 4.1000000000000005,
+          "head_angular_velocity_power_above_6hz_fraction": 0.050777200645752245,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 4.048702584258418
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.2978754958690671,
+          "touchdowns_per_s": 8.0,
+          "median_same_foot_stride_m": 0.07297991327949849,
+          "median_flight_s": 0.12,
+          "double_support_fraction": 0.034,
+          "head_angular_speed_rms_rad_s": 4.603552657054164,
+          "torso_angular_speed_rms_rad_s": 0.9807299592429387,
+          "head_angular_acceleration_rms_rad_s2": 132.20460415546893,
+          "neck_joint_rpm_rms": [
+            2.0225321361051165,
+            1.577879763952567,
+            32.24379922942461,
+            21.846932927855548
+          ],
+          "neck_action_delta_rms_rad": 0.058725230395793915,
+          "head_position_range_m": [
+            0.0025282350824965714,
+            0.007291844612821306,
+            0.000895057120514256
+          ],
+          "head_angular_velocity_peak_hz": 4.1000000000000005,
+          "head_angular_velocity_power_above_6hz_fraction": 0.04945513230474001,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 4.078474461892008
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 0.29835676598375344,
+        "touchdowns_per_s": 8.1,
+        "median_same_foot_stride_m": 0.07279507305237035,
+        "median_flight_s": 0.12,
+        "double_support_fraction": 0.04066666666666666,
+        "head_angular_speed_rms_rad_s": 4.59504519695193,
+        "torso_angular_speed_rms_rad_s": 0.9814546954759111,
+        "head_angular_acceleration_rms_rad_s2": 132.33937929646382,
+        "neck_joint_rpm_rms": [
+          1.9666592669626755,
+          1.5446309299943222,
+          32.12163822725038,
+          21.848358648475223
+        ],
+        "neck_action_delta_rms_rad": 0.05870679393410683,
+        "head_position_range_m": [
+          0.0029163177469774954,
+          0.007418193679646216,
+          0.0009952663217746016
+        ],
+        "head_angular_velocity_peak_hz": 4.066666666666666,
+        "head_angular_velocity_power_above_6hz_fraction": 0.04645220597919985,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 4.067746893916679
+      }
+    },
+    {
+      "profile": "official_alpha",
+      "command_m_s": 0.08,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 3.0112982971178997e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.004948054121849744,
+          "torso_angular_speed_rms_rad_s": 0.004868823025844479,
+          "head_angular_acceleration_rms_rad_s2": 0.304628036620902,
+          "neck_joint_rpm_rms": [
+            0.026240858676425144,
+            0.02048805803342929,
+            0.000584871335403878,
+            0.02542485347314728
+          ],
+          "neck_action_delta_rms_rad": 0.00025576600455679,
+          "head_position_range_m": [
+            0.0007246243512060383,
+            4.590809671839457e-06,
+            0.00022342020953987352
+          ],
+          "head_angular_velocity_peak_hz": 0.2,
+          "head_angular_velocity_power_above_6hz_fraction": 0.6346450587882646,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.00477739595337942
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": -8.237527405518386e-06,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.01038616482785185,
+          "torso_angular_speed_rms_rad_s": 0.010629890806318857,
+          "head_angular_acceleration_rms_rad_s2": 0.7485312743990495,
+          "neck_joint_rpm_rms": [
+            0.029397286099322014,
+            0.010909306291642116,
+            0.003267325299310881,
+            0.018010461033466464
+          ],
+          "neck_action_delta_rms_rad": 0.0005151302902959287,
+          "head_position_range_m": [
+            0.0007159095961220682,
+            8.646842440776239e-06,
+            0.00021057054442073786
+          ],
+          "head_angular_velocity_peak_hz": 11.700000000000001,
+          "head_angular_velocity_power_above_6hz_fraction": 0.8377457549932917,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.004386554358419039
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": -6.046072442250723e-06,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.006309822927828192,
+          "torso_angular_speed_rms_rad_s": 0.006505286788741656,
+          "head_angular_acceleration_rms_rad_s2": 0.500585120388577,
+          "neck_joint_rpm_rms": [
+            0.005873708538993135,
+            0.002830379270932624,
+            0.000642468382790816,
+            0.0014334994111850907
+          ],
+          "neck_action_delta_rms_rad": 0.00037634331965819,
+          "head_position_range_m": [
+            0.000219029782249496,
+            1.2020729965410939e-05,
+            6.739805609144722e-05
+          ],
+          "head_angular_velocity_peak_hz": 25.0,
+          "head_angular_velocity_power_above_6hz_fraction": 0.8654362776486385,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.0007799061804744985
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 5.27646104113663e-06,
+        "touchdowns_per_s": 0.0,
+        "median_same_foot_stride_m": null,
+        "median_flight_s": null,
+        "double_support_fraction": 1.0,
+        "head_angular_speed_rms_rad_s": 0.007575608332110089,
+        "torso_angular_speed_rms_rad_s": 0.0077248251849698244,
+        "head_angular_acceleration_rms_rad_s2": 0.5484884783479858,
+        "neck_joint_rpm_rms": [
+          0.023002054589989333,
+          0.013500426321211163,
+          0.0019519438784094101,
+          0.018007913087777928
+        ],
+        "neck_action_delta_rms_rad": 0.00039658142486587167,
+        "head_position_range_m": [
+          0.0016603657318142251,
+          2.492548186726375e-05,
+          0.0005016510913260358
+        ],
+        "head_angular_velocity_peak_hz": 20.933333333333334,
+        "head_angular_velocity_power_above_6hz_fraction": 0.8150418170907062,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.0037715436665055092
+      }
+    },
+    {
+      "profile": "official_alpha",
+      "command_m_s": 0.1,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 6.1789276447305e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.008614350366767458,
+          "torso_angular_speed_rms_rad_s": 0.0087957164126603,
+          "head_angular_acceleration_rms_rad_s2": 0.5842633554001128,
+          "neck_joint_rpm_rms": [
+            0.02881272080345261,
+            0.01922577134106471,
+            0.0008956196078140038,
+            0.015006805905652126
+          ],
+          "neck_action_delta_rms_rad": 0.0004374012933112681,
+          "head_position_range_m": [
+            0.0011948185362797943,
+            1.4157863079377473e-06,
+            0.0003619291194087021
+          ],
+          "head_angular_velocity_peak_hz": 0.1,
+          "head_angular_velocity_power_above_6hz_fraction": 0.7248465719340498,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.00416207534553635
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 9.43808870797896e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.013249674128747049,
+          "torso_angular_speed_rms_rad_s": 0.013081212117952412,
+          "head_angular_acceleration_rms_rad_s2": 0.9820462442637166,
+          "neck_joint_rpm_rms": [
+            0.034975205778174916,
+            0.018914384964412747,
+            0.019891430086069656,
+            0.012165161922329287
+          ],
+          "neck_action_delta_rms_rad": 0.0006743217236362398,
+          "head_position_range_m": [
+            0.0004107157251969189,
+            9.757619987518703e-06,
+            0.00012467837087591638
+          ],
+          "head_angular_velocity_peak_hz": 17.2,
+          "head_angular_velocity_power_above_6hz_fraction": 0.8134694642512397,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.005389399246274661
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 7.499892165712763e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.016688070222778125,
+          "torso_angular_speed_rms_rad_s": 0.01739733991067048,
+          "head_angular_acceleration_rms_rad_s2": 1.2365260364292667,
+          "neck_joint_rpm_rms": [
+            0.03880787094293087,
+            0.03788204928554912,
+            0.02244451764215567,
+            0.015650767883804945
+          ],
+          "neck_action_delta_rms_rad": 0.0009155154693871737,
+          "head_position_range_m": [
+            0.0002468638733764358,
+            2.6452024711400644e-05,
+            7.906393739724737e-05
+          ],
+          "head_angular_velocity_peak_hz": 22.200000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.801508808230314,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.007231212793381792
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 7.705636172807408e-05,
+        "touchdowns_per_s": 0.0,
+        "median_same_foot_stride_m": null,
+        "median_flight_s": null,
+        "double_support_fraction": 1.0,
+        "head_angular_speed_rms_rad_s": 0.013269671994436403,
+        "torso_angular_speed_rms_rad_s": 0.013554214272742074,
+        "head_angular_acceleration_rms_rad_s2": 0.9714940440856557,
+        "neck_joint_rpm_rms": [
+          0.03444555484842018,
+          0.026847929158588007,
+          0.017322697033467734,
+          0.014354348045559196
+        ],
+        "neck_action_delta_rms_rad": 0.000703456171322614,
+        "head_position_range_m": [
+          0.0018529336929924592,
+          2.7196870740139034e-05,
+          0.0005658557859702373
+        ],
+        "head_angular_velocity_peak_hz": 24.6,
+        "head_angular_velocity_power_above_6hz_fraction": 0.7933983221014314,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.0057346587774349716
+      }
+    },
+    {
+      "profile": "official_alpha",
+      "command_m_s": 0.2,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 5.972669965843724e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.005828057445538057,
+          "torso_angular_speed_rms_rad_s": 0.005835096449074449,
+          "head_angular_acceleration_rms_rad_s2": 0.4359125985172971,
+          "neck_joint_rpm_rms": [
+            0.00531618125008507,
+            0.002835440693800346,
+            0.0016841671466164044,
+            0.003114867363436151
+          ],
+          "neck_action_delta_rms_rad": 0.00033076386898756027,
+          "head_position_range_m": [
+            0.0002580631619296615,
+            3.101314517279751e-05,
+            8.835912375690369e-05
+          ],
+          "head_angular_velocity_peak_hz": 15.3,
+          "head_angular_velocity_power_above_6hz_fraction": 0.8837518199563011,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.0008183221665363326
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 5.0799405245103126e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.01084117282837815,
+          "torso_angular_speed_rms_rad_s": 0.010914113719847615,
+          "head_angular_acceleration_rms_rad_s2": 0.7740511953468326,
+          "neck_joint_rpm_rms": [
+            0.006030201129005025,
+            0.0026790378761942153,
+            0.0009099323934133046,
+            0.0025465615499525936
+          ],
+          "neck_action_delta_rms_rad": 0.0006643585511483252,
+          "head_position_range_m": [
+            0.0002766436855404921,
+            1.5966576436476218e-05,
+            9.227615029713809e-05
+          ],
+          "head_angular_velocity_peak_hz": 11.5,
+          "head_angular_velocity_power_above_6hz_fraction": 0.9203347729889374,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.0008362404690964105
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 8.243453052848105e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.009105544223382368,
+          "torso_angular_speed_rms_rad_s": 0.009236555880418813,
+          "head_angular_acceleration_rms_rad_s2": 0.7391462508951913,
+          "neck_joint_rpm_rms": [
+            0.00845862435298726,
+            0.002583414043901834,
+            0.00041904453713185964,
+            0.0022578634673463913
+          ],
+          "neck_action_delta_rms_rad": 0.0006379106198437512,
+          "head_position_range_m": [
+            0.000351733002764604,
+            6.2067572040979e-06,
+            0.00011320726990066143
+          ],
+          "head_angular_velocity_peak_hz": 22.0,
+          "head_angular_velocity_power_above_6hz_fraction": 0.9095132417429452,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.0010536290241613042
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 6.432021181067381e-05,
+        "touchdowns_per_s": 0.0,
+        "median_same_foot_stride_m": null,
+        "median_flight_s": null,
+        "double_support_fraction": 1.0,
+        "head_angular_speed_rms_rad_s": 0.008839461097586368,
+        "torso_angular_speed_rms_rad_s": 0.008915907009232928,
+        "head_angular_acceleration_rms_rad_s2": 0.6668310750952181,
+        "neck_joint_rpm_rms": [
+          0.006737295072578188,
+          0.0027012957379975635,
+          0.0011313700046735316,
+          0.0026636642591659422
+        ],
+        "neck_action_delta_rms_rad": 0.0005650611128658056,
+        "head_position_range_m": [
+          0.0008872515782846521,
+          5.326110546602722e-05,
+          0.0002941215147649473
+        ],
+        "head_angular_velocity_peak_hz": 12.3,
+        "head_angular_velocity_power_above_6hz_fraction": 0.9074064594115306,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.0009090440786808973
+      }
+    },
+    {
+      "profile": "official_alpha",
+      "command_m_s": 0.3,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.11928244857088018,
+          "touchdowns_per_s": 4.4,
+          "median_same_foot_stride_m": 0.0505072761687467,
+          "median_flight_s": 0.22,
+          "double_support_fraction": 0.022,
+          "head_angular_speed_rms_rad_s": 1.4574346709475876,
+          "torso_angular_speed_rms_rad_s": 0.925943164683585,
+          "head_angular_acceleration_rms_rad_s2": 28.999660941043135,
+          "neck_joint_rpm_rms": [
+            1.7764906964577543,
+            1.1027225100989404,
+            7.473944617001392,
+            3.6600258884515005
+          ],
+          "neck_action_delta_rms_rad": 0.04128513112664223,
+          "head_position_range_m": [
+            0.004854430143305218,
+            0.0029670475131698976,
+            0.0014945791756726667
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.048619739091062535,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.8991374761654934
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.12198859861949125,
+          "touchdowns_per_s": 4.4,
+          "median_same_foot_stride_m": 0.05190617617914259,
+          "median_flight_s": 0.22,
+          "double_support_fraction": 0.038,
+          "head_angular_speed_rms_rad_s": 1.4332309081070707,
+          "torso_angular_speed_rms_rad_s": 0.9087699602792468,
+          "head_angular_acceleration_rms_rad_s2": 28.542558145261697,
+          "neck_joint_rpm_rms": [
+            1.8954483305707817,
+            1.1206564133940216,
+            7.3838092915581575,
+            3.551524280799841
+          ],
+          "neck_action_delta_rms_rad": 0.04042668640613556,
+          "head_position_range_m": [
+            0.005069659546087684,
+            0.0030925810407009804,
+            0.0015660179344687691
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.05091702091255184,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.8896248204776869
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.11960874694015178,
+          "touchdowns_per_s": 4.4,
+          "median_same_foot_stride_m": 0.05093932677084921,
+          "median_flight_s": 0.22,
+          "double_support_fraction": 0.032,
+          "head_angular_speed_rms_rad_s": 1.4523627387205156,
+          "torso_angular_speed_rms_rad_s": 0.9259934418580223,
+          "head_angular_acceleration_rms_rad_s2": 28.945020024503098,
+          "neck_joint_rpm_rms": [
+            1.7540377069614097,
+            1.1021768020446598,
+            7.4571532982510895,
+            3.633300948279044
+          ],
+          "neck_action_delta_rms_rad": 0.041001539677381516,
+          "head_position_range_m": [
+            0.004841103298806847,
+            0.0029858722460483584,
+            0.0014846000491880729
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.052517274116676074,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.8963787969644761
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 0.12029326471017442,
+        "touchdowns_per_s": 4.466666666666667,
+        "median_same_foot_stride_m": 0.051107047556720915,
+        "median_flight_s": 0.22,
+        "double_support_fraction": 0.030666666666666665,
+        "head_angular_speed_rms_rad_s": 1.447713620490056,
+        "torso_angular_speed_rms_rad_s": 0.920271235251554,
+        "head_angular_acceleration_rms_rad_s2": 28.826247140136587,
+        "neck_joint_rpm_rms": [
+          1.8097229848706082,
+          1.1085518231947855,
+          7.438405364631175,
+          3.6152450355870953
+        ],
+        "neck_action_delta_rms_rad": 0.04089583456516266,
+        "head_position_range_m": [
+          0.005092905286608683,
+          0.0030925810407009804,
+          0.0015678081311767261
+        ],
+        "head_angular_velocity_peak_hz": 2.2666666666666666,
+        "head_angular_velocity_power_above_6hz_fraction": 0.04746732818995241,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.8950559516780112
+      }
+    },
+    {
+      "profile": "official_velstand",
+      "command_m_s": 0.08,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 4.220875343901146e-06,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.005903056750267657,
+          "torso_angular_speed_rms_rad_s": 0.0064854029060054195,
+          "head_angular_acceleration_rms_rad_s2": 0.4258477052420247,
+          "neck_joint_rpm_rms": [
+            0.01838290529956664,
+            0.00630606865126799,
+            0.0013426216403751381,
+            0.0013470220144216358
+          ],
+          "neck_action_delta_rms_rad": 0.000430146639700979,
+          "head_position_range_m": [
+            0.0008175629544097587,
+            2.4938550180286215e-05,
+            0.0002301760926585461
+          ],
+          "head_angular_velocity_peak_hz": 0.5,
+          "head_angular_velocity_power_above_6hz_fraction": 0.7607833376256801,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.002494832898854811
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 2.6233754448831802e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.007452614525131819,
+          "torso_angular_speed_rms_rad_s": 0.007581491391976801,
+          "head_angular_acceleration_rms_rad_s2": 0.5605166542778875,
+          "neck_joint_rpm_rms": [
+            0.0022427682288924974,
+            0.0029561514095538324,
+            0.001404720198987575,
+            0.0011112648355167335
+          ],
+          "neck_action_delta_rms_rad": 0.000517181062605232,
+          "head_position_range_m": [
+            0.00017895517584621016,
+            2.625847108530063e-05,
+            5.2629160394584984e-05
+          ],
+          "head_angular_velocity_peak_hz": 21.200000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.8193024639604966,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.000505359445881492
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": -2.115362992305434e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.0074395197842179565,
+          "torso_angular_speed_rms_rad_s": 0.007557060463731339,
+          "head_angular_acceleration_rms_rad_s2": 0.5786696154152513,
+          "neck_joint_rpm_rms": [
+            0.0017047653362195602,
+            0.002454261335522969,
+            0.0012942183769393005,
+            0.0008884657035221684
+          ],
+          "neck_action_delta_rms_rad": 0.0005408169818110764,
+          "head_position_range_m": [
+            0.0001466900706888763,
+            2.4189771375223118e-05,
+            4.25939492345595e-05
+          ],
+          "head_angular_velocity_peak_hz": 19.5,
+          "head_angular_velocity_power_above_6hz_fraction": 0.8529652576709926,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.00042378989210501263
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 3.1003332898928656e-06,
+        "touchdowns_per_s": 0.0,
+        "median_same_foot_stride_m": null,
+        "median_flight_s": null,
+        "double_support_fraction": 1.0,
+        "head_angular_speed_rms_rad_s": 0.006969791887779164,
+        "torso_angular_speed_rms_rad_s": 0.007226078360870743,
+        "head_angular_acceleration_rms_rad_s2": 0.5276892332425789,
+        "neck_joint_rpm_rms": [
+          0.010737278386272458,
+          0.004263360634278819,
+          0.0013479457103131305,
+          0.0011311865670359442
+        ],
+        "neck_action_delta_rms_rad": 0.0005020020762458444,
+        "head_position_range_m": [
+          0.0011473657623443834,
+          7.54994845860219e-05,
+          0.00032653252253189713
+        ],
+        "head_angular_velocity_peak_hz": 18.03333333333333,
+        "head_angular_velocity_power_above_6hz_fraction": 0.8190517056749996,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.0014898744058253505
+      }
+    },
+    {
+      "profile": "official_velstand",
+      "command_m_s": 0.1,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 1.1196651275796625e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.004385233250334615,
+          "torso_angular_speed_rms_rad_s": 0.00453005266649046,
+          "head_angular_acceleration_rms_rad_s2": 0.3543880790504459,
+          "neck_joint_rpm_rms": [
+            0.009788238787453914,
+            0.004042219448183495,
+            0.0009288164893009108,
+            0.0008493026111737378
+          ],
+          "neck_action_delta_rms_rad": 0.0003084760974161327,
+          "head_position_range_m": [
+            0.0004500441945327004,
+            1.5113868454637904e-05,
+            0.00013233518960745205
+          ],
+          "head_angular_velocity_peak_hz": 24.400000000000002,
+          "head_angular_velocity_power_above_6hz_fraction": 0.9128736440453674,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.0012976664888544973
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 7.453818394017852e-06,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.0032549824062747374,
+          "torso_angular_speed_rms_rad_s": 0.003278260791676628,
+          "head_angular_acceleration_rms_rad_s2": 0.26604581209640193,
+          "neck_joint_rpm_rms": [
+            0.0013327373703047364,
+            0.002912591278084676,
+            0.0007683343965551375,
+            0.0006814682661052079
+          ],
+          "neck_action_delta_rms_rad": 0.0002327036636415869,
+          "head_position_range_m": [
+            0.0002168591639131051,
+            1.438552538452292e-05,
+            6.491472987142644e-05
+          ],
+          "head_angular_velocity_peak_hz": 23.3,
+          "head_angular_velocity_power_above_6hz_fraction": 0.8889707729461342,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.0004506448348847599
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 2.1419984301421307e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.003648637373468726,
+          "torso_angular_speed_rms_rad_s": 0.003660065537905231,
+          "head_angular_acceleration_rms_rad_s2": 0.28611645391538504,
+          "neck_joint_rpm_rms": [
+            0.0012124681307288164,
+            0.0023597313058459518,
+            0.0007246247698869428,
+            0.0005580962202966992
+          ],
+          "neck_action_delta_rms_rad": 0.0002412592148175463,
+          "head_position_range_m": [
+            0.00018312757752067576,
+            1.3559285219575968e-05,
+            5.3976045876424905e-05
+          ],
+          "head_angular_velocity_peak_hz": 23.8,
+          "head_angular_velocity_power_above_6hz_fraction": 0.8921513484662431,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.00037848600324815287
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 1.335681799041193e-05,
+        "touchdowns_per_s": 0.0,
+        "median_same_foot_stride_m": null,
+        "median_flight_s": null,
+        "double_support_fraction": 1.0,
+        "head_angular_speed_rms_rad_s": 0.003791997530241422,
+        "torso_angular_speed_rms_rad_s": 0.00385851658547613,
+        "head_angular_acceleration_rms_rad_s2": 0.3044041216895676,
+        "neck_joint_rpm_rms": [
+          0.005746183847460762,
+          0.003182821487100046,
+          0.000812017830851171,
+          0.0007064430418569801
+        ],
+        "neck_action_delta_rms_rad": 0.00026283596525900066,
+        "head_position_range_m": [
+          0.0008509568604463556,
+          4.311600070335735e-05,
+          0.000251502478037291
+        ],
+        "head_angular_velocity_peak_hz": 21.566666666666666,
+        "head_angular_velocity_power_above_6hz_fraction": 0.8993914581119711,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.0008226523644405802
+      }
+    },
+    {
+      "profile": "official_velstand",
+      "command_m_s": 0.2,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 5.9616459455117926e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.00586111295705993,
+          "torso_angular_speed_rms_rad_s": 0.005849386909410508,
+          "head_angular_acceleration_rms_rad_s2": 0.45991897432667506,
+          "neck_joint_rpm_rms": [
+            0.0021660090529957723,
+            0.004035274352317496,
+            0.0024243051049815923,
+            0.0028555659116995665
+          ],
+          "neck_action_delta_rms_rad": 0.00037400881410576403,
+          "head_position_range_m": [
+            0.00031801014495170697,
+            4.553157017555252e-05,
+            9.952609235097665e-05
+          ],
+          "head_angular_velocity_peak_hz": 24.0,
+          "head_angular_velocity_power_above_6hz_fraction": 0.8580266688598804,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.000756266312685633
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 1.7220002841972823e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.006211868831043256,
+          "torso_angular_speed_rms_rad_s": 0.006295590402129826,
+          "head_angular_acceleration_rms_rad_s2": 0.5148428502854819,
+          "neck_joint_rpm_rms": [
+            0.005550967283066995,
+            0.0036046236840055457,
+            0.0017570178962177793,
+            0.0022178157325649876
+          ],
+          "neck_action_delta_rms_rad": 0.000448484905064106,
+          "head_position_range_m": [
+            0.0003547718156344205,
+            3.275290005540037e-05,
+            0.00010714360715265159
+          ],
+          "head_angular_velocity_peak_hz": 24.6,
+          "head_angular_velocity_power_above_6hz_fraction": 0.862861069091971,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.0008784040113743138
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 2.189223444858291e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.005531559022294314,
+          "torso_angular_speed_rms_rad_s": 0.005562376647815873,
+          "head_angular_acceleration_rms_rad_s2": 0.47689751959567406,
+          "neck_joint_rpm_rms": [
+            0.0016614973327753713,
+            0.003188650756733377,
+            0.0013481663084843438,
+            0.0017353788277383224
+          ],
+          "neck_action_delta_rms_rad": 0.0004027373797725886,
+          "head_position_range_m": [
+            0.00023474072621500544,
+            2.5125231302603618e-05,
+            7.158437243309779e-05
+          ],
+          "head_angular_velocity_peak_hz": 18.900000000000002,
+          "head_angular_velocity_power_above_6hz_fraction": 0.944878652224876,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.0005478403958205232
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 3.290956558189122e-05,
+        "touchdowns_per_s": 0.0,
+        "median_same_foot_stride_m": null,
+        "median_flight_s": null,
+        "double_support_fraction": 1.0,
+        "head_angular_speed_rms_rad_s": 0.00587475119151521,
+        "torso_angular_speed_rms_rad_s": 0.005910155657835631,
+        "head_angular_acceleration_rms_rad_s2": 0.48416373624140685,
+        "neck_joint_rpm_rms": [
+          0.003571433250211993,
+          0.0036260283438026906,
+          0.0018957777229940604,
+          0.002315491522725126
+        ],
+        "neck_action_delta_rms_rad": 0.00040943632484413683,
+        "head_position_range_m": [
+          0.0009087110841390867,
+          0.00010354126600612193,
+          0.0002786194945051945
+        ],
+        "head_angular_velocity_peak_hz": 24.1,
+        "head_angular_velocity_power_above_6hz_fraction": 0.8829846623438168,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.0007401939930843348
+      }
+    },
+    {
+      "profile": "official_velstand",
+      "command_m_s": 0.3,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.10792222476385058,
+          "touchdowns_per_s": 4.6,
+          "median_same_foot_stride_m": 0.044441418452642406,
+          "median_flight_s": 0.2,
+          "double_support_fraction": 0.02,
+          "head_angular_speed_rms_rad_s": 1.3989507802559624,
+          "torso_angular_speed_rms_rad_s": 0.9641492358405693,
+          "head_angular_acceleration_rms_rad_s2": 31.630852877088447,
+          "neck_joint_rpm_rms": [
+            1.7911584273681942,
+            0.6731765081729487,
+            8.642389890018167,
+            3.777134478395664
+          ],
+          "neck_action_delta_rms_rad": 0.04274042323231697,
+          "head_position_range_m": [
+            0.0043639643299019345,
+            0.003196630044886586,
+            0.0012521668840021483
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.08394287990531892,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 1.010303896557423
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.10960463326428793,
+          "touchdowns_per_s": 4.6,
+          "median_same_foot_stride_m": 0.04533829647516261,
+          "median_flight_s": 0.2,
+          "double_support_fraction": 0.02,
+          "head_angular_speed_rms_rad_s": 1.3855947028467435,
+          "torso_angular_speed_rms_rad_s": 0.9616006037488861,
+          "head_angular_acceleration_rms_rad_s2": 31.654322260741157,
+          "neck_joint_rpm_rms": [
+            1.726815337699737,
+            0.7323876563392995,
+            8.67262293097134,
+            3.7340302989822782
+          ],
+          "neck_action_delta_rms_rad": 0.04297645017504692,
+          "head_position_range_m": [
+            0.004343023873569667,
+            0.003063737848016684,
+            0.0012424789508031914
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.08522032170160543,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 1.0103099755779212
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.10851470066053762,
+          "touchdowns_per_s": 4.6,
+          "median_same_foot_stride_m": 0.04469674988554477,
+          "median_flight_s": 0.2,
+          "double_support_fraction": 0.018,
+          "head_angular_speed_rms_rad_s": 1.389538743315735,
+          "torso_angular_speed_rms_rad_s": 0.9541029192345605,
+          "head_angular_acceleration_rms_rad_s2": 31.377802612231175,
+          "neck_joint_rpm_rms": [
+            1.750912227608674,
+            0.6370495070858351,
+            8.636858177749437,
+            3.724337442695519
+          ],
+          "neck_action_delta_rms_rad": 0.04288153350353241,
+          "head_position_range_m": [
+            0.004927356973429832,
+            0.0030835813705579144,
+            0.0014297881700520848
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.08517992787452607,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 1.0066375734951358
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 0.10868051956289204,
+        "touchdowns_per_s": 4.666666666666667,
+        "median_same_foot_stride_m": 0.0447651520271099,
+        "median_flight_s": 0.2,
+        "double_support_fraction": 0.019333333333333334,
+        "head_angular_speed_rms_rad_s": 1.3913726897457768,
+        "torso_angular_speed_rms_rad_s": 0.9599603899109737,
+        "head_angular_acceleration_rms_rad_s2": 31.541421888446212,
+        "neck_joint_rpm_rms": [
+          1.7564958820747563,
+          0.6820044879599159,
+          8.650637947505283,
+          3.7452377106874777
+        ],
+        "neck_action_delta_rms_rad": 0.042858630418777466,
+        "head_position_range_m": [
+          0.004994407407193938,
+          0.003196630044886586,
+          0.001448617344376027
+        ],
+        "head_angular_velocity_peak_hz": 2.3666666666666667,
+        "head_angular_velocity_power_above_6hz_fraction": 0.08330848107203216,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 1.0090852977694778
+      }
+    },
+    {
+      "profile": "official_velstand_output_preset",
+      "command_m_s": 0.08,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 2.4060410232112638e-06,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.0076950595985771485,
+          "torso_angular_speed_rms_rad_s": 0.008131081733921608,
+          "head_angular_acceleration_rms_rad_s2": 0.5986974699569121,
+          "neck_joint_rpm_rms": [
+            0.018434530151082287,
+            0.004813286943003404,
+            0.0014465780287353837,
+            0.0008066311146665853
+          ],
+          "neck_action_delta_rms_rad": 0.00018863184959627688,
+          "head_position_range_m": [
+            0.0006372843020235478,
+            2.6938855745166818e-05,
+            0.00018621905283941476
+          ],
+          "head_angular_velocity_peak_hz": 12.4,
+          "head_angular_velocity_power_above_6hz_fraction": 0.845350271264188,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.0023299030783547467
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 2.419097033114398e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.00842751805910404,
+          "torso_angular_speed_rms_rad_s": 0.00850426359168596,
+          "head_angular_acceleration_rms_rad_s2": 0.7079977889331633,
+          "neck_joint_rpm_rms": [
+            0.0017044761151855437,
+            0.0029348902784492965,
+            0.0014352033826531129,
+            0.0006875981462711404
+          ],
+          "neck_action_delta_rms_rad": 0.0002091184869641438,
+          "head_position_range_m": [
+            0.00017230222061407133,
+            2.684947251972708e-05,
+            5.270040992663705e-05
+          ],
+          "head_angular_velocity_peak_hz": 22.8,
+          "head_angular_velocity_power_above_6hz_fraction": 0.9076728858233222,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.00047304211955934123
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": -1.325568107227542e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.008357595480839638,
+          "torso_angular_speed_rms_rad_s": 0.008444846148651586,
+          "head_angular_acceleration_rms_rad_s2": 0.6991496654740081,
+          "neck_joint_rpm_rms": [
+            0.0016101419552448943,
+            0.002490069059334695,
+            0.0012380347801086839,
+            0.0005828964257569946
+          ],
+          "neck_action_delta_rms_rad": 0.00021172440028749406,
+          "head_position_range_m": [
+            0.00015955686622615714,
+            2.3030540919651574e-05,
+            4.769624332021105e-05
+          ],
+          "head_angular_velocity_peak_hz": 23.5,
+          "head_angular_velocity_power_above_6hz_fraction": 0.8848299399926005,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.00041915675019121753
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 4.447110094026603e-06,
+        "touchdowns_per_s": 0.0,
+        "median_same_foot_stride_m": null,
+        "median_flight_s": null,
+        "double_support_fraction": 1.0,
+        "head_angular_speed_rms_rad_s": 0.00816672935520559,
+        "torso_angular_speed_rms_rad_s": 0.008361666816988595,
+        "head_angular_acceleration_rms_rad_s2": 0.6702548828643667,
+        "neck_joint_rpm_rms": [
+          0.010728928151411337,
+          0.003558171630790136,
+          0.0013766053488633607,
+          0.0006983822279774038
+        ],
+        "neck_action_delta_rms_rad": 0.00020338744798209518,
+        "head_position_range_m": [
+          0.0009698100349080879,
+          7.692518742569038e-05,
+          0.00028682037681598826
+        ],
+        "head_angular_velocity_peak_hz": 23.53333333333333,
+        "head_angular_velocity_power_above_6hz_fraction": 0.880420138586025,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.0013937849645999894
+      }
+    },
+    {
+      "profile": "official_velstand_output_preset",
+      "command_m_s": 0.1,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 1.647404684576691e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.0022983873588388122,
+          "torso_angular_speed_rms_rad_s": 0.002300555513463983,
+          "head_angular_acceleration_rms_rad_s2": 0.170005591751142,
+          "neck_joint_rpm_rms": [
+            0.002889372417317955,
+            0.003958601887253594,
+            0.0009466883681147649,
+            0.00016634012185211578
+          ],
+          "neck_action_delta_rms_rad": 5.2504157793009654e-05,
+          "head_position_range_m": [
+            0.0003923756586612563,
+            1.7699925666456783e-05,
+            0.00012327226262778823
+          ],
+          "head_angular_velocity_peak_hz": 15.600000000000001,
+          "head_angular_velocity_power_above_6hz_fraction": 0.8672480434570782,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.0006879538085616047
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 5.168064173970388e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.010473033359337294,
+          "torso_angular_speed_rms_rad_s": 0.011537802552990398,
+          "head_angular_acceleration_rms_rad_s2": 0.6981072056372274,
+          "neck_joint_rpm_rms": [
+            0.035585025684348535,
+            0.042453497062871055,
+            0.017290961585901956,
+            0.009347007971981217
+          ],
+          "neck_action_delta_rms_rad": 0.00021077101700939238,
+          "head_position_range_m": [
+            0.0009557922857971618,
+            2.06931554206114e-05,
+            0.00027996413030480227
+          ],
+          "head_angular_velocity_peak_hz": 4.2,
+          "head_angular_velocity_power_above_6hz_fraction": 0.7234142846786941,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.006355592066285195
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 3.8841401414558145e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.007610329875426332,
+          "torso_angular_speed_rms_rad_s": 0.008114056931164243,
+          "head_angular_acceleration_rms_rad_s2": 0.5597870773290593,
+          "neck_joint_rpm_rms": [
+            0.01374773682412133,
+            0.01631820705207455,
+            0.0012595851633678127,
+            0.0006518768211556791
+          ],
+          "neck_action_delta_rms_rad": 0.00016407221846748143,
+          "head_position_range_m": [
+            0.0005799017651275879,
+            1.5675552120383336e-05,
+            0.00016525216139541554
+          ],
+          "head_angular_velocity_peak_hz": 23.6,
+          "head_angular_velocity_power_above_6hz_fraction": 0.7887763108083907,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.0025248310618783917
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 3.566536333334298e-05,
+        "touchdowns_per_s": 0.0,
+        "median_same_foot_stride_m": null,
+        "median_flight_s": null,
+        "double_support_fraction": 1.0,
+        "head_angular_speed_rms_rad_s": 0.007591313742470589,
+        "torso_angular_speed_rms_rad_s": 0.008251290066902586,
+        "head_angular_acceleration_rms_rad_s2": 0.5258996645278828,
+        "neck_joint_rpm_rms": [
+          0.02208802687511196,
+          0.026358134880673567,
+          0.010024305898086531,
+          0.005410458096882934
+        ],
+        "neck_action_delta_rms_rad": 0.00015740151866339147,
+        "head_position_range_m": [
+          0.001929325180558595,
+          5.413180569629184e-05,
+          0.0005688735960476393
+        ],
+        "head_angular_velocity_peak_hz": 19.1,
+        "head_angular_velocity_power_above_6hz_fraction": 0.7484141111095306,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.003968274303639123
+      }
+    },
+    {
+      "profile": "official_velstand_output_preset",
+      "command_m_s": 0.2,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 6.698640522169421e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.006429955680155891,
+          "torso_angular_speed_rms_rad_s": 0.0065687364332751375,
+          "head_angular_acceleration_rms_rad_s2": 0.50773709011343,
+          "neck_joint_rpm_rms": [
+            0.012802433711135609,
+            0.007513707821250329,
+            0.002677502066010217,
+            0.003055086685453504
+          ],
+          "neck_action_delta_rms_rad": 0.00015421578427776694,
+          "head_position_range_m": [
+            0.0006063281960573231,
+            4.86363848133238e-05,
+            0.00018902238858466147
+          ],
+          "head_angular_velocity_peak_hz": 24.700000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.8491251867960722,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.002098429554763036
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 2.027591300294606e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.005364029932400933,
+          "torso_angular_speed_rms_rad_s": 0.005396203972899381,
+          "head_angular_acceleration_rms_rad_s2": 0.46402924261611905,
+          "neck_joint_rpm_rms": [
+            0.0017024334656874055,
+            0.00355986666871239,
+            0.0019643300156231666,
+            0.002480418741488684
+          ],
+          "neck_action_delta_rms_rad": 0.00012726185377687216,
+          "head_position_range_m": [
+            0.00024682837390302913,
+            3.659573560607106e-05,
+            7.860433022775781e-05
+          ],
+          "head_angular_velocity_peak_hz": 23.8,
+          "head_angular_velocity_power_above_6hz_fraction": 0.9102084487964824,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.0006319354598516806
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 8.525837641931417e-06,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.00527444201495867,
+          "torso_angular_speed_rms_rad_s": 0.005326783859536303,
+          "head_angular_acceleration_rms_rad_s2": 0.44802332118013155,
+          "neck_joint_rpm_rms": [
+            0.0016446999666737108,
+            0.003057499863052867,
+            0.001526946063398597,
+            0.001982396955281128
+          ],
+          "neck_action_delta_rms_rad": 0.00012431046343408525,
+          "head_position_range_m": [
+            0.00021308369917035505,
+            2.8507922290120676e-05,
+            6.68991394123658e-05
+          ],
+          "head_angular_velocity_peak_hz": 23.1,
+          "head_angular_velocity_power_above_6hz_fraction": 0.9077801003113746,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.0005430482745689165
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 3.192938528885723e-05,
+        "touchdowns_per_s": 0.0,
+        "median_same_foot_stride_m": null,
+        "median_flight_s": null,
+        "double_support_fraction": 1.0,
+        "head_angular_speed_rms_rad_s": 0.00571363532069334,
+        "torso_angular_speed_rms_rad_s": 0.005792004314374191,
+        "head_angular_acceleration_rms_rad_s2": 0.4737745559704832,
+        "neck_joint_rpm_rms": [
+          0.00751677294707178,
+          0.005114579205066507,
+          0.002110227002346394,
+          0.002544007958391081
+        ],
+        "neck_action_delta_rms_rad": 0.00013595227210316807,
+        "head_position_range_m": [
+          0.0010671429344157903,
+          0.00011388736986422065,
+          0.00033481566648921324
+        ],
+        "head_angular_velocity_peak_hz": 18.0,
+        "head_angular_velocity_power_above_6hz_fraction": 0.8825067591070487,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.0013035401093730902
+      }
+    },
+    {
+      "profile": "official_velstand_output_preset",
+      "command_m_s": 0.3,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.00014208956691118214,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.059558059741312765,
+          "torso_angular_speed_rms_rad_s": 0.03382100194773941,
+          "head_angular_acceleration_rms_rad_s2": 1.2848456399299726,
+          "neck_joint_rpm_rms": [
+            0.013770927431266532,
+            0.0459244916313946,
+            0.21356156360994447,
+            0.1867197371293518
+          ],
+          "neck_action_delta_rms_rad": 0.002181178657338023,
+          "head_position_range_m": [
+            0.0006197244320888529,
+            0.00043291527617121336,
+            0.00017752202677334683
+          ],
+          "head_angular_velocity_peak_hz": 1.7000000000000002,
+          "head_angular_velocity_power_above_6hz_fraction": 0.05901045029296789,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.03033885357421979
+        },
+        {
+          "measurement_s": [
+            12.0,
+            22.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.07802809564649417,
+          "touchdowns_per_s": 3.5,
+          "median_same_foot_stride_m": 0.043063957397311246,
+          "median_flight_s": 0.22,
+          "double_support_fraction": 0.218,
+          "head_angular_speed_rms_rad_s": 1.0638038740106728,
+          "torso_angular_speed_rms_rad_s": 0.8361690602850786,
+          "head_angular_acceleration_rms_rad_s2": 24.76665084180025,
+          "neck_joint_rpm_rms": [
+            1.3206157123784796,
+            0.3161627001034757,
+            6.515774219433271,
+            2.7282687849161325
+          ],
+          "neck_action_delta_rms_rad": 0.024356629699468613,
+          "head_position_range_m": [
+            0.00520357655364996,
+            0.002772299915426793,
+            0.0013357995991628568
+          ],
+          "head_angular_velocity_peak_hz": 2.2,
+          "head_angular_velocity_power_above_6hz_fraction": 0.10488015701311938,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.7534212088275
+        },
+        {
+          "measurement_s": [
+            22.0,
+            32.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.09887019378248933,
+          "touchdowns_per_s": 4.3,
+          "median_same_foot_stride_m": 0.04347908333036323,
+          "median_flight_s": 0.22,
+          "double_support_fraction": 0.012,
+          "head_angular_speed_rms_rad_s": 1.194577200305761,
+          "torso_angular_speed_rms_rad_s": 0.9415407896971025,
+          "head_angular_acceleration_rms_rad_s2": 27.792614454650895,
+          "neck_joint_rpm_rms": [
+            1.4183669154335803,
+            0.25715308671016546,
+            7.475282913215714,
+            2.958491566376557
+          ],
+          "neck_action_delta_rms_rad": 0.026954367756843567,
+          "head_position_range_m": [
+            0.0033255060798316133,
+            0.0028477589743546843,
+            0.0009132489368500057
+          ],
+          "head_angular_velocity_peak_hz": 2.2,
+          "head_angular_velocity_power_above_6hz_fraction": 0.10568936568115794,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.8557970492647263
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          32.0
+        ],
+        "mean_forward_speed_m_s": 0.05901345966529823,
+        "touchdowns_per_s": 2.6333333333333333,
+        "median_same_foot_stride_m": 0.0431994420365542,
+        "median_flight_s": 0.22,
+        "double_support_fraction": 0.41,
+        "head_angular_speed_rms_rad_s": 0.9241645835258667,
+        "torso_angular_speed_rms_rad_s": 0.7272829839464654,
+        "head_angular_acceleration_rms_rad_s2": 21.49324938894123,
+        "neck_joint_rpm_rms": [
+          1.1189251099485016,
+          0.23678092678879914,
+          5.726568980133964,
+          2.3260114051957848
+        ],
+        "neck_action_delta_rms_rad": 0.021008381620049477,
+        "head_position_range_m": [
+          0.005296388136158933,
+          0.0028477589743546843,
+          0.0013691873947573874
+        ],
+        "head_angular_velocity_peak_hz": 2.2,
+        "head_angular_velocity_power_above_6hz_fraction": 0.10536267946056135,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.6585217165433249
+      }
+    }
+  ],
+  "command_sweep": [
+    {
+      "profile": "official_alpha",
+      "command_m_s": 0.25,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.09465883034664654,
+          "touchdowns_per_s": 4.4,
+          "median_same_foot_stride_m": 0.03939246310490377,
+          "median_flight_s": 0.22,
+          "double_support_fraction": 0.034,
+          "head_angular_speed_rms_rad_s": 1.418726440906541,
+          "torso_angular_speed_rms_rad_s": 0.9545421031215943,
+          "head_angular_acceleration_rms_rad_s2": 28.737362073301153,
+          "neck_joint_rpm_rms": [
+            1.81096368308729,
+            0.6573073507350989,
+            6.547455942833104,
+            4.143041117619628
+          ],
+          "neck_action_delta_rms_rad": 0.039462365210056305,
+          "head_position_range_m": [
+            0.004632732329759502,
+            0.002668065399816846,
+            0.0014044211347368357
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.057823869304206015,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.8349572381793614
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          12.0
+        ],
+        "mean_forward_speed_m_s": 0.09465883034664654,
+        "touchdowns_per_s": 4.4,
+        "median_same_foot_stride_m": 0.03939246310490377,
+        "median_flight_s": 0.22,
+        "double_support_fraction": 0.034,
+        "head_angular_speed_rms_rad_s": 1.418726440906541,
+        "torso_angular_speed_rms_rad_s": 0.9545421031215943,
+        "head_angular_acceleration_rms_rad_s2": 28.737362073301153,
+        "neck_joint_rpm_rms": [
+          1.81096368308729,
+          0.6573073507350989,
+          6.547455942833104,
+          4.143041117619628
+        ],
+        "neck_action_delta_rms_rad": 0.039462365210056305,
+        "head_position_range_m": [
+          0.004632732329759502,
+          0.002668065399816846,
+          0.0014044211347368357
+        ],
+        "head_angular_velocity_peak_hz": 2.3000000000000003,
+        "head_angular_velocity_power_above_6hz_fraction": 0.057823869304206015,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.8349572381793614
+      }
+    },
+    {
+      "profile": "official_alpha",
+      "command_m_s": 0.275,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.10815122067452754,
+          "touchdowns_per_s": 4.4,
+          "median_same_foot_stride_m": 0.04542964515856923,
+          "median_flight_s": 0.22,
+          "double_support_fraction": 0.04,
+          "head_angular_speed_rms_rad_s": 1.431619352763015,
+          "torso_angular_speed_rms_rad_s": 0.938779336720247,
+          "head_angular_acceleration_rms_rad_s2": 29.219990925554498,
+          "neck_joint_rpm_rms": [
+            1.763718626502927,
+            0.8711987895214165,
+            6.997908361599488,
+            3.8924358582559178
+          ],
+          "neck_action_delta_rms_rad": 0.04043753817677498,
+          "head_position_range_m": [
+            0.004194346260354447,
+            0.002732403316872312,
+            0.0012897115443868262
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.055139274259010815,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.8636364794900392
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          12.0
+        ],
+        "mean_forward_speed_m_s": 0.10815122067452754,
+        "touchdowns_per_s": 4.4,
+        "median_same_foot_stride_m": 0.04542964515856923,
+        "median_flight_s": 0.22,
+        "double_support_fraction": 0.04,
+        "head_angular_speed_rms_rad_s": 1.431619352763015,
+        "torso_angular_speed_rms_rad_s": 0.938779336720247,
+        "head_angular_acceleration_rms_rad_s2": 29.219990925554498,
+        "neck_joint_rpm_rms": [
+          1.763718626502927,
+          0.8711987895214165,
+          6.997908361599488,
+          3.8924358582559178
+        ],
+        "neck_action_delta_rms_rad": 0.04043753817677498,
+        "head_position_range_m": [
+          0.004194346260354447,
+          0.002732403316872312,
+          0.0012897115443868262
+        ],
+        "head_angular_velocity_peak_hz": 2.3000000000000003,
+        "head_angular_velocity_power_above_6hz_fraction": 0.055139274259010815,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.8636364794900392
+      }
+    },
+    {
+      "profile": "official_alpha",
+      "command_m_s": 0.3,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.11928244857088018,
+          "touchdowns_per_s": 4.4,
+          "median_same_foot_stride_m": 0.0505072761687467,
+          "median_flight_s": 0.22,
+          "double_support_fraction": 0.022,
+          "head_angular_speed_rms_rad_s": 1.4574346709475876,
+          "torso_angular_speed_rms_rad_s": 0.925943164683585,
+          "head_angular_acceleration_rms_rad_s2": 28.999660941043135,
+          "neck_joint_rpm_rms": [
+            1.7764906964577543,
+            1.1027225100989404,
+            7.473944617001392,
+            3.6600258884515005
+          ],
+          "neck_action_delta_rms_rad": 0.04128513112664223,
+          "head_position_range_m": [
+            0.004854430143305218,
+            0.0029670475131698976,
+            0.0014945791756726667
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.048619739091062535,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.8991374761654934
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          12.0
+        ],
+        "mean_forward_speed_m_s": 0.11928244857088018,
+        "touchdowns_per_s": 4.4,
+        "median_same_foot_stride_m": 0.0505072761687467,
+        "median_flight_s": 0.22,
+        "double_support_fraction": 0.022,
+        "head_angular_speed_rms_rad_s": 1.4574346709475876,
+        "torso_angular_speed_rms_rad_s": 0.925943164683585,
+        "head_angular_acceleration_rms_rad_s2": 28.999660941043135,
+        "neck_joint_rpm_rms": [
+          1.7764906964577543,
+          1.1027225100989404,
+          7.473944617001392,
+          3.6600258884515005
+        ],
+        "neck_action_delta_rms_rad": 0.04128513112664223,
+        "head_position_range_m": [
+          0.004854430143305218,
+          0.0029670475131698976,
+          0.0014945791756726667
+        ],
+        "head_angular_velocity_peak_hz": 2.3000000000000003,
+        "head_angular_velocity_power_above_6hz_fraction": 0.048619739091062535,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.8991374761654934
+      }
+    },
+    {
+      "profile": "official_alpha",
+      "command_m_s": 0.325,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.13336418658711113,
+          "touchdowns_per_s": 4.4,
+          "median_same_foot_stride_m": 0.057494921293419904,
+          "median_flight_s": 0.22,
+          "double_support_fraction": 0.024,
+          "head_angular_speed_rms_rad_s": 1.45987436014093,
+          "torso_angular_speed_rms_rad_s": 0.9016749484252203,
+          "head_angular_acceleration_rms_rad_s2": 29.31352275091244,
+          "neck_joint_rpm_rms": [
+            1.7954023389679559,
+            1.3627362927161173,
+            7.8227058904526094,
+            3.2845138683998587
+          ],
+          "neck_action_delta_rms_rad": 0.041699305176734924,
+          "head_position_range_m": [
+            0.005519742885100075,
+            0.0031706180492238065,
+            0.0017147146684962505
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.05265034901630402,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.9219318504423625
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          12.0
+        ],
+        "mean_forward_speed_m_s": 0.13336418658711113,
+        "touchdowns_per_s": 4.4,
+        "median_same_foot_stride_m": 0.057494921293419904,
+        "median_flight_s": 0.22,
+        "double_support_fraction": 0.024,
+        "head_angular_speed_rms_rad_s": 1.45987436014093,
+        "torso_angular_speed_rms_rad_s": 0.9016749484252203,
+        "head_angular_acceleration_rms_rad_s2": 29.31352275091244,
+        "neck_joint_rpm_rms": [
+          1.7954023389679559,
+          1.3627362927161173,
+          7.8227058904526094,
+          3.2845138683998587
+        ],
+        "neck_action_delta_rms_rad": 0.041699305176734924,
+        "head_position_range_m": [
+          0.005519742885100075,
+          0.0031706180492238065,
+          0.0017147146684962505
+        ],
+        "head_angular_velocity_peak_hz": 2.3000000000000003,
+        "head_angular_velocity_power_above_6hz_fraction": 0.05265034901630402,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.9219318504423625
+      }
+    },
+    {
+      "profile": "official_alpha",
+      "command_m_s": 0.35,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.14354520670220536,
+          "touchdowns_per_s": 4.4,
+          "median_same_foot_stride_m": 0.061485933525162684,
+          "median_flight_s": 0.22,
+          "double_support_fraction": 0.024,
+          "head_angular_speed_rms_rad_s": 1.4929879898411242,
+          "torso_angular_speed_rms_rad_s": 0.8974318878635786,
+          "head_angular_acceleration_rms_rad_s2": 30.903747161256394,
+          "neck_joint_rpm_rms": [
+            1.778714273342122,
+            1.7260987467923865,
+            8.325457563936592,
+            3.0983857016493457
+          ],
+          "neck_action_delta_rms_rad": 0.043604206293821335,
+          "head_position_range_m": [
+            0.005412314696684404,
+            0.0033993979330505303,
+            0.001681719093543546
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.05508147047198846,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.9679630586267717
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          12.0
+        ],
+        "mean_forward_speed_m_s": 0.14354520670220536,
+        "touchdowns_per_s": 4.4,
+        "median_same_foot_stride_m": 0.061485933525162684,
+        "median_flight_s": 0.22,
+        "double_support_fraction": 0.024,
+        "head_angular_speed_rms_rad_s": 1.4929879898411242,
+        "torso_angular_speed_rms_rad_s": 0.8974318878635786,
+        "head_angular_acceleration_rms_rad_s2": 30.903747161256394,
+        "neck_joint_rpm_rms": [
+          1.778714273342122,
+          1.7260987467923865,
+          8.325457563936592,
+          3.0983857016493457
+        ],
+        "neck_action_delta_rms_rad": 0.043604206293821335,
+        "head_position_range_m": [
+          0.005412314696684404,
+          0.0033993979330505303,
+          0.001681719093543546
+        ],
+        "head_angular_velocity_peak_hz": 2.3000000000000003,
+        "head_angular_velocity_power_above_6hz_fraction": 0.05508147047198846,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.9679630586267717
+      }
+    },
+    {
+      "profile": "official_alpha",
+      "command_m_s": 0.4,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.1667880655704696,
+          "touchdowns_per_s": 4.4,
+          "median_same_foot_stride_m": 0.07132694880811088,
+          "median_flight_s": 0.22,
+          "double_support_fraction": 0.022,
+          "head_angular_speed_rms_rad_s": 1.545196186284509,
+          "torso_angular_speed_rms_rad_s": 0.8823427235630753,
+          "head_angular_acceleration_rms_rad_s2": 32.921179308822936,
+          "neck_joint_rpm_rms": [
+            1.7645966763105034,
+            2.4367769207853223,
+            9.227224549867863,
+            2.6144616927284345
+          ],
+          "neck_action_delta_rms_rad": 0.04602564871311188,
+          "head_position_range_m": [
+            0.005613926974013224,
+            0.0036220803602229987,
+            0.0018171430393852661
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.06199994524760149,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 1.0534948563806934
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          12.0
+        ],
+        "mean_forward_speed_m_s": 0.1667880655704696,
+        "touchdowns_per_s": 4.4,
+        "median_same_foot_stride_m": 0.07132694880811088,
+        "median_flight_s": 0.22,
+        "double_support_fraction": 0.022,
+        "head_angular_speed_rms_rad_s": 1.545196186284509,
+        "torso_angular_speed_rms_rad_s": 0.8823427235630753,
+        "head_angular_acceleration_rms_rad_s2": 32.921179308822936,
+        "neck_joint_rpm_rms": [
+          1.7645966763105034,
+          2.4367769207853223,
+          9.227224549867863,
+          2.6144616927284345
+        ],
+        "neck_action_delta_rms_rad": 0.04602564871311188,
+        "head_position_range_m": [
+          0.005613926974013224,
+          0.0036220803602229987,
+          0.0018171430393852661
+        ],
+        "head_angular_velocity_peak_hz": 2.3000000000000003,
+        "head_angular_velocity_power_above_6hz_fraction": 0.06199994524760149,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 1.0534948563806934
+      }
+    },
+    {
+      "profile": "official_velstand",
+      "command_m_s": 0.25,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 4.0180891690650976e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.0029845960746302373,
+          "torso_angular_speed_rms_rad_s": 0.002949499093350216,
+          "head_angular_acceleration_rms_rad_s2": 0.20692437534117689,
+          "neck_joint_rpm_rms": [
+            0.008466912727498041,
+            0.005731096361337521,
+            0.0020654615950983874,
+            0.002115952813876369
+          ],
+          "neck_action_delta_rms_rad": 0.00019289052579551935,
+          "head_position_range_m": [
+            0.0004056785050904426,
+            3.840661510053946e-05,
+            0.00011681165289927076
+          ],
+          "head_angular_velocity_peak_hz": 0.2,
+          "head_angular_velocity_power_above_6hz_fraction": 0.778976165018713,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.0014727592668219254
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          12.0
+        ],
+        "mean_forward_speed_m_s": 4.0180891690650976e-05,
+        "touchdowns_per_s": 0.0,
+        "median_same_foot_stride_m": null,
+        "median_flight_s": null,
+        "double_support_fraction": 1.0,
+        "head_angular_speed_rms_rad_s": 0.0029845960746302373,
+        "torso_angular_speed_rms_rad_s": 0.002949499093350216,
+        "head_angular_acceleration_rms_rad_s2": 0.20692437534117689,
+        "neck_joint_rpm_rms": [
+          0.008466912727498041,
+          0.005731096361337521,
+          0.0020654615950983874,
+          0.002115952813876369
+        ],
+        "neck_action_delta_rms_rad": 0.00019289052579551935,
+        "head_position_range_m": [
+          0.0004056785050904426,
+          3.840661510053946e-05,
+          0.00011681165289927076
+        ],
+        "head_angular_velocity_peak_hz": 0.2,
+        "head_angular_velocity_power_above_6hz_fraction": 0.778976165018713,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.0014727592668219254
+      }
+    },
+    {
+      "profile": "official_velstand",
+      "command_m_s": 0.275,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 1.6331774007082036e-05,
+          "touchdowns_per_s": 0.0,
+          "median_same_foot_stride_m": null,
+          "median_flight_s": null,
+          "double_support_fraction": 1.0,
+          "head_angular_speed_rms_rad_s": 0.0060895975043325,
+          "torso_angular_speed_rms_rad_s": 0.0061548674317386505,
+          "head_angular_acceleration_rms_rad_s2": 0.4594554151215991,
+          "neck_joint_rpm_rms": [
+            0.001204531476206059,
+            0.003750141862407447,
+            0.0005858693976429141,
+            0.0005712714348182675
+          ],
+          "neck_action_delta_rms_rad": 0.00034752325154840946,
+          "head_position_range_m": [
+            0.0002056366415632057,
+            8.234577968370188e-06,
+            5.8669025091967475e-05
+          ],
+          "head_angular_velocity_peak_hz": 0.1,
+          "head_angular_velocity_power_above_6hz_fraction": 0.8396286839839618,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 0.0005023055487833546
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          12.0
+        ],
+        "mean_forward_speed_m_s": 1.6331774007082036e-05,
+        "touchdowns_per_s": 0.0,
+        "median_same_foot_stride_m": null,
+        "median_flight_s": null,
+        "double_support_fraction": 1.0,
+        "head_angular_speed_rms_rad_s": 0.0060895975043325,
+        "torso_angular_speed_rms_rad_s": 0.0061548674317386505,
+        "head_angular_acceleration_rms_rad_s2": 0.4594554151215991,
+        "neck_joint_rpm_rms": [
+          0.001204531476206059,
+          0.003750141862407447,
+          0.0005858693976429141,
+          0.0005712714348182675
+        ],
+        "neck_action_delta_rms_rad": 0.00034752325154840946,
+        "head_position_range_m": [
+          0.0002056366415632057,
+          8.234577968370188e-06,
+          5.8669025091967475e-05
+        ],
+        "head_angular_velocity_peak_hz": 0.1,
+        "head_angular_velocity_power_above_6hz_fraction": 0.8396286839839618,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 0.0005023055487833546
+      }
+    },
+    {
+      "profile": "official_velstand",
+      "command_m_s": 0.3,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.10792222476385058,
+          "touchdowns_per_s": 4.6,
+          "median_same_foot_stride_m": 0.044441418452642406,
+          "median_flight_s": 0.2,
+          "double_support_fraction": 0.02,
+          "head_angular_speed_rms_rad_s": 1.3989507802559624,
+          "torso_angular_speed_rms_rad_s": 0.9641492358405693,
+          "head_angular_acceleration_rms_rad_s2": 31.630852877088447,
+          "neck_joint_rpm_rms": [
+            1.7911584273681942,
+            0.6731765081729487,
+            8.642389890018167,
+            3.777134478395664
+          ],
+          "neck_action_delta_rms_rad": 0.04274042323231697,
+          "head_position_range_m": [
+            0.0043639643299019345,
+            0.003196630044886586,
+            0.0012521668840021483
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.08394287990531892,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 1.010303896557423
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          12.0
+        ],
+        "mean_forward_speed_m_s": 0.10792222476385058,
+        "touchdowns_per_s": 4.6,
+        "median_same_foot_stride_m": 0.044441418452642406,
+        "median_flight_s": 0.2,
+        "double_support_fraction": 0.02,
+        "head_angular_speed_rms_rad_s": 1.3989507802559624,
+        "torso_angular_speed_rms_rad_s": 0.9641492358405693,
+        "head_angular_acceleration_rms_rad_s2": 31.630852877088447,
+        "neck_joint_rpm_rms": [
+          1.7911584273681942,
+          0.6731765081729487,
+          8.642389890018167,
+          3.777134478395664
+        ],
+        "neck_action_delta_rms_rad": 0.04274042323231697,
+        "head_position_range_m": [
+          0.0043639643299019345,
+          0.003196630044886586,
+          0.0012521668840021483
+        ],
+        "head_angular_velocity_peak_hz": 2.3000000000000003,
+        "head_angular_velocity_power_above_6hz_fraction": 0.08394287990531892,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 1.010303896557423
+      }
+    },
+    {
+      "profile": "official_velstand",
+      "command_m_s": 0.325,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.12189770275118209,
+          "touchdowns_per_s": 4.6,
+          "median_same_foot_stride_m": 0.05064948006340124,
+          "median_flight_s": 0.2,
+          "double_support_fraction": 0.026,
+          "head_angular_speed_rms_rad_s": 1.4206201998526546,
+          "torso_angular_speed_rms_rad_s": 0.9581810047019743,
+          "head_angular_acceleration_rms_rad_s2": 32.46267562874661,
+          "neck_joint_rpm_rms": [
+            1.964289354044914,
+            0.78832928875134,
+            8.953408166795903,
+            3.788400031542699
+          ],
+          "neck_action_delta_rms_rad": 0.04472489655017853,
+          "head_position_range_m": [
+            0.004923546645266034,
+            0.003128133003271066,
+            0.0014339886103193339
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.08027733065248305,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 1.0459818960799943
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          12.0
+        ],
+        "mean_forward_speed_m_s": 0.12189770275118209,
+        "touchdowns_per_s": 4.6,
+        "median_same_foot_stride_m": 0.05064948006340124,
+        "median_flight_s": 0.2,
+        "double_support_fraction": 0.026,
+        "head_angular_speed_rms_rad_s": 1.4206201998526546,
+        "torso_angular_speed_rms_rad_s": 0.9581810047019743,
+        "head_angular_acceleration_rms_rad_s2": 32.46267562874661,
+        "neck_joint_rpm_rms": [
+          1.964289354044914,
+          0.78832928875134,
+          8.953408166795903,
+          3.788400031542699
+        ],
+        "neck_action_delta_rms_rad": 0.04472489655017853,
+        "head_position_range_m": [
+          0.004923546645266034,
+          0.003128133003271066,
+          0.0014339886103193339
+        ],
+        "head_angular_velocity_peak_hz": 2.3000000000000003,
+        "head_angular_velocity_power_above_6hz_fraction": 0.08027733065248305,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 1.0459818960799943
+      }
+    },
+    {
+      "profile": "official_velstand",
+      "command_m_s": 0.35,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.1349872113205746,
+          "touchdowns_per_s": 4.6,
+          "median_same_foot_stride_m": 0.05590999169393255,
+          "median_flight_s": 0.2,
+          "double_support_fraction": 0.024,
+          "head_angular_speed_rms_rad_s": 1.4496589179470563,
+          "torso_angular_speed_rms_rad_s": 0.9516770235923617,
+          "head_angular_acceleration_rms_rad_s2": 32.95103714334367,
+          "neck_joint_rpm_rms": [
+            1.958375199019231,
+            1.0726849129093647,
+            9.199005763150181,
+            3.8824191042739007
+          ],
+          "neck_action_delta_rms_rad": 0.04611506313085556,
+          "head_position_range_m": [
+            0.004906913003105189,
+            0.0032684405231578877,
+            0.0013963891402094947
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.07599875529269981,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 1.0755386037926504
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          12.0
+        ],
+        "mean_forward_speed_m_s": 0.1349872113205746,
+        "touchdowns_per_s": 4.6,
+        "median_same_foot_stride_m": 0.05590999169393255,
+        "median_flight_s": 0.2,
+        "double_support_fraction": 0.024,
+        "head_angular_speed_rms_rad_s": 1.4496589179470563,
+        "torso_angular_speed_rms_rad_s": 0.9516770235923617,
+        "head_angular_acceleration_rms_rad_s2": 32.95103714334367,
+        "neck_joint_rpm_rms": [
+          1.958375199019231,
+          1.0726849129093647,
+          9.199005763150181,
+          3.8824191042739007
+        ],
+        "neck_action_delta_rms_rad": 0.04611506313085556,
+        "head_position_range_m": [
+          0.004906913003105189,
+          0.0032684405231578877,
+          0.0013963891402094947
+        ],
+        "head_angular_velocity_peak_hz": 2.3000000000000003,
+        "head_angular_velocity_power_above_6hz_fraction": 0.07599875529269981,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 1.0755386037926504
+      }
+    },
+    {
+      "profile": "official_velstand",
+      "command_m_s": 0.4,
+      "fell": false,
+      "first_fall_s": null,
+      "windows": [
+        {
+          "measurement_s": [
+            2.0,
+            12.0
+          ],
+          "fell": false,
+          "mean_forward_speed_m_s": 0.16103049346301207,
+          "touchdowns_per_s": 4.5,
+          "median_same_foot_stride_m": 0.06764272467298098,
+          "median_flight_s": 0.22,
+          "double_support_fraction": 0.018,
+          "head_angular_speed_rms_rad_s": 1.5472496530485014,
+          "torso_angular_speed_rms_rad_s": 0.9311584278891019,
+          "head_angular_acceleration_rms_rad_s2": 34.171272750862435,
+          "neck_joint_rpm_rms": [
+            1.8736860478738027,
+            1.7120643055973126,
+            10.246956861756136,
+            4.104503070449348
+          ],
+          "neck_action_delta_rms_rad": 0.04993746057152748,
+          "head_position_range_m": [
+            0.005724444423078638,
+            0.003670294829714027,
+            0.001532752115635666
+          ],
+          "head_angular_velocity_peak_hz": 2.3000000000000003,
+          "head_angular_velocity_power_above_6hz_fraction": 0.06677202842408661,
+          "head_relative_to_torso_angular_speed_rms_rad_s": 1.190659112828152
+        }
+      ],
+      "measured": {
+        "measurement_s": [
+          2.0,
+          12.0
+        ],
+        "mean_forward_speed_m_s": 0.16103049346301207,
+        "touchdowns_per_s": 4.5,
+        "median_same_foot_stride_m": 0.06764272467298098,
+        "median_flight_s": 0.22,
+        "double_support_fraction": 0.018,
+        "head_angular_speed_rms_rad_s": 1.5472496530485014,
+        "torso_angular_speed_rms_rad_s": 0.9311584278891019,
+        "head_angular_acceleration_rms_rad_s2": 34.171272750862435,
+        "neck_joint_rpm_rms": [
+          1.8736860478738027,
+          1.7120643055973126,
+          10.246956861756136,
+          4.104503070449348
+        ],
+        "neck_action_delta_rms_rad": 0.04993746057152748,
+        "head_position_range_m": [
+          0.005724444423078638,
+          0.003670294829714027,
+          0.001532752115635666
+        ],
+        "head_angular_velocity_peak_hz": 2.3000000000000003,
+        "head_angular_velocity_power_above_6hz_fraction": 0.06677202842408661,
+        "head_relative_to_torso_angular_speed_rms_rad_s": 1.190659112828152
+      }
+    }
+  ],
+  "validation": [
+    "150 consecutive policy steps: exact qpos/qvel/action match with Pages Demo",
+    "Repeated metric reads do not advance observation history",
+    "8 existing gait/CPU-BAM tests passed; dedicated Probe parity test passed"
+  ],
+  "limitations": [
+    "Nominal CPU simulation, not physical hardware measurements",
+    "Three windows belong to the same deterministic rollout, not independent training/evaluation seeds",
+    "Comparing policy plus actuator packages does not isolate the cause of a difference",
+    "Official motor fit pinned; corrected common CPU friction computation, extra actuator delay disabled",
+    "Output-preset row applies only action scale/head/leg blending, not the complete official daemon"
+  ]
+}

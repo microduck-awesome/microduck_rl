@@ -8,6 +8,9 @@ import random
 MOVES = ('forward', 'backward', 'left', 'right', 'turn_left', 'turn_right',
          'curve_left', 'curve_right', 'slow_forward', 'idle')
 RECOVERIES = ('sitting', 'prone', 'supine', 'left_side', 'right_side')
+# Current policy operating target, not a measured hardware minimum. Manual
+# commands remain unrestricted and a lower user-selected speed cap wins.
+WALK_MIN_TARGET = .08
 LABELS = dict(forward='前进', backward='后退', left='向左侧移', right='向右侧移',
               turn_left='向左转', turn_right='向右转', curve_left='向左绕弯',
               curve_right='向右绕弯', slow_forward='低速前进', idle='停步站立',
@@ -107,13 +110,14 @@ class Exploration:
         self.elapsed += dt
         # Speed sliders remain the upper bounds; these are command changes,
         # never joint-action interpolation or motor/physics modifications.
-        speed *= self.fraction
+        speed_limit = speed
+        speed = min(speed_limit, max(WALK_MIN_TARGET, speed_limit*self.fraction))
         turn *= self.fraction
         twists = dict(forward=[speed,0,0], backward=[-speed,0,0],
                       left=[0,min(speed,.15),0], right=[0,-min(speed,.15),0],
                       turn_left=[0,0,turn], turn_right=[0,0,-turn],
                       curve_left=[speed,0,turn/2], curve_right=[speed,0,-turn/2],
-                      slow_forward=[min(speed,.03),0,0], idle=[0,0,0])
+                      slow_forward=[min(speed_limit,WALK_MIN_TARGET),0,0], idle=[0,0,0])
         return twists[self.action], None
 
     def status(self):

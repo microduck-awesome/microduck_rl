@@ -6,9 +6,9 @@ fourteen cases plus fixed nominal regressions. Its revised plan fingerprint and
 checkpoint dynamics revision prevent reuse of obsolete qualification.
 
 V4 makes the same training program usable from random weights, from an existing
-SC0090 expert, and after interrupting a V4 run. It adds new task IDs and leaves
-the currently running V2 walking / V3 recovery jobs on their existing recipes.
-There is no automatic launch when those jobs finish.
+SC0090 expert, and after interrupting a V4 run. V2 walking / V3 recovery recipes
+remain available. After the first continuation to 6400, current turning,
+push-stage and low-speed work is described in [the follow-up record](sc0090-turn-diagnosis.md).
 
 ## Budgets, cadence, and learning criteria are different parameters
 
@@ -167,7 +167,7 @@ launches an isolated deterministic-policy assessment. Configure cadence with
 `--agent.training-program.interval-iterations`; actual execution is aligned to
 checkpoint saves. Every seed has 128 samples per group **for each** of retention
 and challenge. Two seeds therefore provide 256 samples per group/profile.
-Recovery has seven spawn groups; walking has eleven fixed velocity commands.
+Recovery has seven spawn groups; walking has fourteen velocity/transition cases.
 DR and sensor noise remain active. Retention has no push/body command; challenge
 uses current body targets and guaranteed cardinal pushes at 3 and 5 seconds,
 then measures the final settled behavior. Failed episodes remain failures if

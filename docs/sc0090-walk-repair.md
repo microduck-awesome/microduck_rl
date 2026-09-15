@@ -5,6 +5,9 @@ The final V2 walking policy followed ordinary forward commands but stalled near
 adapter error. This update corrects numerical implementation and observation
 timing before continuing the existing experts.
 
+After the first continuation to 6400, [turning diagnosis and further training](sc0090-turn-diagnosis.md)
+compare sampled versus deterministic actions and document the low-speed operating target.
+
 ## Confirmed errors
 
 1. Pinned BAM CPU `MujocoController.update()` matched DOF-friction `efc_id`

@@ -2,23 +2,23 @@
   "schema": 1,
   "policies": {
     "walking": {
-      "file": "walking_model_5999_20919458db8d.onnx",
-      "task": "Mjlab-Velocity-Flat-MicroDuck-SC0090-V2",
-      "checkpoint": "logs/rsl_rl/sc0090_walk_v2/2026-09-15_11-27-55_optimized_mps_resume_20260915_112113/model_5999.pt",
-      "checkpoint_sha256": "36855e70cad462d09845ed48399d85cb7612b11a2077b867867ad1444e61d818",
-      "sha256": "20919458db8da2fcaed81f72c4eeddd7e34c62a52e1364b659cf906b35cfe2d1",
-      "export_source_commit": "a022de33c53784616e3607f65c7cb9b112ecf255"
+      "file": "walking_model_6400_6f0fe37e691d.onnx",
+      "task": "Mjlab-Velocity-Flat-MicroDuck-SC0090-V4",
+      "checkpoint": "logs/rsl_rl/sc0090_walk_v4/2026-09-15_18-01-30_dynamics2_walk_continuation/model_6400.pt",
+      "checkpoint_sha256": "10f69ec43d5b149cf2e74258745926a0efaf6e41602564e77b6c118c188ef421",
+      "sha256": "6f0fe37e691dc88ca40161b6a46ee62a161d22a54c581fef791965bec539b009",
+      "export_source_commit": "185caa6d7c13a3d367deaa2af7978b3f41acfe89"
     },
     "recovery": {
-      "file": "recovery_model_5999_c438797d3df7.onnx",
-      "task": "Mjlab-StandUp-Flat-MicroDuck-SC0090-V3",
-      "checkpoint": "logs/rsl_rl/sc0090_recovery_v3/2026-09-15_12-51-48_evaluated_frontier_resume_2150/model_5999.pt",
-      "checkpoint_sha256": "be273fcd3d567523c5427cd45bdd0d2ea520cf3dbcd3d30e480e529801955bf5",
-      "sha256": "c438797d3df768b02bc086bd518902ca7d07ad9020b2fd5dde12a681e55116a5",
-      "export_source_commit": "a022de33c53784616e3607f65c7cb9b112ecf255"
+      "file": "recovery_model_6400_ae8e37aedabe.onnx",
+      "task": "Mjlab-StandUp-Flat-MicroDuck-SC0090-V4",
+      "checkpoint": "logs/rsl_rl/sc0090_recovery_v4/2026-09-15_18-01-29_dynamics2_recovery_continuation/model_6400.pt",
+      "checkpoint_sha256": "061718c19b73aaffd84b029554e3af4622cb1f16b81ba7a369f1f6f010d22bb0",
+      "sha256": "ae8e37aedabe9c3b84ad32b68c0653d20a624a6e67cc37dd5656a648e33d91ff",
+      "export_source_commit": "185caa6d7c13a3d367deaa2af7978b3f41acfe89"
     }
   },
-  "exported_at": "2026-09-15T08:06:28.534077+00:00",
+  "exported_at": "2026-09-15T10:35:25.184583+00:00",
   "motor_model_sha256": "6efbe8f2c1a1f7dbb6518f8e43693d1c6e3694eee4b3f2dce009e3bba6b97466",
   "policy_hz": 50,
   "motor_max_speed_rpm": 80,

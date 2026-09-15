@@ -28,7 +28,7 @@ uv run python simulator/scripts/build_gallery.py
 The model folder above was exported with `simulator/scripts/export_models.py`,
 using the walking and recovery V4 task IDs and each continuation run's immutable
 `model_6400.pt`. Supply `--models-dir` for a different exported manifest; omitting
-it uses the local demo's default policies, which may be older. The recorder checks
+it uses the local demo's default policies (currently the same 6400 pair). The recorder checks
 model/motor hashes and derives checkpoint labels from the supplied manifest.
 `assessment.json` must describe those exact checkpoint hashes. For this release,
 the final actors were verified identical to their isolated assessment snapshots.

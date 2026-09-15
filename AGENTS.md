@@ -50,6 +50,10 @@ Never launch a long run without one.
   gate + Hub upload. Contract = `docs/policy-manifest.md` in the `microduck` repo; only
   constant-command episodic/perpetual policies are publishable (phase/posture-flag are the set's).
 - `scripts/` — export wrapper, infer, sim2real comparison, wandb helpers.
+- `simulator/` — local keyboard web demo, integrated from the official HF Space.
+  Its Node dependencies and browser rendering are separate from training imports.
+  Reuse SC0090 BAM and the normalized exporter; HTTP callbacks must never mutate
+  live MuJoCo state. The simulator's main thread owns physics and policy inference.
 - `tests/` — cfg-invariant and mdp-function regression tests (CPU, no GPU needed).
 
 ## Invariants — do not break these

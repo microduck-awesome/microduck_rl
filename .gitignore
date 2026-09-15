@@ -34,6 +34,10 @@ claude_experiments/
 
 backup_onnx/
 
+# Small, pinned policies shipped with the local simulator.
+!simulator/models/*.onnx
+!simulator/app/public/policies/*.onnx
+
 
 logdir/.claude/
 logdir/

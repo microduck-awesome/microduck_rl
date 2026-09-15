@@ -1,0 +1,11 @@
+.env
+
+# Local development and SC0090 runtime artifacts
+app/node_modules/
+app/dist/
+__pycache__/
+.pytest_cache/
+logs/
+models/.export-*/
+models/.export.lock
+models/cache/

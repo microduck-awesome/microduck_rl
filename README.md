@@ -1,5 +1,9 @@
 > SC0090 12 V variant: [walking and recovery videos](https://microduck-awesome.github.io/microduck_rl/), [motor model and training setup](docs/sc0090-training.md), and [failure-focused continuation](docs/sc0090-failure-finetune.md). The videos show fixed baseline checkpoints, including failed attempts; they are simulation recordings.
 
+> Local keyboard demo: run `./scripts/play_sc0090_local.sh` and open http://127.0.0.1:8080/.
+> It uses the trained SC0090 walking/recovery policies, with the official web simulator's 3D robot.
+> See [simulator setup and controls](simulator/README.md) for the first build, remote access and model updates.
+
 # Microduck RL
 
 <img width="2215" height="884" alt="image" src="https://github.com/user-attachments/assets/5db7cc83-b3ce-4f7c-83f0-0572a63baed7" />

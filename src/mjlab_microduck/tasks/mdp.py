@@ -7491,6 +7491,36 @@ def sc0090_feet_air_time(env, sensor_name, threshold_min=.075, threshold_max=.3,
     return reward * (speed / .2).clamp(.2, 1.0)
 
 
+def sc0090_remove_origin_markers(spec):
+    """Remove terrain's visual origin markers before compiling batched worlds.
+
+    TerrainEntity retains the actual origins in its own tensor. These group-4
+    sites only draw markers in the viewer; with N worlds, leaving N markers in
+    the shared model causes N*N redundant site transforms on every physics step.
+    Match the terrain's exact naming/group convention, retaining robot sites.
+    """
+    import re
+    for site in list(spec.sites):
+        if re.fullmatch(r"env_origin_\d+", site.name) and site.group == 4:
+            spec.delete(site)
+
+
+@requires_model_fields(
+    "actuator_acc0", "actuator_biasprm", "cam_pos0", "cam_poscom0", "cam_mat0",
+    "light_pos0", "light_poscom0", "light_dir0",
+)
+def sc0090_cache_reset_constants(env, env_ids=None, enabled=True):
+    """Reuse the unchanged Warp recompute pipeline after reset-time DR."""
+    from mjlab_microduck.sim.recompute import (
+        prepare_recompute_storage, install_recompute_graph_cache,
+    )
+    # Correct shared derived storage in both reference and optimized execution;
+    # disabling graph replay must never reintroduce cross-world write races.
+    prepare_recompute_storage(env.sim)
+    if enabled:
+        install_recompute_graph_cache(env.sim)
+
+
 class SC0090RecoveryState:
     """Episode buffers plus checkpointable success-driven curriculum statistics."""
 

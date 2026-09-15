@@ -7,7 +7,7 @@ distribution and objectives, not motor physics or the runtime observation ABI.
 from copy import deepcopy
 from dataclasses import fields
 
-from mjlab.managers import CurriculumTermCfg, RewardTermCfg
+from mjlab.managers import CurriculumTermCfg, EventTermCfg, RewardTermCfg
 
 from . import mdp
 from .microduck_velocity_env_cfg import make_microduck_velocity_env_cfg, MicroduckRlCfg
@@ -29,9 +29,25 @@ def _pin_inherited(cfg):
                 cfg.events[p["event_name"]].params["ranges"] = (-r, r)
 
 
+def _enable_execution_optimizations(cfg):
+    # Base factories reference shared robot constants. Own the entity before
+    # changing execution flags so the reference tasks remain reproducible.
+    cfg.scene.entities["robot"] = deepcopy(cfg.scene.entities["robot"])
+    for actuator in cfg.scene.entities["robot"].articulation.actuators:
+        actuator.fast_friction_writes = True
+    cfg.events["cache_reset_constants"] = EventTermCfg(
+        func=mdp.sc0090_cache_reset_constants, mode="startup",
+    )
+    # Flat V2 tasks have no existing spec callback. Preserve any callback on
+    # other configurations (e.g. rough terrain contact adjustments).
+    if cfg.scene.spec_fn is None:
+        cfg.scene.spec_fn = mdp.sc0090_remove_origin_markers
+
+
 def make_sc0090_walk_v2_env_cfg(play=False, rough=False):
     cfg = make_microduck_velocity_env_cfg(play=play, rough=rough)
     _pin_inherited(cfg)
+    _enable_execution_optimizations(cfg)
     cfg.curriculum.pop("standing_envs", None)
     cfg.curriculum.pop("action_rate_weight", None)
     source = cfg.commands["twist"]
@@ -71,6 +87,7 @@ def make_sc0090_walk_v2_env_cfg(play=False, rough=False):
 def make_sc0090_recovery_v2_env_cfg(play=False, rough=False):
     cfg = make_microduck_standup_env_cfg(play=play, rough=rough)
     _pin_inherited(cfg)
+    _enable_execution_optimizations(cfg)
     # Preserve learned head/DR conditions; replace time-driven difficulty and
     # polishing with measured success. Never relax the final standing target.
     cfg.curriculum = {k: v for k, v in cfg.curriculum.items()

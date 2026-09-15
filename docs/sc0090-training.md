@@ -175,3 +175,92 @@ state, with zero `nan_state` terminations. Device use was 99% and 24,603 MiB.
 See `logs/sc0090_setup/training_start_verified.json` for this dated observation;
 the live logs are authoritative for subsequent progress. Training has started,
 and learned walking/recovery performance still requires later evaluation.
+
+## V2 execution optimization and accuracy checks (2026-09-15)
+
+The flat SC0090 V2 walking/recovery tasks remove the terrain's visualization-only
+`env_origin_*` sites before compilation. Terrain origin tensors and all seven
+robot sites remain intact. With 8192 environments, the old model had 8199 sites,
+so each site-transform launch processed 67,166,208 world/site pairs. The new
+model processes 57,344 pairs. This also eliminates 3 GiB of redundant site
+position/matrix buffers per 8192-environment job. Existing custom scene callbacks
+on other configurations are preserved.
+
+The tasks also cache the damping scalar on the GPU and reuse a CUDA Graph for
+the `set_const_0` part of reset-time recomputation.
+The actuator still writes friction and damping every physics substep and uses
+the original BAM calculations. Changes in damping value, device or dtype
+refresh the scalar. Model arrays are looked up on each write, including after
+field expansion. The original task factories do not enable these optimizations.
+
+The graph runs the pinned MuJoCo Warp function, with its original kernels,
+precision and ordering. `set_const_fixed` remains outside capture because this
+version reads gravity-compensation flags on the CPU. Recreating mjlab's graphs
+also invalidates the recompute cache, so replacement arrays cannot leave stale
+captured pointers. CPU/devices without CUDA Graph support retain eager execution.
+
+Accuracy checks exposed a separate storage issue in the original pipeline:
+`actuator_acc0` had shape `(1, 14)` and a zero world stride even with 64 worlds;
+`stat.meaninertia` was also a singleton. Reset-time kernels write different
+values for randomized worlds, so these allocations allowed cross-world write
+races. Mean inertia participates in the solver's convergence scaling. V2 now
+allocates independent per-world storage for these values and the remaining
+camera/light/actuator derived fields. This correctness fix remains active when
+graph replay is disabled. It corrects storage ownership, without changing the
+motor fit, 80 rpm limit, time step, observations, rewards or curriculum.
+
+Validation after the storage fix:
+
+- **260 tests passed, 1 skipped**. Motor torques and friction/damping writes
+  match the original computation exactly, including changed damping values,
+  interleaved passive DOFs, partial resets and replacement storage.
+- Compiling each real robot with and without the origin markers preserves all
+  tested body/joint/DOF/geometry/actuator parameters and sensor references. Across
+  100 CPU physics steps per model, qpos/qvel/qacc, actuator/contact forces,
+  sensor data and every remaining site's position/matrix are exactly equal.
+  The environment origin tensor also remains exactly equal.
+- The serial-chain recompute fixture matches exactly for all three recompute
+  levels, changed model parameters and graph invalidation after expansion.
+- The real walking and recovery models exercise full and alternating partial
+  resets with domain randomization. Physical inputs/states match exactly.
+  Derived quantities use the same `rtol=1e-6, atol=1e-7` bound for both
+  eager-vs-eager and eager-vs-graph comparisons: the original branching-tree
+  kernels already contain nondeterministic FP32 atomic sums. This is not a
+  claim of bitwise-identical full training trajectories.
+- Both tasks completed 64-environment, 5-iteration continuation smoke runs.
+  Every saved checkpoint tensor was finite; optimizer state and the recovery
+  curriculum were preserved, and each environment counter advanced by 120.
+- Normalized ONNX exports retained the 61-input/14-output contract. Compared
+  with full FP32 policy inference, maximum absolute errors were `5.97e-7`
+  for walking and `9.54e-7` for recovery. The comparison temporarily disables
+  TF32 only for validation, then restores the original training precision.
+
+`scripts/benchmark_sc0090.py` runs the real PPO loop in a separate process and
+saves only to a new output directory. Variants `reference`, `writes`, `graphs`,
+`sites` and `optimized` isolate execution changes; **all include the storage fix**.
+Use the same checkpoint, seed and environment count, and bracket optimized
+runs with repeated reference runs. The reported wall time includes logging,
+synchronization and any intervening checkpoint write. Discard warmup, compare
+steps/s, and do not add isolated-task throughput to claim concurrent throughput.
+
+Final single-process measurements used 8192 environments, 3 warmup iterations
+and 12 measured iterations per fresh process, loading checkpoint 1050 for
+walking and 750 for recovery:
+
+| Task | Reference s/iteration | Markers removed only | All optimizations | Throughput gain |
+| --- | ---: | ---: | ---: | ---: |
+| Walking | 2.561 | 2.082 | 1.956 | 30.9% |
+| Recovery | 2.929 | 2.361 | 2.320 | 26.2% |
+
+Earlier repeated reference medians were 2.549/2.553 s for walking and
+2.957/2.918 s for recovery. Marker removal provides most of the improvement;
+graph replay and cached writes provide additional benefit after that bottleneck
+is removed. These are execution benchmarks, not learned-skill evaluations.
+
+Local validation artifacts are under `logs/sc0090_setup/optimization/`;
+`logs/sc0090_setup/optimization_full_tests_sites.log` contains the complete test result.
+The original production processes are deliberately paused at the user's
+request. `logs/sc0090_setup/optimization_pause.json` records their identities,
+last logged iterations and checkpoint hashes. Existing processes have already
+loaded the old code; applying the update requires checkpoint continuation in
+new processes, rather than simply sending SIGCONT to the paused processes.

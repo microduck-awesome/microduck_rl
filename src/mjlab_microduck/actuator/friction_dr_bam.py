@@ -28,6 +28,23 @@ class FrictionDRBamActuator(SC0090BamActuator):
         # buffer every physics substep when its output is exactly the input.
         if self._bam_model.command_delay.value == 0.0:
             self._identified_delay = None
+        self._damping_scalar = None
+        self._damping_value = None
+
+    def _write_frictions(self, frictionloss: torch.Tensor, damping: float) -> None:
+        if self.cfg.fast_friction_writes:
+            # Assigning a Python scalar through CUDA advanced indexing makes
+            # PyTorch copy a host scalar and synchronize the stream each time.
+            # Keep the value on the device. Still write every substep, so DR,
+            # partial resets and replacement model arrays retain BAM semantics.
+            if (self._damping_scalar is None or self._damping_value != damping
+                    or self._damping_scalar.device != frictionloss.device
+                    or self._damping_scalar.dtype != frictionloss.dtype):
+                self._damping_scalar = torch.tensor(
+                    damping, device=frictionloss.device, dtype=frictionloss.dtype)
+                self._damping_value = damping
+            damping = self._damping_scalar
+        super()._write_frictions(frictionloss, damping)
 
     def set_friction_scale(self, env_ids, friction_scale: torch.Tensor) -> None:
         self.friction_scale[env_ids] = friction_scale
@@ -41,6 +58,7 @@ class FrictionDRBamActuatorCfg(SC0090BamActuatorCfg):
     """Drop-in for BamActuatorCfg that builds a friction-DR-capable actuator."""
 
     max_speed_rpm: float = SC0090_MAX_SPEED_RPM
+    fast_friction_writes: bool = False
 
     def __post_init__(self):
         super().__post_init__()

@@ -30,8 +30,22 @@ class FrictionDRBamActuator(SC0090BamActuator):
             self._identified_delay = None
         self._damping_scalar = None
         self._damping_value = None
+        self._compute_graph = None
+        self._graph_compute_supported = False  # Set by the V2 startup event.
+        self._capture_friction = False
+
+    def compute(self, cmd):
+        if self.cfg.graph_compute and self._graph_compute_supported:
+            from .compute_graph import ActuatorComputeGraph
+            if self._compute_graph is None:
+                self._compute_graph = ActuatorComputeGraph(self)
+            return self._compute_graph.compute(cmd, super().compute)
+        return super().compute(cmd)
 
     def _write_frictions(self, frictionloss: torch.Tensor, damping: float) -> None:
+        if getattr(self, "_capture_friction", False):
+            self._captured_friction = frictionloss
+            return
         if self.cfg.fast_friction_writes:
             # Assigning a Python scalar through CUDA advanced indexing makes
             # PyTorch copy a host scalar and synchronize the stream each time.
@@ -46,6 +60,17 @@ class FrictionDRBamActuator(SC0090BamActuator):
             damping = self._damping_scalar
         super()._write_frictions(frictionloss, damping)
 
+    def _dof_friction_force(self, nv: int) -> torch.Tensor:
+        if self.cfg.fast_friction_force:
+            efc = self._data.efc
+            types, ids, forces, counts = (
+                self._as_tensor(x) for x in (efc.type, efc.id, efc.force, self._data.nefc))
+            if (forces.is_cuda and forces.dtype == torch.float32
+                    and types.dtype == ids.dtype == counts.dtype == torch.int32):
+                from .friction_force import friction_force
+                return friction_force(types, ids, forces, counts, nv)
+        return super()._dof_friction_force(nv)
+
     def set_friction_scale(self, env_ids, friction_scale: torch.Tensor) -> None:
         self.friction_scale[env_ids] = friction_scale
 
@@ -59,6 +84,8 @@ class FrictionDRBamActuatorCfg(SC0090BamActuatorCfg):
 
     max_speed_rpm: float = SC0090_MAX_SPEED_RPM
     fast_friction_writes: bool = False
+    fast_friction_force: bool = False
+    graph_compute: bool = False
 
     def __post_init__(self):
         super().__post_init__()

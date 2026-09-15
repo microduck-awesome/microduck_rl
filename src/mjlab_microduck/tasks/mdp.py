@@ -7517,6 +7517,8 @@ def sc0090_cache_reset_constants(env, env_ids=None, enabled=True):
     # Correct shared derived storage in both reference and optimized execution;
     # disabling graph replay must never reintroduce cross-world write races.
     prepare_recompute_storage(env.sim)
+    for actuator in env.scene["robot"].actuators:
+        actuator._graph_compute_supported = env.sim.use_cuda_graph
     if enabled:
         install_recompute_graph_cache(env.sim)
 

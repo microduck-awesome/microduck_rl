@@ -35,6 +35,8 @@ def _enable_execution_optimizations(cfg):
     cfg.scene.entities["robot"] = deepcopy(cfg.scene.entities["robot"])
     for actuator in cfg.scene.entities["robot"].articulation.actuators:
         actuator.fast_friction_writes = True
+        actuator.fast_friction_force = True
+        actuator.graph_compute = True
     cfg.events["cache_reset_constants"] = EventTermCfg(
         func=mdp.sc0090_cache_reset_constants, mode="startup",
     )

@@ -29,7 +29,7 @@ def main():
     parser.add_argument("task", choices=("walk", "recovery"))
     parser.add_argument("--checkpoint", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--variant", choices=("reference", "writes", "graphs", "sites", "optimized"),
+    parser.add_argument("--variant", choices=("reference", "writes", "graphs", "sites", "previous", "optimized"),
                         default="optimized")
     parser.add_argument("--envs", type=int, default=8192)
     parser.add_argument("--warmup", type=int, default=3)
@@ -50,11 +50,13 @@ def main():
     cfg = load_env_cfg(task)
     cfg.scene.num_envs = args.envs
     cfg.seed = 42
-    if args.variant not in ("sites", "optimized"):
+    if args.variant not in ("sites", "optimized", "previous"):
         cfg.scene.spec_fn = None
     for actuator in cfg.scene.entities["robot"].articulation.actuators:
-        actuator.fast_friction_writes = args.variant in ("writes", "optimized")
-    cfg.events["cache_reset_constants"].params["enabled"] = args.variant in ("graphs", "optimized")
+        actuator.fast_friction_writes = args.variant in ("writes", "optimized", "previous")
+        actuator.fast_friction_force = args.variant == "optimized"
+        actuator.graph_compute = args.variant == "optimized"
+    cfg.events["cache_reset_constants"].params["enabled"] = args.variant in ("graphs", "optimized", "previous")
     env = ManagerBasedRlEnv(cfg=cfg, device="cuda:0")
     try:
         vec = RslRlVecEnvWrapper(env)
@@ -94,6 +96,8 @@ def main():
             "model_site_count": env.sim.mj_model.nsite,
             "per_world_recompute_storage": True,
             "recompute_graphs": [] if cache is None else [level.name for level in cache.graphs],
+            "actuator_graph_captures": [0 if act._compute_graph is None else act._compute_graph.capture_count
+                                        for act in env.scene["robot"].actuators],
         }
         if args.export:
             import onnxruntime as ort

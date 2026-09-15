@@ -264,3 +264,107 @@ request. `logs/sc0090_setup/optimization_pause.json` records their identities,
 last logged iterations and checkpoint hashes. Existing processes have already
 loaded the old code; applying the update requires checkpoint continuation in
 new processes, rather than simply sending SIGCONT to the paused processes.
+
+### Further optimization after local checkpoint `5188aa3`
+
+The first validated implementation was committed locally before continuing.
+The next changes preserve the motor equations, solver settings, PPO batch size,
+normalization and curricula:
+
+- `fast_friction_force` extracts active DOF-friction rows with one Warp kernel.
+  It keeps the original `row < nefc` and constraint-type mask, accumulates into
+  the actual DOF indices and skips inactive zero contributions. Stale invalid
+  IDs and NaN forces remain ignored. Active invalid IDs set a device error
+  flag checked by `torch._assert_async`, preserving asynchronous failure instead
+  of allowing an out-of-bounds write. Other dtypes and CPU retain BAM's path.
+- `graph_compute` records the original SC0090 tensor program. It does not use
+  compiler fusion or change floating-point settings. Commands and previous duty
+  are copied into stable buffers; current DR tensors are read each replay.
+  Changes to storage, tensor layout/dtype or scalar model parameters invalidate
+  the graph. Full reset follows the original no-previous-duty branch; partial
+  reset's updated duty is copied before replay. Friction/damping writes remain
+  on the original bridge stream, outside the graph. CPU, calls outside training's
+  `inference_mode`, autograd and simulations without CUDA graph support retain
+  the eager path. Mode-switch tests cover this fallback; capturing across modes
+  exposes an inference-tensor restriction in PyTorch 2.9's graph RNG bookkeeping.
+- Both flags default off in the actuator and are enabled by the V2 factories.
+  The benchmark's `previous` variant reproduces the execution settings committed
+  in `5188aa3`; `optimized` includes the new motor optimizations. Graph capture
+  counts are recorded so unintended recapture on every reset is visible.
+
+The new tests compare full motor torque, shared-supply voltage, firmware gains,
+duty, friction and damping against the original implementation with **zero
+numerical tolerance**, including the 80 rpm boundaries, near-zero velocity,
+full/partial resets, in-place randomization, replacement storage and changed
+scalar parameters. Constraint extraction tests also cover noncontiguous storage,
+ignored NaNs/invalid IDs and repeated indices with exactly representable sums.
+A separate kernel test verifies that invalid active IDs cannot write outside the
+output array. Parallel floating-point summation retains the limits described in
+the preceding validation section.
+
+The final motor regression run passed **266 tests, 1 skipped**. The mode-switch
+checks also verify that an independent CUDA capture can follow motor training:
+CUDA graph bookkeeping is allocated with inference mode disabled, avoiding
+inference-only tensors in PyTorch's shared generator state. This changes tensor
+bookkeeping, not the recorded arithmetic or training's numerical precision.
+Full output: `logs/sc0090_setup/optimization/motor_final_full_tests.log`.
+
+End-to-end measurements, each task at 8192 environments × 24 steps/iteration:
+
+| Execution | Walking s/iteration | Recovery s/iteration | Combined steps/s |
+| --- | ---: | ---: | ---: |
+| `5188aa3`, two concurrent processes | 3.412 | 4.712 | 99,355 |
+| New motor execution, concurrent | 3.107 | 4.538 | 106,606 |
+| New motor execution + MPS | 2.370 | 2.912 | 150,488 |
+| MPS repeat in a fresh session | 2.398 | 2.959 | 148,438 |
+
+Both processes warmed up for 4 iterations and ran 16 measured iterations.
+Only complete iteration intervals while **both** processes were past warmup
+and still running are included; the MPS comparisons have 15 walking and 12
+recovery samples each. Each motor graph was captured once. The repeated MPS
+result is **49–51% faster than `5188aa3` in concurrent throughput**, and 39–41%
+faster than the new motor execution without MPS. These gains must not be added
+to the earlier isolated-task percentages.
+
+Single-process results with the new motor path were 1.796 s walking and
+2.181 s recovery. Fresh `previous` controls measured 1.980/2.373 s, giving
+10.2%/8.8% additional single-process throughput. Relative to the original
+corrected-storage reference, the gains are 42.6%/34.3%.
+
+MPS allows kernels from the two processes to execute concurrently while
+retaining separate GPU address spaces. See NVIDIA's
+[MPS architecture documentation](https://docs.nvidia.com/deploy/mps/architecture.html).
+This experiment used a private per-user MPS pipe, the existing CUDA compatibility
+libraries, default MPS resource allocation, 8 CPU threads per worker and CPU
+affinities `0-15` / `16-31`. GPU compute mode and the system driver were unchanged.
+The diagnostic MPS daemons were stopped after their children exited.
+
+`scripts/benchmark_sc0090_pair.py` reproduces the comparison, creates a fresh
+output directory and supervises only its own children. `--mps` manages a private
+MPS daemon; without that flag, child processes explicitly bypass inherited MPS
+settings. Example (inherit the same `LD_LIBRARY_PATH` used by local training):
+
+```bash
+.venv/bin/python scripts/benchmark_sc0090_pair.py \
+  --walk-checkpoint "$SC0090_WALK_CHECKPOINT" \
+  --recovery-checkpoint "$SC0090_RECOVERY_CHECKPOINT" \
+  --output logs/sc0090_mps_comparison \
+  --walk-cpus 0-15 --recovery-cpus 16-31 --mps
+```
+
+MPS passed all **19 execution/accuracy tests**, followed by both 64-environment,
+5-iteration continuation runs and normalized ONNX exports. ONNX maximum absolute
+errors versus FP32 inference were `4.77e-7` / `1.91e-6`. The environment counters
+advanced by 120, optimizer state was retained, recovery curriculum remained at
+stage 0, and all diagnostic checkpoint tensors were finite. MPS is a scheduling
+optimization, not evidence that long training will converge or that recovery
+quality has improved.
+
+The original production PIDs **2080438 / 2080439 remain stopped**, and checkpoint
+1050 / 750 hashes are unchanged. Resume requires new processes loading these
+checkpoints; to use MPS, both new processes must inherit the same private MPS
+pipe. No production run was resumed during optimization.
+
+Final local evidence: `logs/sc0090_setup/optimization/motor_results.json`,
+`motor_report.md`, `motor_validation_manifest.json`, `motor_final_full_tests.log`,
+`motor_pair_mps_v2_tests.log`, `motor_pair_mps_v2_*` and `mps_repeat/`.

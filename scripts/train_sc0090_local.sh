@@ -3,13 +3,14 @@ set -euo pipefail
 
 REPO_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
 cd "$REPO_DIR"
-kind=${1:?Usage: train_sc0090_local.sh walk|recovery|walk_v2|recovery_v2 [train arguments...]}
+kind=${1:?Usage: train_sc0090_local.sh walk|recovery|walk_v2|recovery_v2|recovery_v3 [train arguments...]}
 shift
 case "$kind" in
   walk) task=Mjlab-Velocity-Flat-MicroDuck ;;
   recovery) task=Mjlab-StandUp-Flat-MicroDuck ;;
   walk_v2) task=Mjlab-Velocity-Flat-MicroDuck-SC0090-V2 ;;
   recovery_v2) task=Mjlab-StandUp-Flat-MicroDuck-SC0090-V2 ;;
+  recovery_v3) task=Mjlab-StandUp-Flat-MicroDuck-SC0090-V3 ;;
   *) echo "Unknown task: $kind" >&2; exit 2 ;;
 esac
 

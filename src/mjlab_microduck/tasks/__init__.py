@@ -106,6 +106,17 @@ from .microduck_sc0090_finetune_env_cfg import (
     make_sc0090_walk_v2_env_cfg, make_sc0090_recovery_v2_env_cfg,
     SC0090WalkV2RlCfg, SC0090RecoveryV2RlCfg,
 )
+from .microduck_sc0090_recovery_v3_env_cfg import (
+    make_sc0090_recovery_v3_env_cfg, SC0090RecoveryV3RlCfg,
+)
+from .recovery_eval_runner import SC0090RecoveryEvalRunner
+
+register_mjlab_task(
+    task_id="Mjlab-StandUp-Flat-MicroDuck-SC0090-V3",
+    env_cfg=make_sc0090_recovery_v3_env_cfg(),
+    play_env_cfg=make_sc0090_recovery_v3_env_cfg(play=True),
+    rl_cfg=SC0090RecoveryV3RlCfg, runner_cls=SC0090RecoveryEvalRunner,
+)
 
 for task_id, factory, rl_cfg in (
     ("Mjlab-Velocity-Flat-MicroDuck-SC0090-V2", make_sc0090_walk_v2_env_cfg, SC0090WalkV2RlCfg),

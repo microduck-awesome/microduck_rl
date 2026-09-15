@@ -119,3 +119,76 @@ Use the same fixed-command/spawn evaluation as the baseline for comparisons;
 do not infer learned skills from total reward or from curriculum stage alone.
 The archived evaluator accepts `--checkpoint` and `--output-dir`; use a fresh
 output directory so the original videos and rollout records remain reproducible.
+
+## Recovery V3: evaluated frontier and neck-limit penalty
+
+Task: `Mjlab-StandUp-Flat-MicroDuck-SC0090-V3` (`recovery_v3` in the local launcher).
+The V2 iteration-1900 diagnostic found deterministic success on standing/sitting/
+prone/frontier at 16/16, 16/16, 15/16, 16/16 with neutral commands. With sampled
+actions the same policy reached the posture but did not hold the strict stability
+condition for 0.5 s. Consequently the stochastic training gate stayed at stage 0.
+Both side starts and full supine remained 0/16. Doubling returned torque without
+retraining also gave 0/16 on these hard poses; that counterfactual does not prove
+physical feasibility or establish real motor torque requirements.
+
+V3 retains the V2 motor, 80 rpm active-drive limit, observation/action layout,
+DR, reset mixture, PPO and learned exploration standard deviations. It changes:
+
+- Every 100 training iterations (at a checkpoint save), a separate process tests
+  a frozen deterministic policy for 8 s. Each of two fixed seeds has 128 episodes
+  for **each** of seven initial pose groups. Training noise, DR, commands and
+  pushes remain enabled. This is stricter than the neutral-command diagnostic.
+- Each seed must pass ≥70% on standing, sitting, prone and the current frontier.
+  At least 256 frontier trials and 2400 training steps since the previous promotion
+  are required. One assessment can advance only one frontier. The final stage
+  requires both sides and full supine to pass as well before extra smoothing.
+- Stochastic training success stays visible, but cannot advance or polish V3.
+  Checkpoints preserve evaluation history, frontier and promotion time. Failed,
+  incomplete, stale or mismatched assessments cannot promote. Assessment failures
+  are written to `evaluations/iteration_XXXXXX/error.json` and the training console.
+- A `neck_pitch` physical-position limit-proximity cost has margin 0.20 rad and
+  weight −2.0 (zero in the interior, −0.4 at either hard limit before timestep
+  weighting). This targets the observed saturated neck stop. Command ranges and
+  motor strength stay unchanged.
+
+The evaluator receives the exact constructor configurations including CLI
+overrides, with checkpoint/config SHA256 binding. It loads trusted local inputs
+only. Its process cannot update PPO, observation normalizers, environment state
+or RNG in the training process. It bypasses a shared MPS server so timeout cleanup
+does not terminate an MPS client. V3 currently rejects distributed training; a
+single training GPU must have room for the temporary 896-environment evaluator.
+The evaluation timeout defaults to 240 s. Retain raw per-seed reports when
+interpreting advancement; stage alone is not proof of full recovery.
+
+Resume from the saved V2 iteration 2150 with actor, critic, optimizer moments,
+normalizers and step counter intact. Do **not** set `MICRODUCK_WARM_START` here.
+The optimizer LR from that checkpoint is passed explicitly because RSL restores
+the optimizer LR without restoring its separate adaptive LR scalar. The local
+copy in `source_v2` has SHA256 provenance in
+`logs/sc0090_setup/recovery_v3_transition/plan.json`.
+
+```bash
+scripts/train_sc0090_local.sh recovery_v3 \
+  --env.scene.num-envs 64 --agent.max-iterations 5 \
+  --agent.resume True --agent.load-run source_v2 \
+  --agent.load-checkpoint model_2150.pt \
+  --agent.algorithm.learning-rate 0.00011390625000000005
+# After the smoke passes, use 8192 environments and 3850 remaining iterations
+# for the existing total budget of 6000. Keep checkpoint save interval at 50.
+```
+
+For later V3 resumes, load its actual run/checkpoint and current optimizer LR.
+The restored evaluation history prevents immediately repeating an assessment;
+it also prevents resetting the minimum training dwell between promotions.
+
+Validation on the local L40: 296 tests passed, 1 skipped, including exact motor
+graph/reset comparisons and 30 V3 gate/config/restore regressions. V2→V3 and
+V3→V3 both passed 64-environment × 5-iteration smokes. In each, optimizer steps
+increased by 100, normalizer count by 7680 and training counter by 120, with
+finite 61→14 ONNX inference. Across an evaluation the actor, critic and optimizer
+were bitwise unchanged. The resumed V3 checkpoint retained stage/history and did
+not repeat evaluation. The first V3 smoke assessment took 39.3 s: standing
+256/256, sitting 255/256, prone 254/256, frontier 256/256; each side and full
+supine 0/256. This validates stage 0→1, not the still-unlearned hard recoveries.
+Artifacts: `logs/sc0090_setup/recovery_v3_transition/smoke_validation.json` and
+`full_tests.log`.

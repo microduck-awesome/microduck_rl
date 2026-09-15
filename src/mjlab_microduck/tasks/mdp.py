@@ -7567,14 +7567,19 @@ def sc0090_reset_recovery(env, env_ids, asset_cfg=_DEFAULT_ASSET_CFG,
                           sitting_z_min=.05, sitting_z_max=.09,
                           standing_z_min=.11, standing_z_max=.12,
                           sitting_joint_overrides=None, sitting_joint_noise_std=.12,
-                          sitting_tilt_max=math.radians(10)):
+                          sitting_tilt_max=math.radians(10), evaluation_buckets=False):
     if env_ids is None:
         env_ids = torch.arange(env.num_envs, device=env.device)
     state = _sc0090_recovery_state(env)
     # Rehearse known skills (25%); explore a reachable roll frontier (40%);
     # always train actual left/right/full-back failures (35%).
-    bucket = torch.multinomial(torch.tensor((.05, .10, .10, .40, .10, .10, .15),
-                                            device=env.device), len(env_ids), True)
+    if evaluation_buckets:
+        if env.num_envs % len(SC0090_RECOVERY_BUCKETS):
+            raise ValueError("Recovery evaluation needs equal-sized pose groups")
+        bucket = env_ids // (env.num_envs // len(SC0090_RECOVERY_BUCKETS))
+    else:
+        bucket = torch.multinomial(torch.tensor((.05, .10, .10, .40, .10, .10, .15),
+                                                device=env.device), len(env_ids), True)
     state.bucket[env_ids] = bucket
     state.spawn_stage[env_ids] = state.stage
     state.hold[env_ids] = 0
@@ -7651,7 +7656,8 @@ def sc0090_stable_standing(env):
 
 
 def sc0090_recovery_curriculum(env, env_ids, min_frontier_trials=256,
-                                min_stage_steps=2400, success_threshold=.7):
+                                min_stage_steps=2400, success_threshold=.7,
+                                advance_on_training=True):
     state = _sc0090_recovery_state(env)
     if env_ids is None:
         env_ids = slice(None)
@@ -7670,9 +7676,10 @@ def sc0090_recovery_curriculum(env, env_ids, min_frontier_trials=256,
     if (step - state.last_assessment_step >= min_stage_steps
             and state.trials[3] >= min_frontier_trials):
         state.rates = [w / max(n, 1) for w, n in zip(state.wins, state.trials)]
-        if state.rates[3] >= success_threshold and state.stage < len(SC0090_ROLL_FRONTIERS)-1:
+        if (advance_on_training and state.rates[3] >= success_threshold
+                and state.stage < len(SC0090_ROLL_FRONTIERS)-1):
             state.stage += 1
-        elif (state.stage == len(SC0090_ROLL_FRONTIERS)-1
+        elif (advance_on_training and state.stage == len(SC0090_ROLL_FRONTIERS)-1
               and min(state.trials[i] for i in (4, 5, 6)) >= 64
               and min(state.rates[i] for i in (3, 4, 5, 6)) >= success_threshold):
             state.polish = True
@@ -7688,3 +7695,74 @@ def sc0090_recovery_curriculum(env, env_ids, min_frontier_trials=256,
             "polish": float(state.polish),
             **{f"success_{name}": state.rates[i] for i, name in enumerate(SC0090_RECOVERY_BUCKETS)},
             **{f"trials_{name}": state.total_trials[i] for i, name in enumerate(SC0090_RECOVERY_BUCKETS)}}
+
+
+def sc0090_apply_recovery_evaluation(env, report, request, min_stage_steps=2400,
+                                    success_threshold=.7):
+    """Validate an isolated assessment before changing any curriculum state.
+
+    Each seed must retain the three easy skills AND pass the current frontier.
+    Late/duplicate results, mismatched checkpoints and incomplete episodes
+    cannot promote. Training's stochastic success remains a separate metric.
+    """
+    state = _sc0090_recovery_state(env)
+    history = getattr(env, "_sc0090_eval_history", {})
+    for key in ("schema", "checkpoint_sha256", "config_sha256", "iteration", "stage",
+                "seeds", "samples_per_group", "duration_s", "deterministic"):
+        if report.get(key) != request[key]:
+            raise ValueError(f"Recovery assessment mismatch: {key}")
+    if (report["schema"] != 1 or report["deterministic"] is not True
+            or report["stage"] != state.stage or report["duration_s"] != 8.0
+            or len(set(report["seeds"])) != len(report["seeds"])
+            or len(report["seeds"]) < 2):
+        raise ValueError("Invalid recovery assessment protocol/stage")
+    if report["iteration"] <= history.get("last_iteration", -1):
+        raise ValueError("Recovery assessment was already consumed")
+    cases = report.get("cases", [])
+    if len(cases) != len(report["seeds"]):
+        raise ValueError("Missing recovery evaluation seeds")
+    totals = {name: [0, 0] for name in SC0090_RECOVERY_BUCKETS}
+    per_seed = []
+    for seed, case in zip(report["seeds"], cases):
+        if case.get("seed") != seed or case.get("finite") is not True:
+            raise ValueError("Invalid/nonfinite recovery evaluation")
+        groups = case.get("groups", {})
+        if set(groups) != set(totals):
+            raise ValueError("Missing recovery evaluation poses")
+        rates = {}
+        for name, counts in groups.items():
+            trials, wins = counts.get("trials"), counts.get("wins")
+            if (type(trials) is not int or type(wins) is not int
+                    or trials != report["samples_per_group"] or trials < 1
+                    or not 0 <= wins <= trials):
+                raise ValueError("Invalid recovery trial/win counts")
+            totals[name][0] += trials
+            totals[name][1] += wins
+            rates[name] = wins / trials
+        per_seed.append(rates)
+    eligible = (totals["frontier"][0] >= 256
+                and env.common_step_counter - history.get("last_promotion_step", 0) >= min_stage_steps)
+    easy_and_frontier = ("standing", "sitting", "prone", "frontier")
+    mastered = eligible and all(r[name] >= success_threshold
+                               for r in per_seed for name in easy_and_frontier)
+    promoted = mastered and state.stage < len(SC0090_ROLL_FRONTIERS) - 1
+    polished = (mastered and not promoted
+                and all(r[name] >= success_threshold for r in per_seed
+                        for name in ("left_side", "right_side", "supine")))
+    if promoted:
+        state.stage += 1
+        state.trials = [0] * len(SC0090_RECOVERY_BUCKETS)
+        state.wins = [0] * len(SC0090_RECOVERY_BUCKETS)
+        state.last_assessment_step = env.common_step_counter
+    if polished:
+        state.polish = True
+    env._sc0090_eval_history = {
+        **history, "last_iteration": report["iteration"],
+        "last_promotion_step": (env.common_step_counter if promoted
+                                else history.get("last_promotion_step", 0)),
+        "evaluated_stage": report["stage"], "stage_after": state.stage,
+        "checkpoint_sha256": report["checkpoint_sha256"],
+        "counts": totals, "rates": {k: w / n for k, (n, w) in totals.items()},
+        "promoted": bool(promoted), "polish": bool(state.polish),
+    }
+    return env._sc0090_eval_history

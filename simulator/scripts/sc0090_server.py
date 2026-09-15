@@ -26,6 +26,7 @@ sys.path.insert(0, str(REPO / "scripts"))
 
 import mujoco
 import numpy as np
+from mjlab_microduck.actuator.sc0090 import SC0090_DYNAMICS_REVISION
 import onnxruntime as ort
 
 import infer_policy as rehearsal
@@ -168,6 +169,7 @@ class Demo:
             self.model, self.data, str(walking), standing_onnx_path=str(recovery),
             bam_ctrl=self.motor, use_projected_gravity=True, new_cmd_obs=True,
             session_options=options, providers=["CPUExecutionProvider"],
+            joint_velocity_obs_lag=1,
         )
         self.sessions = {"walking": self.policy.walking_session,
                          "recovery": self.policy.standing_session}
@@ -230,6 +232,7 @@ class Demo:
         mujoco.mj_forward(self.model, self.data)
         rehearsal.reset_bam_controller(self.motor)
         self.policy.last_action.fill(0)
+        self.policy.reset_observation_history()
         self.policy.command.fill(0)
         self.policy.vel_cmd.fill(0)
         self.spawn = pose
@@ -291,6 +294,11 @@ class Demo:
                 raise FloatingPointError("MuJoCo reported a physics warning; reset to retry")
             if not all(np.isfinite(a).all() for a in (self.data.qpos, self.data.qvel, self.data.qacc, self.data.ctrl)):
                 raise FloatingPointError("Non-finite physics state; simulation paused")
+        # mj_step leaves kinematics/sensors one physics substep behind qpos.
+        # Training performs this refresh once at each control boundary.
+        mujoco.mj_forward(self.model, self.data)
+        if not np.isfinite(self.data.sensordata).all():
+            raise FloatingPointError("Non-finite sensor state; simulation paused")
 
     def push(self):
         # A single horizontal yaw-frame impulse, including when the body is
@@ -313,6 +321,8 @@ class Demo:
         vx, vy = self.data.qvel[va:va+2]
         velocity = [math.cos(yaw)*vx+math.sin(yaw)*vy, -math.sin(yaw)*vx+math.cos(yaw)*vy]
         return {"time": float(self.data.time), "active": self.active, "mode": self.mode,
+                "dynamics_revision": SC0090_DYNAMICS_REVISION,
+                "joint_velocity_obs_lag_steps": self.policy.joint_velocity_obs_lag,
                 "paused": self.paused, "height": height, "tilt": math.degrees(tilt),
                 "velocity": velocity, "command": self.policy.command[:3].tolist(),
                 "rise_time": self.rise_time, "hold": self.hold, "models": self.labels,

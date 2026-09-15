@@ -1,5 +1,10 @@
 # SC0090 V4: from scratch or checkpoint continuation
 
+Current walking acceptance and shared dynamics corrections are documented in
+[dynamics revision 2 and walking repair](sc0090-walk-repair.md). Walking now has
+fourteen cases plus fixed nominal regressions. Its revised plan fingerprint and
+checkpoint dynamics revision prevent reuse of obsolete qualification.
+
 V4 makes the same training program usable from random weights, from an existing
 SC0090 expert, and after interrupting a V4 run. It adds new task IDs and leaves
 the currently running V2 walking / V3 recovery jobs on their existing recipes.

@@ -43,6 +43,19 @@ def test_cpu_bam_constants_mirror_training_cfg(ip):
     assert ip.BAM_STIFF_SOLIMP_FRICTION == BamActuator._STIFF_SOLIMP_FRICTION
 
 
+def test_model_lookup_resolves_namespace_and_rejects_missing_or_ambiguous(ip):
+    model = mujoco.MjModel.from_xml_string('''<mujoco><worldbody>
+      <body name="robot/trunk_base"><geom size=".1"/></body>
+      <body name="a/duplicate"><geom size=".1"/></body>
+      <body name="b/duplicate"><geom size=".1"/></body>
+      </worldbody></mujoco>''')
+    kind = mujoco.mjtObj.mjOBJ_BODY
+    assert ip.model_object_id(model, kind, 'trunk_base') == model.body('robot/trunk_base').id
+    with pytest.raises(ValueError): ip.model_object_id(model, kind, 'missing')
+    with pytest.raises(ValueError): ip.model_object_id(model, kind, 'duplicate')
+    assert ip.model_object_id(model, kind, 'missing', required=False) == -1
+
+
 @pytest.fixture(scope="module")
 def bam_sim(ip):
     bam_model = ip.load_bam_model(ip.BAM_KP_FW, 12.0, ip.BAM_MAX_CURRENT)

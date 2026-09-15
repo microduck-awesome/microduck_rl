@@ -71,7 +71,7 @@ def load_mujoco_with_bam(xml_path: str, bam_model, timestep: float, vin_drop_res
     friction constraint. Armature is set on the dofs by MujocoController.
     Returns (model, data, bam_ctrl, actuator_names).
     """
-    from bam.mujoco import MujocoController
+    from mjlab_microduck.actuator.mujoco import DofFrictionMujocoController
 
     kt = bam_model.kt.value
     R = bam_model.R.value
@@ -101,7 +101,7 @@ def load_mujoco_with_bam(xml_path: str, bam_model, timestep: float, vin_drop_res
     model = spec.compile()
     model.opt.timestep = timestep
     data = mujoco.MjData(model)
-    bam_ctrl = MujocoController(bam_model, names, model, data,
+    bam_ctrl = DofFrictionMujocoController(bam_model, names, model, data,
                                 vin_drop_resistance=vin_drop_resistance, vin_min=vin_min)
     print(f"BAM {BAM_MODEL} actuators on {len(names)} joints: kt={kt:.4f} R={R:.4f} "
           f"vin={bam_model.actuator.vin:.2f}V kp_fw={bam_model.actuator.kp:.0f} "
@@ -145,6 +145,23 @@ DEFAULT_POSE = np.array([
     0.0049,   # right_knee
     -0.4530,  # right_ankle
 ], dtype=np.float32)
+
+
+def model_object_id(model, kind, name, *, required=True):
+    """Resolve plain or uniquely namespaced objects; never use a missing -1 ID."""
+    found = mujoco.mj_name2id(model, kind, name)
+    if found >= 0:
+        return found
+    count = {mujoco.mjtObj.mjOBJ_BODY: model.nbody,
+             mujoco.mjtObj.mjOBJ_JOINT: model.njnt,
+             mujoco.mjtObj.mjOBJ_SENSOR: model.nsensor}[kind]
+    matches = [i for i in range(count)
+               if (mujoco.mj_id2name(model, kind, i) or '').endswith('/'+name)]
+    if len(matches) == 1:
+        return matches[0]
+    if matches or required:
+        raise ValueError(f"Expected one model object {name!r}, found {len(matches)}")
+    return -1
 
 
 class TerminalInput:
@@ -224,7 +241,8 @@ class PolicyInference:
                  sitstand_onnx_path=None,
                  kick_left_onnx_path=None, kick_right_onnx_path=None,
                  roulade_onnx_path=None,
-                 kick_duration=3.0, roulade_duration=2.0, session_options=None, providers=None):
+                 kick_duration=3.0, roulade_duration=2.0, session_options=None, providers=None,
+                 joint_velocity_obs_lag=0):
         def load_session(path):
             return ort.InferenceSession(path, sess_options=session_options, providers=providers)
 
@@ -240,6 +258,10 @@ class PolicyInference:
         # body_cmd as policy COMMANDS (no add to ctrl, no joint_pos correction).
         # When False: legacy behaviour (3D command, head_offset added to ctrl[5:9]).
         self.new_cmd_obs = new_cmd_obs
+        if joint_velocity_obs_lag not in (0, 1):
+            raise ValueError("Joint velocity observation lag must be 0 or 1 control step")
+        self.joint_velocity_obs_lag = joint_velocity_obs_lag
+        self.reset_observation_history()
 
         # Load walking policy
         self.walking_session = None
@@ -370,14 +392,14 @@ class PolicyInference:
         self.output_name = self.ort_session.get_outputs()[0].name
 
         # Get sensor IDs and body IDs
-        self.imu_ang_vel_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_SENSOR, "imu_ang_vel")
-        self.trunk_base_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_BODY, "trunk_base")
+        self.imu_ang_vel_id = model_object_id(model, mujoco.mjtObj.mjOBJ_SENSOR, "imu_ang_vel")
+        self.trunk_base_id = model_object_id(model, mujoco.mjtObj.mjOBJ_BODY, "trunk_base")
 
         # Trunk freejoint qpos address (needed to place the ball in the robot's
         # yaw frame) and optional ball freejoint (present in scene_ball.xml).
-        _trunk_jid = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_JOINT, "trunk_base_freejoint")
+        _trunk_jid = model_object_id(model, mujoco.mjtObj.mjOBJ_JOINT, "trunk_base_freejoint")
         self._trunk_qpos_adr = int(model.jnt_qposadr[_trunk_jid])
-        _ball_jid = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_JOINT, "ball_free")
+        _ball_jid = model_object_id(model, mujoco.mjtObj.mjOBJ_JOINT, "ball_free", required=False)
         if _ball_jid >= 0:
             self.ball_qpos_adr = int(model.jnt_qposadr[_ball_jid])
             self.ball_qvel_adr = int(model.jnt_dofadr[_ball_jid])
@@ -662,6 +684,9 @@ class PolicyInference:
         """Get joint velocities."""
         return self.data.qvel[self.joint_qvel_indices].copy().astype(np.float32)
 
+    def reset_observation_history(self):
+        self._previous_joint_velocity = None
+
     def get_observations(self):
         """Collect observations matching policy input.
 
@@ -684,7 +709,12 @@ class PolicyInference:
             obs.append(self.get_raw_accelerometer())
 
         obs.append(self.get_joint_pos_relative())
-        obs.append(self.get_joint_vel())
+        # Reading observations is pure: status/preflight calls must not advance
+        # the delay. A new sample is committed once per policy inference.
+        velocity = self.get_joint_vel()
+        if self.joint_velocity_obs_lag and self._previous_joint_velocity is not None:
+            velocity = self._previous_joint_velocity
+        obs.append(velocity)
         obs.append(self.last_action)
         obs.append(self.command)
 
@@ -865,11 +895,13 @@ class PolicyInference:
 
     def infer(self):
         """Run policy inference and return action."""
+        current_velocity = self.get_joint_vel()
         obs = self.get_observations()
         obs_batch = obs.reshape(1, -1)
         action = self.ort_session.run([self.output_name], {self.input_name: obs_batch})[0]
         action = action.squeeze(0).astype(np.float32)
         self.last_action = action.copy()
+        self._previous_joint_velocity = current_velocity
         return action
 
     def apply_action(self, action):
@@ -1197,6 +1229,8 @@ def main():
     parser.add_argument("--action-scale", type=float, default=1.0, help="Action scale (default: 1.0)")
     parser.add_argument("--raw-accelerometer", action="store_true", help="Use raw accelerometer instead of projected gravity")
     parser.add_argument("--delay", type=int, nargs='*', default=None, help="Enable actuator delay: --delay MIN MAX or --delay LAG")
+    parser.add_argument("--joint-velocity-obs-lag", type=int, choices=(0, 1), default=1,
+                        help="Joint velocity observation delay in control steps (SC0090 training: 1)")
     parser.add_argument("--debug", action="store_true", help="Print observations and actions")
     parser.add_argument("--save-csv", type=str, default=None, help="Save observations and actions to CSV file")
     parser.add_argument("--record", type=str, default=None, help="Enable recording mode: save observations to pickle file on Ctrl+C")
@@ -1342,6 +1376,7 @@ def main():
         ground_pick_period=args.ground_pick_period,
         sit_onnx_path=args.sit,
         new_cmd_obs=args.new_cmd_obs,
+        joint_velocity_obs_lag=args.joint_velocity_obs_lag,
         slope_onnx_path=args.slope,
         sitstand_onnx_path=args.sitstand,
         kick_left_onnx_path=args.kick_left,
@@ -1687,6 +1722,7 @@ def main():
                 policy.update_behavior(actual_dt)
 
                 if policy_enabled:
+                    mujoco.mj_forward(model, data)
                     action = policy.infer()
                     policy.apply_action(action)
                 else:

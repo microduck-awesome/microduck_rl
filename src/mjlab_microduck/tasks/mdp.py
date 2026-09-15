@@ -7421,6 +7421,7 @@ def sc0090_sample_walk_commands(n, device, probabilities):
 
 
 class SC0090VelocityCommand(VelocityCommandCommandOnly):
+    bucket_names = SC0090_WALK_BUCKETS
     def __init__(self, cfg, env):
         super().__init__(cfg, env)
         self.bucket = torch.zeros(self.num_envs, dtype=torch.long, device=self.device)
@@ -7441,7 +7442,7 @@ class SC0090VelocityCommand(VelocityCommandCommandOnly):
         error = self.vel_command_b - torch.cat((
             self.robot.data.root_link_lin_vel_b[:, :2],
             self.robot.data.root_link_ang_vel_b[:, 2:3]), dim=1)
-        for i, name in enumerate(SC0090_WALK_BUCKETS):
+        for i, name in enumerate(self.bucket_names):
             mask = (self.bucket == i).float()
             count = mask.sum().clamp_min(1)
             self._env.extras["log"][f"Tracking/{name}/xy_error"] = (
@@ -8014,28 +8015,86 @@ def sc0090_program_stable_standing(env):
     return torch.where(active, completed, nominal)
 
 
+# These are policy acceptance targets, not the servo's physical speed limits.
+SC0090_PROGRAM_WALK_MIN_SPEED = .08
+SC0090_PROGRAM_WALK_BUCKETS = (
+    "idle", "slow_forward", "slow_backward", "forward", "backward", "lateral",
+    "turn_left", "turn_right", "mixed")
+SC0090_PROGRAM_WALK_PROBABILITIES = (.15, .20, .08, .12, .07, .10, .12, .12, .04)
 SC0090_PROGRAM_WALK_COMMANDS = (
-    ("idle", (0., 0., 0.)), ("slow_forward", (.1, 0., 0.)),
-    ("slow_backward", (-.1, 0., 0.)), ("forward", (.3, 0., 0.)),
+    ("idle", (0., 0., 0.)), ("slow_forward", (SC0090_PROGRAM_WALK_MIN_SPEED, 0., 0.)),
+    ("slow_backward", (-SC0090_PROGRAM_WALK_MIN_SPEED, 0., 0.)), ("forward", (.3, 0., 0.)),
     ("backward", (-.2, 0., 0.)), ("left", (0., .15, 0.)),
-    ("right", (0., -.15, 0.)), ("turn_left", (0., 0., .7)),
-    ("turn_right", (0., 0., -.7)), ("curve_left", (.2, 0., .5)),
-    ("curve_right", (.2, 0., -.5)))
+    ("right", (0., -.15, 0.)), ("turn_left", (0., 0., .6)),
+    ("turn_right", (0., 0., -.6)), ("curve_left", (.2, 0., .5)),
+    ("curve_right", (.2, 0., -.5)), ("forward_010", (.1, 0., 0.)),
+    ("start_forward", (SC0090_PROGRAM_WALK_MIN_SPEED, 0., 0.)),
+    ("stop_forward", (0., 0., 0.)))
+
+
+def sc0090_walk_contract():
+    """Serializable recipe/evaluation contract, included in the plan fingerprint."""
+    return dict(version=1, nominal_regression=True, commands=SC0090_PROGRAM_WALK_COMMANDS,
+                min_speed=SC0090_PROGRAM_WALK_MIN_SPEED,
+                buckets=SC0090_PROGRAM_WALK_BUCKETS,
+                probabilities=SC0090_PROGRAM_WALK_PROBABILITIES,
+                linear_reward=dict(absolute_std=.02, relative_std=.35),
+                yaw_error_weight=-1., relative_error=.25,
+                idle_xy_tolerance=.02, idle_yaw_tolerance=.10,
+                transition_time_s=2., response_window_s=(3., 4.))
+
+
+def sc0090_sample_program_walk_commands(n, device, probabilities):
+    """Keep all existing skills represented; give each turn its own bucket."""
+    bucket = torch.multinomial(torch.tensor(probabilities, device=device), n, replacement=True)
+    u = torch.rand(n, 3, device=device)
+    sign = torch.where(torch.rand(n, device=device) < .5, -1., 1.)
+    command = torch.zeros(n, 3, device=device)
+    for index, direction, low, high in (
+            (1, 1., SC0090_PROGRAM_WALK_MIN_SPEED, .15),
+            (2, -1., SC0090_PROGRAM_WALK_MIN_SPEED, .15),
+            (3, 1., .15, .4), (4, -1., .15, .35)):
+        command[:, 0] = torch.where(bucket == index, direction*(low+u[:, 0]*(high-low)), command[:, 0])
+    command[:, 1] = torch.where(bucket == 5, sign*(SC0090_PROGRAM_WALK_MIN_SPEED + u[:, 1]*(.2-SC0090_PROGRAM_WALK_MIN_SPEED)), 0.)
+    command[:, 2] = torch.where(bucket == 6, .2+.8*u[:, 2],
+                              torch.where(bucket == 7, -(.2+.8*u[:, 2]), 0.))
+    mixed = torch.stack((-.3+.7*u[:, 0], -.15+.3*u[:, 1], -.7+1.4*u[:, 2]), -1)
+    return torch.where((bucket == 8)[:, None], mixed, command), bucket
+
+
+def sc0090_walk_tracking_pass(mean_velocity, command, contract):
+    """Average signed progress must follow the command; standing cannot pass walking."""
+    xy_tolerance = torch.clamp(contract["relative_error"]*command[:, :2].norm(dim=-1),
+                               min=contract["idle_xy_tolerance"])
+    yaw_tolerance = torch.clamp(contract["relative_error"]*command[:, 2].abs(),
+                                min=contract["idle_yaw_tolerance"])
+    return (((mean_velocity[:, :2]-command[:, :2]).norm(dim=-1) <= xy_tolerance)
+            & ((mean_velocity[:, 2]-command[:, 2]).abs() <= yaw_tolerance))
 
 
 class SC0090ProgramVelocityCommand(SC0090VelocityCommand):
+    bucket_names = SC0090_PROGRAM_WALK_BUCKETS
     def _resample_command(self, env_ids):
         samples = getattr(self._env, "_sc0090_program_eval_samples", 0)
         if samples:
             sc0090_program_evaluation_commands(self._env, samples, env_ids, term=self)
         else:
-            super()._resample_command(env_ids)
+            command, bucket = sc0090_sample_program_walk_commands(
+                len(env_ids), self.device, self.cfg.bucket_probabilities)
+            self.vel_command_b[env_ids] = command
+            self.vel_command_w[env_ids] = command
+            self.bucket[env_ids] = bucket
+            self.is_standing_env[env_ids] = bucket == 0
+            self.is_heading_env[env_ids] = False
+            self.is_world_env[env_ids] = False
+            self.is_forward_env[env_ids] = False
 
 
 @dataclass(kw_only=True)
 class SC0090ProgramVelocityCommandCfg(SC0090VelocityCommandCfg):
+    bucket_probabilities: tuple[float, ...] = SC0090_PROGRAM_WALK_PROBABILITIES
     def build(self, env):
-        if (len(self.bucket_probabilities) != len(SC0090_WALK_BUCKETS)
+        if (len(self.bucket_probabilities) != len(SC0090_PROGRAM_WALK_BUCKETS)
                 or min(self.bucket_probabilities) <= 0
                 or not math.isclose(sum(self.bucket_probabilities), 1.0)):
             raise ValueError("Invalid walking bucket probabilities")
@@ -8051,11 +8110,27 @@ def sc0090_program_evaluation_commands(env, samples, env_ids=None, term=None):
         env_ids = torch.arange(env.num_envs, device=env.device)
     index = env_ids // (2*samples)
     commands = torch.tensor([v for _, v in SC0090_PROGRAM_WALK_COMMANDS], device=env.device)[index]
+    start = getattr(env, "_sc0090_program_evaluation_start_step", env.common_step_counter)
+    contract = sc0090_program_spec(env)["walk_contract"]
+    if env.common_step_counter-start < round(contract["transition_time_s"]/env.step_dt):
+        for case, initial in (("start_forward", (0., 0., 0.)), ("stop_forward", (.1, 0., 0.))):
+            case_index = next(i for i, (name, _) in enumerate(SC0090_PROGRAM_WALK_COMMANDS) if name == case)
+            commands[index == case_index] = torch.tensor(initial, device=env.device)
     term.vel_command_b[env_ids] = commands
     term.vel_command_w[env_ids] = commands
     for name in ("is_heading_env", "is_world_env", "is_forward_env"):
         getattr(term, name)[env_ids] = False
-    term.is_standing_env[env_ids] = index == 0
+    term.is_standing_env[env_ids] = (commands == 0).all(-1)
+
+
+def sc0090_program_evaluation_command_step(env, env_ids):
+    """Change transition commands inside step(), before its observation update."""
+    del env_ids
+    start = getattr(env, "_sc0090_program_evaluation_start_step", None)
+    if start is not None:
+        seconds = sc0090_program_spec(env)["walk_contract"]["transition_time_s"]
+        if env.common_step_counter-start == round(seconds/env.step_dt):
+            sc0090_program_evaluation_commands(env, env._sc0090_program_eval_samples)
 
 
 def sc0090_program_evaluation_push_step(env, env_ids, push_times):
@@ -8106,11 +8181,23 @@ def sc0090_program_apply_evaluation(env, report, request, *, commit=True):
     discovery = phase["kind"] in ("foundation", "roll")
     required = names[:4] if discovery and program["task"] == "recovery" else names
     passed = True
+    nominal_counts = {name: [0, 0] for name in names} if program["task"] == "walk" else {}
     sums = {profile: {name: [0, 0] for name in names} for profile in ("retention", "challenge")}
     metrics = {k: [] for k in ("action_delta_rms", "torque_delta_rms", "settled_ang_rms", "rise_time_p95")}
     for seed, case in zip(report["seeds"], cases):
         if case.get("seed") != seed or case.get("finite") is not True:
             raise ValueError("Invalid/nonfinite program assessment")
+        if program["task"] == "walk":
+            nominal = case.get("nominal", {})
+            if set(nominal) != set(names):
+                raise ValueError("Missing nominal walking regressions")
+            for name, value in nominal.items():
+                if (type(value.get("trials")) is not int or value["trials"] != 1
+                        or type(value.get("wins")) is not int or value["wins"] not in (0, 1)):
+                    raise ValueError("Invalid nominal walking regression counts")
+                nominal_counts[name][0] += 1
+                nominal_counts[name][1] += value["wins"]
+                passed &= value["wins"] == 1
         for profile in sums:
             groups = case.get(profile, {})
             if set(groups) != set(names):
@@ -8160,6 +8247,8 @@ def sc0090_program_apply_evaluation(env, report, request, *, commit=True):
     updated["last_result"] = dict(passed=bool(passed), advanced=bool(advance),
         assessed_phase=phase["name"], counts=sums, metrics=means,
         checkpoint_sha256=report["checkpoint_sha256"])
+    if nominal_counts:
+        updated["last_result"]["nominal_counts"] = nominal_counts
     if commit:
         env._sc0090_program = updated
     return updated

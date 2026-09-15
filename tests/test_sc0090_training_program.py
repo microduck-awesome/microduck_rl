@@ -43,6 +43,8 @@ def report_for(env, step):
         cases.append(dict(seed=seed, finite=True,
             **{profile: {k: dict(trials=128, wins=128) for k in names} for profile in ("retention", "challenge")},
             metrics=dict(action_delta_rms=.1, torque_delta_rms=.01, settled_ang_rms=.1, rise_time_p95=2.)))
+        if state['task'] == 'walk':
+            cases[-1]['nominal'] = {name: dict(trials=1, wins=1) for name in names}
     return request, {**deepcopy(request), "cases": cases}
 
 
@@ -542,6 +544,9 @@ def test_automatic_eval_resets_preserve_observation_delay_clock():
         with torch.inference_mode():
             vec = RslRlVecEnvWrapper(env)
             expected = torch.tensor([v for _,v in mdp.SC0090_PROGRAM_WALK_COMMANDS], device=env.device).repeat_interleave(4,0)
+            for i, (name, _) in enumerate(mdp.SC0090_PROGRAM_WALK_COMMANDS):
+                if name == 'start_forward': expected[i*4:(i+1)*4] = 0.
+                if name == 'stop_forward': expected[i*4:(i+1)*4, 0] = .1
             initial_obs = vec.get_observations()
             torch.testing.assert_close(initial_obs['actor'][:, 48:51], expected, rtol=0, atol=0)
             original_compute = env.observation_manager.compute
@@ -558,3 +563,68 @@ def test_automatic_eval_resets_preserve_observation_delay_clock():
             assert ticks == [1,2,3,4,5]
     finally:
         env.close()
+
+
+def test_walk_tracking_rejects_standing_reversed_and_half_speed_turns():
+    contract = mdp.sc0090_walk_contract()
+    commands = torch.tensor([[.08,0,0],[-.08,0,0],[0,0,.6],[0,0,-.6],[0,0,0]])
+    assert mdp.sc0090_walk_tracking_pass(commands, commands, contract).all()
+    assert not mdp.sc0090_walk_tracking_pass(torch.zeros_like(commands), commands, contract)[:4].any()
+    assert not mdp.sc0090_walk_tracking_pass(-commands, commands, contract)[:4].any()
+    assert not mdp.sc0090_walk_tracking_pass(commands*.5, commands, contract)[:4].any()
+    assert not mdp.sc0090_walk_tracking_pass(torch.tensor([[.08,0.,0.]]), commands[4:], contract).any()
+
+
+def test_randomized_pass_cannot_hide_a_nominal_turn_failure():
+    env = program_env('walk')
+    mdp.sc0090_program_restore(env, None)
+    request, report = report_for(env, 2400)
+    report['cases'][0]['nominal']['turn_right']['wins'] = 0
+    assert not mdp.sc0090_program_apply_evaluation(env, report, request)['last_result']['passed']
+
+
+def test_program_sampling_keeps_low_speed_range_and_separate_turn_signs():
+    torch.manual_seed(42)
+    command, bucket = mdp.sc0090_sample_program_walk_commands(
+        20000, 'cpu', mdp.SC0090_PROGRAM_WALK_PROBABILITIES)
+    assert set(bucket.tolist()) == set(range(9))
+    for index, sign in ((1, 1), (2, -1)):
+        x = sign*command[bucket == index, 0]
+        assert (x >= .08).all() and (x <= .15).all()
+    for index, sign in ((6, 1), (7, -1)):
+        assert (command[bucket == index, :2] == 0).all()
+        yaw = sign*command[bucket == index, 2]
+        assert (yaw >= .2).all() and (yaw <= 1.).all()
+        assert abs(float((bucket == index).float().mean())-.12) < .02
+    cfg = make_sc0090_v4_env_cfg('walk')
+    assert cfg.commands['twist'].bucket_probabilities == mdp.SC0090_PROGRAM_WALK_PROBABILITIES
+    # At the accepted minimum, stationary motion earns <10% of this term.
+    p = cfg.rewards['track_linear_velocity'].params
+    import math
+    assert math.exp(-(.08/(p['absolute_std']+p['relative_std']*.08))**2) < .1
+    assert make_training_program('walk')['walk_contract'] == mdp.sc0090_walk_contract()
+
+
+def test_transition_commands_change_at_control_boundary_with_standing_flags():
+    n = len(mdp.SC0090_PROGRAM_WALK_COMMANDS)*4
+    env = program_env('walk', n)
+    env._sc0090_program_eval_samples = 2
+    env._sc0090_program_evaluation_start_step = 1000
+    env.common_step_counter = 1000
+    term = NS(vel_command_b=torch.zeros(n,3), vel_command_w=torch.zeros(n,3),
+              **{k:torch.ones(n,dtype=torch.bool) for k in
+                 ('is_standing_env','is_heading_env','is_world_env','is_forward_env')})
+    env.command_manager.get_term = lambda _: term
+    indexes = {name: i*4 for i,(name,_) in enumerate(mdp.SC0090_PROGRAM_WALK_COMMANDS)}
+    start, stop = indexes['start_forward'], indexes['stop_forward']
+    mdp.sc0090_program_evaluation_commands(env, 2)
+    assert term.is_standing_env[start] and not term.is_standing_env[stop]
+    assert term.vel_command_b[start, 0] == 0 and term.vel_command_b[stop, 0] == .1
+    env.common_step_counter += round(2/env.step_dt)-1
+    mdp.sc0090_program_evaluation_command_step(env, None)
+    assert term.vel_command_b[start, 0] == 0
+    env.common_step_counter += 1
+    mdp.sc0090_program_evaluation_command_step(env, None)
+    assert term.vel_command_b[start, 0] == .08 and term.vel_command_b[stop, 0] == 0
+    assert not term.is_standing_env[start] and term.is_standing_env[stop]
+    assert not term.is_heading_env.any() and not term.is_world_env.any()

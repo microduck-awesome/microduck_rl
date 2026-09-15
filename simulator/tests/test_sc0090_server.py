@@ -111,6 +111,35 @@ def test_reset_clears_policy_and_motor_history(demo):
     np.testing.assert_array_equal(first, second)
 
 
+def test_joint_velocity_delay_advances_once_per_inference_and_resets(demo):
+    demo.reset('standing')
+    demo.mode = 'walking'
+    policy = demo.policy
+    assert policy.joint_velocity_obs_lag == 1
+    demo.step([.1, 0, 0])
+    # Reset velocity is zero. Multiple reads must not consume the new sample.
+    for _ in range(3):
+        np.testing.assert_array_equal(policy.get_observations()[20:34], 0.)
+    velocity = policy.get_joint_vel().copy()
+    assert np.linalg.norm(velocity) > 0
+    demo.step([.1, 0, 0])
+    np.testing.assert_array_equal(policy.get_observations()[20:34], velocity)
+    demo.reset('standing')
+    assert policy._previous_joint_velocity is None
+    np.testing.assert_array_equal(policy.get_observations()[20:34], 0.)
+
+
+def test_control_boundary_has_current_kinematics_and_sensor_values(demo):
+    demo.reset('standing')
+    demo.mode = 'walking'
+    for _ in range(10): demo.step([.1,0,0])
+    before = demo.policy.get_observations().copy()
+    # A fresh forward pass must not change the observation. Without the
+    # boundary refresh, gyro/gravity describe the preceding physics substep.
+    mujoco.mj_forward(demo.model, demo.data)
+    np.testing.assert_allclose(demo.policy.get_observations(), before, atol=1e-7)
+
+
 def test_switch_preserves_last_action_and_zeroes_recovery_twist(demo):
     demo.reset('standing')
     demo.mode = 'walking'

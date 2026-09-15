@@ -15,6 +15,9 @@ SC0090_KP = 20.0
 SC0090_KD = 30.0
 SC0090_MAX_SPEED_RPM = 80.0
 SC0090_MAX_SPEED_RAD_S = SC0090_MAX_SPEED_RPM * 2 * math.pi / 60
+# Revision 2 corrects GPU M6 quadratic gating and CPU DOF-friction indexing.
+# This changes implementation, not the archived identified model parameters.
+SC0090_DYNAMICS_REVISION = 2
 
 
 class RobotSC0090Actuator(FeedbackSC0090):

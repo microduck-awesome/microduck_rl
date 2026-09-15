@@ -11,6 +11,71 @@ from mjlab_microduck.actuator.friction_dr_bam import FrictionDRBamActuator
 from mjlab_microduck.sim.recompute import install_recompute_graph_cache
 
 
+@pytest.mark.parametrize("task", ["walk", "recovery"])
+def test_cpu_gpu_bam_same_state_torque_friction_and_supply(task):
+    """Independent NumPy CPU controller vs the training tensor implementation."""
+    if not torch.cuda.is_available():
+        pytest.skip("CUDA unavailable")
+    from mjlab.envs import ManagerBasedRlEnv
+    from mjlab_microduck.actuator.mujoco import DofFrictionMujocoController
+    from mjlab_microduck.actuator.sc0090 import load_sc0090_model
+    from mjlab_microduck.tasks.microduck_sc0090_finetune_env_cfg import (
+        make_sc0090_walk_v2_env_cfg, make_sc0090_recovery_v2_env_cfg)
+    cfg = (make_sc0090_walk_v2_env_cfg if task == 'walk' else make_sc0090_recovery_v2_env_cfg)()
+    cfg.scene.num_envs = 64
+    env = ManagerBasedRlEnv(cfg, device='cuda:0')
+    try:
+        with torch.inference_mode():
+            env.reset(seed=104)
+            owner = env.scene['robot'].actuators[0]
+            owner.friction_scale.fill_(1.)
+            owner.kd_scale.fill_(1.)  # CPU nominal back-EMF, no electrical DR.
+            host = env.sim.mj_model
+            joints = host.actuator_trnid[:, 0]
+            dofs, qpos_ids = host.jnt_dofadr[joints], host.jnt_qposadr[joints]
+            for step in range(4):
+                env.step(torch.randn((64,14),device='cuda:0')*.08)
+                owner.friction_scale.fill_(1.)
+                owner.kd_scale.fill_(1.)
+                owner.kp_scale.fill_(.8+step*.1)
+                owner.firmware_kd_scale.fill_(1.2-step*.1)
+                command = owner.get_command(env.scene['robot'].data)
+                duty = owner._bam_model.actuator.duty_cycle.clone()
+                expected = []
+                for row in (0, 1, 32):
+                    cpu = object.__new__(DofFrictionMujocoController)
+                    cpu.model = load_sc0090_model()
+                    cpu.model.actuator.vin = float(owner.vin_tensor[row].item())
+                    cpu.model.actuator.kp = owner._base_kp*float(owner.kp_scale[row].item())
+                    cpu.model.actuator.kd = owner._base_kd*float(owner.firmware_kd_scale[row].item())
+                    cpu.model.actuator.duty_cycle = duty[row].cpu().numpy().copy()
+                    cpu.vin_drop_resistance = float(owner.vin_drop_resistance[row].item())
+                    cpu.vin_min = cfg.scene.entities['robot'].articulation.actuators[0].vin_min
+                    count = int(env.sim.data.nefc[row])
+                    snapshot = {k:getattr(env.sim.data,k)[row].cpu().numpy().copy()
+                                for k in ('qpos','qvel','qfrc_actuator','qfrc_bias','qfrc_constraint')}
+                    cpu.mujoco_data = NS(**snapshot, time=.005, ctrl=np.zeros(host.nu),
+                        **{'efc_'+k:getattr(env.sim.data.efc,k)[row,:count].cpu().numpy().copy()
+                           for k in ('type','id','force')})
+                    cpu.mujoco_model = NS(nv=host.nv, dof_frictionloss=np.zeros(host.nv), dof_damping=np.zeros(host.nv))
+                    cpu.qpos_indexes, cpu.dof_indexes, cpu.joint_indexes = qpos_ids, dofs, joints
+                    cpu.act_indexes = np.arange(host.nu)
+                    cpu.actuator = np.array([host.actuator(i).name for i in range(host.nu)])
+                    cpu.q_target = command.position_target[row].cpu().numpy().copy()
+                    cpu.last_ts = 0.
+                    cpu.update()
+                    expected.append((cpu.mujoco_data.ctrl.copy(), cpu.mujoco_model.dof_frictionloss[dofs].copy(),
+                                     cpu.model.actuator.duty_cycle.copy()))
+                actual = owner.compute(command)
+                for row, (torque, friction, cpu_duty) in zip((0,1,32), expected):
+                    np.testing.assert_allclose(actual[row].cpu().numpy(), torque, atol=2e-6, rtol=2e-5)
+                    np.testing.assert_allclose(env.sim.model.dof_frictionloss[row, dofs].cpu().numpy(), friction, atol=2e-6, rtol=2e-5)
+                    np.testing.assert_allclose(owner._bam_model.actuator.duty_cycle[row].cpu().numpy(), cpu_duty, atol=2e-6, rtol=2e-5)
+                owner._bam_model.actuator.duty_cycle = duty
+    finally:
+        env.close()
+
+
 @pytest.mark.parametrize("device", ["cpu", "cuda:0"])
 @pytest.mark.parametrize("dtype", [torch.float32, torch.float64])
 def test_friction_writes_match_bam_after_external_write_and_reallocation(device, dtype):

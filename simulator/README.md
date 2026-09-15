@@ -1,5 +1,8 @@
 # SC0090 本地交互模拟器
 
+当前使用动力学实现修订 2：修复 CPU 摩擦约束索引，并匹配训练的观测刷新及速度延迟。
+原因、测试与旧视频适用范围见[修复记录](../docs/sc0090-walk-repair.md)。
+
 在浏览器里用键盘控制本仓库训练的行走和起身模型。三维机器人来自
 [Pollen Robotics 官方 Microduck Sandbox](https://huggingface.co/spaces/pollen-robotics/microduck-simulator/tree/main)，
 物理和策略由本地 Python 进程执行；不用启动训练，也不需要 CUDA GPU 执行演示。

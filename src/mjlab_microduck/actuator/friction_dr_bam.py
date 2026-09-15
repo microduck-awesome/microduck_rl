@@ -42,6 +42,32 @@ class FrictionDRBamActuator(SC0090BamActuator):
             return self._compute_graph.compute(cmd, super().compute)
         return super().compute(cmd)
 
+    def _compute_friction_budget(self, motor_torque, external_torque, stribeck_coeff):
+        """Match the fitted BAM M6 NumPy equation, including direction and ties.
+
+        The pinned mjlab adapter adds the quadratic term for same-sign loads
+        and assigns equal magnitudes to the external branch. BAM Model (the
+        identification reference) requires opposite signs and strict magnitude
+        inequalities. Keep the same parameters and apply DR exactly once.
+        """
+        bam = self._bam_model
+        if not (bam.quadratic and bam.stribeck and bam.directional and bam.load_dependent):
+            return super()._compute_friction_budget(motor_torque, external_torque, stribeck_coeff)
+        friction = torch.full_like(motor_torque, bam.friction_base.value)
+        friction = friction + torch.abs(external_torque*bam.load_friction_external.value
+                                        - motor_torque*bam.load_friction_motor.value)
+        friction = friction + stribeck_coeff*bam.friction_stribeck.value
+        friction = friction + stribeck_coeff*torch.abs(
+            external_torque*bam.load_friction_external_stribeck.value
+            - motor_torque*bam.load_friction_motor_stribeck.value)
+        abs_ext, abs_motor = external_torque.abs(), motor_torque.abs()
+        quadratic = ((abs_ext < abs_motor).to(motor_torque.dtype)*bam.load_friction_external_quad.value*abs_ext.square()
+                     + (abs_ext > abs_motor).to(motor_torque.dtype)*bam.load_friction_motor_quad.value*abs_motor.square())
+        friction = friction + stribeck_coeff*quadratic*(external_torque.sign() != motor_torque.sign())
+        if self.friction_scale is not None:
+            friction = friction*self.friction_scale
+        return friction
+
     def _write_frictions(self, frictionloss: torch.Tensor, damping: float) -> None:
         if getattr(self, "_capture_friction", False):
             self._captured_friction = frictionloss

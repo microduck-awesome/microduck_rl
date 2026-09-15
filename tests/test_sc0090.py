@@ -63,6 +63,28 @@ def test_friction_scaled_once_and_partial_reset():
     torch.testing.assert_close(act.friction_scale, torch.ones(3, 1))
 
 
+@pytest.mark.parametrize("device", ["cpu", "cuda:0"])
+@pytest.mark.parametrize("dtype", [torch.float32, torch.float64])
+def test_m6_friction_matches_identified_numpy_model_all_load_quadrants(device, dtype):
+    if device.startswith("cuda") and not torch.cuda.is_available():
+        pytest.skip("CUDA unavailable")
+    act = object.__new__(FrictionDRBamActuator)
+    bam = act._bam_model = load_sc0090_model()
+    # Include equal/opposite torques and zero: random samples miss the ties
+    # where neither side should contribute the quadratic friction term.
+    loads = np.array([-2., -.5, 0., .5, 2.])
+    motor, external, velocity = np.meshgrid(loads, loads, [0., .2, 1., 8.], indexing='ij')
+    motor, external, velocity = (x.reshape(1, -1).repeat(3, axis=0) for x in (motor, external, velocity))
+    expected, _ = bam.compute_frictions(motor, external, velocity)
+    scale = np.array([.5, 1., 1.5])[:, None]
+    act.friction_scale = torch.tensor(scale, device=device, dtype=dtype)
+    tensors = [torch.tensor(x, device=device, dtype=dtype) for x in (motor, external, velocity)]
+    stribeck = torch.exp(-(tensors[2].abs()/bam.dtheta_stribeck.value).pow(bam.alpha.value))
+    actual = act._compute_friction_budget(tensors[0], tensors[1], stribeck)
+    tolerance = 2e-6 if dtype == torch.float32 else 2e-12
+    np.testing.assert_allclose(actual.cpu().numpy(), expected*scale, rtol=tolerance, atol=tolerance)
+
+
 @pytest.mark.parametrize("device", ["numpy", "cpu", "cuda:0"])
 @pytest.mark.parametrize("dtype", [np.float32, np.float64])
 def test_80rpm_drive_ceiling_retains_braking(device, dtype):

@@ -74,9 +74,12 @@ def make_training_program(task):
     if task == "recovery":
         common["arrival"] = -.05
         phases.append(dict(common, name="smooth_arrival", kind="smooth"))
-    return dict(schema=1, task=task, phases=phases, min_phase_steps=2400,
+    program = dict(schema=1, task=task, phases=phases, min_phase_steps=2400,
                 retention_threshold=.95, challenge_threshold=.90,
                 discovery_threshold=.70, required_passes=2, rehearsal_probability=.25)
+    if task == "walk":
+        program["walk_contract"] = mdp.sc0090_walk_contract()
+    return program
 
 
 def make_sc0090_v4_env_cfg(task, play=False, rough=False):
@@ -89,7 +92,11 @@ def make_sc0090_v4_env_cfg(task, play=False, rough=False):
         velocity = cfg.commands["twist"]
         cfg.commands["twist"] = mdp.SC0090ProgramVelocityCommandCfg(**{
             f.name: deepcopy(getattr(velocity, f.name)) for f in fields(velocity)
+            if f.name != "bucket_probabilities"
         })
+        contract = mdp.sc0090_walk_contract()
+        cfg.rewards["track_linear_velocity"].params.update(contract["linear_reward"])
+        cfg.rewards["yaw_error"].weight = contract["yaw_error_weight"]
     if "push_robot" in cfg.events:
         cfg.events["push_robot"].func = mdp.sc0090_program_push
     body = cfg.commands["body_pose"]

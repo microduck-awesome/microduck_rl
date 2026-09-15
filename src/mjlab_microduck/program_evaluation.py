@@ -18,18 +18,51 @@ from mjlab.utils.torch import configure_torch_backends
 from mjlab_microduck.tasks import SC0090FineTuneRunner, mdp
 
 
-def evaluate_seed(request, configs, seed):
+def nominal_walk_config(cfg):
+    """Exact HOME/no-noise regression, in addition to randomized assessments."""
+    from mjlab.envs.mdp import observations
+    cfg.events = {k: v for k, v in cfg.events.items() if k in (
+        "expand_bam_friction_fields", "cache_reset_constants", "reset_action_history", "program_episode")}
+    cfg.scene.env_spacing = 0.
+    cfg.scene.entities["robot"].init_state.pos = (0., 0., .12)
+    for actuator in cfg.scene.entities["robot"].articulation.actuators:
+        actuator.vin_range = (12., 12.)
+        actuator.vin_drop_resistance_range = (.1, .1)
+    for group in cfg.observations.values():
+        group.enable_corruption = False
+        for term in group.terms.values():
+            term.delay_min_lag = term.delay_max_lag = 0
+    actor = cfg.observations["actor"].terms
+    for key, func in (("base_ang_vel", observations.base_ang_vel),
+                      ("projected_gravity", observations.projected_gravity)):
+        actor[key].func, actor[key].params = func, {}
+    actor["joint_pos"].params["biased"] = False
+    actor["joint_vel"].delay_min_lag = actor["joint_vel"].delay_max_lag = 1
+    for key in ("head_pose", "body_pose"):
+        cfg.commands[key].zero_command_prob = 1.
+    return cfg
+
+
+def evaluate_seed(request, configs, seed, *, nominal=False):
     cfg = deepcopy(configs["env"])
     recovery = request["task"] == "recovery"
     names = mdp.SC0090_RECOVERY_BUCKETS if recovery else tuple(k for k, _ in mdp.SC0090_PROGRAM_WALK_COMMANDS)
-    samples = request["samples_per_group"]
+    if nominal:
+        if recovery:
+            raise ValueError("Nominal walking regression requires a walking task")
+        cfg = nominal_walk_config(cfg)
+    samples = 1 if nominal else request["samples_per_group"]
     cfg.scene.num_envs = len(names)*2*samples
     # Use the training reset path: manual reset() advances observation delays
     # for the entire batch a second time, including worlds that did not fail.
     cfg.seed, cfg.auto_reset, cfg.episode_length_s = seed, True, 10.
-    cfg.events["assessment_pushes"] = EventTermCfg(
-        func=mdp.sc0090_program_evaluation_push_step, mode="step",
-        params={"push_times": (3., 5.)})
+    if not nominal:
+        cfg.events["assessment_pushes"] = EventTermCfg(
+            func=mdp.sc0090_program_evaluation_push_step, mode="step",
+            params={"push_times": (3., 5.)})
+    if not recovery:
+        cfg.events["assessment_commands"] = EventTermCfg(
+            func=mdp.sc0090_program_evaluation_command_step, mode="step")
     for command in cfg.commands.values():
         command.resampling_time_range = (1000., 1000.)
     if recovery:
@@ -61,6 +94,9 @@ def evaluate_seed(request, configs, seed):
             settled_ss = torch.zeros(n, device=device)
             xy_error = torch.zeros(n, device=device)
             yaw_error = torch.zeros(n, device=device)
+            velocity_sum = torch.zeros(n, 3, device=device)
+            response_sum = torch.zeros_like(velocity_sum)
+            response_steps = 0
             pose_error = torch.zeros(n, 3, device=device)
             delta_count = torch.zeros(n, device=device)
             settled_count = torch.zeros(n, device=device)
@@ -84,6 +120,12 @@ def evaluate_seed(request, configs, seed):
                 if not all(torch.isfinite(v).all().item() for v in values):
                     raise ValueError("Nonfinite assessment rollout")
                 data = env.scene["robot"].data
+                velocity = torch.cat((data.root_link_lin_vel_b[:, :2], data.root_link_ang_vel_b[:, 2:3]), -1)
+                if not recovery:
+                    response_start, response_end = mdp.sc0090_program_spec(env)["walk_contract"]["response_window_s"]
+                    if round(response_start/env.step_dt) <= step < round(response_end/env.step_dt):
+                        response_sum += velocity
+                        response_steps += 1
                 torque = data.actuator_force
                 # Never include the reset discontinuity or a retry episode in
                 # metrics. Success remains permanently false after first done.
@@ -107,6 +149,7 @@ def evaluate_seed(request, configs, seed):
                     cmd = env.command_manager.get_command("twist")
                     xy_error += (data.root_link_lin_vel_b[:, :2]-cmd[:, :2]).norm(dim=-1)
                     yaw_error += (data.root_link_ang_vel_b[:, 2]-cmd[:, 2]).abs()
+                    velocity_sum += velocity
                     pose_error += torch.stack(mdp.sc0090_program_pose_errors(env), -1).abs()
             phase = mdp.sc0090_program_phase(env)
             rehearsal = mdp.sc0090_program_buffers(env)["rehearsal"]
@@ -118,6 +161,17 @@ def evaluate_seed(request, configs, seed):
                 cmd = env.command_manager.get_command("twist")
                 success = ((xy_error/settled_steps <= .035+.25*cmd[:, :2].norm(dim=-1))
                            & (yaw_error/settled_steps <= .15+.25*cmd[:, 2].abs()))
+                contract = mdp.sc0090_program_spec(env)["walk_contract"]
+                success &= mdp.sc0090_walk_tracking_pass(velocity_sum/settled_steps, cmd, contract)
+                # Retention must start/stop promptly. Challenge has a push at
+                # 3 s, so its recovery is judged in the final settled window.
+                group = torch.arange(n, device=device) // (2*samples)
+                transition = torch.zeros(n, device=device, dtype=torch.bool)
+                for i, name in enumerate(names):
+                    if name in ("start_forward", "stop_forward"):
+                        transition |= group == i
+                response_ok = mdp.sc0090_walk_tracking_pass(response_sum/response_steps, cmd, contract)
+                success &= (~(transition & rehearsal)) | response_ok
                 if phase["body_weight"] > 0:
                     pose_ok = ((pose_error[:, 0]/settled_steps <= .01)
                                & (pose_error[:, 1:].amax(-1)/settled_steps <= math.radians(5)))
@@ -126,11 +180,18 @@ def evaluate_seed(request, configs, seed):
             ids = torch.arange(n, device=device)
             groups = ids // (2*samples)
             result = {"seed": seed, "finite": True}
+            if not recovery:
+                result["tracking"] = {}
             for profile, mask in (("retention", rehearsal), ("challenge", ~rehearsal)):
                 result[profile] = {}
                 for i, name in enumerate(names):
                     selected = mask & (groups == i)
                     result[profile][name] = {"trials": int(selected.sum()), "wins": int(success[selected].sum())}
+                    if not recovery:
+                        result["tracking"][f"{profile}/{name}"] = {
+                            "mean_velocity": (velocity_sum[selected]/settled_steps).mean(0).tolist(),
+                            "mean_xy_error": float(xy_error[selected].mean()/settled_steps),
+                            "mean_yaw_error": float(yaw_error[selected].mean()/settled_steps)}
             challenge = ~rehearsal
             result["metrics"] = {
                 "action_delta_rms": float((action_ss[challenge].sum()/delta_count[challenge].sum().clamp_min(1)).sqrt()),
@@ -165,7 +226,14 @@ def main():
     started = time.monotonic()
     cases = []
     for seed in request["seeds"]:
-        cases.append(evaluate_seed(request, configs, seed))
+        case = evaluate_seed(request, configs, seed)
+        if request["task"] == "walk":
+            nominal = evaluate_seed(request, configs, seed, nominal=True)
+            # These are fixed regressions, not independent Monte Carlo samples.
+            case["nominal"] = nominal["retention"]
+            case["nominal_tracking"] = {k.removeprefix("retention/"): v
+                for k, v in nominal["tracking"].items() if k.startswith("retention/")}
+        cases.append(case)
         gc.collect()
         torch.cuda.empty_cache()
     report = {**request, "cases": cases, "wall_seconds": time.monotonic()-started,

@@ -18,7 +18,7 @@ import torch
 import yaml
 
 from . import SC0090FineTuneRunner, mdp
-from mjlab_microduck.actuator.sc0090 import SC0090_MODEL_PATH
+from mjlab_microduck.actuator.sc0090 import SC0090_MODEL_PATH, SC0090_DYNAMICS_REVISION
 
 
 def atomic_write(path, write):
@@ -152,6 +152,7 @@ class SC0090ProgramRunner(SC0090FineTuneRunner):
             raise
         cfg = self.cfg["training_program"]
         self._abi = {"actor_obs": 61, "actions": 14,
+                     "dynamics_revision": SC0090_DYNAMICS_REVISION,
                      "motor_sha256": hashlib.sha256(SC0090_MODEL_PATH.read_bytes()).hexdigest()}
         if cfg["checkpoint"]:
             self.load(cfg["checkpoint"])
@@ -173,7 +174,7 @@ class SC0090ProgramRunner(SC0090FineTuneRunner):
             raise ValueError("Cannot transfer walking/recovery normalizers across task families")
         metadata = infos.get("sc0090_program_runner", {})
         if metadata and metadata["abi"] != self._abi:
-            raise ValueError("Checkpoint motor/observation/action contract changed")
+            raise ValueError("Checkpoint motor/dynamics/observation/action contract changed; import the original legacy expert and reassess")
         restore_optimizer = load_cfg is None or load_cfg.get("optimizer", False)
         restore_iteration = load_cfg is None or load_cfg.get("iteration", False)
         if restore_optimizer:

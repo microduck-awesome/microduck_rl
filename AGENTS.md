@@ -86,6 +86,16 @@ Never launch a long run without one.
 - **Policies are UNFILTERED** (no action low-pass in training). Don't add EMA
   filtering without a matched runtime flag and a transfer test — trained-with /
   deployed-without (either direction) breaks transfer.
+- **CPU/GPU BAM parity needs an independent equation oracle.** Use the local
+  `DofFrictionMujocoController`: pinned BAM's CPU controller confused joint IDs
+  with DOF IDs on floating bases. The GPU M6 quadratic term must match the
+  identification model's sign gate and strict magnitude comparisons, including
+  equal loads. Comparing two execution modes of the same implementation cannot
+  catch either mistake. Keep the NumPy/Jacobian parity tests.
+- **Match observation timing in CPU rehearsal.** Refresh derived state once per
+  control boundary, and retain the trained one-control-step joint-velocity
+  observation lag. Status/observation reads must never advance that buffer;
+  reset it with physics. This is observation timing, not action filtering.
 - **Domain randomization must not accumulate across resets.** mjlab 1.3.0's
   `dr.*` ops with `operation="add"/"scale"` are natively non-accumulating (they
   re-read compile-time defaults); custom DR functions must restore-then-apply.

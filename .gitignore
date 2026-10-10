@@ -17,6 +17,7 @@ wheels/
 wandb
 logs
 agents
+MUJOCO_LOG.TXT
 
 *.pch
 nohup.out

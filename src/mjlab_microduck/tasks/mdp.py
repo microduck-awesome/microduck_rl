@@ -7389,3 +7389,123 @@ def roulade_lateral_velocity_penalty(
     """Body-frame lateral (y) linear velocity² — keeps the roll straight."""
     asset: Entity = env.scene[asset_cfg.name]
     return torch.nan_to_num(asset.data.root_link_lin_vel_b[:, 1].pow(2), nan=0.0)
+
+
+# SC0090 independent 4D/1D bench. Physical reward, deployable observations.
+class SC0090Targets(CommandTerm):
+    def __init__(self, cfg, env):
+        super().__init__(cfg, env)
+        self._target = torch.zeros((self.num_envs, 1), device=self.device)
+        self.kind = torch.zeros(self.num_envs, dtype=torch.int64, device=self.device)
+        self.amplitude = torch.zeros(self.num_envs, device=self.device)
+        self.frequency = torch.zeros(self.num_envs, device=self.device)
+        self.phase = torch.zeros(self.num_envs, device=self.device)
+        self.rng = torch.Generator(device=self.device).manual_seed(cfg.trajectory_seed)
+
+    @property
+    def command(self):
+        return self._target
+
+    def _resample_command(self, env_ids):
+        n = len(env_ids)
+        random = torch.rand((n, 5), generator=self.rng, device=self.device)
+        self.kind[env_ids] = (random[:, 0]*4).long()
+        self.amplitude[env_ids] = (.2+.5*random[:, 1])*torch.where(random[:, 4] < .5, -1., 1.)
+        self.amplitude[env_ids[random[:, 3] < .2]] = 0.  # Exact zero hold, 20%.
+        self.frequency[env_ids] = .1+.15*random[:, 2]
+        self.phase[env_ids] = (random[:, 3]*2-1)*math.pi
+
+    def value_at(self, time):
+        a, f = self.amplitude, self.frequency
+        # Smoothed step/hold/return; low-speed reversal; sine/double sine; chirp.
+        step = a*(torch.tanh((time-1.)*3)-torch.tanh((time-5.)*3))*.5
+        reversal = .25*a*torch.sin(time*2*math.pi*.15)
+        sine = a*.75*torch.sin(time*2*math.pi*f)+a*.2*torch.sin(time*2*math.pi*(f+.1))
+        chirp = a*.45*torch.sin(2*math.pi*(.05*time+.45/16*time.square()))
+        waves = torch.stack([step, reversal, sine, chirp], -1)
+        return waves.gather(1, self.kind[:, None])[:, 0]
+
+    def _update_command(self):
+        self._target[:, 0] = self.value_at(self._env.episode_length_buf*self._env.step_dt)
+
+    def _update_metrics(self):
+        pass
+
+
+@_dataclass(kw_only=True)
+class SC0090TargetsCfg(CommandTermCfg):
+    trajectory_seed: int = 91011
+    resampling_time_range: tuple[float, float] = (9., 9.)
+
+    def build(self, env):
+        return SC0090Targets(self, env)
+
+
+def sc0090_target(env):
+    return env.command_manager.get_term('target').command
+
+
+def sc0090_actor(env):
+    action = env.action_manager.get_term('position')
+    estimate, valid = action.estimate()
+    if not valid.all():
+        raise RuntimeError('SC0090 actor requested an invalid completed-output query')
+    return torch.cat([estimate, action.raw_action, sc0090_target(env)], -1)
+
+
+def sc0090_critic(env):
+    bench = env.scene['bench']
+    return torch.cat([bench.data.joint_pos, bench.data.joint_vel,
+                      env.action_manager.get_term('position').raw_action, sc0090_target(env)], -1)
+
+
+def sc0090_tracking(env):
+    target = env.command_manager.get_term('target').value_at(env.episode_length_buf*env.step_dt)
+    error = env.scene['bench'].data.joint_pos[:, 0]-target
+    return torch.exp(-error.square()/.1**2)-error.abs()
+
+
+def sc0090_action_rate(env):
+    return (env.action_manager.action-env.action_manager.prev_action).square().sum(-1)
+
+
+def sc0090_velocity_cost(env):
+    return env.scene['bench'].data.joint_vel.square().sum(-1)
+
+
+def sc0090_fault(env):
+    action = env.action_manager.get_term('position')
+    _, ready = action.estimate()
+    state = torch.cat([env.scene['bench'].data.joint_pos, env.scene['bench'].data.joint_vel], -1)
+    action.fault |= ~ready | ~torch.isfinite(state).all(-1) | (state[:, 0].abs() > 1.5)
+    action.fault |= env.scene['bench'].actuators[0].fault[:, 0]
+    return action.fault
+
+
+def sc0090_reset(env, env_ids):
+    zeros = torch.zeros((len(env_ids), 1), device=env.device)
+    env.scene['bench'].write_joint_state_to_sim(zeros, zeros, env_ids=env_ids)
+
+
+from mjlab.managers.event_manager import requires_model_fields as _sc_model_fields, RecomputeLevel as _sc_recompute
+
+
+@_sc_model_fields('body_mass','body_ipos','body_inertia',recompute=_sc_recompute.set_const)
+def sc0090_randomize(env,env_ids):
+    """Draw measured v5 load/voltage settings; keep M6 coefficients immutable.
+
+    Reset first restores the actuator defaults. Assign exact operating points
+    and body geometry without accumulating mass/inertia multipliers. Sensor
+    residual donors follow the same per-world condition before causal warmup.
+    """
+    if env_ids is None:env_ids=torch.arange(env.num_envs,device=env.device)
+    pipeline=env.action_manager.get_term('position').pipeline
+    settings,mass=pipeline.sample_conditions(env_ids)
+    body=env.sim.mj_model.body('bench/arm').id
+    com=settings[:,5]/9.80665/mass
+    inertia=settings[:,4]-mass*com.square()
+    if not torch.all(inertia>0):raise ValueError('R1 measured body inertia is inconsistent')
+    env.sim.model.body_mass[env_ids,body]=mass
+    env.sim.model.body_ipos[env_ids,body]=torch.stack([com*0,com*0,-com],-1)
+    env.sim.model.body_inertia[env_ids,body]=torch.stack([inertia,inertia,torch.minimum(inertia,torch.full_like(inertia,1e-6))],-1)
+    env.scene['bench'].actuators[0].settings[env_ids,0]=settings

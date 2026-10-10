@@ -78,6 +78,24 @@ from .microduck_roulade_env_cfg import (
 from .backlash import make_backlash_variant
 
 # Standard velocity task
+from .sc0090_env_cfg import STUDY, M6_PATH, make_sc0090_env_cfg, make_sc0090_rl_cfg
+
+for _bench_id, _S, _O in [('P00', 'S0', 'O0'), ('P01', 'S1', 'O0'),
+                           ('P02', 'S0', 'O1'), ('P03', 'S1', 'O1')]:
+    if not M6_PATH.is_file() or not (STUDY/'observer/qualification/O1-native100-seed42.npz').is_file():
+        continue
+    register_mjlab_task(
+        task_id=f'Mjlab-SC0090-{_bench_id}',
+        env_cfg=make_sc0090_env_cfg(_S, _O),
+        play_env_cfg=make_sc0090_env_cfg(_S, _O, play=True),
+        rl_cfg=make_sc0090_rl_cfg(),
+    )
+
+if M6_PATH.is_file() and (STUDY/'observer/qualification/O1-native100-seed42.npz').is_file() and (STUDY/'measurement/R1-frozen-v1/model.json').is_file():
+    for _bench_id,_S,_O in [('P04','S0','O0'),('P05','S1','O0'),('P06','S0','O1'),('P07','S1','O1')]:
+        register_mjlab_task(task_id=f'Mjlab-SC0090-{_bench_id}',env_cfg=make_sc0090_env_cfg(_S,_O,R='R1'),
+            play_env_cfg=make_sc0090_env_cfg(_S,_O,play=True,R='R1'),rl_cfg=make_sc0090_rl_cfg())
+
 register_mjlab_task(
     task_id="Mjlab-Velocity-Flat-MicroDuck",
     env_cfg=make_microduck_velocity_env_cfg(),

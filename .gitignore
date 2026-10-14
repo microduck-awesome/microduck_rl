@@ -24,6 +24,9 @@ nohup.out
 beyondmimic_motions/
 artifacts/
 *.npz
+!src/mjlab_microduck/custom_v2/training-assets/measurement/fit-joint-residual/residual-library.npz
+!src/mjlab_microduck/custom_v2/training-assets/observer/qualification/O1-native100-seed42.npz
+MUJOCO_LOG.TXT
 
 src/mjlab_microduck/robot/microduck.bak/*
 src/mjlab_microduck/robot/microduck_test/*

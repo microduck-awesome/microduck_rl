@@ -1,0 +1,204 @@
+{
+  "kt": 0.89240515,
+  "R": 27.198826164142314,
+  "armature": 0.000766011777689163,
+  "pwm_per_p_count": 0.0009999995324693602,
+  "derivative_seconds": 0.0,
+  "feedback_bias": -0.01935181850174302,
+  "feedback_scale": 1.042605242128426,
+  "q_offset": -0.06533174218526942,
+  "command_delay": 0.0,
+  "friction_base": 0.01923539796774215,
+  "friction_stribeck": 0.011640054455010143,
+  "load_friction_motor": 0.023601536604385753,
+  "load_friction_external": 0.23051580435409816,
+  "load_friction_motor_stribeck": 0.2594495365109098,
+  "load_friction_external_stribeck": 0.3410221915379925,
+  "load_friction_motor_quad": 0.0,
+  "load_friction_external_quad": 0.00034795300566229894,
+  "dtheta_stribeck": 0.999969279217018,
+  "alpha": 1.0524938670301074,
+  "friction_viscous": 0.01371878613473602,
+  "model": "m6",
+  "actuator": "sc0090_feedback_v1",
+  "bam_revision": "3505fba49a8aa41f47c9a729c495f0c083757b0b",
+  "operating_point": {
+    "kp": 20,
+    "kd": 30,
+    "ki": 0,
+    "vin": 10.2,
+    "inertia_kg_m2": 0.0022167600000000008,
+    "gravity_moment_kg_m": 0.016506000000000003,
+    "servo_radians_per_count": 0.005624596222247351,
+    "deadband_count": 2.0,
+    "max_pwm": 1.0,
+    "goal_profile_zeroed": true,
+    "pendulum_model": "bam_pendulum",
+    "mass": 0.10350000000000001,
+    "arm_mass": 0.028800000000000003,
+    "length": 0.14,
+    "calibration": {
+      "schema": "sc0090-brt-bench-v1",
+      "mount_id": "0914-1",
+      "calibration_assist": {
+        "direction": {
+          "sign": 1,
+          "forward_delta_count": 1068.0,
+          "return_delta_count": -870.0,
+          "closure_error_count": 198.0,
+          "minimum_signal_count": 128,
+          "closure_limit_count": 304.5,
+          "convention": "Positive joint direction follows increasing servo goal count",
+          "note": "Direction only; not a gravity zero or servo angle-scale calibration",
+          "mount_id": "0914-1",
+          "recorded_at": "2026-09-15T08:07:32.884559+00:00",
+          "source": "bounded_out_and_back"
+        },
+        "zero": {
+          "phase": "downward_zero",
+          "goal_count": null,
+          "encoder_unwrapped_median": 59316.0,
+          "encoder_raw_count": 59316,
+          "spread_count": 0,
+          "samples_count": 60,
+          "observation_start_ns": 66282040509013,
+          "observation_end_ns": 66282771560917,
+          "servo_position_count": 506.0,
+          "servo_spread_count": 0,
+          "servo_inlier_spread_count": 0,
+          "servo_inlier_count": 30,
+          "servo_outlier_count": 0,
+          "servo_outlier_tail_indices": [],
+          "servo_zero_filter": "median_30_fixed_2count_max_2_isolated_last_3_clean",
+          "zero_count": 59316,
+          "mount_id": "0914-1",
+          "recorded_at": "2026-09-15T08:08:12.008270+00:00",
+          "source": "confirmed_downward_stable_samples",
+          "mapping_rebase": {
+            "previous_encoder_zero_count": 59316,
+            "encoder_zero_count": 59316,
+            "previous_servo_zero_count": 506.0,
+            "radians_per_count": 0.005624596222247351,
+            "method": "same_mount_angle_origin_shift",
+            "status": "unchanged",
+            "servo_zero_count": 506.0
+          }
+        },
+        "range_lower": null,
+        "range_upper": null,
+        "range": null
+      },
+      "setup": {
+        "fixture_fixed": true,
+        "motion_clearance_confirmed": true,
+        "gravity_aligned_servo_count_reported": 511,
+        "downward_direction_confirmed": true,
+        "camera_observation_authorized": false,
+        "note": "Prepared on xiaoqiang workstation, 2026-09-14. Fixture, clearance, downward direction and physical calibration require current operator confirmation."
+      },
+      "servo": {
+        "device": "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5AE6023870-if00",
+        "baudrate": 500000,
+        "id": 1,
+        "min_count": 150,
+        "max_count": 850,
+        "limits_source": "User reported controllable range 150..850, 2026-09-12; not proof of installed pendulum clearance",
+        "calibration": {
+          "zero_count": 506,
+          "radians_per_count": 0.005624596222247351,
+          "mode": "nominal_330_1024",
+          "scale_source": "user_selected_330_degrees_per_1024_counts",
+          "scale_verified": false,
+          "zero_source": "confirmed_downward_internal_feedback_median"
+        }
+      },
+      "encoder": {
+        "channel": "can0",
+        "bitrate": 500000,
+        "id": 1,
+        "counts_per_rev": 65536,
+        "turns": 1,
+        "shaft_ratio": 1.0,
+        "sign": 1,
+        "zero_count": 59316,
+        "max_delta_counts": 10000,
+        "product_description": "BRT micro single-turn absolute CAN encoder, 3mm shaft, 15mm housing, 16bit",
+        "specification_source": "User order screenshot and explicit 1:1 coupling confirmation, 2026-09-12; exact manufacturer part number not shown",
+        "specification_source_image": null
+      },
+      "pendulum": {
+        "inertia_kg_m2": 0.0022167600000000008,
+        "gravity_moment_kg_m": 0.016506000000000003,
+        "downward_zero_confirmed": true,
+        "model": "bam_pendulum",
+        "calculation": {
+          "model": "bam_pendulum",
+          "status": "computed",
+          "inputs": {
+            "mass": 0.10350000000000001,
+            "arm_mass": 0.028800000000000003,
+            "length": 0.14
+          },
+          "inertia_kg_m2": 0.0022167600000000008,
+          "gravity_moment_kg_m": 0.016506000000000003,
+          "arm_com_model_m": 0.07,
+          "total_mass_kg": 0.1323,
+          "assembly_com_radius_m": 0.12476190476190478,
+          "gravity_torque_amplitude_nm": 0.1618685649,
+          "inertia_about_com_kg_m2": 0.00015744,
+          "missing": [],
+          "warnings": [],
+          "blocking_reasons": [],
+          "source": {
+            "symbol": "bam.testbench.Pendulum",
+            "file": "/home/xiaoqiang/Documents/microduck/sc0090-toolkit/.venv/lib/python3.12/site-packages/bam/testbench.py",
+            "revision": "3505fba49a8aa41f47c9a729c495f0c083757b0b",
+            "sha256": "ec697f7def24ff4cc6455b3c77f9d31b1ca8c6b2212de604201dacc54f09b003",
+            "gravity_m_s2": 9.80665
+          },
+          "formulas": {
+            "J": "mass * length**2 + (arm_mass / 3) * length**2",
+            "H": "(mass + arm_mass / 2) * length",
+            "gravity_torque": "-9.80665 * H * sin(q)"
+          },
+          "assumptions": [
+            "BAM 标准模型：均匀摆杆，杆质心位于 length/2。",
+            "末端配重及其夹具等效为 length 处的质点，忽略其绕自身质心的惯量。",
+            "所有外部转动部件均应计入摆杆或配重，不重复计质量。",
+            "这是模型计算值，不是额外称量或从视频测得的参数；电机反射惯量由执行器模型另计。"
+          ]
+        }
+      },
+      "supply": {
+        "voltage_v": 10.2,
+        "measured": true
+      },
+      "experiment": {
+        "group_id": "L14_M100",
+        "arm_id": "arm14",
+        "weight_ids": [
+          "weight100"
+        ],
+        "user_confirmed_at": "2026-09-17T06:31:38.373416+00:00",
+        "confirmation_note": null,
+        "measurements": {
+          "payload_mass_kg": 0.10350000000000001,
+          "payload_mass_includes_holder": true,
+          "payload_com_radius_m": 0.14,
+          "payload_inertia_about_com_kg_m2": null,
+          "arm_mass_kg": 0.028800000000000003,
+          "arm_com_radius_m": null,
+          "arm_inertia_about_com_kg_m2": null,
+          "other_rotating_components": [],
+          "uncertainty_notes": null
+        }
+      },
+      "note": "Local setup for the connected USB bench. Serial identity matches repository bench.json. Servo ID1/500000 baud and CAN node1/500000 bitrate follow that bench record; verify by read-only probe. No previous calibration or measured load/voltage is assumed. Video disabled until local camera setup is verified."
+    }
+  },
+  "identification_status": "converged_candidate_requires_physical_validation",
+  "physical_qualification": {
+    "qualified": false,
+    "report": "validation-report.json"
+  }
+}

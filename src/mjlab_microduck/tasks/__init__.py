@@ -278,3 +278,9 @@ for _task_id, _make_cfg, _kw, _rl_cfg, _robot_cfg in _BACKLASH_TASKS:
         rl_cfg=_rl_cfg,
         runner_cls=MicroduckOnPolicyRunner,
     )
+
+
+# BEGIN MICRODUCK V2 LOCAL TASK
+from mjlab_microduck.custom_v2.microduck_v2 import register as _register_v2
+_register_v2()
+# END MICRODUCK V2 LOCAL TASK

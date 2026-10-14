@@ -7704,3 +7704,18 @@ def roulade_lateral_velocity_penalty(
     """Body-frame lateral (y) linear velocity² — keeps the roll straight."""
     asset: Entity = env.scene[asset_cfg.name]
     return torch.nan_to_num(asset.data.root_link_lin_vel_b[:, 1].pow(2), nan=0.0)
+
+
+def v2_observed_joint_pos(env: ManagerBasedRlEnv) -> torch.Tensor:
+    """V2 actor positions from the completed S0/O0 query; CAD HOME is zero."""
+    return env.unwrapped._v2_joint_feedback.last_q[:, :14]
+
+
+def v2_observed_joint_vel(env: ManagerBasedRlEnv) -> torch.Tensor:
+    """V2 actor velocities from O0, without the XL330 noise/delay layer."""
+    return env.unwrapped._v2_joint_feedback.last_v[:, :14]
+
+
+def v2_feedback_fault(env: ManagerBasedRlEnv) -> torch.Tensor:
+    """Reset an episode when any actuator loses valid completed feedback."""
+    return ~env.unwrapped._v2_joint_feedback.ready

@@ -1,5 +1,59 @@
 # Microduck RL
 
+## Microduck V2 / SC0090 训练分支
+
+本分支基于官方 `develop` 的 `b02fdea4902c2b93b7d34a83a6f05da4ececb7d3`。
+V2 使用 assembly 的 CAD 质量与惯量，总质量 **600.94 g**，15 颗 SC0090；策略仍为
+14 个动作，嘴巴独立，actor/critic 为 61/76 维。下面原官方说明中的约 800 g 描述原版。
+官方原任务、锁文件、网络和 PPO 配方保留。
+
+正式任务为 `Mjlab-Velocity-Flat-MicroDuck-V2-S0-O0-R1`。电机采用 v5 冻结 BAM M6 seed1，
+SHA256 `7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4`，
+工况 P15/D30/I0、goal profile 清零。控制链为 PPO 目标 → CAD/计数限位 → O0 逆标定与
+计数量化 → BAM 电机 → V2 动力学；actor 关节反馈经过 S0 测量和 O0 标定 LS3。
+没有重新拟合电机，也没有在整机 PPO 下方加入 P04 单舵机 actor。
+
+S0/O0 从第一次 reset 即启用；重置前史为 280 ms 合成静止保持，不能当作机械稳定证明。
+物理步长 5 ms、反馈 100 Hz、策略 50 Hz，查询 `t−20 ms`。15 颗舵机有独立测量历史、残差块，
+每个环境只共享一个供电电压。无效反馈终止该环境，不回退到真实状态。critic 保留特权状态，
+关节姿态跟踪奖励采用与 actor 相同的观测坐标。
+
+nominal 阶段使用 11.1 V；`…-Measured` 阶段覆盖 10.2/11.1/12.4 V。两阶段都保留 S0/O0
+及匹配的实测残差与相位。R1 的 12 个台架负载标签仅选择测量残差来源，不替换机器人质量或惯量。
+官方 body/contact/IMU 随机化保留，质量扰动围绕 V2 CAD 值；移除 XL330 电机参数扰动和重复的
+关节噪声/延迟。
+
+```bash
+git clone --branch codex/v2-sc0090-s0-o0-r1 https://github.com/microduck-awesome/microduck_rl.git
+cd microduck_rl
+uv sync --frozen
+# CPU 可执行的 PPO/ONNX 检查；默认 64 环境、5 次更新
+uv run python scripts/smoke_v2_ppo.py --output-dir /tmp/v2-nominal
+uv run python scripts/validate_v2_hold.py --report /tmp/v2-hold.json
+# CUDA 正式训练；扩大 R1 时选择同名 -Measured 任务，续训须显式指定检查点
+uv run train Mjlab-Velocity-Flat-MicroDuck-V2-S0-O0-R1 --env.scene.num-envs 4096
+uv run scripts/export.py Mjlab-Velocity-Flat-MicroDuck-V2-S0-O0-R1 \
+  --checkpoint-file /path/to/model.pt --num-envs 1 --device cpu --onnx-file v2.onnx
+```
+
+导出沿用官方归一化路径，并嵌入 `microduck_training_contract` 及 SHA256。参考命令映射使用
+虚拟零点 512、计数保护 20–1001，不是实机逐关节标定。默认无额外 EMA 或命令变化率限制；
+action 的 `command_rate_rad_s` 可显式设为 `(0,20] rad/s` 并随模型导出。命令限制来自部署配置及
+机械/计数范围，不由 M6 的物理转速推导，也不继承台架 ±0.8 rad、2 rad/s 或零点 506。
+
+当前 alpha 固件仍采用自己的 HOME、EMA 和 slew 规则；配套转换器拒绝把此 V2 ONNX 装入该运行时。
+实机部署需要匹配导出契约的控制运行时、逐关节零点/方向/范围标定及整机反馈时序验证。
+Web 的 O0 选项只切换观测器，不代表已有整机行走策略可用。
+
+CAD 和校验身份的 S0/O0/R1 依赖随分支提供，克隆后无需访问采集机。来源为 dataset `3bf729e`
+的 `policy-releases/sc0090-testbench/common3000`；`sc0090/` 保留源分支 `211a63f` 的运行时字节，
+见 `source-identity.json`。缺失或修改测量文件会报错。更新 assembly 后使用其
+`scripts/install_rl_adapter.py` 重新同步，训练契约见 `custom_v2/assets/training.yaml`。
+
+`V2-PD` 是几何预览，`V2-BAM-Ideal-Debug` 是理想反馈诊断，不能替代正式训练。
+本次 CPU 软件、短 PPO 和静态保持检查不证明 CUDA 性能、学会行走或整机 sim2real。
+台架测量模型扩展到整机负载及总线相关性，仍是需要整机数据检验的迁移假设。
+
 <img width="2215" height="884" alt="image" src="https://github.com/user-attachments/assets/5db7cc83-b3ce-4f7c-83f0-0572a63baed7" />
 
 

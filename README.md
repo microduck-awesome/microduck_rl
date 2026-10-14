@@ -1,5 +1,72 @@
 # Microduck RL
 
+## V2 / SC0090 官方配方基线
+
+分支 `codex/v2-sc0090-official-baseline` 直接基于官方 `develop`
+`b02fdea4902c2b93b7d34a83a6f05da4ececb7d3`，与
+[S0/O0/R1 分支](https://github.com/microduck-awesome/microduck_rl/tree/codex/v2-sc0090-s0-o0-r1)
+使用相同的 V2 CAD 和冻结 v5 BAM M6，便于分别对照官方配方与实测反馈方案。
+
+任务：`Mjlab-Velocity-Flat-MicroDuck-V2-Official-Baseline`。
+本分支不包含或加载 S0/O0/R1 测量模型、残差库、观测器权重，也不运行 P04 actor。
+克隆后仅使用分支内的 CAD 和电机拟合 JSON 即可训练。
+
+| 项目 | 本基线 | S0/O0/R1 分支 |
+| --- | --- | --- |
+| 机械模型 | V2 CAD，600.941825 g，原始惯量 | 相同 |
+| 电机 | 冻结 v5 M6，P15/D30/I0，11.1 V | 同一 M6；nominal 11.1 V，measured 扩大供电工况 |
+| 关节反馈 | 仿真关节状态 + 官方噪声、编码器零偏和延迟 | S0 测量、实测残差、O0 LS3 因果查询 |
+| 目标路径 | 官方连续位置动作，动作 scale 1.0 | CAD 限位、O0 逆映射、原生计数量化与保护 |
+| 学习设置 | 官方网络、PPO、奖励权重、命令及通用随机化 | 尽量保留同一配方，关节观测链替换为实测模型 |
+| 测量归档 | 无依赖 | 需要随分支附带的归档 |
+
+基线保留官方 actor 的位置噪声 ±0.001 rad、速度噪声 ±0.25 rad/s、
+速度延迟 1 个控制周期（20 ms）、编码器零偏 ±0.015 rad，以及 IMU 噪声/延迟/安装偏差。
+训练/回放时是否启用噪声、critic 特权观测均跟随官方工厂配置。
+这些是用于对照的官方假设，不代表已经测得的 SC0090 整机反馈特性。
+
+为使用实际硬件，必要差异包括 V2 的 CAD HOME/初始高度、14 策略关节顺序和独立嘴巴、
+头颈命令范围裁剪，以及针对 SC0090 的 BAM 力矩/摩擦/armature。
+XL330 的摩擦、armature、阻尼和增益随机化被移除，避免改动冻结的 M6；
+身体质量/惯量、CoM、接触、推扰和 IMU 随机化保留，围绕 V2 自身物理参数运行。
+原官方任务、`uv.lock`、网络与优化器代码保持不变。
+
+两分支还存在目标限位与计数量化等差异，直接比较结果不能解释为只改变 S0/O0 的单因素实验。
+本基线保持官方目标可超出机械止挡的训练设置；真实关节运动仍受模型关节范围和电机动力学约束。
+
+```bash
+git clone --branch codex/v2-sc0090-official-baseline https://github.com/microduck-awesome/microduck_rl.git
+cd microduck_rl
+uv sync --frozen
+# 首先执行 64 环境、5 次 PPO 更新和带归一化的 ONNX 检查（默认 CPU）
+uv run python scripts/smoke_v2_ppo.py --output-dir /tmp/v2-baseline
+uv run python scripts/validate_v2_hold.py --report /tmp/v2-baseline-hold.json
+# 正式训练需要可用 CUDA 环境
+uv run train Mjlab-Velocity-Flat-MicroDuck-V2-Official-Baseline --env.scene.num-envs 4096
+# 回放和导出沿用官方入口，并显式选择 V2 任务
+uv run play Mjlab-Velocity-Flat-MicroDuck-V2-Official-Baseline --checkpoint-file /path/to/model.pt
+uv run scripts/export.py Mjlab-Velocity-Flat-MicroDuck-V2-Official-Baseline \
+  --checkpoint-file /path/to/model.pt --num-envs 1 --device cpu --onnx-file v2-baseline.onnx
+```
+
+ONNX 仍包含归一化、61 维 actor 观测、14 个动作及正确的关节元数据，并明确标识
+`microduck-v2-sc0090-official-baseline-v1` / `simulation-baseline-only`。
+它用于 V2 仿真对照，不能直接当作当前 S0/O0 固件策略部署；部署前需要匹配的反馈/目标链路。
+
+CAD 来源为 assembly `9b66fec`，逐文件 SHA256 见
+[`assembly-install.json`](src/mjlab_microduck/custom_v2/assembly-install.json)。
+电机 JSON SHA256 为 `7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4`，
+与实测链分支一致。适配器是本分支专用版本；assembly 的 S0/O0 安装器会替换它，不能用于更新本基线。
+
+软件检查、PPO 和 HOME 保持结果见
+[`reports/v2-baseline/software-verification.json`](reports/v2-baseline/software-verification.json)。
+短训练验证训练路径和导出，不代表已学会行走或完成整机 sim2real。
+
+---
+
+以下为固定版本的官方说明，其中原版质量/舵机描述不适用于 V2。
+
+
 <img width="2215" height="884" alt="image" src="https://github.com/user-attachments/assets/5db7cc83-b3ce-4f7c-83f0-0572a63baed7" />
 
 

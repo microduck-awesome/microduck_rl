@@ -1,0 +1,222 @@
+{
+  "schema": "microduck-v2-official-baseline-verification-v1",
+  "date": "2026-10-15",
+  "upstream_revision": "b02fdea4902c2b93b7d34a83a6f05da4ececb7d3",
+  "assembly_revision": "9b66fecb81d67d6aeb944c9ba9ad9223145371eb",
+  "comparison_sensor_branch_revision": "070d6069e1aacbba9a22a905eaa8f4fe0dd6729a",
+  "hardware_validated": false,
+  "environment": {
+    "python": "3.12.3",
+    "torch": "2.9.1+cpu",
+    "mjlab": "1.3.0",
+    "mujoco": "3.10.0",
+    "warp": "1.12.0",
+    "note": "Used the existing verification venv with this worktree src first in PYTHONPATH; verified the imported package path. Local CPU torch wheel differs from default PyPI CUDA wheel; official uv.lock and pyproject.toml remain unchanged."
+  },
+  "baseline": {
+    "task": "Mjlab-Velocity-Flat-MicroDuck-V2-Official-Baseline",
+    "mass_kg": 0.600941825,
+    "motor_sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+    "motor_module_byte_identical_to_sensor_branch": true,
+    "measurement_archive_required": false,
+    "actor_joint_position_uniform_noise_rad": [
+      -0.001,
+      0.001
+    ],
+    "actor_joint_velocity_uniform_noise_rad_s": [
+      -0.25,
+      0.25
+    ],
+    "actor_joint_velocity_delay_control_steps": 1,
+    "encoder_bias_rad": [
+      -0.015,
+      0.015
+    ],
+    "removed_motor_events": [
+      "randomize_joint_friction",
+      "randomize_joint_damping",
+      "randomize_armature",
+      "randomize_motor_gains"
+    ],
+    "note": "The pinned upstream currently enables friction and armature events; disabled gain/damping events are also excluded if enabled later. Other official observation, PPO, reward and command settings are inherited, with V2 joint selectors, HOME/spawn height and head limits adapted."
+  },
+  "tests": {
+    "unique_tests_passed": 69,
+    "unresolved_failures": 0,
+    "files": [
+      "test_v2_baseline_cfg.py",
+      "test_sc0090_v5.py",
+      "test_velstand_cfg.py",
+      "test_head_pose_bias.py",
+      "test_obs_nan_guard.py"
+    ],
+    "attempts": [
+      {
+        "passed": 68,
+        "failed": 1,
+        "scope": "All selected tests",
+        "reason": "Comparison helper treated implicit default asset selector as different from the explicitly narrowed V2 selector."
+      },
+      {
+        "passed": 4,
+        "failed": 0,
+        "scope": "All baseline config tests after resolving function default selectors; no production change."
+      }
+    ]
+  },
+  "ppo": {
+    "status": "PASS",
+    "task": "Mjlab-Velocity-Flat-MicroDuck-V2-Official-Baseline",
+    "device": "cpu",
+    "envs": 64,
+    "iterations": 5,
+    "steps_per_env": 24,
+    "learning_epochs": 5,
+    "minibatches": 4,
+    "losses": [
+      {
+        "value": 0.03302041571587324,
+        "surrogate": -0.026574067934416235,
+        "entropy": 19.839896965026856
+      },
+      {
+        "value": 0.03503334624692798,
+        "surrogate": -0.041069848235929386,
+        "entropy": 19.831685256958007
+      },
+      {
+        "value": 0.038523861486464736,
+        "surrogate": -0.04435710323305102,
+        "entropy": 19.819728565216064
+      },
+      {
+        "value": 0.02758142724633217,
+        "surrogate": -0.04233437506482005,
+        "entropy": 19.805485916137695
+      },
+      {
+        "value": 0.030697629693895577,
+        "surrogate": -0.04208474769257009,
+        "entropy": 19.784971046447755
+      }
+    ],
+    "policy_parameter_max_change": 0.011911466717720032,
+    "finite_policy_parameters": true,
+    "elapsed_seconds": 45.03175548699801,
+    "robot_walk_sha256": "671362042e9ef3cfd53313b0264dfc095af46cdaed68fe637130354471e0e7dd",
+    "action_scale": 1.0,
+    "peak_contacts_across_worlds": 402,
+    "contact_capacity_across_worlds": 2240,
+    "contact_capacity_checked_each_physics_step": true,
+    "logging": "local TensorBoard",
+    "upload_model": false,
+    "limitation": "A short PPO smoke validates the training path; it does not demonstrate learned walking or SC0090 sim2real.",
+    "onnx_exported": true,
+    "runtime": "microduck-v2-sc0090-official-baseline-v1",
+    "feedback": "official-joint-noise-delay-and-encoder-bias",
+    "motor_sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+    "onnx_cpu_inference": {
+      "input": [
+        1,
+        61
+      ],
+      "output": [
+        1,
+        14
+      ],
+      "metadata_joint_count": 14,
+      "normalizer_parity_max_error": 1.4901161193847656e-07
+    }
+  },
+  "hold": {
+    "task": "V2 frozen M6, nominal 11.1 V, P15/D30/I0, official baseline observations",
+    "seconds": 3,
+    "environments": 3,
+    "reset_during_hold": false,
+    "perturbation_rad_std": 0.01,
+    "maximum_tilt_deg": [
+      2.8236215114593506,
+      2.4676761627197266,
+      2.690718412399292
+    ],
+    "final_tilt_deg": [
+      2.8209166526794434,
+      2.4676761627197266,
+      2.690718412399292
+    ],
+    "final_root_height_m": [
+      0.1118352934718132,
+      0.11223246902227402,
+      0.1118936836719513
+    ],
+    "final_max_joint_speed_rad_s": [
+      0.010380432941019535,
+      0.01470303162932396,
+      0.024812065064907074
+    ],
+    "nominal_mass_kg": 0.600941825,
+    "armature_kg_m2": [
+      0.000766011777689163,
+      0.000766011777689163,
+      0.000766011777689163,
+      0.000766011777689163,
+      0.000766011777689163,
+      0.000766011777689163,
+      0.000766011777689163,
+      0.000766011777689163,
+      0.000766011777689163,
+      0.000766011777689163,
+      0.000766011777689163,
+      0.000766011777689163,
+      0.000766011777689163,
+      0.000766011777689163,
+      0.000766011777689163
+    ],
+    "no_fall_under_15_degrees": true,
+    "hardware_validated": false
+  },
+  "wheel": {
+    "passed": true,
+    "wheel_sha256": "7c49c83f8af1499255db53f787c0a6619e47ea7b79f39ddee6fd09c8bc58d71e",
+    "cad_files_verified": 129,
+    "frozen_motor_verified": true,
+    "measurement_pipeline_absent": true,
+    "isolated_wheel_config_and_cad_compile": true
+  },
+  "deployment_rejection": {
+    "passed": true,
+    "reason": "unsupported robot/runtime contract",
+    "firmware_revision": "c3c6038f3dae61e18b060dd021a06f5b61f02a60",
+    "scope": "Baseline ONNX cannot be relabeled as an S0/O0 deployment policy."
+  },
+  "unchanged_from_upstream": [
+    "uv.lock",
+    "pyproject.toml",
+    "src/mjlab_microduck/tasks/mdp.py",
+    "src/mjlab_microduck/tasks/microduck_velocity_env_cfg.py"
+  ],
+  "source_sha256": {
+    "src/mjlab_microduck/custom_v2/microduck_v2.py": "6f3ac48122768622aeec996819c98b1c9108f1fa48ea36549dab363f582ccb2d",
+    "src/mjlab_microduck/custom_v2/assembly-install.json": "81878444997edc551d6afb03f10ad6f89f2fec830cf61e6826df9edf62aa46d9",
+    "src/mjlab_microduck/actuator/sc0090_v5.py": "89796266d41cd55dabdf31ab910ef17b1c7732d145b262c7e3e33d93599a2450",
+    "src/mjlab_microduck/actuator/params/sc0090_v5_m6.json": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+    "src/mjlab_microduck/tasks/__init__.py": "03e0f2d9b3821d3323494610d5a56bc47ff8000468d972e1f83910de7c5b3410",
+    "scripts/smoke_v2_ppo.py": "0fcf5fa75eff9fcbc79d4ec64203b7d88c41449f6a7dc5117a15cdf757aa6c60",
+    "scripts/validate_v2_hold.py": "f8e53f302436e845aade295b018ca35d10030630208330032f091593903abe65",
+    "tests/test_v2_baseline_cfg.py": "f445cd1025741c151eb5d06c67c3d38e7e0652fe6637dc7551effb0808d6abe2",
+    "tests/test_sc0090_v5.py": "a55b1092b040dee059f978f5836f5bc10dc4c088a870bc9e6db2ccd516fc5e8a"
+  },
+  "verification_commands": [
+    "uv run --with pytest pytest tests/test_v2_baseline_cfg.py tests/test_sc0090_v5.py tests/test_velstand_cfg.py tests/test_head_pose_bias.py tests/test_obs_nan_guard.py -q",
+    "uv run python scripts/validate_v2_hold.py --report <report.json>",
+    "uv run python scripts/smoke_v2_ppo.py --output-dir <directory>",
+    "uv build --wheel --out-dir <directory>"
+  ],
+  "limitations": [
+    "CPU-only smoke; CUDA performance and long training not measured.",
+    "Short PPO does not demonstrate learned walking or physical sim2real.",
+    "Official observation noise/delay are comparison assumptions, not measured SC0090 whole-body feedback.",
+    "Continuous target and joint feedback conventions differ from the S0/O0 deployment path; current firmware converter explicitly rejects this baseline export.",
+    "Differences from the measured branch include target mapping and count guards as well as measurement/observer modeling; this is not a one-factor ablation."
+  ]
+}

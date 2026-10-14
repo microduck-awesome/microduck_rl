@@ -14,7 +14,12 @@ The 3D model files listed below are licensed under the
 - `src/mjlab_microduck/robot/microduck/assets/*.stl`
 - `src/mjlab_microduck/robot/xl330_test_bench/assets/*.stl`
 
-Everything else in this repository, including the MJCF robot descriptions (`.xml`),
+The separately imported `src/mjlab_microduck/custom_v2/assets/` CAD assets retain
+the rights and provenance of `microduck-awesome/microduck-assembly`. That source
+has not assigned a new open-source license to its own CAD/model assets; this
+branch does not relicense them.
+
+Other upstream files in this repository, including the MJCF robot descriptions (`.xml`),
 the export configs (`config_mjcf_*.json`, `config.json`) and the Onshape part
 metadata (`.part`), is licensed under the Apache License 2.0. See [LICENSE](LICENSE).
 

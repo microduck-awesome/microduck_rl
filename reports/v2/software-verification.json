@@ -183,7 +183,8 @@
     "checks": [
       "Policy requires a different robot/runtime contract; V2 CAD HOME, O0 calibration and unfiltered targets cannot run in the alpha runtime",
       "Policy requires a different robot/runtime contract; V2 CAD HOME, O0 calibration and unfiltered targets cannot run in the alpha runtime"
-    ]
+    ],
+    "scope": "Historical result before the separate V2 firmware runtime was implemented."
   },
   "wheel_verified_training_assets": 6,
   "limitations": [
@@ -191,7 +192,7 @@
     "Short PPO does not demonstrate learned walking",
     "S0 residual/load model and R1 timing were measured on the single-servo bench; whole-robot transfer remains an assumption",
     "No device flashing, servo movement or whole-robot sim2real validation",
-    "Current alpha deployment runtime is incompatible with V2 and its converter rejects V2 metadata"
+    "At this initial revision the alpha converter rejected V2; the subsequent V2 runtime has separate verification in runtime-verification.json."
   ],
   "source_sha256": {
     "src/mjlab_microduck/sc0090_v2/artifacts.py": "30fb7e7f46a31946b5c0be4b1144770a8ad6d1613db7aead770365734cf549f3",
@@ -204,5 +205,7 @@
     "src/mjlab_microduck/custom_v2/assembly-install.json": "a57adcfbbdc45e28c4819d3ce204e2efe78d1a01de885fa53142a5d9a9889a67",
     "scripts/smoke_v2_ppo.py": "79480142277f9264af15adefaadc90dbe0550663a723802c7b66a8038d0dccfc",
     "scripts/validate_v2_hold.py": "ea2e3f93d2cb106e00721378324ed6aa38bd9cbb82ce811f5a2ee02f46f0282e"
-  }
+  },
+  "scope": "Historical initial training verification; runtime integration is recorded separately in runtime-verification.json.",
+  "implementation_revision": "172c5ed68e3c72d1a87d372bdfcc8175db3fb3ae"
 }

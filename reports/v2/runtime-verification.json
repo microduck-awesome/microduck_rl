@@ -1,0 +1,89 @@
+{
+  "schema": "microduck-v2-runtime-verification-v1",
+  "date": "2026-10-15",
+  "hardware_validated": false,
+  "training_base_revision": "172c5ed68e3c72d1a87d372bdfcc8175db3fb3ae",
+  "assembly_revision": "9b66fecb81d67d6aeb944c9ba9ad9223145371eb",
+  "dataset_revision": "3bf729eb680406f897f3f7d39224e3d14a488b4d",
+  "firmware_revision": "c3c6038f3dae61e18b060dd021a06f5b61f02a60",
+  "web_revision": "90c7600b284d65cd4ff2efea9e739b55e998dd2f",
+  "frozen_motor_sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+  "nominal_robot_mass_kg": 0.600941825,
+  "training_regression": {
+    "passed": 6,
+    "failed": 0,
+    "files": [
+      "tests/test_sc0090_v2_feedback.py",
+      "tests/test_sc0090_v2_cfg.py"
+    ],
+    "elapsed_seconds": 26.25,
+    "coverage": "Frozen runtime identity, S0/O0 from reset, shared voltage, partial reset isolation, task configuration and mechanical guards after optional slew."
+  },
+  "numeric_parity": {
+    "passed": true,
+    "hardware_validated": false,
+    "inference": {
+      "model": "report.mdp",
+      "source_sha256": "8bbdcc7f5c4d7bc48f612891af9a47fba0caba4c02fb76a5abb6418888270753",
+      "binary_sha256": "34497a6e8b5b611f8fc2f223976351414d562dc237217b86e9ea59752c7eacba",
+      "samples": 259,
+      "max_abs_error": 1.33514404296875e-05,
+      "max_tolerance_ratio": 0.11564125865697861,
+      "packed_fma_max_abs_error": 1.1920928955078125e-05,
+      "packed_fma_max_tolerance_ratio": 0.1183030754327774,
+      "packed_row_alignment_bytes": 64,
+      "packed_strides_floats": [
+        64,
+        512,
+        256,
+        128
+      ],
+      "criterion": "abs_error <= 1e-4 + 1e-5 * abs(reference)",
+      "invalid_model_and_nonfinite_input_rejected": true,
+      "unsupported_graph_rejected": true
+    },
+    "runtime": "microduck-v2-sc0090-s0-o0-v1",
+    "training_contract_sha256": "ee282f2b510783966747d416b0c7d967bfcaa382ecce151a1babfcdd323f7ac0",
+    "command_samples": 22500,
+    "native_count_mismatches": 0,
+    "decoded_target_max_error_rad": 0.0,
+    "tested_slew_rad_s": [
+      null,
+      0.5,
+      5.0
+    ],
+    "library_sha256": "66781e0a6867b37bda1c4da972e57447e49e83d233f24845b446055402f7538b",
+    "limitation": "Host numeric and simulated command parity only; no physical timing or walking validation."
+  },
+  "companion_verification": {
+    "firmware_report": "docs/status/v2-runtime-software-validation.json",
+    "firmware_host_tests_passed": 73,
+    "p4_build_passed": true,
+    "web_report": "docs/reference/v2-runtime-software-validation.json",
+    "web_selected_unit_tests_passed": 33,
+    "web_v2_observer_binding_browser_passed": true,
+    "web_group_control_browser_passed": true,
+    "peer_commits_integrated": {
+      "firmware": "28c869659560b6a77121f2e7bdda24a4e9a99096",
+      "web": "e99145fb800ff7cb4728597c0bf78dc3a465f36c"
+    }
+  },
+  "initial_training_report": "software-verification.json",
+  "source_sha256": {
+    "src/mjlab_microduck/sc0090_v2/action.py": "323ad5b163c6cb5a4dd8c5604eb9100a053063dbb6b2325d2f60e9d595c69b46",
+    "src/mjlab_microduck/sc0090_v2/contract.py": "5ba9cdc563ecbc75c171a14b4717d7fa0b0cf7fdc51d3903366a075db8eca970",
+    "scripts/validate_v2_firmware.py": "cc5c10de1871de37140cd7157c70b734eccbfaff8cfcec41271ab7502c635c1a",
+    "tests/test_sc0090_v2_feedback.py": "1a1591ef8f994c7c41a59c15642a718a57f6211dcacccc50117fa5b94441ad50"
+  },
+  "verification_commands": [
+    "uv run --with pytest pytest tests/test_sc0090_v2_feedback.py tests/test_sc0090_v2_cfg.py",
+    "uv run python scripts/validate_v2_firmware.py --firmware ../microduck-firmware --library ../microduck-firmware/esp32p4/build-host/libmicroduck_core.so --onnx <normalized V2 ONNX> --report <report.json>"
+  ],
+  "limitations": [
+    "Initial 64-environment, 5-iteration PPO smoke validates training execution; it is not a learned walking policy.",
+    "Only CPU software and host numeric checks; no CUDA, real-time device deadline or whole-robot sim2real claim.",
+    "S0/R1 bench residual and timing transfer still needs whole-robot data.",
+    "V2 deployment supports FP32 velocity MLP; browser simulation remains alpha geometry.",
+    "Physical joint calibration, P15/D30/I0 and zero goal profile must match before device motion."
+  ]
+}

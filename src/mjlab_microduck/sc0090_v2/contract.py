@@ -64,10 +64,12 @@ def load_contract(path):
     ):
         raise ValueError("Unsupported V2 native command mapping")
     rate = commands["command_rate_rad_s"]
-    if rate is not None and (not isinstance(rate, (float, int)) or not 0 < rate <= 20):
+    if rate is not None and (type(rate) not in (float, int) or not 0 < rate <= 20):
         raise ValueError("Command slew must be null or finite within (0, 20] rad/s")
     if contract["artifacts"]["files"] != FILES:
-        raise ValueError("V2 artifact identities differ from the qualified S0/O0/R1 archive")
+        raise ValueError(
+            "V2 artifact identities differ from the qualified S0/O0/R1 archive"
+        )
     return contract
 
 
@@ -86,7 +88,9 @@ def export_contract(env, contract):
     encoded = json.dumps(value, sort_keys=True, separators=(",", ":"))
     return {
         "microduck_training_contract": encoded,
-        "microduck_training_contract_sha256": hashlib.sha256(encoded.encode()).hexdigest(),
+        "microduck_training_contract_sha256": hashlib.sha256(
+            encoded.encode()
+        ).hexdigest(),
         "microduck_robot": "microduck-v2-sc0090",
         "microduck_runtime": value["hardware_runtime"],
     }

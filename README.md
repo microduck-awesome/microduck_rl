@@ -41,9 +41,23 @@ uv run scripts/export.py Mjlab-Velocity-Flat-MicroDuck-V2-S0-O0-R1 \
 action 的 `command_rate_rad_s` 可显式设为 `(0,20] rad/s` 并随模型导出。命令限制来自部署配置及
 机械/计数范围，不由 M6 的物理转速推导，也不继承台架 ±0.8 rad、2 rad/s 或零点 506。
 
-当前 alpha 固件仍采用自己的 HOME、EMA 和 slew 规则；配套转换器拒绝把此 V2 ONNX 装入该运行时。
-实机部署需要匹配导出契约的控制运行时、逐关节零点/方向/范围标定及整机反馈时序验证。
-Web 的 O0 选项只切换观测器，不代表已有整机行走策略可用。
+配套固件 `codex/v2-sc0090` 支持 V2 FP32 MLP：转换器校验契约并生成 MDPOL001 version 2，
+旧 alpha 固件会拒绝该版本。新运行时使用 CAD HOME、O0 目标逆映射、模型声明的动作幅度/限速，
+不加 EMA；V2 速度策略同时负责零速度站立，旧 alpha 技能不参与。切换机器人会撤销关节和 IMU 标定。
+实机仍需逐关节零点/方向/范围、P15/D30/I0、零目标轮廓及整机反馈时序验证。
+Web 的浏览器仿真仍使用 alpha 几何，V2 权重在本仓库的 V2 环境回放。
+
+编译配套固件的主机库后，可对自己的 ONNX 运行 C/ONNX 数值和目标计数对照：
+
+```bash
+uv run python scripts/validate_v2_firmware.py --firmware ../microduck-firmware \
+  --library ../microduck-firmware/esp32p4/build-host/libmicroduck_core.so \
+  --onnx v2.onnx --report /tmp/v2-runtime/report.json
+```
+
+该检查会输出同名 `.mdp`，不会连接设备。主机库路径按实际构建目录调整。
+已验证的 259 组推理输入和 22,500 个命令计数见 `reports/v2/runtime-verification.json`；
+初始训练检查保留在 `reports/v2/software-verification.json`，对应首次提交的源身份。
 
 CAD 和校验身份的 S0/O0/R1 依赖随分支提供，克隆后无需访问采集机。来源为 dataset `3bf729e`
 的 `policy-releases/sc0090-testbench/common3000`；`sc0090/` 保留源分支 `211a63f` 的运行时字节，

@@ -18,7 +18,9 @@ def test_frozen_runtime_matches_p04_software_evidence():
         "observer.py": "7b9da38512efda458621b63387bc317ed1b676e5d4a3e8b98a506a95cd5c06c7",
     }
     for name, digest in expected.items():
-        assert hashlib.sha256((ROOT / "sc0090" / name).read_bytes()).hexdigest() == digest
+        assert (
+            hashlib.sha256((ROOT / "sc0090" / name).read_bytes()).hexdigest() == digest
+        )
 
 
 def test_shared_supply_partial_reset_and_read_only_query():
@@ -28,8 +30,12 @@ def test_shared_supply_partial_reset_and_read_only_query():
     feedback.reset(torch.arange(4), pose)
     assert feedback.ready.all()
     p = feedback.pipeline
-    assert torch.equal(p.voltage.reshape(4, 15), feedback.voltage[:, None].expand(-1, 15))
-    assert set(feedback.voltage.tolist()) <= {float(torch.tensor(v)) for v in (10.2, 11.1, 12.4)}
+    assert torch.equal(
+        p.voltage.reshape(4, 15), feedback.voltage[:, None].expand(-1, 15)
+    )
+    assert set(feedback.voltage.tolist()) <= {
+        float(torch.tensor(v)) for v in (10.2, 11.1, 12.4)
+    }
     # Advance two real control periods; querying repeatedly cannot advance time,
     # consume donor residuals or change the emitted observation.
     for _ in range(2):
@@ -60,7 +66,9 @@ def test_shared_supply_partial_reset_and_read_only_query():
     assert torch.equal(p.physics[untouched], physics)
     for name, value in before.items():
         assert torch.equal(value, getattr(p.stream, name)[untouched]), name
-    assert torch.equal(p.voltage.reshape(4, 15), feedback.voltage[:, None].expand(-1, 15))
+    assert torch.equal(
+        p.voltage.reshape(4, 15), feedback.voltage[:, None].expand(-1, 15)
+    )
 
 
 def test_nominal_stage_keeps_s0_o0_active():
@@ -72,10 +80,43 @@ def test_nominal_stage_keeps_s0_o0_active():
     assert feedback.ready.all()
     assert feedback.pipeline.stream.model.mode == "O0"
     assert feedback.pipeline.event_count.min() >= 20
-    assert feedback.last_q.abs().max() > 1e-4  # Real residuals/quantization, not ideal pose.
+    assert (
+        feedback.last_q.abs().max() > 1e-4
+    )  # Real residuals/quantization, not ideal pose.
     target = torch.tensor([[-2.96706, 2.96706, 0.0]])
     count = feedback.counts(target)
     assert count.min() == 20 and count.max() == 1001
     restored = feedback.physical_target(count)
     assert restored[0, 0] > target[0, 0] and restored[0, 1] < target[0, 1]
     assert abs(restored[0, 2]) <= 0.005624596222247351 * 0.958647 / 2
+
+
+def test_slew_cannot_retain_a_reset_pose_beyond_mechanical_limits(monkeypatch):
+    from types import SimpleNamespace
+    from mjlab_microduck.sc0090_v2.action import (
+        V2JointPositionAction,
+        JointPositionAction,
+    )
+
+    # Supply already-scaled desired angles; exercise the production slew/count path.
+    monkeypatch.setattr(
+        JointPositionAction,
+        "process_actions",
+        lambda self, actions: setattr(self, "_processed_actions", actions),
+    )
+    action = object.__new__(V2JointPositionAction)
+    action.cfg = SimpleNamespace(command_rate_rad_s=0.1)
+    action._entity = SimpleNamespace(
+        data=SimpleNamespace(
+            joint_pos_limits=torch.tensor([[[-0.1, 0.1]] * 15]),
+        )
+    )
+    action._all_ids = torch.arange(15)
+    action._env = SimpleNamespace(step_dt=0.02, unwrapped=SimpleNamespace())
+    action.feedback = WholeRobotFeedback(ARCHIVE, 1, device="cpu")
+    action.feedback.reset(torch.tensor([0]), torch.zeros(1, 15))
+    action._goal = torch.full((1, 15), 10.0)
+    action._count = action.feedback.counts(action._goal)
+    action.process_actions(torch.zeros(1, 14))
+    # A quantized target may differ by half a count; it cannot remain near the invalid reset.
+    assert action._goal.abs().max() < 0.103

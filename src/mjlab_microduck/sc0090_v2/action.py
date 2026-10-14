@@ -20,11 +20,18 @@ class V2JointPositionActionCfg(JointPositionActionCfg):
 
 class V2JointPositionAction(JointPositionAction):
     def __init__(self, cfg, env):
+        if cfg.command_rate_rad_s is not None and (
+            type(cfg.command_rate_rad_s) not in (float, int)
+            or not 0 < cfg.command_rate_rad_s <= 20
+        ):
+            raise ValueError("Command slew must be null or finite within (0, 20] rad/s")
         super().__init__(cfg, env)
         if self.action_dim != 14:
             raise ValueError("V2 policy must have exactly 14 joints")
         mouth, _ = self._entity.find_joints("^mouth$")
-        self._all_ids = torch.cat((self._target_ids, torch.tensor(mouth, device=self.device)))
+        self._all_ids = torch.cat(
+            (self._target_ids, torch.tensor(mouth, device=self.device))
+        )
         self.feedback = WholeRobotFeedback(
             cfg.archive_path,
             self.num_envs,
@@ -49,8 +56,8 @@ class V2JointPositionAction(JointPositionAction):
         super().reset(ids)
         pose = self._entity.data.joint_pos[:, self._all_ids].clone()
         self.feedback.reset(ids, pose)
-        self._goal[ids] = pose[ids]
         self._count[ids] = self.feedback.counts(pose)[ids]
+        self._goal[ids] = self.feedback.physical_target(self._count)[ids]
         for actuator in self._entity.actuators:
             actuator.vin_tensor[ids, 0] = self.feedback.voltage[ids]
         self._apply_targets()
@@ -71,6 +78,8 @@ class V2JointPositionAction(JointPositionAction):
             wanted = self._goal + (wanted - self._goal).clamp(
                 -rate * self._env.step_dt, rate * self._env.step_dt
             )
+        # A reset pose can start beyond a joint stop; mechanical guards still win over slew.
+        wanted = wanted.clamp(limits[..., 0], limits[..., 1])
         self._count.copy_(self.feedback.counts(wanted))
         # Subsequent slew starts at the quantized, count-clamped wire target.
         self._goal.copy_(self.feedback.physical_target(self._count))

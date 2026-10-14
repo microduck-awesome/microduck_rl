@@ -1,0 +1,4 @@
+# Keep hash-verified source artifacts byte-identical on every checkout platform.
+# The CAD exporter uses CRLF; those original line endings are intentional.
+src/mjlab_microduck/custom_v2/assets/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+src/mjlab_microduck/actuator/params/sc0090_v5_m6.json -text

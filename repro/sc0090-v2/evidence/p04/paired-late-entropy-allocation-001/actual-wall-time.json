@@ -1,0 +1,8 @@
+{
+  "controls": 50331648,
+  "complete_process_wall_seconds": 571.5147287845612,
+  "complete_process_interactions_per_s": 88067.10564929828,
+  "run_record_wall_seconds": 519.237998008728,
+  "run_record_interactions_per_s": 96933.67625832722,
+  "scope": "Successful formal Python process including initialization, embedded recovery; excludes preflight, failed provenance startup, final head/common evaluations; early3968 head deferred after watcher migration failure, unlike control overlap"
+}

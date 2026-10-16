@@ -1,0 +1,1836 @@
+{
+  "schema": 1,
+  "status": "READ_ONLY_AUDIT_COMPLETE_CURRENT_FIRMWARE_NOT_DEPLOYMENT_COMPATIBLE",
+  "created_unix": 1792147558.9178624,
+  "firmware": {
+    "path": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+    "head": "ee77131564eef52a64575628b0c117d69f583039",
+    "branch": "main",
+    "clean_after": true
+  },
+  "training": {
+    "worktree": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+    "base_git_head": "070d6069e1aacbba9a22a905eaa8f4fe0dd6729a",
+    "identity_note": "worktreemodifiedsourcesareintentionalfrozenexecution;SHA/run/sourcearchiveauthoritative,notbaseHEAD",
+    "run": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-allocation-001/run.json",
+    "run_sha256": "db5e6e72d0901fc6b52035c49290d9a8b4c24bd2beb46ef1c1e37f1dc9ff9174",
+    "contract": {
+      "artifacts": {
+        "dataset_revision": "3bf729e",
+        "files": {
+          "measurement/R1-frozen-v1/manifest.json": "9924f41b31da05a337030b37d7e9dc3aeaca4b688c62c6525bf04b153f334f3b",
+          "measurement/R1-frozen-v1/model.json": "0bee6ab37fbf9b7b6b26fe1149508e3f76034f0afbfec229d5c8e99fe24d3eda",
+          "measurement/fit-joint-residual/manifest.json": "e8f78e9f289ea69cb2a21d94093977c419498f128f70f7190453af41fb7b0cb5",
+          "measurement/fit-joint-residual/model.json": "ac648d005c1f51619bcc4774e7aab3a88038e1f7cbb86f8b8cb8824600b3b598",
+          "measurement/fit-joint-residual/residual-library.npz": "821e0b927ed6a09854ec4b62c78b0ecf021df706125bd2f376fbc545e38c50cb",
+          "observer/qualification/O1-native100-seed42.npz": "312b877d33dbc643036aa99970ebfc491e1659bf1c45cc65dfa06da212260629"
+        },
+        "release": "policy-releases/sc0090-testbench/common3000"
+      },
+      "commands": {
+        "action_ema": false,
+        "action_scale": 1.0,
+        "command_rate_rad_s": null,
+        "frame": "V2 CAD HOME radians",
+        "hardware_calibrated": false,
+        "native_count_limits": [
+          20,
+          1001
+        ],
+        "radians_per_count": 0.005624596222247351,
+        "range": "intersection_of_CAD_and_native_count_guards",
+        "target_mapping": "inverse_O0_affine_then_round_native_count",
+        "virtual_zero_count": 512
+      },
+      "dynamics": {
+        "firmware_d": 30,
+        "firmware_i": 0,
+        "firmware_p": 15,
+        "goal_profile_zeroed": true,
+        "model": "sc0090-v5-m6-seed1",
+        "nominal_voltage_v": 11.1,
+        "sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4"
+      },
+      "hardware_runtime": "microduck-v2-p04-o0-valid-raw-native-counts-v2",
+      "mechanics": {
+        "nominal_mass_kg": 0.600941825,
+        "source": "V2 CAD body masses and inertia tensors",
+        "upstream_mass_values": false
+      },
+      "observations": {
+        "action_dimension": 14,
+        "actor_dimension": 61,
+        "command_count_limits": [
+          20,
+          1001
+        ],
+        "measurement": "S0",
+        "mouth_control": "independent",
+        "native_feedback_count_limits": [
+          0,
+          1023
+        ],
+        "neural_observer": false,
+        "o0_history": "five valid sampled points; no O1 220ms refractory period",
+        "observer": "O0",
+        "spike_rejection": false
+      },
+      "randomization": {
+        "bench_pendulum_loads": false,
+        "initial_stage": "nominal",
+        "measured_voltages_v": [
+          10.2,
+          11.1,
+          12.4
+        ],
+        "motor_parameter_randomization": false,
+        "nominal_voltages_v": [
+          11.1
+        ],
+        "retain_official_body_contact_imu_randomization": true,
+        "shared_supply": true,
+        "stage": "nominal"
+      },
+      "schema": "microduck-v2-sc0090-training-v1",
+      "timing": {
+        "feedback_dt_s": 0.01,
+        "physics_dt_s": 0.005,
+        "policy_dt_s": 0.02,
+        "query_delay_s": 0.02,
+        "warmup_s": 0.28
+      },
+      "upstream_revision": "b02fdea4902c2b93b7d34a83a6f05da4ececb7d3"
+    },
+    "contract_sha256": "1a12ef15ee8d9208ad29eab25342fc5a37cf3c1f5b02e85a5a19ceab953680af",
+    "normalizer_readonly_proof": {
+      "onnx_sha256": "574fbd0e0a7d062ca588de10323b050cf37d481d9eef79fade7bd164251ea442",
+      "checkpoint_sha256": "52cc6d28d62051fd03fa3074fa71c98cfcb2ec6a3f01b6fdad008fb2246976c6",
+      "ops": [
+        "Sub",
+        "Div",
+        "Gemm",
+        "Elu",
+        "Gemm",
+        "Elu",
+        "Gemm",
+        "Elu",
+        "Gemm"
+      ],
+      "normalizer": {
+        "Sub": {
+          "shape": [
+            1,
+            61
+          ],
+          "exact_checkpoint_mean_or_std_plus_eps": true,
+          "max_abs": 0.0
+        },
+        "Div": {
+          "shape": [
+            1,
+            61
+          ],
+          "exact_checkpoint_mean_or_std_plus_eps": true,
+          "max_abs": 0.0
+        }
+      },
+      "metadata": {
+        "run_path": "local",
+        "joint_names": "left_hip_yaw,left_hip_roll,left_hip_pitch,left_knee,left_ankle,neck_pitch,head_pitch,head_yaw,head_roll,right_hip_yaw,right_hip_roll,right_hip_pitch,right_knee,right_ankle",
+        "joint_stiffness": "1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000",
+        "joint_damping": "0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080",
+        "default_joint_pos": "0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000",
+        "command_names": "twist",
+        "observation_names": "base_ang_vel,projected_gravity,joint_pos,joint_vel,actions,command,head_command,body_command",
+        "action_scale": "1.0",
+        "microduck_training_contract": "{\"artifacts\":{\"dataset_revision\":\"3bf729e\",\"files\":{\"measurement/R1-frozen-v1/manifest.json\":\"9924f41b31da05a337030b37d7e9dc3aeaca4b688c62c6525bf04b153f334f3b\",\"measurement/R1-frozen-v1/model.json\":\"0bee6ab37fbf9b7b6b26fe1149508e3f76034f0afbfec229d5c8e99fe24d3eda\",\"measurement/fit-joint-residual/manifest.json\":\"e8f78e9f289ea69cb2a21d94093977c419498f128f70f7190453af41fb7b0cb5\",\"measurement/fit-joint-residual/model.json\":\"ac648d005c1f51619bcc4774e7aab3a88038e1f7cbb86f8b8cb8824600b3b598\",\"measurement/fit-joint-residual/residual-library.npz\":\"821e0b927ed6a09854ec4b62c78b0ecf021df706125bd2f376fbc545e38c50cb\",\"observer/qualification/O1-native100-seed42.npz\":\"312b877d33dbc643036aa99970ebfc491e1659bf1c45cc65dfa06da212260629\"},\"release\":\"policy-releases/sc0090-testbench/common3000\"},\"commands\":{\"action_ema\":false,\"action_scale\":1.0,\"command_rate_rad_s\":null,\"frame\":\"V2 CAD HOME radians\",\"hardware_calibrated\":false,\"native_count_limits\":[20,1001],\"radians_per_count\":0.005624596222247351,\"range\":\"intersection_of_CAD_and_native_count_guards\",\"target_mapping\":\"inverse_O0_affine_then_round_native_count\",\"virtual_zero_count\":512},\"dynamics\":{\"firmware_d\":30,\"firmware_i\":0,\"firmware_p\":15,\"goal_profile_zeroed\":true,\"model\":\"sc0090-v5-m6-seed1\",\"nominal_voltage_v\":11.1,\"sha256\":\"7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4\"},\"hardware_runtime\":\"microduck-v2-p04-o0-valid-raw-native-counts-v2\",\"mechanics\":{\"nominal_mass_kg\":0.600941825,\"source\":\"V2 CAD body masses and inertia tensors\",\"upstream_mass_values\":false},\"observations\":{\"action_dimension\":14,\"actor_dimension\":61,\"command_count_limits\":[20,1001],\"measurement\":\"S0\",\"mouth_control\":\"independent\",\"native_feedback_count_limits\":[0,1023],\"neural_observer\":false,\"o0_history\":\"five valid sampled points; no O1 220ms refractory period\",\"observer\":\"O0\",\"spike_rejection\":false},\"randomization\":{\"bench_pendulum_loads\":false,\"initial_stage\":\"nominal\",\"measured_voltages_v\":[10.2,11.1,12.4],\"motor_parameter_randomization\":false,\"nominal_voltages_v\":[11.1],\"retain_official_body_contact_imu_randomization\":true,\"shared_supply\":true,\"stage\":\"nominal\"},\"schema\":\"microduck-v2-sc0090-training-v1\",\"timing\":{\"feedback_dt_s\":0.01,\"physics_dt_s\":0.005,\"policy_dt_s\":0.02,\"query_delay_s\":0.02,\"warmup_s\":0.28},\"upstream_revision\":\"b02fdea4902c2b93b7d34a83a6f05da4ececb7d3\"}",
+        "microduck_training_contract_sha256": "1a12ef15ee8d9208ad29eab25342fc5a37cf3c1f5b02e85a5a19ceab953680af",
+        "microduck_robot": "microduck-v2-sc0090",
+        "microduck_runtime": "microduck-v2-p04-o0-valid-raw-native-counts-v2",
+        "microduck_deployment": "simulation-feedback-repair-validation",
+        "microduck_measurement_execution": "{\"candidate_count\":1024,\"command_count_limits\":[20,1001],\"compact_reset\":true,\"donor_sampler\":\"v2-device-donor-1024-v1\",\"frontend\":\"CompiledCausalStream\",\"native_feedback_count_limits\":[0,1023],\"o0_local_history\":true,\"pipeline\":\"CompiledRegisterPipeline\",\"reset_graph\":true,\"reset_graph_chunk\":19,\"rollout_graph\":true,\"schema\":1,\"source_sha256\":{\"feedback.py\":\"dc5ef0c04cc9a7e84bbe12a3a8319a22e102eb69c66f993a38b8587fc97e4740\",\"graph.py\":\"a49eff096fe2246dce595ea03af8bd84261636cde58598a1a3a1e4ce5f5e7222\",\"measurement/__init__.py\":\"96d1f26fe354f1a6f9a74a4c7cc89ff76a2069851d8b4afbf734785d9205dfcd\",\"measurement/compact.py\":\"cc1b50271c30d1ebb0f9995f5b48a87f24af663cd1b59b0c526248a2895a8b4d\",\"measurement/compiled_registers.py\":\"0f9671f5a31ddcf232b389d8fcf5b3b736953d00290f470574e0f0882819e4f1\",\"measurement/compiled_stream.py\":\"da609f2b075e45bd19be091cb89467fe26e5ef6a1bc9c9b56a3b2a58a33d0aa3\",\"measurement/firmware_stream.py\":\"fba17e7e10b4aa37945ccda08f72a3d874281984ba90f1fff8ed1291760ec77f\",\"measurement/gpu_donors.py\":\"8eefaa07664482f194df1abec679d95d092ae7da293b91c63944bf337e1b686d\",\"measurement/precision.py\":\"792d990f742cec691fee4c1247e11b385520693e206f70faff2aa47536751717\",\"measurement/prehistory.py\":\"9f37748c6fd25d8b7a1743ef4681f2ca88e15454fc927e0ac3456fb4374bc4e0\",\"measurement/registers.py\":\"089e44fd3eb15eabe0ad1f9d335ae77e7721346db129fef6df4cc613895c3134\",\"measurement/stream.py\":\"2ffcf8729f6482c67f5622cc3a0ca5165f5b6f2e5ae6e992941f36c5a569e5d0\"},\"spike_rejection\":false}"
+      },
+      "weights_not_modified": true
+    }
+  },
+  "joint_limits_and_axes_from_fullCAD": [
+    {
+      "joint": "left_hip_yaw",
+      "range_rad": [
+        -0.436332,
+        0.436332
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "joint": "left_hip_roll",
+      "range_rad": [
+        -0.313929,
+        0.454016
+      ],
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "joint": "left_hip_pitch",
+      "range_rad": [
+        -1.5708,
+        1.5708
+      ],
+      "axis": [
+        0.0,
+        0.997548718,
+        -0.0699753899
+      ]
+    },
+    {
+      "joint": "left_knee",
+      "range_rad": [
+        -1.19276,
+        1.94883
+      ],
+      "axis": [
+        0.0,
+        0.997548718,
+        -0.0699753899
+      ]
+    },
+    {
+      "joint": "left_ankle",
+      "range_rad": [
+        -1.94883,
+        1.19276
+      ],
+      "axis": [
+        0.0,
+        0.997548718,
+        -0.0699753899
+      ]
+    },
+    {
+      "joint": "neck_pitch",
+      "range_rad": [
+        -0.607222,
+        2.01077
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "joint": "head_pitch",
+      "range_rad": [
+        -2.01077,
+        1.13082
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "joint": "head_yaw",
+      "range_rad": [
+        -2.96706,
+        2.96706
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "joint": "head_roll",
+      "range_rad": [
+        -0.436332,
+        0.436332
+      ],
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "joint": "mouth",
+      "range_rad": [
+        0.0,
+        0.479966
+      ],
+      "axis": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    },
+    {
+      "joint": "right_hip_yaw",
+      "range_rad": [
+        -0.436332,
+        0.436332
+      ],
+      "axis": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "joint": "right_hip_roll",
+      "range_rad": [
+        -0.454014,
+        0.313931
+      ],
+      "axis": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "joint": "right_hip_pitch",
+      "range_rad": [
+        -1.5708,
+        1.5708
+      ],
+      "axis": [
+        0.0,
+        0.997548718,
+        0.0699753899
+      ]
+    },
+    {
+      "joint": "right_knee",
+      "range_rad": [
+        -1.19276,
+        1.94883
+      ],
+      "axis": [
+        0.0,
+        0.997548718,
+        0.0699753899
+      ]
+    },
+    {
+      "joint": "right_ankle",
+      "range_rad": [
+        -1.94883,
+        1.19276
+      ],
+      "axis": [
+        0.0,
+        0.997548718,
+        0.0699753899
+      ]
+    }
+  ],
+  "contract_rows": [
+    {
+      "topic": "identity",
+      "status": "INCOMPATIBLE_RUNTIME_NOT_HARDWARE_QUALIFIED",
+      "training": {
+        "runtime": "microduck-v2-p04-o0-valid-raw-native-counts-v2",
+        "deployment": "simulation-feedback-repair-validation",
+        "checkpoint_sha256": "52cc6d28d62051fd03fa3074fa71c98cfcb2ec6a3f01b6fdad008fb2246976c6",
+        "onnx_sha256": "574fbd0e0a7d062ca588de10323b050cf37d481d9eef79fade7bd164251ea442",
+        "task": "Mjlab-GroundPick-Flat-MicroDuck-V2-TargetPrecision-Repaired-S0-O0-R1"
+      },
+      "firmware": {
+        "git_head": "ee77131564eef52a64575628b0c117d69f583039",
+        "branch": "main",
+        "status_porcelain": "",
+        "runtime_id": "0x4ac2d0fa",
+        "resident_groundpick_identity": "alpha_ground_pick.onnx"
+      },
+      "consequence": "Current firmware is alpha-policy runtime with V2 IMU/defaultLS3 adjustments; training runtime contract is not implemented merely because tensor widths match.",
+      "evidence": [
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/include/microduck_policy_runtime_id.h",
+          "sha256": "c80e63f082974066148f7acc38f5db8a85aa825915ba5c6fcb8f3294fd3fd261",
+          "matching_lines": [
+            4
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/sc0090_v2/contract.py",
+          "sha256": "3de49158641ebfdc92f22ab5a7a086fb49f01457d1414ce752ce45f7e609c0bf",
+          "matching_lines": [
+            87,
+            89,
+            92,
+            104,
+            107,
+            109,
+            111,
+            113,
+            114,
+            119,
+            120,
+            137
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/assets/ground_pick.json",
+          "sha256": "254fd939ffe949a31f0c76d48dc5d0afe05f9ac99be3e55a56bc6834ef5f7943",
+          "matching_lines": [
+            4,
+            5,
+            17,
+            18
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "joint_order",
+      "status": "STRUCTURAL_MATCH",
+      "training": {
+        "policy_order": [
+          "left_hip_yaw",
+          "left_hip_roll",
+          "left_hip_pitch",
+          "left_knee",
+          "left_ankle",
+          "neck_pitch",
+          "head_pitch",
+          "head_yaw",
+          "head_roll",
+          "right_hip_yaw",
+          "right_hip_roll",
+          "right_hip_pitch",
+          "right_knee",
+          "right_ankle"
+        ],
+        "mouth": "independent 15th simulationfeedbacklane, not actor/action"
+      },
+      "firmware": {
+        "wire_order": [
+          "left_hip_yaw",
+          "left_hip_roll",
+          "left_hip_pitch",
+          "left_knee",
+          "left_ankle",
+          "neck_pitch",
+          "head_pitch",
+          "head_yaw",
+          "head_roll",
+          "mouth",
+          "right_hip_yaw",
+          "right_hip_roll",
+          "right_hip_pitch",
+          "right_knee",
+          "right_ankle"
+        ],
+        "policy_to_wire": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "mouth_wire_index": 9
+      },
+      "consequence": "Use named14-to15 mapping. Never copy training lane14 into firmwarewire14 as mouth; firmwaremouth iswire9.",
+      "evidence": [
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/microduck_observation.c",
+          "sha256": "a28e2c347025a8403f5cda8a8d7ee6777f96406980a3490225e6d6b70ecd5bc4",
+          "matching_lines": [
+            16,
+            21,
+            53,
+            54,
+            55,
+            60,
+            61,
+            62
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/custom_v2/microduck_v2.py",
+          "sha256": "eecb4b8ec6a584ec4a218f46eaae354aeb35cc14452173d1d84c9f201afe504e",
+          "matching_lines": [
+            1,
+            17,
+            22,
+            35,
+            48,
+            49,
+            63,
+            113,
+            187,
+            194,
+            198,
+            205,
+            280
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "HOME",
+      "status": "MISMATCH",
+      "training": {
+        "policy_HOME_rad": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mouth_HOME_rad": 0.0,
+        "zero_reference": "V2 CAD saved assembly pose"
+      },
+      "firmware": {
+        "wire_HOME_rad": [
+          0.0,
+          -0.0873,
+          -0.4579,
+          -0.0049,
+          0.453,
+          0.3491,
+          0.3491,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0873,
+          0.4579,
+          0.0049,
+          -0.453
+        ]
+      },
+      "consequence": "Firmware subtracts old alpha HOME inobs and adds it toactions. Hardware must align zero/axis/scale to actualV2 contract; oldHOME cannot silently remain.",
+      "evidence": [
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/microduck_observation.c",
+          "sha256": "a28e2c347025a8403f5cda8a8d7ee6777f96406980a3490225e6d6b70ecd5bc4",
+          "matching_lines": [
+            16,
+            21,
+            53,
+            54,
+            55,
+            60,
+            61,
+            62
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/custom_v2/assets/model_metadata.json",
+          "sha256": "063a619615c499cf592d7f5ca85497d12fd06a81a2990ce6f0086e20e2269102",
+          "matching_lines": [
+            19,
+            44
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/custom_v2/ground_pick.py",
+          "sha256": "20ea572800b4e9770ce4d7cc1f966c18fc78673f3b668031fb20f5dd444487ec",
+          "matching_lines": [
+            36,
+            37,
+            59
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "action_processing",
+      "status": "MISMATCH",
+      "training": {
+        "scale": 1.0,
+        "EMA": false,
+        "slew_rad_s": null,
+        "limits": "CAD clamp then inverseO0 countguard; mouth independent0"
+      },
+      "firmware": {
+        "head_EMA_alpha": 0.5,
+        "other_policy_EMA_alpha": 0.7,
+        "default_walk_scale": 0.9,
+        "default_stand_scale": 1.0,
+        "joint_max_rate_required_range": [
+          0,
+          20
+        ],
+        "placeholder_default_max_rate_rad_s": 1.0,
+        "target_dt_s": 0.02
+      },
+      "consequence": "Additional EMA/slew and oldHOME change closed-loop policy; current max_rate schema cannot directly express disabled slew. Do not disable safety or deploy to solve this audit.",
+      "evidence": [
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/main/control/microduck_control.c",
+          "sha256": "6c6ca85482c0fa1bed5d80711bc6e0664647995006112be1a0205befd6e7c8f2",
+          "matching_lines": [
+            419,
+            853,
+            872,
+            894,
+            945,
+            947,
+            948,
+            949,
+            950,
+            956,
+            1085
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/microduck_config.c",
+          "sha256": "e90c759bc0961c7358371bac79181a84fb9a074b821a4333744af01802ba9f20",
+          "matching_lines": [
+            11,
+            23,
+            24,
+            27,
+            37,
+            38,
+            41,
+            56,
+            57,
+            72,
+            73,
+            74,
+            125,
+            126,
+            143,
+            158
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/microduck_protocol.c",
+          "sha256": "4100ec50a333bb3eafd1eb2e83a2a7a27f21fd335de487883354e693b3fdf756",
+          "matching_lines": [
+            302,
+            303,
+            307,
+            320,
+            326,
+            331
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/sc0090_v2/action.py",
+          "sha256": "9ceaa9a68bb22e35a827e014600cc59fdbec1efb4adb9f45b35a9f0a8a482e3e",
+          "matching_lines": [
+            15,
+            29,
+            30,
+            31,
+            78,
+            91,
+            92,
+            93,
+            100,
+            107
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "count_mapping",
+      "status": "MISMATCH_CALIBRATION_NOT_PROVIDED",
+      "training": {
+        "nominal_radians_per_count": 0.005624596222247351,
+        "virtual_zero": 512,
+        "O0_mapping_archive_float64": [
+          0.01857135661376092,
+          0.9586469918991364
+        ],
+        "O0_mapping_runtime_float32": [
+          0.018571356311440468,
+          0.9586470127105713
+        ],
+        "equation": "count=round_even(clamp((q_target-a)/b/r+512,20,1001)); O0q=a+b*(count-512)*r",
+        "equivalent_virtual_signed_scale_positive": 0.005392002366160587,
+        "equivalent_virtual_zero": 508.5557588720674,
+        "not_hardware_calibration": true,
+        "motor_API_equation": "q_motor=((count-512)*r-feedback_bias)/feedback_scale"
+      },
+      "firmware": {
+        "equation": "count=lroundf(clamp(zero_count+angle/radians_per_count,min_count,max_count)) afterslew+mechanicalclamp",
+        "default_zero": 511,
+        "default_scale": 0.005,
+        "default_counts": [
+          150,
+          850
+        ],
+        "calibrated_flag": false
+      },
+      "consequence": "Each actualjoint needs signed calibrated map; virtual512/equivalentzero is not measuredhardwarezero. torch.round ties-even and C lroundf half-away differ at exacthalfcounts; numerical count-parity still required.",
+      "evidence": [
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/sc0090_v2/feedback.py",
+          "sha256": "dc5ef0c04cc9a7e84bbe12a3a8319a22e102eb69c66f993a38b8587fc97e4740",
+          "matching_lines": [
+            56,
+            83,
+            91,
+            98,
+            175,
+            180,
+            225,
+            229
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/microduck_protocol.c",
+          "sha256": "4100ec50a333bb3eafd1eb2e83a2a7a27f21fd335de487883354e693b3fdf756",
+          "matching_lines": [
+            302,
+            303,
+            307,
+            320,
+            326,
+            331
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/microduck_config.c",
+          "sha256": "e90c759bc0961c7358371bac79181a84fb9a074b821a4333744af01802ba9f20",
+          "matching_lines": [
+            11,
+            23,
+            24,
+            27,
+            37,
+            38,
+            41,
+            56,
+            57,
+            72,
+            73,
+            74,
+            125,
+            126,
+            143,
+            158
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/sc0090/observer.py",
+          "sha256": "7b9da38512efda458621b63387bc317ed1b676e5d4a3e8b98a506a95cd5c06c7",
+          "matching_lines": [
+            25,
+            50,
+            51,
+            52,
+            55,
+            56,
+            57,
+            62
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "read_count_domain",
+      "status": "MISMATCH",
+      "training": {
+        "valid_native_read_counts": [
+          0,
+          1023
+        ],
+        "command_counts": [
+          20,
+          1001
+        ],
+        "numeric_estimate_guard": {
+          "q_rad": [
+            -3.02,
+            3.02
+          ],
+          "abs_v_rad_s_max": 40
+        }
+      },
+      "firmware": {
+        "decoder_native_domain": [
+          0,
+          1023
+        ],
+        "normal_motion_health_additionally_requires": "raw within configured command min_count..max_count and actual/reconstructed position within jointmin/max+.02",
+        "neural_front_also_requires": "configured countbounds and transactionduration<=5ms"
+      },
+      "consequence": "Valid native endpoints outside commandmargin may be rejected by firmware but accepted by finalP04. Training badpackets/NaN/order remain rejected; no valid-spike exception should be confused with removing all guards.",
+      "evidence": [
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/sc0090_v2/measurement/stream.py",
+          "sha256": "2ffcf8729f6482c67f5622cc3a0ca5165f5b6f2e5ae6e992941f36c5a569e5d0",
+          "matching_lines": [
+            29,
+            147,
+            158,
+            227,
+            267,
+            279,
+            280,
+            281,
+            295,
+            309
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/microduck_servo_stream.c",
+          "sha256": "8341bef2746f566aa842801181ca12a28d9d9b63950c4a518e6f6099a625e053",
+          "matching_lines": [
+            53,
+            55,
+            57,
+            181,
+            187,
+            250,
+            256,
+            263,
+            351,
+            352
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/main/control/microduck_control_feedback.c",
+          "sha256": "69c3398356422be7a0d6d904b1b09efe11bbc633e14f743e935d5f0947a963e9",
+          "matching_lines": [
+            36,
+            86,
+            220,
+            231,
+            269,
+            270,
+            274,
+            287,
+            288,
+            292,
+            299,
+            312,
+            316,
+            325,
+            327
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/microduck_protocol.c",
+          "sha256": "4100ec50a333bb3eafd1eb2e83a2a7a27f21fd335de487883354e693b3fdf756",
+          "matching_lines": [
+            302,
+            303,
+            307,
+            320,
+            326,
+            331
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "O0_and_timing",
+      "status": "PARTIAL_TIMING_MATCH_ALGORITHM_DIFFERS",
+      "training": {
+        "physics_Hz": 200,
+        "feedback_Hz": 100,
+        "policy_Hz": 50,
+        "query_delay_ms": 20,
+        "O0": "five valid grid-selected sampled points; LS3position+slope affine output, then bounded completed-output interpolation; no residualMLP",
+        "initial_held_pose_prehistory_ms": 280,
+        "O0_fixed_220ms_refractory": false,
+        "query_requirements": "completedrealbracket;span<=25ms;latestage<=50ms;noqueryextrapolation"
+      },
+      "firmware": {
+        "default": "MD_OBSERVER_LS3 at100Hz; nativephysicalposition history then LS3 fit directly at delayed20msquery",
+        "history_capacity": 8,
+        "fitpoints": 3,
+        "forecast_allowance_us": 0,
+        "configured_maxgap_at100Hz_us": 25000,
+        "neural_branch": "separate19frame/220mswarmup; notdefaultLS3"
+      },
+      "consequence": "20ms shared nominalquery alone does not prove equivalenttimestamp selection, warmup or outputs. S0 is simulation measurement generative model; realdevice consumes actualnative registers, not a syntheticS0net.",
+      "evidence": [
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/sc0090_v2/feedback.py",
+          "sha256": "dc5ef0c04cc9a7e84bbe12a3a8319a22e102eb69c66f993a38b8587fc97e4740",
+          "matching_lines": [
+            56,
+            83,
+            91,
+            98,
+            175,
+            180,
+            225,
+            229
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/sc0090_v2/measurement/stream.py",
+          "sha256": "2ffcf8729f6482c67f5622cc3a0ca5165f5b6f2e5ae6e992941f36c5a569e5d0",
+          "matching_lines": [
+            29,
+            147,
+            158,
+            227,
+            267,
+            279,
+            280,
+            281,
+            295,
+            309
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/microduck_sync.c",
+          "sha256": "3909cb8c0d3f2640f868cf654af3e1e15b81b66a920fb83d7ef4f609ed5e6522",
+          "matching_lines": [
+            5,
+            81,
+            142,
+            147,
+            156,
+            160,
+            167,
+            168,
+            200,
+            205,
+            264
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/main/control/microduck_control_feedback.c",
+          "sha256": "69c3398356422be7a0d6d904b1b09efe11bbc633e14f743e935d5f0947a963e9",
+          "matching_lines": [
+            36,
+            86,
+            220,
+            231,
+            269,
+            270,
+            274,
+            287,
+            288,
+            292,
+            299,
+            312,
+            316,
+            325,
+            327
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/microduck_config.c",
+          "sha256": "e90c759bc0961c7358371bac79181a84fb9a074b821a4333744af01802ba9f20",
+          "matching_lines": [
+            11,
+            23,
+            24,
+            27,
+            37,
+            38,
+            41,
+            56,
+            57,
+            72,
+            73,
+            74,
+            125,
+            126,
+            143,
+            158
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/sc0090_v2/measurement/registers.py",
+          "sha256": "089e44fd3eb15eabe0ad1f9d335ae77e7721346db129fef6df4cc613895c3134",
+          "matching_lines": [
+            297,
+            299
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "valid_spikes",
+      "status": "DEFAULT_LS3_NO_SPIKE_GATE_BUT_NEURAL_BRANCH_DIFFERS",
+      "training": {
+        "spike_rejection": false,
+        "normal_valid_raw_jump": "acceptedsubject toremainingnumerical/queryguards"
+      },
+      "firmware": {
+        "defaultLS3": "driver aligned_history uses next.position fromrawcount; no v5_front filteredq consumption",
+        "neural_stream": "allreads also copied through8deg+2*speed*dt trendgate; firstanomaly predictionreplacement, repeatedanomaly fault;19frames+220msrewarm"
+      },
+      "consequence": "Do not falsely claim defaultLS3 rejects spikes. Switching firmware toneural would violate finalno-spike/O0 contract; defaultLS3 still differsalgorithmically.",
+      "evidence": [
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/main/drivers/microduck_servo.c",
+          "sha256": "e5204973465f8b80b53f9586fd50584435ea2e2b930ec66e4d5d577a2fa9d31c",
+          "matching_lines": [
+            1116,
+            1130,
+            1144,
+            1148,
+            1170
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/microduck_servo_nn.c",
+          "sha256": "97f5b5f8c306d2582f01a5b1c099548029827cbc5e9acc30e7c17baaafe1e64a",
+          "matching_lines": [
+            47,
+            49,
+            52,
+            61,
+            65
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/microduck_servo_stream.c",
+          "sha256": "8341bef2746f566aa842801181ca12a28d9d9b63950c4a518e6f6099a625e053",
+          "matching_lines": [
+            53,
+            55,
+            57,
+            181,
+            187,
+            250,
+            256,
+            263,
+            351,
+            352
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/sc0090_v2/measurement/stream.py",
+          "sha256": "2ffcf8729f6482c67f5622cc3a0ca5165f5b6f2e5ae6e992941f36c5a569e5d0",
+          "matching_lines": [
+            29,
+            147,
+            158,
+            227,
+            267,
+            279,
+            280,
+            281,
+            295,
+            309
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/include/microduck_servo_nn.h",
+          "sha256": "9ad93db9c8365884d7b68374b187b0cb8b3cfff800aac2da444c623b3ac5659f",
+          "matching_lines": [
+            206,
+            207,
+            209
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "invalid_feedback",
+      "status": "DIFFERENT_ENVIRONMENT_LIFECYCLE_EXPLICIT",
+      "training": {
+        "any15laneinvalid": "episode terminates/reset; invalidlanes holdlastvalidq/v untilreset; no physicaltruth/predictivefallback"
+      },
+      "firmware": {
+        "motion": "perjointhealth/alignment/deadline closes validtargetpublication under existing safety state machine; no robot teleport/reset"
+      },
+      "consequence": "The simulator reset is training lifecycle, not a firmware operatingmode; require explicitfailedfeedback/recovery behavior contract beforehardwaretesting.",
+      "evidence": [
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/sc0090_v2/feedback.py",
+          "sha256": "dc5ef0c04cc9a7e84bbe12a3a8319a22e102eb69c66f993a38b8587fc97e4740",
+          "matching_lines": [
+            56,
+            83,
+            91,
+            98,
+            175,
+            180,
+            225,
+            229
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/tasks/mdp.py",
+          "sha256": "28fab160ee3baa140d7b415f3db63e1cf11800a69c35ac95c8284f599d394544",
+          "matching_lines": [
+            5242,
+            5260,
+            5272,
+            5273,
+            5299,
+            6722,
+            7742,
+            7747,
+            7752
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/main/control/microduck_control_feedback.c",
+          "sha256": "69c3398356422be7a0d6d904b1b09efe11bbc633e14f743e935d5f0947a963e9",
+          "matching_lines": [
+            36,
+            86,
+            220,
+            231,
+            269,
+            270,
+            274,
+            287,
+            288,
+            292,
+            299,
+            312,
+            316,
+            325,
+            327
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/main/control/microduck_control.c",
+          "sha256": "6c6ca85482c0fa1bed5d80711bc6e0664647995006112be1a0205befd6e7c8f2",
+          "matching_lines": [
+            419,
+            853,
+            872,
+            894,
+            945,
+            947,
+            948,
+            949,
+            950,
+            956,
+            1085
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "61D_observation",
+      "status": "LAYOUT_MATCH_VALUES_AND_TIMING_REQUIRE_ALIGNMENT",
+      "training": {
+        "slots_zero_based_half_open": [
+          {
+            "index": "0:3",
+            "value": "body angularvelocity rad/s"
+          },
+          {
+            "index": "3:6",
+            "value": "projected gravity bodyframe"
+          },
+          {
+            "index": "6:20",
+            "value": "14 completedO0 q inV2 HOME radians"
+          },
+          {
+            "index": "20:34",
+            "value": "14 completedO0 v rad/s"
+          },
+          {
+            "index": "34:48",
+            "value": "previous rawpolicyaction; beforetargetquantization/EMA"
+          },
+          {
+            "index": "48:51",
+            "value": "taskcommand3"
+          },
+          {
+            "index": "51:55",
+            "value": "headcommand4; allzero inGroundPick"
+          },
+          {
+            "index": "55:61",
+            "value": "bodycommand6; allzero inGroundPick"
+          }
+        ],
+        "joint_observation_extra_noise_delay": null,
+        "IMU_training_DR": "misalignment6deg;gyro±.03/gravity±.01;0..3controlstepdelay",
+        "critic": "74privileged dimensionsnotdeployed"
+      },
+      "firmware": {
+        "jointHOMEsubtraction": "oldalpha",
+        "previous_action": "lastcommitted raw14actions; resets on invalid/session",
+        "bodycommand": "threevalues at57:60;55/56/60zero",
+        "IMU": "bodytransform delayed20ms; defaultV2 rawaxes(-X,+Y,-Z), installationtranslation[-.0403,-.023475,.0332]m, calibratedflagunset"
+      },
+      "consequence": "GroundPick requireszerohead/bodyinputs;do not reuse velocitytwist/postureflag semantics just because61Dshapeiscommon. IMUDR is tolerance, not calibrationproof.",
+      "evidence": [
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/microduck_observation.c",
+          "sha256": "a28e2c347025a8403f5cda8a8d7ee6777f96406980a3490225e6d6b70ecd5bc4",
+          "matching_lines": [
+            16,
+            21,
+            53,
+            54,
+            55,
+            60,
+            61,
+            62
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/main/control/microduck_control.c",
+          "sha256": "6c6ca85482c0fa1bed5d80711bc6e0664647995006112be1a0205befd6e7c8f2",
+          "matching_lines": [
+            419,
+            853,
+            872,
+            894,
+            945,
+            947,
+            948,
+            949,
+            950,
+            956,
+            1085
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/tasks/mdp.py",
+          "sha256": "28fab160ee3baa140d7b415f3db63e1cf11800a69c35ac95c8284f599d394544",
+          "matching_lines": [
+            5242,
+            5260,
+            5272,
+            5273,
+            5299,
+            6722,
+            7742,
+            7747,
+            7752
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/microduck_config.c",
+          "sha256": "e90c759bc0961c7358371bac79181a84fb9a074b821a4333744af01802ba9f20",
+          "matching_lines": [
+            11,
+            23,
+            24,
+            27,
+            37,
+            38,
+            41,
+            56,
+            57,
+            72,
+            73,
+            74,
+            125,
+            126,
+            143,
+            158
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/custom_v2/assets/model_metadata.json",
+          "sha256": "063a619615c499cf592d7f5ca85497d12fd06a81a2990ce6f0086e20e2269102",
+          "matching_lines": [
+            108,
+            112,
+            123
+          ]
+        },
+        {
+          "file": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-allocation-001/run.json",
+          "sha256": "db5e6e72d0901fc6b52035c49290d9a8b4c24bd2beb46ef1c1e37f1dc9ff9174"
+        }
+      ]
+    },
+    {
+      "topic": "normalizer_and_export",
+      "status": "MATHEMATICAL_FORMAT_MATCH_NOT_RUNTIME_ACCEPTANCE",
+      "training": {
+        "existing_ONNX_ops": [
+          "Sub",
+          "Div",
+          "Gemm",
+          "Elu",
+          "Gemm",
+          "Elu",
+          "Gemm",
+          "Elu",
+          "Gemm"
+        ],
+        "actual_checkpoint768_normalizer_parity": {
+          "Sub": {
+            "shape": [
+              1,
+              61
+            ],
+            "exact_checkpoint_mean_or_std_plus_eps": true,
+            "max_abs": 0.0
+          },
+          "Div": {
+            "shape": [
+              1,
+              61
+            ],
+            "exact_checkpoint_mean_or_std_plus_eps": true,
+            "max_abs": 0.0
+          }
+        },
+        "normalizer": "(obs-mean)/(checkpointstd+eps.01); exacteffective denominator bakedintoONNX",
+        "network": "61-512-256-128-14;3ELU; deterministicmeanoutput"
+      },
+      "firmware": {
+        "MDPOL001": "storesmean+effectivedenominator; Ccalculates(obs-mean)/denominator",
+        "converter": "strictSub/Div+4Gemm+3ELU, recordsalphaobservationlabel",
+        "resident_model": "oldalpha_ground_pick.onnx,notnew768"
+      },
+      "consequence": "Use officialexport; do not omitnormalizer,double-normalize,or addtiny twisttrainedN acrossskills. Existing768 graphisread-onlychecked; nofirmwarebuild/quantization/hardwareparitytestperformedinthisaudit.",
+      "evidence": [
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/microduck_policy.c",
+          "sha256": "b96619260d0637c71cb88fa5a095b0ced7ab0c00e6365a88b51a56c36a1d0005",
+          "matching_lines": [
+            88,
+            89,
+            91,
+            146,
+            208
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/tools/convert_policy.py",
+          "sha256": "2cb14ad7ad86f80e365a33c881c854b40c94f37c16a404f2d02028ca615f094f",
+          "matching_lines": [
+            4,
+            23,
+            60,
+            61,
+            70,
+            102,
+            104,
+            106,
+            107,
+            153,
+            154
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/assets/ground_pick.json",
+          "sha256": "254fd939ffe949a31f0c76d48dc5d0afe05f9ac99be3e55a56bc6834ef5f7943",
+          "matching_lines": [
+            4,
+            5,
+            17,
+            18
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/export.py",
+          "sha256": "ef4d851eee70ce0d1c896a0be14fd4a936a0d17e83649dfd572a5282ffcdf5b9",
+          "matching_lines": [
+            1,
+            3,
+            4,
+            5,
+            253,
+            256,
+            264
+          ]
+        },
+        {
+          "file": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/repro-staging/groundpick768-onnx-normalizer-readonly.json",
+          "sha256": "5b6d4086c8ef52502dc6d2032223777e538b55a38c4fc082efa795bad35d76e8"
+        }
+      ]
+    },
+    {
+      "topic": "command_semantics",
+      "status": "ENCODING_MATCH_DURATION_MISMATCH",
+      "training": {
+        "GroundPick": "[cos(2pi*phase),sin(2pi*phase),0],4speriod;head/bodyzero;nativephaseadvanceonceper20ms;originalevaluation12s3cycles",
+        "SitStand": "twist.vx=1SIT/0STAND; task-specifichead/bodyslots",
+        "Rise": "zero twist/body for retained recoverycandidate",
+        "WalkingVelStand": "vx/vy m/s,yawrad/s; headcommands radians"
+      },
+      "firmware": {
+        "GroundPick": "samephaseencoding+4speriod;defaultstopsatphase.7=2.8s",
+        "SitStand": "sameflag; default1s risingselection",
+        "otheroneshots": "kick.5s/roll1s defaults"
+      },
+      "consequence": "Ground new return rewards/acceptance includephase>=.8; terminatingat.7 doesnotreplaytrained4scycle. Taskduration/startphase/reset/previousaction mustbeexplicitpermodel; no changingcriteriahere.",
+      "evidence": [
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/microduck_scheduler.c",
+          "sha256": "3d84ffbc40d04d0579bf41e3f3ba3d262f3022e2b3c3eafa62b1685b42a8460f",
+          "matching_lines": [
+            28,
+            29,
+            31,
+            61,
+            62,
+            63,
+            86,
+            87,
+            420,
+            427,
+            447,
+            449,
+            450,
+            453,
+            455
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/tasks/mdp.py",
+          "sha256": "28fab160ee3baa140d7b415f3db63e1cf11800a69c35ac95c8284f599d394544",
+          "matching_lines": [
+            5242,
+            5260,
+            5272,
+            5273,
+            5299,
+            6722,
+            7742,
+            7747,
+            7752
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/custom_v2/ground_pick_history.py",
+          "sha256": "b5dde38b09dc9cdddd0c4149d635cc3b89b2d50261341d7a1812771819b3d7ac",
+          "matching_lines": [
+            12,
+            40,
+            65,
+            66,
+            70
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/assets/policy-bundle-v5.spec.json",
+          "sha256": "3392527d437498d7f66c5d8268c6108ef8ecb77fa0e9a13c2616075ce2c01351",
+          "matching_lines": [
+            13,
+            14
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "v5_operating_conditions",
+      "status": "TRAINING_FIXED_HARDWARE_UNVERIFIED",
+      "training": {
+        "frozen_v5_model_sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+        "actual_run_PDI": [
+          15,
+          30,
+          0
+        ],
+        "actual_nominal_voltage": 11.1,
+        "measured_voltages": [
+          10.2,
+          11.1,
+          12.4
+        ],
+        "goal_profile_zeroed_required": true,
+        "bench_fit_record_original_P20_not_actual_trainingP": true,
+        "readfit_vs_command_mapping_distinct": true
+      },
+      "firmware": {
+        "defaultobserver": "LS3",
+        "PIDtelemetry": "readactualP/D/I; neuralpathchecksP5..30,D30,I0; doesnotprovehardwareoperatingpointP15",
+        "actual_robot_config": "notprovided/read; nohardwaretest"
+      },
+      "consequence": "Frozenv5fitmetadataoperatingpointP20/10.2V mustnotbeconfusedwithloaderoverrideP15/11.1V. Physicalzero/sign/limit/speed/PID/profile/supply needactualconfigurationevidence beforedeployment.",
+      "evidence": [
+        {
+          "root": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-worktree",
+          "file": "src/mjlab_microduck/actuator/sc0090_v5.py",
+          "sha256": "c42a7e54aac610c9ef1f142b32706821e54ea42163480393842632f35924e451",
+          "matching_lines": [
+            27,
+            83,
+            86,
+            95,
+            99,
+            138,
+            224
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/main/drivers/microduck_servo.c",
+          "sha256": "e5204973465f8b80b53f9586fd50584435ea2e2b930ec66e4d5d577a2fa9d31c",
+          "matching_lines": [
+            1116,
+            1130,
+            1144,
+            1148,
+            1170
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/microduck_servo_stream.c",
+          "sha256": "8341bef2746f566aa842801181ca12a28d9d9b63950c4a518e6f6099a625e053",
+          "matching_lines": [
+            53,
+            55,
+            57,
+            181,
+            187,
+            250,
+            256,
+            263,
+            351,
+            352
+          ]
+        },
+        {
+          "file": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-allocation-001/run.json",
+          "sha256": "db5e6e72d0901fc6b52035c49290d9a8b4c24bd2beb46ef1c1e37f1dc9ff9174"
+        }
+      ]
+    },
+    {
+      "topic": "model_contract_gate",
+      "status": "NO_NATIVE_COUNT_V2_BINDING_FOUND_IN_CURRENT_CORE",
+      "training": {
+        "required_metadata": [
+          "microduck_training_contract",
+          "microduck_training_contract_sha256",
+          "microduck_robot",
+          "microduck_runtime",
+          "microduck_deployment",
+          "microduck_measurement_execution"
+        ],
+        "actual_runtime": "microduck-v2-p04-o0-valid-raw-native-counts-v2"
+      },
+      "firmware": {
+        "runtime_id": "generatedfromcurrentquantizationcode/modelbindings",
+        "modelconverter": "61/14shape+math validation; writesalpha-61label",
+        "search_scope": "esp32p4/main,components,tools: no consumersofmicroduck_training_contract/microduck_runtime/native-counts-v2"
+      },
+      "consequence": "A genericvalidmodel upload/mathparitydoesnotestablishHOME/action/frontendcompatibility. CurrentglobalruntimeID isnotthenewtrainingruntimeidentity.",
+      "evidence": [
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/include/microduck_policy_runtime_id.h",
+          "sha256": "c80e63f082974066148f7acc38f5db8a85aa825915ba5c6fcb8f3294fd3fd261",
+          "matching_lines": [
+            4
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/tools/convert_policy.py",
+          "sha256": "2cb14ad7ad86f80e365a33c881c854b40c94f37c16a404f2d02028ca615f094f",
+          "matching_lines": [
+            4,
+            23,
+            60,
+            61,
+            70,
+            102,
+            104,
+            106,
+            107,
+            153,
+            154
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/tools/export_policy_quant.py",
+          "sha256": "2e077d8ec8da4d1dc8c2b6d7fa457c87c4aa970d0b3fda71dc6538e73e291e61",
+          "matching_lines": [
+            263,
+            271,
+            272,
+            278,
+            291
+          ]
+        },
+        {
+          "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+          "file": "esp32p4/components/microduck_core/microduck_config.c",
+          "sha256": "e90c759bc0961c7358371bac79181a84fb9a074b821a4333744af01802ba9f20",
+          "matching_lines": [
+            11,
+            23,
+            24,
+            27,
+            37,
+            38,
+            41,
+            56,
+            57,
+            72,
+            73,
+            74,
+            125,
+            126,
+            143,
+            158
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "draft_firmware_worktree",
+      "status": "UNINTEGRATED_DRAFT_NOT_CURRENT_FIRMWARE",
+      "training": {
+        "target": "finalP04 native-count-v2"
+      },
+      "firmware": {
+        "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/firmware-v2-runtime-worktree",
+        "head": "ee77131564eef52a64575628b0c117d69f583039",
+        "status_porcelain": "M esp32p4/components/microduck_core/include/microduck_servo_stream.h\n M esp32p4/components/microduck_core/microduck_servo_stream.c",
+        "modifiedfiles": [
+          {
+            "file": "esp32p4/components/microduck_core/include/microduck_servo_stream.h",
+            "sha256": "3bc927caab64069b426fd1432cdb9c04f4a75d0e3dc8f7171c938b58cbca57ab"
+          },
+          {
+            "file": "esp32p4/components/microduck_core/microduck_servo_stream.c",
+            "sha256": "0b6d4898247867358a30486ef30094a16f7c4beeee984df25971298408e8707d"
+          }
+        ]
+      },
+      "consequence": "EarlierisolatedstreamdraftisnotmergedmainanddoesnotfixtheHOME/EMA/currentcompletecontract. Auditdoesnotpromoteitsoldhostresults tohardwarequalification.",
+      "evidence": []
+    }
+  ],
+  "summary": {
+    "deployable_now": false,
+    "hardware_tested": false,
+    "firmware_modified": false,
+    "weights_converted": false,
+    "GPU_or_training_started": false,
+    "actual_robot_config_available": false,
+    "btw_branch_background": "Unknown; no visibleagent/conversationevidence available. Do notattributechangesorcommits."
+  },
+  "limitations": [
+    "Static source plus existingONNX/checkpointconstantinspection only; nohardware/firmwarebuild/newclosedloops/quantizedparity.",
+    "No realrobotexistsinthissession; calibrationalignmentintentisnotcalibrationevidence.",
+    "S0 generatorandP04successare simulationevidence; v5datasetdoesnotprovefinalrobotassemblyfriction/load/zero/communications.",
+    "LegacyONNXjoint_stiffness1/damping.08 metadata reflectsstructuralpreview; authoritativev5operatinggainsareP15,D30,I0 intrainingcontractandactualactuatorconfig."
+  ],
+  "offline_conversion_review": {
+    "status": "READ_ONLY_NOT_EXECUTED",
+    "cli": {
+      "float_mdp": "python esp32p4/tools/convert_policy.py SOURCE.onnx DESTINATION.mdp",
+      "quantization_study": "python esp32p4/tools/quantize_policy.py --history HISTORICAL_TOOL_ROOT --sources ORIGINAL_ONNX_DIR --output STUDY_DIR [--models registered_asset_names...] [--expanded-calibration]",
+      "quantization_export": "python esp32p4/tools/export_policy_quant.py --study STUDY_DIR --report REPORT.json",
+      "quantization_warning": "Existing tools are bound to assets/name.json identities and historical calibrationtools. Export updates generatedcorefiles/runtimeID; not a genericread-onlyonefileconverter for newV2policies."
+    },
+    "formats": {
+      "MDPOL001": {
+        "preserved": [
+          "exactFP32mean/effectivedenominator/denseweights/biases",
+          "sourceONNXfullbyteSHA256",
+          "dims/CRC"
+        ],
+        "not_embedded": [
+          "ONNXmicroduck_training_contract",
+          "microduck_runtime",
+          "deploymentlabel",
+          "jointnames/HOME/actionEMA/slew/commandsemantics"
+        ],
+        "sidecar_manifest": "hardcodesobservationalpha-61-mouth-index-9-excluded; sourceSHAindirectlybindsmetadata but doesnotinterpret/enforceit"
+      },
+      "MDPQ1601": {
+        "preserved": [
+          "originalMDPOL001",
+          "integerquantizationspecification",
+          "sourceONNXSHAandMDPSHA/CRC"
+        ],
+        "training_semantic_contract": "notadded; originalMDPalreadylacksit"
+      },
+      "MDPQ1602": {
+        "preserved": [
+          "normalizer",
+          "quantizedweights/biases/specification",
+          "sourceONNXSHAandMDPSHA/CRC"
+        ],
+        "training_semantic_contract": "notembedded; nooriginalFP32densematricesorONNXmetadata"
+      }
+    },
+    "required_handoff": "Keep originalexistingONNX+checkpoint+SHAmanifest+separatetraining/runtimecontract. GenericconversionoruploadsuccessdoesnotproveV2compatibility. NoMDP/MDPQproducedinthisaudit.",
+    "sources": [
+      {
+        "file": "esp32p4/tools/convert_policy.py",
+        "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+        "sha256": "2cb14ad7ad86f80e365a33c881c854b40c94f37c16a404f2d02028ca615f094f"
+      },
+      {
+        "file": "esp32p4/tools/quantize_policy.py",
+        "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+        "sha256": "acf77c1368f684e11ac2554f04a83c786b6e4c597813e91b26ed7e5680345533"
+      },
+      {
+        "file": "esp32p4/tools/export_policy_quant.py",
+        "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+        "sha256": "2e077d8ec8da4d1dc8c2b6d7fa457c87c4aa970d0b3fda71dc6538e73e291e61"
+      },
+      {
+        "file": "esp32p4/tools/model_artifact.py",
+        "root": "/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware",
+        "sha256": "4ba94371a61ed9245724382152d9740e1a38605660898b3038855d0cbb8a8b02"
+      }
+    ]
+  },
+  "rise_existing_exports": {
+    "status": "PASS_EXISTING_EXPORTS_CHECKPOINT_EXACT",
+    "report": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/repro-staging/export-parity.json",
+    "sha256": "9e757f803ec852caf098b5d37f8409b1571f29ff47585b26ec442b15713ee764",
+    "models": [
+      {
+        "id": "rise_p04_micro1856",
+        "checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+        "checkpoint_sha256": "e4772c33149410d62446180a9214b26695cb51ba1d5b7b26fac31d3ea273122b",
+        "onnx": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/head2-micro-exposure-allocation-001.onnx",
+        "onnx_sha256": "4c3478c6efb1b908b8f556a18a63821332410115e8d9ffb6690c2c4bcfd63f01",
+        "all_layers_normalizer_exact": true,
+        "CPUparity": [
+          {
+            "label": "synthetic_zero_HOME_mean_and256_seeded",
+            "samples": 259,
+            "max_abs_action_error_rad": 4.76837158203125e-07,
+            "mean_abs_action_error_rad": 4.275415221854928e-08,
+            "tolerance": 2e-05,
+            "PASS": true
+          },
+          {
+            "label": "actual_P04_micro1856_closed_loop_raw_obs",
+            "samples": 2048,
+            "max_abs_action_error_rad": 1.4901161193847656e-07,
+            "mean_abs_action_error_rad": 1.3635956364055346e-08,
+            "tolerance": 2e-05,
+            "PASS": true
+          }
+        ]
+      },
+      {
+        "id": "rise_baseline_paired3762",
+        "checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/paired-feedback-allocation-001/checkpoint_003762.pt",
+        "checkpoint_sha256": "e753856776bb43e44d9465b4067a0b9cd2d10fe03fc8cb88ee4177ec786f93e1",
+        "onnx": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/paired-feedback-allocation-001/paired-feedback-allocation-001.onnx",
+        "onnx_sha256": "8264c7f8b60df4e7511d6661c22d403ca513e6cb9e838adb2b99701a7fb3dc3e",
+        "all_layers_normalizer_exact": true,
+        "CPUparity": [
+          {
+            "label": "synthetic_zero_HOME_mean_and256_seeded",
+            "samples": 259,
+            "max_abs_action_error_rad": 2.980232238769531e-07,
+            "mean_abs_action_error_rad": 2.996182502101874e-08,
+            "tolerance": 2e-05,
+            "PASS": true
+          },
+          {
+            "label": "actual_P04_micro1856_closed_loop_raw_obs",
+            "samples": 2048,
+            "max_abs_action_error_rad": 1.4901161193847656e-07,
+            "mean_abs_action_error_rad": 1.8108918808934504e-08,
+            "tolerance": 2e-05,
+            "PASS": true
+          }
+        ]
+      },
+      {
+        "id": "rise_baseline_to_p04_4466",
+        "checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-head-accuracy-allocation-002/checkpoint_004466.pt",
+        "checkpoint_sha256": "f5a9a86b9acd16faeca12a9aefc63e204fff7fe90a7f328b6aad32ce7133159f",
+        "onnx": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-head-accuracy-allocation-002/paired-head-accuracy-allocation-002.onnx",
+        "onnx_sha256": "5a6bad11b33f158a007d7abfab440848ecb6076dac64d7d2ef4f47fa94648205",
+        "all_layers_normalizer_exact": true,
+        "CPUparity": [
+          {
+            "label": "synthetic_zero_HOME_mean_and256_seeded",
+            "samples": 259,
+            "max_abs_action_error_rad": 2.682209014892578e-07,
+            "mean_abs_action_error_rad": 3.037136409034247e-08,
+            "tolerance": 2e-05,
+            "PASS": true
+          },
+          {
+            "label": "actual_P04_micro1856_closed_loop_raw_obs",
+            "samples": 2048,
+            "max_abs_action_error_rad": 1.7881393432617188e-07,
+            "mean_abs_action_error_rad": 1.98267979811817e-08,
+            "tolerance": 2e-05,
+            "PASS": true
+          }
+        ]
+      }
+    ]
+  }
+}

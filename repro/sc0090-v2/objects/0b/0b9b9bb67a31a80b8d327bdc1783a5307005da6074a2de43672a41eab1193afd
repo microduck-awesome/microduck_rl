@@ -1,0 +1,102 @@
+"""Physical SitStand metrics at the same reward boundary in train and eval.
+
+Physical truth is used only here and in rewards/critic, never for actor inputs.
+These statistics are distinct from independent commanded-trial success rates.
+"""
+import math
+import torch
+from .microduck_v2 import POLICY_JOINTS
+
+BOUNDARY='after_reward_before_reset_forward_and_command; geometry lags one 5ms physics substep'
+LEG_INDICES=(0,1,2,3,4,9,10,11,12,13)
+
+class SitStandMeasurements:
+    def __init__(self,env,oracle=False):
+        self.env=env;self.robot=env.scene['robot'];self.oracle=oracle
+        ids,names=self.robot.find_joints(POLICY_JOINTS,preserve_order=True)
+        assert tuple(names)==tuple(POLICY_JOINTS);self.ids=ids
+        self.sit=torch.zeros(14,device=env.device)
+        for i,v in env.cfg.rewards['posture_pose_legs'].params['sit_overrides'].items():self.sit[i]=v
+        command=env.command_manager.get_term('twist')
+        self.sit_height=command._sit_z;self.stand_height=command._stand_z
+        self.release=env.cfg.rewards['posture_pose_legs'].func.__name__=='posture_pose_match_transition_free'
+        self.calls=0;self.oracle_max=torch.zeros(8 if self.release else 5,device=env.device)
+    def read(self):
+        env,r=self.env,self.robot;term=env.command_manager.get_term('twist')
+        flag=term.command[:,0];alpha=term.alpha;head=env.command_manager.get_command('head_pose')
+        q=r.data.joint_pos[:,self.ids]-r.data.default_joint_pos[:,self.ids]
+        z=r.data.root_link_pos_w[:,2]-env.scene.env_origins[:,2]
+        quat=r.data.root_link_quat_w;cos=(1-2*(quat[:,1].square()+quat[:,2].square())).clamp(-1,1)
+        tilt=torch.acos(cos);vel=r.data.root_link_lin_vel_w;omega=r.data.root_link_ang_vel_b.norm(dim=-1)
+        target_z=self.stand_height+alpha*(self.sit_height-self.stand_height)
+        final_z=self.stand_height+flag*(self.sit_height-self.stand_height)
+        leg_error=(q[:,LEG_INDICES]-alpha[:,None]*self.sit[list(LEG_INDICES)]).abs()
+        head_error=(q[:,5:9]-head).abs()
+        finite=torch.isfinite(env.sim.data.qpos).all(-1)&torch.isfinite(env.sim.data.qvel).all(-1)
+        ready=env._v2_joint_feedback.ready
+        stable=(z-final_z).abs()<.012
+        stable &= (tilt<math.radians(15))&(vel.norm(dim=-1)<.05)&(omega<.5)&ready&finite
+        stable &= (q[:,LEG_INDICES]-flag[:,None]*self.sit[list(LEG_INDICES)]).abs().mean(-1)<.2
+        x=dict(flag=flag,alpha=alpha,head_command=head,height=z,tilt=tilt,linear=vel,omega=omega,
+               target_height=target_z,final_height=final_z,leg_error=leg_error,head_error=head_error,
+               ramp_done=(alpha-flag).abs()<.02,stable=stable,feedback_ready=ready,finite=finite)
+        if self.oracle:
+            tests=[]
+            for name in ('posture_height','posture_height_sharp'):
+                t=env.reward_manager.get_term_cfg(name);tests.append((name,torch.exp(-((z-target_z)/t.params['std']).square())))
+            t=env.reward_manager.get_term_cfg('posture_pose_legs')
+            gate_x=(1.-(flag-alpha).abs()/.1).clamp(0.,1.)
+            gate=gate_x.square()*(3.-2.*gate_x) if self.release else torch.ones_like(alpha)
+            tests.append(('posture_pose_legs',torch.exp(-(leg_error/t.params['std']).square()).mean(-1)*gate))
+            tests.append(('posture_height_l1',-(z-target_z).abs()))
+            t=env.reward_manager.get_term_cfg('head_pose_tracking')
+            tests.append(('head_pose_tracking',torch.exp(-(head_error/t.params['std']).square()).mean(-1)))
+            if self.release:
+                tests.append(('posture_pose_l1',-leg_error.mean(-1)*gate))
+                t=env.reward_manager.get_term_cfg('posture_composite');p=t.params
+                pose=torch.exp(-leg_error.square().mean(-1)/p['pose_std']**2)
+                expected=torch.exp(-((z-target_z)/p['height_std']).square())*torch.exp(-2*(quat[:,1].square()+quat[:,2].square())/p['upright_std']**2)
+                expected=expected*((1-gate)+gate*pose)*torch.exp(-head_error.square().mean(-1)/p['head_std']**2)
+                tests.append(('posture_composite',expected))
+                rate=env.reward_manager._step_reward
+                scale=env.step_dt if env.reward_manager._scale_by_dt else 1.
+                expected_total=rate.sum(-1)*scale;actual_total=env.reward_manager._reward_buf
+                self.oracle_max[7]=torch.maximum(self.oracle_max[7],(expected_total-actual_total).abs().max())
+                torch._assert_async(torch.isclose(expected_total,actual_total,atol=2e-6,rtol=2e-6).all(),'SitStand sum of actual reward rates mismatch')
+            for i,(name,expected) in enumerate(tests):
+                t=env.reward_manager.get_term_cfg(name);actual=t.func(env,**t.params)
+                self.oracle_max[i]=torch.maximum(self.oracle_max[i],(actual-expected).abs().max())
+                torch._assert_async(torch.isclose(actual,expected,atol=2e-7,rtol=1e-6).all(),'SitStand physical reward oracle mismatch')
+        self.calls+=1
+        return x
+
+class SitStandTrainingSummary:
+    def __init__(self,env,oracle=False):
+        self.env=env;self.reader=SitStandMeasurements(env,oracle);self.latest=None;self.samples=0
+        self.sums=torch.zeros(14,device=env.device,dtype=torch.float64)
+        self.exposure=torch.zeros(8,device=env.device,dtype=torch.int64)
+        original=env.reward_manager.compute
+        def measured(dt):
+            reward=original(dt);x=self.reader.read();self.latest=x
+            sit=x['flag']>.5;done=x['ramp_done'];n=(x['head_command']!=0).sum(-1)
+            self.exposure+=torch.stack((sit&done,~sit&done,sit&~done,~sit&~done,n==0,n==1,n==2,n==4),-1).sum(0)
+            values=((x['height']-x['target_height']).abs(),(x['height']-x['final_height']).abs(),x['tilt'],
+                    x['leg_error'].mean(-1),x['head_error'].mean(-1),x['linear'][:,2].abs(),x['omega'],
+                    x['stable'],~x['feedback_ready'],~x['finite'],env.reset_terminated,env.reset_time_outs,
+                    torch.clamp(-x['linear'][:,2]-.05,min=0),torch.clamp(x['linear'][:,2]-.08,min=0))
+            self.sums+=torch.stack([v.double().sum() for v in values]);self.samples+=env.num_envs
+            # Self-negating safety costs must never become positive rewards.
+            for name in ('descent_speed','rise_speed','gentle_motion'):
+                if name in env.reward_manager._term_names:
+                    i=env.reward_manager._term_names.index(name)
+                    torch._assert_async((env.reward_manager._step_reward[:,i]<=1e-7).all(),'SitStand penalty sign')
+            return reward
+        env.reward_manager.compute=measured
+    def report(self):
+        names=('slewed_height_mae_m','final_height_mae_m','tilt_mean_rad','leg_mae_rad','head_mae_rad',
+          'abs_vz_mean_mps','omega_mean_radps','stable_sample_fraction','feedback_not_ready_fraction',
+          'nonfinite_fraction','terminated_sample_fraction','timeout_sample_fraction','descent_excess_mps','rise_excess_mps')
+        return dict(boundary=BOUNDARY,control_samples=self.samples,metrics=dict(zip(names,(self.sums/max(1,self.samples)).cpu().tolist())),
+          exposure_control_samples=dict(zip(('sit_hold','stand_hold','descending_ramp','rising_ramp','head_zero','head_one','head_two','head_four'),self.exposure.cpu().tolist())),
+          oracle_calls=self.reader.calls if self.reader.oracle else 0,oracle_max_abs=self.reader.oracle_max.cpu().tolist(),
+          scope='Training sample statistics; not independent commanded-trial success')

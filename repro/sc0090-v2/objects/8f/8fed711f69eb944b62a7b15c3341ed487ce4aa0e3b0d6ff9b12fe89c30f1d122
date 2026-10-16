@@ -1,0 +1,90 @@
+"""Explicit world-camera objective, ported from verified historical sampling.
+
+Preparation only: actual V2 kinematics, noninterference, resume and PPO admission
+must pass before a bounded experiment. Actor observations and actions unchanged.
+"""
+import math
+import torch
+
+
+def camera_rotation_cost(omega_world, requested_yaw):
+    """Positive rad²/s²; intentional body yaw is subtracted before squaring."""
+    return omega_world[:, :2].square().sum(-1) + (omega_world[:, 2]-requested_yaw).square()
+
+
+def upright_camera_gate(height, root_quat):
+    """Use existing head-bias upright window to release recovery motion."""
+    tilt = torch.acos((1-2*(root_quat[:,1].square()+root_quat[:,2].square())).clamp(-1,1))
+    return ((height-.09)/.02).clamp(0,1) * ((math.radians(40)-tilt)/math.radians(20)).clamp(0,1)
+
+
+class V2CameraMotionSamples:
+    """Read native derived angular velocity at each physical interval start.
+
+    Four squares are accumulated on device before averaging, using the command
+    that caused the interval. No extra forward, sense, RNG or physics step.
+    Metrics execute even when the paired control's reward weight is zero.
+    """
+    def __init__(self, cfg, env):
+        assert not hasattr(env, '_v2_camera_motion')
+        assert cfg.per_substep and env.cfg.decimation == 4
+        self.asset_cfg = cfg.params['asset_cfg']
+        self.command_name = cfg.params.get('command_name','twist')
+        assert len(self.asset_cfg.site_ids)==1
+        self._robot = env.scene[self.asset_cfg.name]
+        self._sum = torch.zeros(env.num_envs,device=env.device)
+        self._raw_sum = torch.zeros_like(self._sum)
+        self._last_cost = torch.zeros_like(self._sum)
+        self._valid = torch.zeros(env.num_envs,device=env.device,dtype=torch.bool)
+        self._control_step = self._substep = None
+        self._count = 0
+        env._v2_camera_motion = self
+
+    def reset(self, env_ids=None):
+        ids = slice(None) if env_ids is None else env_ids
+        self._sum[ids] = 0
+        self._raw_sum[ids] = 0
+        self._last_cost[ids] = 0
+        self._valid[ids] = False
+
+    def __call__(self, env, asset_cfg, command_name='twist'):
+        if self._substep == env._sim_step_counter:
+            return self._last_cost
+        if self._control_step != env.common_step_counter:
+            self._sum.zero_();self._raw_sum.zero_();self._count = 0
+            self._control_step = env.common_step_counter
+        data = self._robot.data
+        omega = data.site_ang_vel_w[:,asset_cfg.site_ids[0]]
+        yaw = env.command_manager.get_command(command_name)[:,2]
+        raw = camera_rotation_cost(omega,yaw)
+        height = data.root_link_pos_w[:,2]-env.scene.env_origins[:,2]
+        cost = raw*upright_camera_gate(height,data.root_link_quat_w)
+        self._sum.add_(cost);self._raw_sum.add_(raw);self._last_cost.copy_(cost)
+        self._valid.fill_(True)
+        self._count += 1;self._substep = env._sim_step_counter
+        return self._last_cost
+
+    def read(self, env, *, gated=True):
+        if (self._count != env.cfg.decimation
+                or self._control_step != env.common_step_counter-1
+                or self._substep != env._sim_step_counter):
+            raise RuntimeError('Camera reward requires a complete current control interval')
+        values = self._sum if gated else self._raw_sum
+        return torch.where(self._valid,values/self._count,0.)
+
+
+def camera_interval_cost(env):
+    return env._v2_camera_motion.read(env)
+
+
+def make_camera_env_cfg(play=False,stage='nominal',camera_weight=-.01):
+    from mjlab.managers import MetricsTermCfg,RewardTermCfg,SceneEntityCfg
+    from .velstand import make_velstand_env_cfg
+    if camera_weight not in (0.,-.01):
+        raise ValueError('Only the fixed paired control and mild candidate are in scope')
+    cfg = make_velstand_env_cfg(play=play,stage=stage)
+    assert not any('camera' in key for key in cfg.rewards)
+    cfg.metrics['v2_camera_substeps'] = MetricsTermCfg(func=V2CameraMotionSamples,
+        params={'asset_cfg':SceneEntityCfg('robot',site_names=('head_camera',)), 'command_name':'twist'},per_substep=True,reduce='mean')
+    cfg.rewards['v2_camera_rotation'] = RewardTermCfg(func=camera_interval_cost,weight=camera_weight)
+    return cfg

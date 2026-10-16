@@ -1,0 +1,24 @@
+"""One bounded SitStand transition-leg-template release; endpoints unchanged."""
+from copy import deepcopy
+from .sitstand_lesson import make_lesson_sitstand_env_cfg
+RELEASE_TASK='Mjlab-SitStand-Flat-MicroDuck-V2-ClearSeat-TransitionFree-Lesson4s-Repaired-S0-O0-R1'
+
+def make_release_sitstand_env_cfg(play=False,stage='nominal'):
+    from mjlab_microduck.tasks import mdp
+    cfg=make_lesson_sitstand_env_cfg(play=play,stage=stage)
+    for name,func in [('posture_pose_legs',mdp.posture_pose_match_transition_free),
+                      ('posture_pose_l1',mdp.posture_pose_l1_transition_free),
+                      ('posture_composite',mdp.posture_composite_transition_free)]:
+        cfg.rewards[name].func=func
+    return cfg
+
+def register_release_sitstand_task():
+    from mjlab.tasks.registry import register_mjlab_task
+    from mjlab_microduck.tasks import MicroduckOnPolicyRunner
+    from mjlab_microduck.tasks.microduck_sitstand_env_cfg import MicroduckSitStandRlCfg
+    for task,stage in ((RELEASE_TASK,'nominal'),(RELEASE_TASK+'-Measured','measured')):
+        agent=deepcopy(MicroduckSitStandRlCfg)
+        agent.algorithm.class_name='mjlab_microduck.custom_v2.ppo:TerminalCriticPPO'
+        agent.experiment_name='microduck_v2_p04_sitstand';agent.run_name='transition_release_'+stage
+        register_mjlab_task(task_id=task,env_cfg=make_release_sitstand_env_cfg(stage=stage),
+            play_env_cfg=make_release_sitstand_env_cfg(play=True,stage=stage),rl_cfg=agent,runner_cls=MicroduckOnPolicyRunner)

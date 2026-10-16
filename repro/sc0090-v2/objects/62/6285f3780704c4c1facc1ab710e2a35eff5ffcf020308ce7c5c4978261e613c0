@@ -1,0 +1,24 @@
+from pathlib import Path
+import ast,copy,json
+b=Path('/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04')
+p=Path(__file__).resolve().parents[1]/"scripts/train_v2_standup.py"
+new=p.read_text()
+# Test the exact production function AST without importing the simulator.
+fn=next(n for n in ast.parse(new).body if isinstance(n,ast.FunctionDef) and n.name=='validate_rng_preflight_reuse');ns={};exec(compile(ast.Module(body=[fn],type_ignores=[]),str(p),'exec'),ns);check=ns[fn.name]
+smoke=json.loads((b/'head2-cap005-bench-32768/report.json').read_text());task=smoke['task'];base=dict(checkpoint_sha256=smoke['initialization']['sha256'],parent_task=task,task=task,is_adaptation=False);actual=copy.deepcopy(smoke['rng_restore']);cases=[]
+def case(name,expected,s,a,kw):
+ try:result=check(s,a,**kw);ok=True
+ except (AssertionError,KeyError):ok=False
+ assert ok==expected,name;cases.append(dict(name=name,expected_accept=expected,status='PASS'))
+case('same_parent_exact',True,smoke,actual,base)
+x=copy.deepcopy(actual);x['source_active_cuda_rng_sha256']=x['target_restored_cuda_rng_sha256']='new';case('same_parent_changed_hash_rejected',False,smoke,x,base)
+kw={**base,'checkpoint_sha256':'later-parent'};case('same_task_new_parent',True,smoke,x,kw)
+case('different_parent_adaptation_rejected',False,smoke,x,{**kw,'is_adaptation':True})
+case('different_parent_task_rejected',False,smoke,x,{**kw,'parent_task':'other'})
+for field in ['source_sha256','source_device','target_device']:
+ y=copy.deepcopy(x);y[field]='different';case(field+'_change_rejected',False,smoke,y,kw)
+y=copy.deepcopy(x);y['target_restored_cuda_rng_sha256']='wrong';case('actual_stream_mismatch_rejected',False,smoke,y,kw)
+y=copy.deepcopy(x);y['active_stream_mapped']=True;case('mapping_flag_mismatch_rejected',False,smoke,y,kw)
+s=copy.deepcopy(smoke);s['rng_restore']['target_device']='cuda:1';s['rng_restore']['active_stream_mapped']=True;y=copy.deepcopy(x);y['target_device']='cuda:1';y['active_stream_mapped']=True;case('explicitly_qualified_cross_device',True,s,y,kw)
+
+print(json.dumps(dict(status="PASS",cases=cases),indent=2))

@@ -1,0 +1,37 @@
+"""Mature normalization stays fixed through train(), gradient updates and reload."""
+import copy
+from types import SimpleNamespace
+import torch
+from torch import nn
+from rsl_rl.modules.normalization import EmpiricalNormalization
+from mjlab_microduck.custom_v2.frozen_normalization import freeze_normalizers,assert_frozen_normalizers
+
+class Model(nn.Module):
+    def __init__(self):
+        super().__init__();self.obs_normalizer=EmpiricalNormalization(3);self.linear=nn.Linear(3,2)
+    def forward(self,x):return self.linear(self.obs_normalizer(x))
+
+def test_train_update_reload():
+    a=SimpleNamespace(actor=Model(),critic=Model())
+    for n in ('actor','critic'):getattr(a,n).obs_normalizer.update(torch.randn(32,3))
+    before=copy.deepcopy(a.actor.state_dict());recipe,snapshot=freeze_normalizers(a)
+    optim=torch.optim.Adam(a.actor.parameters(),lr=.01)
+    for _ in range(5):
+        for n in ('actor','critic'):
+            m=getattr(a,n);m.train();m.obs_normalizer.update(torch.randn(64,3)*100+10)
+        optim.zero_grad();a.actor(torch.randn(64,3)).square().mean().backward();optim.step()
+        assert_frozen_normalizers(a,snapshot)
+    assert not torch.equal(a.actor.linear.weight,before['linear.weight'])
+    b=SimpleNamespace(actor=Model(),critic=Model())
+    for n in ('actor','critic'):getattr(b,n).load_state_dict(getattr(a,n).state_dict())
+    recipe2,snapshot2=freeze_normalizers(b);assert recipe==recipe2
+    for n in ('actor','critic'):getattr(b,n).train();getattr(b,n).obs_normalizer.update(torch.ones(20,3)*-100)
+    assert_frozen_normalizers(b,snapshot2)
+
+def test_fresh_rejected():
+    try:freeze_normalizers(SimpleNamespace(actor=Model(),critic=Model()))
+    except ValueError:return
+    raise AssertionError('Unobserved normalization must not be frozen')
+
+if __name__=='__main__':
+    test_train_update_reload();test_fresh_rejected();print('2 normalization lifecycle checks PASS')

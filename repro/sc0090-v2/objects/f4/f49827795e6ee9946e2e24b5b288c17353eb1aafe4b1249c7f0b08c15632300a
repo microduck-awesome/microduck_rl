@@ -1,0 +1,25 @@
+"""Replay actual GPU-reset qpos with explicit plane-geom matching (not body0)."""
+from pathlib import Path
+import json,torch,mujoco
+from mjlab.scene import Scene
+from mjlab_microduck.custom_v2.ball_kick import make_ball_kick_env_cfg
+r=Path(__file__).resolve().parents[1]/'runs-v2';folder=r/'ballkick-physical-001'
+state=torch.load(folder/'initial.pt',map_location='cpu',weights_only=False)
+cfg=make_ball_kick_env_cfg();cfg.scene.num_envs=128;scene=Scene(cfg.scene,'cpu');m=scene.compile();d=mujoco.MjData(m);assert m.nq==state['qpos'].shape[-1]
+robot={i for i in range(m.ngeom) if m.geom(i).name.startswith('robot/')};ball={i for i in range(m.ngeom) if m.geom(i).name.startswith('ball/')};floor={i for i in range(m.ngeom) if int(m.geom_type[i])==int(mujoco.mjtGeom.mjGEOM_PLANE)}
+assert robot and ball and len(floor)==1
+rows=[]
+for world,q in enumerate(state['qpos'].numpy()):
+ d.qpos[:]=q;mujoco.mj_forward(m,d);depths=dict(floor=0.,self=0.,ball_robot=0.);pairs=[]
+ for c in d.contact[:d.ncon]:
+  a,b=int(c.geom1),int(c.geom2)
+  if (a in robot and b in floor) or (b in robot and a in floor):kind='floor'
+  elif a in robot and b in robot:kind='self'
+  elif (a in ball and b in robot) or (b in ball and a in robot):kind='ball_robot'
+  else:continue
+  depth=max(0.,-float(c.dist));depths[kind]=max(depths[kind],depth)
+  if depth>1e-5:pairs.append(dict(kind=kind,a=m.geom(a).name,b=m.geom(b).name,depth_m=depth))
+ rows.append(dict(world=world,group=world//16,**depths,pairs=pairs))
+rejected=[v['world'] for v in rows if v['floor']>.001 or v['self']>.001 or v['ball_robot']>.0001]
+report=dict(status='PASS' if not rejected else 'INITIAL_GEOMETRY_REJECTED',floor_geoms=[dict(name=m.geom(i).name,body_id=int(m.geom_bodyid[i]),body=m.body(int(m.geom_bodyid[i])).name) for i in floor],rows=rows,rejected_worlds=rejected,max_floor_penetration_m=max(v['floor'] for v in rows),scope='Same captured qpos and frozen scene geometry. Corrects earlier probe floor selector body_id==0: mjlab terrain is a named static body. Original dynamics preserved, affected cases must not count as admitted noisy-reset physics.')
+p=r/'ballkick-initial-geometry-replay-002.json';assert not p.exists();p.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({k:v for k,v in report.items() if k!='rows'}),flush=True)

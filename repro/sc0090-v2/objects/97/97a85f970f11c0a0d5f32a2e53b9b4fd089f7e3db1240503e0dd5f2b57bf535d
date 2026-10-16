@@ -1,0 +1,89 @@
+"""V2 full-contact forward roll; explicit CAD reset/axis adaptation."""
+from copy import deepcopy
+from . import microduck_v2 as v2
+from .training import _full_contact_robot,get_full_spec,guard_reset_joints,_replace_standing_height,OFFICIAL_HOME,OFFICIAL_TO_V2_SIGNS
+ROULADE_TASK='Mjlab-Roulade-Flat-MicroDuck-V2-Repaired-S0-O0-R1'
+HEAD_TOP_AXIS=(-.07845857852479174,0.,.9969173744377559)
+# Conservative static-clear candidate (0.6 legacy delta); path remains learned.
+TUCK_FRACTION=.6
+
+def initialize_roulade_geometry(env,env_ids):
+ from .roulade_geometry import RouladeResetGeometry
+ env._v2_roulade_reset_geometry=RouladeResetGeometry(get_full_spec().compile(),v2.POLICY_JOINTS,env.device)
+ ids,names=env.scene['robot'].find_bodies('bottom_head_shell');assert names==['bottom_head_shell'] or tuple(names)==('bottom_head_shell',)
+ env._roulade_head_body_id=ids[0];env._roulade_head_top_axis=HEAD_TOP_AXIS
+
+def reset_roulade_v2(env,env_ids,**kwargs):
+ import torch
+ from mjlab_microduck.tasks import mdp
+ if env_ids is None or len(env_ids)==0:return
+ mdp.reset_roulade_state(env,env_ids,**kwargs)
+ if not hasattr(env,'_v2_roulade_spawn_angle'):
+  env._v2_roulade_spawn_angle=torch.zeros(env.num_envs,device=env.device)
+  env._v2_roulade_spawn_mid=torch.zeros(env.num_envs,device=env.device,dtype=torch.bool)
+ env._v2_roulade_spawn_angle[env_ids]=env._roulade_accum[env_ids]
+ env._v2_roulade_spawn_mid[env_ids]=env._roulade_accum[env_ids]>0
+ guard_reset_joints(env,env_ids)
+ robot=env.scene['robot'];ids,_=robot.find_joints(v2.POLICY_JOINTS,preserve_order=True)
+ q=robot.data.joint_pos[env_ids][:,ids];rootq=env.sim.data.qpos[env_ids,3:7]
+ mouth_ids,_=robot.find_joints('^mouth$');mouth=robot.data.joint_pos[env_ids,mouth_ids[0]]
+ z=env._v2_roulade_reset_geometry.floor_height(q,rootq,mouth_q=mouth)
+ env.sim.data.qpos[env_ids,2]=z+env.scene.env_origins[env_ids,2]
+ # State is the real sampled reset q; no actor observation is supplied here.
+
+def make_roulade_env_cfg(play=False,stage='nominal'):
+ from mjlab.managers import EventTermCfg,TerminationTermCfg
+ from mjlab.sensor import ContactMatch
+ from mjlab_microduck.tasks import mdp
+ from mjlab_microduck.tasks.microduck_roulade_env_cfg import make_microduck_roulade_env_cfg,TUCK_OVERRIDES
+ from .runtime import configure_origin_markers
+ base=v2.make_v2_sensor_env_cfg(play=play,stage=stage);cfg=deepcopy(make_microduck_roulade_env_cfg(play=play))
+ cfg.scene.entities['robot']=_full_contact_robot(base.scene.entities['robot']);cfg.scene.spec_fn=base.scene.spec_fn
+ for sensor in cfg.scene.sensors:
+  if sensor.name=='head_ground_contact':sensor.primary=ContactMatch(mode='geom',pattern='^ground_head_shell_collision$',entity='robot')
+ cfg.actions['joint_pos']=deepcopy(base.actions['joint_pos']);action=cfg.actions['joint_pos'];action.scale=1.
+ action.spike_rejection=False;action.o0_local_history=True;action.compile_measurement=True;action.fuse_registers=True;action.reset_graph_chunk=19
+ v2._policy_selectors(cfg)
+ for name in ('randomize_joint_friction','randomize_joint_damping','randomize_armature','randomize_motor_gains','encoder_bias'):cfg.events.pop(name,None)
+ for name in ('expand_bam_friction_fields','v2_runtime','mouth_reset','mouth_hold'):
+  if name in base.events:cfg.events[name]=deepcopy(base.events[name])
+  else:cfg.events.pop(name,None)
+ for group in ('actor','critic'):
+  for name in ('joint_pos','joint_vel'):cfg.observations[group].terms[name]=deepcopy(base.observations[group].terms[name])
+  for term in cfg.observations[group].terms.values():
+   if term.func is mdp.raw_accelerometer:term.func=v2.body_accelerometer_direction;term.params={}
+ for name in ('foot_air_time','foot_contact_forces'):
+  if name in cfg.observations['critic'].terms:cfg.observations['critic'].terms[name]=deepcopy(base.observations['critic'].terms[name])
+ cfg.terminations['sc0090_feedback_fault']=TerminationTermCfg(func=mdp.v2_feedback_fault,time_out=False)
+ cfg.events['reset_base'].params['pose_range']['z']=(0.,.01)
+ # Episodic task's tiny command padding must not inherit forward-gait sampling.
+ cfg.commands['twist'].rel_forward_envs=0.
+ cfg.events['v2_roulade_geometry']=EventTermCfg(func=initialize_roulade_geometry,mode='startup')
+ # Geometry uses the FINAL reset mouth state, so close it before reset placement.
+ mouth_reset=cfg.events.pop('mouth_reset');ordered={}
+ for name,term in cfg.events.items():
+  if name=='set_roulade_state':ordered['mouth_reset']=mouth_reset
+  ordered[name]=term
+ cfg.events=ordered
+ reset=cfg.events['set_roulade_state'];reset.func=reset_roulade_v2
+ reset.params['tuck_overrides']={i:TUCK_FRACTION*(v-OFFICIAL_HOME[i])*OFFICIAL_TO_V2_SIGNS[i] for i,v in TUCK_OVERRIDES.items()}
+ reset.params['standing_z_min']=v2.HOME_HEIGHT;reset.params['standing_z_max']=v2.HOME_HEIGHT+.01
+ reset.params['joint_noise_clip']=.04  # Same Gaussian draws; bound infeasible lateral tails.
+ # Legacy z samples are explicitly replaced by actual-pose CAD OBB clearance.
+ for section in (cfg.rewards,cfg.curriculum):
+  for term in section.values():_replace_standing_height(term.params)
+ cfg.sim.mujoco.timestep=.005;cfg.decimation=4;cfg.sim.nconmax=64
+ configure_origin_markers(cfg)
+ return cfg
+
+def register_roulade_task():
+ from mjlab.tasks.registry import register_mjlab_task
+ from mjlab_microduck.tasks import MicroduckOnPolicyRunner
+ from mjlab_microduck.tasks.microduck_roulade_env_cfg import MicroduckRouladeRlCfg
+ for task,stage in ((ROULADE_TASK,'nominal'),(ROULADE_TASK+'-Measured','measured')):
+  agent=deepcopy(MicroduckRouladeRlCfg);agent.algorithm.class_name='mjlab_microduck.custom_v2.ppo:TerminalCriticPPO'
+  agent.algorithm.symmetry_cfg=deepcopy(agent.algorithm.symmetry_cfg)
+  assert agent.algorithm.symmetry_cfg['use_mirror_loss'] and not agent.algorithm.symmetry_cfg['use_data_augmentation']
+  agent.algorithm.symmetry_cfg['data_augmentation_func']='mjlab_microduck.custom_v2.roulade_symmetry.microduck_v2_symmetry'
+  agent.experiment_name='microduck_v2_p04_roulade';agent.run_name='roulade_'+stage
+  register_mjlab_task(task_id=task,env_cfg=make_roulade_env_cfg(stage=stage),play_env_cfg=make_roulade_env_cfg(play=True,stage=stage),rl_cfg=agent,runner_cls=MicroduckOnPolicyRunner)

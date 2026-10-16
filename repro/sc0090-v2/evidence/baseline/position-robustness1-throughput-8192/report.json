@@ -1,0 +1,287 @@
+{
+  "status": "PASS",
+  "head_precision_recipe": {
+    "id": "v2-head-precision-2",
+    "stage": 2,
+    "ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ],
+    "final_ranges": [
+      [
+        -0.48577760000000003,
+        1.1
+      ],
+      [
+        -1.1,
+        0.904656
+      ],
+      [
+        -1.4,
+        1.4
+      ],
+      [
+        -0.31,
+        0.31
+      ]
+    ],
+    "reward_weight": 3.0,
+    "std": 0.5,
+    "fine_std": 0.04,
+    "fine_weight": 0.5,
+    "reason": "2000-update head response failed despite mastered recovery"
+  },
+  "position_robustness_recipe": {
+    "id": "v2-position-robustness-1",
+    "stage": 1,
+    "uniform_noise_half_width_rad": 0.02,
+    "position_delay_control_steps": 1,
+    "control_dt_s": 0.02,
+    "encoder_bias_event": "retained",
+    "velocity_observation": "unchanged",
+    "purpose": "Bounded baseline continuation; evaluate full P04 independently before acceptance"
+  },
+  "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+  "device": "cuda:1",
+  "envs": 8192,
+  "iterations": 16,
+  "steps_per_env": 24,
+  "learning_epochs": 5,
+  "minibatches": 4,
+  "losses": [
+    {
+      "value": 0.6158815562725067,
+      "surrogate": -0.0029356677900068463,
+      "entropy": 19.78821611404419
+    },
+    {
+      "value": 0.5172071471810341,
+      "surrogate": -0.010140295047312975,
+      "entropy": 19.572769832611083
+    },
+    {
+      "value": 0.3997202977538109,
+      "surrogate": -0.009911935811396688,
+      "entropy": 19.27012166976929
+    },
+    {
+      "value": 0.3143293708562851,
+      "surrogate": -0.010334537329617888,
+      "entropy": 19.03657159805298
+    },
+    {
+      "value": 0.22715948447585105,
+      "surrogate": -0.011205444028018974,
+      "entropy": 18.75981273651123
+    },
+    {
+      "value": 0.1632624439895153,
+      "surrogate": -0.011745152773801237,
+      "entropy": 18.476311492919923
+    },
+    {
+      "value": 0.10813209488987922,
+      "surrogate": -0.012718894064892083,
+      "entropy": 18.18591480255127
+    },
+    {
+      "value": 0.07201396971940995,
+      "surrogate": -0.01570168901816942,
+      "entropy": 17.868304920196532
+    },
+    {
+      "value": 0.04344049263745546,
+      "surrogate": -0.017691202547575814,
+      "entropy": 17.53426456451416
+    },
+    {
+      "value": 0.029324340168386698,
+      "surrogate": -0.01913322291802615,
+      "entropy": 17.21786575317383
+    },
+    {
+      "value": 0.019513577781617643,
+      "surrogate": -0.023099960864055902,
+      "entropy": 16.745619201660155
+    },
+    {
+      "value": 0.012795661948621273,
+      "surrogate": -0.02353731847833842,
+      "entropy": 16.378176498413087
+    },
+    {
+      "value": 0.00971051473170519,
+      "surrogate": -0.025470330426469446,
+      "entropy": 15.922370529174804
+    },
+    {
+      "value": 0.008324345666915178,
+      "surrogate": -0.022239761310629547,
+      "entropy": 15.576818895339965
+    },
+    {
+      "value": 0.008833391778171062,
+      "surrogate": -0.023025016370229422,
+      "entropy": 15.109159374237061
+    },
+    {
+      "value": 0.010470322286710142,
+      "surrogate": -0.011740953644039109,
+      "entropy": 14.879939842224122
+    }
+  ],
+  "policy_parameter_max_change": 0.35039395093917847,
+  "finite_policy_parameters": true,
+  "terminal_bootstrap_samples": 4096,
+  "elapsed_seconds": 25.68292607110925,
+  "robot_xml": "robot.xml",
+  "robot_xml_sha256": "d52e06595e737ebe0b96529bfa6410b26b5f0e2d221e03ee2c28c4c9fcf0ed69",
+  "action_scale": 1.0,
+  "peak_contacts_across_worlds": 67899,
+  "physics_cuda_graph": true,
+  "motor_graph_replays": [
+    1534,
+    1534
+  ],
+  "contact_capacity_across_worlds": 286720,
+  "contact_capacity_checked_each_physics_step": true,
+  "logging": "local TensorBoard",
+  "upload_model": false,
+  "limitation": "A short PPO smoke validates the training path; it does not demonstrate learned walking or SC0090 sim2real.",
+  "iteration_timing": [
+    {
+      "iteration": 0,
+      "collection_s": 1.8173654079437256,
+      "learning_s": 0.30940747261047363,
+      "wall_s": 2.6863890811800957
+    },
+    {
+      "iteration": 1,
+      "collection_s": 1.229970932006836,
+      "learning_s": 0.20632123947143555,
+      "wall_s": 1.5783974828664213
+    },
+    {
+      "iteration": 2,
+      "collection_s": 1.2027816772460938,
+      "learning_s": 0.20752286911010742,
+      "wall_s": 1.4603083720430732
+    },
+    {
+      "iteration": 3,
+      "collection_s": 1.2101247310638428,
+      "learning_s": 0.20818758010864258,
+      "wall_s": 1.4651338050607592
+    },
+    {
+      "iteration": 4,
+      "collection_s": 1.2112231254577637,
+      "learning_s": 0.2109975814819336,
+      "wall_s": 1.4710093508474529
+    },
+    {
+      "iteration": 5,
+      "collection_s": 1.2114858627319336,
+      "learning_s": 0.20392155647277832,
+      "wall_s": 1.4640921331010759
+    },
+    {
+      "iteration": 6,
+      "collection_s": 1.2133705615997314,
+      "learning_s": 0.20934391021728516,
+      "wall_s": 1.4695248929783702
+    },
+    {
+      "iteration": 7,
+      "collection_s": 1.2356576919555664,
+      "learning_s": 0.20820212364196777,
+      "wall_s": 1.4930895681027323
+    },
+    {
+      "iteration": 8,
+      "collection_s": 1.3583321571350098,
+      "learning_s": 0.20857906341552734,
+      "wall_s": 1.6123517998494208
+    },
+    {
+      "iteration": 9,
+      "collection_s": 1.206618309020996,
+      "learning_s": 0.2095646858215332,
+      "wall_s": 1.4671244460623711
+    },
+    {
+      "iteration": 10,
+      "collection_s": 1.2443084716796875,
+      "learning_s": 0.21167945861816406,
+      "wall_s": 1.5069440100342035
+    },
+    {
+      "iteration": 11,
+      "collection_s": 1.2157180309295654,
+      "learning_s": 0.21473455429077148,
+      "wall_s": 1.4781050679739565
+    },
+    {
+      "iteration": 12,
+      "collection_s": 1.245821237564087,
+      "learning_s": 0.2111043930053711,
+      "wall_s": 1.505225727101788
+    },
+    {
+      "iteration": 13,
+      "collection_s": 1.2259626388549805,
+      "learning_s": 0.20920872688293457,
+      "wall_s": 1.5820592090021819
+    },
+    {
+      "iteration": 14,
+      "collection_s": 1.2160565853118896,
+      "learning_s": 0.21283578872680664,
+      "wall_s": 1.5612382018007338
+    },
+    {
+      "iteration": 15,
+      "collection_s": 1.207939624786377,
+      "learning_s": 0.20478105545043945,
+      "wall_s": 1.4601612950209528
+    }
+  ],
+  "throughput": {
+    "warmup_updates": 3,
+    "measured_updates": 13,
+    "median_wall_s": 1.4781050679739565,
+    "median_end_to_end_steps_per_s": 133013.54840051476,
+    "median_collection_steps_per_s": 161721.71095436421,
+    "aggregate_wall_steps_per_s": 130830.06832020362
+  },
+  "onnx_exported": true,
+  "runtime": "microduck-v2-sc0090-official-baseline-v1",
+  "feedback": "official-joint-noise-delay-and-encoder-bias",
+  "motor_sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+  "onnx_cpu_inference": {
+    "input": [
+      1,
+      61
+    ],
+    "output": [
+      1,
+      14
+    ],
+    "metadata_joint_count": 14,
+    "normalizer_parity_max_error": 2.384185791015625e-07
+  }
+}

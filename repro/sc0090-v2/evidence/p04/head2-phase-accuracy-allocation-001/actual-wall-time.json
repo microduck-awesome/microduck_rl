@@ -1,0 +1,8 @@
+{
+  "returncode": 0,
+  "started_unix": 1792097686.2343252,
+  "ended_unix": 1792098358.3249693,
+  "wall_s": 672.090653181076,
+  "actual_formal_controls": 50331648,
+  "complete_process_control_steps_per_s": 74888.1832558971
+}

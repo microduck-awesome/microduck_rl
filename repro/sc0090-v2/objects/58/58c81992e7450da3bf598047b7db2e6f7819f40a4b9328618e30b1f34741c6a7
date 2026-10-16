@@ -1,0 +1,68 @@
+"""One-factor cfg, endpoint, ramp and inherited-state contracts."""
+import json,hashlib,ast
+from pathlib import Path
+from dataclasses import asdict
+from types import SimpleNamespace as NS
+import torch
+from mjlab.tasks.registry import load_env_cfg,load_rl_cfg
+from mjlab_microduck.custom_v2.sitstand_lesson import LESSON_TASK
+from mjlab_microduck.custom_v2.sitstand_transition_release import RELEASE_TASK
+from mjlab_microduck.tasks import mdp
+R=Path('/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04');W=R/'sitstand-transition-release-worktree'
+
+def canon(x):
+    if isinstance(x,dict):return {str(k):canon(v) for k,v in x.items()}
+    if isinstance(x,(list,tuple)):return [canon(v) for v in x]
+    if callable(x):return x.__module__+'.'+x.__qualname__
+    return x
+
+def run():
+    torch.set_num_threads(2);checks=[]
+    for play in (False,True):
+        old=asdict(load_env_cfg(LESSON_TASK,play=play));new=asdict(load_env_cfg(RELEASE_TASK,play=play))
+        for k in ('posture_pose_legs','posture_pose_l1','posture_composite'):
+            assert old['rewards'][k]['func'] is not new['rewards'][k]['func']
+            new['rewards'][k]['func']=old['rewards'][k]['func']
+        assert canon(old)==canon(new),'Non-reward configuration difference'
+        checks.append('train/play only three reward function replacements '+str(play))
+    old=asdict(load_rl_cfg(LESSON_TASK));new=asdict(load_rl_cfg(RELEASE_TASK));new['run_name']=old['run_name'];assert old==new;checks.append('PPO exact except run name')
+    # Existing source function bodies are unchanged, including command/alpha.
+    before=(R/'sitstand-short-lesson-worktree/src/mjlab_microduck/tasks/mdp.py').read_text();after=(W/'src/mjlab_microduck/tasks/mdp.py').read_text()
+    funcs=lambda s:{n.name:ast.get_source_segment(s,n) for n in ast.parse(s).body if isinstance(n,(ast.FunctionDef,ast.ClassDef))}
+    b,f=funcs(before),funcs(after);assert all(f[k]==v for k,v in b.items());checks.append('all existing MDP function/class bodies byte-identical')
+    torch.manual_seed(9351);n=512;q=torch.randn(n,14)*.4;headcmd=torch.randn(n,4)*.15;flag=(torch.arange(n)%2).float();alpha=flag.clone();quat=torch.randn(n,4);quat=quat/quat.norm(dim=-1,keepdim=True)
+    asset=NS(data=NS(joint_pos=q,default_joint_pos=torch.zeros_like(q),root_link_pos_w=torch.randn(n,3)*.05,root_link_quat_w=quat,root_link_lin_vel_w=torch.randn(n,3)*.1))
+    class Scene(dict):pass
+    scene=Scene(robot=asset);scene.terrain=NS(env_origins=torch.zeros(n,3))
+    term=NS(alpha=alpha);cmd=torch.zeros(n,3);cmd[:,0]=flag
+    env=NS(scene=scene,command_manager=NS(get_term=lambda name:term,get_command=lambda name:cmd if name=='twist' else headcmd),_head_pose_neck_ids=torch.arange(5,9),device='cpu')
+    old_q,old_default=mdp._servo_joint_pos,mdp._servo_default_joint_pos;mdp._servo_joint_pos=lambda env,asset:asset.data.joint_pos;mdp._servo_default_joint_pos=lambda env,asset:asset.data.default_joint_pos
+    try:
+        cfg=load_env_cfg(RELEASE_TASK)
+        pairs=[('posture_pose_legs',mdp.posture_pose_match),('posture_pose_l1',mdp.posture_pose_l1),('posture_composite',mdp.posture_composite)]
+        for name,orig in pairs:
+            t=cfg.rewards[name];assert torch.equal(t.func(env,**t.params),orig(env,**t.params)),name
+        checks.append('both endpoints exact for all three terms on512 random physical states')
+        distances=torch.tensor([0.,.00001,.02,.05,.099999,.1,.100001,.5,1.]).repeat(57)[:n];term.alpha=flag+(1-2*flag)*distances
+        x=(1-distances/.1).clamp(0,1);g=x*x*(3-2*x);actualg=mdp.posture_transition_leg_gate(env)
+        assert torch.allclose(actualg,g,atol=2e-6,rtol=0)
+        assert (actualg[distances>=.100001]==0).all() and (actualg[distances==0]==1).all()
+        for name,orig in pairs[:2]:
+            t=cfg.rewards[name];expected=orig(env,**t.params)*actualg;actual=t.func(env,**t.params);assert torch.equal(actual,expected)
+            assert (actual>=0).all() if name.endswith('legs') else (actual<=0).all()
+        t=cfg.rewards['posture_composite'];p=t.params;target=term.alpha[:,None]*torch.tensor([p['sit_overrides'].get(i,0.) for i in range(14)]);z=asset.data.root_link_pos_w[:,2];zt=p['stand_z']+term.alpha*(p['sit_z']-p['stand_z']);pose=torch.exp(-(q[:,p['joint_indices']]-target[:,p['joint_indices']]).square().mean(-1)/p['pose_std']**2)
+        expected=torch.exp(-((z-zt)/p['height_std']).square())*torch.exp(-2*(quat[:,1].square()+quat[:,2].square())/p['upright_std']**2)*((1-actualg)+actualg*pose)*torch.exp(-(q[:,5:9]-headcmd).square().mean(-1)/p['head_std']**2)
+        actual=t.func(env,**p);assert torch.allclose(actual,expected,atol=2e-7,rtol=2e-6);assert ((actual>=0)&(actual<=1)).all();checks.append('ramp boundary, signs, bounded composite independent oracle')
+        checks.append('native alpha and command buffers unchanged by pure rewards')
+    finally:mdp._servo_joint_pos=old_q;mdp._servo_default_joint_pos=old_default
+    from train_v2_sitstand import source_hashes,restore_active_training_rng
+    cp=R/'sitstand-lesson4-allocation-001/checkpoint_000384.pt';meta=torch.load(cp,map_location='cpu',weights_only=False)['infos']['v2'];hashes=source_hashes(W)
+    changed={k for k in set(hashes)|set(meta['source_sha256']) if hashes.get(k)!=meta['source_sha256'].get(k)}
+    expected={'scripts/train_v2_sitstand.py','src/mjlab_microduck/custom_v2/sitstand_transition_release.py','src/mjlab_microduck/custom_v2/sitstand_metrics.py','src/mjlab_microduck/tasks/mdp.py','src/mjlab_microduck/tasks/__init__.py'};assert changed==expected,changed
+    manifest=dict(parent_task=meta['task'],target_task=RELEASE_TASK,parent_source_sha256=meta['source_sha256'],new_source_sha256=hashes,parent_checkpoint_sha256=hashlib.sha256(cp.read_bytes()).hexdigest(),changed_files=sorted(changed),scope='Only transition leg-template rewards; stats/oracle and explicitGPU0to1 resume bookkeeping. Numeric PPO/DR/actor/physics unchanged.')
+    (W/'source-transition.json').write_text(json.dumps(manifest,indent=2)+'\n');checks.append('exact source-transition five files')
+    torch.cuda.set_device('cuda:1');cpu_state=torch.get_rng_state();gpu_state=torch.cuda.get_rng_state('cuda:1');parent_run=json.loads((cp.parent/'run.json').read_text());receipt=restore_active_training_rng(meta,parent_run,'cuda:1');assert receipt['source_device']=='cuda:0' and receipt['active_stream_mapped']
+    g=torch.Generator(device='cuda:1');g.set_state(meta['cuda_rng'].cpu());assert torch.equal(torch.randn(257,device='cuda:1'),torch.randn(257,device='cuda:1',generator=g));assert torch.equal(torch.randperm(257,device='cuda:1'),torch.randperm(257,device='cuda:1',generator=g));torch.set_rng_state(cpu_state);torch.cuda.set_rng_state(gpu_state,'cuda:1');checks.append('native active CUDA0stream mapped toCUDA1 exact draws; GPU0untouched')
+    report=dict(status='PASS',checks=checks,source_sha256=hashes,rng=receipt,script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest());(R/'sitstand-transition-release-cpu-001.json').write_text(json.dumps(report,indent=2)+'\n');print('CPU_CONTRACT_PASS',len(checks),flush=True)
+    return report
+if __name__=='__main__':run()

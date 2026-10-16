@@ -1,0 +1,171 @@
+{
+  "status": "GROUND_PICK_DIAGNOSTIC_CLOSED_NO_HEALTHY_LOW_RESET_NO_TRAINING",
+  "created_unix": 1792121825.369124,
+  "formal_controls_retained": 75497472,
+  "formal_updates_retained": 128,
+  "formal_controls_added": 0,
+  "remaining_formal_budget_unspent_max_updates": 42,
+  "diagnostic_controls_added": 32000,
+  "active_pid": null,
+  "gpu1_released": true,
+  "probes": [
+    {
+      "probe": "001",
+      "source_report": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-lowstart-0128-probe-001/report.json",
+      "source_report_sha256": "5713fb207a34fe7d479d5980f517d02ea7dcae031c699331e18d6cc28baf9b8a",
+      "diagnostic_controls": 16000,
+      "formal_controls": 0,
+      "prehold_healthy_tail200ms": 0,
+      "prehold_gate_pass_counts": {
+        "mouth0_25mm": 64,
+        "downcos": 64,
+        "tilt": 64,
+        "bothfeet": 64,
+        "no_self": 64,
+        "no_head": 0,
+        "speed": 64,
+        "omega": 64,
+        "ready": 64,
+        "finite": 64
+      },
+      "prehold_head_force_range_N": [
+        0.6627094745635986,
+        0.7810719013214111
+      ],
+      "prehold_mouth_range_m": [
+        0.012387502938508987,
+        0.012902040034532547
+      ],
+      "prehold_first_head_contact_control_seconds_range": [
+        0.03999999910593033,
+        0.05999999865889549
+      ],
+      "policy_stand_hold500ms": 42,
+      "policy_full_cycle_clean": 0,
+      "policy_fault_trials": 0,
+      "first_policy_head_mean": [
+        1.0910630226135254,
+        -0.022490855306386948,
+        -0.059513773769140244,
+        0.035891659557819366
+      ],
+      "switch_physical_head": [
+        2.0088422298431396,
+        -0.8613840341567993,
+        -9.877802949631587e-05,
+        0.00014373703743331134
+      ],
+      "actor_command_real_obs_parity": true,
+      "stand_tail_camera_window_controls": [
+        151,
+        176
+      ],
+      "stand_tail_camera": [
+        {
+          "payload_kg": 0.0,
+          "trials": 32,
+          "healthy_stand_tail500ms": 0,
+          "rms_mean_rad_s": null,
+          "exposure_span_p95_mean_rad": null
+        },
+        {
+          "payload_kg": 0.03,
+          "trials": 32,
+          "healthy_stand_tail500ms": 0,
+          "rms_mean_rad_s": null,
+          "exposure_span_p95_mean_rad": null
+        }
+      ],
+      "source_and_actor_normalizer_unchanged": true
+    },
+    {
+      "probe": "002",
+      "source_report": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-lowstart-0128-probe-002/report.json",
+      "source_report_sha256": "034f9964cde46f6e558a605fbbf5eac287dba0e7f792ca6ec5c01ece3840159d",
+      "diagnostic_controls": 16000,
+      "formal_controls": 0,
+      "prehold_healthy_tail200ms": 0,
+      "prehold_gate_pass_counts": {
+        "mouth0_25mm": 64,
+        "downcos": 64,
+        "tilt": 64,
+        "bothfeet": 64,
+        "no_self": 64,
+        "no_head": 0,
+        "speed": 64,
+        "omega": 64,
+        "ready": 64,
+        "finite": 64
+      },
+      "prehold_head_force_range_N": [
+        0.612271785736084,
+        0.8143180012702942
+      ],
+      "prehold_mouth_range_m": [
+        0.01179170235991478,
+        0.012203168123960495
+      ],
+      "prehold_first_head_contact_control_seconds_range": [
+        0.07999999821186066,
+        0.07999999821186066
+      ],
+      "policy_stand_hold500ms": 48,
+      "policy_full_cycle_clean": 0,
+      "policy_fault_trials": 0,
+      "first_policy_head_mean": [
+        1.086795687675476,
+        -0.030930066481232643,
+        -0.059918202459812164,
+        0.029301416128873825
+      ],
+      "switch_physical_head": [
+        1.9755507707595825,
+        -0.8612135648727417,
+        -9.327125735580921e-05,
+        0.00014116181409917772
+      ],
+      "actor_command_real_obs_parity": true,
+      "stand_tail_camera_window_controls": [
+        151,
+        176
+      ],
+      "stand_tail_camera": [
+        {
+          "payload_kg": 0.0,
+          "trials": 32,
+          "healthy_stand_tail500ms": 2,
+          "rms_mean_rad_s": 0.24071186780929565,
+          "exposure_span_p95_mean_rad": 0.008538804948329926
+        },
+        {
+          "payload_kg": 0.03,
+          "trials": 32,
+          "healthy_stand_tail500ms": 0,
+          "rms_mean_rad_s": null,
+          "exposure_span_p95_mean_rad": null
+        }
+      ],
+      "source_and_actor_normalizer_unchanged": true
+    }
+  ],
+  "decision": "Conditional low-endpoint-reset training NOT admitted: both candidate preholds fail original no-head-contact low gate. No new source/worktree/PPO configuration/training; no further candidate search.",
+  "supported_findings": [
+    "Old physical quiet pose did not establish no-contact low-goal feasibility: recorded force excess above1N can be0 while head supports0.6\u20130.8N.",
+    "Removing static penetration with neck\u2212.06 yields CPU minclearance6.86mm but dynamic prehold contacts ground again within100ms. Static clearance is insufficient.",
+    "Frozen actor outputs a different neck/head branch; because starting states never satisfy low_goal, these probes do not prove departure from a healthy low attractor.",
+    "No phase/HOME error demonstrated; successful-state reset coverage absent,128 updates not equal optimization history to smallerN equalcontrols.",
+    "Impact cost ignores below1N head contact while evaluation forbids everyfound head contact: a verified reward/evaluation predicate gap, not a proven full-return preference or authorization to alter reward."
+  ],
+  "limits": [
+    "No proof that any no-contact low pose is impossible.",
+    "No full reward ranking or historical actual success-runN/T could be recovered from old data.",
+    "Two assignedload groups have zero real payload force during initialphase.375, then native ramp starts.425; not a loaded-hold comparison.",
+    "Raw first_policy_low_exit_seconds are zero-based sample indices; initial healthy denominator0 in both probes, hence unusable as healthy-departure latency."
+  ],
+  "files": {
+    "cpu_review": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-branch-cpu-audit-001.json",
+    "contact_audit": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-lowstart-contact-audit.json",
+    "clearance64": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-lowstart-clearance64.json",
+    "qualification_erratum": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-physical-qualification-erratum.json"
+  }
+}

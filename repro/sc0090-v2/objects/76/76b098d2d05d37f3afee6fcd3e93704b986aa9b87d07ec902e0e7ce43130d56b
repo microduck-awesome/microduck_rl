@@ -1,0 +1,44 @@
+"""Match whole-motion self-contact rejection at the existing200Hz state boundary."""
+import math
+import torch
+from .ball_kick_state import ensure_ball_kick_state,CONTACT_FORCE_MIN_N
+
+def health_kick_state_transition(valid,bad,correct_touch,other_touch,head_ground,supported,healthy,self_contact):
+    next_bad=bad|other_touch|head_ground|self_contact
+    next_valid=(valid|(correct_touch&supported&healthy))&~next_bad
+    return next_valid,next_bad
+
+def install_health_ball_kick_state(env, env_ids):
+    """Startup hook: read after every native physics substep, before rewards.
+
+    Writes only two explicit Markov-state bits. No reward-side mutation, no
+    dynamics/actor edit, and no extra forward/sense call or RNG draw.
+    """
+    ensure_ball_kick_state(env)
+    assert not getattr(env, '_v2_ball_state_installed', False)
+    env._v2_ball_state_installed = True
+    original = env.metrics_manager.compute_substep
+    def touching(name, *, force=False):
+        data = env.scene[name].data
+        found = data.found.reshape(env.num_envs, -1) > 0
+        if force:
+            magnitude = data.force.reshape(env.num_envs, -1, 3).norm(dim=-1)
+            found &= magnitude > CONTACT_FORCE_MIN_N
+        return found.any(-1)
+    def update():
+        original()
+        robot = env.scene['robot']
+        quat = robot.data.root_link_quat_w
+        upright = 1-2*(quat[:,1].square()+quat[:,2].square())
+        healthy = (upright >= math.cos(math.pi/4))
+        healthy &= robot.data.root_link_pos_w[:,2]-env.scene.env_origins[:,2] >= .08
+        healthy &= torch.isfinite(env.sim.data.qpos).all(-1) & torch.isfinite(env.sim.data.qvel).all(-1)
+        healthy &= env._v2_joint_feedback.ready
+        valid, bad = health_kick_state_transition(env._v2_ball_valid_kick, env._v2_ball_bad_contact,
+            touching('kick_foot_ball_contact',force=True),
+            touching('other_robot_ball_contact',force=True),
+            touching('v2_head_ground_contact',force=True),
+            touching('support_foot_ground_contact'), healthy, touching('self_collision'))
+        env._v2_ball_valid_kick.copy_(valid)
+        env._v2_ball_bad_contact.copy_(bad)
+    env.metrics_manager.compute_substep = update

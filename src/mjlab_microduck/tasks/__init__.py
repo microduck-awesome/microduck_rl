@@ -284,3 +284,35 @@ for _task_id, _make_cfg, _kw, _rl_cfg, _robot_cfg in _BACKLASH_TASKS:
 from mjlab_microduck.custom_v2.microduck_v2 import register as _register_v2
 _register_v2()
 # END MICRODUCK V2 LOCAL TASK
+
+# V2 task family, with the CAD coordinate/reset contract.
+from mjlab_microduck.custom_v2.training import register_training_tasks
+register_training_tasks()
+
+# Explicit fast approximation for the common-parent sim2real ablation.
+from mjlab_microduck.custom_v2.fast_native import register_fast_task
+register_fast_task()
+
+from mjlab_microduck.custom_v2.feedback_repair import register_repaired_task
+register_repaired_task()
+
+from mjlab_microduck.custom_v2.fresh_p04 import register_fresh_task
+register_fresh_task()
+
+from mjlab_microduck.custom_v2.sitstand import register_sitstand_task
+register_sitstand_task()
+
+from mjlab_microduck.custom_v2.sitstand_clear import register_clear_sitstand_task
+register_clear_sitstand_task()
+
+from mjlab_microduck.custom_v2.sitstand_lesson import register_lesson_sitstand_task
+register_lesson_sitstand_task()
+
+from mjlab_microduck.custom_v2.ground_pick import register_ground_pick_task
+register_ground_pick_task()
+
+from mjlab_microduck.custom_v2.ground_pick_history import register_history_ground_pick_tasks
+register_history_ground_pick_tasks()
+
+from mjlab_microduck.custom_v2.ground_pick_precision import register_precision_ground_pick_tasks
+register_precision_ground_pick_tasks()

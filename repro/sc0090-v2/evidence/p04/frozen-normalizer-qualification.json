@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "source": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/rise-frozen-normalizer-worktree",
+  "source_sha256": {
+    "src/mjlab_microduck/custom_v2/frozen_normalization.py": "e75be9b1214c4bd8a0fabd79987284849c866ebb73914786dce61bda48f37a02",
+    "src/mjlab_microduck/ppo_diagnostics.py": "b373aee0ced9ed9cba30588c870605aaa8a2d80bbcffc5a79230d93295d4f089",
+    "scripts/train_v2_standup.py": "a9de4a923eb2ff6436e72d09ec626e895fc40c0f6758a33b5b512b51048cc23d",
+    "scripts/smoke_v2_ppo.py": "7c9d597a3c7c23553da570a62dc19378254989cf91ec2beef6f65fa2ca60a906"
+  },
+  "cpu_checks": "2 PASS: train-mode and optimizer leave mature stats exact; checkpoint reload re-applies schedule; fresh rejected",
+  "cpu_test_sha256": "fd0f7579715d45b628afebff93462e86429ca03ce7fc722c1c848ee15398f514",
+  "first_kl_evidence": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/native-read-preupdate-audit-001/report.json",
+  "preflight_session": 42657,
+  "formal_budget": 64,
+  "parent_update": 1408,
+  "initial_smoke_failure": "fresh Adam and stage0 clocks with actor-only warm load: value loss became inf; evidence frozen-norm-head1-smoke.log preserved; no formal started",
+  "preflight_initialization": "explicit --mature-resume: entire actor/critic/normalizer/Adam/LR/clock/recovery restore exact before freeze",
+  "mature_64_report": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/frozen-norm-head1-mature-smoke/report.json",
+  "throughput_report": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/frozen-norm-head1-mature-throughput-32768/report.json",
+  "qualified_at": "2026-10-15T21:04:04+08:00"
+}

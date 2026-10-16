@@ -1,0 +1,124 @@
+{
+  "status": "PASS",
+  "devices": [
+    {
+      "device": "cpu",
+      "legacy_off_bitwise": true,
+      "independent_oracle_max_error": 1.1920928955078125e-07,
+      "idle_two_four_bitwise": true,
+      "per_axis_gradient_weighting_pass": true,
+      "bounded": true
+    },
+    {
+      "device": "cuda:0",
+      "legacy_off_bitwise": true,
+      "independent_oracle_max_error": 1.1920928955078125e-07,
+      "idle_two_four_bitwise": true,
+      "per_axis_gradient_weighting_pass": true,
+      "bounded": true
+    }
+  ],
+  "environment_diff": [
+    {
+      "path": "environment.rewards.head_pose_tracking.params.balance_active_axes",
+      "old": "<absent/default>",
+      "new": true
+    }
+  ],
+  "base_recipe": {
+    "id": "v2-head-precision-2",
+    "stage": 2,
+    "ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ],
+    "final_ranges": [
+      [
+        -0.48577760000000003,
+        1.1
+      ],
+      [
+        -1.1,
+        0.904656
+      ],
+      [
+        -1.4,
+        1.4
+      ],
+      [
+        -0.31,
+        0.31
+      ]
+    ],
+    "reward_weight": 3.0,
+    "std": 0.5,
+    "fine_std": 0.04,
+    "fine_weight": 0.5,
+    "reason": "2000-update head response failed despite mastered recovery"
+  },
+  "new_recipe": {
+    "id": "v2-head-precision-2-active-balance-v1",
+    "stage": 5,
+    "ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ],
+    "final_ranges": [
+      [
+        -0.48577760000000003,
+        1.1
+      ],
+      [
+        -1.1,
+        0.904656
+      ],
+      [
+        -1.4,
+        1.4
+      ],
+      [
+        -0.31,
+        0.31
+      ]
+    ],
+    "reward_weight": 3.0,
+    "std": 0.5,
+    "fine_std": 0.04,
+    "fine_weight": 0.5,
+    "balance_active_axes": true,
+    "base_recipe": "v2-head-precision-2",
+    "aggregation": "equal active/inactive groups for1or3 active axes; exact original mean for0/2/4",
+    "reason": "Bounded same1792/64 comparison of Head2 single-axis reward weighting; unchanged command exposure and Gaussian scales"
+  },
+  "legacy_function_sha256": "a09ce023cdeaf899c648b8362f47fd42e49511cc225d50f505ca69b3d526495e",
+  "script_sha256": "14174a96e53ce99a9cb4dbe68872ce021f4a2b9ff61cf37d8cdc9079a27bcdfc",
+  "limitation": "Protocol/gradient/configuration validation, not a learned-policy behavior claim"
+}

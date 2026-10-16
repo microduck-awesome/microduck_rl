@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "source": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/rise-head-balance-worktree",
+  "source_sha256": {
+    "src/mjlab_microduck/tasks/mdp.py": "111d1e094ccb4f09f780ef49904ef60b2e4244823704736050e093f870a526fc",
+    "src/mjlab_microduck/custom_v2/training.py": "da1d59b01d7c6fb6c191fb3313c6e391196e4c4979ee2bd67b26067f8af399e7",
+    "scripts/smoke_v2_ppo.py": "763c8766e957b0c201fca33c8b929b0f50fa4fd69661ca8f9d7e2e0b7ed84167",
+    "scripts/train_v2_standup.py": "f1fb9d00d2c711cb0c5515e775ad60877cbc3f05b44b38be2e26217cf9235a5a",
+    "scripts/evaluate_v2_head.py": "1b31ab1177893867e78f164e9433fb6e146367138e5e33f8d0993161e33872e8",
+    "scripts/evaluate_v2_fresh_sweep.py": "b6c6d56de4a4632ddb4572d273bc0c99f91b11fc1bb5f637a230b5c9edc96b99"
+  },
+  "semantic_report": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-balance-semantics.json",
+  "parent_patch_sha256": "a8d8753dd7433400fb2ddbe782195a6cf31c232e7f8e4c18d642d9def680a9d5",
+  "base_recipe": "Head2",
+  "precision_scale": null,
+  "zero_command_prob": 0.6,
+  "nonzero_command_combinations": [
+    1,
+    2,
+    4
+  ],
+  "stage": 5,
+  "stage_id": "v2-head-precision-2-active-balance-v1",
+  "matched_parent": "frozen-head2-allocation-002/resume_001792.pt",
+  "matched_budget_updates": 64,
+  "session": 70744,
+  "limitation": "Same active/inactive aggregation port; no behavioral improvement claimed from tests",
+  "updated_unix": 1792075672.8409033,
+  "evidence": {
+    "semantic": {
+      "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-balance-semantics.json",
+      "sha256": "e9dec5970c3f790a25a05c9bdb259d75713f677d5515ba6d79c6b70b501fbde2"
+    },
+    "mature64": {
+      "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-balance-mature-smoke/report.json",
+      "sha256": "541e59d5177e41599145d4226ba4f80357bd8b3d1a2db3e77c0932865bbb7ca8"
+    },
+    "mature32768": {
+      "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-balance-mature-throughput-32768/report.json",
+      "sha256": "1e6f4b0d3b39fa9017845e1da195828cc63bb7fefb6f059d9311e5044a30d0b3"
+    }
+  },
+  "throughput": {
+    "warmup_updates": 3,
+    "measured_updates": 13,
+    "median_wall_s": 6.032604662002996,
+    "median_end_to_end_steps_per_s": 130363.58986913662,
+    "median_collection_steps_per_s": 148038.15207470683,
+    "aggregate_wall_steps_per_s": 130281.50252728992
+  },
+  "formal_completed_updates": 1856,
+  "head_evaluation": "pending, session54913"
+}

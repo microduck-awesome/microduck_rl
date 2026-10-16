@@ -1,0 +1,19 @@
+{
+  "source_sha256": "7b44c7de760f5ce9fb54a1267c58db7851430a6f476aa84d6866dcccb55d7c9d",
+  "input_sha256": "1f9cbd013b896c28f752b75c99985beefe6e8660b35bdd6397e34187d186ef3d",
+  "raw_manifest_sha256": "41071274f2c482c94358ed867d082eaeb29bc20339f2770f3fe9a5dfd74adcc9",
+  "model_sha256": "0bee6ab37fbf9b7b6b26fe1149508e3f76034f0afbfec229d5c8e99fe24d3eda",
+  "training_records": 848,
+  "P15_records_used": 141,
+  "development_read": false,
+  "conditions": 36,
+  "loads": 12,
+  "voltages": [
+    10.2,
+    11.1,
+    12.4
+  ],
+  "model_coefficients_changed": false,
+  "hardware_executed": false,
+  "status": "frozen_before_R1_smoke_and_training"
+}

@@ -1,0 +1,75 @@
+"""Independent causal checks for the repaired, explicitly versioned O0 path."""
+import math
+import pytest
+import torch
+from mjlab_microduck.custom_v2.microduck_v2 import ASSETS
+from mjlab_microduck.sc0090_v2.artifacts import TrainingArchive
+from mjlab_microduck.sc0090_v2.measurement.stream import CausalStream
+
+
+def stream(*, local):
+    archive=TrainingArchive.load(ASSETS.parent/'training-assets')
+    return CausalStream(1,archive.weight_path,'O0',zero=512.,
+        spike_rejection=False,o0_local_history=local)
+
+
+def tick(s,i,*,valid=True,count=None):
+    t=1_000_000+i*10_000
+    if i%2==0:s.command(t,512.)
+    if i==0:s.pid(t,15.)
+    value=512.+i*.2 if count is None else count
+    s.read(t-1000,t,t,value,0.,0.,111.,valid=valid)
+    return s.tick(t,t,t+1000)
+
+
+def test_o0_local_history_removes_only_unused_network_warmup():
+    old,new=stream(local=False),stream(local=True)
+    old_ready,new_ready=[],[]
+    for i in range(40):
+        a,va=tick(old,i);b,vb=tick(new,i)
+        if va.item():old_ready.append(i)
+        if vb.item():new_ready.append(i)
+        if va.item():torch.testing.assert_close(a,b,rtol=0,atol=0)
+    assert new_ready[0]==4 and old_ready[0]==22
+    assert len(new_ready)==36 and len(old_ready)==18
+    # Both estimates use the immutable affine and the same present LS slope.
+    assert torch.equal(old.model.mapping,new.model.mapping)
+
+
+@pytest.mark.parametrize('bad',('invalid','bounds','nan','unordered'))
+def test_bad_packets_are_rejected_and_require_five_new_samples(bad):
+    s=stream(local=True)
+    for i in range(30):tick(s,i)
+    t=1_300_000
+    s.command(t,512.)
+    count={'invalid':518.,'bounds':-1.,'nan':float('nan'),'unordered':518.}[bad]
+    end=t if bad!='unordered' else t-10_000
+    _,status=s.read(end-1000,end,t,count,0.,0.,111.,valid=bad!='invalid')
+    assert int(status.item()) in (-1,-4,-99)
+    _,ready=s.tick(t,t,t+1000)
+    assert not ready.item()
+    _,valid=s.query(t-20_000,t+1000)
+    assert not valid.item(), 'No prediction or truth fallback after a bad read'
+    again=[]
+    for i in range(31,45):
+        _,ready=tick(s,i)
+        if ready.item():again.append(i)
+    assert again and again[0]==35
+    assert s.samples.item()==5
+
+
+def test_valid_fast_step_is_measurement_not_sensor_failure():
+    s=stream(local=True)
+    for i in range(30):tick(s,i,count=512.)
+    for i in range(30,33):
+        tick(s,i,count=550.)
+        assert s.front_status.item()==0
+        # Accepted position is the actual valid raw count, never its prediction.
+        assert s.raw_q[0,-1].item()==pytest.approx(38*s.scale,abs=1e-7)
+    assert s.source_fault.item()==0
+
+
+def test_o1_cannot_claim_local_o0_history():
+    archive=TrainingArchive.load(ASSETS.parent/'training-assets')
+    with pytest.raises(ValueError,match='O1 requires'):
+        CausalStream(1,archive.weight_path,'O1',o0_local_history=True)

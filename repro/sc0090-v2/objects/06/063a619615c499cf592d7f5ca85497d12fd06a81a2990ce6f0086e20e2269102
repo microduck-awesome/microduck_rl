@@ -1,0 +1,171 @@
+{
+  "policy_joints": [
+    "left_hip_yaw",
+    "left_hip_roll",
+    "left_hip_pitch",
+    "left_knee",
+    "left_ankle",
+    "neck_pitch",
+    "head_pitch",
+    "head_yaw",
+    "head_roll",
+    "right_hip_yaw",
+    "right_hip_roll",
+    "right_hip_pitch",
+    "right_knee",
+    "right_ankle"
+  ],
+  "independent_joint": "mouth",
+  "home_qpos": [
+    0.0,
+    0.0,
+    0.11638049189959615,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "home_height_m": 0.11638049189959615,
+  "zero_reference": "SolidWorks saved assembly pose",
+  "physics_status": "Preview PD only; SC0090 BAM calibration pending",
+  "collision_profiles": {
+    "full": {
+      "profile": "official_task_topology",
+      "mode": "full",
+      "self_geometry": "single_convex",
+      "structure_parts": {
+        "trunk_support": 1,
+        "left_shin_structure": 1,
+        "right_shin_structure": 1
+      },
+      "floor_mask": [
+        1,
+        1
+      ],
+      "feet_mask": [
+        1,
+        1
+      ],
+      "groundcontact_body_mask": [
+        1,
+        1
+      ],
+      "walk_structure_mask": [
+        2,
+        2
+      ],
+      "structure_condim": 3,
+      "active_collision_geoms": 10,
+      "groundcontact_difference": "V2 one-piece head shell replaces upstream top/bottom shell pair",
+      "exclude_body_pairs": []
+    },
+    "walk": {
+      "profile": "official_task_topology",
+      "mode": "walk",
+      "self_geometry": "single_convex",
+      "structure_parts": {
+        "trunk_support": 1,
+        "left_shin_structure": 1,
+        "right_shin_structure": 1
+      },
+      "floor_mask": [
+        1,
+        1
+      ],
+      "feet_mask": [
+        1,
+        1
+      ],
+      "groundcontact_body_mask": [
+        1,
+        1
+      ],
+      "walk_structure_mask": [
+        2,
+        2
+      ],
+      "structure_condim": 3,
+      "active_collision_geoms": 5,
+      "groundcontact_difference": null,
+      "exclude_body_pairs": []
+    }
+  },
+  "sensor_extrinsics": {
+    "imu_raw": {
+      "parent": "trunk_base",
+      "child": "imu_raw",
+      "translation_m": [
+        -0.0403,
+        -0.023475,
+        0.0332
+      ],
+      "quaternion_wxyz": [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      "rotation_matrix": [
+        [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0
+        ]
+      ],
+      "homogeneous_matrix": [
+        [
+          -1.0,
+          0.0,
+          0.0,
+          -0.0403
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          -0.023475
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          0.0332
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "origin_definition": "U3 footprint centre on the delivered STEP seating plane. This is a precisely defined design frame; internal MEMS die offset and as-built tolerances are not specified."
+    },
+    "policy_imu": "PPO reads body-state truth directly; imu_in_body is an independent virtual reference site",
+    "other_sites": "head IMU/camera/ToF placeholders; not calibrated"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "status": "COMPLETE",
+  "created_unix": 1792090546.8422124,
+  "before": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-stdcap-allocation-003/checkpoint_004274.pt",
+  "after": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+  "device": "cuda:1",
+  "seeds": [
+    2026101603,
+    2026101604
+  ],
+  "samples_per_seed": 512,
+  "pitch_deg": [
+    -10,
+    -5
+  ],
+  "roll_deg": [
+    -10,
+    10
+  ],
+  "duration_s": 8,
+  "purpose": "Compare preserved baseline-rooted T24-4274 and independent-from-zero micro1856 under the same complete [-10,-5] pitch bucket and captured initial conditions. Different lineages/training budgets/rewards; behavioral route comparison, not a single-factor causal training experiment.",
+  "scope": "Frozen deterministic real measured S0/O0 simulation; fixed development seeds reused from T24/T12, not hardware or a held-out acceptance claim. No new optimization steps.",
+  "physics_sources_identical": true,
+  "common_full_reward": "Head5 shared evaluation score only; do not call this the Head2 fresh training return",
+  "fresh_source": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/rise-head-micro-exposure-worktree",
+  "physics_source_sha256": {
+    "src/mjlab_microduck/sc0090_v2/feedback.py": "dc5ef0c04cc9a7e84bbe12a3a8319a22e102eb69c66f993a38b8587fc97e4740",
+    "src/mjlab_microduck/sc0090_v2/graph.py": "a49eff096fe2246dce595ea03af8bd84261636cde58598a1a3a1e4ce5f5e7222",
+    "src/mjlab_microduck/sc0090_v2/contract.py": "3de49158641ebfdc92f22ab5a7a086fb49f01457d1414ce752ce45f7e609c0bf",
+    "src/mjlab_microduck/sc0090_v2/action.py": "9ceaa9a68bb22e35a827e014600cc59fdbec1efb4adb9f45b35a9f0a8a482e3e",
+    "src/mjlab_microduck/sc0090_v2/__init__.py": "3cb742a139209151b93552e2e5f28d289faf8e35a25ee3f23e968da544cd5e0a",
+    "src/mjlab_microduck/sc0090_v2/artifacts.py": "30fb7e7f46a31946b5c0be4b1144770a8ad6d1613db7aead770365734cf549f3",
+    "src/mjlab_microduck/sc0090_v2/measurement/precision.py": "792d990f742cec691fee4c1247e11b385520693e206f70faff2aa47536751717",
+    "src/mjlab_microduck/sc0090_v2/measurement/firmware_stream.py": "fba17e7e10b4aa37945ccda08f72a3d874281984ba90f1fff8ed1291760ec77f",
+    "src/mjlab_microduck/sc0090_v2/measurement/compiled_stream.py": "da609f2b075e45bd19be091cb89467fe26e5ef6a1bc9c9b56a3b2a58a33d0aa3",
+    "src/mjlab_microduck/sc0090_v2/measurement/compiled_registers.py": "0f9671f5a31ddcf232b389d8fcf5b3b736953d00290f470574e0f0882819e4f1",
+    "src/mjlab_microduck/sc0090_v2/measurement/registers.py": "089e44fd3eb15eabe0ad1f9d335ae77e7721346db129fef6df4cc613895c3134",
+    "src/mjlab_microduck/sc0090_v2/measurement/gpu_donors.py": "8eefaa07664482f194df1abec679d95d092ae7da293b91c63944bf337e1b686d",
+    "src/mjlab_microduck/sc0090_v2/measurement/prehistory.py": "9f37748c6fd25d8b7a1743ef4681f2ca88e15454fc927e0ac3456fb4374bc4e0",
+    "src/mjlab_microduck/sc0090_v2/measurement/compact.py": "cc1b50271c30d1ebb0f9995f5b48a87f24af663cd1b59b0c526248a2895a8b4d",
+    "src/mjlab_microduck/sc0090_v2/measurement/stream.py": "2ffcf8729f6482c67f5622cc3a0ca5165f5b6f2e5ae6e992941f36c5a569e5d0",
+    "src/mjlab_microduck/sc0090_v2/measurement/__init__.py": "96d1f26fe354f1a6f9a74a4c7cc89ff76a2069851d8b4afbf734785d9205dfcd",
+    "src/mjlab_microduck/actuator/v5_graph.py": "9cc192dfb180f67922565742398311c5d007c1aa3946ac5788722f31b2d71796",
+    "src/mjlab_microduck/actuator/friction_force.py": "c84648a4c15a7173a9580d72deff2a9356b8c3aa2fd086413a795924d438a7f6",
+    "src/mjlab_microduck/actuator/friction_dr_bam.py": "20d25ce2fd06a94bc4fd5356a657710a0959a352bad3dfcc670122f0f0bcd4d4",
+    "src/mjlab_microduck/actuator/sc0090_v5.py": "c42a7e54aac610c9ef1f142b32706821e54ea42163480393842632f35924e451",
+    "src/mjlab_microduck/actuator/__init__.py": "181bfbec32115818720695915322f6e2c860fe87767570662a029f8e2d01f12d"
+  },
+  "before_sha256": "3c97faa40d12b86b81ade81529a1f2da9a0c012f45e18185a9358a7972f152b5",
+  "after_sha256": "e4772c33149410d62446180a9214b26695cb51ba1d5b7b26fac31d3ea273122b",
+  "evaluator_sha256": "d4a142ebde8f37a3f60101a81d6fd7f309e09ffc62e80807fe0cff80668a8be0",
+  "process_start_unix": 1792090997.3452451,
+  "pid": 3406713,
+  "command": [
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-frozen-sampling-worktree/scripts/v2_python.sh",
+    "scripts/audit_negative_pitch_rollout_comparison.py",
+    "--device",
+    "cuda:1",
+    "--before",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-stdcap-allocation-003/checkpoint_004274.pt",
+    "--after",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+    "--wait-for-after",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-head-accuracy-4338-common-measured/accuracy4338/standing-pitch-bins.json",
+    "--output",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-negative-pitch-routes-4274-1856"
+  ],
+  "returncode": 0,
+  "process_wall_seconds": 185.9242172241211,
+  "goal_complete": false
+}

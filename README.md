@@ -1,3 +1,5 @@
+> **SC0090 V2 sim2real 实验分支（2026-10-16）**：同事交接、真实模型下载、训练复现及固件差异请先读 [repro/sc0090-v2/README.md](repro/sc0090-v2/README.md)。此分支不代表已通过实机验收。
+
 # Microduck RL
 
 ## Microduck V2 / SC0090 训练分支

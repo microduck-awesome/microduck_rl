@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+export SC0090_CUDA_COMPAT_DIR=/home/l40-vm01/Documents/ai-research/microduck/microduck_rl/artifacts/cuda-compat-12.9/usr/local/cuda-12.9/compat
+cd /home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-short-catch-worktree
+task=Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Catch2s-Repaired-S0-O0-R1
+scripts/v2_python.sh scripts/train_v2_standup.py --task "$task" --device cuda:1 --num-envs 32768 --iterations 128 --eval-interval 64 --eval-samples 128 --head-precision --head-precision-stage 5 --freeze-normalizers --preflight runs-v2/paired-short-catch-throughput-32768/report.json --resume runs-v2/paired-short-catch-allocation-001/resume_003826.pt --output runs-v2/paired-short-catch-allocation-002 > runs-v2/paired-short-catch-allocation-002.log 2>&1
+for evidence in runs-v2/paired-short-catch-allocation-002/evaluation_*_evidence; do
+ scripts/v2_python.sh scripts/analyze_v2_standing_order.py "$evidence"
+ scripts/v2_python.sh scripts/analyze_standing_pitch_bins.py "$evidence"
+done
+scripts/v2_python.sh scripts/evaluate_v2_head_normalizer.py --task "$task" --checkpoint runs-v2/paired-short-catch-allocation-002/checkpoint_003954.pt --output runs-v2/paired-short-catch-3954-head-measured --device cuda:1 --repeats 8 --randomization-stage measured > runs-v2/paired-short-catch-3954-head-measured.log 2>&1
+scripts/v2_python.sh /home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/head-foundation-worktree/scripts/summarize_v2_head_saved.py --device cpu --reports runs-v2/paired-short-catch-3954-head-measured/report.json --output runs-v2/paired-short-catch-3954-head-summary

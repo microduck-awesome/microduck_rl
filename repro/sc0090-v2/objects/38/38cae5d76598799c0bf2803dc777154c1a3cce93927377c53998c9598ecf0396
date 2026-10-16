@@ -1,0 +1,43 @@
+"""Validate shorter standing truncation without changing any complete evaluation."""
+from dataclasses import asdict
+from types import SimpleNamespace
+from pathlib import Path
+import argparse,copy,json,hashlib
+import torch
+import mjlab.tasks
+from mjlab.tasks.registry import load_env_cfg,load_rl_cfg
+from mjlab_microduck.custom_v2.feedback_repair import CATCH_TASK,SHORT_CATCH_TASK
+from mjlab_microduck.custom_v2.training import configure_head_precision_learning
+from mjlab_microduck.custom_v2.recovery import sc0090_standing_catch_timeout
+from mjlab_microduck.custom_v2.exposure import CommandExposure
+p=argparse.ArgumentParser();p.add_argument('--device',default='cpu');a=p.parse_args();torch.set_num_threads(2)
+def canon(x):return json.dumps(x,sort_keys=True,default=lambda v:getattr(v,'__qualname__',str(v)))
+for play in (False,True):
+ old,new=load_env_cfg(CATCH_TASK,play=play),load_env_cfg(SHORT_CATCH_TASK,play=play)
+ configure_head_precision_learning(old,5);configure_head_precision_learning(new,5)
+ x,y=asdict(old),asdict(new)
+ assert y['events']['set_ground_state']['params']['training_bucket_probabilities']==(.5,.0625,.0625,.1875,.0625,.0625,.0625)
+ term=y['terminations'].pop('standing_catch_timeout');assert term['time_out'] and term['params']=={'seconds':2.}
+ y['events']['set_ground_state']['params']['training_bucket_probabilities']=x['events']['set_ground_state']['params']['training_bucket_probabilities']
+ assert canon(x)==canon(y),'Unexpected physical/reward/PPO/observation change'
+ # The formal evaluation zeros terminations and uses equal pose buckets; only
+ # ignored training probabilities differ, as validated by the prior reset test.
+ assert old.episode_length_s==new.episode_length_s==8.
+assert canon(asdict(load_rl_cfg(CATCH_TASK)))==canon(asdict(load_rl_cfg(SHORT_CATCH_TASK)))
+bucket=torch.tensor([0,0,0,0,1,2,3,4,5,6],device=a.device)
+length=torch.tensor([0,99,100,101,100,400,100,400,100,400],device=a.device)
+env=SimpleNamespace(num_envs=len(bucket),device=a.device,step_dt=.02,_sc0090_recovery=SimpleNamespace(bucket=bucket),episode_length_buf=length)
+expected=torch.tensor([False,False,True,True,False,False,False,False,False,False],device=a.device)
+assert torch.equal(sc0090_standing_catch_timeout(env),expected)
+assert torch.equal(sc0090_standing_catch_timeout(env,1.),(bucket==0)&(length>=50))
+# GPU counters see the action-owning episode, reset after recording has no effect.
+command=torch.zeros(len(bucket),4,device=a.device);term=SimpleNamespace(command=command,cfg=SimpleNamespace(ranges=((-1.,1.),)*4))
+env.command_manager=SimpleNamespace(get_term=lambda name:term);meter=CommandExposure(env);meter.record()
+actual=meter.report();assert actual['recovery_pose_control_steps']==[4,1,1,1,1,1,1] and actual['standing_first_half_second_control_steps']==1
+bucket.fill_(6);length.zero_();meter.record();actual=meter.report();assert actual['recovery_pose_control_steps']==[4,1,1,1,1,1,11] and actual['environment_control_steps']==20
+prob=.5;stationary=(prob*2)/(prob*2+(1-prob)*8);assert stationary==.2
+report=dict(status='PASS',device=a.device,only_changes=['training pose reset probabilities','standing-only 2s timeout'],time_out_not_failure=True,other_buckets_keep_8s=True,
+ formal_8s_equal_pose_evaluation_unchanged=True,pre_action_gpu_pose_exposure_counter_pass=True,stationary_timeout_only_standing_control_fraction=stationary,
+ limitation='Actual finite-run occupancy and reset frequency must be measured; timeouts bootstrap the pre-reset critic, they are not feedback faults or successes',
+ script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+Path('runs-v2/paired-short-catch-check-'+a.device.replace(':','')+'.json').write_text(json.dumps(report,indent=2));print(report)

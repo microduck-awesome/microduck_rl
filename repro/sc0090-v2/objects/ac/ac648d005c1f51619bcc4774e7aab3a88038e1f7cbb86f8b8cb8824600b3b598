@@ -1,0 +1,3200 @@
+{
+  "schema": "sc0090-causal-native-register-model-v1",
+  "S0": {
+    "width_deg": 0.0,
+    "readout_lag_ms": 5.0,
+    "degree": 3,
+    "coefficients": [
+      -0.01658843986312404,
+      1.048270052019051,
+      -0.0028740908985927195,
+      -0.0044673729877586785
+    ],
+    "train_mae_deg": 0.788931260380829
+  },
+  "S1": {
+    "width_deg": 2.0,
+    "readout_lag_ms": 1.25,
+    "degree": 3,
+    "coefficients": [
+      -0.013338243392227002,
+      1.058911126930359,
+      -0.00556646459743985,
+      -0.005463097783390062
+    ],
+    "train_mae_deg": 0.489757208541727
+  },
+  "native_speed": {
+    "tau_s": 0.01,
+    "lag_s": 0.02,
+    "slope_bias": [
+      184.3287567756272,
+      -0.42204915199905885
+    ],
+    "MSE_raw": 5948.9100766110305
+  },
+  "load_features": [
+    "1",
+    "enable",
+    "q",
+    "v",
+    "abs(v)",
+    "sin(q)",
+    "P*error",
+    "tanh(P*error)",
+    "abs(tanh(P*error))",
+    "P*error*enable",
+    "v*enable",
+    "sin(q)*enable",
+    "voltage",
+    "P/15"
+  ],
+  "load_coefficients": [
+    -59.50403935336069,
+    106.13604910950373,
+    -91.17105977974659,
+    -0.40304242419739017,
+    3.3648771687043335,
+    117.36967508086971,
+    -0.09518419275827596,
+    -112.40339843197535,
+    -42.83252927675685,
+    -111.64296759489517,
+    -17.74225238227852,
+    -5.232544992993919,
+    -0.8214527853001178,
+    -1.8538250402199448
+  ],
+  "load_coordinate_feedback": [
+    -0.01935181850174302,
+    1.042605242128426
+  ],
+  "voltage_register": [
+    {
+      "condition": [
+        10.2,
+        5,
+        "L07_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        5,
+        "L07_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2390
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        5,
+        "L07_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        5,
+        "L07_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        5,
+        "L10_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        5,
+        "L10_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        5,
+        "L10_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        5,
+        "L10_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        5,
+        "L14_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        5,
+        "L14_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        5,
+        "L14_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        5,
+        "L14_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        10,
+        "L07_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        10,
+        "L07_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        10,
+        "L07_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        10,
+        "L07_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        10,
+        "L10_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        10,
+        "L10_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        10,
+        "L10_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        10,
+        "L10_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        10,
+        "L14_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2386
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        10,
+        "L14_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        10,
+        "L14_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        10,
+        "L14_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        1790
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        15,
+        "L07_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        15,
+        "L07_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        15,
+        "L07_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        15,
+        "L07_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        15,
+        "L10_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        15,
+        "L10_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        15,
+        "L10_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        15,
+        "L10_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        15,
+        "L14_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        15,
+        "L14_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        15,
+        "L14_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        15,
+        "L14_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        1791
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        20,
+        "L07_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        20,
+        "L07_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        20,
+        "L07_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        20,
+        "L07_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        20,
+        "L10_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        20,
+        "L10_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        20,
+        "L10_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        20,
+        "L10_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        1791
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        20,
+        "L14_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        20,
+        "L14_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        20,
+        "L14_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        20,
+        "L14_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        25,
+        "L07_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        25,
+        "L07_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        25,
+        "L07_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        25,
+        "L07_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        25,
+        "L10_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        25,
+        "L10_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        25,
+        "L10_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2390
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        25,
+        "L10_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        25,
+        "L14_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        25,
+        "L14_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        25,
+        "L14_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        25,
+        "L14_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        1791
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        30,
+        "L07_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        30,
+        "L07_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        30,
+        "L07_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2390
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        30,
+        "L07_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        30,
+        "L10_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        30,
+        "L10_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        30,
+        "L10_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        30,
+        "L10_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        1791
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        30,
+        "L14_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        30,
+        "L14_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        30,
+        "L14_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        10.2,
+        30,
+        "L14_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        1791
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        5,
+        "L07_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2386
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        5,
+        "L07_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        5,
+        "L07_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        5,
+        "L07_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        1792
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        5,
+        "L10_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        5,
+        "L10_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        5,
+        "L10_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        5,
+        "L10_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        5,
+        "L14_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        5,
+        "L14_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        5,
+        "L14_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        5,
+        "L14_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        1792
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        10,
+        "L07_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        10,
+        "L07_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        10,
+        "L07_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        10,
+        "L07_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        10,
+        "L10_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        10,
+        "L10_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        10,
+        "L10_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        10,
+        "L10_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        10,
+        "L14_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        10,
+        "L14_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        10,
+        "L14_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        10,
+        "L14_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        1791
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        15,
+        "L07_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        15,
+        "L07_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        15,
+        "L07_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        15,
+        "L07_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        15,
+        "L10_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        15,
+        "L10_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        15,
+        "L10_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        1790
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        15,
+        "L10_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        15,
+        "L14_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        15,
+        "L14_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        15,
+        "L14_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        15,
+        "L14_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        20,
+        "L07_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        20,
+        "L07_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        20,
+        "L07_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        20,
+        "L07_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        20,
+        "L10_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        20,
+        "L10_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        20,
+        "L10_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        20,
+        "L10_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        1791
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        20,
+        "L14_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        20,
+        "L14_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        20,
+        "L14_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        20,
+        "L14_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        25,
+        "L07_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        25,
+        "L07_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        25,
+        "L07_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        25,
+        "L07_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2390
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        25,
+        "L10_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        25,
+        "L10_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        25,
+        "L10_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        25,
+        "L10_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2386
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        25,
+        "L14_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        25,
+        "L14_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        25,
+        "L14_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2386
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        25,
+        "L14_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        1791
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        30,
+        "L07_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        30,
+        "L07_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        30,
+        "L07_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        30,
+        "L07_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        30,
+        "L10_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        30,
+        "L10_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        30,
+        "L10_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2390
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        30,
+        "L10_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        30,
+        "L14_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        30,
+        "L14_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        30,
+        "L14_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        11.1,
+        30,
+        "L14_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        1790
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        5,
+        "L07_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        5,
+        "L07_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        5,
+        "L07_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        5,
+        "L07_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        5,
+        "L10_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2384
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        5,
+        "L10_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2390
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        5,
+        "L10_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        5,
+        "L10_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        5,
+        "L14_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        5,
+        "L14_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        5,
+        "L14_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        5,
+        "L14_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        10,
+        "L07_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        10,
+        "L07_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2386
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        10,
+        "L07_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        10,
+        "L07_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        10,
+        "L10_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        10,
+        "L10_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        10,
+        "L10_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        10,
+        "L10_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        10,
+        "L14_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        10,
+        "L14_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        10,
+        "L14_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        10,
+        "L14_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        15,
+        "L07_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        15,
+        "L07_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        15,
+        "L07_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        15,
+        "L07_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2386
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        15,
+        "L10_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        15,
+        "L10_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        15,
+        "L10_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        15,
+        "L10_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        15,
+        "L14_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        15,
+        "L14_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        15,
+        "L14_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        15,
+        "L14_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        1792
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        20,
+        "L07_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        20,
+        "L07_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        20,
+        "L07_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        20,
+        "L07_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        20,
+        "L10_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        20,
+        "L10_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        20,
+        "L10_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        20,
+        "L10_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        20,
+        "L14_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        20,
+        "L14_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        20,
+        "L14_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        20,
+        "L14_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        1791
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        25,
+        "L07_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        25,
+        "L07_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        25,
+        "L07_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2389
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        25,
+        "L07_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        25,
+        "L10_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        25,
+        "L10_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        25,
+        "L10_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        25,
+        "L10_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        25,
+        "L14_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        25,
+        "L14_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        25,
+        "L14_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        25,
+        "L14_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        30,
+        "L07_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        30,
+        "L07_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        30,
+        "L07_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        30,
+        "L07_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        30,
+        "L10_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        30,
+        "L10_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        30,
+        "L10_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        30,
+        "L10_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2390
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        30,
+        "L14_M000"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        30,
+        "L14_M035"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2387
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        30,
+        "L14_M070"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        2388
+      ],
+      "mode": 0
+    },
+    {
+      "condition": [
+        12.4,
+        30,
+        "L14_M100"
+      ],
+      "values": [
+        0
+      ],
+      "counts": [
+        1791
+      ],
+      "mode": 0
+    }
+  ],
+  "support": {
+    "native_read_hz": 100,
+    "voltages": [
+      10.2,
+      11.1,
+      12.4
+    ],
+    "P": [
+      5,
+      10,
+      15,
+      20,
+      25,
+      30
+    ],
+    "groups": [
+      "L07_M000",
+      "L07_M035",
+      "L07_M070",
+      "L07_M100",
+      "L10_M000",
+      "L10_M035",
+      "L10_M070",
+      "L10_M100",
+      "L14_M000",
+      "L14_M035",
+      "L14_M070",
+      "L14_M100"
+    ],
+    "D": 30,
+    "I": 0
+  },
+  "residual_channels": [
+    "S0_nominal_position_rad",
+    "S1_nominal_position_rad",
+    "native_speed_raw",
+    "load_raw",
+    "voltage_raw"
+  ],
+  "residual_block_frames": 32,
+  "fit_manifest_sha256": "41071274f2c482c94358ed867d082eaeb29bc20339f2770f3fe9a5dfd74adcc9",
+  "state": "candidate; S->O development audit required",
+  "ideal_velocity_in_observer": false,
+  "speed_quantum_raw": 50,
+  "load_is_torque": false,
+  "residual_library_sha256": "821e0b927ed6a09854ec4b62c78b0ecf021df706125bd2f376fbc545e38c50cb",
+  "position_residual_coefficients": [
+    [
+      0.006045604867075528,
+      0.010288300789118951
+    ],
+    [
+      0.006861432713906205,
+      -0.0009340541671609742
+    ],
+    [
+      0.0036953009756016523,
+      -0.00032693054074619187
+    ],
+    [
+      0.018984898662612004,
+      0.00852949535919776
+    ],
+    [
+      0.00308778727873374,
+      -0.0011500890231161015
+    ],
+    [
+      0.001069907105060569,
+      -0.004342764296443334
+    ],
+    [
+      -0.0077278019012411,
+      -0.0023598649590214427
+    ],
+    [
+      6.882481589901152e-05,
+      0.023108813821317336
+    ],
+    [
+      0.003799845419676485,
+      -0.017012170751314067
+    ],
+    [
+      -0.01572011420681678,
+      -0.000961389497846877
+    ],
+    [
+      0.0007275217934855001,
+      0.0004799963641510523
+    ],
+    [
+      0.00025332715453058296,
+      -0.0008969223007238381
+    ],
+    [
+      -0.008394599301932445,
+      -0.007880835666498628
+    ]
+  ],
+  "position_residual_feature_contract": "position_residual_features: 13 instantaneous terms; no future or history",
+  "parent_model_sha256": "e37a7324adc70665d25397ffb93a4598143a8747e567b066dac7dce50a05ce99"
+}

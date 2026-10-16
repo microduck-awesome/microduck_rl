@@ -1,0 +1,102 @@
+"""Explicit execution repair; frozen S0, O0 coefficients and R1 stay unchanged.
+
+An unconstrained predictor residual is not a packet-health observation. The old
+8 degree rule rejected valid fast position changes and entered an O1-only long
+rewarm period. This variant accepts valid raw measurements and prepares O0 from
+five current samples, retaining actual health, numerical and query guards.
+It is a simulation candidate, not a qualified hardware runtime.
+"""
+from copy import deepcopy
+from .training import make_standup_env_cfg
+
+TASK = 'Mjlab-StandUp-Flat-MicroDuck-V2-Repaired-S0-O0-R1'
+STANDING20_TASK = 'Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Standing20-Repaired-S0-O0-R1'
+CATCH_TASK = 'Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-CatchFrontier-Repaired-S0-O0-R1'
+SHORT_CATCH_TASK = 'Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Catch2s-Repaired-S0-O0-R1'
+PITCH10_TASK = 'Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Catch2sPitch10-Repaired-S0-O0-R1'
+PITCH10_LATE_ENTROPY_TASK = 'Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Catch2sPitch10-LateEntropy005-Repaired-S0-O0-R1'
+PITCH10_HEAD_STD_CAP_TASK = 'Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Catch2sPitch10-LateEntropy005-HeadStdCap001-Repaired-S0-O0-R1'
+PITCH10_ROLLOUT12_TASK = 'Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Catch2sPitch10-LateEntropy005-HeadStdCap001-Rollout12-Repaired-S0-O0-R1'
+PITCH10_HEAD_ACCURACY_TASK = 'Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Catch2sPitch10-LateEntropy005-HeadStdCap001-AccuracyBonus05-Repaired-S0-O0-R1'
+PITCH_BUCKET_HEAD_ACCURACY_TASK = 'Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Catch2sPitchBucket10to5-LateEntropy005-HeadStdCap001-AccuracyBonus05-Repaired-S0-O0-R1'
+EXECUTION = 'p04-o0-valid-raw-local-history-v1'
+
+
+def make_repaired_env_cfg(play=False):
+    cfg = make_standup_env_cfg(play=play)
+    cfg.actions['joint_pos'].spike_rejection = False
+    cfg.actions['joint_pos'].o0_local_history = True
+    return cfg
+
+
+def register_repaired_task():
+    from mjlab.tasks.registry import register_mjlab_task
+    from mjlab_microduck.tasks import MicroduckOnPolicyRunner
+    from mjlab_microduck.tasks.microduck_standup_env_cfg import MicroduckStandUpRlCfg
+    agent=deepcopy(MicroduckStandUpRlCfg)
+    agent.algorithm.class_name='mjlab_microduck.custom_v2.ppo:TerminalCriticPPO'
+    agent.experiment_name='microduck_v2_p04_repaired_standup'
+    register_mjlab_task(task_id=TASK,env_cfg=make_repaired_env_cfg(),
+        play_env_cfg=make_repaired_env_cfg(True),rl_cfg=agent,runner_cls=MicroduckOnPolicyRunner)
+    # Mature baseline adaptation only. Reuse the proven P04 mature mix
+    # explicitly in both smoke and training; leave discovery/promotion unchanged.
+    stand20 = make_repaired_env_cfg()
+    stand20.events['set_ground_state'].params['training_bucket_probabilities'] = (.20,.10,.10,.30,.10,.10,.10)
+    stand20_play = make_repaired_env_cfg(True)
+    stand20_play.events['set_ground_state'].params['training_bucket_probabilities'] = (.20,.10,.10,.30,.10,.10,.10)
+    register_mjlab_task(task_id=STANDING20_TASK,env_cfg=stand20,
+        play_env_cfg=stand20_play,rl_cfg=deepcopy(agent),runner_cls=MicroduckOnPolicyRunner)
+    catch, catch_play = deepcopy(stand20), deepcopy(stand20_play)
+    for cfg in (catch, catch_play):
+        cfg.events['set_ground_state'].params['standing_pitch_frontier'] = (.75, -9., -6.)
+    register_mjlab_task(task_id=CATCH_TASK,env_cfg=catch,
+        play_env_cfg=catch_play,rl_cfg=deepcopy(agent),runner_cls=MicroduckOnPolicyRunner)
+    from mjlab.managers import TerminationTermCfg
+    from .recovery import sc0090_standing_catch_timeout
+    short, short_play = deepcopy(catch), deepcopy(catch_play)
+    for cfg in (short, short_play):
+        # 50% of episodes at 2s and 50% at 8s gives 20% standing control time
+        # in the timeout-only stationary limit, with 4x standing starts.
+        # Actual occupancy is measured, including the initial transient.
+        cfg.events['set_ground_state'].params['training_bucket_probabilities'] = (.5,.0625,.0625,.1875,.0625,.0625,.0625)
+        cfg.terminations['standing_catch_timeout'] = TerminationTermCfg(
+            func=sc0090_standing_catch_timeout,time_out=True,params=dict(seconds=2.))
+    register_mjlab_task(task_id=SHORT_CATCH_TASK,env_cfg=short,
+        play_env_cfg=short_play,rl_cfg=deepcopy(agent),runner_cls=MicroduckOnPolicyRunner)
+    pitch10, pitch10_play = deepcopy(short), deepcopy(short_play)
+    for cfg in (pitch10,pitch10_play):
+        cfg.events['set_ground_state'].params['standing_pitch_frontier'] = (.75,-10.,-7.)
+    register_mjlab_task(task_id=PITCH10_TASK,env_cfg=pitch10,
+        play_env_cfg=pitch10_play,rl_cfg=deepcopy(agent),runner_cls=MicroduckOnPolicyRunner)
+    late_entropy = deepcopy(agent)
+    late_entropy.algorithm.entropy_coef = .005
+    register_mjlab_task(task_id=PITCH10_LATE_ENTROPY_TASK,env_cfg=deepcopy(pitch10),
+        play_env_cfg=deepcopy(pitch10_play),rl_cfg=late_entropy,runner_cls=MicroduckOnPolicyRunner)
+    head_cap = deepcopy(late_entropy)
+    head_cap.actor.distribution_cfg = {**head_cap.actor.distribution_cfg,
+        'class_name':'mjlab_microduck.custom_v2.head_exploration:HeadCappedGaussianDistribution',
+        'head_std_cap':.01}
+    register_mjlab_task(task_id=PITCH10_HEAD_STD_CAP_TASK,env_cfg=deepcopy(pitch10),
+        play_env_cfg=deepcopy(pitch10_play),rl_cfg=head_cap,runner_cls=MicroduckOnPolicyRunner)
+
+    # Mature phase ablation: identical physical task/PPO except collection horizon.
+    from mjlab.managers import RewardTermCfg
+    from .head_accuracy import physical_head_command_accuracy
+    accuracy, accuracy_play = deepcopy(pitch10), deepcopy(pitch10_play)
+    for cfg in (accuracy, accuracy_play):
+        cfg.rewards['head_command_accuracy'] = RewardTermCfg(
+            func=physical_head_command_accuracy, weight=.5,
+            params=dict(relative_band=.1, minimum_band=.002))
+    register_mjlab_task(task_id=PITCH10_HEAD_ACCURACY_TASK, env_cfg=accuracy,
+        play_env_cfg=accuracy_play, rl_cfg=deepcopy(head_cap), runner_cls=MicroduckOnPolicyRunner)
+    # Cover the residual moderate negative pitch while retaining the original broad component.
+    bucket, bucket_play = deepcopy(accuracy), deepcopy(accuracy_play)
+    for cfg in (bucket, bucket_play):
+        cfg.events['set_ground_state'].params['standing_pitch_frontier'] = (.75, -10., -5.)
+    register_mjlab_task(task_id=PITCH_BUCKET_HEAD_ACCURACY_TASK, env_cfg=bucket,
+        play_env_cfg=bucket_play, rl_cfg=deepcopy(head_cap), runner_cls=MicroduckOnPolicyRunner)
+    rollout12 = deepcopy(head_cap)
+    rollout12.num_steps_per_env = 12
+    register_mjlab_task(task_id=PITCH10_ROLLOUT12_TASK,env_cfg=deepcopy(pitch10),
+        play_env_cfg=deepcopy(pitch10_play),rl_cfg=rollout12,runner_cls=MicroduckOnPolicyRunner)
+

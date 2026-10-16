@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "physical_self_latch": {
+    "status": "PASS_REAL_GPU_SUBSTEP_PARTIAL_RESET_TIMEOUT",
+    "worlds": 32,
+    "pulse_worlds": 16,
+    "pulse_real_frames": 4,
+    "partial_reset_worlds": 4,
+    "real_timeout_successors": 12,
+    "diagnostic_controls": 160,
+    "source_witness": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/ballkick-handoff-violation-witnesses-001.pt",
+    "witness_sha256": "198bc69d9bed9d8dfce37c700bc1773b8a732902d7aecb05f2903eb914860976",
+    "scope": "Saved real selfpose used for one actual physics substep; clean native reset pose explicitly restored as diagnostic intervention. No natural policy trajectory or model quality claim. Independent bit oracle used; old transition not self truth."
+  },
+  "cases": [
+    {
+      "condition": "ordinary",
+      "force_full": false,
+      "critic_max_abs": 0.0,
+      "live_tensors_unchanged": 21
+    },
+    {
+      "condition": "ordinary",
+      "force_full": true,
+      "critic_max_abs": 0.0,
+      "live_tensors_unchanged": 21
+    },
+    {
+      "condition": "command_resample",
+      "force_full": false,
+      "critic_max_abs": 0.0,
+      "live_tensors_unchanged": 21
+    },
+    {
+      "condition": "command_resample",
+      "force_full": true,
+      "critic_max_abs": 0.0,
+      "live_tensors_unchanged": 21
+    },
+    {
+      "condition": "interval_push",
+      "force_full": false,
+      "critic_max_abs": 0.0,
+      "live_tensors_unchanged": 21
+    },
+    {
+      "condition": "interval_push",
+      "force_full": true,
+      "critic_max_abs": 0.0,
+      "live_tensors_unchanged": 21
+    }
+  ],
+  "actor_width": 61,
+  "critic_width": 82,
+  "partial_reset_ball_and_latches": "PASS",
+  "fast_captures": 3,
+  "full_captures": 3,
+  "formal_controls": 0,
+  "script_sha256": "b7a2f74fda1d37529d61bacc7a2a6d9ae433a045a79b01afaa86c32b5baac7d5"
+}

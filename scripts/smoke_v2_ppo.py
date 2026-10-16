@@ -12,10 +12,13 @@ import math
 import os
 from pathlib import Path
 import time
+import statistics
+from functools import wraps
 
 os.environ["WANDB_MODE"] = "disabled"
 import numpy as np
 import torch
+import warp as wp
 from mjlab.envs import ManagerBasedRlEnv
 from mjlab.rl import RslRlVecEnvWrapper
 from mjlab.tasks.registry import load_env_cfg, load_rl_cfg, load_runner_cls
@@ -30,7 +33,26 @@ def main():
     parser.add_argument("--num-envs", type=int, default=64)
     parser.add_argument("--iterations", type=int, default=5)
     parser.add_argument("--report", type=Path)
+    parser.add_argument("--force-timeouts", action="store_true")
+    parser.add_argument("--head-precision", action="store_true")
+    parser.add_argument("--head-precision-stage",type=int,choices=(1,2),default=1)
+    parser.add_argument("--compiled-measurement", action="store_true")
+    parser.add_argument("--fused-registers", action="store_true")
+    parser.add_argument("--reset-graph-chunk", type=int, choices=(1,19), default=1)
+    parser.add_argument("--initial-checkpoint", type=Path,
+                        help="Diagnostic warm start of actor/critic/normalizers only; fresh Adam and clocks")
+    parser.add_argument("--profile-after-warmup", action="store_true",
+                        help="Profile one actual PPO update after three warmup updates")
+    parser.add_argument("--mature-resume", type=Path,
+                        help="Validation only: exact actor/critic/normalizers/Adam/LR and curriculum-clock restore")
+    parser.add_argument("--freeze-normalizers", action="store_true")
+    parser.add_argument("--transition-learning-rate",type=float)
     args = parser.parse_args()
+    assert not (args.initial_checkpoint and args.mature_resume), 'Choose one explicit initialization mode'
+    if args.transition_learning_rate is not None:
+        assert args.mature_resume and 'WarmLR1e5' in args.task and args.transition_learning_rate==1e-5
+        parent_task=json.loads((args.mature_resume.resolve().parent/'run.json').read_text())['task']
+        assert parent_task!=args.task, 'Same-task resume must retain its current learning rate'
     output = args.output_dir.resolve()
     output.mkdir(parents=True, exist_ok=True)
     onnx_path = output / (output.name + ".onnx")
@@ -39,50 +61,205 @@ def main():
     if args.num_envs < 1 or args.iterations < 1:
         parser.error("Positive env/iteration counts required")
     cfg = load_env_cfg(args.task)
+    head_recipe = None
+    if args.head_precision:
+        from mjlab_microduck.custom_v2.training import configure_head_precision_learning
+        head_recipe = configure_head_precision_learning(cfg,args.head_precision_stage)
     cfg.scene.num_envs = args.num_envs
-    cfg.seed = 42
+    if args.compiled_measurement:
+        cfg.actions['joint_pos'].compile_measurement = True
+    if args.fused_registers:
+        assert args.compiled_measurement, '--fused-registers requires --compiled-measurement'
+        cfg.actions['joint_pos'].fuse_registers = True
+    if args.reset_graph_chunk != 1:
+        cfg.actions['joint_pos'].reset_graph_chunk = args.reset_graph_chunk
+    cfg.seed = 20261015 if args.mature_resume else 42
     agent = load_rl_cfg(args.task)
     agent.logger = "tensorboard"
     agent.upload_model = False
     env = ManagerBasedRlEnv(cfg, device=args.device)
-    model_hash = hashlib.sha256((ASSETS / "robot_walk.xml").read_bytes()).hexdigest()
+    from mjlab_microduck.custom_v2.head_accuracy import attach_accuracy_oracle
+    accuracy_oracle=attach_accuracy_oracle(env)
+    model_file = "robot.xml" if "StandUp" in args.task else "robot_walk.xml"
+    model_hash = hashlib.sha256((ASSETS / model_file).read_bytes()).hexdigest()
+    if args.device.startswith("cuda"):
+        assert env.sim.use_cuda_graph, "CUDA graphs must be active; use scripts/v2_python.sh"
     contact_capacity = env.sim.wp_data.naconmax
-    contact_peak = 0
+    contact_count = wp.to_torch(env.sim.wp_data.nacon)
+    contact_peak = torch.zeros_like(contact_count)
     physics_step = env.sim.step
 
     def checked_physics_step():
         nonlocal contact_peak
         physics_step()
-        count = int(env.sim.wp_data.nacon.numpy()[0])
-        contact_peak = max(contact_peak, count)
-        assert count <= contact_capacity, ("Warp contact buffer overflow", count, contact_capacity)
+        contact_peak.copy_(torch.maximum(contact_peak, contact_count))
+        torch._assert_async((contact_count <= contact_capacity).all(), "Warp contact buffer overflow")
 
     env.sim.step = checked_physics_step
     started = time.monotonic()
     try:
         wrapped = RslRlVecEnvWrapper(env, clip_actions=agent.clip_actions)
         runner = load_runner_cls(args.task)(wrapped, asdict(agent), str(output), args.device)
+        timing = []
+        profile = None
+        if args.profile_after_warmup:
+            import cProfile
+            profile = cProfile.Profile()
+        phase_events = {}
+        profiling = [False]
+        def instrument(owner, name, label):
+            original = getattr(owner, name)
+            def measured(*a, **kw):
+                if not profiling[0]:
+                    return original(*a, **kw)
+                begin, end = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True)
+                begin.record()
+                started = time.perf_counter()
+                result = original(*a, **kw)
+                end.record()
+                phase_events.setdefault(label, []).append((time.perf_counter()-started, begin, end))
+                return result
+            setattr(owner, name, measured)
+        if profile is not None:
+            feedback = getattr(env, '_v2_joint_feedback', None)
+            if feedback is not None:
+                for name in ('reset','advance','command'):
+                    instrument(feedback,name,'measurement.'+name)
+            instrument(env.sim,'step','physics.step')
+            instrument(runner.alg,'update','ppo.update')
+        previous_log = [time.perf_counter()]
+        original_log = runner.logger.log
+        @wraps(original_log)
+        def timed_log(*log_args, **log_kwargs):
+            if profile is not None and log_kwargs['it'] == 3:
+                profile.disable()
+                profiling[0] = False
+                profile.dump_stats(str(output/'profile.pstats'))
+                import pstats
+                with (output/'profile.txt').open('w') as dest:
+                    pstats.Stats(profile,stream=dest).sort_stats('cumtime').print_stats(100)
+                torch.cuda.synchronize(args.device)
+                (output/'profile-phases.json').write_text(json.dumps({k:dict(
+                    calls=len(v),cpu_wall_s=sum(x[0] for x in v),
+                    stream_elapsed_s=sum(x[1].elapsed_time(x[2]) for x in v)/1000)
+                    for k,v in phase_events.items()},indent=2))
+            now = time.perf_counter()
+            timing.append(dict(iteration=log_kwargs['it'],
+                collection_s=log_kwargs['collect_time'],learning_s=log_kwargs['learn_time'],
+                wall_s=now-previous_log[0]))
+            previous_log[0] = now
+            if profile is not None and log_kwargs['it'] == 2:
+                profiling[0] = True
+                profile.enable()
+            return original_log(*log_args, **log_kwargs)
+        runner.logger.log = timed_log
         actor = runner.alg.get_policy()
+        initialization = {'kind':'fresh'}
+        rng_restore = None
+        if args.initial_checkpoint:
+            state = torch.load(args.initial_checkpoint,map_location=args.device,weights_only=False)
+            actor.load_state_dict(state['actor_state_dict'],strict=True)
+            runner.alg.critic.load_state_dict(state['critic_state_dict'],strict=True)
+            initialization = dict(kind='diagnostic_actor_critic_normalizers_only',
+                checkpoint=str(args.initial_checkpoint.resolve()),
+                sha256=hashlib.sha256(args.initial_checkpoint.read_bytes()).hexdigest(),
+                inherited_completed_updates=state.get('infos',{}).get('v2',{}).get('completed_updates'),
+                optimizer='fresh',curriculum_clock='fresh',
+                limitation='Not a matched from-scratch comparison or completed P04 training')
+            del state
+        if args.mature_resume:
+            from mjlab_microduck.custom_v2 import recovery
+            infos = runner.load(str(args.mature_resume))
+            checkpoint_state = torch.load(args.mature_resume,map_location='cpu',weights_only=False)
+            def exact(actual,expected):
+                if isinstance(expected,torch.Tensor):assert torch.equal(actual.detach().cpu(),expected)
+                elif isinstance(expected,dict):
+                    assert actual.keys()==expected.keys()
+                    for k in expected:exact(actual[k],expected[k])
+                elif isinstance(expected,(tuple,list)):
+                    assert len(actual)==len(expected)
+                    for a,b in zip(actual,expected):exact(a,b)
+                else:assert actual==expected
+            restored=runner.alg.save()
+            for key in ('actor_state_dict','critic_state_dict','optimizer_state_dict'):
+                exact(restored[key],checkpoint_state[key])
+            assert runner.alg.learning_rate==runner.alg.optimizer.param_groups[0]['lr']
+            state=recovery._sc0090_recovery_state(env)
+            state.load_state_dict(infos['v2']['recovery'])
+            env._sc0090_eval_history=infos['v2'].get('eval_history',{})
+            runner.current_learning_iteration=infos['v2']['completed_updates']
+            from mjlab_microduck.custom_v2.rng_resume import restore_training_rng
+            parent_run=json.loads((args.mature_resume.parent/'run.json').read_text())
+            rng_restore=restore_training_rng(infos['v2'],parent_run,args.device)
+            if state.polish:
+                for name,weight in (('action_rate_l2',-.5),('arrival_damping',-.025),
+                    ('joint_torque_rate_l2',-.0005),('head_pose_bias',.5),('body_pose_tracking',.5)):
+                    env.reward_manager.get_term_cfg(name).weight=weight
+            env.reset()
+            assert env.common_step_counter==infos['env_state']['common_step_counter']
+            assert bool((state.spawn_stage==state.stage).all())
+            initialization=dict(kind='validation_exact_mature_resume',checkpoint=str(args.mature_resume.resolve()),
+                sha256=hashlib.sha256(args.mature_resume.read_bytes()).hexdigest(),
+                inherited_completed_updates=runner.current_learning_iteration,
+                actor_critic_normalizers_optimizer_exact=True,learning_rate=runner.alg.learning_rate,
+                curriculum_clock=env.common_step_counter,recovery_stage=state.stage,polish=state.polish,
+                limitation='Validation segment only; not counted as formal learned-policy progress')
+            del checkpoint_state,restored
+        optimizer_transition = None
+        if args.transition_learning_rate is not None:
+            from mjlab_microduck.custom_v2.optimizer_transition import apply_initial_learning_rate
+            optimizer_transition=apply_initial_learning_rate(runner.alg,args.transition_learning_rate)
+        normalization_recipe = None
+        frozen_snapshot = None
+        if args.freeze_normalizers:
+            from mjlab_microduck.custom_v2.frozen_normalization import freeze_normalizers,assert_frozen_normalizers
+            normalization_recipe,frozen_snapshot = freeze_normalizers(runner.alg)
+        exploration_before = None
+        diagnostics = None
+        if hasattr(actor.distribution,'exploration_metadata'):
+            exploration_before=actor.distribution.exploration_metadata()
+            from mjlab_microduck.ppo_diagnostics import attach_ppo_diagnostics
+            diagnostics=attach_ppo_diagnostics(runner,output/'ppo-diagnostics.jsonl')
         before = [p.detach().clone() for p in actor.parameters()]
         updates = []
         original_update = runner.alg.update
 
         def check_update():
             result = original_update()
+            if frozen_snapshot is not None:
+                assert_frozen_normalizers(runner.alg,frozen_snapshot)
             values = {k: float(v) for k, v in result.items()}
             assert all(math.isfinite(v) for v in values.values()), values
             assert all(torch.isfinite(p).all() for p in actor.parameters())
+            if diagnostics is not None:
+                assert diagnostics.last['PPO/std_first_minibatch_max_abs_recompute_delta']==0., diagnostics.last
+                assert diagnostics.last['PPO/kl_first_minibatch_max']<=1e-6, diagnostics.last
+                assert diagnostics.last['PPO/ratio_first_minibatch_max_abs_error_from_one']<=.002, diagnostics.last
             updates.append(values)
             return result
 
         runner.alg.update = check_update
+        timeout_phase = None
+        if 'first_timeout_deadline_reset' in cfg.events:
+            from mjlab_microduck.custom_v2.timeout_phase import activate_first_timeout_phase
+            assert args.mature_resume and args.freeze_normalizers
+            timeout_phase=activate_first_timeout_phase(env,runner.current_learning_iteration)
+            (output/'timeout-phase-initialization.json').write_text(json.dumps(timeout_phase,indent=2)+'\n')
+        if args.force_timeouts:
+            env.episode_length_buf[:args.num_envs//2] = env.max_episode_length-1
+        assert runner.alg.entropy_coef==agent.algorithm.entropy_coef, 'Restored algorithm entropy differs'
         runner.learn(num_learning_iterations=args.iterations, init_at_random_ep_len=False)
         changes = [
             float((p.detach() - old).abs().max()) for p, old in zip(actor.parameters(), before)
         ]
         assert len(updates) == args.iterations and max(changes) > 0
+        from mjlab_microduck.custom_v2.commands import sampling_contract
         report = dict(
-            status="PASS",
+            head_sampling_contract=sampling_contract(cfg.commands['head_pose']),
+            status="PASS",head_precision_recipe=head_recipe,normalization_recipe=normalization_recipe,
+            initialization=initialization,optimizer_transition=optimizer_transition,rng_restore=rng_restore,
+            accuracy_oracle=(dict(calls=accuracy_oracle["calls"],max_abs_delta=float(accuracy_oracle["max_abs_delta"]),status="PASS") if accuracy_oracle else None),
+            timeout_phase=timeout_phase,
             task=args.task,
             device=args.device,
             envs=args.num_envs,
@@ -90,19 +267,54 @@ def main():
             steps_per_env=agent.num_steps_per_env,
             learning_epochs=agent.algorithm.num_learning_epochs,
             minibatches=agent.algorithm.num_mini_batches,
+            entropy_coef=runner.alg.entropy_coef,
+            distribution_cfg=agent.actor.distribution_cfg,
+            first_minibatch_tolerances=dict(std_max_delta=0.,kl_max=1e-6,ratio_max_abs_error=.002,reason='FP32 actor recomputation across batch sizes; effective std remains bitwise identical'),
+            exploration_before=exploration_before,
+            exploration_after=actor.distribution.exploration_metadata() if exploration_before else None,
+            first_minibatch_distribution_consistent_all_updates=diagnostics is not None,
             losses=updates,
             policy_parameter_max_change=max(changes),
             finite_policy_parameters=True,
+            terminal_bootstrap_samples=getattr(runner.alg, "terminal_bootstrap_samples", None),
             elapsed_seconds=time.monotonic() - started,
-            robot_walk_sha256=model_hash,
+            robot_xml=model_file,
+            robot_xml_sha256=model_hash,
             action_scale=cfg.actions["joint_pos"].scale,
-            peak_contacts_across_worlds=contact_peak,
+            peak_contacts_across_worlds=int(contact_peak.max()),
+            physics_cuda_graph=env.sim.use_cuda_graph,
+            motor_graph_replays=[a._compute_graph.replays if a._compute_graph else 0 for a in env.scene["robot"].actuators],
             contact_capacity_across_worlds=contact_capacity,
             contact_capacity_checked_each_physics_step=True,
             logging="local TensorBoard",
             upload_model=False,
             limitation="A short PPO smoke validates the training path; it does not demonstrate learned walking or SC0090 sim2real.",
         )
+        if timeout_phase is not None:
+            report['timeout_phase_remaining_first_episodes']=int(env._first_timeout_active.sum())
+            report['timeout_phase_default_after_reset']=bool((env._first_timeout_deadline[~env._first_timeout_active]==env.max_episode_length).all())
+        if normalization_recipe is not None:
+            from mjlab_microduck.custom_v2 import frozen_normalization
+            report['normalization_source_sha256'] = hashlib.sha256(Path(frozen_normalization.__file__).read_bytes()).hexdigest()
+            report['normalization_unchanged_all_updates'] = True
+        measured = timing[3:]
+        report['iteration_timing'] = timing
+        if measured:
+            steps = args.num_envs * agent.num_steps_per_env
+            report['throughput'] = dict(warmup_updates=3,measured_updates=len(measured),
+                median_wall_s=statistics.median(x['wall_s'] for x in measured),
+                median_end_to_end_steps_per_s=statistics.median(steps/x['wall_s'] for x in measured),
+                median_collection_steps_per_s=statistics.median(steps/x['collection_s'] for x in measured),
+                aggregate_wall_steps_per_s=steps*len(measured)/sum(x['wall_s'] for x in measured))
+        feedback = getattr(env, '_v2_joint_feedback', None)
+        if feedback is not None and feedback._graph is not None:
+            report['measurement_graph'] = dict(captures=feedback._graph.capture_count,
+                                                replays=feedback._graph.replays)
+            report['measurement_backend'] = dict(pipeline=type(feedback.pipeline).__name__,
+                                                 frontend=type(feedback.pipeline.stream).__name__)
+            report['reset_graphs'] = {str(k):dict(captures=g.captures,replays=g.replays,
+                tick_replays=g.tick_replays,chunk_ticks=g.chunk_ticks)
+                                     for k,g in feedback._prehistory_graphs.items()}
         report["onnx_exported"] = onnx_path.is_file()
         assert onnx_path.is_file(), "The runner failed to export ONNX; inspect its warning."
         if onnx_path.is_file():
@@ -112,6 +324,16 @@ def main():
             model = onnx.load(str(onnx_path))
             onnx.checker.check_model(model)
             metadata = {p.key: p.value for p in model.metadata_props}
+            if 'microduck_measurement_execution' in metadata:
+                report['measurement_execution'] = json.loads(metadata['microduck_measurement_execution'])
+            if 'Fast-Native' in args.task:
+                from mjlab_microduck.custom_v2.fast_native import FAST_RUNTIME
+                assert metadata['microduck_runtime']==FAST_RUNTIME
+                assert metadata['microduck_deployment']=='simulation-pretraining-only'
+                assert 'microduck_training_contract' not in metadata
+                assert feedback is None
+                report['runtime']=FAST_RUNTIME
+                report['feedback']=metadata['microduck_feedback']
             if "S0-O0-R1" in args.task:
                 contract = json.loads(metadata["microduck_training_contract"])
                 assert (
@@ -125,6 +347,13 @@ def main():
                 )
                 report["training_contract_sha256"] = metadata["microduck_training_contract_sha256"]
                 report["randomization_stage"] = contract["randomization"]["stage"]
+            if 'Firmware-LS3' in args.task:
+                contract=json.loads(metadata['microduck_training_contract'])
+                assert contract['observations']['observer']=='firmware-native-ls3'
+                assert metadata['microduck_deployment']=='simulation-runtime-alignment-only'
+                assert report['measurement_backend']['frontend']=='FirmwareNativeStream'
+                assert '../custom_v2/firmware_ls3.py' in report['measurement_execution']['source_sha256']
+                report['runtime']=metadata['microduck_runtime']
             joint_names = metadata.get("joint_names", "").split(",")
             assert tuple(joint_names) == POLICY_JOINTS, joint_names
             for name in ("default_joint_pos", "joint_stiffness", "joint_damping"):
@@ -153,6 +382,8 @@ def main():
                 "metadata_joint_count": len(joint_names),
                 "normalizer_parity_max_error": error,
             }
+        if args.force_timeouts:
+            assert runner.alg.terminal_bootstrap_samples >= args.num_envs//2
         destination = args.report or output / "report.json"
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_text(json.dumps(report, indent=2), encoding="utf-8")

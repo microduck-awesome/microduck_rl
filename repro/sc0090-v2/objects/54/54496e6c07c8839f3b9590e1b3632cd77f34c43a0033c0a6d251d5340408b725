@@ -1,0 +1,350 @@
+"""Bounded V2 VelStand warm start/resume, frozen local teachers and explicit BC guards."""
+import argparse
+from dataclasses import asdict
+from functools import wraps
+import hashlib
+import json
+import math
+import os
+import re
+from pathlib import Path
+import signal
+import statistics
+import tarfile
+import time
+
+os.environ['WANDB_MODE'] = 'disabled'
+import torch
+import warp as wp
+from mjlab.envs import ManagerBasedRlEnv
+from mjlab.rl import RslRlVecEnvWrapper
+from mjlab.tasks.registry import load_env_cfg, load_rl_cfg, load_runner_cls
+from mjlab_microduck.custom_v2.velstand import TASK
+from mjlab_microduck.custom_v2.camera_stability import make_camera_env_cfg
+from mjlab_microduck.custom_v2.camera_feedback import CameraFeedbackAudit
+from mjlab_microduck.custom_v2.microduck_v2 import YAW_FINE_WALK_TASK_ID
+from mjlab_microduck.custom_v2.walking_metrics import WalkingTrainingSummary
+from mjlab_microduck.custom_v2.velstand_ppo import attach_velstand_diagnostics
+
+
+def write_json(path, value):
+    temp = path.with_suffix(path.suffix+'.tmp')
+    temp.write_text(json.dumps(value, indent=2, default=str, allow_nan=False)+'\n')
+    temp.replace(path)
+
+
+def source_hashes(root):
+    paths = sorted([*root.glob('src/**/*.py'), *root.glob('src/**/*.cpp'),
+                    root/'scripts/train_v2_velstand.py', root/'scripts/v2_python.sh'])
+    return {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
+
+
+def exact(actual, expected):
+    if isinstance(expected, torch.Tensor):
+        assert torch.equal(actual.detach().cpu(), expected.detach().cpu())
+    elif isinstance(expected, dict):
+        assert actual.keys() == expected.keys()
+        for k in expected: exact(actual[k], expected[k])
+    elif isinstance(expected, (list, tuple)):
+        assert len(actual) == len(expected)
+        for a, b in zip(actual, expected): exact(a, b)
+    else:
+        assert actual == expected
+
+
+def validate_camera_transition(path, checkpoint, parent, hashes, task, cfg, weight):
+    manifest=json.loads(path.read_text());meta=parent['infos']['v2']
+    assert manifest['schema']==1 and manifest['kind']=='camera_and_walking_teacher_leg_only_bc'
+    assert manifest['parent_checkpoint_sha256']==hashlib.sha256(checkpoint.read_bytes()).hexdigest()
+    assert meta['task']==task==manifest['task']==TASK and meta['completed_updates']==manifest['parent_updates']==256
+    assert manifest['parent_source_sha256']==meta['source_sha256'] and manifest['target_source_sha256']==hashes
+    allowed={'scripts/train_v2_velstand.py','src/mjlab_microduck/custom_v2/camera_stability.py','src/mjlab_microduck/custom_v2/camera_feedback.py','src/mjlab_microduck/custom_v2/velstand_ppo.py'}
+    changed={k for k in set(hashes)|set(meta['source_sha256']) if hashes.get(k)!=meta['source_sha256'].get(k)}
+    assert changed==allowed==set(manifest['changed_files'])
+    assert weight in (0.,-.01) and manifest['allowed_weights']==[0.,-.01]
+    from mjlab_microduck.custom_v2.velstand_ppo import BC_AXIS_SCOPE
+    assert manifest['bc_axis_scope']==BC_AXIS_SCOPE and manifest['preserve_both_adam_states'] is True
+    parent_run_path=checkpoint.parent/'run.json'
+    assert manifest['parent_run_sha256']==hashlib.sha256(parent_run_path.read_bytes()).hexdigest()
+    old=json.loads(parent_run_path.read_text())['environment']
+    new=json.loads(json.dumps(asdict(cfg),default=str))
+    reward=new['rewards'].pop('v2_camera_rotation');metric=new['metrics'].pop('v2_camera_substeps')
+    assert reward['weight']==weight and metric['per_substep']
+    def normalized(value):
+        if isinstance(value,dict):return {k:normalized(v) for k,v in value.items()}
+        if isinstance(value,list):return [normalized(v) for v in value]
+        if not isinstance(value,str):return value
+        value=re.sub(r' at 0x[0-9a-f]+','',value)
+        for prefix in manifest['equivalent_source_roots']:value=value.replace(prefix,'<NUMERICAL_SOURCE>')
+        return value
+    old['seed']=new['seed'];old['scene']['num_envs']=new['scene']['num_envs']
+    assert normalized(old)==normalized(new), 'Unexpected environment change beyond explicit camera metric/reward'
+    return manifest
+
+
+class AllocationStop(Exception):
+    pass
+
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument('--output', type=Path, required=True)
+    p.add_argument('--task', default=TASK)
+    p.add_argument('--device', default='cuda:0')
+    p.add_argument('--num-envs', type=int, default=16384)
+    p.add_argument('--iterations', type=int, required=True)
+    p.add_argument('--seed', type=int, default=2026101618)
+    p.add_argument('--resume', type=Path)
+    p.add_argument('--source-transition', type=Path)
+    p.add_argument('--native-range-budget',type=int,default=0)
+    p.add_argument('--camera-weight', type=float, choices=(0.,-.01), required=True)
+    p.add_argument('--warm-start', type=Path)
+    p.add_argument('--standing-teacher', type=Path, required=True)
+    p.add_argument('--walking-teacher', type=Path, required=True)
+    p.add_argument('--qualification', type=Path)
+    p.add_argument('--validation-only', action='store_true')
+    p.add_argument('--force-timeouts', action='store_true')
+    args = p.parse_args()
+    assert args.task in (TASK, TASK+'-Measured')
+    assert bool(args.resume) != bool(args.warm_start)
+    assert not args.source_transition or args.resume
+    assert 0<=args.native_range_budget<=16
+    assert not args.warm_start or args.validation_only, 'Fresh integration path is software smoke only'
+    assert args.validation_only or args.iterations<=64
+    assert os.environ.get('MICRODUCK_WARM_START', '') in ('', '0'), 'Controller owns cross-task clock reset'
+    assert 0 < args.iterations <= 256 and args.num_envs > 0
+    assert args.validation_only or not args.force_timeouts
+    root, out = Path(__file__).resolve().parents[1], args.output.resolve()
+    out.mkdir(parents=True, exist_ok=False)
+    hashes = source_hashes(root)
+    if not args.validation_only:
+        assert args.qualification is not None
+        qualification = json.loads(args.qualification.read_text())
+        assert qualification['status'] == 'PASS'
+        assert qualification['source_sha256'] == hashes
+        assert qualification['num_envs'] == args.num_envs
+        assert args.camera_weight in qualification['allowed_camera_weights']
+    torch.set_num_threads(2)
+    torch.cuda.set_device(args.device)
+    cfg, agent = make_camera_env_cfg(stage='measured' if args.task.endswith('-Measured') else 'nominal',camera_weight=args.camera_weight), load_rl_cfg(args.task)
+    cfg.seed, cfg.scene.num_envs = args.seed, args.num_envs
+    agent.logger, agent.upload_model, agent.save_interval = 'tensorboard', False, 64
+    agent.algorithm.bc_cfg.update(checkpoint_path=str(args.standing_teacher.resolve()),
+        anchor_checkpoint_path=str(args.walking_teacher.resolve()))
+    assert agent.num_steps_per_env == 24
+    assert cfg.actions['joint_pos'].spike_rejection is False
+    assert cfg.actions['joint_pos'].o0_local_history
+    assert cfg.actions['joint_pos'].compile_measurement and cfg.actions['joint_pos'].fuse_registers
+    write_json(out/'run.json', dict(task=args.task, arguments=vars(args),
+        source_sha256=hashes, environment=asdict(cfg), agent=asdict(agent),
+        allocation_kind='validation' if args.validation_only else 'formal',
+        physics_resume='native-new-episodes', scope='VelStand integration; no deployment or skill acceptance'))
+    with tarfile.open(out/'source.tar.gz', 'w:gz') as tar:
+        for name in hashes: tar.add(root/name, arcname=name)
+    checkpoint_in = args.resume or args.warm_start
+    parent = torch.load(checkpoint_in, map_location='cpu', weights_only=False)
+    meta = parent['infos']['v2']
+    if args.source_transition:
+        transition=validate_camera_transition(args.source_transition,checkpoint_in,parent,hashes,args.task,cfg,args.camera_weight)
+        write_json(out/'source-transition.json',transition)
+    started = time.perf_counter()
+    env = ManagerBasedRlEnv(cfg, device=args.device)
+    feedback_audit=None
+    try:
+        assert env.sim.use_cuda_graph and math.isclose(env.step_dt, .02)
+        assert math.isclose(env.physics_dt, .005)
+        contact_count = wp.to_torch(env.sim.wp_data.nacon)
+        contact_capacity = env.sim.wp_data.naconmax
+        contact_peak = torch.zeros_like(contact_count)
+        native_physics_step = env.sim.step
+        def checked_physics_step():
+            native_physics_step()
+            contact_peak.copy_(torch.maximum(contact_peak, contact_count))
+            torch._assert_async((contact_count <= contact_capacity).all(), 'Warp contact buffer overflow')
+        env.sim.step = checked_physics_step
+        summary = WalkingTrainingSummary(env, oracle=args.validation_only)
+        feedback_audit=CameraFeedbackAudit(env)
+        camera_totals=torch.zeros(4,device=env.device,dtype=torch.float64)
+        camera_samples=[0];native_camera_reward=env.reward_manager.compute
+        def audited_camera_reward(dt):
+            reward=native_camera_reward(dt)
+            sampler=env._v2_camera_motion
+            bad=~torch.isfinite(env.sim.data.qpos).all(-1)|~torch.isfinite(env.sim.data.qvel).all(-1)
+            camera_totals.add_(torch.stack((sampler.read(env,gated=False).double().sum(),sampler.read(env).double().sum(),(~env._v2_joint_feedback.ready).double().sum(),bad.double().sum())))
+            camera_samples[0]+=env.num_envs
+            return reward
+        env.reward_manager.compute=audited_camera_reward
+        wrapped = RslRlVecEnvWrapper(env, clip_actions=agent.clip_actions)
+        runner = load_runner_cls(args.task)(wrapped, asdict(agent), str(out), args.device)
+        actor = runner.alg.get_policy()
+        start = inherited = 0
+        lineage = None
+        if args.warm_start:
+            assert meta['task'] == YAW_FINE_WALK_TASK_ID
+            assert meta['completed_updates'] == 512
+            assert checkpoint_in.resolve() == args.walking_teacher.resolve()
+            assert 'velstand_teacher_contract' not in parent
+            for physical in ('src/mjlab_microduck/sc0090_v2/contract.py',
+                             'src/mjlab_microduck/sc0090_v2/measurement/stream.py',
+                             'src/mjlab_microduck/actuator/sc0090_v5.py'):
+                assert hashes[physical] == meta['source_sha256'][physical]
+        else:
+            assert meta['task'] == args.task
+            if not args.source_transition:
+                assert meta['source_sha256']==hashes and meta['camera_weight']==args.camera_weight
+            assert meta['num_envs'] == args.num_envs or args.validation_only
+            assert 'velstand_teacher_contract' in parent
+        if args.source_transition:
+            runner.alg._v2_allow_bc_axis_transition = True
+        infos = runner.load(str(checkpoint_in), map_location=args.device)
+        runner.alg._v2_allow_bc_axis_transition = False
+        actual = runner.alg.save()
+        for key in ('actor_state_dict','critic_state_dict','optimizer_state_dict'):
+            exact(actual[key],parent[key])
+        assert runner.alg.learning_rate == runner.alg.optimizer.param_groups[0]['lr']
+        inherited = meta['controls']
+        if args.warm_start:
+            # A new skill resets only its curriculum clock, after exact weight,
+            # normalizer and PPO-Adam restoration. BC starts with empty Adam.
+            env.common_step_counter = runner.current_learning_iteration = 0
+            assert not runner.alg.bc_optimizer.state and runner.alg.bc_update_count == 0
+            torch.manual_seed(args.seed)
+            torch.cuda.manual_seed_all(args.seed)
+        else:
+            start = meta['completed_updates']
+            for key in ('expert_bc_optimizer_state_dict','expert_bc_update_count','velstand_teacher_contract'):
+                exact(actual[key],parent[key])
+            torch.set_rng_state(meta['torch_rng'].cpu())
+            assert meta['cuda_device']==args.device or args.source_transition, 'Cross-device RNG mapping requires declared migration'
+            torch.cuda.set_rng_state(meta['cuda_rng'].cpu(),args.device)
+            assert torch.equal(torch.cuda.get_rng_state(args.device),meta['cuda_rng'].cpu())
+        env.reset()
+        assert env.common_step_counter == start*24
+        lineage = dict(checkpoint=str(checkpoint_in),
+            checkpoint_sha256=hashlib.sha256(checkpoint_in.read_bytes()).hexdigest(),
+            actor_critic_normalizer_adam_exact=True, learning_rate=runner.alg.learning_rate,
+            warm_start=bool(args.warm_start), new_skill_clock=start*24,
+            bc_adam_fresh=bool(args.warm_start), teachers=runner.alg.teacher_contract,
+            source_transition=str(args.source_transition) if args.source_transition else None,
+            camera_weight=args.camera_weight,bc_axis_scope=actual['velstand_bc_axis_scope'],
+            cuda_rng_mapping=dict(source=meta['cuda_device'],target=args.device))
+        write_json(out/'initialization.json',lineage)
+        del actual,parent
+        completed = start
+        start_clock = env.common_step_counter
+        assert start_clock == start * agent.num_steps_per_env
+        if args.force_timeouts:
+            env.episode_length_buf[:args.num_envs//2] = env.max_episode_length-1
+        diagnostics = attach_velstand_diagnostics(runner, out/'ppo-diagnostics.jsonl')
+        stop_reason = [None]
+        signal.signal(signal.SIGTERM, lambda *_: stop_reason.__setitem__(0, 'SIGTERM'))
+        signal.signal(signal.SIGINT, lambda *_: stop_reason.__setitem__(0, 'SIGINT'))
+        timing = []
+        bc_history = []
+        native_log = runner.logger.log
+        previous_log = [time.perf_counter()]
+        @wraps(native_log)
+        def log(*a, **kw):
+            now = time.perf_counter()
+            timing.append(dict(completed_updates=completed, wall_s=now-previous_log[0],
+                               collection_s=kw['collect_time'], learning_s=kw['learn_time']))
+            previous_log[0] = now
+            return native_log(*a, **kw)
+        runner.logger.log = log
+        def status(state):
+            return dict(status=state, pid=os.getpid(), updated_unix=time.time(),
+                        completed_updates=completed, allocation_end=start+args.iterations,
+                        inherited_controls=inherited, controls=inherited+(completed-start)*args.num_envs*24,
+                        allocation_controls=(completed-start)*args.num_envs*24,
+                        common_step_counter=env.common_step_counter, stop_reason=stop_reason[0],
+                        training_metrics=summary.report(), feedback_audit={**feedback_audit.report(),'budget':args.native_range_budget}, camera_audit=dict(control_samples=camera_samples[0],raw_gated_fault_nonfinite_totals=camera_totals.cpu().tolist(),weight=args.camera_weight), goal_complete=False)
+        native_update = runner.alg.update
+        def update():
+            nonlocal completed
+            loss = native_update()
+            bc = {k:float(v) for k,v in loss.items() if k.startswith('expert_bc')}
+            bc_history.append(dict(completed_updates=completed+1,**bc))
+            with (out/'bc-diagnostics.jsonl').open('a') as file:
+                file.write(json.dumps(bc_history[-1],allow_nan=False)+'\n')
+            if bc.get('expert_bc_kl_mean',0.) > .5:
+                stop_reason[0] = 'post_bc_kl_guard'
+            completed += 1
+            assert env.common_step_counter == start_clock+(completed-start)*24
+            if not all(math.isfinite(float(v)) for v in loss.values()):
+                stop_reason[0] = 'nonfinite_loss'
+            if camera_totals[3].item()>0:stop_reason[0]='nonfinite_camera_or_physics'
+            if int(feedback_audit.unexplained_lanes)>0:stop_reason[0]='unexplained_feedback'
+            if int(feedback_audit.invalid_controls)>args.native_range_budget:stop_reason[0]='native_range_feedback_budget'
+            d = diagnostics.last
+            if (not all(math.isfinite(d[k]) for k in ('PPO/kl_mean','PPO/clip_fraction'))
+                    or d['PPO/kl_mean'] > .5 or d['PPO/clip_fraction'] > .8):
+                stop_reason[0] = 'optimizer_guard'
+            if completed % 10 == 0 or completed <= start+2:
+                write_json(out/'status.json', status('RUNNING'))
+            if stop_reason[0]: raise AllocationStop(stop_reason[0])
+            return loss
+        runner.alg.update = update
+        native_save = runner.save
+        def save(path, infos=None):
+            meta = dict(task=args.task, source_sha256=hashes, completed_updates=completed,camera_weight=args.camera_weight,
+                        num_envs=args.num_envs, steps_per_env=24, inherited_controls=inherited,
+                        controls=inherited+(completed-start)*args.num_envs*24, lineage=lineage,
+                        physics_resume='native-new-episodes', training_metrics=summary.report(),
+                        torch_rng=torch.get_rng_state(), cuda_device=args.device,
+                        cuda_rng=torch.cuda.get_rng_state(args.device))
+            native_save(path, {**(infos or {}), 'v2':meta})
+        runner.save = save
+        write_json(out/'status.json', status('RUNNING'))
+        runner.current_learning_iteration = completed
+        try:
+            runner.learn(args.iterations, init_at_random_ep_len=False)
+        except AllocationStop:
+            pass
+        runner.current_learning_iteration = completed
+        checkpoint = out/f'checkpoint_{completed:06d}.pt'
+        save(str(checkpoint))
+        state = status('STOPPED' if stop_reason[0] else 'ALLOCATION_COMPLETE')
+        state['resume_checkpoint'] = str(checkpoint)
+        state['wall_seconds'] = time.perf_counter()-started
+        state['full_process_control_per_second'] = state['allocation_controls']/state['wall_seconds']
+        measured = timing[3:]
+        state['throughput'] = dict(
+            median_control_per_second=args.num_envs*24/statistics.median(t['wall_s'] for t in measured),
+            aggregate_control_per_second=len(measured)*args.num_envs*24/sum(t['wall_s'] for t in measured)
+        ) if measured else None
+        state['terminal_bootstrap_samples'] = runner.alg.terminal_bootstrap_samples
+        state['contact_peak'] = int(contact_peak.max())
+        state['contact_capacity'] = contact_capacity
+        state['lineage'] = lineage
+        state['bc_diagnostics'] = bc_history
+        state['last_ppo_diagnostics'] = diagnostics.last
+        state['cuda_peak_allocated_bytes'] = torch.cuda.max_memory_allocated(args.device)
+        state['timing'] = timing
+        state['source_sha256'] = hashes
+        if args.validation_only and args.num_envs==64:
+            import numpy as np
+            import onnxruntime as ort
+            onnx_path=out/(out.name+'.onnx')
+            assert onnx_path.is_file(), 'Official runner ONNX export missing'
+            before={k:v.detach().clone() for k,v in actor.state_dict().items()}
+            inference=runner.get_inference_policy(device=args.device)
+            observations=wrapped.get_observations()
+            session=ort.InferenceSession(str(onnx_path),providers=['CPUExecutionProvider'])
+            expected=inference(observations).detach().cpu().numpy()
+            # Official ONNX has a fixed one-observation batch dimension.
+            samples=observations['actor'].detach().cpu().numpy()
+            actual=np.concatenate([session.run(None,{session.get_inputs()[0].name:x[None]})[0] for x in samples])
+            state['onnx_max_abs_error']=float(np.max(np.abs(actual-expected)))
+            assert state['onnx_max_abs_error']<2e-5
+            for key,value in before.items():assert torch.equal(actor.state_dict()[key],value)
+            state['onnx_actor_normalizer_unchanged']=True
+        write_json(out/'status.json', state)
+        write_json(out/'report.json', state)
+        assert completed == start+args.iterations and stop_reason[0] is None, {k:state[k] for k in ('status','completed_updates','stop_reason')}
+    finally:
+        if feedback_audit is not None:feedback_audit.save(out)
+        env.close()
+
+
+if __name__ == '__main__':
+    main()

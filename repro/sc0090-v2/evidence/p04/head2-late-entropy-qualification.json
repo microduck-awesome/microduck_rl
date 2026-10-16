@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "source": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/rise-late-entropy-worktree",
+  "base_source": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/rise-frozen-normalizer-worktree",
+  "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-M4-LateEntropy005-Repaired-S0-O0-R1",
+  "change": "algorithm.entropy_coef .01\u2192.005 only; Head2/idle.6/physics/reward/normalizer/actor/Adam retained; no std reset",
+  "parent": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/frozen-head2-allocation-001/resume_001664.pt",
+  "budget_updates": 64,
+  "control": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/frozen-head2-allocation-002/checkpoint_001728.pt",
+  "source_sha256": {
+    "src/mjlab_microduck/custom_v2/fresh_p04.py": "2b90ef56ac5576301264c076b69b4eea8a38817271578a876749f5a80a39a6e2",
+    "scripts/smoke_v2_ppo.py": "bdc40b5ae584603c32c57c00aacd12a30963c611ab7e9035baab3e7358913bfa",
+    "scripts/train_v2_standup.py": "8d5f741e16918dc14efb38b1d87ac54adfeb48ff24e3540864958baef60336fa",
+    "scripts/evaluate_v2_fresh_sweep.py": "306dca3c0fa07f11a82cfa4db1b30e58dee0e252c311a046e0c74f5673791a94"
+  },
+  "status": "PASS",
+  "config": {
+    "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-late-entropy-config.json",
+    "sha256": "3857c7eb4fa32328aadbe9240361c28471b68b7f67dd2d9104114795d61271c4"
+  },
+  "mature64": {
+    "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-late-entropy-mature-smoke/report.json",
+    "sha256": "e9082666461a024bf2e84d41e8a1a99564b25e787945858cd5d59b375133e089"
+  },
+  "mature32768": {
+    "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-late-entropy-mature-throughput-32768/report.json",
+    "sha256": "e98f6cf3b9799dbe27ec5660cfa805882936fda4ceea2b0c257937e290946681"
+  },
+  "throughput": {
+    "warmup_updates": 3,
+    "measured_updates": 13,
+    "median_wall_s": 5.935190697899088,
+    "median_end_to_end_steps_per_s": 132503.24042298718,
+    "median_collection_steps_per_s": 150890.55746291726,
+    "aggregate_wall_steps_per_s": 132239.0562599746
+  }
+}

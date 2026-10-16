@@ -1,0 +1,25 @@
+"""Frozen hold640 environment, training-only near-STAND teacher/SIT anchor."""
+from dataclasses import asdict
+from .sitstand_hold320 import HOLD_TASK,make_hold_sitstand_env_cfg
+NEAR_TASK='Mjlab-SitStand-Flat-MicroDuck-V2-NearTeacher-Repaired-S0-O0-R1'
+def make_near_sitstand_env_cfg(play=False,stage='nominal'):
+    from mjlab.sensor import ContactMatch,ContactSensorCfg
+    cfg=make_hold_sitstand_env_cfg(play=play,stage=stage)
+    cfg.scene.sensors=(*cfg.scene.sensors,ContactSensorCfg(name='diagnostic_head_ground',primary=ContactMatch(mode='geom',pattern='^ground_head_shell_collision$',entity='robot'),secondary=ContactMatch(mode='body',pattern='terrain'),fields=('found','force'),reduce='netforce',num_slots=1))
+    return cfg
+
+def make_near_sitstand_agent():
+    from mjlab.tasks.registry import load_rl_cfg
+    from mjlab_microduck.tasks.distill import PpoWithExpertBcCfg,default_bc_cfg
+    agent=load_rl_cfg(HOLD_TASK)
+    agent.algorithm=PpoWithExpertBcCfg(**asdict(agent.algorithm))
+    agent.algorithm.class_name='mjlab_microduck.custom_v2.sitstand_teacher:SitStandNearTeacherPPO'
+    agent.algorithm.bc_cfg=default_bc_cfg()
+    agent.algorithm.bc_cfg.update(wandb_run_path=None,anchor_wandb_run_path=None,learning_rate=3e-6,coef=1.,anchor_coef=1.,epochs=5,mini_batches=4,min_mini_batch=512,min_samples=64,expert_mask_cols=())
+    return agent
+
+def register_near_sitstand_task():
+    from mjlab.tasks.registry import register_mjlab_task
+    from mjlab_microduck.tasks import MicroduckOnPolicyRunner
+    for task,stage in ((NEAR_TASK,'nominal'),(NEAR_TASK+'-Measured','measured')):
+        register_mjlab_task(task_id=task,env_cfg=make_near_sitstand_env_cfg(stage=stage),play_env_cfg=make_near_sitstand_env_cfg(play=True,stage=stage),rl_cfg=make_near_sitstand_agent(),runner_cls=MicroduckOnPolicyRunner)

@@ -1,0 +1,468 @@
+{
+  "status": "PASS",
+  "head_precision_recipe": {
+    "id": "v2-head-precision-5",
+    "stage": 5,
+    "ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ],
+    "final_ranges": [
+      [
+        -0.48577760000000003,
+        1.1
+      ],
+      [
+        -1.1,
+        0.904656
+      ],
+      [
+        -1.4,
+        1.4
+      ],
+      [
+        -0.31,
+        0.31
+      ]
+    ],
+    "reward_weight": 3.0,
+    "std": 0.5,
+    "fine_std": 0.04,
+    "fine_weight": 0.5,
+    "precision_scale": 0.003,
+    "command_sampling": {
+      "zero_probability": 0.4,
+      "precision_probability": 0.5,
+      "precision_amplitude_rad": [
+        0.005,
+        0.04
+      ],
+      "active_axis_count_probabilities": {
+        "1": 0.5,
+        "2": 0.25,
+        "4": 0.25
+      }
+    },
+    "balance_active_axes": true,
+    "reason": "Equal active/idle group reward mass after paired trajectory reward/response ordering counterexample"
+  },
+  "normalization_recipe": {
+    "id": "mature-parent-normalizer-freeze-v1",
+    "targets": [
+      "actor",
+      "critic"
+    ],
+    "semantics": "retain parent mean/variance/std/count exactly; stop future statistic updates",
+    "until_counts": {
+      "actor": 739639296,
+      "critic": 739639296
+    }
+  },
+  "initialization": {
+    "kind": "validation_exact_mature_resume",
+    "checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-short-catch-allocation-002/resume_003954.pt",
+    "sha256": "64ea8ecc109c2715449568cc99469ce672b33519991dff2f86351fac42673dcf",
+    "inherited_completed_updates": 3954,
+    "actor_critic_normalizers_optimizer_exact": true,
+    "learning_rate": 0.00011390625000000006,
+    "curriculum_clock": 94896,
+    "recovery_stage": 5,
+    "polish": true,
+    "limitation": "Validation segment only; not counted as formal learned-policy progress"
+  },
+  "task": "Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Catch2sPitch10-LateEntropy005-Repaired-S0-O0-R1",
+  "device": "cuda:1",
+  "envs": 32768,
+  "iterations": 16,
+  "steps_per_env": 24,
+  "learning_epochs": 5,
+  "minibatches": 4,
+  "entropy_coef": 0.005,
+  "losses": [
+    {
+      "value": 0.4321242183446884,
+      "surrogate": 0.0017061338119674474,
+      "entropy": -14.706641674041748
+    },
+    {
+      "value": 0.03832575567066669,
+      "surrogate": -0.00035223786981077867,
+      "entropy": -14.72426495552063
+    },
+    {
+      "value": 0.039575754478573796,
+      "surrogate": -0.0007967547833686694,
+      "entropy": -14.824191093444824
+    },
+    {
+      "value": 0.02142364289611578,
+      "surrogate": -0.0012027743432554416,
+      "entropy": -14.99000129699707
+    },
+    {
+      "value": 0.19942083582282066,
+      "surrogate": 0.0025315048929769545,
+      "entropy": -14.912203407287597
+    },
+    {
+      "value": 0.03121596612036228,
+      "surrogate": 0.0018683668833546108,
+      "entropy": -15.02929196357727
+    },
+    {
+      "value": 0.023793099354952572,
+      "surrogate": -0.0001534399823867716,
+      "entropy": -15.116361808776855
+    },
+    {
+      "value": 0.0220901838503778,
+      "surrogate": -0.001977651814377168,
+      "entropy": -15.345116710662841
+    },
+    {
+      "value": 0.10763394832611084,
+      "surrogate": 0.0002472672058502212,
+      "entropy": -15.388549757003783
+    },
+    {
+      "value": 0.028239020239561798,
+      "surrogate": -0.0017315680797764799,
+      "entropy": -15.518405675888062
+    },
+    {
+      "value": 0.020141150709241627,
+      "surrogate": -0.001299830285643111,
+      "entropy": -15.677806854248047
+    },
+    {
+      "value": 0.018535420671105383,
+      "surrogate": -8.823718053463381e-05,
+      "entropy": -15.781782722473144
+    },
+    {
+      "value": 0.05609183218330145,
+      "surrogate": -4.754911751660984e-05,
+      "entropy": -15.824271631240844
+    },
+    {
+      "value": 0.02643782747909427,
+      "surrogate": 0.0008357796672498807,
+      "entropy": -15.911205101013184
+    },
+    {
+      "value": 0.01693536899983883,
+      "surrogate": -0.0007455340402202637,
+      "entropy": -16.04746022224426
+    },
+    {
+      "value": 0.01917464444413781,
+      "surrogate": 0.00019519171182764695,
+      "entropy": -16.186222267150878
+    }
+  ],
+  "policy_parameter_max_change": 0.01568666845560074,
+  "finite_policy_parameters": true,
+  "terminal_bootstrap_samples": 28586,
+  "actual_pose_exposure": {
+    "environment_control_steps": 12582912,
+    "combinations": [
+      5027216,
+      3765764,
+      1909250,
+      1880682
+    ],
+    "recovery_pose_control_steps": [
+      3032144,
+      1186740,
+      1187204,
+      3587036,
+      1213828,
+      1176180,
+      1199780
+    ],
+    "standing_first_half_second_control_steps": 766300,
+    "combination_axes": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "positive": [
+      1875678,
+      1899018,
+      1879214,
+      1887078
+    ],
+    "negative": [
+      1891323,
+      1873540,
+      1903789,
+      1897352
+    ],
+    "range_quarters": [
+      [
+        2256604,
+        380682,
+        379084,
+        750631
+      ],
+      [
+        2274243,
+        379536,
+        381439,
+        737340
+      ],
+      [
+        2270885,
+        375088,
+        385803,
+        751227
+      ],
+      [
+        1588838,
+        1052119,
+        385987,
+        757486
+      ]
+    ],
+    "current_ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ]
+  },
+  "elapsed_seconds": 126.53964317217469,
+  "robot_xml": "robot.xml",
+  "robot_xml_sha256": "d52e06595e737ebe0b96529bfa6410b26b5f0e2d221e03ee2c28c4c9fcf0ed69",
+  "action_scale": 1.0,
+  "peak_contacts_across_worlds": 261102,
+  "physics_cuda_graph": true,
+  "motor_graph_replays": [
+    1534,
+    1534
+  ],
+  "contact_capacity_across_worlds": 1146880,
+  "contact_capacity_checked_each_physics_step": true,
+  "logging": "local TensorBoard",
+  "upload_model": false,
+  "limitation": "A short PPO smoke validates the training path; it does not demonstrate learned walking or SC0090 sim2real.",
+  "normalization_source_sha256": "e75be9b1214c4bd8a0fabd79987284849c866ebb73914786dce61bda48f37a02",
+  "normalization_unchanged_all_updates": true,
+  "iteration_timing": [
+    {
+      "iteration": 3954,
+      "collection_s": 29.90870690345764,
+      "learning_s": 0.7384257316589355,
+      "wall_s": 32.29341748310253
+    },
+    {
+      "iteration": 3955,
+      "collection_s": 5.099926948547363,
+      "learning_s": 0.6569476127624512,
+      "wall_s": 5.8055942710489035
+    },
+    {
+      "iteration": 3956,
+      "collection_s": 5.2063517570495605,
+      "learning_s": 0.6612741947174072,
+      "wall_s": 5.914688331773505
+    },
+    {
+      "iteration": 3957,
+      "collection_s": 5.19245171546936,
+      "learning_s": 0.6602005958557129,
+      "wall_s": 5.99511620006524
+    },
+    {
+      "iteration": 3958,
+      "collection_s": 7.101089715957642,
+      "learning_s": 0.6652295589447021,
+      "wall_s": 7.805155092151836
+    },
+    {
+      "iteration": 3959,
+      "collection_s": 5.180788278579712,
+      "learning_s": 0.6665105819702148,
+      "wall_s": 5.900316717801616
+    },
+    {
+      "iteration": 3960,
+      "collection_s": 5.267762184143066,
+      "learning_s": 0.6675937175750732,
+      "wall_s": 5.991297877160832
+    },
+    {
+      "iteration": 3961,
+      "collection_s": 5.31595516204834,
+      "learning_s": 0.6649017333984375,
+      "wall_s": 6.0607039630413055
+    },
+    {
+      "iteration": 3962,
+      "collection_s": 6.073260307312012,
+      "learning_s": 0.6798853874206543,
+      "wall_s": 6.803317618789151
+    },
+    {
+      "iteration": 3963,
+      "collection_s": 5.248191833496094,
+      "learning_s": 0.6714291572570801,
+      "wall_s": 5.96939791017212
+    },
+    {
+      "iteration": 3964,
+      "collection_s": 5.227467060089111,
+      "learning_s": 0.674079179763794,
+      "wall_s": 5.949875694932416
+    },
+    {
+      "iteration": 3965,
+      "collection_s": 5.221252918243408,
+      "learning_s": 0.67191481590271,
+      "wall_s": 5.945873321034014
+    },
+    {
+      "iteration": 3966,
+      "collection_s": 5.959780216217041,
+      "learning_s": 0.673494815826416,
+      "wall_s": 6.687164221890271
+    },
+    {
+      "iteration": 3967,
+      "collection_s": 5.265657663345337,
+      "learning_s": 0.6778500080108643,
+      "wall_s": 6.08277771808207
+    },
+    {
+      "iteration": 3968,
+      "collection_s": 5.26956033706665,
+      "learning_s": 0.6797561645507812,
+      "wall_s": 5.998590046074241
+    },
+    {
+      "iteration": 3969,
+      "collection_s": 5.253701686859131,
+      "learning_s": 0.6623461246490479,
+      "wall_s": 5.964694775873795
+    }
+  ],
+  "throughput": {
+    "warmup_updates": 3,
+    "measured_updates": 13,
+    "median_wall_s": 5.99511620006524,
+    "median_end_to_end_steps_per_s": 131178.77514891903,
+    "median_collection_steps_per_s": 149351.1447723645,
+    "aggregate_wall_steps_per_s": 125977.53136661819
+  },
+  "measurement_graph": {
+    "captures": 1,
+    "replays": 1534
+  },
+  "measurement_backend": {
+    "pipeline": "CompiledRegisterPipeline",
+    "frontend": "CompiledCausalStream"
+  },
+  "reset_graphs": {
+    "('full', 491520)": {
+      "captures": 1,
+      "replays": 169,
+      "tick_replays": 169,
+      "chunk_ticks": 1
+    },
+    "('partial', 245760)": {
+      "captures": 1,
+      "replays": 55,
+      "tick_replays": 55,
+      "chunk_ticks": 1
+    },
+    "('partial', 122880)": {
+      "captures": 1,
+      "replays": 55,
+      "tick_replays": 55,
+      "chunk_ticks": 1
+    },
+    "('partial', 61440)": {
+      "captures": 1,
+      "replays": 55,
+      "tick_replays": 55,
+      "chunk_ticks": 1
+    }
+  },
+  "onnx_exported": true,
+  "measurement_execution": {
+    "candidate_count": 1024,
+    "command_count_limits": [
+      20,
+      1001
+    ],
+    "compact_reset": true,
+    "donor_sampler": "v2-device-donor-1024-v1",
+    "frontend": "CompiledCausalStream",
+    "native_feedback_count_limits": [
+      0,
+      1023
+    ],
+    "o0_local_history": true,
+    "pipeline": "CompiledRegisterPipeline",
+    "reset_graph": true,
+    "reset_graph_chunk": 1,
+    "rollout_graph": true,
+    "schema": 1,
+    "source_sha256": {
+      "feedback.py": "dc5ef0c04cc9a7e84bbe12a3a8319a22e102eb69c66f993a38b8587fc97e4740",
+      "graph.py": "a49eff096fe2246dce595ea03af8bd84261636cde58598a1a3a1e4ce5f5e7222",
+      "measurement/__init__.py": "96d1f26fe354f1a6f9a74a4c7cc89ff76a2069851d8b4afbf734785d9205dfcd",
+      "measurement/compact.py": "cc1b50271c30d1ebb0f9995f5b48a87f24af663cd1b59b0c526248a2895a8b4d",
+      "measurement/compiled_registers.py": "0f9671f5a31ddcf232b389d8fcf5b3b736953d00290f470574e0f0882819e4f1",
+      "measurement/compiled_stream.py": "da609f2b075e45bd19be091cb89467fe26e5ef6a1bc9c9b56a3b2a58a33d0aa3",
+      "measurement/firmware_stream.py": "fba17e7e10b4aa37945ccda08f72a3d874281984ba90f1fff8ed1291760ec77f",
+      "measurement/gpu_donors.py": "8eefaa07664482f194df1abec679d95d092ae7da293b91c63944bf337e1b686d",
+      "measurement/precision.py": "792d990f742cec691fee4c1247e11b385520693e206f70faff2aa47536751717",
+      "measurement/prehistory.py": "9f37748c6fd25d8b7a1743ef4681f2ca88e15454fc927e0ac3456fb4374bc4e0",
+      "measurement/registers.py": "089e44fd3eb15eabe0ad1f9d335ae77e7721346db129fef6df4cc613895c3134",
+      "measurement/stream.py": "2ffcf8729f6482c67f5622cc3a0ca5165f5b6f2e5ae6e992941f36c5a569e5d0"
+    },
+    "spike_rejection": false
+  },
+  "training_contract_sha256": "1a12ef15ee8d9208ad29eab25342fc5a37cf3c1f5b02e85a5a19ceab953680af",
+  "randomization_stage": "nominal",
+  "onnx_cpu_inference": {
+    "input": [
+      1,
+      61
+    ],
+    "output": [
+      1,
+      14
+    ],
+    "metadata_joint_count": 14,
+    "normalizer_parity_max_error": 4.76837158203125e-07
+  }
+}

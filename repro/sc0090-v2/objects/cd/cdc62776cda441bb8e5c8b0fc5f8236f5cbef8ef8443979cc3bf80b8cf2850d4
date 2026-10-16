@@ -1,0 +1,74 @@
+{
+  "schema": "microduck-v2-sc0090-training-v1",
+  "upstream_revision": "b02fdea4902c2b93b7d34a83a6f05da4ececb7d3",
+  "mechanics": {
+    "source": "V2 CAD body masses and inertia tensors",
+    "nominal_mass_kg": 0.600941825,
+    "upstream_mass_values": false
+  },
+  "dynamics": {
+    "model": "sc0090-v5-m6-seed1",
+    "sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+    "firmware_p": 15,
+    "firmware_d": 30,
+    "firmware_i": 0,
+    "goal_profile_zeroed": true,
+    "nominal_voltage_v": 11.1
+  },
+  "timing": {
+    "physics_dt_s": 0.005,
+    "feedback_dt_s": 0.01,
+    "policy_dt_s": 0.02,
+    "query_delay_s": 0.02,
+    "warmup_s": 0.28
+  },
+  "observations": {
+    "measurement": "S0",
+    "observer": "O0",
+    "neural_observer": false,
+    "actor_dimension": 61,
+    "action_dimension": 14,
+    "mouth_control": "independent"
+  },
+  "commands": {
+    "frame": "V2 CAD HOME radians",
+    "range": "intersection_of_CAD_and_native_count_guards",
+    "native_count_limits": [
+      20,
+      1001
+    ],
+    "virtual_zero_count": 512,
+    "radians_per_count": 0.005624596222247351,
+    "target_mapping": "inverse_O0_affine_then_round_native_count",
+    "command_rate_rad_s": null,
+    "action_ema": false,
+    "hardware_calibrated": false
+  },
+  "artifacts": {
+    "dataset_revision": "3bf729e",
+    "release": "policy-releases/sc0090-testbench/common3000",
+    "files": {
+      "measurement/fit-joint-residual/model.json": "ac648d005c1f51619bcc4774e7aab3a88038e1f7cbb86f8b8cb8824600b3b598",
+      "measurement/fit-joint-residual/residual-library.npz": "821e0b927ed6a09854ec4b62c78b0ecf021df706125bd2f376fbc545e38c50cb",
+      "measurement/fit-joint-residual/manifest.json": "e8f78e9f289ea69cb2a21d94093977c419498f128f70f7190453af41fb7b0cb5",
+      "measurement/R1-frozen-v1/model.json": "0bee6ab37fbf9b7b6b26fe1149508e3f76034f0afbfec229d5c8e99fe24d3eda",
+      "measurement/R1-frozen-v1/manifest.json": "9924f41b31da05a337030b37d7e9dc3aeaca4b688c62c6525bf04b153f334f3b",
+      "observer/qualification/O1-native100-seed42.npz": "312b877d33dbc643036aa99970ebfc491e1659bf1c45cc65dfa06da212260629"
+    }
+  },
+  "randomization": {
+    "initial_stage": "nominal",
+    "nominal_voltages_v": [
+      11.1
+    ],
+    "measured_voltages_v": [
+      10.2,
+      11.1,
+      12.4
+    ],
+    "shared_supply": true,
+    "retain_official_body_contact_imu_randomization": true,
+    "motor_parameter_randomization": false,
+    "bench_pendulum_loads": false
+  }
+}

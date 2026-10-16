@@ -1,0 +1,25 @@
+"""Static V2 ball placement, grounded in the actual compiled foot meshes."""
+from pathlib import Path
+import json,math,hashlib
+import mujoco,numpy as np
+from mjlab_microduck.custom_v2.training import get_full_spec
+from mjlab_microduck.custom_v2 import microduck_v2 as v2
+from mjlab_microduck.tasks.microduck_ball_kick_env_cfg import make_microduck_ball_kick_env_cfg,BALL_RADIUS,BALL_TARGET_SPEED
+root=Path(__file__).resolve().parents[1];out=root/'runs-v2/ballkick-static-geometry-001.json';assert not out.exists()
+model=get_full_spec().compile();data=mujoco.MjData(model);data.qpos[:3]=[0,0,v2.HOME_HEIGHT];data.qpos[3:7]=[1,0,0,0];data.qpos[7:]=0;mujoco.mj_forward(model,data)
+feet={}
+for side in ('left','right'):
+ geom=model.geom(side+'_foot_collision');gid=geom.id;mesh=int(model.geom_dataid[gid]);assert model.geom_type[gid]==mujoco.mjtGeom.mjGEOM_MESH
+ start=int(model.mesh_vertadr[mesh]);count=int(model.mesh_vertnum[mesh]);vertices=model.mesh_vert[start:start+count].astype(np.float64)
+ points=vertices@data.geom_xmat[gid].reshape(3,3).T+data.geom_xpos[gid]
+ center=data.site_xpos[model.site(side+'_foot').id]
+ lower,upper=points.min(0),points.max(0)
+ offset=(float(upper[0])+BALL_RADIUS+.015+.010,float(center[1]))
+ feet[side]=dict(bounds_min=lower.tolist(),bounds_max=upper.tolist(),site=center.tolist(),suggested_ball_offset_xy=offset,nominal_home_min_x_clearance_with_15mm_placement_noise=offset[0]-.015-BALL_RADIUS-float(upper[0]),collision_mask=dict(contype=int(model.geom_contype[gid]),conaffinity=int(model.geom_conaffinity[gid])))
+ assert feet[side]['nominal_home_min_x_clearance_with_15mm_placement_noise']>=.009999
+cfg=make_microduck_ball_kick_env_cfg();ball=cfg.scene.entities['ball'].spec_fn().compile()
+ballgeom=[dict(name=ball.geom(i).name,type=int(ball.geom_type[i]),contype=int(ball.geom_contype[i]),conaffinity=int(ball.geom_conaffinity[i]),size=ball.geom_size[i].tolist()) for i in range(ball.ngeom)]
+for side in feet:
+ mask=feet[side]['collision_mask'];assert any((mask['contype']&g['conaffinity']) or (g['contype']&mask['conaffinity']) for g in ballgeom)
+report=dict(status='STATIC_GEOMETRY_MEASURED_NOT_GPU_QUALIFIED',home_height=v2.HOME_HEIGHT,feet=feet,ball_geometries=ballgeom,ball_radius=BALL_RADIUS,ball_target_speed=BALL_TARGET_SPEED,ball_mass_kg=float(ball.body_mass.sum()),actual_official_rewards={n:dict(weight=t.weight,params=t.params) for n,t in cfg.rewards.items() if n.startswith('ball_')},warning='Published comments refer to0.25m/s and +3 target payoff; actual config is1m/s with capped reward weight12, so instantaneous target payoff12. Training recipe must resolve its task metric/reward budget from actual evidence, not stale comments.',scope='HOME geometry only; noisy stance/moving-ball physical checks and correct-foot contact are still required',robot_xml_sha256=hashlib.sha256((v2.ASSETS/'robot.xml').read_bytes()).hexdigest())
+out.write_text(json.dumps(report,indent=2,default=str)+'\n');print(json.dumps(report,indent=2,default=str))

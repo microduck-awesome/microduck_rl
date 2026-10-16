@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "run": "head2-balance-allocation-001",
+  "run_json_write_unix": 1792074902.2146714,
+  "allocation_complete_unix": 1792075399.500123,
+  "actual_controls": 50331648,
+  "wall_seconds_from_run_json": 497.2854516506195,
+  "actual_end_to_end_controls_per_s": 101212.79002419273,
+  "wall_scope": "run.json write to ALLOCATION_COMPLETE; includes model/init/evaluation, excludes earlier Python imports",
+  "logged_updates": 64,
+  "update_median_s": 6.06,
+  "update_median_controls_per_s": 129774.25742574259,
+  "first_minibatch_kl_max": 0.0,
+  "update_pooled_kl_mean_max": 0.06560741907826526,
+  "limitation": "Formal run wall includes any concurrent frozen diagnostics; not an isolated throughput benchmark"
+}

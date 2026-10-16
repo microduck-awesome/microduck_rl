@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "only_difference": "algorithm.entropy_coef .01 to .005",
+  "training_and_play_environments_identical": true,
+  "head5_recipe_identical": true,
+  "all_other_agent_configuration_identical": true,
+  "task": "Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Catch2sPitch10-LateEntropy005-Repaired-S0-O0-R1",
+  "script_sha256": "f8ed8ea98105e907d4060d1fdf3f9abd07051b506def1fb0692521bf5df8e2bc"
+}

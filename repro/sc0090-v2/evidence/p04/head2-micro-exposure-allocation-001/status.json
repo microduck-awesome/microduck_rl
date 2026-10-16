@@ -1,0 +1,106 @@
+{
+  "status": "ALLOCATION_COMPLETE",
+  "pid": 3252183,
+  "completed_updates": 1856,
+  "updated_unix": 1792085993.3997087,
+  "controls": 1459617792,
+  "inherited_controls": 1409286144,
+  "allocation_controls": 50331648,
+  "goal_complete": false,
+  "resume_checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/resume_001856.pt",
+  "command_exposure": {
+    "environment_control_steps": 50331648,
+    "combinations": [
+      30115101,
+      10086096,
+      5069112,
+      5061339
+    ],
+    "combination_axes": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "positive": [
+      5026053,
+      5030879,
+      5034674,
+      5075070
+    ],
+    "negative": [
+      5080967,
+      5089046,
+      5078624,
+      5054363
+    ],
+    "range_quarters": [
+      [
+        4007536,
+        1523129,
+        1518015,
+        3058340
+      ],
+      [
+        4025726,
+        1527257,
+        1501477,
+        3065465
+      ],
+      [
+        4036353,
+        1485689,
+        1543602,
+        3047654
+      ],
+      [
+        3159113,
+        2405941,
+        1532210,
+        3032169
+      ]
+    ],
+    "current_ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ],
+    "micro_interval_abs_rad": [
+      0.005,
+      0.04
+    ],
+    "micro_positive": [
+      1527023,
+      1532646,
+      1457430,
+      2219821
+    ],
+    "micro_negative": [
+      1516475,
+      1535563,
+      1476545,
+      2243279
+    ],
+    "all_active_micro_combinations": [
+      0,
+      3365403,
+      1291190,
+      1264515
+    ]
+  },
+  "exposure_segment_start_update": 1792,
+  "recovery_stage": 10
+}

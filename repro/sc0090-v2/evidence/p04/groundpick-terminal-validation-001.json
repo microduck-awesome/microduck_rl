@@ -1,0 +1,81 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "phase": 0.0,
+      "force_full": false,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 20,
+      "force_max_error": 0.0
+    },
+    {
+      "phase": 0.0,
+      "force_full": true,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 20,
+      "force_max_error": 0.0
+    },
+    {
+      "phase": 0.42,
+      "force_full": false,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 20,
+      "force_max_error": 0.0
+    },
+    {
+      "phase": 0.42,
+      "force_full": true,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 20,
+      "force_max_error": 0.0
+    },
+    {
+      "phase": 0.425,
+      "force_full": false,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 20,
+      "force_max_error": 3.725290298461914e-08
+    },
+    {
+      "phase": 0.425,
+      "force_full": true,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 20,
+      "force_max_error": 3.725290298461914e-08
+    },
+    {
+      "phase": 0.47,
+      "force_full": false,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 20,
+      "force_max_error": 1.4901161193847656e-07
+    },
+    {
+      "phase": 0.47,
+      "force_full": true,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 20,
+      "force_max_error": 1.4901161193847656e-07
+    },
+    {
+      "phase": 0.995,
+      "force_full": false,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 20,
+      "force_max_error": 0.0
+    },
+    {
+      "phase": 0.995,
+      "force_full": true,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 20,
+      "force_max_error": 0.0
+    }
+  ],
+  "actor_width": 61,
+  "critic_width": 74,
+  "partial_reset_phase_payload": "PASS",
+  "payload_world_force_and_moment": "PASS",
+  "initial_reset_contract": "After explicit env.reset, apply payload step once before first physical integration; automatic resets receive native post-command step event",
+  "script_sha256": "4664f41afa44437f53add7c12ee8d510185f6f69895c750649a6278d3148b0c2"
+}

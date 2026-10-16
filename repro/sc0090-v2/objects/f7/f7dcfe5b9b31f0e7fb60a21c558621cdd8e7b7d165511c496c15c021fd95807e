@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "id": "repaired-S0-O0-onpolicy-paired-errors-v2",
+  "bank_sha256": "d2eaedd5e76d315765f9ceb8f3cdf93baa628d3944b0660331c693822562a0af",
+  "shape": [
+    150528,
+    16,
+    2
+  ],
+  "sample_dt_s": 0.02,
+  "query_delay_s": 0.02,
+  "voltage_v": [
+    10.2,
+    11.1,
+    12.4
+  ],
+  "channels": [
+    "physical_position_error_rad",
+    "physical_velocity_error_rad_s"
+  ],
+  "source_kind": "Frozen P04-1024 successful recovery in repaired S0/O0 measured model; synthetic, no new hardware data",
+  "source_report_sha256": "a78b226fc05143095bf5434e6ecebc160bc964a0be2155ccf6fe17c2f0963dae",
+  "sources": {
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/repaired-measured-onpolicy-errors-1024/paired-errors-2026101501.npz": "bbf4c3fe036c12d15fe72f0941dbedcb38ca9fa99bdece0cb93d8254d30aba8c",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/repaired-measured-onpolicy-errors-1024/paired-errors-2026101502.npz": "4713be830998967de6ba0c1cf273a3ef3d1797f72ffd3d2b74c14cf79b55eebc"
+  },
+  "limitations": [
+    "Development seeds used for model-error design; not held-out validation",
+    "Seven zero-command recovery pose families, no dedicated commanded-head traces",
+    "Pool joints and voltages; no online q/v/load conditional selection",
+    "Within-block temporal and paired q/v correlation retained; cross-block continuity and faults not reproduced",
+    "Approximate baseline randomization, never equivalent to full S0/O0/R1"
+  ],
+  "measurement_role": "Baseline empirical error randomization; all target qualification still uses actual repaired S0/O0",
+  "builder_sha256": "df88ed43e6de63f755828360cc3647cbb8cf9c0f9cdde1d6fa70d9f6f2655a87"
+}

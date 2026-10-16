@@ -1,0 +1,67 @@
+"""From-random P04 discovery; temporary valid-raw frontend is explicit.
+
+The final anomaly/tolerance frontend is developed separately. This lineage never
+loads a baseline expert. Head precision/polish is enabled only after recovery.
+"""
+from copy import deepcopy
+from .feedback_repair import make_repaired_env_cfg
+
+TASK='Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-Repaired-S0-O0-R1'
+ROLL_TASK='Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-RollCurriculum-Repaired-S0-O0-R1'
+OVERLAP_TASK='Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-OverlapRoll-Repaired-S0-O0-R1'
+OVERLAP_FRONTIERS=(150.,120.,105.,90.,75.,60.,45.,30.,15.,0.)
+DIRECTION_TASK='Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-DirectionGate-Repaired-S0-O0-R1'
+DIRECTION_FRONTIERS=(150.,135.,120.,105.,90.,75.,60.,45.,30.,15.,0.)
+M4_TASK='Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-DirectionGate-M4-Repaired-S0-O0-R1'
+
+
+def make_fresh_env_cfg(play=False,backroll_before_sit=False,overlap=False,directional=False):
+    cfg=make_repaired_env_cfg(play=play)
+    cfg.events['set_ground_state'].params['discovery_curriculum']=True
+    if backroll_before_sit:
+        cfg.events['set_ground_state'].params['backroll_before_sit']=True
+    if overlap:
+        assert backroll_before_sit
+        # Preserve mastered stages 0/1 and checkpoint stage numbering. From
+        # stage 2 onward keep 50% of each 30-degree window in the next window.
+        cfg.events['set_ground_state'].params['roll_frontiers']=OVERLAP_FRONTIERS
+    if directional:
+        assert overlap
+        # At restored stage 2 consolidate 120-150deg: the previous aggregate
+        # 73.8% score hid a 52.3% positive-direction score. Both directions must
+        # independently pass on both seeds before this window may advance.
+        cfg.events['set_ground_state'].params.update(
+            roll_frontiers=DIRECTION_FRONTIERS,frontier_direction_gate=True)
+    return cfg
+
+
+def register_fresh_task():
+    from mjlab.tasks.registry import register_mjlab_task
+    from mjlab_microduck.tasks import MicroduckOnPolicyRunner
+    from mjlab_microduck.tasks.microduck_standup_env_cfg import MicroduckStandUpRlCfg
+    agent=deepcopy(MicroduckStandUpRlCfg)
+    agent.algorithm.class_name='mjlab_microduck.custom_v2.ppo:TerminalCriticPPO'
+    # 32768*24/16 = 49152 samples/minibatch, matching official 8192*24/4.
+    # Keep T=24 and five epochs; validate the actual end-to-end throughput.
+    agent.algorithm.num_mini_batches=16
+    agent.experiment_name='microduck_v2_p04_from_random'
+    register_mjlab_task(task_id=TASK,env_cfg=make_fresh_env_cfg(),
+        play_env_cfg=make_fresh_env_cfg(True),rl_cfg=agent,runner_cls=MicroduckOnPolicyRunner)
+    register_mjlab_task(task_id=ROLL_TASK,env_cfg=make_fresh_env_cfg(backroll_before_sit=True),
+        play_env_cfg=make_fresh_env_cfg(True,backroll_before_sit=True),rl_cfg=deepcopy(agent),runner_cls=MicroduckOnPolicyRunner)
+    register_mjlab_task(task_id=OVERLAP_TASK,
+        env_cfg=make_fresh_env_cfg(backroll_before_sit=True,overlap=True),
+        play_env_cfg=make_fresh_env_cfg(True,backroll_before_sit=True,overlap=True),
+        rl_cfg=deepcopy(agent),runner_cls=MicroduckOnPolicyRunner)
+    register_mjlab_task(task_id=DIRECTION_TASK,
+        env_cfg=make_fresh_env_cfg(backroll_before_sit=True,overlap=True,directional=True),
+        play_env_cfg=make_fresh_env_cfg(True,backroll_before_sit=True,overlap=True,directional=True),
+        rl_cfg=deepcopy(agent),runner_cls=MicroduckOnPolicyRunner)
+    m4=deepcopy(agent)
+    # Bounded ablation: same N/T/epochs, four larger minibatches instead of
+    # sixteen. This changes 80 Adam/LR-schedule steps to 20 per rollout.
+    m4.algorithm.num_mini_batches=4
+    register_mjlab_task(task_id=M4_TASK,
+        env_cfg=make_fresh_env_cfg(backroll_before_sit=True,overlap=True,directional=True),
+        play_env_cfg=make_fresh_env_cfg(True,backroll_before_sit=True,overlap=True,directional=True),
+        rl_cfg=m4,runner_cls=MicroduckOnPolicyRunner)

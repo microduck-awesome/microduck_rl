@@ -1,0 +1,46 @@
+import json,hashlib,math,types,sys,copy
+from dataclasses import asdict
+from pathlib import Path
+import torch
+from mjlab.tasks.registry import load_env_cfg,load_rl_cfg
+from mjlab_microduck.custom_v2 import ball_kick as m
+from mjlab_microduck.custom_v2.ball_kick_finish import direction_cost_from_values,return_cost_from_values
+r=Path(__file__).resolve().parents[2];w=Path(__file__).resolve().parents[1];old=r/'ballkick-repaired-worktree'
+ns={'__name__':'mjlab_microduck.custom_v2.ball_kick_original','__package__':'mjlab_microduck.custom_v2'};exec(compile((old/'src/mjlab_microduck/custom_v2/ball_kick.py').read_text(),str(old/'src/mjlab_microduck/custom_v2/ball_kick.py'),'exec'),ns)
+def serial(v):
+ if callable(v):return v.__name__
+ if isinstance(v,dict):return {k:serial(x) for k,x in v.items()}
+ if isinstance(v,(tuple,list)):return [serial(x) for x in v]
+ return v
+def diff(a,b,p=''):
+ if isinstance(a,dict) and isinstance(b,dict):return sum((diff(a.get(k,'<missing>'),b.get(k,'<missing>'),p+'/'+str(k)) for k in sorted(set(a)|set(b))),[])
+ return [] if a==b else [p]
+diffs={}
+for play in (False,True):
+ a=serial(asdict(ns['make_ball_kick_env_cfg'](play=play)));b=serial(asdict(m.make_ball_kick_env_cfg(play=play)));d=diff(a,b);assert set(d)=={'/rewards/ball_direction_cost','/rewards/postkick_quiet_return_cost'},d;diffs[str(play)]=d
+agent=asdict(load_rl_cfg(m.BALL_KICK_TASK));parent_run=json.loads((r/'ballkick-right-allocation-001/run.json').read_text())
+for k in ('num_steps_per_env','actor','critic','algorithm','obs_groups','clip_actions'):assert json.loads(json.dumps(agent[k],default=str))==parent_run['agent'][k],k
+# Signed directions, reward signs, exact pre-valid0, stationary contacts, bounded large finite inputs and unchanged input/RNG.
+g=torch.Generator().manual_seed(1635);lin=torch.randn(256,3,generator=g);ang=torch.randn(256,3,generator=g);feet=torch.rand(256,2,generator=g)>.3;valid=torch.arange(256)%3!=0;lat=torch.randn(256,generator=g);inputs=[x.clone() for x in (lin,ang,feet,valid,lat)];rng=torch.get_rng_state().clone()
+a=direction_cost_from_values(lat,valid);b=return_cost_from_values(lin,ang,feet,valid);v2=lin.square().sum(-1);w2=ang.square().sum(-1);want=(v2/(v2+.15**2)+w2/(w2+1.5**2)+(~feet.all(-1)).float())*valid
+assert float((b-want).abs().max())<5e-7
+assert bool((a[~valid]==0).all()&(b[~valid]==0).all());assert bool(((a>=0)&(a<=1)&(b>=0)&(b<=3)).all());assert torch.equal(a,direction_cost_from_values(-lat,valid))
+assert bool((return_cost_from_values(lin*0,ang*0,torch.ones_like(feet),valid)==0).all());assert bool((return_cost_from_values(lin*0,ang*0,torch.zeros_like(feet),valid)==valid.float()).all())
+assert bool(torch.isfinite(return_cost_from_values(torch.full_like(lin,1e20),torch.full_like(ang,1e20),feet,valid)).all())
+for x,y in zip((lin,ang,feet,valid,lat),inputs):assert torch.equal(x,y)
+assert torch.equal(rng,torch.get_rng_state())
+# Saved physical traces: cost oracle at actual boundary and pre-valid zero.
+trace_errors={}
+for stage in ('nominal','measured'):
+ d=torch.load(r/f'ballkick-right-0085-{stage}/traces.pt',map_location='cpu',weights_only=False)['measurements'];v=d['valid_kick'];x=return_cost_from_values(d['linear'],d['angular'],d['feet'],v);v2=d['linear'].square().sum(-1);w2=d['angular'].square().sum(-1);y=(v2/(v2+.15**2)+w2/(w2+1.5**2)+(~d['feet'].all(-1)).float())*v;trace_errors[stage]=float((x-y).abs().max());assert trace_errors[stage]<5e-7;assert bool((x[~v]==0).all())
+sys.path.insert(0,str(w/'scripts'));from train_v2_ballkick import source_hashes,validate_source_transition
+hashes=source_hashes(w);old_hash=parent_run['source_sha256'];changed=sorted(k for k in set(hashes)|set(old_hash) if hashes.get(k)!=old_hash.get(k));cp=r/'ballkick-right-allocation-001/checkpoint_000085.pt';mp=r/'ballkick-finish-source-transition.json'
+manifest=dict(status='PASS_CONFIG_REVIEW',task=m.BALL_KICK_TASK,recipe='ballkick-direction-quiet-costs-v1',parent_checkpoint=str(cp),parent_checkpoint_sha256=hashlib.sha256(cp.read_bytes()).hexdigest(),from_source_sha256=old_hash,to_source_sha256=hashes,changed_files=changed,configuration_diff=diffs,reward_old_terms_PPO_actor_critic_physics_unchanged=True)
+mp.write_text(json.dumps(manifest,indent=2)+'\n');meta={'task':m.BALL_KICK_TASK,'source_sha256':old_hash};assert validate_source_transition(meta,hashes,cp,mp,m.BALL_KICK_TASK)
+assert validate_source_transition({'task':m.BALL_KICK_TASK,'source_sha256':hashes},hashes,cp,None,m.BALL_KICK_TASK) is None
+for mt,hs,mf in ((meta,hashes,None),(dict(meta,task='wrong'),hashes,mp),(meta,dict(hashes,extra='bad'),mp)):
+ try:validate_source_transition(mt,hs,cp,mf,m.BALL_KICK_TASK)
+ except AssertionError:pass
+ else:raise AssertionError('Invalid transition accepted')
+out=dict(status='PASS',configuration_diff=diffs,old_rewards_PPO_actor_critic_physics_equal=True,cost_units='cost positive with weights-4/-2; valid gate; no time/extra-state/actor sensor',cpu_reward_oracle_max_abs=float((b-want).abs().max()),saved_trace_oracle_max_abs=trace_errors,inputs_rng_unchanged=True,pre_valid_cost_zero=True,finite_extreme_bounded=True,transition_rejections=3,changed_files=changed,source_sha256=hashes)
+(r/'ballkick-finish-cpu-001.json').write_text(json.dumps(out,indent=2)+'\n');print(json.dumps({k:v for k,v in out.items() if k!='source_sha256'}),flush=True)

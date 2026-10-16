@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "created_unix": 1792098707.3599772,
+  "wait_pid": 3603760,
+  "scope": "Diagnostic 5-update policy only; software/evaluator validation, not a learned walker",
+  "phases": [
+    {
+      "stage": "nominal",
+      "arguments": [
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-repaired-prep-worktree/scripts/v2_python.sh",
+        "scripts/evaluate_v2_walking.py",
+        "--checkpoint",
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-controller-smoke-64/checkpoint_000005.pt",
+        "--output",
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-evaluator-qualification-nominal",
+        "--device",
+        "cuda:1",
+        "--stage",
+        "nominal",
+        "--repeats",
+        "2",
+        "--seeds",
+        "2026101614"
+      ],
+      "start_unix": 1792098799.4763045,
+      "pid": 3610370,
+      "returncode": 0,
+      "wall_seconds": 134.24634885787964
+    },
+    {
+      "stage": "measured",
+      "arguments": [
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-repaired-prep-worktree/scripts/v2_python.sh",
+        "scripts/evaluate_v2_walking.py",
+        "--checkpoint",
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-controller-smoke-64/checkpoint_000005.pt",
+        "--output",
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-evaluator-qualification-measured",
+        "--device",
+        "cuda:1",
+        "--stage",
+        "measured",
+        "--repeats",
+        "2",
+        "--seeds",
+        "2026101614"
+      ],
+      "start_unix": 1792098933.7328067,
+      "pid": 3613899,
+      "returncode": 0,
+      "wall_seconds": 133.93503069877625
+    }
+  ]
+}

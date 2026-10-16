@@ -1,0 +1,10 @@
+{
+  "status": "QUALIFICATION_BOUNDARY_CORRECTION",
+  "original_physical": "groundpick-reach-hold-002",
+  "new_probe": "groundpick-lowstart-0128-probe-001",
+  "reason": "Original physical no-impact meant force excess above1N zero, not no head contact. Probe001 all64 prehold have head found and0.663\u20130.781N; all other low gates pass. Do not call this fully healthy/no-contact reachability.",
+  "cpu_contact_audit": "groundpick-lowstart-contact-audit.json",
+  "future_reset_candidate": "unqualified until actual no-contact gate passes; only one authorized corrected probe002",
+  "training_source_modified": false,
+  "formal_controls_added": 0
+}

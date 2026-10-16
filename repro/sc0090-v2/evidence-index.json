@@ -1,0 +1,3762 @@
+{
+  "baseline/head-axis3-allocation-002/run.json": {
+    "path": "evidence/baseline/head-axis3-allocation-002/run.json",
+    "sha256": "19a0a65f02f6b14abfd5969c189ceab12dc230c06e2363bc04ae8fcc75d9bc81",
+    "bytes": 83170
+  },
+  "baseline/head-axis3-throughput-8192/report.json": {
+    "path": "evidence/baseline/head-axis3-throughput-8192/report.json",
+    "sha256": "81372c1d319d644681ceb455b22c9e88da75b09443a0d578590dc0185037567a",
+    "bytes": 7314
+  },
+  "baseline/standup-allocation-003/run.json": {
+    "path": "evidence/baseline/standup-allocation-003/run.json",
+    "sha256": "6bc4a5d922eab9d7393e54b5b8742f6ca53059b272e71d507cff304c777f28b6",
+    "bytes": 83369
+  },
+  "baseline/graph-throughput-8192/report.json": {
+    "path": "evidence/baseline/graph-throughput-8192/report.json",
+    "sha256": "403b1536ef2fc451e8ff718c75a5e19f808be7aa7dd25d28d6f3296d014777d2",
+    "bytes": 6140
+  },
+  "baseline/head-precision2-allocation-002/run.json": {
+    "path": "evidence/baseline/head-precision2-allocation-002/run.json",
+    "sha256": "c9494a583a1dd2b35010ed4dfd4a0edf232543ab312db0691288c93d34eba28e",
+    "bytes": 82441
+  },
+  "baseline/head-precision2-throughput-8192/report.json": {
+    "path": "evidence/baseline/head-precision2-throughput-8192/report.json",
+    "sha256": "79c2f88c5fcda9e065537e4a5171458e89079deca6ebd8f856bb9de8b9c5fcc9",
+    "bytes": 6822
+  },
+  "baseline/head-precision-allocation-003/run.json": {
+    "path": "evidence/baseline/head-precision-allocation-003/run.json",
+    "sha256": "7cb4499ca40cea199d21016af659c53a34418230178f8d792226d804bf603640",
+    "bytes": 82423
+  },
+  "baseline/head-precision-throughput-8192/report.json": {
+    "path": "evidence/baseline/head-precision-throughput-8192/report.json",
+    "sha256": "96b0eff7e74d417016a444d66a9c65275231f18166c5c9d938393ba0fee550b1",
+    "bytes": 6801
+  },
+  "baseline/standup-allocation-001/run.json": {
+    "path": "evidence/baseline/standup-allocation-001/run.json",
+    "sha256": "1844b7a8fd221e425996daca1fb3e071234b4922db4d8c595cbffabd19b787c1",
+    "bytes": 82698
+  },
+  "baseline/preflight-8192/report.json": {
+    "path": "evidence/baseline/preflight-8192/report.json",
+    "sha256": "71d4328d5717595d2e4fd097f2053ec6533b5d67e75196a4a8082add5d529813",
+    "bytes": 1959
+  },
+  "baseline/standup-allocation-002/run.json": {
+    "path": "evidence/baseline/standup-allocation-002/run.json",
+    "sha256": "a3ad92e9483a28c098646f714c28469235c515fc3d64a0658bdfaa93da743d53",
+    "bytes": 83368
+  },
+  "baseline/head-foundation4-allocation-003/run.json": {
+    "path": "evidence/baseline/head-foundation4-allocation-003/run.json",
+    "sha256": "3fa763cdf6fcd680d140ef3981a27a19d47f3016ebf5710139e1c493be2e4770",
+    "bytes": 83142
+  },
+  "baseline/head-foundation4-throughput-8192/report.json": {
+    "path": "evidence/baseline/head-foundation4-throughput-8192/report.json",
+    "sha256": "76a08ecf6608112c268392b3070204b0334555aff5da01368cdcb2508ce736b1",
+    "bytes": 7245
+  },
+  "baseline/head-precision-allocation-002/run.json": {
+    "path": "evidence/baseline/head-precision-allocation-002/run.json",
+    "sha256": "53dee434fecc572940a3039e5746821174b9409a57e42538f327205433ceb760",
+    "bytes": 82423
+  },
+  "baseline/paired-feedback-allocation-001/run.json": {
+    "path": "evidence/baseline/paired-feedback-allocation-001/run.json",
+    "sha256": "0c256943ff38687a8c1c214fc07f6ac6393b5855592de688e5c77fddf928a8e2",
+    "bytes": 79185
+  },
+  "baseline/paired-feedback-throughput-8192/report.json": {
+    "path": "evidence/baseline/paired-feedback-throughput-8192/report.json",
+    "sha256": "1fab1f3dd95ea4ef258682b93caa70fbf94bcdacde72a1fd4f7374e31b22719e",
+    "bytes": 7253
+  },
+  "baseline/head-precision2-allocation-001/run.json": {
+    "path": "evidence/baseline/head-precision2-allocation-001/run.json",
+    "sha256": "6af0dc3f11a22d7bc4bea28bff96423b6ed7ff9367f29c99a8fc483aa0b45462",
+    "bytes": 82440
+  },
+  "baseline/head-precision-allocation-004/run.json": {
+    "path": "evidence/baseline/head-precision-allocation-004/run.json",
+    "sha256": "60c63b8ccaf3609a8a04f001725ad177ee490cda66cba28658c991a099b36def",
+    "bytes": 82423
+  },
+  "baseline/head-foundation4-dr2-allocation-001/run.json": {
+    "path": "evidence/baseline/head-foundation4-dr2-allocation-001/run.json",
+    "sha256": "71014912b9ba110132627ee7f490d7c3ad840cd9bf389e4bc6b75bd57e5b92da",
+    "bytes": 83487
+  },
+  "baseline/head-foundation4-dr2-throughput-8192/report.json": {
+    "path": "evidence/baseline/head-foundation4-dr2-throughput-8192/report.json",
+    "sha256": "9b1c8fecedd01afbb59841edbbd4ca85da7c5d008eb54e3a6f949adc406f227e",
+    "bytes": 7573
+  },
+  "baseline/allocation-validation/run.json": {
+    "path": "evidence/baseline/allocation-validation/run.json",
+    "sha256": "3347367fe80a11ecf6145374659197cec9842ed0c8a1fd499d1313ffe368e254",
+    "bytes": 82694
+  },
+  "baseline/recovery-course-smoke/report.json": {
+    "path": "evidence/baseline/recovery-course-smoke/report.json",
+    "sha256": "308f0bb5a75d3b5ac33524d89af8cf094b70549e59680bf8115830d033a3eaa1",
+    "bytes": 1947
+  },
+  "baseline/head-foundation4-allocation-002/run.json": {
+    "path": "evidence/baseline/head-foundation4-allocation-002/run.json",
+    "sha256": "2d1babc352ec7610ee6ee58b952de49160101be81085fd271ce24c37ec66ccde",
+    "bytes": 83142
+  },
+  "baseline/position-robustness2-allocation-002/run.json": {
+    "path": "evidence/baseline/position-robustness2-allocation-002/run.json",
+    "sha256": "41782697d5a14f01f92d125f95dd863b471399b7bb18c4ae0f0ac26c04eaf4db",
+    "bytes": 82989
+  },
+  "baseline/position-robustness2-throughput-8192/report.json": {
+    "path": "evidence/baseline/position-robustness2-throughput-8192/report.json",
+    "sha256": "f06a727b18ff74665c4d1a902cd798d71d3ecfc3677afbad010f3a63bf92e749",
+    "bytes": 7189
+  },
+  "baseline/position-robustness1-allocation-001/run.json": {
+    "path": "evidence/baseline/position-robustness1-allocation-001/run.json",
+    "sha256": "961c393d7f64ba9dd73127485546079b2d64cad8f5a5bbb78efe5b458588ec4c",
+    "bytes": 82935
+  },
+  "baseline/position-robustness1-throughput-8192/report.json": {
+    "path": "evidence/baseline/position-robustness1-throughput-8192/report.json",
+    "sha256": "27ae47251a09e6d6eadf2b63971b45a80945499d16d161b26b2c0ebf87d8102d",
+    "bytes": 7201
+  },
+  "baseline/exposure-allocation-validation/run.json": {
+    "path": "evidence/baseline/exposure-allocation-validation/run.json",
+    "sha256": "9b4cef7f9fac91d3f49831e65f6c794802d05761ed3b0949dd20c06cf07381dc",
+    "bytes": 83309
+  },
+  "baseline/position-robustness2-allocation-001/run.json": {
+    "path": "evidence/baseline/position-robustness2-allocation-001/run.json",
+    "sha256": "2cc1429e3d0f4e8bfd11f4bd8605c7e044f00cdb1eeb0a94c425cc38b0479aa2",
+    "bytes": 82940
+  },
+  "baseline/head-precision-allocation-001/run.json": {
+    "path": "evidence/baseline/head-precision-allocation-001/run.json",
+    "sha256": "22d5c272b0c9ab474b4c91e1c78d84ae5559909c684f73c13622420f2d0a8bd3",
+    "bytes": 82416
+  },
+  "baseline/head-foundation4-allocation-001/run.json": {
+    "path": "evidence/baseline/head-foundation4-allocation-001/run.json",
+    "sha256": "d3086da955d43277f71c1f8ebeb9d39ba5008d2b32476892d8e12292ccfb8446",
+    "bytes": 83141
+  },
+  "baseline/head-foundation4-dr1-allocation-001/run.json": {
+    "path": "evidence/baseline/head-foundation4-dr1-allocation-001/run.json",
+    "sha256": "f450fc86e07e13f6a940ffd6848e0094c19f26b0846571f9515799dd9c280a6a",
+    "bytes": 83483
+  },
+  "baseline/head-foundation4-dr1-throughput-8192/report.json": {
+    "path": "evidence/baseline/head-foundation4-dr1-throughput-8192/report.json",
+    "sha256": "3ab849a147583dbb5d0518bdadc6335661a978553a2fc5dd75a35cad703b23a2",
+    "bytes": 7567
+  },
+  "baseline/stage-resume-validation/run.json": {
+    "path": "evidence/baseline/stage-resume-validation/run.json",
+    "sha256": "8cc814c22fe44e30bda91cf6cc912f126f726932acd9e076451854e0270b212a",
+    "bytes": 83360
+  },
+  "baseline/head-axis3-allocation-001/run.json": {
+    "path": "evidence/baseline/head-axis3-allocation-001/run.json",
+    "sha256": "70c37b6be9863aa0ecfccef09c136553fb12dc3664583d616091e00821b41c70",
+    "bytes": 83180
+  },
+  "baseline/head-noise3-allocation-001/run.json": {
+    "path": "evidence/baseline/head-noise3-allocation-001/run.json",
+    "sha256": "99c0313ae2c913456008813134f6789c4366327b551825de7305679ec3518872",
+    "bytes": 83847
+  },
+  "baseline/head-noise3-throughput-8192/report.json": {
+    "path": "evidence/baseline/head-noise3-throughput-8192/report.json",
+    "sha256": "8524a84dfebbb9e0029ec738ca0586dc8c5378a77876264a25b45021f4fc8cdd",
+    "bytes": 7374
+  },
+  "baseline/ppo-allocation-validation/run.json": {
+    "path": "evidence/baseline/ppo-allocation-validation/run.json",
+    "sha256": "9640d6e82b37abfabdf60cddd6308249f5f7211236e04027a47eadbfe9fc06f7",
+    "bytes": 83195
+  },
+  "baseline/ppo-correctness-smoke-v2/report.json": {
+    "path": "evidence/baseline/ppo-correctness-smoke-v2/report.json",
+    "sha256": "fd1a6942322c446346a0ab13a759a3aba3360f3c37fd61e0feb0bdaf4755db0c",
+    "bytes": 1984
+  },
+  "p04/velstand-head-target-smoke-001/run.json": {
+    "path": "evidence/p04/velstand-head-target-smoke-001/run.json",
+    "sha256": "5a33f748670bc4e02fa2f066146e407f56f0c40c518fc3228145c6c05309900a",
+    "bytes": 99787
+  },
+  "p04/velstand-head-target-transition.json": {
+    "path": "evidence/p04/velstand-head-target-transition.json",
+    "sha256": "94ac23b56a415625f1390e8759858b6664bb26cf0d162bffc97b0533d83c5fdf",
+    "bytes": 23751
+  },
+  "p04/sitstand-near-teacher-lr1e5-smoke-001/run.json": {
+    "path": "evidence/p04/sitstand-near-teacher-lr1e5-smoke-001/run.json",
+    "sha256": "98f533b1701544440862e9ac5fc7990431522251b474e26fda6cdf7d5e677632",
+    "bytes": 76769
+  },
+  "p04/sitstand-near-teacher-lr1e5-worktree/source-transition.json": {
+    "path": "evidence/p04/sitstand-near-teacher-lr1e5-worktree/source-transition.json",
+    "sha256": "29e9594ff05eaefb9535f9c6cd17e319b9b6cbd7717dd6a7023c58b58983aee6",
+    "bytes": 25184
+  },
+  "p04/sitstand-near-teacher-lr1e5-actual16384-001/run.json": {
+    "path": "evidence/p04/sitstand-near-teacher-lr1e5-actual16384-001/run.json",
+    "sha256": "64c382645674b322817daea9b132c157130fd0169f7275195f58190a3b08f74a",
+    "bytes": 76782
+  },
+  "p04/sitstand-history-base-smoke-002/run.json": {
+    "path": "evidence/p04/sitstand-history-base-smoke-002/run.json",
+    "sha256": "347938fe865030f3a78a99a684dfecc2b6ced2d737c65380b725e36e6969fe4e",
+    "bytes": 81119
+  },
+  "p04/sitstand-clear-allocation-001/run.json": {
+    "path": "evidence/p04/sitstand-clear-allocation-001/run.json",
+    "sha256": "396750f3e6f7312f13f665ba3c078ae5272ecfc057a37251205452071043d92d",
+    "bytes": 83767
+  },
+  "p04/sitstand-clear-qualification-001.json": {
+    "path": "evidence/p04/sitstand-clear-qualification-001.json",
+    "sha256": "164d7853ccd8f723abecb4fa27d0d49f5fb0d3dfa2258ba3e8c9c47e24f74e09",
+    "bytes": 12527
+  },
+  "p04/sitstand-clear-actual16384-001/report.json": {
+    "path": "evidence/p04/sitstand-clear-actual16384-001/report.json",
+    "sha256": "cf2784b53a083994452c79f97db4925f91248627e55a774bc70401e8ca0e47a0",
+    "bytes": 19127
+  },
+  "p04/sitstand-clear-smoke-001/report.json": {
+    "path": "evidence/p04/sitstand-clear-smoke-001/report.json",
+    "sha256": "ec98d253d12467a35517bc963d93ae70055da4a5232276910391f48fa9404bf4",
+    "bytes": 14785
+  },
+  "p04/sitstand-clear-pose-worktree/source-transition.json": {
+    "path": "evidence/p04/sitstand-clear-pose-worktree/source-transition.json",
+    "sha256": "8b2a5082d309dea339c3edb96ba69cc7da873bbcd22108fbbc9f5bbd1cacdbcd",
+    "bytes": 24288
+  },
+  "p04/sitstand-clear-pose-batch-002/report.json": {
+    "path": "evidence/p04/sitstand-clear-pose-batch-002/report.json",
+    "sha256": "80ab3c0a915351b3f3dca06696617a2e59ad224dc092b7449a38e53cba24ee3e",
+    "bytes": 4034
+  },
+  "p04/velstand-head-bias-actual24576-001/run.json": {
+    "path": "evidence/p04/velstand-head-bias-actual24576-001/run.json",
+    "sha256": "ce0e2b65fafa0d273f7bb7d5e8cc4f62de847e79a501840d205ddef9200b799d",
+    "bytes": 101594
+  },
+  "p04/velstand-head-bias-source-transition-001.json": {
+    "path": "evidence/p04/velstand-head-bias-source-transition-001.json",
+    "sha256": "34ee9c29fb62dfbb870b11839e1821a67dec69e9b916f786bb60e76774150010",
+    "bytes": 24526
+  },
+  "p04/sitstand-training-smoke-002/run.json": {
+    "path": "evidence/p04/sitstand-training-smoke-002/run.json",
+    "sha256": "66cf8ea95fa9735a9581978af3dfd37673fac61e6b47b17f5a19d5e0537436fa",
+    "bytes": 83208
+  },
+  "p04/head2-late-entropy-allocation-002/run.json": {
+    "path": "evidence/p04/head2-late-entropy-allocation-002/run.json",
+    "sha256": "4cdfd345d51bad74010d6fe0688044aaa6da8247c83129e658cd6e88437b71f9",
+    "bytes": 81992
+  },
+  "p04/head2-late-entropy-mature-throughput-32768/report.json": {
+    "path": "evidence/p04/head2-late-entropy-mature-throughput-32768/report.json",
+    "sha256": "e98f6cf3b9799dbe27ec5660cfa805882936fda4ceea2b0c257937e290946681",
+    "bytes": 9964
+  },
+  "p04/roulade-teacher-mature64-002/run.json": {
+    "path": "evidence/p04/roulade-teacher-mature64-002/run.json",
+    "sha256": "17e9eb4e8cb1391b546a08d04ea7690a849e586f73a2f4c4930e1a355b1073ae",
+    "bytes": 73477
+  },
+  "p04/roulade-teacher-source-transition-002.json": {
+    "path": "evidence/p04/roulade-teacher-source-transition-002.json",
+    "sha256": "8d60e3554d7a99b9790e5fc82f22846b26b616889e0db1670195a1974a51b2b1",
+    "bytes": 26544
+  },
+  "p04/native-read-preupdate-audit-001/run.json": {
+    "path": "evidence/p04/native-read-preupdate-audit-001/run.json",
+    "sha256": "4ecd71be116d3c72549c722281288d206b0644f66ae0e3168154d23944364bdf",
+    "bytes": 81616
+  },
+  "p04/native-read-head1-throughput-32768/report.json": {
+    "path": "evidence/p04/native-read-head1-throughput-32768/report.json",
+    "sha256": "818ff16bcee15598a4289cb220f98afef2abae2a27b877000167c5734f074c67",
+    "bytes": 8865
+  },
+  "p04/paired-frozen20-allocation-001/run.json": {
+    "path": "evidence/p04/paired-frozen20-allocation-001/run.json",
+    "sha256": "7527bfadd2d3e95eae23289e808fc6a702bb1b64fb71daf1a92bb81e5ca86082",
+    "bytes": 82678
+  },
+  "p04/paired-frozen20-throughput-32768/report.json": {
+    "path": "evidence/p04/paired-frozen20-throughput-32768/report.json",
+    "sha256": "6de17f3db2ec6185f05217dd32d958e376498556e30a492da589eebab9c90478",
+    "bytes": 10320
+  },
+  "p04/paired-late-entropy-allocation-001/run.json": {
+    "path": "evidence/p04/paired-late-entropy-allocation-001/run.json",
+    "sha256": "5798425dbfe73c7dd523eb963d015e838dfda97f5e499dcb45b2ccfbc372a71c",
+    "bytes": 82650
+  },
+  "p04/paired-late-entropy-throughput-32768/report.json": {
+    "path": "evidence/p04/paired-late-entropy-throughput-32768/report.json",
+    "sha256": "acbd932288102a5267b6053c0b479c53b6b30767dd9653163e40964b320f5422",
+    "bytes": 11909
+  },
+  "p04/groundpick-health-history-actual24576-001/run.json": {
+    "path": "evidence/p04/groundpick-health-history-actual24576-001/run.json",
+    "sha256": "2b8ea296e9cd62e4a743d77c69244952dde6c831c6fa7a24e6bed758abd6146d",
+    "bytes": 76023
+  },
+  "p04/roulade-history-actual16384-001/run.json": {
+    "path": "evidence/p04/roulade-history-actual16384-001/run.json",
+    "sha256": "34654a9ef762e5af687f0a295bb6f5afa5964b1af3d83632207fa268a909c9bc",
+    "bytes": 72537
+  },
+  "p04/sitstand-lesson4-smoke-001/run.json": {
+    "path": "evidence/p04/sitstand-lesson4-smoke-001/run.json",
+    "sha256": "e02643decdfa5a9c81fc0da08c8b82af490294b506370542889fcf65d6e72295",
+    "bytes": 83817
+  },
+  "p04/sitstand-short-lesson-worktree/source-transition.json": {
+    "path": "evidence/p04/sitstand-short-lesson-worktree/source-transition.json",
+    "sha256": "9ef89bc645a0c1ff26be4b0198a1b7cd34716220c3fe7fac5d98196a2eaed946",
+    "bytes": 24689
+  },
+  "p04/standup-allocation-003-32768/run.json": {
+    "path": "evidence/p04/standup-allocation-003-32768/run.json",
+    "sha256": "efd575e5b6efef5ccfdd26fdc48bf70f4b707d8f1d3eb8252eee203b3ed43743",
+    "bytes": 81766
+  },
+  "p04/frozen-source-allocation-002/src/mjlab_microduck/actuator/params/sc0090_v5_m6.json": {
+    "path": "evidence/p04/frozen-source-allocation-002/src/mjlab_microduck/actuator/params/sc0090_v5_m6.json",
+    "sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+    "bytes": 8171
+  },
+  "p04/current-bench-p04-throughput-32768/report.json": {
+    "path": "evidence/p04/current-bench-p04-throughput-32768/report.json",
+    "sha256": "d048b96ecc5a2ee3902569d07a233a57171b89474c074244051ae3ac87641789",
+    "bytes": 9003
+  },
+  "p04/velstand-v8-smoke-001/run.json": {
+    "path": "evidence/p04/velstand-v8-smoke-001/run.json",
+    "sha256": "4ec1e858e16857c7675e036f315b9867f147aebd88ddf13c434fe78b32be00f3",
+    "bytes": 99389
+  },
+  "p04/walking-yaw-fine-allocation-002/run.json": {
+    "path": "evidence/p04/walking-yaw-fine-allocation-002/run.json",
+    "sha256": "1dff367d074f72c539cdaa52377ed20c1870f720092e50c2d49d9429faf28a7d",
+    "bytes": 79493
+  },
+  "p04/walking-yaw-fine-qualification.json": {
+    "path": "evidence/p04/walking-yaw-fine-qualification.json",
+    "sha256": "56a6257de997dd5528f3df4ca818417bc2a111fd29fbb95819cdd8cc4224504e",
+    "bytes": 12327
+  },
+  "p04/paired-stdcap-allocation-003/run.json": {
+    "path": "evidence/p04/paired-stdcap-allocation-003/run.json",
+    "sha256": "489fb1569db6525ed4cab9cd87cacbc7dae9c905dc08d37e0aaeeca07c38c4c6",
+    "bytes": 82933
+  },
+  "p04/paired-stdcap-throughput-32768/report.json": {
+    "path": "evidence/p04/paired-stdcap-throughput-32768/report.json",
+    "sha256": "e6516e7c7bafc6c2b1c59b4fd684212b901bdfa434c00baa2a383e5c09375db9",
+    "bytes": 15799
+  },
+  "p04/roulade-control-allocation-001/run.json": {
+    "path": "evidence/p04/roulade-control-allocation-001/run.json",
+    "sha256": "d7ac4f74b5dca7901221769cd86a89999854dafc9376a65de289c5651545a753",
+    "bytes": 71969
+  },
+  "p04/roulade-control-qualification-001.json": {
+    "path": "evidence/p04/roulade-control-qualification-001.json",
+    "sha256": "6bc546cfa4fbf334b1bf50fcfca302b489850be14857dd9650cbf8d00adf8d02",
+    "bytes": 34598
+  },
+  "p04/roulade-control-actual16384-001/report.json": {
+    "path": "evidence/p04/roulade-control-actual16384-001/report.json",
+    "sha256": "113af961a8d2ce85926b92dd7daf3c0393123b220004135b3a9989aafb6844ff",
+    "bytes": 17976
+  },
+  "p04/roulade-control-mature64-001/report.json": {
+    "path": "evidence/p04/roulade-control-mature64-001/report.json",
+    "sha256": "117b89574c8e441722d28008e5a91fb44464f1bd4eea01ab7de81237d1d390dc",
+    "bytes": 17370
+  },
+  "p04/roulade-control-native-rng-001.json": {
+    "path": "evidence/p04/roulade-control-native-rng-001.json",
+    "sha256": "1d251a89c0e5583a7c9fa3323beb868df248de64a9d8f236227642195e72186c",
+    "bytes": 1144
+  },
+  "p04/roulade-control-cpu-001.json": {
+    "path": "evidence/p04/roulade-control-cpu-001.json",
+    "sha256": "1eb0cf7c383f6b982711d1ba8d4ecb367b7c68399776208b8c8aa0feb4db4795",
+    "bytes": 13315
+  },
+  "p04/roulade-control-source-transition-001.json": {
+    "path": "evidence/p04/roulade-control-source-transition-001.json",
+    "sha256": "ebedb0582f5287008718fa463773bcb7f5d9ab5c1388d6542fed93cc631f5d13",
+    "bytes": 26122
+  },
+  "p04/groundpick-health-history-smoke-001/run.json": {
+    "path": "evidence/p04/groundpick-health-history-smoke-001/run.json",
+    "sha256": "1d248537684cd285835b7cb95902b6d8757900001c02446b6f41d2007e3c4e18",
+    "bytes": 76010
+  },
+  "p04/velstand-camera-control-allocation-001/run.json": {
+    "path": "evidence/p04/velstand-camera-control-allocation-001/run.json",
+    "sha256": "d3174de150d8b0395ec7d358947b9d72180a97820e91ed49d69d3bd958a533c0",
+    "bytes": 101544
+  },
+  "p04/velstand-camera-qualification-001.json": {
+    "path": "evidence/p04/velstand-camera-qualification-001.json",
+    "sha256": "aa9f83522a6cda0fe620e23f2f9137886f49604024b12e62a68dd76400cfb5e6",
+    "bytes": 34030
+  },
+  "p04/velstand-camera-source-transition-002.json": {
+    "path": "evidence/p04/velstand-camera-source-transition-002.json",
+    "sha256": "e19e8ff613d782b7ed79be9250bf3d609ea33502cde230818786e8033bcbb90d",
+    "bytes": 23889
+  },
+  "p04/velstand-head-bias-allocation-003/run.json": {
+    "path": "evidence/p04/velstand-head-bias-allocation-003/run.json",
+    "sha256": "2cae1c826edd1780c3beb464e15a8735346703ce268f25ae196d7c114582359a",
+    "bytes": 101585
+  },
+  "p04/velstand-head-bias-qualification-001.json": {
+    "path": "evidence/p04/velstand-head-bias-qualification-001.json",
+    "sha256": "61f0c4244d13a6d9ee8824abd4d5e69731a10b0cf3de730f6101deaf526a52f5",
+    "bytes": 33195
+  },
+  "p04/velstand-v8-actual24576-002/run.json": {
+    "path": "evidence/p04/velstand-v8-actual24576-002/run.json",
+    "sha256": "c3fda7b4ad3b84ec079c57f0cea14c25a606cf5726ccb74a895bb74a1c6299cd",
+    "bytes": 99620
+  },
+  "p04/head2-phase-accuracy-allocation-001/run.json": {
+    "path": "evidence/p04/head2-phase-accuracy-allocation-001/run.json",
+    "sha256": "ec9d3261925f0b79187e6d281facc38961e19825e7b7f6e22e93361c352bee74",
+    "bytes": 83988
+  },
+  "p04/head2-phase-accuracy-bench-32768/report.json": {
+    "path": "evidence/p04/head2-phase-accuracy-bench-32768/report.json",
+    "sha256": "796868fca8f453a8e45a39ed1dd88ef989d0abc5e8cdc537f0863c0cd3e27878",
+    "bytes": 31724
+  },
+  "p04/sitstand-history-base-smoke-001/run.json": {
+    "path": "evidence/p04/sitstand-history-base-smoke-001/run.json",
+    "sha256": "3e2e2152e133dceef37b0a6b80c5c7e917ba6bababd5c7dc735cd7c6d55ff4e5",
+    "bytes": 81119
+  },
+  "p04/fresh-p04-direction-allocation-001/run.json": {
+    "path": "evidence/p04/fresh-p04-direction-allocation-001/run.json",
+    "sha256": "2619b4c133c1cca3b54207d261b59902dea65acaba8fb032a1ec9cc4057908ed",
+    "bytes": 82724
+  },
+  "p04/fresh-p04-direction-throughput-32768/report.json": {
+    "path": "evidence/p04/fresh-p04-direction-throughput-32768/report.json",
+    "sha256": "50677929105f68e15dcc0ca0d87866e1746cdfc37e17abf5601a8b54e99d0308",
+    "bytes": 8215
+  },
+  "p04/ballkick-health-history-allocation-001/run.json": {
+    "path": "evidence/p04/ballkick-health-history-allocation-001/run.json",
+    "sha256": "f06417e378ea1bce42792d707f0634b8010c0c8b90ca37d663dd735dbd839500",
+    "bytes": 76014
+  },
+  "p04/ballkick-health-history-qualification-001.json": {
+    "path": "evidence/p04/ballkick-health-history-qualification-001.json",
+    "sha256": "c54e9e9a4a9c389a90ce2a0ce3312c0a97f1ac84fee501e6f9fc4991f168a9dd",
+    "bytes": 13301
+  },
+  "p04/ballkick-health-history-substep-terminal-001.json": {
+    "path": "evidence/p04/ballkick-health-history-substep-terminal-001.json",
+    "sha256": "732be17e52740da9c77fd57fa857870c842f3c04fe6cbdb867833d27dee96c28",
+    "bytes": 1851
+  },
+  "p04/ballkick-health-history-cpu-001.json": {
+    "path": "evidence/p04/ballkick-health-history-cpu-001.json",
+    "sha256": "b2400806a52a9e772575f4657bbb4fb765a64f069a2defda0b7f303dc2c16285",
+    "bytes": 16804
+  },
+  "p04/ballkick-health-history-actual24576-001/report.json": {
+    "path": "evidence/p04/ballkick-health-history-actual24576-001/report.json",
+    "sha256": "c222dabf7a07a0b947ce87a0dc16ced1f06044a8a93d33d9cd7e689d356c48a5",
+    "bytes": 18864
+  },
+  "p04/ballkick-health-history-smoke-001/report.json": {
+    "path": "evidence/p04/ballkick-health-history-smoke-001/report.json",
+    "sha256": "3c031785f5a08b1ad2f51929d245ed4db8bffbceec8400b63802583289dc0e7a",
+    "bytes": 17100
+  },
+  "p04/scaled-resume-validation/run.json": {
+    "path": "evidence/p04/scaled-resume-validation/run.json",
+    "sha256": "19b032303bbc666a3f1a5efd116165c4c22a201e0f5a3c03bcdfbbecb80e2d8d",
+    "bytes": 81663
+  },
+  "p04/current-bench-p04-smoke/report.json": {
+    "path": "evidence/p04/current-bench-p04-smoke/report.json",
+    "sha256": "bef17c00c9b31dad5c9611362568b741d3c8e6dc4d354b358905d5328983a620",
+    "bytes": 5197
+  },
+  "p04/velstand-v8-allocation-001/run.json": {
+    "path": "evidence/p04/velstand-v8-allocation-001/run.json",
+    "sha256": "5819e37aa2f1bad3e0b7a944a95f2313b922fa131b6f52e9640e1deb201c5097",
+    "bytes": 99705
+  },
+  "p04/velstand-v8-qualification.json": {
+    "path": "evidence/p04/velstand-v8-qualification.json",
+    "sha256": "97e7a3ec28f29ba12f3c80da6ea9b38f75200d097b07347c91eab29d988ba201",
+    "bytes": 34131
+  },
+  "p04/ballkick-target-precision-smoke-001/run.json": {
+    "path": "evidence/p04/ballkick-target-precision-smoke-001/run.json",
+    "sha256": "f8cdea052dc4c6c49ef7383277a45dc65fb8c2e9d183ad69d0a19a80eb2139c7",
+    "bytes": 76187
+  },
+  "p04/ballkick-target-precision-source-transition.json": {
+    "path": "evidence/p04/ballkick-target-precision-source-transition.json",
+    "sha256": "b3fc44ce2a89dc79776cbbd34580596ec3afa62bef79a98caa713592217f3e60",
+    "bytes": 25775
+  },
+  "p04/standup-allocation-001/run.json": {
+    "path": "evidence/p04/standup-allocation-001/run.json",
+    "sha256": "10f02104bc6eb4d65915227094fea294f85e0753891aa9b3be9614ea39f86afd",
+    "bytes": 78438
+  },
+  "p04/preflight-8192/report.json": {
+    "path": "evidence/p04/preflight-8192/report.json",
+    "sha256": "1feda1cf007fe0ef08fb0d5c646079d16f6e1abf1b0da9105df2e3b8737a58f1",
+    "bytes": 1879
+  },
+  "p04/fresh-p04-overlap-allocation-001/run.json": {
+    "path": "evidence/p04/fresh-p04-overlap-allocation-001/run.json",
+    "sha256": "c2db26e573bd4fe1f4986c1f4ae93b6103ffc320017c260b59c09b84dce32f4e",
+    "bytes": 82663
+  },
+  "p04/fresh-p04-overlap-throughput-32768/report.json": {
+    "path": "evidence/p04/fresh-p04-overlap-throughput-32768/report.json",
+    "sha256": "16edfead32ff9c10c22a65cb0c793ce5a29cac0bea75068097fd4fe63d396642",
+    "bytes": 8221
+  },
+  "p04/velstand-camera-mature24576-mild-002/run.json": {
+    "path": "evidence/p04/velstand-camera-mature24576-mild-002/run.json",
+    "sha256": "356c80537b4cdcad08c9d3f751b7a880e1cb4d1e0de1250b4d8887a0a428e05d",
+    "bytes": 101452
+  },
+  "p04/roulade-endpoint-actual16384-001/run.json": {
+    "path": "evidence/p04/roulade-endpoint-actual16384-001/run.json",
+    "sha256": "13fcd7aecbc93128ac529b6d761e9b0e8eacbad2a9356593011dc6a86f059213",
+    "bytes": 71870
+  },
+  "p04/roulade-endpoint-source-transition.json": {
+    "path": "evidence/p04/roulade-endpoint-source-transition.json",
+    "sha256": "bfd3136a29d1a981f6c4313e295bbac72ad8f05f5b3f4b88b1002c4d2f194b71",
+    "bytes": 26359
+  },
+  "p04/head2-roll-fine-allocation-001/run.json": {
+    "path": "evidence/p04/head2-roll-fine-allocation-001/run.json",
+    "sha256": "2baa83024f701174a4175b0b6dc516c2fe11b9c71cba6d91b9aa8e78713f6e09",
+    "bytes": 82623
+  },
+  "p04/head2-roll-fine-bench-32768/report.json": {
+    "path": "evidence/p04/head2-roll-fine-bench-32768/report.json",
+    "sha256": "e61b3cd6765e02228afc42ecd3a5327d5ec240ddfdf50ecbcaf0588e2eacae4f",
+    "bytes": 14562
+  },
+  "p04/head2-accuracy-allocation-001/run.json": {
+    "path": "evidence/p04/head2-accuracy-allocation-001/run.json",
+    "sha256": "ff9fb30f2953afabfb6638876d609324cd020acbe335f62b157e97285b6c1fe5",
+    "bytes": 83435
+  },
+  "p04/head2-accuracy-bench-32768/report.json": {
+    "path": "evidence/p04/head2-accuracy-bench-32768/report.json",
+    "sha256": "26b78eb776deda7503f9a14a8e85c84a3d6e66175e0e12bb95706daeb3b5d6bd",
+    "bytes": 15146
+  },
+  "p04/head2-balance-allocation-001/run.json": {
+    "path": "evidence/p04/head2-balance-allocation-001/run.json",
+    "sha256": "1679be4888d9af5bae4c5432c2459758ef69e438c3827e0b0baa93fe0f1f5e72",
+    "bytes": 82270
+  },
+  "p04/head2-balance-mature-throughput-32768/report.json": {
+    "path": "evidence/p04/head2-balance-mature-throughput-32768/report.json",
+    "sha256": "1e6f4b0d3b39fa9017845e1da195828cc63bb7fefb6f059d9311e5044a30d0b3",
+    "bytes": 10180
+  },
+  "p04/sitstand-fresh-m16-actual16384-001/run.json": {
+    "path": "evidence/p04/sitstand-fresh-m16-actual16384-001/run.json",
+    "sha256": "12cbcc7ec079cf3d1f1989eb89c9b5b24ca4d593462c618bf0879c0ffa2b4a33",
+    "bytes": 83859
+  },
+  "p04/walking-controller-resume-64/run.json": {
+    "path": "evidence/p04/walking-controller-resume-64/run.json",
+    "sha256": "0ebe608e56e3c44c380b9de48b2d21ecf03620828d2c46e596a8913b54e54bbe",
+    "bytes": 79144
+  },
+  "p04/sitstand-fresh-release-actual16384-001/run.json": {
+    "path": "evidence/p04/sitstand-fresh-release-actual16384-001/run.json",
+    "sha256": "286ad2c50eaf91139b08c9389de27b851cdbbf958076cd3f1096d9bb3e316bdc",
+    "bytes": 83862
+  },
+  "p04/sitstand-clear-actual16384-001/run.json": {
+    "path": "evidence/p04/sitstand-clear-actual16384-001/run.json",
+    "sha256": "0fd23d2a57bce6deea1d3000eaa6b31592b26c5257fb8422f226bd594ffb052e",
+    "bytes": 83676
+  },
+  "p04/ballkick-smoke64-001/run.json": {
+    "path": "evidence/p04/ballkick-smoke64-001/run.json",
+    "sha256": "32954558f0f9fa6a4be9e0e579151f70a90207964b688ca872f8d4e4f23a6254",
+    "bytes": 75144
+  },
+  "p04/head2-timeout-phase-allocation-001/run.json": {
+    "path": "evidence/p04/head2-timeout-phase-allocation-001/run.json",
+    "sha256": "5169142c614d90077f497b1983dbee2e094d46436d1a8fb7c251bd5f24106d8e",
+    "bytes": 83088
+  },
+  "p04/head2-timeout-phase-bench-32768/report.json": {
+    "path": "evidence/p04/head2-timeout-phase-bench-32768/report.json",
+    "sha256": "7bc49cca7d3f4d426c8c7c0e84519744d59384f12b084bfffcea62fe62313a0b",
+    "bytes": 31085
+  },
+  "p04/velstand-v8-smoke-004/run.json": {
+    "path": "evidence/p04/velstand-v8-smoke-004/run.json",
+    "sha256": "8c781b31c9fef3efcaa00170130db99d9c7a72ffe7620880de7063331b988691",
+    "bytes": 99383
+  },
+  "p04/roulade-history-formal-001/run.json": {
+    "path": "evidence/p04/roulade-history-formal-001/run.json",
+    "sha256": "6e23ecf3642718ef5100ab6c13b7183c6c5dbf2e27a837500c96247711e3e74f",
+    "bytes": 72627
+  },
+  "p04/roulade-history-qualification-001.json": {
+    "path": "evidence/p04/roulade-history-qualification-001.json",
+    "sha256": "55dd1c4d9daf509f183bb6374780a95aba94ece0d8d7e571e24f40535f348ad4",
+    "bytes": 33958
+  },
+  "p04/roulade-history-actual16384-001/report.json": {
+    "path": "evidence/p04/roulade-history-actual16384-001/report.json",
+    "sha256": "71e97c13f8203e5d70c9acb5504e66fe3f3eebf408e900245bc23dbd7e1c4703",
+    "bytes": 17747
+  },
+  "p04/roulade-history-smoke64-001/report.json": {
+    "path": "evidence/p04/roulade-history-smoke64-001/report.json",
+    "sha256": "d9d5659a8313f7134bf9b9cdccaa2d54b2c51ab201789b3d39fb823d9aba5582",
+    "bytes": 17094
+  },
+  "p04/roulade-history-cpu-001.json": {
+    "path": "evidence/p04/roulade-history-cpu-001.json",
+    "sha256": "52b2a2a92d44fb55b34ad70d4414e221dcbc05c9d348a97751e6124a9a338879",
+    "bytes": 96058
+  },
+  "p04/ballkick-health-history-smoke-001/run.json": {
+    "path": "evidence/p04/ballkick-health-history-smoke-001/run.json",
+    "sha256": "ddd31701718d25cacb4d6006eb385fcfa16497342c0a75c70a0a2f9f175e6a2b",
+    "bytes": 75900
+  },
+  "p04/groundpick-target-precision-allocation-001/run.json": {
+    "path": "evidence/p04/groundpick-target-precision-allocation-001/run.json",
+    "sha256": "db5e6e72d0901fc6b52035c49290d9a8b4c24bd2beb46ef1c1e37f1dc9ff9174",
+    "bytes": 76498
+  },
+  "p04/groundpick-target-precision-qualification-001.json": {
+    "path": "evidence/p04/groundpick-target-precision-qualification-001.json",
+    "sha256": "bd265253a1839dfe20e223047eaf12a9a3ad3101730c86fe4eea4a2ff4b6c8f4",
+    "bytes": 13674
+  },
+  "p04/groundpick-target-precision-actual24576-001/report.json": {
+    "path": "evidence/p04/groundpick-target-precision-actual24576-001/report.json",
+    "sha256": "b149c8ec4b1e3b03ec4eed55260b5f9051241af9317d8abbc2971b3ead754a83",
+    "bytes": 17080
+  },
+  "p04/groundpick-target-precision-smoke-001/report.json": {
+    "path": "evidence/p04/groundpick-target-precision-smoke-001/report.json",
+    "sha256": "ece71996ef2f8f58f7149f385f8ffa3949bb97147aa40452390e6e3b4ff9b251",
+    "bytes": 15372
+  },
+  "p04/groundpick-target-precision-terminal-001.json": {
+    "path": "evidence/p04/groundpick-target-precision-terminal-001.json",
+    "sha256": "9b1f019f2b1ef6380628e04f98bce17c315b404113ec9827a9fa1d4b689d9578",
+    "bytes": 2700
+  },
+  "p04/groundpick-target-precision-cpu-001.json": {
+    "path": "evidence/p04/groundpick-target-precision-cpu-001.json",
+    "sha256": "4380cab82ebf3f52a6eea67ebf902dcf123c88b6feb8d759cc693408bd11f34b",
+    "bytes": 19272
+  },
+  "p04/groundpick-target-precision-source-transition.json": {
+    "path": "evidence/p04/groundpick-target-precision-source-transition.json",
+    "sha256": "a1eb73d7e8f372c40d4f8e463febff968e711906ff98a545f996e9dfe67fbcc5",
+    "bytes": 25836
+  },
+  "p04/ballkick-actual24576-001/run.json": {
+    "path": "evidence/p04/ballkick-actual24576-001/run.json",
+    "sha256": "cda486be22c80c123b1dc379ecd25083efa1ea20705c3a4d09c98ca1d108611d",
+    "bytes": 75155
+  },
+  "p04/sitstand-fresh-m16-actual16384-002/run.json": {
+    "path": "evidence/p04/sitstand-fresh-m16-actual16384-002/run.json",
+    "sha256": "150538b9831a81069bdbdb00282e0e9423526e3377337938189ff8baa349f37a",
+    "bytes": 83859
+  },
+  "p04/ballkick-health-history-actual24576-001/run.json": {
+    "path": "evidence/p04/ballkick-health-history-actual24576-001/run.json",
+    "sha256": "d06016dfc50d13c5b65205f2db3f2ebf60951ff74dc0fcd1d8adb23cc61b9b5b",
+    "bytes": 75913
+  },
+  "p04/groundpick-target-precision-smoke-001/run.json": {
+    "path": "evidence/p04/groundpick-target-precision-smoke-001/run.json",
+    "sha256": "59b00b06a6ea2052d0c2e14c2b58d1d2e452479b1358bcc7dc098f99462b53f1",
+    "bytes": 76380
+  },
+  "p04/sitstand-fresh-release-smoke-001/run.json": {
+    "path": "evidence/p04/sitstand-fresh-release-smoke-001/run.json",
+    "sha256": "e2ad5736a53a2051ac5a2c6753c4bd6d8f866e77a4c422a6bea6c713cf14e7ee",
+    "bytes": 83848
+  },
+  "p04/head2-stdcap-lr-allocation-001/run.json": {
+    "path": "evidence/p04/head2-stdcap-lr-allocation-001/run.json",
+    "sha256": "92b0ff839bcc7017fe1dc024750d33c137cb03ccaef527cf4b01cacfe6cdc8ab",
+    "bytes": 82480
+  },
+  "p04/head2-stdcap-lr-bench-32768/report.json": {
+    "path": "evidence/p04/head2-stdcap-lr-bench-32768/report.json",
+    "sha256": "a7bb388bb7075c8c5f1f7a7c8ab29970013a15b0445364e2a6b181cd3f05a15b",
+    "bytes": 14352
+  },
+  "p04/sitstand-allocation-001/run.json": {
+    "path": "evidence/p04/sitstand-allocation-001/run.json",
+    "sha256": "a6c3003c1d376c3a22dd87eb56fc516f4bd941c9d011407d20348b767282ba3c",
+    "bytes": 83357
+  },
+  "p04/sitstand-training-qualification-003.json": {
+    "path": "evidence/p04/sitstand-training-qualification-003.json",
+    "sha256": "858e12469463a2adb540e2b2134ecb5462065ecbf41811be65877ac563017b99",
+    "bytes": 12578
+  },
+  "p04/sitstand-capacity-comparison.json": {
+    "path": "evidence/p04/sitstand-capacity-comparison.json",
+    "sha256": "6e340d5dfacda763cd2b0e770c4e81fd95b201a815d7ee61bab7b9d53124995d",
+    "bytes": 942
+  },
+  "p04/sitstand-actual16384-001/report.json": {
+    "path": "evidence/p04/sitstand-actual16384-001/report.json",
+    "sha256": "719e12ec8f57414de82b1ade4a8b462fa996fe3c3b75bc2495db146b5fff5121",
+    "bytes": 18937
+  },
+  "p04/sitstand-training-smoke-cap64/report.json": {
+    "path": "evidence/p04/sitstand-training-smoke-cap64/report.json",
+    "sha256": "873f8ee0ecf91cf4392aab2f12815eec4b5add3bebd3163075763159e4360985",
+    "bytes": 14638
+  },
+  "p04/sitstand-lesson4-actual16384-001/run.json": {
+    "path": "evidence/p04/sitstand-lesson4-actual16384-001/run.json",
+    "sha256": "d8602b8deac402ab1cebd4bcad67f8e817a384edf07e64e195b03a3eb9436929",
+    "bytes": 83831
+  },
+  "p04/walking-controller-smoke-64/run.json": {
+    "path": "evidence/p04/walking-controller-smoke-64/run.json",
+    "sha256": "9bde7ef55740d5fa2ceb47e111ae9a57433a12c84f6eec8e522a95cb8e0e1261",
+    "bytes": 79037
+  },
+  "p04/roulade-actual16384-002/run.json": {
+    "path": "evidence/p04/roulade-actual16384-002/run.json",
+    "sha256": "7741f27569bb2172049a39b9b3711bc21386c541e38b42356584b098faebc82d",
+    "bytes": 72414
+  },
+  "p04/walking-yaw-fine-throughput-32768/run.json": {
+    "path": "evidence/p04/walking-yaw-fine-throughput-32768/run.json",
+    "sha256": "1aa2d7f1aad4117c032eaec746d2fdc1d37513067b911f2afcf7e91c3d6618d6",
+    "bytes": 79502
+  },
+  "p04/walking-yaw-fine-source-transition.json": {
+    "path": "evidence/p04/walking-yaw-fine-source-transition.json",
+    "sha256": "21cbec681ebad4e71ac9d61e38db8953831eddab0cc1df321a164b6a78a23ee6",
+    "bytes": 23244
+  },
+  "p04/roulade-smoke-001/run.json": {
+    "path": "evidence/p04/roulade-smoke-001/run.json",
+    "sha256": "8556071d055bbc9195999b702c1a8be1e6fae1959970bc0efe75c55375ad8a2c",
+    "bytes": 72400
+  },
+  "p04/velstand-head-target-smoke-003/run.json": {
+    "path": "evidence/p04/velstand-head-target-smoke-003/run.json",
+    "sha256": "43f75ddd7f15ad41cbc221f2ab77c28842036946b20647c9edca32281e6690ec",
+    "bytes": 99871
+  },
+  "p04/velstand-head-target-transition-003.json": {
+    "path": "evidence/p04/velstand-head-target-transition-003.json",
+    "sha256": "afda214f1e11fd4e249e06eefa74a806a9f6647d7e5199a229af26d19bf476b8",
+    "bytes": 23751
+  },
+  "p04/roulade-control-actual16384-001/run.json": {
+    "path": "evidence/p04/roulade-control-actual16384-001/run.json",
+    "sha256": "203b6c3852b91a73d4dd3335486bf0d8a9ac96f22be130ebcad4f5d411002e3d",
+    "bytes": 71877
+  },
+  "p04/velstand-camera-mild-allocation-001/run.json": {
+    "path": "evidence/p04/velstand-camera-mild-allocation-001/run.json",
+    "sha256": "69801355023d85601bbb51609a8dfcf0ab3938797b5c65d05e0129cb413d31f8",
+    "bytes": 101545
+  },
+  "p04/head2-exposure-allocation-001/run.json": {
+    "path": "evidence/p04/head2-exposure-allocation-001/run.json",
+    "sha256": "dae506ee9be4926dda3743dd77c1705d39553bb4f54d07f3c26e25ea5b8923f1",
+    "bytes": 82081
+  },
+  "p04/head2-exposure-mature-throughput-32768/report.json": {
+    "path": "evidence/p04/head2-exposure-mature-throughput-32768/report.json",
+    "sha256": "1a53e2f92abf71bb8df8d7db7d5f6cfb8e6666eab14d59cf90fe6fc2ab3aac42",
+    "bytes": 10042
+  },
+  "p04/native-read-head1-allocation-001/run.json": {
+    "path": "evidence/p04/native-read-head1-allocation-001/run.json",
+    "sha256": "054ee3ba5428ee64bda0423727977b8ce0ff3d57835ce3295a9cb0af028796e7",
+    "bytes": 81621
+  },
+  "p04/paired-stdcap-allocation-002/run.json": {
+    "path": "evidence/p04/paired-stdcap-allocation-002/run.json",
+    "sha256": "9ffd7f0fe7920815828013617ebfbde7ba19fee30e311f457fb9419e8f1457a2",
+    "bytes": 82933
+  },
+  "p04/velstand-head-target-smoke-002/run.json": {
+    "path": "evidence/p04/velstand-head-target-smoke-002/run.json",
+    "sha256": "aaa1be2a4fe99a45db24d1485b4aa33bbfa931b1d46abf1f2c96c4e393666b46",
+    "bytes": 99791
+  },
+  "p04/velstand-head-target-transition-002.json": {
+    "path": "evidence/p04/velstand-head-target-transition-002.json",
+    "sha256": "27c000ca9ca4d9b2533d38f6855639bfc9c4a6d0efb1a9788cbf5cc696e17847",
+    "bytes": 23751
+  },
+  "p04/standup-allocation-002-32768/run.json": {
+    "path": "evidence/p04/standup-allocation-002-32768/run.json",
+    "sha256": "ce551a77638b4f8ad296a5de4ecc14a5eb1dccf59504cb030a4be77ffeac2e3a",
+    "bytes": 81689
+  },
+  "p04/velstand-camera-smoke64-001/run.json": {
+    "path": "evidence/p04/velstand-camera-smoke64-001/run.json",
+    "sha256": "40f1a0c81509999034bda16c5aac26fb3b84340302b17aa27d8a3f3df336cd00",
+    "bytes": 101188
+  },
+  "p04/velstand-head-bias-allocation-002/run.json": {
+    "path": "evidence/p04/velstand-head-bias-allocation-002/run.json",
+    "sha256": "e872b5ad786a9707391e57c98586011df993d4e56d60db75e7b3a2c4ca0bcbe6",
+    "bytes": 101585
+  },
+  "p04/paired-short-catch-allocation-002/run.json": {
+    "path": "evidence/p04/paired-short-catch-allocation-002/run.json",
+    "sha256": "744ea1f6710f9c422ec32a393129f4ead708b7d1bd45d2cb675e5a9e83d1f693",
+    "bytes": 82615
+  },
+  "p04/paired-short-catch-throughput-32768/report.json": {
+    "path": "evidence/p04/paired-short-catch-throughput-32768/report.json",
+    "sha256": "01d4c044907e001732ab1aa3431c09fe42c0da7dd9f804c568f1fa4426ae5d22",
+    "bytes": 11851
+  },
+  "p04/roulade-endpoint-allocation-001/run.json": {
+    "path": "evidence/p04/roulade-endpoint-allocation-001/run.json",
+    "sha256": "ed4279b680929f7ac4f015af3b8723f2bfafd251e1be6ccd31ab2cd2ec33345b",
+    "bytes": 71959
+  },
+  "p04/roulade-endpoint-qualification.json": {
+    "path": "evidence/p04/roulade-endpoint-qualification.json",
+    "sha256": "d647eb45ea1391dca89b020e194947bcc829a83888d20cd1e6a33dbf320ed3a1",
+    "bytes": 34438
+  },
+  "p04/roulade-endpoint-actual16384-001/report.json": {
+    "path": "evidence/p04/roulade-endpoint-actual16384-001/report.json",
+    "sha256": "af2a960a2242a8e661459d623478e5ca31d569eb9460c1a99926e1026c82aecb",
+    "bytes": 17988
+  },
+  "p04/roulade-endpoint-smoke-001/report.json": {
+    "path": "evidence/p04/roulade-endpoint-smoke-001/report.json",
+    "sha256": "00378364d384c3642cda360262019176a560a3c1fcbb469893af1f27d601b8de",
+    "bytes": 17338
+  },
+  "p04/roulade-endpoint-cpu-001.json": {
+    "path": "evidence/p04/roulade-endpoint-cpu-001.json",
+    "sha256": "63f18900b8ef3dd55342f481390f18337cc99365f2057401894c289defc55930",
+    "bytes": 13277
+  },
+  "p04/roulade-endpoint-physical-001/report.json": {
+    "path": "evidence/p04/roulade-endpoint-physical-001/report.json",
+    "sha256": "18c340f0523a749bd259d8da30535486abfb82f66423575fccb6a25fcb8765df",
+    "bytes": 8002
+  },
+  "p04/groundpick-health-history-allocation-001/run.json": {
+    "path": "evidence/p04/groundpick-health-history-allocation-001/run.json",
+    "sha256": "decd1fed4fa19b753a857e07e0248074fd61bdadfcf7d8fa2d385bf65dd71663",
+    "bytes": 76126
+  },
+  "p04/groundpick-health-history-qualification-001.json": {
+    "path": "evidence/p04/groundpick-health-history-qualification-001.json",
+    "sha256": "d56b7d2cd4ee4962f1339afbb8665c1235795a0f881cd9e2c7fec26a7a686f7b",
+    "bytes": 13309
+  },
+  "p04/groundpick-health-history-substep-terminal-001.json": {
+    "path": "evidence/p04/groundpick-health-history-substep-terminal-001.json",
+    "sha256": "8ab642e4dd70b3eee5dfba201490422eb679a79aa1bd2429d8cba2022a481453",
+    "bytes": 2699
+  },
+  "p04/groundpick-health-history-cpu-003.json": {
+    "path": "evidence/p04/groundpick-health-history-cpu-003.json",
+    "sha256": "b4b77cde2df7013757e4012a0360ac049d8244fee545981093cb450b7507d61b",
+    "bytes": 17334
+  },
+  "p04/groundpick-health-history-actual24576-001/report.json": {
+    "path": "evidence/p04/groundpick-health-history-actual24576-001/report.json",
+    "sha256": "fff377610fe053f4de907976ed76ccedc9da748bbd0f80a1cced24841482e64a",
+    "bytes": 16900
+  },
+  "p04/groundpick-health-history-smoke-001/report.json": {
+    "path": "evidence/p04/groundpick-health-history-smoke-001/report.json",
+    "sha256": "938fd1937b4fdb758ca1625a1a9d4fb75046f163e5410779898be35d62ddbcaf",
+    "bytes": 15182
+  },
+  "p04/sitstand-fresh-release-allocation-001/run.json": {
+    "path": "evidence/p04/sitstand-fresh-release-allocation-001/run.json",
+    "sha256": "593d96bfe9cb537836fba0183459151d05b6952af1b4aab1c8e7302012666ac4",
+    "bytes": 83961
+  },
+  "p04/sitstand-fresh-release-qualification-001.json": {
+    "path": "evidence/p04/sitstand-fresh-release-qualification-001.json",
+    "sha256": "b2711f273783ba750d16991969eac02738aaecf4b9bb4d309e6e0ffbc311cda5",
+    "bytes": 12933
+  },
+  "p04/sitstand-fresh-release-cpu-001.json": {
+    "path": "evidence/p04/sitstand-fresh-release-cpu-001.json",
+    "sha256": "135a6805e6eab0a16657df145edcbfc481508f1339ae09bab5fe560e93d789b0",
+    "bytes": 14541
+  },
+  "p04/sitstand-transition-release-qualification-001.json": {
+    "path": "evidence/p04/sitstand-transition-release-qualification-001.json",
+    "sha256": "ec93c198a7a5e17b531bf0fe2068cdb07aea95b6b2d6855d39820a115190d663",
+    "bytes": 13201
+  },
+  "p04/sitstand-transition-release-worktree/source-transition.json": {
+    "path": "evidence/p04/sitstand-transition-release-worktree/source-transition.json",
+    "sha256": "9c32bd23c61303dc8e0e3f361cfe17a25864862d30d67d23d54c476efed5a4fd",
+    "bytes": 24685
+  },
+  "p04/sitstand-transition-release-cpu-001.json": {
+    "path": "evidence/p04/sitstand-transition-release-cpu-001.json",
+    "sha256": "f809affd5416423a07b1ab08f7a525c6ab4c9ecf6a94c467b49d86a4371eea1d",
+    "bytes": 13365
+  },
+  "p04/sitstand-transition-release-actual16384-001/report.json": {
+    "path": "evidence/p04/sitstand-transition-release-actual16384-001/report.json",
+    "sha256": "cb41f38bb3d680c5ee36ea06b88172af73126ba118af6c2fe648196fc31fb558",
+    "bytes": 16847
+  },
+  "p04/sitstand-transition-release-smoke-001/report.json": {
+    "path": "evidence/p04/sitstand-transition-release-smoke-001/report.json",
+    "sha256": "69abd6c26147767c1ffc75b90bdc93fe313e730cb3e081fb40a231aa40cf47c7",
+    "bytes": 15120
+  },
+  "p04/sitstand-fresh-release-actual16384-001/report.json": {
+    "path": "evidence/p04/sitstand-fresh-release-actual16384-001/report.json",
+    "sha256": "64c747a0e4ae18493b616339aeeee220376481f035f3259b23321eba729b7483",
+    "bytes": 16804
+  },
+  "p04/sitstand-fresh-release-smoke-001/report.json": {
+    "path": "evidence/p04/sitstand-fresh-release-smoke-001/report.json",
+    "sha256": "b9b7e49104ec865712fcdf58a4d99647cd38ac309241d6c05472fcebf137d22a",
+    "bytes": 15080
+  },
+  "p04/ballkick-finish-allocation-001/run.json": {
+    "path": "evidence/p04/ballkick-finish-allocation-001/run.json",
+    "sha256": "c9f599c2cf491b4b8b439e11fa5bce3e10f03936ddd94d32f4b1a44ff1733d33",
+    "bytes": 75891
+  },
+  "p04/ballkick-finish-qualification.json": {
+    "path": "evidence/p04/ballkick-finish-qualification.json",
+    "sha256": "c06cb2ca75b73d557aebb9269a3934953131b7dd18b05cd1538f5ce3252b2b11",
+    "bytes": 34028
+  },
+  "p04/ballkick-finish-actual24576-001/report.json": {
+    "path": "evidence/p04/ballkick-finish-actual24576-001/report.json",
+    "sha256": "78b9a6cabd68f43a8cde8260b78c1c5f73f4fd567d6ba2d092544a5b30f5ff40",
+    "bytes": 18601
+  },
+  "p04/ballkick-finish-smoke-001/report.json": {
+    "path": "evidence/p04/ballkick-finish-smoke-001/report.json",
+    "sha256": "b60720b6b4e0e9561d64af037c684bd0470ec7a040a904f43cda29ccd66c6d47",
+    "bytes": 16851
+  },
+  "p04/ballkick-finish-cpu-001.json": {
+    "path": "evidence/p04/ballkick-finish-cpu-001.json",
+    "sha256": "5ed7de37f3517beeae8a5e8e7b5ab46f00330595da9e18cc187de2485d712c07",
+    "bytes": 12965
+  },
+  "p04/ballkick-finish-source-transition.json": {
+    "path": "evidence/p04/ballkick-finish-source-transition.json",
+    "sha256": "9cdacb4b69ad046f92daf5039ebbaf6b5133dd30f5b507550f6029ac50b7c493",
+    "bytes": 24863
+  },
+  "p04/roulade-endpoint-smoke-001/run.json": {
+    "path": "evidence/p04/roulade-endpoint-smoke-001/run.json",
+    "sha256": "4c23a4140eca06e1dac95a598f33d7fa959e67b4c0c94b4010103a1a0802a52c",
+    "bytes": 71856
+  },
+  "p04/ballkick-target-precision-actual24576-001/run.json": {
+    "path": "evidence/p04/ballkick-target-precision-actual24576-001/run.json",
+    "sha256": "086cd802fdc10eb25b80f50c1c476f3e2dfceb289b7628245fbe8f9d51436515",
+    "bytes": 76200
+  },
+  "p04/velstand-head-free-bc-smoke64-001/run.json": {
+    "path": "evidence/p04/velstand-head-free-bc-smoke64-001/run.json",
+    "sha256": "f38c40d5fa5347984a986bf207ed37e2558e2a7d0b8b20749279c7dfaf8af502",
+    "bytes": 101366
+  },
+  "p04/velstand-v8-allocation-002/run.json": {
+    "path": "evidence/p04/velstand-v8-allocation-002/run.json",
+    "sha256": "b7153debbede16107f80294c9197d6facdb8995f1f92f1f2699a61cb51dfe5b8",
+    "bytes": 99716
+  },
+  "p04/velstand-v8-mature-qualified-native-range.json": {
+    "path": "evidence/p04/velstand-v8-mature-qualified-native-range.json",
+    "sha256": "60e22ed54ef1d9781328c1404fd75125f7d1fee3aefefddaa4634b4197dff2e5",
+    "bytes": 35174
+  },
+  "p04/velstand-v8-mature-feedback-001/report.json": {
+    "path": "evidence/p04/velstand-v8-mature-feedback-001/report.json",
+    "sha256": "3887a1f013570fcd1160f8b145ae4be13c116e0abf219fb15cdf8302121c642f",
+    "bytes": 26997
+  },
+  "p04/velstand-v8-mature24576-001/report.json": {
+    "path": "evidence/p04/velstand-v8-mature24576-001/report.json",
+    "sha256": "b6a4c36a1ddc5ca64e2dd9408f0cb7e949b525b82fbccf6d9e6aa9fa12ccefe3",
+    "bytes": 26930
+  },
+  "p04/allocation-validation/run.json": {
+    "path": "evidence/p04/allocation-validation/run.json",
+    "sha256": "9c129789ef0dffc73e3fc9f9ef985b31866bb26c70a8c16b3431b2761202d577",
+    "bytes": 78434
+  },
+  "p04/recovery-course-smoke/report.json": {
+    "path": "evidence/p04/recovery-course-smoke/report.json",
+    "sha256": "d483909275fcb63d751fcdd219f0eca822d7dd50d85d490c1838e22589abf402",
+    "bytes": 1873
+  },
+  "p04/sitstand-history-hold320-smoke-001/run.json": {
+    "path": "evidence/p04/sitstand-history-hold320-smoke-001/run.json",
+    "sha256": "faa2b56944aff6418111c12bee55ce2ff4aa92199f6b044f1e9e0218708049f4",
+    "bytes": 74354
+  },
+  "p04/sitstand-history-hold320-worktree/source-transition.json": {
+    "path": "evidence/p04/sitstand-history-hold320-worktree/source-transition.json",
+    "sha256": "85760ebb0021a941d1bc7734d757e9df6a56e8b71e5d28cb61c97229dca00cbf",
+    "bytes": 24939
+  },
+  "p04/sitstand-hold320-live-parent.json": {
+    "path": "evidence/p04/sitstand-hold320-live-parent.json",
+    "sha256": "7e931088bfc7d123a041daa4b2a99651e18f3ae8fca358f14d0f31bf35e099cb",
+    "bytes": 2288
+  },
+  "p04/frozen-norm-head1-allocation-002/run.json": {
+    "path": "evidence/p04/frozen-norm-head1-allocation-002/run.json",
+    "sha256": "0bdee7e1c26f632eb6ee11a0b3ce7b3261b9a4f0a384755c107650193e3e2ef1",
+    "bytes": 82001
+  },
+  "p04/frozen-norm-head1-mature-throughput-32768/report.json": {
+    "path": "evidence/p04/frozen-norm-head1-mature-throughput-32768/report.json",
+    "sha256": "2da98d35ba8e4b0e282faa85fe004fe1ac7cabb0c5bb72b25e70d9dcfa449b34",
+    "bytes": 9941
+  },
+  "p04/standup-allocation-004-32768/run.json": {
+    "path": "evidence/p04/standup-allocation-004-32768/run.json",
+    "sha256": "000ff4e520178945fe8e86a9f5a2ec708557ab940ebb4b8b4d6a7e4a4af98a9b",
+    "bytes": 81766
+  },
+  "p04/head2-micro-control-allocation-001/run.json": {
+    "path": "evidence/p04/head2-micro-control-allocation-001/run.json",
+    "sha256": "76ac7e153a6852664313280ddfbfe26a31da1c1e145fdd68eea5c96bddf35bd0",
+    "bytes": 82561
+  },
+  "p04/head2-micro-exposure-bench-32768/report.json": {
+    "path": "evidence/p04/head2-micro-exposure-bench-32768/report.json",
+    "sha256": "a613f561627f2b3ae4fee7f7a2817de5fad503922f0c3feddb8b064bd03246c8",
+    "bytes": 14516
+  },
+  "p04/velstand-v8-resume64-001/run.json": {
+    "path": "evidence/p04/velstand-v8-resume64-001/run.json",
+    "sha256": "da40a2c60fff3dd63a7485ef0f5f5995cd931d3c34d8594783c0370019dc4af7",
+    "bytes": 99601
+  },
+  "p04/ballkick-target-precision-allocation-001/run.json": {
+    "path": "evidence/p04/ballkick-target-precision-allocation-001/run.json",
+    "sha256": "46a0ef1af208469644d78d3ce7e2386cbfc1ccbf00c48fbcdae0670ff2ecd7e7",
+    "bytes": 76303
+  },
+  "p04/ballkick-target-precision-qualification-001.json": {
+    "path": "evidence/p04/ballkick-target-precision-qualification-001.json",
+    "sha256": "93fd94e6cab33aa313cec295c9a0641105df298267f67379cd63c4781e2740e0",
+    "bytes": 13659
+  },
+  "p04/ballkick-target-precision-actual24576-001/report.json": {
+    "path": "evidence/p04/ballkick-target-precision-actual24576-001/report.json",
+    "sha256": "10f0367844b57cadcda6d49d88766c6fe067b5e2be1588c8a2fcb2f27a3d2e96",
+    "bytes": 19027
+  },
+  "p04/ballkick-target-precision-smoke-001/report.json": {
+    "path": "evidence/p04/ballkick-target-precision-smoke-001/report.json",
+    "sha256": "0c95aa9b6549f6ceb9bee5fc24eb74302496627bf930297570229eea3a83011e",
+    "bytes": 17216
+  },
+  "p04/ballkick-target-precision-terminal-001.json": {
+    "path": "evidence/p04/ballkick-target-precision-terminal-001.json",
+    "sha256": "787d7031e2def156746010ba2777a0670f6fb1d9906006f9a925e90d73854954",
+    "bytes": 1851
+  },
+  "p04/ballkick-target-precision-cpu-001.json": {
+    "path": "evidence/p04/ballkick-target-precision-cpu-001.json",
+    "sha256": "640076ee7f4d0b5baa6c34cf9d9c5c4b698f43614fb1e0e8c6e711d0030a85ce",
+    "bytes": 17707
+  },
+  "p04/sitstand-near-teacher-lr3e6-actual16384-001/run.json": {
+    "path": "evidence/p04/sitstand-near-teacher-lr3e6-actual16384-001/run.json",
+    "sha256": "31a0412f69d8da741208bbe431e74804f09ba0208f587fbc397d6725a0b08c86",
+    "bytes": 76782
+  },
+  "p04/sitstand-near-teacher-lr3e6-worktree/source-transition.json": {
+    "path": "evidence/p04/sitstand-near-teacher-lr3e6-worktree/source-transition.json",
+    "sha256": "44cddbc8fc3a63421f12ef97d704f08584cab65dd8c3ac23e1cacf2e6a5ccbc5",
+    "bytes": 25184
+  },
+  "p04/groundpick-smoke-002/run.json": {
+    "path": "evidence/p04/groundpick-smoke-002/run.json",
+    "sha256": "c359bf9221446eedd1a4e4351c9486292189ef8fa8933dab8e357d2b5ac12478",
+    "bytes": 75794
+  },
+  "p04/head2-micro-exposure-allocation-001/run.json": {
+    "path": "evidence/p04/head2-micro-exposure-allocation-001/run.json",
+    "sha256": "326557dfde2c9797e5fe81583859ded4f5d39325d7494b19371a0f8acc5e82c4",
+    "bytes": 82553
+  },
+  "p04/sitstand-history-base-actual16384-002/run.json": {
+    "path": "evidence/p04/sitstand-history-base-actual16384-002/run.json",
+    "sha256": "5c59844d502c1339bde5cb99bd5269f1337fb4f90c222d335e84f37884d559d3",
+    "bytes": 81132
+  },
+  "p04/fresh-p04-m4-allocation-002/run.json": {
+    "path": "evidence/p04/fresh-p04-m4-allocation-002/run.json",
+    "sha256": "8ba7046ce0f3a7279e12eb8cf029bc7860e6ca2131639b5a594c8cf77bcbf668",
+    "bytes": 82684
+  },
+  "p04/fresh-p04-m4-throughput-32768/report.json": {
+    "path": "evidence/p04/fresh-p04-m4-throughput-32768/report.json",
+    "sha256": "5ad21d397f28a3f33c2d8afc69fb24c49f8f20f8aca6d82fcaefe38d413fa34f",
+    "bytes": 8226
+  },
+  "p04/ballkick-right-allocation-001/run.json": {
+    "path": "evidence/p04/ballkick-right-allocation-001/run.json",
+    "sha256": "cede5048ba927ea23375a3edae9a5dae97910622d888cfccab6ac145aa695d10",
+    "bytes": 75246
+  },
+  "p04/ballkick-qualification-001.json": {
+    "path": "evidence/p04/ballkick-qualification-001.json",
+    "sha256": "72e4748f358a09b14d9d2d4f45feeeed1db896c55046ed450915d98c3501da7c",
+    "bytes": 35486
+  },
+  "p04/roulade-actual16384-001/run.json": {
+    "path": "evidence/p04/roulade-actual16384-001/run.json",
+    "sha256": "587e1241cb1236957dff1f93ff8cef5490d5d98056e72df2d6c5483cfe3a08f0",
+    "bytes": 72414
+  },
+  "p04/roulade-teacher-allocation-001/run.json": {
+    "path": "evidence/p04/roulade-teacher-allocation-001/run.json",
+    "sha256": "b6fcd67efe63c0265be6f504736128ab8519f7519cd5a6ee5949fe3043c06f43",
+    "bytes": 73579
+  },
+  "p04/roulade-teacher-qualification-001.json": {
+    "path": "evidence/p04/roulade-teacher-qualification-001.json",
+    "sha256": "30fdadef12558f23c01c2fd84342a5e556fb45253e02e73f9087d3be6c1020ec",
+    "bytes": 35730
+  },
+  "p04/fresh-p04-roll-course-allocation-001/run.json": {
+    "path": "evidence/p04/fresh-p04-roll-course-allocation-001/run.json",
+    "sha256": "374d5427ead6ddf5bf367648b5617edd2d4cfb65553fdbae25ac244413b9d451",
+    "bytes": 82404
+  },
+  "p04/fresh-p04-roll-course-throughput-32768/report.json": {
+    "path": "evidence/p04/fresh-p04-roll-course-throughput-32768/report.json",
+    "sha256": "d1a1904e16a47549978a7fa757facdc3c0e1ea1b6f7d40fc0ac7436175d71929",
+    "bytes": 8231
+  },
+  "p04/paired-head-balance-allocation-001/run.json": {
+    "path": "evidence/p04/paired-head-balance-allocation-001/run.json",
+    "sha256": "f8a010c4bdb01ad5452a14f0bb7f1b8c07cb211bcb04e363c35914831662ce77",
+    "bytes": 82894
+  },
+  "p04/paired-head-balance-throughput-32768/report.json": {
+    "path": "evidence/p04/paired-head-balance-throughput-32768/report.json",
+    "sha256": "028f932479632374ac5a20667b96c3dca73a474d042c3d6fa860e3eb372f7981",
+    "bytes": 10329
+  },
+  "p04/paired-stdcap-allocation-001/run.json": {
+    "path": "evidence/p04/paired-stdcap-allocation-001/run.json",
+    "sha256": "ab81e5793898c3f116e4521802926d2aecf64cca9aa4e45b8fea8f29b2473b30",
+    "bytes": 82863
+  },
+  "p04/roulade-teacher-mature64-001/run.json": {
+    "path": "evidence/p04/roulade-teacher-mature64-001/run.json",
+    "sha256": "89ae4e0918b24f86255b068a9de3d0529bca26f7aedacaba2f87675b1af96518",
+    "bytes": 73477
+  },
+  "p04/roulade-teacher-source-transition-001.json": {
+    "path": "evidence/p04/roulade-teacher-source-transition-001.json",
+    "sha256": "b9340703857ed22484c86f0a675da328369f1225694cd33cdf2625a2208ec650",
+    "bytes": 26544
+  },
+  "p04/velstand-v8-smoke-003/run.json": {
+    "path": "evidence/p04/velstand-v8-smoke-003/run.json",
+    "sha256": "f088e3a778b656ea73f66c2264c3d04d252c1a36d99d272f990357f874cef1b7",
+    "bytes": 99384
+  },
+  "p04/roulade-allocation-001/run.json": {
+    "path": "evidence/p04/roulade-allocation-001/run.json",
+    "sha256": "3cc8a002452bec79d800ade0ac3220962ebfeafef1cae9cc0bb78c4a70065243",
+    "bytes": 72498
+  },
+  "p04/roulade-qualification-001.json": {
+    "path": "evidence/p04/roulade-qualification-001.json",
+    "sha256": "1bf8f83ab1f0e75166dd15ce7eb542a3d5980a70b0cde38f7fffeb90317adb61",
+    "bytes": 36416
+  },
+  "p04/run-roulade-formal-allocation-001.py": {
+    "path": "evidence/p04/run-roulade-formal-allocation-001.py",
+    "sha256": "6a80d300dd5ffa6d1765c6a9bbd1cff0af5e9499f711b85808a265434ca8fc60",
+    "bytes": 3707
+  },
+  "p04/roulade-evaluator-smoke-0005b-measured/report.json": {
+    "path": "evidence/p04/roulade-evaluator-smoke-0005b-measured/report.json",
+    "sha256": "d2a1e86d8d0e07cdbcad3cddf467371785af2efa624fb08a86260533d4b4bac6",
+    "bytes": 19478
+  },
+  "p04/roulade-evaluator-smoke-0005b-nominal/report.json": {
+    "path": "evidence/p04/roulade-evaluator-smoke-0005b-nominal/report.json",
+    "sha256": "79dc4a3db53dfcdd47f83105ecb85df8c5b7b99a78880909cb8581b0a66efb8a",
+    "bytes": 19425
+  },
+  "p04/roulade-zero-command-cpu-001.json": {
+    "path": "evidence/p04/roulade-zero-command-cpu-001.json",
+    "sha256": "7cf25f48b7667955c74740ae524f835809357adae7b117d667df0d7c86f96e04",
+    "bytes": 854
+  },
+  "p04/roulade-actual16384-002/report.json": {
+    "path": "evidence/p04/roulade-actual16384-002/report.json",
+    "sha256": "763229ff7487cff24165468e6aecca3152d58eadadf2a52f8c1d6324a3344f18",
+    "bytes": 17630
+  },
+  "p04/roulade-mirror-diagnostics-parity-001.json": {
+    "path": "evidence/p04/roulade-mirror-diagnostics-parity-001.json",
+    "sha256": "e1929f8fd5fa5e2ccb98c6060070579d4ce53746e03ede251e5cfb0d4cad4d38",
+    "bytes": 3291
+  },
+  "p04/roulade-smoke-003/report.json": {
+    "path": "evidence/p04/roulade-smoke-003/report.json",
+    "sha256": "6fde28f7f5e2337071445657ece2bb11688868ecbdf1f05f47b504db09725cb4",
+    "bytes": 17025
+  },
+  "p04/roulade-smoke-003/terminal-validation.json": {
+    "path": "evidence/p04/roulade-smoke-003/terminal-validation.json",
+    "sha256": "430424780b5615edf03134b9ac44e253ef499ee18e29cf743f6612523034e810",
+    "bytes": 1016
+  },
+  "p04/roulade-physical-004/report.json": {
+    "path": "evidence/p04/roulade-physical-004/report.json",
+    "sha256": "ca210cd37177323a7e504ec18aefe2498a32bf9cb809a6ad36920f3c2fffd667",
+    "bytes": 4866
+  },
+  "p04/roulade-reset-fk-cpu-001.json": {
+    "path": "evidence/p04/roulade-reset-fk-cpu-001.json",
+    "sha256": "9f3a68198b7573194b3f8150d0e39685a5459444905ba752304fffd06b8f4b60",
+    "bytes": 826
+  },
+  "p04/roulade-cfg-cpu-002.json": {
+    "path": "evidence/p04/roulade-cfg-cpu-002.json",
+    "sha256": "b036e19c94430079b27cb4c198e6dc513146e3fcb5799ccf390077f85a04f86e",
+    "bytes": 3719
+  },
+  "p04/roulade-cpu-geometry-001.json": {
+    "path": "evidence/p04/roulade-cpu-geometry-001.json",
+    "sha256": "470b105b6fb27042df74fca307ec105dfdbf45dd00aa0b8ed89be172920eaaf3",
+    "bytes": 408437
+  },
+  "p04/velstand-head-bias-smoke64-001/run.json": {
+    "path": "evidence/p04/velstand-head-bias-smoke64-001/run.json",
+    "sha256": "5788dd49758784a3ad39eb4b6c908159e510001bf0cfd5f868cdf1f978f435f1",
+    "bytes": 101476
+  },
+  "p04/velstand-v8-mature64-control-001/run.json": {
+    "path": "evidence/p04/velstand-v8-mature64-control-001/run.json",
+    "sha256": "d8e9e0a33195d8f6f345b64de33068056f075f204b345f33092016f48a743f23",
+    "bytes": 99613
+  },
+  "p04/sitstand-near-teacher-lr3e6-allocation-001/run.json": {
+    "path": "evidence/p04/sitstand-near-teacher-lr3e6-allocation-001/run.json",
+    "sha256": "aa0b4a70480ed886e9c15fdf44f21900e3b2a48ce988232ac851def3a2840105",
+    "bytes": 76887
+  },
+  "p04/sitstand-near-teacher-lr3e6-qualification-001.json": {
+    "path": "evidence/p04/sitstand-near-teacher-lr3e6-qualification-001.json",
+    "sha256": "a791460ac2c14681f2ccbfbbad2015fccb57ae8fa178ad9d55144fab20f883e4",
+    "bytes": 13499
+  },
+  "p04/sitstand-near-teacher-lr3e6-actual16384-001/report.json": {
+    "path": "evidence/p04/sitstand-near-teacher-lr3e6-actual16384-001/report.json",
+    "sha256": "3221a873f80c10d58ee654ac8900e45393411c850587d9d970cc882afc8ee3cd",
+    "bytes": 19308
+  },
+  "p04/sitstand-near-teacher-lr3e6-smoke-001/report.json": {
+    "path": "evidence/p04/sitstand-near-teacher-lr3e6-smoke-001/report.json",
+    "sha256": "7d067012f4ad7e2f2ff7a6c5844c36bc71d36618fb3bcc27a054f3185d6e29c0",
+    "bytes": 17591
+  },
+  "p04/sitstand-near-teacher-lr3e6-cpu-001.json": {
+    "path": "evidence/p04/sitstand-near-teacher-lr3e6-cpu-001.json",
+    "sha256": "bbd443a197f35fa318192f8269c929716a9f8042c7f6732e890520c83ab3fd3d",
+    "bytes": 13348
+  },
+  "p04/groundpick-allocation-001/run.json": {
+    "path": "evidence/p04/groundpick-allocation-001/run.json",
+    "sha256": "b72cdf5b72823ce4cb03ba84d186ec8d0581b80e82152d82be67c11f5417ff27",
+    "bytes": 75895
+  },
+  "p04/groundpick-qualification-002.json": {
+    "path": "evidence/p04/groundpick-qualification-002.json",
+    "sha256": "7be93be35a6a67e2e6e7916dbc14a36ec9ebc53f4a1446d67812284341179c62",
+    "bytes": 13897
+  },
+  "p04/groundpick-reach-hold-002/report.json": {
+    "path": "evidence/p04/groundpick-reach-hold-002/report.json",
+    "sha256": "d26facb671b8ab5a507b2d6261b086140cf5c83835d3e70fb45a0767d5352bc2",
+    "bytes": 11464
+  },
+  "p04/groundpick-terminal-validation-001.json": {
+    "path": "evidence/p04/groundpick-terminal-validation-001.json",
+    "sha256": "79ceb34502a34afdbaa494b8b4eedf9ff1f402854a948119cd5c0f3e5d8a5f7b",
+    "bytes": 2068
+  },
+  "p04/groundpick-evaluator-smoke-qualification-002.json": {
+    "path": "evidence/p04/groundpick-evaluator-smoke-qualification-002.json",
+    "sha256": "8a757df484ae8dd55247c41ff88566fbe7d3825c29c82a9341eccd140baab4b5",
+    "bytes": 391
+  },
+  "p04/groundpick-evaluator-smoke-002-measured/report.json": {
+    "path": "evidence/p04/groundpick-evaluator-smoke-002-measured/report.json",
+    "sha256": "7cf93cec142ca0b85c540c84fa4d64b993641fd14118f5712903ef178fd1a13b",
+    "bytes": 154969
+  },
+  "p04/groundpick-evaluator-smoke-002-nominal/report.json": {
+    "path": "evidence/p04/groundpick-evaluator-smoke-002-nominal/report.json",
+    "sha256": "d188b4e1c1c39b9a3afaa84d83419ac90320a33f22bc4791f911a7c617ad79fd",
+    "bytes": 155245
+  },
+  "p04/groundpick-smoke-002/report.json": {
+    "path": "evidence/p04/groundpick-smoke-002/report.json",
+    "sha256": "ea130bb7c4bab61cde599805460968caefc1499448eb71041150bc4aa998de56",
+    "bytes": 15049
+  },
+  "p04/groundpick-actual16384-001/qualification-rejection.json": {
+    "path": "evidence/p04/groundpick-actual16384-001/qualification-rejection.json",
+    "sha256": "35cf0d1af5ed568b9b2a7c8fca7a6b6b41acf7630a41c9cd7e52efb09185651a",
+    "bytes": 651
+  },
+  "p04/groundpick-actual24576-001/report.json": {
+    "path": "evidence/p04/groundpick-actual24576-001/report.json",
+    "sha256": "7fe336b4a532fcfc0b6fbe14fac41c12319a3cf75dc9502f75e47a0dfacb5cb4",
+    "bytes": 16743
+  },
+  "p04/sitstand-near-teacher-lr3e6-smoke-001/run.json": {
+    "path": "evidence/p04/sitstand-near-teacher-lr3e6-smoke-001/run.json",
+    "sha256": "ad8f855ca400f9d6ccc1e27b5494083b0ff66f3c64aa13f6f995a188022eaad6",
+    "bytes": 76769
+  },
+  "p04/groundpick-target-precision-actual24576-001/run.json": {
+    "path": "evidence/p04/groundpick-target-precision-actual24576-001/run.json",
+    "sha256": "b2bb7a48dd44cef587aeacc084a51bd9c957abb6db69be234bd0b291e180c991",
+    "bytes": 76393
+  },
+  "p04/sitstand-clear-smoke-001/run.json": {
+    "path": "evidence/p04/sitstand-clear-smoke-001/run.json",
+    "sha256": "6c25a5e0142653bdb06e3707d65cf0d38f3effe64a47f2842c53b1e1e8984de8",
+    "bytes": 83472
+  },
+  "p04/paired-head-accuracy-allocation-003/run.json": {
+    "path": "evidence/p04/paired-head-accuracy-allocation-003/run.json",
+    "sha256": "a75fc3a01ef139ee849de11f99f71bfb0d7af9bf0b0dfb03760aad601eab5a73",
+    "bytes": 83871
+  },
+  "p04/paired-head-accuracy-throughput-32768/report.json": {
+    "path": "evidence/p04/paired-head-accuracy-throughput-32768/report.json",
+    "sha256": "23b7cc1305dfa9f5e32365346415451295e6078e8807d5f4eaf11df2dbd7ab1a",
+    "bytes": 16588
+  },
+  "p04/paired-p04-adapt-allocation-001/run.json": {
+    "path": "evidence/p04/paired-p04-adapt-allocation-001/run.json",
+    "sha256": "c69a53cb747ecec6885e7b3140384e3ec426aea67c97ae6555a98631374b801c",
+    "bytes": 82091
+  },
+  "p04/paired-p04-head4-throughput-32768/report.json": {
+    "path": "evidence/p04/paired-p04-head4-throughput-32768/report.json",
+    "sha256": "d58ce09baed8ef2c829800eb8e43a5c4e11778aca4f3264eae0e495dcd3a016e",
+    "bytes": 9089
+  },
+  "p04/sitstand-training-smoke-001/run.json": {
+    "path": "evidence/p04/sitstand-training-smoke-001/run.json",
+    "sha256": "be38091e230519978b601c6e1c3e3edf658351985c59aac61fad9ff73f0d28be",
+    "bytes": 83208
+  },
+  "p04/velstand-head-bias-allocation-001/run.json": {
+    "path": "evidence/p04/velstand-head-bias-allocation-001/run.json",
+    "sha256": "4a0d5b24f4fcd354d29d474fa5b137c159be7059c435fa5e744a4a47b4e21cec",
+    "bytes": 101690
+  },
+  "p04/paired-catch-pitch10-allocation-001/run.json": {
+    "path": "evidence/p04/paired-catch-pitch10-allocation-001/run.json",
+    "sha256": "3db2281c18e641fe5fcca824fa590ed3eb470970529cf0204fe8d5c3654f4e97",
+    "bytes": 82689
+  },
+  "p04/paired-catch-pitch10-throughput-32768/report.json": {
+    "path": "evidence/p04/paired-catch-pitch10-throughput-32768/report.json",
+    "sha256": "c6d3152e5518b0c409c3a39c20010c459c53137f329310a8093b7874c99350cd",
+    "bytes": 11881
+  },
+  "p04/velstand-v8-smoke-002/run.json": {
+    "path": "evidence/p04/velstand-v8-smoke-002/run.json",
+    "sha256": "b316c6fa84bddbaac02b2896062532a90d63e7b4fa264e4e2cf3a472119b45d4",
+    "bytes": 99389
+  },
+  "p04/velstand-head-bias-allocation-004/run.json": {
+    "path": "evidence/p04/velstand-head-bias-allocation-004/run.json",
+    "sha256": "61785f8b1840c2b48bcb050742fca4437af8e9e6e0d181e721dfb7f20b919970",
+    "bytes": 101585
+  },
+  "p04/paired-rollout12-allocation-001/run.json": {
+    "path": "evidence/p04/paired-rollout12-allocation-001/run.json",
+    "sha256": "5a979a52b7b2178cc85382f7da72eacf877c32f3a627ff44f8be04debb79179a",
+    "bytes": 82950
+  },
+  "p04/paired-rollout12-throughput-32768/report.json": {
+    "path": "evidence/p04/paired-rollout12-throughput-32768/report.json",
+    "sha256": "3e65608df50032ce8f0ca6972d2159272a7cd4e334325a6992197a44953c8424",
+    "bytes": 15697
+  },
+  "p04/velstand-head-free-bc-actual24576-001/run.json": {
+    "path": "evidence/p04/velstand-head-free-bc-actual24576-001/run.json",
+    "sha256": "257960b94c297686bde2f7f43175ec44f96bff82cf9115f98b46a1d50e92a699",
+    "bytes": 101477
+  },
+  "p04/velstand-head-free-bc-source-transition-001.json": {
+    "path": "evidence/p04/velstand-head-free-bc-source-transition-001.json",
+    "sha256": "89f95bc8d3f4cc4396b4109fe6a74548cab4c981e2c5b671d21de4299a3f21a5",
+    "bytes": 24140
+  },
+  "p04/fresh-p04-m4-allocation-001/run.json": {
+    "path": "evidence/p04/fresh-p04-m4-allocation-001/run.json",
+    "sha256": "f95355ad384c1d19a2d4108265b15ee2c968cd56e1f49821834f5d0829ff5219",
+    "bytes": 82698
+  },
+  "p04/ballkick-actual16384-001/run.json": {
+    "path": "evidence/p04/ballkick-actual16384-001/run.json",
+    "sha256": "58e87ca55de284f22e8df52596a8723532b3458a57f36c18cb48e38c29e92ae5",
+    "bytes": 75155
+  },
+  "p04/paired-head-accuracy-allocation-001/run.json": {
+    "path": "evidence/p04/paired-head-accuracy-allocation-001/run.json",
+    "sha256": "5d85c8e4c424b3f472705ba8094606ca0e0c792b317544883b142cd919d8f6fc",
+    "bytes": 83848
+  },
+  "p04/sitstand-near-teacher-smoke-001/run.json": {
+    "path": "evidence/p04/sitstand-near-teacher-smoke-001/run.json",
+    "sha256": "48b5f1c20f853abbff0ec27283f1412e9ad5694131a4998e50390da0e5fff87e",
+    "bytes": 76739
+  },
+  "p04/sitstand-near-teacher-worktree/source-transition.json": {
+    "path": "evidence/p04/sitstand-near-teacher-worktree/source-transition.json",
+    "sha256": "7561b41c96cbcc0d1c0ede3c440fb09366d0116f2feaa66079f07cc6cc7aac00",
+    "bytes": 25184
+  },
+  "p04/paired-head-accuracy-allocation-002/run.json": {
+    "path": "evidence/p04/paired-head-accuracy-allocation-002/run.json",
+    "sha256": "98c72bfea3aae5d69612492d74440a303d86698d1453b0095ae024ac0d413092",
+    "bytes": 83871
+  },
+  "p04/roulade-teacher-actual16384-002/run.json": {
+    "path": "evidence/p04/roulade-teacher-actual16384-002/run.json",
+    "sha256": "2e2b14744bbd282b2e1b9dda2780cf0f9a0b759653b86571d4f6e7c72ba419d7",
+    "bytes": 73487
+  },
+  "p04/paired-short-catch-allocation-001/run.json": {
+    "path": "evidence/p04/paired-short-catch-allocation-001/run.json",
+    "sha256": "160e8ffdd1bb4255e5656facbf623486ff95b4e57f4d46b299749f9237ff1bf1",
+    "bytes": 83104
+  },
+  "p04/sitstand-actual32768-002/run.json": {
+    "path": "evidence/p04/sitstand-actual32768-002/run.json",
+    "sha256": "7e7297a013ebf1dedc392c78cc53a63a114aad6eef0b21234bc92bad99f28de1",
+    "bytes": 83263
+  },
+  "p04/walking-controller-throughput-32768/run.json": {
+    "path": "evidence/p04/walking-controller-throughput-32768/run.json",
+    "sha256": "406057ca7d796b485423944e5453c1c13c95875da82caca57e3e37787f83dacc",
+    "bytes": 79053
+  },
+  "p04/head2-late-entropy-allocation-001/run.json": {
+    "path": "evidence/p04/head2-late-entropy-allocation-001/run.json",
+    "sha256": "884cfdbe3423d6b79d414cd6bcac02b87f23027114b01e56ed6efbaa39fc5118",
+    "bytes": 81986
+  },
+  "p04/groundpick-actual24576-001/run.json": {
+    "path": "evidence/p04/groundpick-actual24576-001/run.json",
+    "sha256": "6c484540a0b0c875468682b3859dd01a16df854bd2c3c8a69e4675393f1f146d",
+    "bytes": 75807
+  },
+  "p04/velstand-camera-mature-feedback-001/run.json": {
+    "path": "evidence/p04/velstand-camera-mature-feedback-001/run.json",
+    "sha256": "46121351b3a78742382a48acdd53cd91ed5419cbf268dea4f7b228df648d2f86",
+    "bytes": 101293
+  },
+  "p04/velstand-camera-source-transition.json": {
+    "path": "evidence/p04/velstand-camera-source-transition.json",
+    "sha256": "f26f8c2e1b03e20aff70a05b310fa1280d1ec5cfa17c0dcc6ae45e0d925c7ff2",
+    "bytes": 23689
+  },
+  "p04/groundpick-actual16384-001/run.json": {
+    "path": "evidence/p04/groundpick-actual16384-001/run.json",
+    "sha256": "b0efd75244ef2d2b31b4fa733bc2cb32c84f4c6544df19344aa2f6972a0ca1f8",
+    "bytes": 75808
+  },
+  "p04/velstand-v8-mature24576-001/run.json": {
+    "path": "evidence/p04/velstand-v8-mature24576-001/run.json",
+    "sha256": "f41371d90dd935902ae5906f06243bcb6283737ea4552e6746f17a0c146c5f60",
+    "bytes": 99615
+  },
+  "p04/velstand-v8-mature-feedback-001/run.json": {
+    "path": "evidence/p04/velstand-v8-mature-feedback-001/run.json",
+    "sha256": "5a6aaa860145f028ca96ebde27d561e51877b7ad550f5096c1970caffff1afc4",
+    "bytes": 99619
+  },
+  "p04/groundpick-smoke-001/run.json": {
+    "path": "evidence/p04/groundpick-smoke-001/run.json",
+    "sha256": "09242c8327ab38a1826172996bb9e4b480ed6d94a4f66945191efe7f211f167d",
+    "bytes": 75794
+  },
+  "p04/roulade-smoke-002/run.json": {
+    "path": "evidence/p04/roulade-smoke-002/run.json",
+    "sha256": "14803510b5fc24acc930e8d3a13027fa95c9d6a4bb990b77869dc122837213c8",
+    "bytes": 72400
+  },
+  "p04/frozen-head2-allocation-003/run.json": {
+    "path": "evidence/p04/frozen-head2-allocation-003/run.json",
+    "sha256": "44bff82e632359e1a9ff2ebe31e3bd11747d193a2fab460c762b443940f829cc",
+    "bytes": 81984
+  },
+  "p04/frozen-head2-mature-throughput-32768/report.json": {
+    "path": "evidence/p04/frozen-head2-mature-throughput-32768/report.json",
+    "sha256": "58d4e85fe1c6a99238ad6b6d22eca4699779c4780e0b8354a9fcb6f24139409f",
+    "bytes": 9939
+  },
+  "p04/paired-p04-standing20-allocation-001/run.json": {
+    "path": "evidence/p04/paired-p04-standing20-allocation-001/run.json",
+    "sha256": "19fbbb8bb04eb0c6c9d7c781a0eff06b06c45b872beeb5dc30c3d8b157d0d393",
+    "bytes": 82342
+  },
+  "p04/paired-p04-standing20-read-domain-throughput-32768/report.json": {
+    "path": "evidence/p04/paired-p04-standing20-read-domain-throughput-32768/report.json",
+    "sha256": "814b1ce9b4dd376bdffca05b41e1b56b2cd30c39da5bd1a85921f48bf17bd250",
+    "bytes": 9233
+  },
+  "p04/repair-local-o0-adapt-001/run.json": {
+    "path": "evidence/p04/repair-local-o0-adapt-001/run.json",
+    "sha256": "affee50148aa7dffbe8e5d17378991d31342efb5a13126a8ad3733e5308f873b",
+    "bytes": 81743
+  },
+  "p04/repair-local-o0-throughput-32768/report.json": {
+    "path": "evidence/p04/repair-local-o0-throughput-32768/report.json",
+    "sha256": "e9d332bf7d350284d3d56ef9a2cf54e3dec6d55a7ac42297877a1b9f9a270a07",
+    "bytes": 8851
+  },
+  "p04/paired-catch-allocation-001/run.json": {
+    "path": "evidence/p04/paired-catch-allocation-001/run.json",
+    "sha256": "f8c0cd3ac15d2a14ad474208f4038750c3fbd0518d3b191e1b66417b7f1837e0",
+    "bytes": 82781
+  },
+  "p04/paired-catch-throughput-32768/report.json": {
+    "path": "evidence/p04/paired-catch-throughput-32768/report.json",
+    "sha256": "a48a6752a258b7b4d9665741c28c0ff19e350296b28368ecb6bbed32b5aa1af8",
+    "bytes": 10328
+  },
+  "p04/frozen-norm-head1-allocation-001/run.json": {
+    "path": "evidence/p04/frozen-norm-head1-allocation-001/run.json",
+    "sha256": "3ddf70929a723f5f986c9cc925d08be8b8e06ce6bd27ee194220d82e2cdb90fb",
+    "bytes": 82004
+  },
+  "p04/velstand-v8-actual24576-001/run.json": {
+    "path": "evidence/p04/velstand-v8-actual24576-001/run.json",
+    "sha256": "b2638df0a8261e684e92fdb0cb7786af63c1d4dab5dc024b35ce1b81ba1170e2",
+    "bytes": 99396
+  },
+  "p04/fresh-p04-head1-allocation-001/run.json": {
+    "path": "evidence/p04/fresh-p04-head1-allocation-001/run.json",
+    "sha256": "c33d50f3322f4161ea5625417f208c3a72b5d32e752dc352f354b3f9fc60b56f",
+    "bytes": 81596
+  },
+  "p04/fresh-p04-head1-throughput-32768/report.json": {
+    "path": "evidence/p04/fresh-p04-head1-throughput-32768/report.json",
+    "sha256": "d8de0e020fce46754578f31ec0f7658dfd22513b9432a8344e4c4591a53a36b8",
+    "bytes": 8725
+  },
+  "p04/fresh-p04-head1-allocation-002/run.json": {
+    "path": "evidence/p04/fresh-p04-head1-allocation-002/run.json",
+    "sha256": "75c43255ce7926f08f0e2163d80141b72072ff5bdb40215da96b82a98d03c2d5",
+    "bytes": 81598
+  },
+  "p04/fresh-p04-head1-allocation-003/run.json": {
+    "path": "evidence/p04/fresh-p04-head1-allocation-003/run.json",
+    "sha256": "6ec7faab2fa3fb2993877bf9703af0cd5c8a700aa32341e2655d2cafc9c89333",
+    "bytes": 81596
+  },
+  "p04/sitstand-lesson4-allocation-001/run.json": {
+    "path": "evidence/p04/sitstand-lesson4-allocation-001/run.json",
+    "sha256": "60150f2888a8d081e8844c0f557d7d82f17c0fcf4ea9d60526689e1230b34c01",
+    "bytes": 83924
+  },
+  "p04/sitstand-lesson4-qualification-001.json": {
+    "path": "evidence/p04/sitstand-lesson4-qualification-001.json",
+    "sha256": "fce86d3ede143584a9e352807c365c74a179c37537f2d5aa458e8f99cdbba7bb",
+    "bytes": 12665
+  },
+  "p04/sitstand-lesson4-actual16384-001/report.json": {
+    "path": "evidence/p04/sitstand-lesson4-actual16384-001/report.json",
+    "sha256": "edcb26024f60a233ba48e28e2b949f71615b4dd7c5a237e9fb50b2e6f43ed65a",
+    "bytes": 19239
+  },
+  "p04/sitstand-lesson4-smoke-001/report.json": {
+    "path": "evidence/p04/sitstand-lesson4-smoke-001/report.json",
+    "sha256": "a94fe1ca1193abda65343f8efba8ba6dbdfb3dfe130ae0bb73c53aebd0b2b691",
+    "bytes": 14921
+  },
+  "p04/fresh-p04-1024-covered-polish/run.json": {
+    "path": "evidence/p04/fresh-p04-1024-covered-polish/run.json",
+    "sha256": "8ba7046ce0f3a7279e12eb8cf029bc7860e6ca2131639b5a594c8cf77bcbf668",
+    "bytes": 82684
+  },
+  "p04/paired-catch-full-pitch-allocation-001/run.json": {
+    "path": "evidence/p04/paired-catch-full-pitch-allocation-001/run.json",
+    "sha256": "c1cf8fa6839241f2bc7fe15ace12c737888a780cca1c6345d43b528967175963",
+    "bytes": 83899
+  },
+  "p04/paired-catch-full-pitch-throughput-32768/report.json": {
+    "path": "evidence/p04/paired-catch-full-pitch-throughput-32768/report.json",
+    "sha256": "4f22f473e0ed8820dbe6d32201a9d916a392ecdf43b7e715c31bf4304c386db7",
+    "bytes": 16601
+  },
+  "p04/velstand-camera-mature24576-control-002/run.json": {
+    "path": "evidence/p04/velstand-camera-mature24576-control-002/run.json",
+    "sha256": "393635892a839c60ddc3a7e99865f2e80ab157919c4d1485afd0f433e9f23939",
+    "bytes": 101451
+  },
+  "p04/head2-cap005-allocation-001/run.json": {
+    "path": "evidence/p04/head2-cap005-allocation-001/run.json",
+    "sha256": "d6e2460bdd68d69ea3e388ea0bf72735d8301156a6f0c96a549bb3255018b89a",
+    "bytes": 82650
+  },
+  "p04/head2-cap005-bench-32768/report.json": {
+    "path": "evidence/p04/head2-cap005-bench-32768/report.json",
+    "sha256": "ae127039c54d80a6f056098af2e3949ccc3e352dcfb609893864a78a1bb7f0b3",
+    "bytes": 15221
+  },
+  "p04/roulade-smoke-003/run.json": {
+    "path": "evidence/p04/roulade-smoke-003/run.json",
+    "sha256": "c9ad956f9d244821cfb617e1d04b8785afbfd3dc5ef31950f65f4821068e0572",
+    "bytes": 72400
+  },
+  "p04/sitstand-near-teacher-actual16384-diagnostic-001/run.json": {
+    "path": "evidence/p04/sitstand-near-teacher-actual16384-diagnostic-001/run.json",
+    "sha256": "abd67b04292b8dad94c10d48510a8657da3946ece199ff0c28d609e4354a8dbb",
+    "bytes": 76763
+  },
+  "p04/frozen-head2-allocation-001/run.json": {
+    "path": "evidence/p04/frozen-head2-allocation-001/run.json",
+    "sha256": "400919685d0f20b58b18a31c7b0c163ff7b71752718597477ff8618ac1023b0b",
+    "bytes": 82003
+  },
+  "p04/sitstand-history-hold320-allocation-001/run.json": {
+    "path": "evidence/p04/sitstand-history-hold320-allocation-001/run.json",
+    "sha256": "ef0e8842683a89e7ede36f2682c1b3870e3a71b0de6aae218d693b522646715f",
+    "bytes": 74469
+  },
+  "p04/sitstand-history-hold320-qualification-001.json": {
+    "path": "evidence/p04/sitstand-history-hold320-qualification-001.json",
+    "sha256": "d4276745a659dc7a3e336d2263c01fcef721d046e7474644f8cd76721831e579",
+    "bytes": 13254
+  },
+  "p04/sitstand-history-hold320-actual16384-001/report.json": {
+    "path": "evidence/p04/sitstand-history-hold320-actual16384-001/report.json",
+    "sha256": "e5a42a787e850809cf3cf4eea8c9a01d1aafb93f169e50b6680a2d8b05d3d2a9",
+    "bytes": 17013
+  },
+  "p04/sitstand-history-hold320-smoke-001/report.json": {
+    "path": "evidence/p04/sitstand-history-hold320-smoke-001/report.json",
+    "sha256": "04640a693c4ce9c39b779905c3397a31d96276ae290557b68a1ca1ae2d744b95",
+    "bytes": 15311
+  },
+  "p04/sitstand-history-hold320-cpu-001.json": {
+    "path": "evidence/p04/sitstand-history-hold320-cpu-001.json",
+    "sha256": "b6e2191cfdeea23b5368a219a9668a91cf8ed3ef9cf44eb4bacc5dbe9a8bef5b",
+    "bytes": 14714
+  },
+  "p04/fresh-p04-allocation-001/run.json": {
+    "path": "evidence/p04/fresh-p04-allocation-001/run.json",
+    "sha256": "13a53a1e00d8cbb63d66185a1451da67626f8e9507812dd4b05c71ade483d252",
+    "bytes": 81924
+  },
+  "p04/fresh-p04-throughput-32768/report.json": {
+    "path": "evidence/p04/fresh-p04-throughput-32768/report.json",
+    "sha256": "3477d88efa353d7596917768fd23a74760064f88a8744253129e05fe840382de",
+    "bytes": 8199
+  },
+  "p04/ballkick-finish-actual24576-001/run.json": {
+    "path": "evidence/p04/ballkick-finish-actual24576-001/run.json",
+    "sha256": "956aaf00a4d94652b3ba01c0468615cbd0262a5cf43eeb6e799d428b3a8c4c78",
+    "bytes": 75804
+  },
+  "p04/sitstand-history-hold320-actual16384-001/run.json": {
+    "path": "evidence/p04/sitstand-history-hold320-actual16384-001/run.json",
+    "sha256": "8d8dd419f1fc9cccfdd0b31772adcdaea96803733ff6382a3b49756348b902bf",
+    "bytes": 74367
+  },
+  "p04/sitstand-actual32768-001/run.json": {
+    "path": "evidence/p04/sitstand-actual32768-001/run.json",
+    "sha256": "2862e1a86387c34dbb914f9cf77a96c44c831a04c59392b439da8696d0a6165d",
+    "bytes": 83264
+  },
+  "p04/frozen-head2-allocation-002/run.json": {
+    "path": "evidence/p04/frozen-head2-allocation-002/run.json",
+    "sha256": "a9792da994ebedc020ee49008f0384d6dfc9c894926b02861a30531cd6623f23",
+    "bytes": 81986
+  },
+  "p04/walking-yaw-fine-allocation-001/run.json": {
+    "path": "evidence/p04/walking-yaw-fine-allocation-001/run.json",
+    "sha256": "b3a13421ae240337fdf046af0239a70e885671c22d16a3f50d5a57fd30cd1160",
+    "bytes": 79590
+  },
+  "p04/velstand-v8-smoke-005/run.json": {
+    "path": "evidence/p04/velstand-v8-smoke-005/run.json",
+    "sha256": "4d8a7e3b1e92a5c955a88bad935a31e468f8db38d2fb4617b096b0a30bb346c3",
+    "bytes": 99383
+  },
+  "p04/sitstand-transition-release-allocation-001/run.json": {
+    "path": "evidence/p04/sitstand-transition-release-allocation-001/run.json",
+    "sha256": "a645b5c5c5375af2b6502d54075e4313c9a2d2444932acca73496e04df7c8584",
+    "bytes": 84195
+  },
+  "p04/walking-discovery-allocation-001/run.json": {
+    "path": "evidence/p04/walking-discovery-allocation-001/run.json",
+    "sha256": "45150d80c3caa3a7acc7f534fa78bbe9f608c11132cd023537ad60ee2f3beaf0",
+    "bytes": 79137
+  },
+  "p04/walking-final-qualification.json": {
+    "path": "evidence/p04/walking-final-qualification.json",
+    "sha256": "98ac293fbe48b070ab3e840221cc9c62263914e188db5106eea2ebf6e6450005",
+    "bytes": 13950
+  },
+  "p04/velstand-head-free-bc-allocation-001/run.json": {
+    "path": "evidence/p04/velstand-head-free-bc-allocation-001/run.json",
+    "sha256": "b816f9d82beb156c63d918e1bc3577346be21e7ac794bdf6353ac5b7fc8047ba",
+    "bytes": 101576
+  },
+  "p04/velstand-head-free-bc-qualification-001.json": {
+    "path": "evidence/p04/velstand-head-free-bc-qualification-001.json",
+    "sha256": "a55a73a30e3d867c029518d8480f0b6093f6ac8016d8962aa45b329016071564",
+    "bytes": 33038
+  },
+  "p04/sitstand-transition-release-smoke-001/run.json": {
+    "path": "evidence/p04/sitstand-transition-release-smoke-001/run.json",
+    "sha256": "8374f9de11ef871f9deea2ca6b25f8f9e99ad8980532c8a90e3f07d4aa250821",
+    "bytes": 84078
+  },
+  "p04/walking-yaw-fine-smoke-64/run.json": {
+    "path": "evidence/p04/walking-yaw-fine-smoke-64/run.json",
+    "sha256": "4af96d74d62c71a6e33cf6bc15f5503b3d079e75cad2d97b33d6564363f1ba6c",
+    "bytes": 79486
+  },
+  "p04/sitstand-actual16384-001/run.json": {
+    "path": "evidence/p04/sitstand-actual16384-001/run.json",
+    "sha256": "8dc6832d57595ff9195503165446e6acc11ea374c6e1b3a234b21d1bc1ecad06",
+    "bytes": 83212
+  },
+  "p04/sitstand-transition-release-actual16384-001/run.json": {
+    "path": "evidence/p04/sitstand-transition-release-actual16384-001/run.json",
+    "sha256": "1b54702482800ec72494cefb4b7f81802d7970186af18504123dc23384e9c40f",
+    "bytes": 84092
+  },
+  "p04/roulade-control-mature64-001/run.json": {
+    "path": "evidence/p04/roulade-control-mature64-001/run.json",
+    "sha256": "da3d0c9e8d24b71765e9dbf2544b2de9d1a3c7f0cf2c86e0e7c41497da60cef7",
+    "bytes": 71867
+  },
+  "p04/head2-cap005-allocation-002/run.json": {
+    "path": "evidence/p04/head2-cap005-allocation-002/run.json",
+    "sha256": "21e0baecf5f2fdd3fe4c4c604e8d724a3aa6b0c1ae195f4b4d9bef620f0036bc",
+    "bytes": 82593
+  },
+  "p04/roulade-history-smoke64-001/run.json": {
+    "path": "evidence/p04/roulade-history-smoke64-001/run.json",
+    "sha256": "e6a8213de0a0c338374532676b25ef0a352ee5af6cec434917e6530ee71a4ad6",
+    "bytes": 72526
+  },
+  "p04/sitstand-training-smoke-cap64/run.json": {
+    "path": "evidence/p04/sitstand-training-smoke-cap64/run.json",
+    "sha256": "0eb37490441d91f38d559d25e051bd99ff8de2b6e153d8cc49d18e89b9aa2f9d",
+    "bytes": 83209
+  },
+  "p04/velstand-camera-mature24576-mild-001/run.json": {
+    "path": "evidence/p04/velstand-camera-mature24576-mild-001/run.json",
+    "sha256": "cf266f6942ef8204bb29571f3d93222b1b8fbcef97fc908e45be444a77020ad6",
+    "bytes": 101294
+  },
+  "p04/ballkick-finish-smoke-001/run.json": {
+    "path": "evidence/p04/ballkick-finish-smoke-001/run.json",
+    "sha256": "eb83a865fc93e928c3ec907846c662e7c0d7bb2cecaeea395975eb0687b2e457",
+    "bytes": 75790
+  },
+  "p04/velstand-ppo-bc-directions-validation-001/run.json": {
+    "path": "evidence/p04/velstand-ppo-bc-directions-validation-001/run.json",
+    "sha256": "be1e5347ed7a4bb0f0cfd4efaad51fe8693204eb2fbaa2dc6ef73a8b113e9472",
+    "bytes": 101367
+  },
+  "p04/frozen-norm-head1-allocation-003/run.json": {
+    "path": "evidence/p04/frozen-norm-head1-allocation-003/run.json",
+    "sha256": "88f1fceb4560a7f5a9475719253357a9f5f4005c01aaff44570bab00bb47be26",
+    "bytes": 82001
+  },
+  "p04/sitstand-history-base-allocation-002/run.json": {
+    "path": "evidence/p04/sitstand-history-base-allocation-002/run.json",
+    "sha256": "036484d765567e9e40a607a321211b699ee393115730eac6eb5de6451602e266",
+    "bytes": 81231
+  },
+  "p04/sitstand-history-base-qualification-002.json": {
+    "path": "evidence/p04/sitstand-history-base-qualification-002.json",
+    "sha256": "a44b7ae3508ad83ca8619fc92570a23637c549fb2298d18c33d6c4b2720253f5",
+    "bytes": 13044
+  },
+  "p04/sitstand-history-base-cpu-001.json": {
+    "path": "evidence/p04/sitstand-history-base-cpu-001.json",
+    "sha256": "c38498e733c1eca4d0295906f2b2d87f13affa18cca2152fed2295520dfdc5ad",
+    "bytes": 27181
+  },
+  "p04/sitstand-history-base-actual16384-002/report.json": {
+    "path": "evidence/p04/sitstand-history-base-actual16384-002/report.json",
+    "sha256": "44d714c1e0515df52fa9346cfea28690bf2f9f3e47a43b18a98262ed2acee38d",
+    "bytes": 16849
+  },
+  "p04/sitstand-history-base-smoke-002/report.json": {
+    "path": "evidence/p04/sitstand-history-base-smoke-002/report.json",
+    "sha256": "aba814e377d144710f3f283e3e2edbf8bd16b1831e54ba49322124429ac44d31",
+    "bytes": 15141
+  },
+  "audit-training-budget-current.py": {
+    "path": "evidence/audit-training-budget-current.py",
+    "sha256": "522db274ace25befd7e9f5021c61771bfc7f9b8b39e4348155b3a511b747217c",
+    "bytes": 18239
+  },
+  "baseline/run-groundpick-baseline-discovery-002.py": {
+    "path": "evidence/baseline/run-groundpick-baseline-discovery-002.py",
+    "sha256": "c0b195318ebf3bfe8771ffde2cad8b2aac63df090b9fd90671f196ef26f35f3b",
+    "bytes": 10375
+  },
+  "baseline/validate_groundpick_baseline_gpu.py": {
+    "path": "evidence/baseline/validate_groundpick_baseline_gpu.py",
+    "sha256": "1b29528afff0125d8f3e64f38a06d0892acc37a858c40a90295d8944b6efe403",
+    "bytes": 9759
+  },
+  "baseline/validate_groundpick_baseline_cpu.py": {
+    "path": "evidence/baseline/validate_groundpick_baseline_cpu.py",
+    "sha256": "309db6dfb284ea7c0729fa955cca583624206bf0f44d6c1ded5ef61eac8e4a96",
+    "bytes": 5902
+  },
+  "repro-staging/training-budget-closed.json": {
+    "path": "evidence/repro-staging/training-budget-closed.json",
+    "sha256": "d84543009a712dd1454eeced0d3800cba1ec5eee0e4dabbcadce9b8f1504b27c",
+    "bytes": 2578865
+  },
+  "p04/head2-late-entropy-allocation-002/actual-wall-time.json": {
+    "path": "evidence/p04/head2-late-entropy-allocation-002/actual-wall-time.json",
+    "sha256": "68ee9e2f65b95f2087e4662e8959c7b1eaedaa2f5f4a2c6199b719167ab94dca",
+    "bytes": 558
+  },
+  "p04/paired-frozen20-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/paired-frozen20-allocation-001/actual-wall-time.json",
+    "sha256": "b557ea2d595ddced7f089a5495bfd971bdc044a3ee8a4a64f43686b3b419ad79",
+    "bytes": 459
+  },
+  "p04/paired-late-entropy-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/paired-late-entropy-allocation-001/actual-wall-time.json",
+    "sha256": "cb4820643b8223d9c0e96784a51748d82f17f4a8291ca93974258ad9841df319",
+    "bytes": 492
+  },
+  "p04/walking-yaw-fine-allocation-002/actual-wall-time.json": {
+    "path": "evidence/p04/walking-yaw-fine-allocation-002/actual-wall-time.json",
+    "sha256": "2cac802476ae0c62d75fd9d2a185939569827867826a9489cfa88eac57b842d0",
+    "bytes": 1051
+  },
+  "p04/paired-stdcap-allocation-003/actual-wall-time.json": {
+    "path": "evidence/p04/paired-stdcap-allocation-003/actual-wall-time.json",
+    "sha256": "4e3af2f08148f6715ddf618f6abfe985be0d437225004fbb97467d54c5ff7ab4",
+    "bytes": 1053
+  },
+  "p04/head2-phase-accuracy-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/head2-phase-accuracy-allocation-001/actual-wall-time.json",
+    "sha256": "ce75fc911b7eea30053d2188891f36b3a3bb6cfafd8777e3bf817840c59a620f",
+    "bytes": 224
+  },
+  "p04/velstand-v8-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/velstand-v8-allocation-001/actual-wall-time.json",
+    "sha256": "dcc59d562cdb94d50d200a8deab6949f647f1452bea2a9134e1e27947e565922",
+    "bytes": 1136
+  },
+  "p04/head2-roll-fine-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/head2-roll-fine-allocation-001/actual-wall-time.json",
+    "sha256": "f8476d347182959116789b038afa0e1d67102921c98eda575ebcdd0ee2484c7e",
+    "bytes": 349
+  },
+  "p04/head2-accuracy-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/head2-accuracy-allocation-001/actual-wall-time.json",
+    "sha256": "3bcb26578fad17854abde66a90ef74e8824bb62ce7c825d1e69f728b0e0fa99f",
+    "bytes": 348
+  },
+  "p04/head2-balance-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/head2-balance-allocation-001/actual-wall-time.json",
+    "sha256": "afd19ab83a3abad9eac3c2791e296a9817fed9a8a09b7aa479310348ed19e9ef",
+    "bytes": 721
+  },
+  "p04/head2-timeout-phase-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/head2-timeout-phase-allocation-001/actual-wall-time.json",
+    "sha256": "215fb158d06053b7c44113dc3f225e53d4deb00c161ea00327fff2222812f704",
+    "bytes": 224
+  },
+  "p04/head2-stdcap-lr-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/head2-stdcap-lr-allocation-001/actual-wall-time.json",
+    "sha256": "786c6e5df4d32241684578f9ded999eb68ac25e390513d021577469374501af9",
+    "bytes": 350
+  },
+  "p04/head2-exposure-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/head2-exposure-allocation-001/actual-wall-time.json",
+    "sha256": "486f66f7acf50bb86a412e204b7e252f60884499d780f74970107a68778a677a",
+    "bytes": 364
+  },
+  "p04/native-read-head1-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/native-read-head1-allocation-001/actual-wall-time.json",
+    "sha256": "7b1b668597b40ee60f24341b961c1391fb53de00be090ff5d96535bb1d3cad21",
+    "bytes": 777
+  },
+  "p04/paired-stdcap-allocation-002/actual-wall-time.json": {
+    "path": "evidence/p04/paired-stdcap-allocation-002/actual-wall-time.json",
+    "sha256": "5c3e8741563c2e82b34de7660268d84a6efb43d622b5fc2959ea686f7b29b450",
+    "bytes": 1053
+  },
+  "p04/paired-short-catch-allocation-002/actual-wall-time.json": {
+    "path": "evidence/p04/paired-short-catch-allocation-002/actual-wall-time.json",
+    "sha256": "f4409f9992cdb8ffa87d7fac5c73e5a8fbdd7516eeb30f0ce9f48ea293596c4f",
+    "bytes": 282
+  },
+  "p04/train-velstand-v8-final-with-fault-audit.py": {
+    "path": "evidence/p04/train-velstand-v8-final-with-fault-audit.py",
+    "sha256": "db6f01a877c1adff483733da5980677a049c202bb1710bca991bdf5ab32cfda5",
+    "bytes": 6977
+  },
+  "p04/velstand-v8-allocation-002/actual-wall-time.json": {
+    "path": "evidence/p04/velstand-v8-allocation-002/actual-wall-time.json",
+    "sha256": "bf8b4cbaa8b8986094a075e22325e109a635f24ec37a5f8c07ef3f34999e9498",
+    "bytes": 492
+  },
+  "p04/head2-micro-control-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/head2-micro-control-allocation-001/actual-wall-time.json",
+    "sha256": "8668834dc333e78f27d163a92325e099ce20ead81f54a39a2f504cbc7f495f57",
+    "bytes": 350
+  },
+  "p04/head2-micro-exposure-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/head2-micro-exposure-allocation-001/actual-wall-time.json",
+    "sha256": "d5c82c358f4d8c91a44cc55f8c233a5722f96e3bed4829f5b1a6a9b160ebfe4e",
+    "bytes": 350
+  },
+  "p04/fresh-p04-m4-allocation-002/actual-wall-time.json": {
+    "path": "evidence/p04/fresh-p04-m4-allocation-002/actual-wall-time.json",
+    "sha256": "b38180b9f3092246eb64c868dc07e9af581cd70fc07108ff5cd55b5bd913a53c",
+    "bytes": 672
+  },
+  "p04/paired-head-balance-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/paired-head-balance-allocation-001/actual-wall-time.json",
+    "sha256": "22be8e88644c2f35af1f820f2ca55ebf25bd4015dcf24881be98b0d715207493",
+    "bytes": 304
+  },
+  "p04/paired-head-accuracy-allocation-003/actual-wall-time.json": {
+    "path": "evidence/p04/paired-head-accuracy-allocation-003/actual-wall-time.json",
+    "sha256": "dbca740f734d8ac4cf4f62c752e00843bbb49af2b8c983c33218a7c900f7f8a7",
+    "bytes": 1089
+  },
+  "p04/paired-p04-adapt-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/paired-p04-adapt-allocation-001/actual-wall-time.json",
+    "sha256": "ad11bf11d949bfd715deb452c15b904f5033cf355b3202d24772f05e8ca8099e",
+    "bytes": 689
+  },
+  "p04/paired-catch-pitch10-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/paired-catch-pitch10-allocation-001/actual-wall-time.json",
+    "sha256": "2f9aeac56525f57ffaa7d63bdeab5175c15e1e178ce7a75af9a885b1de3e49a5",
+    "bytes": 529
+  },
+  "p04/paired-rollout12-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/paired-rollout12-allocation-001/actual-wall-time.json",
+    "sha256": "1b1a84fcf57a4aa4893a4e60c132a85cf64b20f12589fbad1bb74aa38c865302",
+    "bytes": 1072
+  },
+  "p04/fresh-p04-m4-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/fresh-p04-m4-allocation-001/actual-wall-time.json",
+    "sha256": "6ec4488139c9c0695b141763bbbc98936f0306aa02503dee5ebde812b6205378",
+    "bytes": 739
+  },
+  "p04/paired-head-accuracy-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/paired-head-accuracy-allocation-001/actual-wall-time.json",
+    "sha256": "efab87586393943d86c886c85ba9a834e300ced96f7ae9cf2b9a75e47d22e109",
+    "bytes": 1082
+  },
+  "p04/paired-head-accuracy-allocation-002/actual-wall-time.json": {
+    "path": "evidence/p04/paired-head-accuracy-allocation-002/actual-wall-time.json",
+    "sha256": "6eb9fa70755d804863d69fc41a2256d25f2fcc586b5bee3ccc02301b49d82d67",
+    "bytes": 1090
+  },
+  "p04/paired-short-catch-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/paired-short-catch-allocation-001/actual-wall-time.json",
+    "sha256": "4e7e2928a28c83c873c7510a421257a52cb299fc2f33d67ffd2a35c286d99a09",
+    "bytes": 287
+  },
+  "p04/head2-late-entropy-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/head2-late-entropy-allocation-001/actual-wall-time.json",
+    "sha256": "f747e7bf0a53de7f98538ec714ad26a111904b17c3b6b2e2b102c9c883ac7933",
+    "bytes": 525
+  },
+  "p04/frozen-head2-allocation-003/actual-wall-time.json": {
+    "path": "evidence/p04/frozen-head2-allocation-003/actual-wall-time.json",
+    "sha256": "10ea4793549ad504dd2219d7602d4892bf9b6e59c4d7dd2d4473fac712d163d7",
+    "bytes": 721
+  },
+  "p04/paired-p04-standing20-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/paired-p04-standing20-allocation-001/actual-wall-time.json",
+    "sha256": "e939aa057098f2d8d53381839418054c09ee2392c32304af45d4409e14764f26",
+    "bytes": 607
+  },
+  "p04/paired-catch-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/paired-catch-allocation-001/actual-wall-time.json",
+    "sha256": "2e04c883bac51c82d7b214ea5f31d91008481c7eabf1477046ab043afd079efb",
+    "bytes": 299
+  },
+  "p04/frozen-norm-head1-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/frozen-norm-head1-allocation-001/actual-wall-time.json",
+    "sha256": "ddda7a7d8c87f176ce9c108edfb24976120659d32631ef20756ce39aaf6b3062",
+    "bytes": 780
+  },
+  "p04/fresh-p04-head1-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/fresh-p04-head1-allocation-001/actual-wall-time.json",
+    "sha256": "faab7f1d80f27a89e6e3b5f90be0b93143a1d029551acee46e94e2d25d1f0b4f",
+    "bytes": 681
+  },
+  "p04/paired-catch-full-pitch-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/paired-catch-full-pitch-allocation-001/actual-wall-time.json",
+    "sha256": "84b14d478eaf5bb7a482dc8c976245228655ba9d69316ac1a7bc7d2c4550d252",
+    "bytes": 1105
+  },
+  "p04/head2-cap005-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/head2-cap005-allocation-001/actual-wall-time.json",
+    "sha256": "5a39c727e7affc3df1f8ab5b90776694d5fdd655e3cfebe849808124283c2217",
+    "bytes": 348
+  },
+  "p04/walking-yaw-fine-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/walking-yaw-fine-allocation-001/actual-wall-time.json",
+    "sha256": "a24e0925b44d07de7a0e7affa8dc45f4f3397a25865bc053bd53cd7ae49678d4",
+    "bytes": 1198
+  },
+  "p04/walking-discovery-allocation-001/actual-wall-time.json": {
+    "path": "evidence/p04/walking-discovery-allocation-001/actual-wall-time.json",
+    "sha256": "745d6e20fa16cd1b0627c1c16db9fbe5a916532c89cb5f8808e40145a31f22eb",
+    "bytes": 967
+  },
+  "p04/head2-cap005-allocation-002/actual-wall-time.json": {
+    "path": "evidence/p04/head2-cap005-allocation-002/actual-wall-time.json",
+    "sha256": "dbf0b106abb00c23d551c91c87a4325992ecd5d6b7783befd9605d4d58c5738c",
+    "bytes": 326
+  },
+  "baseline/run-groundpick-baseline-discovery-001.py": {
+    "path": "evidence/baseline/run-groundpick-baseline-discovery-001.py",
+    "sha256": "7762e4f67192675d4e375264a2480e5eaaf0abce9c0192aa8881d44ab2a3930b",
+    "bytes": 10375
+  },
+  "baseline/groundpick-baseline-discovery-status-001.json": {
+    "path": "evidence/baseline/groundpick-baseline-discovery-status-001.json",
+    "sha256": "e2a33c5c3f615f735a741957177ae8c018f36a9fd2eed1278fbb73c7525de3ce",
+    "bytes": 811
+  },
+  "baseline/groundpick-baseline-discovery-status-002.json": {
+    "path": "evidence/baseline/groundpick-baseline-discovery-status-002.json",
+    "sha256": "d9d9a824fa978e29197ced0948898fe8718e93bc1eb2c345b504e0d79264526c",
+    "bytes": 2722
+  },
+  "baseline/groundpick-baseline-cpu-admission-retry-002.json": {
+    "path": "evidence/baseline/groundpick-baseline-cpu-admission-retry-002.json",
+    "sha256": "3d2f34753f2620b5b37336d3cb11fdb9513c381a1ad1e9a8242204e07f6ede81",
+    "bytes": 465
+  },
+  "baseline/groundpick-baseline-cpu-report-repair-003.json": {
+    "path": "evidence/baseline/groundpick-baseline-cpu-report-repair-003.json",
+    "sha256": "feb578b531e7be9dbb11f3fc72ae35fb791ccd909158cf7203acd2225f0dd5ef",
+    "bytes": 451
+  },
+  "p04/audit_fresh_p04_full_head_reward_v2.py": {
+    "path": "evidence/p04/audit_fresh_p04_full_head_reward_v2.py",
+    "sha256": "02ae8d14e51f1dff8b92a54c4bbebcc6cb3c2387994f2dc281f939789aadb723",
+    "bytes": 26893
+  },
+  "p04/audit_frozen_head2_reward_alignment.py": {
+    "path": "evidence/p04/audit_frozen_head2_reward_alignment.py",
+    "sha256": "fbce6cc30be0671244bf2e14d35edcc9a032b380375dcf3bd119bc1dee7f3b70",
+    "bytes": 3163
+  },
+  "p04/audit_groundpick_clearance64.py": {
+    "path": "evidence/p04/audit_groundpick_clearance64.py",
+    "sha256": "073f49d23294820282321ccba67f9f8e226feec1d7555a25959552e998ff0f11",
+    "bytes": 1887
+  },
+  "p04/audit_sitstand_teacher_contract_001.py": {
+    "path": "evidence/p04/audit_sitstand_teacher_contract_001.py",
+    "sha256": "282e0c21102562e768e139d93c83c5810136e6050855f7c49d72f299e4de2e59",
+    "bytes": 4822
+  },
+  "p04/audit_fresh_p04_legs_noise_v4.py": {
+    "path": "evidence/p04/audit_fresh_p04_legs_noise_v4.py",
+    "sha256": "2e2d9ebb7c8204df02e20a6b781faeeaf3209de4631a65c085d5ba4a9c87bfa1",
+    "bytes": 28382
+  },
+  "p04/audit_sitstand_history_model_cpu.py": {
+    "path": "evidence/p04/audit_sitstand_history_model_cpu.py",
+    "sha256": "d00b0475c7f54470433b04071b4ba0b8d8e0bb7030dabb490aae8a8512fe1a62",
+    "bytes": 1964
+  },
+  "p04/audit_groundpick_lowstart_contact.py": {
+    "path": "evidence/p04/audit_groundpick_lowstart_contact.py",
+    "sha256": "ca7384217564541a25d415f730543d192f4fb1ee716eb1337f45c26d084cd108",
+    "bytes": 2835
+  },
+  "p04/audit_ballkick256_384_cpu.py": {
+    "path": "evidence/p04/audit_ballkick256_384_cpu.py",
+    "sha256": "be313f2f8419300830a177f16715d2b5774a6919611c4c6722fda54c6b8365cc",
+    "bytes": 4591
+  },
+  "p04/audit_fresh_p04_legs_noise_v3.py": {
+    "path": "evidence/p04/audit_fresh_p04_legs_noise_v3.py",
+    "sha256": "1c4c73387e227afaf6c9711b29e6e7575b06a6b8e1307b49ad733a8fd54da081",
+    "bytes": 28332
+  },
+  "p04/audit_sitstand640_stand_cpu.py": {
+    "path": "evidence/p04/audit_sitstand640_stand_cpu.py",
+    "sha256": "3a72c66220ffcd53434d3fef9d428703dc15683ac489e64e1f76fab108eca810",
+    "bytes": 6955
+  },
+  "p04/audit_groundpick_static_support_001.py": {
+    "path": "evidence/p04/audit_groundpick_static_support_001.py",
+    "sha256": "3b437d0b530f80f7a88a788572673e5210e284be029696220f282d33b82d8d04",
+    "bytes": 9979
+  },
+  "p04/audit_v2_active_axis_aggregation.py": {
+    "path": "evidence/p04/audit_v2_active_axis_aggregation.py",
+    "sha256": "b0f2a4636e07d1c485693199d149934aebafea7803ff1ac7de8a67a43f81cffc",
+    "bytes": 6472
+  },
+  "p04/audit_frozen_head2_continuation_alignment.py": {
+    "path": "evidence/p04/audit_frozen_head2_continuation_alignment.py",
+    "sha256": "4de06a92b16a1160c94ca17eec2406727294f63f9229c425fac69101835821c9",
+    "bytes": 3176
+  },
+  "p04/audit_sitstand_fresh_key_001.py": {
+    "path": "evidence/p04/audit_sitstand_fresh_key_001.py",
+    "sha256": "0f6c234b7d751d3e9a59b9f7dddb3f0d9d8d2d705c86fc82197ce0b860b33573",
+    "bytes": 6455
+  },
+  "p04/audit_sitstand_slow_path_cpu_001.py": {
+    "path": "evidence/p04/audit_sitstand_slow_path_cpu_001.py",
+    "sha256": "c653191bdf2834183e0630bdec0336bccc0f68390078a147628bf2767dac6469",
+    "bytes": 2774
+  },
+  "p04/audit_sitstand_history320_reward_cpu.py": {
+    "path": "evidence/p04/audit_sitstand_history320_reward_cpu.py",
+    "sha256": "a2813b45f5ad284a46288bef5c5370f41b1324ce193e97ea955842615eaa4d23",
+    "bytes": 5016
+  },
+  "p04/audit_fresh_p04_full_head_reward.py": {
+    "path": "evidence/p04/audit_fresh_p04_full_head_reward.py",
+    "sha256": "5b8d2401fe31d902ed1483c8817f8cffd209c3f792e4335e5e77e7e07b12c5af",
+    "bytes": 24432
+  },
+  "p04/audit_groundpick_branch_cpu_001.py": {
+    "path": "evidence/p04/audit_groundpick_branch_cpu_001.py",
+    "sha256": "4abe1d3d43b51b98ddcfe7f1f06ef24460a77165dd04603e8668d482dea6acee",
+    "bytes": 14283
+  },
+  "p04/audit-head-command-lattice.py": {
+    "path": "evidence/p04/audit-head-command-lattice.py",
+    "sha256": "b429b8404306c4ac77b78a152910a471453201cd0ee1f2740d3432d930ae99ab",
+    "bytes": 4896
+  },
+  "p04/audit-ballkick-initial-self-001.py": {
+    "path": "evidence/p04/audit-ballkick-initial-self-001.py",
+    "sha256": "1b6aee03eb68120d6eb13bddadfaead2551c134e03c4c13cb6adce2358d9bbbb",
+    "bytes": 1850
+  },
+  "p04/audit-roulade-noise-bound-cpu.py": {
+    "path": "evidence/p04/audit-roulade-noise-bound-cpu.py",
+    "sha256": "a4ab88b67be98c89dc90b406d972b01fbb61795fe11b83fbb29bc0bc85be4c0b",
+    "bytes": 1256
+  },
+  "p04/audit-velstand-longhold-health-001.py": {
+    "path": "evidence/p04/audit-velstand-longhold-health-001.py",
+    "sha256": "e216bb1ba245ec9a80ca72b81bd418bbe8dfc51ec3f87f268d8f95c6c6223bed",
+    "bytes": 3826
+  },
+  "p04/audit-roulade-landing-reward-cpu.py": {
+    "path": "evidence/p04/audit-roulade-landing-reward-cpu.py",
+    "sha256": "93a81f53dcf2681d12f50c65dc9e50e7b09a489a7c319e4d91cadbcbd7b52829",
+    "bytes": 8493
+  },
+  "p04/audit-ballkick-85-saved.py": {
+    "path": "evidence/p04/audit-ballkick-85-saved.py",
+    "sha256": "9df4325b3e03043c9ce0ac06ec58010007b5292dc3be9bec657f78cd5664fc15",
+    "bytes": 1924
+  },
+  "p04/audit-ballkick-reward-semantics.py": {
+    "path": "evidence/p04/audit-ballkick-reward-semantics.py",
+    "sha256": "691a7f9480c61efc95f07efac0b083c2bf02b02e75c5de2387a5f656059cc3b4",
+    "bytes": 2526
+  },
+  "p04/audit-groundpick-precision-camera-parity-001.py": {
+    "path": "evidence/p04/audit-groundpick-precision-camera-parity-001.py",
+    "sha256": "81625b5604019240dada23215b7dbd60716cced421ebf432b691d6f04680da5b",
+    "bytes": 7455
+  },
+  "p04/audit-v2-straight-paths-001.py": {
+    "path": "evidence/p04/audit-v2-straight-paths-001.py",
+    "sha256": "956846bd8daa271c9a09f72a3ec32f70158d0a551da80c1d6c87d4b532ab30e2",
+    "bytes": 4590
+  },
+  "p04/audit-historical-camera-for-v2.py": {
+    "path": "evidence/p04/audit-historical-camera-for-v2.py",
+    "sha256": "3fcc61695cfa82e473ead0f8fdcaabd300f6aecaa2864d6f4f3140014c737d42",
+    "bytes": 3058
+  },
+  "p04/audit-walking-heading-rate-001.py": {
+    "path": "evidence/p04/audit-walking-heading-rate-001.py",
+    "sha256": "3eec9b958a78080b847b46ac3f622fe45b7a12a7a3c55d6874587e833a0a80cc",
+    "bytes": 3507
+  },
+  "p04/audit-camera-world-residual.py": {
+    "path": "evidence/p04/audit-camera-world-residual.py",
+    "sha256": "5397d68a0219d4b9df66567aa10371b861cafb8192f781a7bae9cc4186f0d1f1",
+    "bytes": 5048
+  },
+  "p04/audit-roulade-actual-reset-failure.py": {
+    "path": "evidence/p04/audit-roulade-actual-reset-failure.py",
+    "sha256": "c8c8f279f9785d530c78ef705702e904b3c61b20f8a7a84a78fcb3ed8260f73a",
+    "bytes": 1584
+  },
+  "p04/audit-roulade-pair-320.py": {
+    "path": "evidence/p04/audit-roulade-pair-320.py",
+    "sha256": "a3003b365bae8aa0709c7855965525db3015ceca45847826008dc5407dc72b95",
+    "bytes": 3596
+  },
+  "p04/audit-groundpick-static-torque-006.py": {
+    "path": "evidence/p04/audit-groundpick-static-torque-006.py",
+    "sha256": "63570c1d99823ed2b40b0ee34b01f2ea9e3ea9309457f092be0a3e08d5149e6f",
+    "bytes": 8359
+  },
+  "p04/audit-roulade-0128-behavior.py": {
+    "path": "evidence/p04/audit-roulade-0128-behavior.py",
+    "sha256": "c589df4217bf1a9a181658c3c5968d4c955283ade5b93343fa7b33c7b5b26826",
+    "bytes": 1683
+  },
+  "p04/audit-ballkick-finish-proposal.py": {
+    "path": "evidence/p04/audit-ballkick-finish-proposal.py",
+    "sha256": "83d0efb2ca034a5dab0aa43cd24063be4f257cf034d695691b50f62074a2d433",
+    "bytes": 1887
+  },
+  "p04/audit-roulade-landing-rewards-001.py": {
+    "path": "evidence/p04/audit-roulade-landing-rewards-001.py",
+    "sha256": "e5ce8e7eab8bee0b443b4b07ccbb3b7de4101acb5de985d386fb4c52e862a57e",
+    "bytes": 4992
+  },
+  "p04/audit-ballkick-handoff-001.py": {
+    "path": "evidence/p04/audit-ballkick-handoff-001.py",
+    "sha256": "46c8273bacc3afec42f9a33893244e7ebff5dbacb1e6798a5cff29858e462039",
+    "bytes": 2803
+  },
+  "p04/audit-roulade-endpoint-0256-behavior.py": {
+    "path": "evidence/p04/audit-roulade-endpoint-0256-behavior.py",
+    "sha256": "1dfd1d77f1cd18fc75266d1c8c61e9d9dea868f73d82eb2a3977b9967ff6b046",
+    "bytes": 1701
+  },
+  "p04/evaluate-velstand-teacher-yaw-001.py": {
+    "path": "evidence/p04/evaluate-velstand-teacher-yaw-001.py",
+    "sha256": "7f17bfcbdfb4f3527c8d43d4c34c18097fe2cc1132761d409d83ceb37fee92d7",
+    "bytes": 13205
+  },
+  "p04/evaluate_v2_velstand_longhold_001.py": {
+    "path": "evidence/p04/evaluate_v2_velstand_longhold_001.py",
+    "sha256": "392ebad8a150903442a7872cdcf66f507b43445e2c271ce889709d96a79da504",
+    "bytes": 13575
+  },
+  "p04/evaluate_v2_sitstand_command_clock_fixed_001.py": {
+    "path": "evidence/p04/evaluate_v2_sitstand_command_clock_fixed_001.py",
+    "sha256": "c190b3e481fe98627bf1923bdb1530f3958c367408e3868068195c5612c92794",
+    "bytes": 13673
+  },
+  "p04/evaluate_v2_walking_fastsummary.py": {
+    "path": "evidence/p04/evaluate_v2_walking_fastsummary.py",
+    "sha256": "d15edb8f40c378c023a98bb36b99fa47efd9266c7c0503b4723d1853295281ca",
+    "bytes": 12745
+  },
+  "p04/evaluate_v2_velstand_survey.py": {
+    "path": "evidence/p04/evaluate_v2_velstand_survey.py",
+    "sha256": "6841644581a757a2c7db4ca35fed1d4da1a814c4e9251fce25cbd73eb7f300a4",
+    "bytes": 10098
+  },
+  "p04/evaluate_v2_velstand_commands.py": {
+    "path": "evidence/p04/evaluate_v2_velstand_commands.py",
+    "sha256": "38767aa2be205d590150bba7d641acc10e68f0ce215e6e4ef89400a8915f8442",
+    "bytes": 13319
+  },
+  "p04/evaluate_sitstand_fresh_m4_m16_001.py": {
+    "path": "evidence/p04/evaluate_sitstand_fresh_m4_m16_001.py",
+    "sha256": "1b04ed6de9d03f769ffb831e57bb13e11dd40c53e474accb0835f196d6b48c33",
+    "bytes": 3503
+  },
+  "p04/evaluate_v2_velstand_survey_device.py": {
+    "path": "evidence/p04/evaluate_v2_velstand_survey_device.py",
+    "sha256": "521795e1f0a5da7daacb1fd2c43f7727a6e5a227a56653f6717ba4b9be398c3b",
+    "bytes": 10151
+  },
+  "p04/run_head2_micro_control_queue.py": {
+    "path": "evidence/p04/run_head2_micro_control_queue.py",
+    "sha256": "e002484baf0e283130d975a3aa3ff1dc5c2a36dca93695e6692acd5f3c54a899",
+    "bytes": 2697
+  },
+  "p04/run_head2_stdcap_queue_v4.py": {
+    "path": "evidence/p04/run_head2_stdcap_queue_v4.py",
+    "sha256": "5346f1d8a1410790d5857fcd17154e0815c46a3dabf7188d2c89047762a516a8",
+    "bytes": 4838
+  },
+  "p04/run_head2_stdcap_queue_v3.py": {
+    "path": "evidence/p04/run_head2_stdcap_queue_v3.py",
+    "sha256": "22d38375b37a15f988ae6e5cfbba8cd2cb5b51d834ed08a6184f089c019ffb5f",
+    "bytes": 5020
+  },
+  "p04/run_head2_cap005_1984_poststop.py": {
+    "path": "evidence/p04/run_head2_cap005_1984_poststop.py",
+    "sha256": "db190c3142f3d212667e347ecc85915294fb1b872b4e3cac85c1f487c7b13ee6",
+    "bytes": 2295
+  },
+  "p04/run_micro1856_legs_only_queue.py": {
+    "path": "evidence/p04/run_micro1856_legs_only_queue.py",
+    "sha256": "fffc49a078ceeb87b7b7caa09d2422e74442836856566b559547660b46b7fa40",
+    "bytes": 1913
+  },
+  "p04/run_head2_stdcap_lr_queue.py": {
+    "path": "evidence/p04/run_head2_stdcap_lr_queue.py",
+    "sha256": "a76590761f993f7d075e22ca23ba440edf90b5afab01644e11ec321e8fed09ee",
+    "bytes": 4973
+  },
+  "p04/run_head2_stdcap_queue_v2.py": {
+    "path": "evidence/p04/run_head2_stdcap_queue_v2.py",
+    "sha256": "9f50b62d395f15f855387b57370798271e1799b2ac8d8ebbab7e6c0d618acb0b",
+    "bytes": 3828
+  },
+  "p04/run_head2_stdcap_queue.py": {
+    "path": "evidence/p04/run_head2_stdcap_queue.py",
+    "sha256": "7d161fdf050e33c0ce2e1b20d64f0a6eda83b1b7221fa5d48ac3bf3e68ada132",
+    "bytes": 3807
+  },
+  "p04/run_head2_cap005_gpu1_queue.py": {
+    "path": "evidence/p04/run_head2_cap005_gpu1_queue.py",
+    "sha256": "d5b6800bc194a8937ee0f0ef350a6f11ca437f2e66552171d731789c55bbc696",
+    "bytes": 5018
+  },
+  "p04/run_head2_cap005_gpu0_queue.py": {
+    "path": "evidence/p04/run_head2_cap005_gpu0_queue.py",
+    "sha256": "4f86da67e27c596d1dec8123ebbeb405c2071b4ca74ee4463c342e47a3f4d7eb",
+    "bytes": 5933
+  },
+  "p04/run_head2_cap005_allocation002.py": {
+    "path": "evidence/p04/run_head2_cap005_allocation002.py",
+    "sha256": "011844e46e3efa70bc9482c0cb6075d343b0c981d1cea11aa48b4553ef3c2c8d",
+    "bytes": 4704
+  },
+  "p04/run_head2_micro_exposure_queue.py": {
+    "path": "evidence/p04/run_head2_micro_exposure_queue.py",
+    "sha256": "8b6195b2f3f44880f56d78776ba57d10b2870912e7e44d28ebb7f87dac70d327",
+    "bytes": 5267
+  },
+  "p04/run_head2_roll_fine_queue.py": {
+    "path": "evidence/p04/run_head2_roll_fine_queue.py",
+    "sha256": "138d83a6dd7ecb55c7607797e5af6200833d6816e3ea3a9754f8b75c118192fd",
+    "bytes": 5169
+  },
+  "p04/run_head2_accuracy_queue.py": {
+    "path": "evidence/p04/run_head2_accuracy_queue.py",
+    "sha256": "a16b822391362f7e766fdfd52ac3a5b63fcf6bf0b566d1f479dcccd54862d5bd",
+    "bytes": 5155
+  },
+  "p04/run-walking-review-384-recovered.py": {
+    "path": "evidence/p04/run-walking-review-384-recovered.py",
+    "sha256": "3b408ee1e96183ee25b6024c3369bfb9dd1e49261b7432fef9fc0499f5cb44d8",
+    "bytes": 2139
+  },
+  "p04/run-roulade-teacher-formal-002.py": {
+    "path": "evidence/p04/run-roulade-teacher-formal-002.py",
+    "sha256": "410e0476930430106c9a5cfb703f941cb708a59af2063291a51e625f350d0700",
+    "bytes": 3400
+  },
+  "p04/run-groundpick-pipeline-002.py": {
+    "path": "evidence/p04/run-groundpick-pipeline-002.py",
+    "sha256": "4a495be2c6806b2f818c0cf60134b9399b6c70458a3c0be86c5fe64d812c997f",
+    "bytes": 4462
+  },
+  "p04/run-paired-stdcap-allocation002.py": {
+    "path": "evidence/p04/run-paired-stdcap-allocation002.py",
+    "sha256": "017c466c1dd95d7e787defa7d4fe0045c4f7d6df5c9ceb63c89009561f12e98d",
+    "bytes": 7698
+  },
+  "p04/run-velstand-head-bias-001.py": {
+    "path": "evidence/p04/run-velstand-head-bias-001.py",
+    "sha256": "0ddb4adbc265fec6734fdd874cf9dab2e30634a9fa0c24a28a09628f47bd5abb",
+    "bytes": 8336
+  },
+  "p04/run-sitstand-formal-001.py": {
+    "path": "evidence/p04/run-sitstand-formal-001.py",
+    "sha256": "332c9f7a87683a89da3ecb37a345e964e817497bfe5e7ab10f604380f5dff941",
+    "bytes": 2269
+  },
+  "p04/run-ballkick-health-history-001.py": {
+    "path": "evidence/p04/run-ballkick-health-history-001.py",
+    "sha256": "cdc2e3bb1d4c81cb6f61e68ed8df659e2c12e70d0145b06d105dc73639272c67",
+    "bytes": 10811
+  },
+  "p04/run-walking-throughput-sweep.py": {
+    "path": "evidence/p04/run-walking-throughput-sweep.py",
+    "sha256": "7b99195b597a2221c5e8f4d702f0d0c3fee1dd223f8f9a20dfbbd4eb2d07688e",
+    "bytes": 4209
+  },
+  "p04/run-paired-catch-full-pitch.py": {
+    "path": "evidence/p04/run-paired-catch-full-pitch.py",
+    "sha256": "04a12819da14b04202832df40023be7f874839b9416b24babb41cf6ea71613b5",
+    "bytes": 9536
+  },
+  "p04/run-velstand-camera-ppo-admission.py": {
+    "path": "evidence/p04/run-velstand-camera-ppo-admission.py",
+    "sha256": "1cccb77a3c9e7273ed4c6e6a2917a118195b03d0feb7eb3e7d66dc53135c5d7b",
+    "bytes": 4356
+  },
+  "p04/run-sitstand-clear-pipeline-001.py": {
+    "path": "evidence/p04/run-sitstand-clear-pipeline-001.py",
+    "sha256": "a4c818bd4c65fd59ffd4d7622838b0fdbaa25ee3a57f2fe3f825fcf92868d8c7",
+    "bytes": 4426
+  },
+  "p04/run-velstand-head-free-bc-001.py": {
+    "path": "evidence/p04/run-velstand-head-free-bc-001.py",
+    "sha256": "730033195fcf80d1a6acc475a5b5ad8678cee5054188bef53e3496f3ed767303",
+    "bytes": 7560
+  },
+  "p04/run-velstand-head-bc-longhold-001.py": {
+    "path": "evidence/p04/run-velstand-head-bc-longhold-001.py",
+    "sha256": "bf6edd901617fd10b63bda9e7d6c34685d02e32008fd4dcbb74d137a942a6dce",
+    "bytes": 2451
+  },
+  "p04/run-pitch10-cap-frontier-4146-4274.py": {
+    "path": "evidence/p04/run-pitch10-cap-frontier-4146-4274.py",
+    "sha256": "e7e885e9e0c309854126162f1d1bf6ab62872fa12079bb49036d4ab21577c4de",
+    "bytes": 3238
+  },
+  "p04/run-sitstand-admission-004.py": {
+    "path": "evidence/p04/run-sitstand-admission-004.py",
+    "sha256": "a3d1a98be8fc9b36d477b4746e30e67e5e43d42fa37499f579fc706ef9724f57",
+    "bytes": 1559
+  },
+  "p04/run-sitstand-history-base-001.py": {
+    "path": "evidence/p04/run-sitstand-history-base-001.py",
+    "sha256": "ae9a3445d65886553d93eaa2ccefe8e411ed1dec49ae29ba5fb49abe1a9aedff",
+    "bytes": 15892
+  },
+  "p04/run-walking-evaluator-qualification.py": {
+    "path": "evidence/p04/run-walking-evaluator-qualification.py",
+    "sha256": "ee4f18c9cb56688163ef862c7c12c49bea591e60365ec378fb4eab6fd9156212",
+    "bytes": 1883
+  },
+  "p04/run-walking-review-65.py": {
+    "path": "evidence/p04/run-walking-review-65.py",
+    "sha256": "df1e9747e82a2300796c7f6949ec8da6758e3c3803d7b7b68e5eb8430b9bdc20",
+    "bytes": 2185
+  },
+  "p04/run-groundpick-compensation-004.py": {
+    "path": "evidence/p04/run-groundpick-compensation-004.py",
+    "sha256": "7a118be3039ddcf333b17f3865e0a05b10dee7ea260f0ee7d833ad34d595063d",
+    "bytes": 2389
+  },
+  "p04/run-velstand-first-allocation.py": {
+    "path": "evidence/p04/run-velstand-first-allocation.py",
+    "sha256": "cfb5664a9e52d1d9c7c5ef62a1c20b15249815a93c116ba937117d5c9ae89ed3",
+    "bytes": 7780
+  },
+  "p04/run-sitstand-lesson4-pipeline-001.py": {
+    "path": "evidence/p04/run-sitstand-lesson4-pipeline-001.py",
+    "sha256": "1a32955a7289b158b103755a5a3864fa7b034a19248e0830a4e6e65d997a650e",
+    "bytes": 4533
+  },
+  "p04/run-negative-pitch-routes.py": {
+    "path": "evidence/p04/run-negative-pitch-routes.py",
+    "sha256": "54d1f460f055c97f75888a098d3646a9db686ce4ac58610a3e91896249e19273",
+    "bytes": 3880
+  },
+  "p04/run-groundpick-executable-endpoint-005.py": {
+    "path": "evidence/p04/run-groundpick-executable-endpoint-005.py",
+    "sha256": "2a8db2817a3a6708aef079639eddcf5d4df5a89d2de72462c65180a6283a373a",
+    "bytes": 1825
+  },
+  "p04/run-paired-rollout12.py": {
+    "path": "evidence/p04/run-paired-rollout12.py",
+    "sha256": "2f5f83d6f9ce5eb941b5e41f906ef6cd5f559194184a0d294d4c280ddeee9372",
+    "bytes": 8788
+  },
+  "p04/run-sitstand-near-teacher-actual-diagnostic-002.py": {
+    "path": "evidence/p04/run-sitstand-near-teacher-actual-diagnostic-002.py",
+    "sha256": "db20437eb9fe90971be977a9e307004936052b29b860a666998ff915d6f5fe47",
+    "bytes": 12273
+  },
+  "p04/run-sitstand-lesson4-cpu-smoke.py": {
+    "path": "evidence/p04/run-sitstand-lesson4-cpu-smoke.py",
+    "sha256": "aa68758f30aa634a8643395afb4da8ad115ccdf21e66f8036fcac06edab40ca1",
+    "bytes": 1049
+  },
+  "p04/run-groundpick-smoke-eval-002.py": {
+    "path": "evidence/p04/run-groundpick-smoke-eval-002.py",
+    "sha256": "c9eff9c12ae6d1ed716887a4b36e60ec8819a0c6709832ae8a7b1f23ea575429",
+    "bytes": 1404
+  },
+  "p04/run-sitstand-admission-001.py": {
+    "path": "evidence/p04/run-sitstand-admission-001.py",
+    "sha256": "d64ff57f2647967749875f5be2e6b71fc212f825598170416579d8a32464630c",
+    "bytes": 2001
+  },
+  "p04/run-velstand-v8-final-audited.py": {
+    "path": "evidence/p04/run-velstand-v8-final-audited.py",
+    "sha256": "6166616588667ee04f23d916a28c8f6583c4e399abe5f2e45475826451b72be6",
+    "bytes": 6061
+  },
+  "p04/run-roulade-validation-tail-001.py": {
+    "path": "evidence/p04/run-roulade-validation-tail-001.py",
+    "sha256": "7541db3e1c970ff634fc7db1007dfa71baa80b5e3a6f2e8d6f6d41b7063d7e8a",
+    "bytes": 3017
+  },
+  "p04/run-roulade-history-late-teacher-002.py": {
+    "path": "evidence/p04/run-roulade-history-late-teacher-002.py",
+    "sha256": "1a523f252d6d8cf5e9415e7783806aa917ac29c7893125421094d4faeda0eb90",
+    "bytes": 2596
+  },
+  "p04/run-sitstand-history-hold320-001.py": {
+    "path": "evidence/p04/run-sitstand-history-hold320-001.py",
+    "sha256": "6650d3242de34a7047e102fbc5e5a88d85b9d0df833bb1361b7207b8d412264c",
+    "bytes": 11427
+  },
+  "p04/run-velstand-camera-arm-001.py": {
+    "path": "evidence/p04/run-velstand-camera-arm-001.py",
+    "sha256": "fd0068a7f456c69c463ed20ae595a346073f4f6de78c5dd0583a95eb14e895cd",
+    "bytes": 4018
+  },
+  "p04/run-ballkick-standing-handoff-001.py": {
+    "path": "evidence/p04/run-ballkick-standing-handoff-001.py",
+    "sha256": "be5b2e231a42cf820fd5fdf1b8837ad9af647f93144863ee4d034f7ae0d4f6b5",
+    "bytes": 1549
+  },
+  "p04/run-velstand-teacher-yaw-001.py": {
+    "path": "evidence/p04/run-velstand-teacher-yaw-001.py",
+    "sha256": "0841de5798757d883d4ec890ca243830ab86345b5aad36a90efc9f3a12f34a32",
+    "bytes": 2513
+  },
+  "p04/run-frozen-head-splice-4146.py": {
+    "path": "evidence/p04/run-frozen-head-splice-4146.py",
+    "sha256": "ed209febf1d7149dde0dd835da898ca5abc3651f0e20aa0cff72be586037678a",
+    "bytes": 3641
+  },
+  "p04/run-walking-discovery.py": {
+    "path": "evidence/p04/run-walking-discovery.py",
+    "sha256": "53123370858b4854dbd89c75fafc1c2bb0e8bcf6f4bc8f7d249c2e262a9130e7",
+    "bytes": 2028
+  },
+  "p04/run-walking-throughput-diagnostics.py": {
+    "path": "evidence/p04/run-walking-throughput-diagnostics.py",
+    "sha256": "3f3240ed2e9934050fba33127c31e156df5de4983ebc07cc77ab7b0874c82fca",
+    "bytes": 5107
+  },
+  "p04/run-groundpick-local-endpoint-001.py": {
+    "path": "evidence/p04/run-groundpick-local-endpoint-001.py",
+    "sha256": "ab8686a7b71882def34cf9dc50b7311f34a0bc3ef437ea8ecf1db818ca2ab378",
+    "bytes": 2214
+  },
+  "p04/run-groundpick-target-precision-002.py": {
+    "path": "evidence/p04/run-groundpick-target-precision-002.py",
+    "sha256": "8c24ea6279e5e5429a910812ba0c12f5b1d6213c0754573a22a9f5f7ac5e0fc6",
+    "bytes": 8567
+  },
+  "p04/run-groundpick-target-precision-001.py": {
+    "path": "evidence/p04/run-groundpick-target-precision-001.py",
+    "sha256": "6bcc03ef5999a4c002dfb355adcca56beb2c8e2414730fe9424932ce017b7911",
+    "bytes": 8561
+  },
+  "p04/run-groundpick-formal-pipeline-003.py": {
+    "path": "evidence/p04/run-groundpick-formal-pipeline-003.py",
+    "sha256": "421d6af445fcb80609813f263f98f3b08182ff3b80d4245ec77dd77f403a9aa9",
+    "bytes": 2720
+  },
+  "p04/run-sitstand-fresh-release-001.py": {
+    "path": "evidence/p04/run-sitstand-fresh-release-001.py",
+    "sha256": "e85fb8844c24639264eea5a3562a7ca18517c843e5697bb38a1a5a242e622a6c",
+    "bytes": 10302
+  },
+  "p04/run-negative-pitch-full-4658.py": {
+    "path": "evidence/p04/run-negative-pitch-full-4658.py",
+    "sha256": "d9a6d4106f57d379ecbecf47c880a31f282beeb3029d81f2c0247c47a6d33805",
+    "bytes": 4289
+  },
+  "p04/run-sitstand-fresh-m16-validation-002.py": {
+    "path": "evidence/p04/run-sitstand-fresh-m16-validation-002.py",
+    "sha256": "36bb0337eabf0ce9a8b36427e381ae9006b17b99dd920404585cc9ef356875ea",
+    "bytes": 7504
+  },
+  "p04/run-velstand-head-bc-visual-001.py": {
+    "path": "evidence/p04/run-velstand-head-bc-visual-001.py",
+    "sha256": "2f37f721836a66eecf19a05ef2abcaae94e3984d742a046ce5c660b1a28dab52",
+    "bytes": 3498
+  },
+  "p04/run-velstand-head-target-final-allocation.py": {
+    "path": "evidence/p04/run-velstand-head-target-final-allocation.py",
+    "sha256": "3c2f99ea3b3786315f47f6226480eba2d3cce2f8e3b11ac2aae69f22e908e391",
+    "bytes": 7187
+  },
+  "p04/run-velstand-teacher-zero-validation-001.py": {
+    "path": "evidence/p04/run-velstand-teacher-zero-validation-001.py",
+    "sha256": "2b29b20bbe96c8c9f368cbd3eabc0db639b04abd1fabdb7710995f4e050fff6a",
+    "bytes": 3487
+  },
+  "p04/run-sitstand-clock-reeval-001.py": {
+    "path": "evidence/p04/run-sitstand-clock-reeval-001.py",
+    "sha256": "989f7554c20af37cb1e455d50e7c82e8248fa5d082d0f98030c5b02cd3c3769b",
+    "bytes": 1438
+  },
+  "p04/run-negative-pitch-accuracy-4594.py": {
+    "path": "evidence/p04/run-negative-pitch-accuracy-4594.py",
+    "sha256": "d41997d7e18bc25ee7c92ddc8a6d4304fd63a21fb82c87d710aaeef6dcdd49cb",
+    "bytes": 4242
+  },
+  "p04/run-paired-head-accuracy-allocation002.py": {
+    "path": "evidence/p04/run-paired-head-accuracy-allocation002.py",
+    "sha256": "dbf43de8c60cc1ea27532cffebb389d83619bb20b111dad59ce5d8c091e25035",
+    "bytes": 8641
+  },
+  "p04/run-sitstand-near-teacher-lr1e5-001.py": {
+    "path": "evidence/p04/run-sitstand-near-teacher-lr1e5-001.py",
+    "sha256": "a591ba67acd2a76f680a361e230c84d40354f6e4e3f68b9280ace3be789918df",
+    "bytes": 13813
+  },
+  "p04/run-sitstand-near-stand-teacher-002.py": {
+    "path": "evidence/p04/run-sitstand-near-stand-teacher-002.py",
+    "sha256": "41e758ad46ee65db1e14e1100f095fff134eacf6b80e4b0ba68968b8ec975358",
+    "bytes": 13769
+  },
+  "p04/run-roulade-history-late-teacher-001.py": {
+    "path": "evidence/p04/run-roulade-history-late-teacher-001.py",
+    "sha256": "1d222340ec3d71b9d97824f81de5c4c4a805a17a50d26685a848e8e9069cd3dd",
+    "bytes": 2596
+  },
+  "p04/run-groundpick-physical-terminal-002.py": {
+    "path": "evidence/p04/run-groundpick-physical-terminal-002.py",
+    "sha256": "f9ebd309bd6b08d9a9ebabd68de1ad1a1e9d22d581a6fdbcbbe0759bbd4ef36e",
+    "bytes": 377
+  },
+  "p04/run-v2-yaw-calibration-512.py": {
+    "path": "evidence/p04/run-v2-yaw-calibration-512.py",
+    "sha256": "e18a44487764ff4caf0ee3dcc6817f2d558164b69e3d1325d8e61250f35a5eb6",
+    "bytes": 2382
+  },
+  "p04/run-walking-review-384.py": {
+    "path": "evidence/p04/run-walking-review-384.py",
+    "sha256": "3de755c63ad2841691a4096a31a35f30d7b9a617036b9ec6cf747bb998212e99",
+    "bytes": 2203
+  },
+  "p04/run-velstand-camera-ppo-admission-002.py": {
+    "path": "evidence/p04/run-velstand-camera-ppo-admission-002.py",
+    "sha256": "056ac6c78dee731747bd93d5dc755a76bbcbaa33a9d7199f838eab39ade22c73",
+    "bytes": 6006
+  },
+  "p04/run-roulade-validation-002.py": {
+    "path": "evidence/p04/run-roulade-validation-002.py",
+    "sha256": "6a3a704931bbee5532ab6511981f54ff59220e93a61ade577fdb24033536fedc",
+    "bytes": 2944
+  },
+  "p04/run-roulade-control-pair-001.py": {
+    "path": "evidence/p04/run-roulade-control-pair-001.py",
+    "sha256": "925d4daec01742fc2b13350677e84ef799acf00b6e5c1d1e0534049d4b3e3e9c",
+    "bytes": 11295
+  },
+  "p04/run-sitstand-admission-002.py": {
+    "path": "evidence/p04/run-sitstand-admission-002.py",
+    "sha256": "f6c7f91c4af8787def90a670839e19716ba3ce093cce9fdba0117757fb0a2c64",
+    "bytes": 3038
+  },
+  "p04/run-sitstand-head-intervention-001.py": {
+    "path": "evidence/p04/run-sitstand-head-intervention-001.py",
+    "sha256": "e4af20a48db86bb89160b075863701b19a77e0f41ccee17c2959fcd6336d4863",
+    "bytes": 2130
+  },
+  "p04/run-velstand-camera-preloaded-admission.py": {
+    "path": "evidence/p04/run-velstand-camera-preloaded-admission.py",
+    "sha256": "12ff1e0f8e3e551930c205e7984e6a0d4acba13c3f34a64260df65eb276230e9",
+    "bytes": 2028
+  },
+  "p04/run-sitstand-transition-release-001.py": {
+    "path": "evidence/p04/run-sitstand-transition-release-001.py",
+    "sha256": "1bfb985916a8e8a254f277b03a47b52ee8b025dfb278d5b2cb0629ee82625262",
+    "bytes": 5016
+  },
+  "p04/run-roulade-teacher-admission-002.py": {
+    "path": "evidence/p04/run-roulade-teacher-admission-002.py",
+    "sha256": "3dfd2668595a6028779d2a9a80aa55578421b4dfc9ec6ce96876d65130e6b91f",
+    "bytes": 6160
+  },
+  "p04/run-ballkick-admission-001.py": {
+    "path": "evidence/p04/run-ballkick-admission-001.py",
+    "sha256": "60cdf87654cbdd737173452595d3c9a66b4b443e89d3a394ec627e18740b3a85",
+    "bytes": 3087
+  },
+  "p04/run-ballkick-finish-final.py": {
+    "path": "evidence/p04/run-ballkick-finish-final.py",
+    "sha256": "fa847e2bd4701b6009f366971d7caa8a4ee75713455fed3268ba05da8866e349",
+    "bytes": 6005
+  },
+  "p04/run-paired-stdcap-allocation003.py": {
+    "path": "evidence/p04/run-paired-stdcap-allocation003.py",
+    "sha256": "372b9cb68af0380adeb4fb619f20ab577d9e91f3e0b7aee82308423bba25cf6c",
+    "bytes": 7826
+  },
+  "p04/run-ballkick-supported-kick-001.py": {
+    "path": "evidence/p04/run-ballkick-supported-kick-001.py",
+    "sha256": "4d4df543a95cafeb6b04461a62205a70f3954892391e9dbbc83411174c521b88",
+    "bytes": 1550
+  },
+  "p04/run-paired-head-accuracy-allocation003.py": {
+    "path": "evidence/p04/run-paired-head-accuracy-allocation003.py",
+    "sha256": "4904b0388b059d2778d305f9ec8e75a2c99c2d7c75b7308a1498e63f08cf97a0",
+    "bytes": 8735
+  },
+  "p04/run-roulade-endpoint-final.py": {
+    "path": "evidence/p04/run-roulade-endpoint-final.py",
+    "sha256": "0430a14cbb78165db9df72b7917cbabc7a20ef4bd0f96ba707ef25241cfb7e43",
+    "bytes": 6448
+  },
+  "p04/run-sitstand-fresh-m16-validation-001.py": {
+    "path": "evidence/p04/run-sitstand-fresh-m16-validation-001.py",
+    "sha256": "b75cf83d2e7a71e277bc39588d79a5e7b993cf19ed441d72915d1f8af393c4ae",
+    "bytes": 7462
+  },
+  "p04/run-groundpick-pipeline-001.py": {
+    "path": "evidence/p04/run-groundpick-pipeline-001.py",
+    "sha256": "31b705b1820b4521df7b10c2010c71c529e32861e5e19c40e1de86bddcd8cb54",
+    "bytes": 4448
+  },
+  "p04/run-groundpick-precision-reference-001.py": {
+    "path": "evidence/p04/run-groundpick-precision-reference-001.py",
+    "sha256": "0a8946e6962bf39cbbfd6c9996d33f19be07be2892461ad1635972216299c1cd",
+    "bytes": 2030
+  },
+  "p04/run-sitstand-formal-002.py": {
+    "path": "evidence/p04/run-sitstand-formal-002.py",
+    "sha256": "ec36c7c163f07e58e98eb638c8c6bb15b1a32b0562307f5e127adae0dc5d8aa1",
+    "bytes": 2755
+  },
+  "p04/run-velstand-head-bias-learning-002.py": {
+    "path": "evidence/p04/run-velstand-head-bias-learning-002.py",
+    "sha256": "3c050b93759e5660b7fe61f4a99eb4293658fbf4fa9dd04e7fe69933424f4784",
+    "bytes": 4845
+  },
+  "p04/run-sitstand-near-stand-teacher-001.py": {
+    "path": "evidence/p04/run-sitstand-near-stand-teacher-001.py",
+    "sha256": "3042a69da8e203964f2b878ecb86c01f92b8b988f3803c7d4c87d0da9b495662",
+    "bytes": 13361
+  },
+  "p04/run-velstand-v8-final-allocation.py": {
+    "path": "evidence/p04/run-velstand-v8-final-allocation.py",
+    "sha256": "c928db897ebeeda61abfb8db7c97dab2ddba13633c1dbef65c150517d583d426",
+    "bytes": 6172
+  },
+  "p04/run-ballkick-batch-comparison-001.py": {
+    "path": "evidence/p04/run-ballkick-batch-comparison-001.py",
+    "sha256": "ff20bba87cdcae932402c4a8b8c9bd63ef009dccc301dc84773478397e923031",
+    "bytes": 2620
+  },
+  "p04/run-sitstand-near-teacher-lr3e6-001.py": {
+    "path": "evidence/p04/run-sitstand-near-teacher-lr3e6-001.py",
+    "sha256": "efbed43ddc5a91509483773caa01ab16c4461a7cc965f3521354a3e7631705ef",
+    "bytes": 13813
+  },
+  "p04/run-negative-pitch-rollout-comparison.py": {
+    "path": "evidence/p04/run-negative-pitch-rollout-comparison.py",
+    "sha256": "c8b5537d69e65316be679d872220f997fa13ff86733d5d2d71da2e911f9fd1d5",
+    "bytes": 3408
+  },
+  "p04/run-groundpick-torque-margin-008.py": {
+    "path": "evidence/p04/run-groundpick-torque-margin-008.py",
+    "sha256": "c77e48b6f4afa8684ce98707d9d1f4d81ebcade318b91f5a8dacbb2d53cc32a2",
+    "bytes": 2112
+  },
+  "p04/run-groundpick-health-history-001.py": {
+    "path": "evidence/p04/run-groundpick-health-history-001.py",
+    "sha256": "3bf22b773066235a1b6a6d373f92b7be45bf936c6c6a0dfd3fbb51b0ff8d086d",
+    "bytes": 11726
+  },
+  "p04/run-walking-continuation-512-recovered.py": {
+    "path": "evidence/p04/run-walking-continuation-512-recovered.py",
+    "sha256": "bd4a9fd16abd6fba45c838e73d1d787022c968914010f2f2536c1b673bd0262d",
+    "bytes": 4919
+  },
+  "p04/run-sitstand-near-stand-teacher-cpu-path-failure-001.py": {
+    "path": "evidence/p04/run-sitstand-near-stand-teacher-cpu-path-failure-001.py",
+    "sha256": "c8ba30d7e871380e815c5190cad2353328267293b2dad30ba78f76e3a9896e85",
+    "bytes": 13017
+  },
+  "p04/run-walking-continuation-512.py": {
+    "path": "evidence/p04/run-walking-continuation-512.py",
+    "sha256": "8752c8affb32b2e66f0a500dd6359d02a613b1bcda7dc55944f51256f0d2c025",
+    "bytes": 4826
+  },
+  "p04/run-walking-yaw-fine.py": {
+    "path": "evidence/p04/run-walking-yaw-fine.py",
+    "sha256": "7e5a69ea32e86bab79c9f2dd62a5fbb0b54e4889deb85ed909441c9b18df1c74",
+    "bytes": 5062
+  },
+  "p04/run-paired-head-accuracy-allocation002-startup-marker-race.py": {
+    "path": "evidence/p04/run-paired-head-accuracy-allocation002-startup-marker-race.py",
+    "sha256": "e2769d1641bd6fa9f421598011e280e15dcea4d43fff17e3763d9aba76100a14",
+    "bytes": 8275
+  },
+  "p04/run-roulade-validation-003.py": {
+    "path": "evidence/p04/run-roulade-validation-003.py",
+    "sha256": "bb019b64f5ba614d849fcc5956f578797443c06dab9620502cc999948b3c72ac",
+    "bytes": 2949
+  },
+  "p04/run-roulade-validation-001.py": {
+    "path": "evidence/p04/run-roulade-validation-001.py",
+    "sha256": "804069c994c789ce77f579842a0b1c8b515c4303eb4d0a31b2eadb8ce6820d2b",
+    "bytes": 2803
+  },
+  "p04/run-ballkick-target-precision-001.py": {
+    "path": "evidence/p04/run-ballkick-target-precision-001.py",
+    "sha256": "f24509b7b3fccc51ec1deffdc08185db0e02bf2b75b0a0cfa890ecc2106f2fa0",
+    "bytes": 8481
+  },
+  "p04/run-groundpick-torque-balanced-007.py": {
+    "path": "evidence/p04/run-groundpick-torque-balanced-007.py",
+    "sha256": "b50884c775791f3994cd661800bb98fdd73baca1a652208752fea10a4ab9caa5",
+    "bytes": 1917
+  },
+  "p04/run-sitstand-formal-003.py": {
+    "path": "evidence/p04/run-sitstand-formal-003.py",
+    "sha256": "24b0ea5bdd570ae08796a7a34fd44deaa22b71c010638e1975a244f53c77d3c5",
+    "bytes": 2755
+  },
+  "p04/run-roulade-teacher-admission-001.py": {
+    "path": "evidence/p04/run-roulade-teacher-admission-001.py",
+    "sha256": "45f9c6924457d213a337ae1677503775cff53c594944b1bd28c8bdc21f4ae8e9",
+    "bytes": 6160
+  },
+  "p04/run-sitstand-admission-003.py": {
+    "path": "evidence/p04/run-sitstand-admission-003.py",
+    "sha256": "54baece47e4b9d8da083b4e8e73ce3a2f7f83a5f760370b4a7a9d654c7bfb13f",
+    "bytes": 2922
+  },
+  "p04/run-paired-head-execution-4594.py": {
+    "path": "evidence/p04/run-paired-head-execution-4594.py",
+    "sha256": "1d612253c974f291e458358b5be4ec97f86ecca9cbe6dbc63b5b7f9dbd360772",
+    "bytes": 3549
+  },
+  "p04/run-roulade-teacher-formal-001.py": {
+    "path": "evidence/p04/run-roulade-teacher-formal-001.py",
+    "sha256": "ac76a36dc0b398c9c11f49d31c957bc1389e4cc4e074f78ebc9f66e14d24660d",
+    "bytes": 3707
+  },
+  "p04/run-ballkick-formal-allocation-001.py": {
+    "path": "evidence/p04/run-ballkick-formal-allocation-001.py",
+    "sha256": "d6e227497f0bc471e2657816347aabee00ba78ba2900dfdd83c8aae2a754bd22",
+    "bytes": 3065
+  },
+  "p04/run-ballkick-finish-cpu-smoke.py": {
+    "path": "evidence/p04/run-ballkick-finish-cpu-smoke.py",
+    "sha256": "07e308acc79b3033d2c2be1fe7a12d6a073c18bcba259f5d8f06206ee673e4a5",
+    "bytes": 692
+  },
+  "p04/run-walking-resume-qualification.py": {
+    "path": "evidence/p04/run-walking-resume-qualification.py",
+    "sha256": "be23b3aa2543f8d363a93a60a3851e7bf5510ff4bb42b88e9d71cf61f3322597",
+    "bytes": 1787
+  },
+  "p04/run-sitstand-history-base-002.py": {
+    "path": "evidence/p04/run-sitstand-history-base-002.py",
+    "sha256": "2f327f58dd34946c9f486dd2c828182d0991ea85735fc072aba6cb5516b8c97d",
+    "bytes": 16107
+  },
+  "p04/run-ballkick-health-extra-nodes-001.py": {
+    "path": "evidence/p04/run-ballkick-health-extra-nodes-001.py",
+    "sha256": "1c6c4dee57d210d2e9b15bfd13dbcde64e657b3a84d3d0e65b8254a379aaef87",
+    "bytes": 1727
+  },
+  "p04/run-sitstand-near-teacher-001.py": {
+    "path": "evidence/p04/run-sitstand-near-teacher-001.py",
+    "sha256": "ca52c93855e80bc54f57253b6ad59d297a08a405501350a4cf3c1b1969bd81d3",
+    "bytes": 13701
+  },
+  "p04/run-paired-head-accuracy.py": {
+    "path": "evidence/p04/run-paired-head-accuracy.py",
+    "sha256": "d5d10e5cc13805364ca4ac8da0ed3b4e629a861f6206d0370ba531a9fa9c441d",
+    "bytes": 9258
+  },
+  "p04/run-velstand-camera-physics-admission.py": {
+    "path": "evidence/p04/run-velstand-camera-physics-admission.py",
+    "sha256": "ecc19090987e2b7cea893ac414c2d4cb085be731be60f17beed37dca783f1ccd",
+    "bytes": 1959
+  },
+  "p04/run-roulade-history-001.py": {
+    "path": "evidence/p04/run-roulade-history-001.py",
+    "sha256": "a65743783e73d04fb8b5974b3bd1624fe0012a1f61ab4a1374a1722c6daf075e",
+    "bytes": 11832
+  },
+  "p04/review-roulade-history-001.py": {
+    "path": "evidence/p04/review-roulade-history-001.py",
+    "sha256": "997d9127e8d615918a2f9c0b2585afadc5d81bcd10a1e9227a69925b1b93326b",
+    "bytes": 8922
+  },
+  "p04/review-velstand-256.py": {
+    "path": "evidence/p04/review-velstand-256.py",
+    "sha256": "5aa83f2bb0013988bf46852a55142a67ef097057d0cb290eadb8824e4ae4ab80",
+    "bytes": 3583
+  },
+  "p04/review-groundpick-executable-endpoint-005.py": {
+    "path": "evidence/p04/review-groundpick-executable-endpoint-005.py",
+    "sha256": "eaca015ba16d5a0d4f99c145eb4dbc9dbc6b22de5ad294606cbbe439411aecde",
+    "bytes": 3738
+  },
+  "p04/review-groundpick-torque-endpoints-008.py": {
+    "path": "evidence/p04/review-groundpick-torque-endpoints-008.py",
+    "sha256": "9433217e065499e30aa5a95452ec03699656606d763c1bf083a0e984bea147b5",
+    "bytes": 3501
+  },
+  "p04/review-ballkick-physical-002.py": {
+    "path": "evidence/p04/review-ballkick-physical-002.py",
+    "sha256": "8329eaec66b9e154b9a1d7086a7e37a241c1143fdf380fa0a2cf3c29cc88060a",
+    "bytes": 1763
+  },
+  "p04/review_sitstand_history_curve_cpu.py": {
+    "path": "evidence/p04/review_sitstand_history_curve_cpu.py",
+    "sha256": "1daf5c2d173156d8fd063c324d58231e6d812cff3aff6aa696d1ec2b55d874ae",
+    "bytes": 2431
+  },
+  "p04/review_ballkick_precision_cpu.py": {
+    "path": "evidence/p04/review_ballkick_precision_cpu.py",
+    "sha256": "391e44687c874b22cba242ac048d643cb97f4168be9114de1e1751b5275d422f",
+    "bytes": 10614
+  },
+  "p04/review-velstand-head-bias-learning-002.py": {
+    "path": "evidence/p04/review-velstand-head-bias-learning-002.py",
+    "sha256": "8b3ab54dd2ec1bbc71d38056921a3a72cda704dea14c716fc63b2f0b32dc266b",
+    "bytes": 6628
+  },
+  "p04/review_ballkick_health_history_cpu.py": {
+    "path": "evidence/p04/review_ballkick_health_history_cpu.py",
+    "sha256": "4224f7f723c86f120b3e6fc1adf69a74251d432a99d1a9301aed0501a3f4fa64",
+    "bytes": 9949
+  },
+  "p04/review-roulade-history-landing-domain-001.py": {
+    "path": "evidence/p04/review-roulade-history-landing-domain-001.py",
+    "sha256": "1d73dab9ec008149a55f18ee641b1d02d049c1d198485047f58c6d578dcabf82",
+    "bytes": 3557
+  },
+  "p04/review-velstand-teacher-zero-001.py": {
+    "path": "evidence/p04/review-velstand-teacher-zero-001.py",
+    "sha256": "736d7e3e6241274c22d7b8d66e34fac82d24992b96aa19028170feeb14bc7970",
+    "bytes": 6551
+  },
+  "p04/review-groundpick-local-endpoint-001.py": {
+    "path": "evidence/p04/review-groundpick-local-endpoint-001.py",
+    "sha256": "36366ed13a8da270c065e52d3bf23e76423d12049d66fce642ad3aed1f657cba",
+    "bytes": 5426
+  },
+  "p04/review_sitstand_near_teacher_cpu.py": {
+    "path": "evidence/p04/review_sitstand_near_teacher_cpu.py",
+    "sha256": "d935298507ec1761ed155217d9de1b3d32e5b766a031a600bdebbe1f4b8cced6",
+    "bytes": 6586
+  },
+  "p04/review-sitstand-near-stand-teacher-001.py": {
+    "path": "evidence/p04/review-sitstand-near-stand-teacher-001.py",
+    "sha256": "89171f9f436e13e8c51afdc805f548db3e5405aa85da37a482bc88043b27e077",
+    "bytes": 7603
+  },
+  "p04/review_groundpick_target_precision_cpu_002.py": {
+    "path": "evidence/p04/review_groundpick_target_precision_cpu_002.py",
+    "sha256": "fe7a39675de947f59a125461615e2c66a2f6dacb7e9784b50b59d501480b8ed3",
+    "bytes": 9639
+  },
+  "p04/review-roulade-history-late-teacher-002.py": {
+    "path": "evidence/p04/review-roulade-history-late-teacher-002.py",
+    "sha256": "453d6b5fe770aa4df51d6d5ea90bd6a381be69e2e0f173289d57ac53747a122a",
+    "bytes": 6959
+  },
+  "p04/review-sitstand-head-intervention-001.py": {
+    "path": "evidence/p04/review-sitstand-head-intervention-001.py",
+    "sha256": "9718e6bb5e9168ca72fb401d663f69b9a0ca75fdaf8d2538ff595decaf65ad64",
+    "bytes": 9770
+  },
+  "p04/review_groundpick_health_history_cpu.py": {
+    "path": "evidence/p04/review_groundpick_health_history_cpu.py",
+    "sha256": "7b8567e0bb28a09e8a247c2c5478bb226cb59882c92d573c9f343daeea2b198c",
+    "bytes": 9621
+  },
+  "p04/review_sitstand_history_hold320_curve_cpu.py": {
+    "path": "evidence/p04/review_sitstand_history_hold320_curve_cpu.py",
+    "sha256": "293054765b0f5e9017ce3a06076a318688c8493ee3ee6cb26e025a50a1a15934",
+    "bytes": 3075
+  },
+  "p04/review-velstand-head-free-bc-001.py": {
+    "path": "evidence/p04/review-velstand-head-free-bc-001.py",
+    "sha256": "91c825dc22d8f6e2468bdbbd383024012235e1ab32ce7de805a232b4d6fc2f62",
+    "bytes": 5965
+  },
+  "p04/review_groundpick_target_precision_cpu.py": {
+    "path": "evidence/p04/review_groundpick_target_precision_cpu.py",
+    "sha256": "1425a535cc4ea140b76a2a79f8a64f62cadb154433f708ff78ea89bae3a930b2",
+    "bytes": 9300
+  },
+  "p04/review-roulade-history-late-teacher-001.py": {
+    "path": "evidence/p04/review-roulade-history-late-teacher-001.py",
+    "sha256": "ca40c0cd56bc1983e352c264a025bde57d7b7197cedb135cd0fe885b9c19cb4e",
+    "bytes": 6959
+  },
+  "p04/validate_groundpick_precision_cpu.py": {
+    "path": "evidence/p04/validate_groundpick_precision_cpu.py",
+    "sha256": "c16bf0952d90ceefd128ae1d41f24587af809118e45d5cf3a9c5a94d54921167",
+    "bytes": 7099
+  },
+  "p04/validate_groundpick_history_gpu_001.py": {
+    "path": "evidence/p04/validate_groundpick_history_gpu_001.py",
+    "sha256": "a9e580434d3d17d52cf64ba4b59a5b0ef9668fd41f9adb27125143b3ed339a7a",
+    "bytes": 7615
+  },
+  "p04/validate_groundpick_history_cpu_001.py": {
+    "path": "evidence/p04/validate_groundpick_history_cpu_001.py",
+    "sha256": "0665dfe6eaf92293392db81b9041d6b2d87c564c930a132e5791df75ba6018a5",
+    "bytes": 8121
+  },
+  "p04/validate_groundpick_history_cpu_002.py": {
+    "path": "evidence/p04/validate_groundpick_history_cpu_002.py",
+    "sha256": "0445361ea6dba718e02db317e92a857feb1ada85dd7c06112437894de6c7ab51",
+    "bytes": 8223
+  },
+  "p04/validate_groundpick_history_cpu_003-before-syntax-fix.py": {
+    "path": "evidence/p04/validate_groundpick_history_cpu_003-before-syntax-fix.py",
+    "sha256": "4542b51c67701acab6b38bed03605f800110e4346d03b5d82ff4bce4659a7a66",
+    "bytes": 8873
+  },
+  "p04/validate_groundpick_history_cpu_003.py": {
+    "path": "evidence/p04/validate_groundpick_history_cpu_003.py",
+    "sha256": "c94279df89976b56c40caa1a0cc070f671adbffb018cfd12c4da1b10f8a3f9bd",
+    "bytes": 8875
+  },
+  "p04/validate_ballkick_precision_gpu.py": {
+    "path": "evidence/p04/validate_ballkick_precision_gpu.py",
+    "sha256": "2008836693ad84285277b2277635fd02f124eeeb26b9f68d11c75b88bec076b0",
+    "bytes": 4988
+  },
+  "p04/validate-velstand-terminal.py": {
+    "path": "evidence/p04/validate-velstand-terminal.py",
+    "sha256": "bf8d8a453142690a13ab20ec91d055e224a7e33c1f974a014d97a5e3475b6dac",
+    "bytes": 2802
+  },
+  "p04/validate_ballkick_precision_cpu.py": {
+    "path": "evidence/p04/validate_ballkick_precision_cpu.py",
+    "sha256": "c94387c08bee31adfa3566fced5b88d4bb359248b70467296a78f82b83a9432e",
+    "bytes": 7178
+  },
+  "p04/validate-walking-fastsummary.py": {
+    "path": "evidence/p04/validate-walking-fastsummary.py",
+    "sha256": "bc2fd104282b77ce7d3bac4ed792b0852d753c881f274538c4eef863037ea33e",
+    "bytes": 3643
+  },
+  "p04/validate_ballkick_health_cpu.py": {
+    "path": "evidence/p04/validate_ballkick_health_cpu.py",
+    "sha256": "f9089c5f43a64baa142bdc62fa33bb6149f3cc90603d0096850c72baae860434",
+    "bytes": 5634
+  },
+  "p04/validate-velstand-head-target-before-body-test-fix.py": {
+    "path": "evidence/p04/validate-velstand-head-target-before-body-test-fix.py",
+    "sha256": "2ff3f364182394729ed9ed49dcf1833836463a9474bed25ea6f3a82e54b8f85a",
+    "bytes": 6494
+  },
+  "p04/validate-velstand-terminal-002.py": {
+    "path": "evidence/p04/validate-velstand-terminal-002.py",
+    "sha256": "61d7dd7c2d5357dd43ce32047b02547d7ccc4431d08de76f96292a7b38b3ff85",
+    "bytes": 2802
+  },
+  "p04/validate-roulade-bounded-noise-cpu.py": {
+    "path": "evidence/p04/validate-roulade-bounded-noise-cpu.py",
+    "sha256": "fc26d97ab228523b8318d8a9f6ddf720d05be91574b56700ac873200af1890f8",
+    "bytes": 1630
+  },
+  "p04/validate_ballkick_health_gpu.py": {
+    "path": "evidence/p04/validate_ballkick_health_gpu.py",
+    "sha256": "b7a2f74fda1d37529d61bacc7a2a6d9ae433a045a79b01afaa86c32b5baac7d5",
+    "bytes": 4979
+  },
+  "p04/validate-velstand-head-target.py": {
+    "path": "evidence/p04/validate-velstand-head-target.py",
+    "sha256": "808bb69f370485b10b8cc3c90faabe4aa8fbe17708c8813519cc36fc840ede43",
+    "bytes": 7001
+  },
+  "p04/validate-velstand-balanced-batches.py": {
+    "path": "evidence/p04/validate-velstand-balanced-batches.py",
+    "sha256": "46aae72a27209c7e075f5ca6b7229d2908789f0f46cf7a781194be99400846e6",
+    "bytes": 1102
+  },
+  "p04/validate_groundpick_precision_gpu.py": {
+    "path": "evidence/p04/validate_groundpick_precision_gpu.py",
+    "sha256": "88ac577a4200baeea420532f20bff93800208a751e4a9700f3750c22a4e16ae9",
+    "bytes": 7677
+  },
+  "p04/baseline-rise-route-reuse-audit-001.json": {
+    "path": "evidence/p04/baseline-rise-route-reuse-audit-001.json",
+    "sha256": "14478826cf0b4b8743787676840cdb424ca326cb7c393ed75f3fd24cb4103ef2",
+    "bytes": 2564
+  },
+  "p04/baseline-paired-feedback-3762-valid-raw-measured/report.json": {
+    "path": "evidence/p04/baseline-paired-feedback-3762-valid-raw-measured/report.json",
+    "sha256": "0ee9cea7c8b8bfbc0be2091060cb32b35df3bc0f58275e7e05b38d3af82faca2",
+    "bytes": 14749
+  },
+  "p04/baseline-paired-feedback-3762-valid-raw-nominal/report.json": {
+    "path": "evidence/p04/baseline-paired-feedback-3762-valid-raw-nominal/report.json",
+    "sha256": "c44260e9417cf7e2acf1e222dfa113bf5e9dfc83485c7961e8d70e98d3b913ab",
+    "bytes": 14735
+  },
+  "p04/velstand-head-bias-learning-review-002.json": {
+    "path": "evidence/p04/velstand-head-bias-learning-review-002.json",
+    "sha256": "d912af2c1e1e0ec630ec2e83b9ee76c60341326ece7f85425be444307ed7aa37",
+    "bytes": 247304
+  },
+  "p04/roulade-history-full-curve-review-001.json": {
+    "path": "evidence/p04/roulade-history-full-curve-review-001.json",
+    "sha256": "5ce476768891f9e35aba62fc8bce12678dbbd0b74159b04d78f1895d486a423c",
+    "bytes": 274147
+  },
+  "p04/sitstand-near-teacher-eval-failure-001.json": {
+    "path": "evidence/p04/sitstand-near-teacher-eval-failure-001.json",
+    "sha256": "dd2a85f827b2cdf9e21471ba5617cad20d987b7f4f6a5feead45c320539b5bc3",
+    "bytes": 193
+  },
+  "p04/sitstand-near-teacher-eval-dtype-repair-001.json": {
+    "path": "evidence/p04/sitstand-near-teacher-eval-dtype-repair-001.json",
+    "sha256": "c60f770e8fba9b63c824e6b0964f666257e6574f4209bd14d282f4d51f9a2482",
+    "bytes": 519
+  },
+  "p04/roulade-history-late-teacher-deferred-for-route-comparison-003.json": {
+    "path": "evidence/p04/roulade-history-late-teacher-deferred-for-route-comparison-003.json",
+    "sha256": "a0b9568ef661d373bf4c2fa30da81770cba8bddbc13170458c63b0ca404d8726",
+    "bytes": 1473
+  },
+  "p04/groundpick-precision-camera-parity-audit-001.json": {
+    "path": "evidence/p04/groundpick-precision-camera-parity-audit-001.json",
+    "sha256": "7670aa5179cd70b6026987ac37dbaedf4d82545d1de57dc1ba3d00a1da5998f8",
+    "bytes": 21539
+  },
+  "p04/paired-negative-pitch-routes-4274-1856-plan.json": {
+    "path": "evidence/p04/paired-negative-pitch-routes-4274-1856-plan.json",
+    "sha256": "780911f893e0d67d4abfab86484cd7a6ee325a336d84ec826ff7a558d92f4cba",
+    "bytes": 5098
+  },
+  "p04/paired-head-accuracy-4338-common-measured/accuracy4338/standing-pitch-bins.json": {
+    "path": "evidence/p04/paired-head-accuracy-4338-common-measured/accuracy4338/standing-pitch-bins.json",
+    "sha256": "cbc4bd171585c86af5754eb9dcb0ff622ef1e6a01de648490234c492703e5b54",
+    "bytes": 3702
+  },
+  "p04/head2-exposure-qualification.json": {
+    "path": "evidence/p04/head2-exposure-qualification.json",
+    "sha256": "90a1fa04a61d5ea0e2169b7ee5319b0afb148ce7dba5c48f4f15054513a67df1",
+    "bytes": 2001
+  },
+  "p04/head2-exposure-mature-smoke/report.json": {
+    "path": "evidence/p04/head2-exposure-mature-smoke/report.json",
+    "sha256": "cd3e852d714671639178c13f41b81a87226f17304cd2f42def83e19c14fe476e",
+    "bytes": 7051
+  },
+  "p04/head2-exposure-semantics.json": {
+    "path": "evidence/p04/head2-exposure-semantics.json",
+    "sha256": "f6a216161c12f8c4ed3e7689832665414ed7ee6e47be3f6cf7ca62595574cfd7",
+    "bytes": 2665
+  },
+  "p04/paired-catch-pitch10-qualification.json": {
+    "path": "evidence/p04/paired-catch-pitch10-qualification.json",
+    "sha256": "67de66543b2ffd2088c2dfdbf3972c27e5b50ccbb20ccf5639b4da6802da5da5",
+    "bytes": 846
+  },
+  "p04/velstand-v8-mature-qualification-review.json": {
+    "path": "evidence/p04/velstand-v8-mature-qualification-review.json",
+    "sha256": "37c164a2428b24176591ff11fb6c7a422eb9bf243d7cd4df0c7a8f0e22f66deb",
+    "bytes": 813
+  },
+  "p04/head2-timeout-phase-qualification.json": {
+    "path": "evidence/p04/head2-timeout-phase-qualification.json",
+    "sha256": "5e406c40f0486d36dbc35990264bcd468a3deb5b7dc783fee78ced151f5505b4",
+    "bytes": 11720
+  },
+  "p04/walking-resume-qualification-plan.json": {
+    "path": "evidence/p04/walking-resume-qualification-plan.json",
+    "sha256": "2abac237fbc161235698a982827db939bd298aa4a8e60fbb66289a21895268f0",
+    "bytes": 2204
+  },
+  "p04/verify-walking-export.py": {
+    "path": "evidence/p04/verify-walking-export.py",
+    "sha256": "a4b8b174978837f75525df907818e0fbb8d143b8683aa1fa3c780485aa34186c",
+    "bytes": 2089
+  },
+  "p04/walking-resume-qualification-plan-before-export-fix.json": {
+    "path": "evidence/p04/walking-resume-qualification-plan-before-export-fix.json",
+    "sha256": "8cc709f3662b07ae78e46fadac6a2cc6b2b0789111495e0b74460613e0071878",
+    "bytes": 1606
+  },
+  "p04/head2-late-entropy-qualification.json": {
+    "path": "evidence/p04/head2-late-entropy-qualification.json",
+    "sha256": "4f637cdee1ab9477f6d331aa98dcca9ef480b3b112aed66034f55ee974269d1d",
+    "bytes": 2131
+  },
+  "p04/head2-late-entropy-mature-smoke/report.json": {
+    "path": "evidence/p04/head2-late-entropy-mature-smoke/report.json",
+    "sha256": "e9082666461a024bf2e84d41e8a1a99564b25e787945858cd5d59b375133e089",
+    "bytes": 6981
+  },
+  "p04/head2-late-entropy-config.json": {
+    "path": "evidence/p04/head2-late-entropy-config.json",
+    "sha256": "3857c7eb4fa32328aadbe9240361c28471b68b7f67dd2d9104114795d61271c4",
+    "bytes": 932
+  },
+  "p04/groundpick-physical-qualification-erratum.json": {
+    "path": "evidence/p04/groundpick-physical-qualification-erratum.json",
+    "sha256": "89a6356533470d23e24abccbf54b83f27a954725f943bde78c7ab7210765d55f",
+    "bytes": 648
+  },
+  "p04/walking-repaired-prep-qualification.json": {
+    "path": "evidence/p04/walking-repaired-prep-qualification.json",
+    "sha256": "ef1d5a3a2c6b671f0d0847d72ca772ea7d548a364f2820f6d8224de9d63c01a5",
+    "bytes": 1747
+  },
+  "p04/head2-roll-fine-qualification.json": {
+    "path": "evidence/p04/head2-roll-fine-qualification.json",
+    "sha256": "0fa12542261e26425dc03465ec436093972686f69083d0f057c91f98bff8445d",
+    "bytes": 11322
+  },
+  "p04/paired-late-entropy-qualification.json": {
+    "path": "evidence/p04/paired-late-entropy-qualification.json",
+    "sha256": "9f30916438b08596c7b135a7d184c73a4c3adb43042d1870d70edd10cae29781",
+    "bytes": 1698
+  },
+  "p04/paired-late-entropy-mature-smoke/report.json": {
+    "path": "evidence/p04/paired-late-entropy-mature-smoke/report.json",
+    "sha256": "7e696ef2245cf3ac1f63dea73a7bfd093d32b4da9438dcf881de9ae125fd20dc",
+    "bytes": 8444
+  },
+  "p04/paired-late-entropy-config.json": {
+    "path": "evidence/p04/paired-late-entropy-config.json",
+    "sha256": "4f4d2befceeb0efffb6a88fad62a5ccaec5d2e3e559fa1be2bd4d036a57e0a32",
+    "bytes": 411
+  },
+  "p04/head2-micro-exposure-qualification.json": {
+    "path": "evidence/p04/head2-micro-exposure-qualification.json",
+    "sha256": "821e8f87560a46807dbc5106460247f68ca0fd0fb4925b7e5bb9399a0bee4958",
+    "bytes": 11342
+  },
+  "p04/frozen-normalizer-qualification-initial-candidate.json": {
+    "path": "evidence/p04/frozen-normalizer-qualification-initial-candidate.json",
+    "sha256": "618d5fc06e88cc5859e496d641a1c037dad85912ad647a4b57d8610a1dbaef0c",
+    "bytes": 1052
+  },
+  "p04/native-read-preupdate-audit-001/report.json": {
+    "path": "evidence/p04/native-read-preupdate-audit-001/report.json",
+    "sha256": "726aa4da2bbd2c8f8d48140e94e1e62412c13e898a30af31255ea0b3b3af2d2a",
+    "bytes": 76308
+  },
+  "p04/head2-accuracy-qualification.json": {
+    "path": "evidence/p04/head2-accuracy-qualification.json",
+    "sha256": "27c24b1a04703816ed15db8552db287c25befaf258ee81ad12950157eccdb717",
+    "bytes": 11445
+  },
+  "p04/paired-head-accuracy-qualification.json": {
+    "path": "evidence/p04/paired-head-accuracy-qualification.json",
+    "sha256": "2dff2770497e0cefadf7bd700834f2390e2aae811325d51f83475b7b7f220059",
+    "bytes": 11750
+  },
+  "p04/head2-balance-qualification.json": {
+    "path": "evidence/p04/head2-balance-qualification.json",
+    "sha256": "a649e8f0edcc1e1172ee37faea00cf96189ebe0bb91ef4d6d607dce5cba56368",
+    "bytes": 2524
+  },
+  "p04/head2-balance-mature-smoke/report.json": {
+    "path": "evidence/p04/head2-balance-mature-smoke/report.json",
+    "sha256": "541e59d5177e41599145d4226ba4f80357bd8b3d1a2db3e77c0932865bbb7ca8",
+    "bytes": 7206
+  },
+  "p04/head2-balance-semantics.json": {
+    "path": "evidence/p04/head2-balance-semantics.json",
+    "sha256": "e9dec5970c3f790a25a05c9bdb259d75713f677d5515ba6d79c6b70b501fbde2",
+    "bytes": 2553
+  },
+  "p04/paired-stdcap-qualification.json": {
+    "path": "evidence/p04/paired-stdcap-qualification.json",
+    "sha256": "8966c69273dc90ab8589a49753c359c8cd573bf6ceb81cf6465b856877aaedcf",
+    "bytes": 2926
+  },
+  "p04/paired-stdcap-mature-smoke/report.json": {
+    "path": "evidence/p04/paired-stdcap-mature-smoke/report.json",
+    "sha256": "434dc5331a071076cc0c3607dbc888cd3dfa18d719988868bd752c2bea620e1d",
+    "bytes": 12336
+  },
+  "p04/paired-stdcap-unit-tests.json": {
+    "path": "evidence/p04/paired-stdcap-unit-tests.json",
+    "sha256": "41424794d305162bf1aea0dad8e9f39b81f224f9de044d07b91fc7493f49f66c",
+    "bytes": 948
+  },
+  "p04/head2-cap005-qualification.json": {
+    "path": "evidence/p04/head2-cap005-qualification.json",
+    "sha256": "0709b2f22242c92a4a1ec3eb2464d536f3ce5bbf383e99ca00eff36e18fb8ad1",
+    "bytes": 11434
+  },
+  "p04/head2-phase-accuracy-qualification.json": {
+    "path": "evidence/p04/head2-phase-accuracy-qualification.json",
+    "sha256": "f65ce44d6be9175c78c9b999872a3dcd4d95bc9fb7566ec47535f91e81c60e1b",
+    "bytes": 11841
+  },
+  "p04/head2-stdcap-lr-qualification.json": {
+    "path": "evidence/p04/head2-stdcap-lr-qualification.json",
+    "sha256": "973b325347f985d4b2665e30c9d528f869e4a18f6a7000e8a622d6fc063c352e",
+    "bytes": 11335
+  },
+  "p04/walking-evaluator-qualification-plan.json": {
+    "path": "evidence/p04/walking-evaluator-qualification-plan.json",
+    "sha256": "a351d3a4fbd9446deb03329bba7c3206a841d1583afbf4caa5886ad34e840c51",
+    "bytes": 1768
+  },
+  "p04/frozen-normalizer-qualification.json": {
+    "path": "evidence/p04/frozen-normalizer-qualification.json",
+    "sha256": "d617116a74681e686a1547567c85a19e158aa74a46942f6e78c0a476c16b3888",
+    "bytes": 1656
+  },
+  "p04/frozen-norm-head1-mature-smoke/report.json": {
+    "path": "evidence/p04/frozen-norm-head1-mature-smoke/report.json",
+    "sha256": "e8da3290fa421e9ac0755aea511cdc004f7fba225f9087b1c34230f0df3bc691",
+    "bytes": 6961
+  },
+  "p04/roulade-qualification-draft.json": {
+    "path": "evidence/p04/roulade-qualification-draft.json",
+    "sha256": "08ac1656f55ff83fe67d558da4931aabbce4944cde0bbf00973792b06340a612",
+    "bytes": 35605
+  },
+  "p04/sitstand-near-teacher-lr3e6-final-review.json": {
+    "path": "evidence/p04/sitstand-near-teacher-lr3e6-final-review.json",
+    "sha256": "13e93400b5a67d2efdf18589804031b337ae3492358589f4fada48d61e1aaf49",
+    "bytes": 1172281
+  },
+  "p04/ballkick-target-precision-final-review.json": {
+    "path": "evidence/p04/ballkick-target-precision-final-review.json",
+    "sha256": "38e790774ed33803aeb414ef3639c2b5815c1d4f8bbdeaafc96e0bfe4d5f03ca",
+    "bytes": 122795
+  },
+  "p04/groundpick-health-history-final-review.json": {
+    "path": "evidence/p04/groundpick-health-history-final-review.json",
+    "sha256": "4bb24e37092b5fa67359f13deaf4b45abeb0fa3db000aedfa80dcaddcd9621d2",
+    "bytes": 3544941
+  },
+  "p04/groundpick-lowstart-final-review.json": {
+    "path": "evidence/p04/groundpick-lowstart-final-review.json",
+    "sha256": "5c0e51056a20effa55bfc8c6776d0f5beb2123c6f22bc862aefd38f2833c682d",
+    "bytes": 6490
+  },
+  "p04/groundpick-lowstart-clearance64.json": {
+    "path": "evidence/p04/groundpick-lowstart-clearance64.json",
+    "sha256": "ae78d7e68d6b699887e2521f59c6adc5a883c5f7b40bad36027cdc215d31a627",
+    "bytes": 10477
+  },
+  "p04/groundpick-lowstart-contact-audit.json": {
+    "path": "evidence/p04/groundpick-lowstart-contact-audit.json",
+    "sha256": "b5d2ce54d1ad71318b84c7fde02b8522bcf02168847feaca83ea98cfe29660ba",
+    "bytes": 4019
+  },
+  "p04/groundpick-branch-cpu-audit-001.json": {
+    "path": "evidence/p04/groundpick-branch-cpu-audit-001.json",
+    "sha256": "94df1b6c1a56f6ae82c0362b72196f231ae50cbc1722bdffb5036713d20c2d0a",
+    "bytes": 26759
+  },
+  "p04/groundpick-lowstart-0128-probe-002/report.json": {
+    "path": "evidence/p04/groundpick-lowstart-0128-probe-002/report.json",
+    "sha256": "034f9964cde46f6e558a605fbbf5eac287dba0e7f792ca6ec5c01ece3840159d",
+    "bytes": 27547
+  },
+  "p04/groundpick-lowstart-0128-probe-001/report.json": {
+    "path": "evidence/p04/groundpick-lowstart-0128-probe-001/report.json",
+    "sha256": "5713fb207a34fe7d479d5980f517d02ea7dcae031c699331e18d6cc28baf9b8a",
+    "bytes": 26564
+  },
+  "p04/groundpick-target-precision-final-review.json": {
+    "path": "evidence/p04/groundpick-target-precision-final-review.json",
+    "sha256": "120a1cfae3e096ad75490fa7d8603bd8f939dd1a4aca0c657ac0ef8a75ff546f",
+    "bytes": 4419658
+  },
+  "p04/ballkick-health-history-final-review.json": {
+    "path": "evidence/p04/ballkick-health-history-final-review.json",
+    "sha256": "d2c1bd58fa0a99651b57cdcccc3d749d002c3ecf5419278cea89a3d780fc1511",
+    "bytes": 92288
+  },
+  "p04/roulade-history-formal-001/initialization.json": {
+    "path": "evidence/p04/roulade-history-formal-001/initialization.json",
+    "sha256": "b89a6e7cda761d07b2ed53b87d6de98aaebce1c7934db64afeab33375c27e1b0",
+    "bytes": 538
+  },
+  "p04/roulade-history-formal-001/status.json": {
+    "path": "evidence/p04/roulade-history-formal-001/status.json",
+    "sha256": "6e434ad76fbf39db5915aff900f77e0db44c7aad293153f8f48d649f79b36b08",
+    "bytes": 262553
+  },
+  "p04/ballkick-target-precision-allocation-001/resume-verification.json": {
+    "path": "evidence/p04/ballkick-target-precision-allocation-001/resume-verification.json",
+    "sha256": "3e0d4c3bdc984fb6f44f2f82a965fd05306ffebeda56bc015f9a4a3f6e30ce73",
+    "bytes": 937
+  },
+  "p04/ballkick-target-precision-allocation-001/status.json": {
+    "path": "evidence/p04/ballkick-target-precision-allocation-001/status.json",
+    "sha256": "66af3d5f9c5f3b74364462f1dd5defab18477155aacc7ef64889d4e8285614f0",
+    "bytes": 57294
+  },
+  "p04/ballkick-target-precision-allocation-001/shared-process-phase-wall.json": {
+    "path": "evidence/p04/ballkick-target-precision-allocation-001/shared-process-phase-wall.json",
+    "sha256": "300aa2e5e7a82e0a7694b9f76aa38ea11f306927871e8a5c9d11d6d1ad4d6f39",
+    "bytes": 168
+  },
+  "p04/ballkick-health-history-allocation-001/initialization.json": {
+    "path": "evidence/p04/ballkick-health-history-allocation-001/initialization.json",
+    "sha256": "b2ae91f445ae101946d62d6968c980d3745b37d658baf597d880e64839c22632",
+    "bytes": 923
+  },
+  "p04/ballkick-health-history-allocation-001/status.json": {
+    "path": "evidence/p04/ballkick-health-history-allocation-001/status.json",
+    "sha256": "62c335c7703c9827b1e90acf32bccc4ce33b2c3601321626b49aea3fbbcb2b92",
+    "bytes": 77485
+  },
+  "p04/ballkick-health-history-allocation-001/shared-process-phase-wall.json": {
+    "path": "evidence/p04/ballkick-health-history-allocation-001/shared-process-phase-wall.json",
+    "sha256": "c5ee6262e275f8acad08966c07d36b9d5ddc0ccf455a36089ac5a83d5952e85d",
+    "bytes": 167
+  },
+  "p04/groundpick-target-precision-allocation-001/resume-verification.json": {
+    "path": "evidence/p04/groundpick-target-precision-allocation-001/resume-verification.json",
+    "sha256": "8560b231904457682db8116168b9ce33bdcacef6dce6a5b780e64a7d0537cc72",
+    "bytes": 955
+  },
+  "p04/groundpick-target-precision-allocation-001/status.json": {
+    "path": "evidence/p04/groundpick-target-precision-allocation-001/status.json",
+    "sha256": "077f6c8a07dffef5d7d4014095496d3aba4d3b665e775a3e58731d9a705a3e65",
+    "bytes": 55382
+  },
+  "p04/groundpick-target-precision-allocation-001/shared-process-phase-wall.json": {
+    "path": "evidence/p04/groundpick-target-precision-allocation-001/shared-process-phase-wall.json",
+    "sha256": "39f242fd744996b3be56cb338dadfa9ca06ad45e3782cbe60ba2947ea776c42f",
+    "bytes": 168
+  },
+  "p04/groundpick-health-history-allocation-001/initialization.json": {
+    "path": "evidence/p04/groundpick-health-history-allocation-001/initialization.json",
+    "sha256": "64284091164899db11d60dfaf67bb7e9ea2615eda07dd0cb72672a49406f615d",
+    "bytes": 923
+  },
+  "p04/groundpick-health-history-allocation-001/status.json": {
+    "path": "evidence/p04/groundpick-health-history-allocation-001/status.json",
+    "sha256": "48f8195cd59f20d98c94a061cbfa0b0f162030676cce8eab15e64107fd72d6ee",
+    "bytes": 96008
+  },
+  "p04/groundpick-health-history-allocation-001/shared-process-phase-wall.json": {
+    "path": "evidence/p04/groundpick-health-history-allocation-001/shared-process-phase-wall.json",
+    "sha256": "b1414dfef32bf94858c84a60360d7d4f9b84583675ed567e55805ac14aaf92fd",
+    "bytes": 167
+  },
+  "p04/sitstand-near-teacher-lr3e6-allocation-001/resume-verification.json": {
+    "path": "evidence/p04/sitstand-near-teacher-lr3e6-allocation-001/resume-verification.json",
+    "sha256": "9170273addc2cf4448a0cacc2de18e6df6cecb9dece7a418d00caa475e101e06",
+    "bytes": 26797
+  },
+  "p04/sitstand-near-teacher-lr3e6-allocation-001/status.json": {
+    "path": "evidence/p04/sitstand-near-teacher-lr3e6-allocation-001/status.json",
+    "sha256": "ae5863edd4eec2c0ad03b5537dcee26aae47e5f6c6698b38d6882f8e7e968efc",
+    "bytes": 68071
+  },
+  "p04/sitstand-near-teacher-lr3e6-allocation-001/shared-process-phase-wall.json": {
+    "path": "evidence/p04/sitstand-near-teacher-lr3e6-allocation-001/shared-process-phase-wall.json",
+    "sha256": "f929d44eac333aaefbd601b436cb61534d0e43f6ca707d5b17e3a36adcfccf83",
+    "bytes": 179
+  },
+  "p04/sitstand-history-hold320-allocation-001/resume-verification.json": {
+    "path": "evidence/p04/sitstand-history-hold320-allocation-001/resume-verification.json",
+    "sha256": "9f3fe90ea3cd59e48b51ded26865a36dea4e98e0aa590a581b17c16ddd049fe9",
+    "bytes": 26545
+  },
+  "p04/sitstand-history-hold320-allocation-001/status.json": {
+    "path": "evidence/p04/sitstand-history-hold320-allocation-001/status.json",
+    "sha256": "95818a5af0082f4259acee2f93e4737c16ed35968f2186be97fe1c1635773ef3",
+    "bytes": 65754
+  },
+  "p04/sitstand-history-hold320-allocation-001/shared-process-phase-wall.json": {
+    "path": "evidence/p04/sitstand-history-hold320-allocation-001/shared-process-phase-wall.json",
+    "sha256": "3dae6f7d2efad49e03b197f3808e6f29e60b3ceeb72107eb3d17dc3e24b8ea09",
+    "bytes": 180
+  },
+  "p04/velstand-head-bias-allocation-004/initialization.json": {
+    "path": "evidence/p04/velstand-head-bias-allocation-004/initialization.json",
+    "sha256": "aad04226837e8e627f3c1e525786e8cc387ec0d363c85af63ac10f970faf15fd",
+    "bytes": 2136
+  },
+  "p04/velstand-head-bias-allocation-004/status.json": {
+    "path": "evidence/p04/velstand-head-bias-allocation-004/status.json",
+    "sha256": "b0786ebec5891a5f3e8c68b4c6087b34087f1814624b49fc98f6740944c13365",
+    "bytes": 56529
+  },
+  "p04/velstand-head-bias-allocation-004/outer-phase-wall.json": {
+    "path": "evidence/p04/velstand-head-bias-allocation-004/outer-phase-wall.json",
+    "sha256": "e342feb72567c13da9edca3270e363a0da8a96fe04390745a1688382a541f04e",
+    "bytes": 127
+  },
+  "p04/velstand-head-bias-allocation-003/initialization.json": {
+    "path": "evidence/p04/velstand-head-bias-allocation-003/initialization.json",
+    "sha256": "2c97614bad598f568231a2451e3bfcbbe0ed081a0e23349975fdc29003638005",
+    "bytes": 2136
+  },
+  "p04/velstand-head-bias-allocation-003/status.json": {
+    "path": "evidence/p04/velstand-head-bias-allocation-003/status.json",
+    "sha256": "b7f3bc951a79b76227bbadc6238fc1fdaf49090a60140a2ba887a2e5f4ef5273",
+    "bytes": 56543
+  },
+  "p04/velstand-head-bias-allocation-003/outer-phase-wall.json": {
+    "path": "evidence/p04/velstand-head-bias-allocation-003/outer-phase-wall.json",
+    "sha256": "ae525eba219d86e4fb4448389f932ba864c476a638deef49488c6c2ce18b24b2",
+    "bytes": 126
+  },
+  "p04/velstand-head-bias-allocation-002/initialization.json": {
+    "path": "evidence/p04/velstand-head-bias-allocation-002/initialization.json",
+    "sha256": "e063b7afe3adfe1b6346afd14cd4c09a8c6397fad45c58ddab540eefca3c7405",
+    "bytes": 2135
+  },
+  "p04/velstand-head-bias-allocation-002/status.json": {
+    "path": "evidence/p04/velstand-head-bias-allocation-002/status.json",
+    "sha256": "cddfb3e73c9576ac9c407cde2113575ccc59bca4f7c785c0c752358d48c972ba",
+    "bytes": 56529
+  },
+  "p04/velstand-head-bias-allocation-002/outer-phase-wall.json": {
+    "path": "evidence/p04/velstand-head-bias-allocation-002/outer-phase-wall.json",
+    "sha256": "e7c63ee6fff735f2fdf795f8f323d4269c609e5e95592ea0c3a64a288c353d3d",
+    "bytes": 127
+  },
+  "p04/velstand-head-bias-allocation-001/initialization.json": {
+    "path": "evidence/p04/velstand-head-bias-allocation-001/initialization.json",
+    "sha256": "a8161086fbd241d36ec8b7133e5fafc567554662935af3b4210730f1cbd141a6",
+    "bytes": 2240
+  },
+  "p04/velstand-head-bias-allocation-001/status.json": {
+    "path": "evidence/p04/velstand-head-bias-allocation-001/status.json",
+    "sha256": "2c171e4a57c0507d4bc65073c81627aa47759cabc57c9dfbe2cc756913842b7d",
+    "bytes": 56627
+  },
+  "p04/velstand-head-bias-allocation-001/outer-phase-wall.json": {
+    "path": "evidence/p04/velstand-head-bias-allocation-001/outer-phase-wall.json",
+    "sha256": "906ddb3212b4fe28e2da1c3d5e3ef850da0b7b993fb60ac49e98232d10c01cb6",
+    "bytes": 143
+  },
+  "p04/velstand-head-free-bc-allocation-001/initialization.json": {
+    "path": "evidence/p04/velstand-head-free-bc-allocation-001/initialization.json",
+    "sha256": "6b1905f279d1daefd070d6bcfca4eb81f75a474b378c8a8ae2b50ca9e302186f",
+    "bytes": 2233
+  },
+  "p04/velstand-head-free-bc-allocation-001/status.json": {
+    "path": "evidence/p04/velstand-head-free-bc-allocation-001/status.json",
+    "sha256": "931095ff9cb704e3cde5b1f4e828a4ed48de8a109a33300422a57114038c263d",
+    "bytes": 56504
+  },
+  "p04/velstand-head-free-bc-allocation-001/outer-phase-wall.json": {
+    "path": "evidence/p04/velstand-head-free-bc-allocation-001/outer-phase-wall.json",
+    "sha256": "a2cd56651af5b185b5de8664af625c8d0b5958a86e76b9b1feb985dc85243a2b",
+    "bytes": 143
+  },
+  "p04/velstand-head-free-bc-review-001.json": {
+    "path": "evidence/p04/velstand-head-free-bc-review-001.json",
+    "sha256": "4d5b91af2ccfb9cdc77cc1f24bec515543395785931cd5792bbdf25e0dfd4cea",
+    "bytes": 191790
+  },
+  "p04/velstand-camera-mild-allocation-001/initialization.json": {
+    "path": "evidence/p04/velstand-camera-mild-allocation-001/initialization.json",
+    "sha256": "2ff9b8581a8832b23f2b67fd8d0ded2ee4e3941fcdf6ae01f4bb5f761db8da89",
+    "bytes": 2163
+  },
+  "p04/velstand-camera-mild-allocation-001/status.json": {
+    "path": "evidence/p04/velstand-camera-mild-allocation-001/status.json",
+    "sha256": "e1d6b44ef3a2be349a37520829a76c31246d73fa04b399608c88182ed8af22dd",
+    "bytes": 56418
+  },
+  "p04/velstand-camera-mild-allocation-001/outer-process-wall.json": {
+    "path": "evidence/p04/velstand-camera-mild-allocation-001/outer-process-wall.json",
+    "sha256": "ebc236309d8a6516f61edcc2c16d3d6708cbeb5ad9fd357be52ea9a7b111ce74",
+    "bytes": 215
+  },
+  "p04/velstand-camera-control-allocation-001/initialization.json": {
+    "path": "evidence/p04/velstand-camera-control-allocation-001/initialization.json",
+    "sha256": "1cfed2610cbfa5c92f77cf4453a44f825c89e939649824fec3a71b873bb97dcb",
+    "bytes": 2161
+  },
+  "p04/velstand-camera-control-allocation-001/status.json": {
+    "path": "evidence/p04/velstand-camera-control-allocation-001/status.json",
+    "sha256": "3d7d8080e2183178fd0a32d9789d67aab0f29c0e2f34dae4dc6c397482eb41f1",
+    "bytes": 56463
+  },
+  "p04/velstand-camera-control-allocation-001/outer-process-wall.json": {
+    "path": "evidence/p04/velstand-camera-control-allocation-001/outer-process-wall.json",
+    "sha256": "dfae81ba78b1f71e3d445ada7dbf856ba14eceaddf5fad8c320653942de24523",
+    "bytes": 214
+  },
+  "p04/velstand-v8-allocation-002/initialization.json": {
+    "path": "evidence/p04/velstand-v8-allocation-002/initialization.json",
+    "sha256": "0fcbf091f3f3d558ac18dade2a0d8123679302b76eef42cc38cdf7deaefc664b",
+    "bytes": 1933
+  },
+  "p04/velstand-v8-allocation-002/status.json": {
+    "path": "evidence/p04/velstand-v8-allocation-002/status.json",
+    "sha256": "7d6235cc9537a0ba3ece769892151cbc7e1d5b8c842b5bc1371aa1faf4a9d5e0",
+    "bytes": 93679
+  },
+  "p04/walking-yaw-fine-allocation-002/status.json": {
+    "path": "evidence/p04/walking-yaw-fine-allocation-002/status.json",
+    "sha256": "41bedbb17ec93354f83d5ec88dc5746ff44b913757f76361cd839fec08dd2bb0",
+    "bytes": 34203
+  },
+  "p04/walking-yaw-fine-000512-measured/report.json": {
+    "path": "evidence/p04/walking-yaw-fine-000512-measured/report.json",
+    "sha256": "2c9439b0b581d38fc10122b8c9c599bd58723826f52d4dfe4f11aec7df6a5ee4",
+    "bytes": 660695
+  },
+  "p04/walking-yaw-fine-000512-nominal/report.json": {
+    "path": "evidence/p04/walking-yaw-fine-000512-nominal/report.json",
+    "sha256": "5f2ca59399113b610ed2d6a8008ed74b120cf48c9a91f3236533b686d26e8b8a",
+    "bytes": 660508
+  },
+  "p04/walking-yaw-fine-000449-measured/report.json": {
+    "path": "evidence/p04/walking-yaw-fine-000449-measured/report.json",
+    "sha256": "08ca33f301b2134ee13d458782c8c09a49f831681748185b9f7a90098366b6f2",
+    "bytes": 660635
+  },
+  "p04/walking-yaw-fine-000449-nominal/report.json": {
+    "path": "evidence/p04/walking-yaw-fine-000449-nominal/report.json",
+    "sha256": "0bd27afb3ff4031860fe44fa2f288adc700f0a0fefc2cdc0973cb1de0e523f63",
+    "bytes": 660341
+  },
+  "p04/paired-head-accuracy-allocation-002/resume-verification.json": {
+    "path": "evidence/p04/paired-head-accuracy-allocation-002/resume-verification.json",
+    "sha256": "a531e0bd5af9353f490747f47c16a075ed7d603773158afd5d2dc33271d1e47f",
+    "bytes": 744
+  },
+  "p04/paired-head-accuracy-allocation-002/status.json": {
+    "path": "evidence/p04/paired-head-accuracy-allocation-002/status.json",
+    "sha256": "197563059b48e67213e63075d4459e837785b6f396c99591852bf288262ef08f",
+    "bytes": 1733
+  },
+  "p04/paired-head-accuracy-4466-head-summary/report.json": {
+    "path": "evidence/p04/paired-head-accuracy-4466-head-summary/report.json",
+    "sha256": "073c03482193ecca082286b5109b4fda4b44d12f6ad3fcafd238526abbe12faf",
+    "bytes": 213958
+  },
+  "p04/paired-head-accuracy-4466-head-measured/report.json": {
+    "path": "evidence/p04/paired-head-accuracy-4466-head-measured/report.json",
+    "sha256": "f4ac01de709bdeb1339483f04756fa5519d823b0d38b110c339164f5951ad46e",
+    "bytes": 1110314
+  },
+  "p04/paired-head-accuracy-4466-common-measured/report.json": {
+    "path": "evidence/p04/paired-head-accuracy-4466-common-measured/report.json",
+    "sha256": "570fddc3c18ce64e7628b087fbf2386f1909295d74b278ca9f1ac19bd47c70a0",
+    "bytes": 16490
+  },
+  "baseline/paired-feedback-allocation-001/resume-verification.json": {
+    "path": "evidence/baseline/paired-feedback-allocation-001/resume-verification.json",
+    "sha256": "2a5343776313818c6c37bfdc8f56d6ffb15adc8a247fc06e3503fba28948d93c",
+    "bytes": 725
+  },
+  "baseline/paired-feedback-allocation-001/status.json": {
+    "path": "evidence/baseline/paired-feedback-allocation-001/status.json",
+    "sha256": "48bbf3801d2cc710b5cc71bc89f294a6e774e4cc3080936e64785d9c7a3316e7",
+    "bytes": 1324
+  },
+  "p04/head2-micro-exposure-allocation-001/resume-verification.json": {
+    "path": "evidence/p04/head2-micro-exposure-allocation-001/resume-verification.json",
+    "sha256": "91f1a7fec365262a47a8910bf3a834e0515c154c33d622de1a982f1a88420440",
+    "bytes": 741
+  },
+  "p04/head2-micro-exposure-allocation-001/status.json": {
+    "path": "evidence/p04/head2-micro-exposure-allocation-001/status.json",
+    "sha256": "125587c594f4a923981025a8cded8d7dd3bf4341f9c126b3fc27dc8c4b16ae9d",
+    "bytes": 1764
+  },
+  "p04/paired-negative-pitch-routes-4274-1856/report.json": {
+    "path": "evidence/p04/paired-negative-pitch-routes-4274-1856/report.json",
+    "sha256": "e843c6ad6c27338212fbf6b3ea6532212d5f00cbc27ce79cd05849315ddacd8a",
+    "bytes": 92362
+  },
+  "p04/head2-micro-exposure-1856-head-summary/report.json": {
+    "path": "evidence/p04/head2-micro-exposure-1856-head-summary/report.json",
+    "sha256": "ea260d5166e4b50ed5f0afa68ebfd06a5fc5302035eeb84ab20c28cbd9adfbda",
+    "bytes": 212180
+  },
+  "p04/head2-micro-exposure-1856-head-measured/report.json": {
+    "path": "evidence/p04/head2-micro-exposure-1856-head-measured/report.json",
+    "sha256": "4c83b4c4373b29c9b4d874215a3f6932285931d183cbcd27172540dd6fa68150",
+    "bytes": 1105331
+  },
+  "p04/head2-micro-exposure-1856-measured/report.json": {
+    "path": "evidence/p04/head2-micro-exposure-1856-measured/report.json",
+    "sha256": "d98917c569f32529fabfbc217cf6beec1e51cd37aee8eb6e2c10683d9d0d706b",
+    "bytes": 16931
+  }
+}

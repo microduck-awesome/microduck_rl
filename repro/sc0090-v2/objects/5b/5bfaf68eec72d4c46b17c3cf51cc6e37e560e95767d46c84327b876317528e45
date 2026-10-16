@@ -1,0 +1,123 @@
+"""Five-second native BallKick battery, with separate body/head/camera metrics."""
+import argparse
+from dataclasses import asdict
+import hashlib
+import json
+import math
+from pathlib import Path
+import torch
+from tensordict import TensorDict
+from mjlab.envs import ManagerBasedRlEnv
+from mjlab.tasks.registry import load_env_cfg,load_rl_cfg
+from rsl_rl.utils import resolve_callable,resolve_obs_groups
+from mjlab_microduck.custom_v2.ball_kick_metrics import BallKickMeasurements,BOUNDARY
+from mjlab_microduck.custom_v2.head_metrics import camera_metrics
+from train_v2_ballkick import source_hashes
+
+
+def camera_summary(q,healthy):
+    metrics=camera_metrics(q,dt=.005,exposure_s=.02)
+    good=healthy.all(0)
+    def summarize(mask):
+        if not bool(mask.any()):return None
+        return {key:dict(mean_over_trials=float(value[mask].mean()),p95_over_trials=float(torch.quantile(value[mask],.95))) for key,value in metrics.items()}
+    return dict(trials=q.shape[1],healthy_entire_window_trials=int(good.sum()),all_trials=summarize(torch.ones_like(good)),healthy_entire_window=summarize(good))
+
+
+def main():
+    p=argparse.ArgumentParser()
+    p.add_argument('--checkpoint',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--device',default='cuda:1');p.add_argument('--stage',choices=('nominal','measured'),default='nominal')
+    p.add_argument('--num-envs',type=int,default=256);p.add_argument('--seed',type=int,default=2026101633)
+    a=p.parse_args();a.output.mkdir(parents=True,exist_ok=False)
+    torch.set_num_threads(2);torch.cuda.set_device(a.device)
+    checkpoint=torch.load(a.checkpoint,map_location=a.device,weights_only=False)
+    meta=checkpoint['infos']['v2'];task=meta['task'];assert 'BallKick' in task
+    hashes=source_hashes(Path(__file__).resolve().parents[1]);assert hashes==meta['source_sha256']
+    cfg=load_env_cfg(task,play=True);cfg.seed=a.seed;cfg.scene.num_envs=a.num_envs
+    cfg.actions['joint_pos'].randomization_stage=a.stage
+    cfg.curriculum={};cfg.terminations={};cfg.auto_reset=False;cfg.observations['actor'].enable_corruption=False
+    (a.output/'executed-script.py').write_bytes(Path(__file__).read_bytes())
+    (a.output/'config.json').write_text(json.dumps(asdict(cfg),indent=2,default=str)+'\n')
+    env=ManagerBasedRlEnv(cfg,device=a.device)
+    try:
+        obs,_=env.reset();robot=env.scene['robot'];reader=BallKickMeasurements(env,oracle=True)
+        initial={key:getattr(env.sim.data,key).clone().cpu() for key in ('qpos','qvel')}
+        initial.update(actor_obs=obs['actor'].clone().cpu(),origins=env.scene.env_origins.clone().cpu())
+        initial_ball=env.scene['ball'].data.root_link_pos_w.clone();direction=env._ball_kick_dir_w.clone()
+        agent=asdict(load_rl_cfg(task));td=TensorDict(obs,batch_size=[env.num_envs]);groups=resolve_obs_groups(td,agent['obs_groups'],['actor','critic']);ac=agent['actor']
+        for key in ('cnn_cfg','distribution_cfg'):
+            if ac.get(key) is None:ac.pop(key,None)
+        if ac.get('rnn_type') is None:
+            for key in ('rnn_type','rnn_hidden_dim','rnn_num_layers'):ac.pop(key,None)
+        actor=resolve_callable(ac.pop('class_name'))(td,groups,'actor',14,**ac).to(a.device)
+        actor.load_state_dict(checkpoint['actor_state_dict'],strict=True);actor.eval()
+        frozen={key:value.clone() for key,value in actor.state_dict().items()}
+        data={};control=[0];native_reward=env.reward_manager.compute
+        def record(dt):
+            reward=native_reward(dt);values=reader.read()
+            if not data:data.update({key:torch.empty((250,*value.shape),device=value.device,dtype=value.dtype) for key,value in values.items()})
+            for key,value in values.items():data[key][control[0]].copy_(value)
+            return reward
+        env.reward_manager.compute=record
+        camera_site=robot.find_sites('head_camera')[0][0]
+        camera=torch.empty(1001,env.num_envs,4,device=a.device)
+        kick_state=torch.empty(1000,env.num_envs,2,device=a.device,dtype=torch.bool)
+        raw_contacts=torch.empty(1000,env.num_envs,4,device=a.device,dtype=torch.bool)
+        def raw_touch(name,force=False):
+            d=env.scene[name].data;found=d.found.reshape(env.num_envs,-1)>0
+            if force:found &= d.force.reshape(env.num_envs,-1,3).norm(dim=-1)>.001
+            return found.any(-1)
+        sub=[0];native_sub=env.metrics_manager.compute_substep
+        def capture():
+            native_sub();camera[sub[0]].copy_(robot.data.site_quat_w[:,camera_site])
+            kick_state[sub[0],:,0].copy_(env._v2_ball_valid_kick)
+            kick_state[sub[0],:,1].copy_(env._v2_ball_bad_contact)
+            raw_contacts[sub[0]].copy_(torch.stack((raw_touch('kick_foot_ball_contact',True),raw_touch('other_robot_ball_contact',True),raw_touch('v2_head_ground_contact',True),raw_touch('self_collision')),-1))
+            sub[0]+=1
+        env.metrics_manager.compute_substep=capture
+        with torch.inference_mode():
+            for step in range(250):
+                control[0]=step
+                torch._assert_async((obs['actor'][:,48:51]==env.command_manager.get_command('twist')).all(),'Ball actor command mismatch')
+                action=actor(TensorDict(obs,batch_size=[env.num_envs]),stochastic_output=False)
+                obs,_,_,_,_=env.step(action)
+            camera[-1].copy_(robot.data.site_quat_w[:,camera_site])
+        assert sub[0]==1000
+        assert bool(torch.isfinite(camera).all())
+        torch.testing.assert_close(camera.norm(dim=-1),torch.ones_like(camera[...,0]),rtol=0,atol=2e-5)
+        for key,value in frozen.items():assert torch.equal(actor.state_dict()[key],value)
+        finite_feedback=data['finite']&data['feedback_ready']
+        motion_healthy=finite_feedback&~data['head_contact']&~data['self_contact']&(data['height']>=.08)&(data['tilt']<=math.pi/4)
+        clean=motion_healthy.all(0)&~data['bad_contact'].any(0)
+        contact=data['valid_kick'].any(0)
+        displacement=((data['ball_position'][-1,:,:2]+env.scene.env_origins[:,:2]-initial_ball[:,:2])*direction).sum(-1)
+        target=data['rolling_target'][-50:].all(0)
+        stand=data['standing'][-25:].all(0)
+        head_neutral=(data['physical_q'][-25:,:,5:9].abs().amax(-1)<.1).all(0)
+        success=contact&target&stand&clean&(displacement>=.25)
+        cameras={}
+        for name,start,end,healthy in (('prepare_0_to_05s',0,25,motion_healthy),('motion_05_to_2s',25,100,motion_healthy),('return_4_to_5s',200,250,data['standing'])):
+            cameras[name]=camera_summary(camera[start*4:end*4+1],healthy[start:end])
+        # Align one-second windows to actual first valid contact; all windows
+        # require enough real samples on both sides, without padded endpoints.
+        seen=kick_state[:,:,0].any(0);first=kick_state[:,:,0].long().argmax(0)
+        aligned=seen&(first>=100)&(first+100<=1000)
+        if bool(aligned.any()):
+            env_ids=aligned.nonzero().flatten();idx=first[env_ids][None,:]+torch.arange(-100,101,device=a.device)[:,None]
+            q=camera[idx,env_ids[None,:]];health=motion_healthy[(idx[:-1]//4).clamp(max=249),env_ids[None,:]]
+            cameras['contact_minus05_to_plus05s']=camera_summary(q,health)
+        else:cameras['contact_minus05_to_plus05s']=None
+        torch.save(dict(measurements={key:value.cpu() for key,value in data.items()},camera_quat_w=camera.cpu(),physics_kick_state=kick_state.cpu(),physics_raw_contacts=raw_contacts.cpu(),physics_raw_contact_columns=['correct_foot_ball','other_robot_ball','head_ground','self_found'],initial=initial,kick_direction=direction.cpu()),a.output/'traces.pt')
+        report=dict(status='EVALUATED_NOT_AUTOMATIC_SKILL_ACCEPTANCE',task=task,checkpoint=str(a.checkpoint.resolve()),checkpoint_sha256=hashlib.sha256(a.checkpoint.read_bytes()).hexdigest(),stage=a.stage,seed=a.seed,trials=env.num_envs,
+            source_sha256=hashes,boundary=BOUNDARY,actor_normalizer_unchanged=True,
+            oracle_max_abs=reader.oracle_max.cpu().tolist(),raw_correct_foot_touch_trials_200hz=int(raw_contacts[:,:,0].any(0).sum()),healthy_valid_ever_trials_200hz=int(kick_state[:,:,0].any(0).sum()),bad_latch_ever_trials_200hz=int(kick_state[:,:,1].any(0).sum()),raw_self_touch_trials_200hz=int(raw_contacts[:,:,3].any(0).sum()),contact_semantics='Raw foot touch is separate from health-qualified valid latch; newself rejection can reducevalid without reducingrawcontact. Existing50Hz valid_contact_trials kept for compatibility.',valid_contact_trials=int(contact.sum()),clean_motion_trials=int(clean.sum()),rolling_target_last1s_trials=int(target.sum()),body_standing_last05s_trials=int(stand.sum()),body_and_neutral_head_last05s_trials=int((stand&head_neutral).sum()),complete_kick_trials=int(success.sum()),complete_kick_and_neutral_head_trials=int((success&head_neutral).sum()),feedback_fault_trials=int((~data['feedback_ready']).any(0).sum()),nonfinite_trials=int((~data['finite']).any(0).sum()),ball_forward_distance_mean_m=float(displacement.mean()),ball_tail_forward_speed_mean_mps=float(data['ball_forward'][-50:].mean()),ball_tail_lateral_abs_mean_mps=float(data['ball_lateral'][-50:].abs().mean()),head_tail_home_mae_deg=torch.rad2deg(data['physical_q'][-50:,:,5:9].abs().mean((0,1))).tolist(),camera=cameras,
+            protocol='5s original ball-at-rest noisy placement; original play startup randomization; no autoreset or true-state actor input; no forced incoming ball.',
+            development_gate='correct-foot supported healthy contact; no bad/head/self contact, tilt<=45deg height>=.08 and finite feedback throughout; tail1s forward.8–1.2m/s and lateral<=.2m/s; distance>=.25m; last.5s healthy body standing. Neutral headmax<.1rad separate. Thresholds are experimental, not user or hardware specification.',
+            camera_protocol='Actual head_camera CAD site,200Hz/20ms exposure; angular metrics not calibrated pixel blur. Fixed windows plus real contact-aligned window; all and healthy denominators separate. Camera motion during kick is not automatically jitter.',script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+        (a.output/'report.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n')
+        print(json.dumps({key:value for key,value in report.items() if key not in ('source_sha256','camera')}),flush=True)
+    finally:env.close()
+
+
+if __name__=='__main__':main()

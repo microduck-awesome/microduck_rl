@@ -1,0 +1,82 @@
+{
+  "rise_p04_micro1856": {
+    "manifest": "snapshots/rise_p04_micro1856.json",
+    "manifest_sha256": "8f61a3c0e845afff7b300b5efb9d27dfdc2dd817ca4ddc95a08691eb06cc2e4d",
+    "files": 449
+  },
+  "rise_baseline_paired3762": {
+    "manifest": "snapshots/rise_baseline_paired3762.json",
+    "manifest_sha256": "40943a3c5198adab37774dbf7ff2da3f9f1f4bdeae9897fe19200470628187a9",
+    "files": 401
+  },
+  "rise_baseline_to_p04_4466": {
+    "manifest": "snapshots/rise_baseline_to_p04_4466.json",
+    "manifest_sha256": "594d09d61a7fd3b16b144b2ab07bdbfa0e1c3ff2cad273921ce7c60dbd3f4ad7",
+    "files": 476
+  },
+  "walking449": {
+    "manifest": "snapshots/walking449.json",
+    "manifest_sha256": "d54cd8235df56ff0936f71f828bdd0e38a408bd719ac3395df9f5db74516d986",
+    "files": 484
+  },
+  "velstand256": {
+    "manifest": "snapshots/velstand256.json",
+    "manifest_sha256": "44e23d889e65acb1ba59233afb1de3d9e1cd71319b5266ee01f7ad97f177e8c1",
+    "files": 490
+  },
+  "velstand_control320": {
+    "manifest": "snapshots/velstand_control320.json",
+    "manifest_sha256": "207fbe6749e836bbb86f9cf2764ce995e27b7d64e7ce38788f156ade5fa02373",
+    "files": 494
+  },
+  "velstand_head_free320": {
+    "manifest": "snapshots/velstand_head_free320.json",
+    "manifest_sha256": "07519c52e7cbdc73d6766642914fb585a308759b6894bae5285cde10146d5a57",
+    "files": 440
+  },
+  "velstand_head_bias384": {
+    "manifest": "snapshots/velstand_head_bias384.json",
+    "manifest_sha256": "9a871a8d1d542787d3bd8e5903e2e322b2784632badbd1ada32e4f6f7a34f9a1",
+    "files": 437
+  },
+  "sitstand640": {
+    "manifest": "snapshots/sitstand640.json",
+    "manifest_sha256": "2582f15addc5957c450f82c3eb89bb7068caed8eecd1363965e6461dd67c5c3b",
+    "files": 477
+  },
+  "sitstand_near_teacher768": {
+    "manifest": "snapshots/sitstand_near_teacher768.json",
+    "manifest_sha256": "d540c786761c9c50fb38b697b0c19164466d45f6791736e20b788fc53a24f1b4",
+    "files": 479
+  },
+  "groundpick_history512": {
+    "manifest": "snapshots/groundpick_history512.json",
+    "manifest_sha256": "792d00649fdf665faf666e6002b6d45c9db0c4e9feab1647c16dc3e4c3ed3ef3",
+    "files": 480
+  },
+  "groundpick_precision704": {
+    "manifest": "snapshots/groundpick_precision704.json",
+    "manifest_sha256": "cd91bd88354e238bb5899c2b054c2dfee519e0924d792ea321a326d25d7aec36",
+    "files": 461
+  },
+  "ballkick_health256": {
+    "manifest": "snapshots/ballkick_health256.json",
+    "manifest_sha256": "b921f1ff50b94802a184977df29171517a6cefc8e210c05d59416f42ff39c356",
+    "files": 506
+  },
+  "ballkick_precision384": {
+    "manifest": "snapshots/ballkick_precision384.json",
+    "manifest_sha256": "b08e94a47be98fe296f992eae173544dc1efe7489c04e069ad702135668424fd",
+    "files": 507
+  },
+  "roulade1536": {
+    "manifest": "snapshots/roulade1536.json",
+    "manifest_sha256": "c766f2b615ad711554a1c8906a7aacfb64d397de4a40697c6d03137db850a3a0",
+    "files": 447
+  },
+  "groundpick_baseline_b0_pending": {
+    "manifest": "snapshots/groundpick_baseline_b0_pending.json",
+    "manifest_sha256": "2fe82fb07f1bc0fabc29b00ca56e770e10d6dee5c1e7e57aa59d60cbc7765533",
+    "files": 462
+  }
+}

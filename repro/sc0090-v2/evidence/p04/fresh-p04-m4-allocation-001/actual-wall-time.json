@@ -1,0 +1,17 @@
+{
+  "updates": 128,
+  "controls": 100663296,
+  "ppo_active_seconds_rounded": 817.7300000000001,
+  "median_update_seconds": 6.08,
+  "median_control_per_second": 129347.36842105263,
+  "active_control_per_second": 123100.89638389197,
+  "run_json_to_complete_s": 939.6352322101593,
+  "run_json_to_complete_control_per_second": 107130.18472415644,
+  "launch_wall_bracket_s": [
+    939.6352322101593,
+    990.5007135868073
+  ],
+  "note": "run.json-to-completion includes build/resume/evaluations, excludes earlier Python import. Actual launch is after preflight report and before run.json; duration bracket includes that uncertainty.",
+  "start_run_json_local": "2026-10-15T18:14:49.856277",
+  "completion_local": "2026-10-15T18:30:29.491509"
+}

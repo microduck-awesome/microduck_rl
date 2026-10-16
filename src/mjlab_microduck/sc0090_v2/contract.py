@@ -85,8 +85,17 @@ def export_contract(env, contract):
     value["commands"]["action_scale"] = action.cfg.scale
     value["randomization"]["stage"] = action.cfg.randomization_stage
     value["hardware_runtime"] = "microduck-v2-sc0090-s0-o0-v1"
+    if not action.cfg.spike_rejection:
+        value['hardware_runtime']='microduck-v2-bench-no-spike-diagnostic-v1'
+        value['observations']['spike_rejection']=False
+    if action.cfg.observer_frontend=='firmware-ls3':
+        value['hardware_runtime']='microduck-v2-sc0090-firmware-ls3-v1'
+        value['observations']['observer']='firmware-native-ls3'
+        value['observations']['frontend']='native timestamps, 8-point physical history, 3-point LS'
+        value['observations']['firmware_source']='ee77131564eef52a64575628b0c117d69f583039'
+        value['observations']['calibration']='virtual affine expressed as per-joint zero/scale; hardware unverified'
     encoded = json.dumps(value, sort_keys=True, separators=(",", ":"))
-    return {
+    result = {
         "microduck_training_contract": encoded,
         "microduck_training_contract_sha256": hashlib.sha256(
             encoded.encode()
@@ -94,3 +103,41 @@ def export_contract(env, contract):
         "microduck_robot": "microduck-v2-sc0090",
         "microduck_runtime": value["hardware_runtime"],
     }
+    if action.cfg.observer_frontend=='firmware-ls3':
+        result['microduck_deployment']='simulation-runtime-alignment-only'
+    if not action.cfg.spike_rejection:
+        result['microduck_deployment']='simulation-measurement-ablation-only'
+    if action.cfg.o0_local_history:
+        value['observations']['o0_history']='five valid sampled points; no O1 220ms refractory period'
+        value['observations']['spike_rejection']=action.cfg.spike_rejection
+        value['hardware_runtime']='microduck-v2-p04-o0-valid-raw-native-counts-v2'
+        value['observations']['native_feedback_count_limits']=[0,1023]
+        value['observations']['command_count_limits']=[20,1001]
+        encoded=json.dumps(value,sort_keys=True,separators=(',',':'))
+        result.update(microduck_training_contract=encoded,
+            microduck_training_contract_sha256=hashlib.sha256(encoded.encode()).hexdigest(),
+            microduck_runtime=value['hardware_runtime'],
+            microduck_deployment='simulation-feedback-repair-validation')
+    # Training execution provenance is separate from the hardware interface.
+    # In particular, a new donor RNG protocol must not inherit the old frozen
+    # source identity merely because the coefficient files are unchanged.
+    feedback = getattr(env.unwrapped, '_v2_joint_feedback', None)
+    if feedback is not None:
+        from .measurement.gpu_donors import SAMPLER_VERSION
+        root = Path(__file__).resolve().parent
+        files = sorted([root/'feedback.py',root/'graph.py',*root.glob('measurement/*.py')])
+        if action.cfg.observer_frontend=='firmware-ls3':
+            files.append(root.parent/'custom_v2/firmware_ls3.py')
+        result['microduck_measurement_execution'] = json.dumps(dict(
+            schema=1, donor_sampler=SAMPLER_VERSION, candidate_count=1024,
+            pipeline=type(feedback.pipeline).__name__,
+            frontend=type(feedback.pipeline.stream).__name__,
+            spike_rejection=action.cfg.spike_rejection,
+            o0_local_history=action.cfg.o0_local_history,
+            native_feedback_count_limits=list(feedback.pipeline.stream.raw_count_limits),
+            command_count_limits=list(feedback.pipeline.stream.count_limits),
+            source_sha256={str(p.relative_to(root,walk_up=True)):hashlib.sha256(p.read_bytes()).hexdigest() for p in files},
+            rollout_graph=feedback.graph_enabled,reset_graph=feedback.reset_graph_enabled,
+            reset_graph_chunk=feedback.reset_graph_chunk,
+            compact_reset=feedback.compact_reset),sort_keys=True,separators=(',',':'))
+    return result

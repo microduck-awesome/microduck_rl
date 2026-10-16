@@ -1,0 +1,336 @@
+{
+  "status": "LOCAL_GEOMETRY_PASS_NOT_DYNAMIC",
+  "delta_neck_rad": -0.06,
+  "worlds": 64,
+  "mouth_height_range_m": [
+    0.015912459869830933,
+    0.016376330625602502
+  ],
+  "down_cos_min": 0.9998431995239682,
+  "head_shell_floor_min_clearance_m": 0.006863499419776625,
+  "mouth_gate_original_max_m": 0.025,
+  "all_pass": true,
+  "scope": "same64 captured physical prehold qpos; one chosen neck offset; root/other joints unchanged; quiet/body original conditions passed001 but need new dynamics to confirm",
+  "rows": [
+    {
+      "mouth_height_m": 0.016175755717102558,
+      "mouth_down_cos": 0.9999057680449116,
+      "head_floor_clearance_m": 0.006892658694794676
+    },
+    {
+      "mouth_height_m": 0.016058073305532425,
+      "mouth_down_cos": 0.9999334924396934,
+      "head_floor_clearance_m": 0.00690354480433767
+    },
+    {
+      "mouth_height_m": 0.01617440173895373,
+      "mouth_down_cos": 0.9999070627807317,
+      "head_floor_clearance_m": 0.006901994683083841
+    },
+    {
+      "mouth_height_m": 0.01610070679042161,
+      "mouth_down_cos": 0.9999231510842775,
+      "head_floor_clearance_m": 0.006894769286744817
+    },
+    {
+      "mouth_height_m": 0.016065958775642347,
+      "mouth_down_cos": 0.9999274444155417,
+      "head_floor_clearance_m": 0.006899003385058819
+    },
+    {
+      "mouth_height_m": 0.015912459869830933,
+      "mouth_down_cos": 0.9999615681756576,
+      "head_floor_clearance_m": 0.006919005303046302
+    },
+    {
+      "mouth_height_m": 0.016106847837971422,
+      "mouth_down_cos": 0.999922193519994,
+      "head_floor_clearance_m": 0.00689698513441038
+    },
+    {
+      "mouth_height_m": 0.016066968987081424,
+      "mouth_down_cos": 0.9999320468658008,
+      "head_floor_clearance_m": 0.00690751868882223
+    },
+    {
+      "mouth_height_m": 0.016200830276971598,
+      "mouth_down_cos": 0.9998985173987561,
+      "head_floor_clearance_m": 0.006886816647688684
+    },
+    {
+      "mouth_height_m": 0.015997716990968157,
+      "mouth_down_cos": 0.9999461224523957,
+      "head_floor_clearance_m": 0.00690995110607142
+    },
+    {
+      "mouth_height_m": 0.016196782639524357,
+      "mouth_down_cos": 0.9998962543347963,
+      "head_floor_clearance_m": 0.006880789521372124
+    },
+    {
+      "mouth_height_m": 0.01613951605588021,
+      "mouth_down_cos": 0.9999146318459893,
+      "head_floor_clearance_m": 0.006896455063912739
+    },
+    {
+      "mouth_height_m": 0.016106707009020532,
+      "mouth_down_cos": 0.9999232294396896,
+      "head_floor_clearance_m": 0.006906509163011915
+    },
+    {
+      "mouth_height_m": 0.016110748842013745,
+      "mouth_down_cos": 0.9999222265069769,
+      "head_floor_clearance_m": 0.00690234895727769
+    },
+    {
+      "mouth_height_m": 0.01619612201807348,
+      "mouth_down_cos": 0.9998997451897509,
+      "head_floor_clearance_m": 0.006891818073858906
+    },
+    {
+      "mouth_height_m": 0.0159405379486241,
+      "mouth_down_cos": 0.9999568391846959,
+      "head_floor_clearance_m": 0.006916430729819872
+    },
+    {
+      "mouth_height_m": 0.016122106817020053,
+      "mouth_down_cos": 0.9999206486011292,
+      "head_floor_clearance_m": 0.006910111519656627
+    },
+    {
+      "mouth_height_m": 0.016208452166934784,
+      "mouth_down_cos": 0.9998964417075691,
+      "head_floor_clearance_m": 0.00689070516547103
+    },
+    {
+      "mouth_height_m": 0.016162277407745215,
+      "mouth_down_cos": 0.999909590468143,
+      "head_floor_clearance_m": 0.006896968876894206
+    },
+    {
+      "mouth_height_m": 0.016063947481312006,
+      "mouth_down_cos": 0.9999311966307052,
+      "head_floor_clearance_m": 0.006897820130092103
+    },
+    {
+      "mouth_height_m": 0.01618730087509567,
+      "mouth_down_cos": 0.9999028477840316,
+      "head_floor_clearance_m": 0.0068919779460794375
+    },
+    {
+      "mouth_height_m": 0.016178919324577434,
+      "mouth_down_cos": 0.9999056916441899,
+      "head_floor_clearance_m": 0.006894811399606571
+    },
+    {
+      "mouth_height_m": 0.016155904347336138,
+      "mouth_down_cos": 0.9999103845358188,
+      "head_floor_clearance_m": 0.00689619272599655
+    },
+    {
+      "mouth_height_m": 0.016092365106517,
+      "mouth_down_cos": 0.9999268573319826,
+      "head_floor_clearance_m": 0.006906458096189644
+    },
+    {
+      "mouth_height_m": 0.01611455024029966,
+      "mouth_down_cos": 0.9999198448591556,
+      "head_floor_clearance_m": 0.006893072234533677
+    },
+    {
+      "mouth_height_m": 0.016066701811659298,
+      "mouth_down_cos": 0.9999322364916938,
+      "head_floor_clearance_m": 0.006904937026795996
+    },
+    {
+      "mouth_height_m": 0.01605345166744243,
+      "mouth_down_cos": 0.9999348632175324,
+      "head_floor_clearance_m": 0.006905582488780447
+    },
+    {
+      "mouth_height_m": 0.016138897056983778,
+      "mouth_down_cos": 0.9999143232669415,
+      "head_floor_clearance_m": 0.006898014182664294
+    },
+    {
+      "mouth_height_m": 0.016188688160413703,
+      "mouth_down_cos": 0.9999015997217414,
+      "head_floor_clearance_m": 0.006892233992766131
+    },
+    {
+      "mouth_height_m": 0.016111141783779023,
+      "mouth_down_cos": 0.9999209173621949,
+      "head_floor_clearance_m": 0.0068977967295872425
+    },
+    {
+      "mouth_height_m": 0.01621098551817298,
+      "mouth_down_cos": 0.9998952510836857,
+      "head_floor_clearance_m": 0.006884182810838843
+    },
+    {
+      "mouth_height_m": 0.016143499435163,
+      "mouth_down_cos": 0.99991344667222,
+      "head_floor_clearance_m": 0.006896490321510983
+    },
+    {
+      "mouth_height_m": 0.016085110893748603,
+      "mouth_down_cos": 0.9999283876176687,
+      "head_floor_clearance_m": 0.00690718171889116
+    },
+    {
+      "mouth_height_m": 0.01616903021478565,
+      "mouth_down_cos": 0.9999085765110997,
+      "head_floor_clearance_m": 0.0068974118700191045
+    },
+    {
+      "mouth_height_m": 0.016376330625602502,
+      "mouth_down_cos": 0.9998431995239682,
+      "head_floor_clearance_m": 0.006863499419776625
+    },
+    {
+      "mouth_height_m": 0.016235946170732263,
+      "mouth_down_cos": 0.9998882539944416,
+      "head_floor_clearance_m": 0.006880644414819427
+    },
+    {
+      "mouth_height_m": 0.016066648771150806,
+      "mouth_down_cos": 0.9999324747028463,
+      "head_floor_clearance_m": 0.006909769516151958
+    },
+    {
+      "mouth_height_m": 0.016277007974402118,
+      "mouth_down_cos": 0.9998785410301092,
+      "head_floor_clearance_m": 0.006885761930882341
+    },
+    {
+      "mouth_height_m": 0.016053368003342887,
+      "mouth_down_cos": 0.999934749677648,
+      "head_floor_clearance_m": 0.006905967057199154
+    },
+    {
+      "mouth_height_m": 0.016157270466524036,
+      "mouth_down_cos": 0.9999103106168142,
+      "head_floor_clearance_m": 0.0068931938850136446
+    },
+    {
+      "mouth_height_m": 0.01611431078819127,
+      "mouth_down_cos": 0.9999177244340425,
+      "head_floor_clearance_m": 0.006888376543906005
+    },
+    {
+      "mouth_height_m": 0.015940584992884747,
+      "mouth_down_cos": 0.9999557472520829,
+      "head_floor_clearance_m": 0.006911033016681549
+    },
+    {
+      "mouth_height_m": 0.016232854455073657,
+      "mouth_down_cos": 0.9998883181751594,
+      "head_floor_clearance_m": 0.006877771105840612
+    },
+    {
+      "mouth_height_m": 0.016239449183356472,
+      "mouth_down_cos": 0.9998872087023447,
+      "head_floor_clearance_m": 0.006886189018707994
+    },
+    {
+      "mouth_height_m": 0.015986700917778762,
+      "mouth_down_cos": 0.9999487355252084,
+      "head_floor_clearance_m": 0.006917647610859105
+    },
+    {
+      "mouth_height_m": 0.01609702017958533,
+      "mouth_down_cos": 0.999925458560449,
+      "head_floor_clearance_m": 0.006904855205982607
+    },
+    {
+      "mouth_height_m": 0.01598856515084568,
+      "mouth_down_cos": 0.9999477115061534,
+      "head_floor_clearance_m": 0.006910052480140989
+    },
+    {
+      "mouth_height_m": 0.016238740857921062,
+      "mouth_down_cos": 0.9998880868413448,
+      "head_floor_clearance_m": 0.006883363149205075
+    },
+    {
+      "mouth_height_m": 0.01606256222555922,
+      "mouth_down_cos": 0.9999320239295345,
+      "head_floor_clearance_m": 0.006903935373855981
+    },
+    {
+      "mouth_height_m": 0.016070390276374816,
+      "mouth_down_cos": 0.9999310182973786,
+      "head_floor_clearance_m": 0.006902891542849746
+    },
+    {
+      "mouth_height_m": 0.016167359763679265,
+      "mouth_down_cos": 0.9999081905270057,
+      "head_floor_clearance_m": 0.006893865439140064
+    },
+    {
+      "mouth_height_m": 0.01603445879024306,
+      "mouth_down_cos": 0.9999401575364706,
+      "head_floor_clearance_m": 0.006917684969093778
+    },
+    {
+      "mouth_height_m": 0.01621202440083526,
+      "mouth_down_cos": 0.9998954752075845,
+      "head_floor_clearance_m": 0.0068921743070975705
+    },
+    {
+      "mouth_height_m": 0.016012922823925184,
+      "mouth_down_cos": 0.9999427846682744,
+      "head_floor_clearance_m": 0.006910470490482268
+    },
+    {
+      "mouth_height_m": 0.016273643075894545,
+      "mouth_down_cos": 0.9998784838285791,
+      "head_floor_clearance_m": 0.006882371234436385
+    },
+    {
+      "mouth_height_m": 0.016240055094660102,
+      "mouth_down_cos": 0.9998858838143446,
+      "head_floor_clearance_m": 0.006878320692615042
+    },
+    {
+      "mouth_height_m": 0.016162036402352087,
+      "mouth_down_cos": 0.9999078383938798,
+      "head_floor_clearance_m": 0.006887361587375171
+    },
+    {
+      "mouth_height_m": 0.01601275659815353,
+      "mouth_down_cos": 0.9999433581508953,
+      "head_floor_clearance_m": 0.006909869230798803
+    },
+    {
+      "mouth_height_m": 0.016354916234293797,
+      "mouth_down_cos": 0.9998534635028038,
+      "head_floor_clearance_m": 0.00687325386560083
+    },
+    {
+      "mouth_height_m": 0.016193883477549534,
+      "mouth_down_cos": 0.9998954944985688,
+      "head_floor_clearance_m": 0.006876926719760236
+    },
+    {
+      "mouth_height_m": 0.01607563854421063,
+      "mouth_down_cos": 0.9999292603817547,
+      "head_floor_clearance_m": 0.0068998140343373635
+    },
+    {
+      "mouth_height_m": 0.01613172100478493,
+      "mouth_down_cos": 0.9999178997140526,
+      "head_floor_clearance_m": 0.006902211471129897
+    },
+    {
+      "mouth_height_m": 0.01604575550416905,
+      "mouth_down_cos": 0.999937449122498,
+      "head_floor_clearance_m": 0.006911662748025203
+    },
+    {
+      "mouth_height_m": 0.016123517773961656,
+      "mouth_down_cos": 0.9999186317391573,
+      "head_floor_clearance_m": 0.0069010341284684446
+    }
+  ]
+}

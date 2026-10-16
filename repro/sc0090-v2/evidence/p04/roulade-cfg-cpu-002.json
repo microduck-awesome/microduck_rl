@@ -1,0 +1,143 @@
+{
+  "status": "PASS_CPU_CONFIGURATION_NOT_GPU_QUALIFIED",
+  "task": "Mjlab-Roulade-Flat-MicroDuck-V2-Repaired-S0-O0-R1",
+  "episode_s": 5.0,
+  "capacity": 64,
+  "solver": {
+    "timestep": 0.005,
+    "integrator": "implicitfast",
+    "impratio": 1.0,
+    "cone": "pyramidal",
+    "jacobian": "auto",
+    "solver": "newton",
+    "iterations": 10,
+    "tolerance": 1e-08,
+    "ls_iterations": 20,
+    "ls_tolerance": 0.01,
+    "ccd_iterations": 50,
+    "gravity": [
+      0.0,
+      0.0,
+      -9.81
+    ],
+    "disableflags": [],
+    "enableflags": []
+  },
+  "tuck": [
+    0.0,
+    0.0,
+    -0.41525999999999996,
+    -0.7529399999999999,
+    0.35819999999999996,
+    0.80946,
+    0.39054,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    -0.41525999999999996,
+    -0.7529399999999999,
+    0.35819999999999996
+  ],
+  "static_noisy_tuck_cases": 256,
+  "max_self_penetration_m": 0.0,
+  "pre_guard_limit_violation_cases": 0,
+  "mirror_involution_pass": true,
+  "mirror_kind": "corrected V2 kinematic actor regularizer, not exact stochastic dynamics symmetry",
+  "head_top_axis": [
+    -0.07845857852479174,
+    0.0,
+    0.9969173744377559
+  ],
+  "reward_weights_unchanged": true,
+  "rewards": {
+    "body_ang_vel": {
+      "function": "body_angular_velocity_penalty",
+      "weight": -0.002
+    },
+    "angular_momentum": {
+      "function": "angular_momentum_penalty",
+      "weight": -0.001
+    },
+    "dof_pos_limits": {
+      "function": "joint_pos_limits",
+      "weight": -1.0
+    },
+    "action_rate_l2": {
+      "function": "action_rate_l2",
+      "weight": -0.1
+    },
+    "roulade_progress": {
+      "function": "roulade_progress",
+      "weight": 8.0
+    },
+    "roulade_overspeed": {
+      "function": "roulade_overspeed_penalty",
+      "weight": -0.1
+    },
+    "roulade_head_pivot": {
+      "function": "roulade_head_pivot",
+      "weight": 0.5
+    },
+    "roulade_landing_composite": {
+      "function": "roulade_landing_composite",
+      "weight": 4.0
+    },
+    "roulade_upright_after_roll": {
+      "function": "roulade_upright_after_roll",
+      "weight": 1.5
+    },
+    "roulade_height_after_roll": {
+      "function": "roulade_height_after_roll",
+      "weight": 1.0
+    },
+    "roulade_landing_sharp": {
+      "function": "roulade_landing_sharp",
+      "weight": 2.0
+    },
+    "roulade_stand_tax": {
+      "function": "roulade_stand_tax",
+      "weight": 5.0
+    },
+    "roulade_rise_velocity": {
+      "function": "roulade_rise_velocity",
+      "weight": 0.75
+    },
+    "roulade_sagittal": {
+      "function": "roulade_sagittal_penalty",
+      "weight": -0.1
+    },
+    "roulade_lateral_vel": {
+      "function": "roulade_lateral_velocity_penalty",
+      "weight": -0.5
+    },
+    "roulade_flatness": {
+      "function": "roulade_flatness_penalty",
+      "weight": -0.5
+    },
+    "joint_torque_rate_l2": {
+      "function": "joint_torque_rate_l2",
+      "weight": 0.0
+    },
+    "arrival_damping": {
+      "function": "body_ang_vel_at_height",
+      "weight": 0.0
+    },
+    "gentle_landing": {
+      "function": "trunk_vertical_accel_penalty",
+      "weight": 0.002
+    },
+    "self_collisions": {
+      "function": "self_collision_cost",
+      "weight": -0.1
+    }
+  },
+  "stage_budget": 100663296,
+  "gpu_qualified": false,
+  "bounded_noise": 0.04,
+  "evidence": "Same256 CPU RNG targets/draws as001; only noise.clip\u00b1.04 changes. Full config inheritance unchanged except new clip parameter and metadata; GPU verifies actual resolved clip.",
+  "updated_source_sha256": {
+    "src/mjlab_microduck/tasks/mdp.py": "dedc9593c652e82c88b9470a1df0552a15abf1cba900923d28851d60069d38a7",
+    "src/mjlab_microduck/custom_v2/roulade.py": "58814bbcdb0aa3f41f71cd19d2dc435956d4dff47b4597ca2914c13d52e04b1b"
+  }
+}

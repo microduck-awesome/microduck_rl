@@ -1,0 +1,35 @@
+"""Actual successor oracle for the prepared Roulade configuration."""
+import torch
+from .terminal import SC0090TerminalCriticObserver
+
+def validate_terminal(env):
+ def states():
+  out={k:getattr(env.sim.data,k).clone() for k in ('qpos','qvel','xfrc_applied','qfrc_applied')}
+  out.update(age=env.episode_length_buf.clone(),cpu_rng=torch.get_rng_state().clone(),cuda_rng=torch.cuda.get_rng_state(env.device).clone())
+  for k in ('_roulade_accum','_roulade_max','_roulade_paid','_roulade_head_latch','_v2_roulade_spawn_mid','_v2_roulade_spawn_angle'):out[k]=getattr(env,k).clone()
+  for name,term in env.command_manager._terms.items():
+   for k,v in vars(term).items():
+    if isinstance(v,torch.Tensor):out['command/'+name+'/'+k]=v.clone()
+  for i,v in enumerate(env.event_manager._interval_term_time_left):out['timer/'+str(i)]=v.clone()
+  return out
+ observer=SC0090TerminalCriticObserver(env);rows=[]
+ for accum in (0.,3.,6.):
+  for full in (False,True):
+   env._roulade_accum.fill_(accum);env._roulade_max.fill_(accum);env._roulade_paid.fill_(accum);env._roulade_head_latch.fill_(accum>0)
+   for term in env.command_manager._terms.values():term.time_left.zero_()
+   before=states();last_step=env._roulade_last_update_step;got=observer.capture(env,force_full=full).clone();after=states()
+   for k in before:assert torch.equal(before[k],after[k]),('live successor mutated',accum,full,k)
+   assert env._roulade_last_update_step==last_step
+   env.sim.forward();env.command_manager.compute(env.step_dt)
+   for mode in ('step','interval'):
+    if mode in env.event_manager.available_modes:env.event_manager.apply(mode=mode,dt=env.step_dt)
+   env.sim.sense();expected=env.observation_manager.compute_group('critic',update_history=True)
+   torch.testing.assert_close(got,expected,rtol=0,atol=2e-6)
+   rows.append(dict(accum_rad=accum,force_full=full,critic_max_abs=float((got-expected).abs().max()),live_tensors_unchanged=len(before)))
+ old=states();ids=torch.tensor([1,3,9],device=env.device);others=torch.ones(env.num_envs,device=env.device,dtype=torch.bool);others[ids]=False;env.reset(env_ids=ids)
+ for k in ('qpos','qvel','_roulade_accum','_roulade_max','_roulade_paid','_roulade_head_latch','_v2_roulade_spawn_mid','_v2_roulade_spawn_angle'):
+  now=getattr(env.sim.data,k) if k in ('qpos','qvel') else getattr(env,k);assert torch.equal(old[k][others],now[others]),('partial reset affected other worlds',k)
+ assert torch.equal(env._roulade_head_latch[ids],env._v2_roulade_spawn_mid[ids])
+ assert torch.equal(env._roulade_accum[ids],env._v2_roulade_spawn_angle[ids])
+ env.reset()
+ return dict(status='PASS',cases=rows,partial_reset_roulade_state='PASS',actor_dim=env.observation_manager.group_obs_dim['actor'][0],critic_dim=env.observation_manager.group_obs_dim['critic'][0],scope='True no-reset critic successor and no mutation of live roll history/commands/RNG; no reward function is called twice')

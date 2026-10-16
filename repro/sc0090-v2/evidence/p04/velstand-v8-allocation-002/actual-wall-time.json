@@ -1,0 +1,13 @@
+{
+  "name": "velstand-v8-allocation-002",
+  "arguments": [
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/train-velstand-v8-final-with-fault-audit.py"
+  ],
+  "start_unix": 1792112598.5381324,
+  "pid": 4063673,
+  "returncode": 0,
+  "wall_seconds": 906.8060510158539,
+  "actual_controls": 75497472,
+  "full_process_control_per_second": 83256.47134293335,
+  "scope": "Entire formal subprocess including imports/config/archive/init/save/export and read-only fault diagnostics"
+}

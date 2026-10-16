@@ -1,0 +1,138 @@
+"""Bounded same-PPO full negative-pitch reset coverage experiment."""
+import hashlib
+import json
+import os
+from pathlib import Path
+import statistics
+import subprocess
+import time
+
+ROOT=Path('/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04')
+SOURCE=ROOT/'paired-catch-full-pitch-worktree'
+TASK='Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Catch2sPitchBucket10to5-LateEntropy005-HeadStdCap001-AccuracyBonus05-Repaired-S0-O0-R1'
+PARENT=ROOT/'paired-head-accuracy-allocation-003/resume_004594.pt'
+OUTPUT=ROOT/'paired-catch-full-pitch-allocation-001'
+PLAN=ROOT/'paired-catch-full-pitch-plan.json'
+TIMING=ROOT/'paired-catch-full-pitch-timing.json'
+HELPERS=ROOT.parent/'baseline/head-foundation-worktree/scripts'
+ENV=dict(os.environ,SC0090_CUDA_COMPAT_DIR='/home/l40-vm01/Documents/ai-research/microduck/microduck_rl/artifacts/cuda-compat-12.9/usr/local/cuda-12.9/compat')
+
+def read(path):return json.loads(path.read_text())
+def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+def save(path,value):
+    temporary=path.with_suffix(path.suffix+'.tmp')
+    temporary.write_text(json.dumps(value,indent=2)+'\n');temporary.replace(path)
+
+assert not OUTPUT.exists() and not PLAN.exists()
+plan=dict(status='WAITING_FOR_UNIT_AND_NEGATIVE_PITCH_EVALUATION',created_unix=time.time(),task=TASK,
+    source=str(SOURCE),parent=str(PARENT),parent_sha256=digest(PARENT),
+    only_behavioral_change='Expand the standing 75 percent targeted pitch interval from [-10,-7] to [-10,-5] degrees; retain 25 percent full +/-10, roll/yaw/height/joints, Head5+accuracy rewards, commands, PPO and feedback.',
+    num_envs=32768,rollout_steps=24,updates=64,new_controls=50331648,start_update=4594,end_update=4658,
+    initial_clock=110256,final_clock=111792,inherited_learning_rate=1.5000000000000004e-5,
+    restore='Exact actor/critic/normalizers/Adam/LR/real clock, native new episodes. No learning-rate transition.',
+    rationale='The 4594 full [-10,-5] paired diagnostic still has two failures at pitch about -5.26/-6.76 with roll about -8.4/-8.6. Increase exposure of that moderate negative-pitch slice before adding any fall reward.',
+    comparison_limit='Static 4594 parent is the reference. There is no new matched-parent unchanged-coverage 64-update control; do not attribute every change causally to the reset interval.',
+    optimizer_admission=dict(max_update_mean_kl=.5,max_clip_fraction=.8,last5_median_kl=.1,last5_median_clip_fraction=.5),
+    decision='One 64-update allocation, then full head/standing/recovery assessment. No automatic additional training or deployment.')
+save(PLAN,plan)
+deadline=time.monotonic()+1800
+while True:
+    units=[ROOT/'paired-catch-full-pitch-check-cpu.json',ROOT/'paired-catch-full-pitch-check-cuda1.json']
+    ready=True
+    for path in units:
+        if path.with_suffix('.log').exists() and 'Traceback' in path.with_suffix('.log').read_text():
+            raise RuntimeError('Config/sampler checks failed')
+        try:
+            value=read(path)
+        except (FileNotFoundError,json.JSONDecodeError):
+            ready=False
+            continue
+        assert value['status']=='PASS'
+    if ready and read(ROOT/'paired-head-execution-4594-plan.json')['status']=='COMPLETE':break
+    if time.monotonic()>deadline:raise TimeoutError('Waiting for CPU/GPU checks or execution probe')
+    time.sleep(5)
+unit=units[-1]
+files=[*SOURCE.glob('src/**/*.py'),SOURCE/'scripts/train_v2_standup.py',SOURCE/'scripts/smoke_v2_ppo.py',SOURCE/'scripts/check_catch_full_pitch.py',SOURCE/'scripts/v2_python.sh']
+hashes={str(path.relative_to(SOURCE)):digest(path) for path in files}
+plan.update(source_sha256=hashes,unit_report_sha256=digest(unit),status='PREFLIGHT_RUNNING');save(PLAN,plan)
+timing=dict(pipeline_start_unix=time.time(),phases=[],scope='Includes this recipe preflight, formal training, two head evaluations and common measured recovery. Prior training and negative-pitch evaluation excluded.')
+
+def check_source():
+    for path,sha in hashes.items():assert digest(SOURCE/path)==sha,path
+
+def run(label,args):
+    phase=dict(label=label,start_unix=time.time(),arguments=list(map(str,args)))
+    timing['phases'].append(phase)
+    with (ROOT/f'paired-catch-full-pitch-{label}.log').open('w') as log:
+        process=subprocess.Popen([str(SOURCE/'scripts/v2_python.sh'),*map(str,args)],cwd=SOURCE,env=ENV,stdout=log,stderr=subprocess.STDOUT)
+        phase['pid']=process.pid;save(TIMING,timing);print(label,process.pid,flush=True)
+        code=process.wait()
+    phase.update(returncode=code,end_unix=time.time());phase['wall_seconds']=phase['end_unix']-phase['start_unix']
+    if label=='formal' and (OUTPUT/'status.json').exists():
+        phase['controls']=read(OUTPUT/'status.json')['allocation_controls']
+        phase['complete_process_interactions_per_s']=phase['controls']/phase['wall_seconds']
+        save(OUTPUT/'actual-wall-time.json',phase)
+    save(TIMING,timing)
+    if code:
+        plan.update(status='FAILED',failed_phase=label,returncode=code);save(PLAN,plan)
+        raise subprocess.CalledProcessError(code,args)
+
+check_source()
+subprocess.run(['git','rev-parse','HEAD'],cwd=SOURCE,check=True,stdout=subprocess.DEVNULL)
+for label,n,iterations in [('mature-smoke',64,5),('throughput-32768',32768,20)]:
+    out=ROOT/f'paired-catch-full-pitch-{label}'
+    args=['scripts/smoke_v2_ppo.py','--task',TASK,'--device','cuda:1','--num-envs',n,'--iterations',iterations,
+        '--compiled-measurement','--fused-registers','--head-precision','--head-precision-stage','5',
+        '--mature-resume',PARENT,'--freeze-normalizers','--output-dir',out,'--report',out/'report.json']
+    if n==64:args+=['--force-timeouts']
+    run(label,args)
+    report=read(out/'report.json')
+    assert report['status']=='PASS' and report['steps_per_env']==24
+    assert report['initialization']['actor_critic_normalizers_optimizer_exact']
+    assert report['initialization']['inherited_completed_updates']==4594
+    assert report['initialization']['curriculum_clock']==110256
+    assert report['initialization']['learning_rate']==plan['inherited_learning_rate']
+    assert report['curriculum_clock_advance_verified']
+    assert report['curriculum_clock_after_learning']==110256+iterations*24
+    if n==32768:assert report['terminal_bootstrap_samples']>0
+    assert report['first_minibatch_distribution_consistent_all_updates']
+    assert report['normalization_unchanged_all_updates']
+    assert report['accuracy_oracle']['status']=='PASS' and report['accuracy_oracle']['calls']>=iterations*24
+    if n==64:assert report['terminal_bootstrap_samples']>0
+    check_source()
+
+out=ROOT/'paired-catch-full-pitch-throughput-32768'
+rows=[json.loads(line)['metrics'] for line in (out/'ppo-diagnostics.jsonl').read_text().splitlines()]
+assert len(rows)==20
+kl=[row['PPO/kl_mean'] for row in rows];clip=[row['PPO/clip_fraction'] for row in rows]
+quality=dict(max_update_mean_kl=max(kl),max_clip_fraction=max(clip),last5_median_kl=statistics.median(kl[-5:]),last5_median_clip_fraction=statistics.median(clip[-5:]))
+quality['median_control_steps_per_s']=read(out/'report.json')['throughput']['median_end_to_end_steps_per_s']
+quality['status']='PASS' if all(quality[k]<=v for k,v in plan['optimizer_admission'].items()) and quality['median_control_steps_per_s']>100000 else 'FAIL'
+save(ROOT/'paired-catch-full-pitch-optimizer-admission.json',quality)
+if quality['status']!='PASS':
+    plan.update(status='ADMISSION_FAILED',optimizer=quality);save(PLAN,plan)
+    raise RuntimeError(quality)
+plan.update(status='FORMAL_RUNNING',optimizer=quality);save(PLAN,plan)
+run('formal',['scripts/train_v2_standup.py','--task',TASK,'--device','cuda:1','--num-envs','32768',
+    '--iterations','64','--eval-interval','64','--eval-samples','128','--head-precision','--head-precision-stage','5',
+    '--freeze-normalizers','--preflight',out/'report.json','--adapt-from',PARENT,'--output',OUTPUT])
+status=read(OUTPUT/'status.json')
+assert status['completed_updates']==4658 and status['allocation_controls']==50331648
+assert status['common_step_counter']==111792
+plan['status']='POST_TRAINING_EVALUATIONS';save(PLAN,plan)
+for evidence in sorted(OUTPUT.glob('evaluation_*_evidence')):
+    for script in ['analyze_v2_standing_order.py','analyze_standing_pitch_bins.py']:
+        run(evidence.name+script,[SOURCE/'scripts'/script,evidence])
+for iteration in [4608,4658]:
+    head=ROOT/f'paired-catch-full-pitch-{iteration}-head-measured'
+    run(f'head{iteration}',['scripts/evaluate_v2_head_normalizer.py','--task',TASK,'--checkpoint',OUTPUT/f'checkpoint_{iteration:06d}.pt',
+        '--output',head,'--device','cuda:1','--repeats','8','--randomization-stage','measured'])
+    run(f'head-summary{iteration}',[HELPERS/'summarize_v2_head_saved.py','--device','cpu','--reports',head/'report.json',
+        '--output',ROOT/f'paired-catch-full-pitch-{iteration}-head-summary'])
+common=ROOT/'paired-catch-full-pitch-4658-common-measured'
+run('common4658',[HELPERS/'evaluate_common_p04_candidates.py','--checkpoints',OUTPUT/'checkpoint_004658.pt','--labels','fullpitch4658',
+    '--output',common,'--device','cuda:1','--samples','128'])
+for script in ['analyze_v2_standing_order.py','analyze_standing_pitch_bins.py']:
+    run('common-'+script,[SOURCE/'scripts'/script,common/'fullpitch4658'])
+timing['pipeline_end_unix']=time.time();timing['pipeline_wall_seconds']=timing['pipeline_end_unix']-timing['pipeline_start_unix'];save(TIMING,timing)
+plan.update(status='ALLOCATION_AND_EVALUATIONS_COMPLETE',goal_complete=False);save(PLAN,plan)

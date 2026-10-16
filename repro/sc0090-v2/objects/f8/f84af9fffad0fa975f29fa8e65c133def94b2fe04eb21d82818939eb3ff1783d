@@ -1,0 +1,32 @@
+from pathlib import Path
+import json,hashlib
+import mjlab.tasks
+from mjlab.tasks.registry import load_env_cfg,load_rl_cfg
+from mjlab_microduck.custom_v2.sitstand import TASK
+from mjlab_microduck.custom_v2.training import SIT_CANDIDATE,SIT_HEIGHT,STAND_HEIGHT,get_full_spec
+from mjlab_microduck.custom_v2.microduck_v2 import POLICY_JOINTS
+from mjlab_microduck.tasks import mdp
+model=get_full_spec().compile();names=POLICY_JOINTS
+for i,q in SIT_CANDIDATE.items():
+ assert model.joint(names[i]).range[0]<q<model.joint(names[i]).range[1],names[i]
+for play in [False,True]:
+ c=load_env_cfg(TASK,play=play);a=c.actions['joint_pos'];assert not a.spike_rejection and a.o0_local_history and a.compile_measurement and a.fuse_registers
+ assert a.scale==1 and tuple(a.actuator_names)==POLICY_JOINTS and c.sim.mujoco.timestep*c.decimation==.02
+ assert c.commands['twist'].class_type is mdp.SitStandCommand
+ assert c.commands['twist'].sit_z==SIT_HEIGHT and c.commands['twist'].stand_z==STAND_HEIGHT and c.commands['twist'].ramp_s==2.
+ assert c.events['set_ground_state'].params['sitting_joint_overrides']==SIT_CANDIDATE
+ assert c.events['set_ground_state'].params['sitting_prob']==.5 and c.commands['twist'].sit_prob==.5
+ for name in ['posture_pose_legs','posture_pose_l1','posture_composite']:
+  assert c.rewards[name].params['sit_overrides']==SIT_CANDIDATE
+ for name in ['posture_height','posture_height_sharp','posture_height_l1','posture_stillness','posture_composite']:
+  assert c.rewards[name].params['sit_z']==SIT_HEIGHT and c.rewards[name].params['stand_z']==STAND_HEIGHT
+ for n in ['encoder_bias','randomize_joint_friction','randomize_motor_gains','randomize_armature']:assert n not in c.events
+ assert c.observations['actor'].terms['joint_pos'].func is mdp.v2_observed_joint_pos
+ assert c.observations['actor'].terms['joint_vel'].func is mdp.v2_observed_joint_vel
+ assert c.observations['critic'].terms['joint_pos'].func is not mdp.v2_observed_joint_pos
+ assert c.observations['actor'].terms['body_command'].func is mdp.zero_command_padding
+ assert c.rewards['descent_speed'].weight>=0 and c.rewards['rise_speed'].weight>=0 and c.rewards['neck_strain_leaned'].weight<0
+ assert c.episode_length_s==12
+ a=load_rl_cfg(TASK);assert a.num_steps_per_env==24 and a.algorithm.num_learning_epochs==5 and a.algorithm.num_mini_batches==4
+r=dict(status='CPU_CFG_PASS_NOT_GPU_ADMISSION',task=TASK,actor_contract=61,actions=14,sit_overrides=SIT_CANDIDATE,sit_height=SIT_HEIGHT,stand_height=STAND_HEIGHT,terminal_observer='still blocked until command/event successor validation',fresh_policy_required=True,script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+Path('runs-v2/sitstand-config-check.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r),flush=True)

@@ -1,0 +1,63 @@
+"""Cross-GPU draw parity from an actual training checkpoint, plus legacy same-card parity."""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import torch
+from mjlab_microduck.custom_v2.rng_resume import restore_training_rng
+
+parser=argparse.ArgumentParser()
+parser.add_argument('--checkpoint',type=Path,required=True)
+parser.add_argument('--report',type=Path,required=True)
+args=parser.parse_args()
+assert not args.report.exists()
+checkpoint=torch.load(args.checkpoint,map_location='cpu',weights_only=False)
+metadata=checkpoint['infos']['v2']
+parent=json.loads((args.checkpoint.parent/'run.json').read_text())
+assert parent['device']=='cuda:0' and len(metadata['cuda_rng'])==2
+old_cpu=torch.get_rng_state();old_cuda=torch.cuda.get_rng_state_all()
+
+def draw(device):
+    return [torch.randn(1024,14,device=device).cpu(),
+            torch.rand(1024,device=device).cpu(),
+            torch.randperm(1024,device=device).cpu(),torch.rand(73)]
+
+try:
+    torch.set_rng_state(metadata['torch_rng'].cpu())
+    torch.cuda.set_rng_state_all([s.cpu() for s in metadata['cuda_rng']])
+    original_cpu=torch.get_rng_state();original_cuda=torch.cuda.get_rng_state_all()
+    expected=draw('cuda:0')
+    same=restore_training_rng(metadata,parent,'cuda:0')
+    assert not same['active_stream_mapped']
+    assert torch.equal(torch.get_rng_state(),original_cpu)
+    assert all(torch.equal(a,b) for a,b in zip(torch.cuda.get_rng_state_all(),original_cuda))
+    assert all(torch.equal(a,b) for a,b in zip(draw('cuda:0'),expected))
+    cross=restore_training_rng(metadata,parent,'cuda:1')
+    assert cross['active_stream_mapped']
+    assert all(torch.equal(a,b) for a,b in zip(draw('cuda:1'),expected))
+    rejected=[]
+    for label,bad_parent,target,bad_meta in [
+        ('missing_source',{},'cuda:1',metadata),
+        ('ambiguous_source',dict(device='cuda'),'cuda:1',metadata),
+        ('cpu_source',dict(device='cpu'),'cuda:1',metadata),
+        ('ambiguous_target',parent,'cuda',metadata),
+        ('inconsistent_provenance',parent,'cuda:1',dict(metadata,rng_device='cuda:1')),
+    ]:
+        before_cpu=torch.get_rng_state();before_cuda=torch.cuda.get_rng_state_all()
+        try:restore_training_rng(bad_meta,bad_parent,target)
+        except (KeyError,ValueError):pass
+        else:raise AssertionError(label)
+        assert torch.equal(torch.get_rng_state(),before_cpu)
+        assert all(torch.equal(a,b) for a,b in zip(torch.cuda.get_rng_state_all(),before_cuda))
+        rejected.append(label)
+    report=dict(status='PASS',checkpoint=str(args.checkpoint),
+        checkpoint_sha256=hashlib.sha256(args.checkpoint.read_bytes()).hexdigest(),
+        parent_device=parent['device'],saved_cuda_streams_differ=not torch.equal(*metadata['cuda_rng']),
+        legacy_same_device_all_streams_bitwise=True,same_and_cross_device_draws_bitwise=True,
+        draws=['normal 1024x14','uniform 1024','permutation 1024','CPU uniform 73'],
+        same_device=same,cross_device=cross,rejected_before_mutation=rejected,
+        script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+finally:
+    torch.set_rng_state(old_cpu);torch.cuda.set_rng_state_all(old_cuda)
+args.report.write_text(json.dumps(report,indent=2)+'\n')
+print(json.dumps(report),flush=True)

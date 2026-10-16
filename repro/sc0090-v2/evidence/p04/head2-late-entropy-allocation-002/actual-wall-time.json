@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "actual_controls": 100663296,
+  "wall_seconds_from_run_json": 920.3931820392609,
+  "run_json_controls_per_s": 109369.88448454851,
+  "full_process_wall_seconds": 973.2269585132599,
+  "full_process_controls_per_s": 103432.49857543738,
+  "full_process_precision_s": 1,
+  "full_process_scope": "Python process creation to ALLOCATION_COMPLETE including imports/model/reset/graph/PPO/two formal evals; one frozen head eval concurrently",
+  "logged_updates": 128,
+  "update_median_s": 5.955,
+  "update_median_controls_per_s": 132062.4685138539
+}

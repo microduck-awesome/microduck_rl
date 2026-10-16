@@ -1,0 +1,6 @@
+{
+  "allocation_controls": 50331648,
+  "elapsed_seconds": 533.1309494972229,
+  "actual_control_interactions_per_second": 94407.6648475689,
+  "scope": "run.json creation to final status, includes initialization/embedded evaluations/overlapped head test; excludes imports and later frozen head test"
+}

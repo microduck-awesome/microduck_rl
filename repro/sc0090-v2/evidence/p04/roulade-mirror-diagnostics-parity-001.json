@@ -1,0 +1,116 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "device": "cpu",
+      "mirror": false,
+      "update": 1,
+      "parameter_adam_normalizer_rng_losses_bitwise": true,
+      "lr": 1e-05,
+      "mirror_loss": null,
+      "pooled_kl": 0.0580947974944138
+    },
+    {
+      "device": "cpu",
+      "mirror": false,
+      "update": 2,
+      "parameter_adam_normalizer_rng_losses_bitwise": true,
+      "lr": 0.00038443359375000017,
+      "mirror_loss": null,
+      "pooled_kl": 0.007735616532522726
+    },
+    {
+      "device": "cpu",
+      "mirror": false,
+      "update": 3,
+      "parameter_adam_normalizer_rng_losses_bitwise": true,
+      "lr": 1e-05,
+      "mirror_loss": null,
+      "pooled_kl": 0.03017681741416709
+    },
+    {
+      "device": "cpu",
+      "mirror": true,
+      "update": 1,
+      "parameter_adam_normalizer_rng_losses_bitwise": true,
+      "lr": 1e-05,
+      "mirror_loss": 0.1469951868057251,
+      "pooled_kl": 0.05825332212007197
+    },
+    {
+      "device": "cpu",
+      "mirror": true,
+      "update": 2,
+      "parameter_adam_normalizer_rng_losses_bitwise": true,
+      "lr": 0.0002562890625000001,
+      "mirror_loss": 0.15218120142817498,
+      "pooled_kl": 0.006665058774660793
+    },
+    {
+      "device": "cpu",
+      "mirror": true,
+      "update": 3,
+      "parameter_adam_normalizer_rng_losses_bitwise": true,
+      "lr": 1.0000000000000004e-05,
+      "mirror_loss": 0.1488977253437042,
+      "pooled_kl": 0.022792873969729045
+    },
+    {
+      "device": "cuda:0",
+      "mirror": false,
+      "update": 1,
+      "parameter_adam_normalizer_rng_losses_bitwise": true,
+      "lr": 1e-05,
+      "mirror_loss": null,
+      "pooled_kl": 0.06758210489479098
+    },
+    {
+      "device": "cuda:0",
+      "mirror": false,
+      "update": 2,
+      "parameter_adam_normalizer_rng_losses_bitwise": true,
+      "lr": 0.00011390625000000006,
+      "mirror_loss": null,
+      "pooled_kl": 0.010836065494618198
+    },
+    {
+      "device": "cuda:0",
+      "mirror": false,
+      "update": 3,
+      "parameter_adam_normalizer_rng_losses_bitwise": true,
+      "lr": 1.5000000000000005e-05,
+      "mirror_loss": null,
+      "pooled_kl": 0.020033922709467335
+    },
+    {
+      "device": "cuda:0",
+      "mirror": true,
+      "update": 1,
+      "parameter_adam_normalizer_rng_losses_bitwise": true,
+      "lr": 1e-05,
+      "mirror_loss": 0.15270709469914437,
+      "pooled_kl": 0.06735454576000847
+    },
+    {
+      "device": "cuda:0",
+      "mirror": true,
+      "update": 2,
+      "parameter_adam_normalizer_rng_losses_bitwise": true,
+      "lr": 0.00011390625000000006,
+      "mirror_loss": 0.14882920905947686,
+      "pooled_kl": 0.010828461228175002
+    },
+    {
+      "device": "cuda:0",
+      "mirror": true,
+      "update": 3,
+      "parameter_adam_normalizer_rng_losses_bitwise": true,
+      "lr": 1.5000000000000005e-05,
+      "mirror_loss": 0.15485698878765106,
+      "pooled_kl": 0.019981059153656135
+    }
+  ],
+  "scope": "Same rollout and all actual mirrored update arithmetic/order,20minibatches/update,3updates; enabled/disabled mirror CPU+GPU; data augmentation remains rejected",
+  "diagnostics_sha256": "1e1e31f40484a800e26362050803fc65b4111c10d85b47cd6fa0d5a4c3eda1cb",
+  "test_sha256": "fee29297f71256cfdd8cedeb9bf56584f11100e5c63485bdeafd67f616aa42ee"
+}

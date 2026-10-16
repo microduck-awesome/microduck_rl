@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "only_behavioral_difference": "effective head Gaussian std <= .01 rad",
+  "configuration_except_distribution_equal": true,
+  "tests": [
+    {
+      "device": "cpu",
+      "status": "PASS",
+      "leg_samples_bitwise_equal": true,
+      "stored_std_effective": true,
+      "ratio_one": true,
+      "kl_zero": true,
+      "scalar_state_keys_unchanged": true,
+      "export_identity_unchanged": true,
+      "gradient_above_below_cap": true
+    },
+    {
+      "device": "cuda:1",
+      "status": "PASS",
+      "leg_samples_bitwise_equal": true,
+      "stored_std_effective": true,
+      "ratio_one": true,
+      "kl_zero": true,
+      "scalar_state_keys_unchanged": true,
+      "export_identity_unchanged": true,
+      "gradient_above_below_cap": true
+    }
+  ],
+  "parent_checkpoint": "paired-short-catch-allocation-002/resume_003954.pt",
+  "script_sha256": "17cabb5947d0265a158d1b7c50b2236eafef8351d87bda80d164cee9acb91ab6"
+}

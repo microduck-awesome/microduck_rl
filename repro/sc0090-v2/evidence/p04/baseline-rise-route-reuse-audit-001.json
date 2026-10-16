@@ -1,0 +1,40 @@
+{
+  "status": "CPU_READ_ONLY_REVIEW_COMPLETE",
+  "recorded_unix": 1792145858.247655,
+  "files": {
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/paired-feedback-worktree/src/mjlab_microduck/custom_v2/microduck_v2.py": "8b4e53cae1a4a28cd848f856bbd5efc200f10c46a2c15f24d444533ca6929941",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/paired-feedback-worktree/src/mjlab_microduck/custom_v2/paired_randomization.py": "65a96253b1530e03659f9c31cb933bff4ccba6e1c82a9013c80ae96436a3f45d",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/paired-feedback-worktree/src/mjlab_microduck/custom_v2/error_proxy.py": "5b1449037b5ee33d74e350cd5e44f02592618152f24166ce054f1e44d2670874",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/paired-feedback-worktree/scripts/run_paired_feedback_trial.sh": "a933adf924b98677da6488bcbb15801edfc4d5260e396a407cbf2f419ed072cb",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-adapt-worktree/scripts/run_paired_p04_adaptation.sh": "b4c225f687f1a11109b2b8ec1a13ed40de0db8392c84006c9399d0ad495681a3",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-p04-adapt-allocation-001/resume-verification.json": "171ee85e6b854fd5feb275fb7feef79b79d0f96e807472122e0d459f14683607",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-adaptation-head-comparison/report.json": "63f24417ac90dfbe29b6981c0569bf2305599674992187676e5a2b66138ce2db"
+  },
+  "paired3762_direct_actualP04": [
+    {
+      "condition": "nominal",
+      "wins": 1792,
+      "trials": 1792,
+      "faults": 0,
+      "report": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/baseline-paired-feedback-3762-valid-raw-nominal/report.json",
+      "execution_version": "p04-o0-valid-raw-local-history-v1"
+    },
+    {
+      "condition": "measured",
+      "wins": 1792,
+      "trials": 1792,
+      "faults": 0,
+      "report": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/baseline-paired-feedback-3762-valid-raw-measured/report.json",
+      "execution_version": "p04-o0-valid-raw-local-history-v1"
+    }
+  ],
+  "DR_new_controls": 50331648,
+  "DR_Adam": 5120,
+  "P04_adapt_new_controls": 50331648,
+  "P04_adapt_Adam": 1280,
+  "paired3762_inherited_baseline_controls": 739639296,
+  "P04_3826_lineage_controls": 789970944,
+  "independent_quantization_stage_previously_run": false,
+  "full_route_wall_exact_available": false,
+  "note": "Full MD includes limitations and exactsource/entry/checkpoints. No GPU/PPO added."
+}

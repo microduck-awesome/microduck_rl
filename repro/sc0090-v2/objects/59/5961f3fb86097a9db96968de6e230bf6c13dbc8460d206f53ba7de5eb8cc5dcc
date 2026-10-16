@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+export SC0090_CUDA_COMPAT_DIR=/home/l40-vm01/Documents/ai-research/microduck/microduck_rl/artifacts/cuda-compat-12.9/usr/local/cuda-12.9/compat
+cd /home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-adapt-standing20-worktree
+task=Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Standing20-Repaired-S0-O0-R1
+scripts/v2_python.sh scripts/check_standing20_config.py > runs-v2/paired-p04-standing20-config-check-repaired.log 2>&1
+scripts/v2_python.sh scripts/smoke_v2_ppo.py --task "$task" --device cuda:1 --num-envs 64 --iterations 5 --force-timeouts --head-precision --head-precision-stage 4 --compiled-measurement --fused-registers --output-dir runs-v2/paired-p04-standing20-read-domain-smoke --report runs-v2/paired-p04-standing20-read-domain-smoke/report.json > runs-v2/paired-p04-standing20-read-domain-smoke.log 2>&1
+stage_wait_deadline=$((SECONDS+1800))
+while [[ ! -f feedback-read-domain-qualified.json ]]; do
+ if (( SECONDS > stage_wait_deadline )); then echo 'Required read-domain fix was not qualified within this queue window'; exit 1; fi
+ sleep 10
+done
+python3 - <<'PY'
+import hashlib,json,pathlib
+d=json.load(open('feedback-read-domain-qualified.json'))
+assert d['status']=='PASS'
+for p,h in d['source_sha256'].items():assert hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()==h,p
+PY
+while kill -0 2742212 2>/dev/null; do sleep 10; done
+test -f runs-v2/paired-p04-adapt-allocation-001/resume_003826.pt
+scripts/v2_python.sh scripts/smoke_v2_ppo.py --task "$task" --device cuda:1 --num-envs 32768 --iterations 16 --head-precision --head-precision-stage 4 --compiled-measurement --fused-registers --output-dir runs-v2/paired-p04-standing20-read-domain-throughput-32768 --report runs-v2/paired-p04-standing20-read-domain-throughput-32768/report.json > runs-v2/paired-p04-standing20-read-domain-throughput-32768.log 2>&1
+scripts/v2_python.sh scripts/train_v2_standup.py --task "$task" --device cuda:1 --num-envs 32768 --iterations 128 --eval-interval 64 --eval-samples 128 --preflight runs-v2/paired-p04-standing20-read-domain-throughput-32768/report.json --adapt-from runs-v2/paired-p04-adapt-allocation-001/resume_003826.pt --head-precision --head-precision-stage 4 --output runs-v2/paired-p04-standing20-allocation-001 > runs-v2/paired-p04-standing20-allocation-001.log 2>&1
+for evidence in runs-v2/paired-p04-standing20-allocation-001/evaluation_*_evidence; do
+ scripts/v2_python.sh scripts/analyze_v2_standing_order.py "$evidence"
+ scripts/v2_python.sh scripts/analyze_standing_pitch_bins.py "$evidence"
+done
+scripts/v2_python.sh scripts/evaluate_v2_head.py --task "$task" --checkpoint runs-v2/paired-p04-standing20-allocation-001/checkpoint_003954.pt --output runs-v2/paired-p04-standing20-3954-head-measured --device cuda:1 --repeats 8 --randomization-stage measured > runs-v2/paired-p04-standing20-3954-head-measured.log 2>&1
+baseline_scripts=/home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/head-foundation-worktree/scripts
+scripts/v2_python.sh "$baseline_scripts/evaluate_common_p04_candidates.py" --device cuda:1 --samples 128 --labels before_3826 after_3954 --checkpoints runs-v2/paired-p04-adapt-allocation-001/checkpoint_003826.pt runs-v2/paired-p04-standing20-allocation-001/checkpoint_003954.pt --output runs-v2/paired-standing20-common-comparison > runs-v2/paired-standing20-common-comparison.log 2>&1
+for label in before_3826 after_3954; do
+ scripts/v2_python.sh scripts/analyze_v2_standing_order.py "runs-v2/paired-standing20-common-comparison/$label"
+ scripts/v2_python.sh scripts/analyze_standing_pitch_bins.py "runs-v2/paired-standing20-common-comparison/$label"
+done

@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "parent": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-short-catch-allocation-002/resume_003954.pt",
+  "control": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-catch-pitch10-allocation-001",
+  "only_arm_difference": "entropy_coef .01 to .005; both arms same parent3954, Pitch10 range, head5, frozen statistics, 32768x24, 5 epochs, 4 minibatches, 64 updates",
+  "source_sha256": {
+    "src/mjlab_microduck/custom_v2/feedback_repair.py": "ce2c15f42dc580e8816e8c7d81f8c1c43db5be9a5a88db3be1d2be650f215240",
+    "scripts/train_v2_standup.py": "77c1bf4b4bdc8a8c5d052ae12b38398d109aad64c5780cd067d56f9853de8062",
+    "scripts/smoke_v2_ppo.py": "77c8d17e60bd8fe57b9844feca88f1fb4bc081c308921dfa1079455124b1469b",
+    "scripts/check_paired_late_entropy.py": "f8ed8ea98105e907d4060d1fdf3f9abd07051b506def1fb0692521bf5df8e2bc"
+  },
+  "advance_condition": "Wait for current paired Gaussian diagnostic and new frontier report; config then mature smoke and actual-N admission before formal",
+  "config": {
+    "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-late-entropy-config.json",
+    "sha256": "4f4d2befceeb0efffb6a88fad62a5ccaec5d2e3e559fa1be2bd4d036a57e0a32"
+  },
+  "smoke": {
+    "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-late-entropy-mature-smoke/report.json",
+    "sha256": "7e696ef2245cf3ac1f63dea73a7bfd093d32b4da9438dcf881de9ae125fd20dc"
+  },
+  "throughput": {
+    "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-late-entropy-throughput-32768/report.json",
+    "sha256": "acbd932288102a5267b6053c0b479c53b6b30767dd9653163e40964b320f5422"
+  }
+}

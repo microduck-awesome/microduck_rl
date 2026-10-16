@@ -1,0 +1,10 @@
+{
+  "status": "EXTERNAL_REPORT_SERIALIZATION_FIX_ONLY",
+  "unix": 1792146630.1392643,
+  "before_sha256": "7d571c8f042db6e591b786293476ad6ba2f1bfdcb832c6046252ebfb2bc324d6",
+  "after_sha256": "309db6dfb284ea7c0729fa955cca583624206bf0f44d6c1ded5ef61eac8e4a96",
+  "failure": "slice in canonical report not JSON serializable; all preceding assertions completed",
+  "formal_controls": 0,
+  "validation_controls": 0,
+  "production_sources_changed": false
+}

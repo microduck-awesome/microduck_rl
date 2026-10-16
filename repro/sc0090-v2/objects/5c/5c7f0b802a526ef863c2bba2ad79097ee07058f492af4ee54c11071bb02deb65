@@ -1,0 +1,136 @@
+"""Read-only walking measurements, shared by collection and independent evaluation.
+
+Call after reward computation and before reset/forward/next command. Derived
+geometry has mjlab's documented one-physics-substep lag in BOTH paths. These
+physical measurements never enter the actor observation.
+"""
+import math
+import torch
+
+HEAD_JOINTS = ('neck_pitch', 'head_pitch', 'head_yaw', 'head_roll')
+BOUNDARY = 'after_reward_before_reset_forward_and_command; derived geometry lags 5ms'
+
+
+def failure_mask(height, tilt, finite, feedback_ready):
+    # Diagnostic walking failure, not the recovery task's initial-fallen rule.
+    return (height < .08) | (tilt > math.pi / 4) | ~finite | ~feedback_ready
+
+
+def exposure_masks(command, head):
+    moving_xy = command[:, :2].abs().amax(-1) > 1e-6
+    turning = command[:, 2].abs() > 1e-6
+    return torch.stack((
+        ~moving_xy & ~turning, ~moving_xy & turning, moving_xy & ~turning,
+        moving_xy & turning, command[:, 0] > 0, command[:, 0] < 0,
+        command[:, 1] > 0, command[:, 1] < 0, command[:, 2] > 0,
+        command[:, 2] < 0, (head != 0).sum(-1) == 0,
+        (head != 0).sum(-1) == 1, (head != 0).sum(-1) == 2,
+        (head != 0).sum(-1) == 4), -1)
+
+
+EXPOSURE_NAMES = ('idle', 'turn_only', 'translate_only', 'curve', 'forward',
+                  'backward', 'left', 'right', 'yaw_positive', 'yaw_negative',
+                  'head_zero', 'head_one', 'head_two', 'head_four')
+
+
+class WalkingMeasurements:
+    def __init__(self, env, *, oracle=False):
+        self.env, self.robot, self.oracle = env, env.scene['robot'], oracle
+        self.head_ids, names = self.robot.find_joints(HEAD_JOINTS, preserve_order=True)
+        assert tuple(names) == HEAD_JOINTS
+        self.foot_ids, names = self.robot.find_sites(('left_foot', 'right_foot'), preserve_order=True)
+        assert tuple(names) == ('left_foot', 'right_foot')
+        self.calls = 0
+        self.has_yaw_fine = 'track_yaw_fine' in env.cfg.rewards
+        self.oracle_max = torch.zeros(4 if self.has_yaw_fine else 3, device=env.device)
+
+    def read(self):
+        env, robot = self.env, self.robot
+        lin, ang = robot.data.root_link_lin_vel_b, robot.data.root_link_ang_vel_b
+        command = env.command_manager.get_command('twist')
+        head = env.command_manager.get_command('head_pose')
+        head_q = robot.data.joint_pos[:, self.head_ids] - robot.data.default_joint_pos[:, self.head_ids]
+        quat = robot.data.root_link_quat_w
+        tilt = torch.acos((1 - 2 * (quat[:, 1].square() + quat[:, 2].square())).clamp(-1, 1))
+        height = robot.data.root_link_pos_w[:, 2] - env.scene.env_origins[:, 2]
+        sensor = env.scene['feet_ground_contact'].data
+        contact = sensor.found.reshape(env.num_envs, 2, -1).sum(-1) > 0
+        force = sensor.force.reshape(env.num_envs, 2, -1, 3).sum(-2)
+        foot_pos = robot.data.site_pos_w[:, self.foot_ids]
+        foot_vel = robot.data.site_lin_vel_w[:, self.foot_ids]
+        finite = (torch.isfinite(env.sim.data.qpos).all(-1)
+                  & torch.isfinite(env.sim.data.qvel).all(-1)
+                  & torch.isfinite(lin).all(-1) & torch.isfinite(ang).all(-1))
+        ready = env._v2_joint_feedback.ready
+        result = dict(command=command, head_command=head, linear=lin, angular=ang,
+                      root_position=robot.data.root_link_pos_w - env.scene.env_origins,
+                      head_position=head_q, height=height, tilt=tilt,
+                      feet_position=foot_pos - env.scene.env_origins[:, None],
+                      feet_velocity=foot_vel, contact=contact, force=force,
+                      last_air_time=sensor.last_air_time.reshape(env.num_envs, 2),
+                      finite=finite, feedback_ready=ready,
+                      failed=failure_mask(height, tilt, finite, ready))
+        if self.oracle:
+            expected = []
+            t = env.reward_manager.get_term_cfg('track_linear_velocity')
+            err = (command[:, :2] - lin[:, :2]).square().sum(-1) + lin[:, 2].square()
+            expected.append((torch.exp(-err / t.params['std'] ** 2), t))
+            t = env.reward_manager.get_term_cfg('track_angular_velocity')
+            err = (command[:, 2] - ang[:, 2]).square() + ang[:, :2].square().sum(-1)
+            expected.append((torch.exp(-err / t.params['std'] ** 2), t))
+            t = env.reward_manager.get_term_cfg('head_pose_tracking')
+            assert not any(k in t.params for k in ('fine_std', 'precision_scale'))
+            expected.append((torch.exp(-((head_q-head)/t.params['std']).square()).mean(-1), t))
+            if self.has_yaw_fine:
+                t = env.reward_manager.get_term_cfg('track_yaw_fine')
+                expected.append((torch.exp(-((command[:, 2]-ang[:, 2])/t.params['std']).square()), t))
+            for i, (value, term) in enumerate(expected):
+                actual = term.func(env, **term.params)
+                delta = (actual-value).abs().max()
+                self.oracle_max[i] = torch.maximum(self.oracle_max[i], delta)
+                torch._assert_async(torch.isclose(actual, value, atol=2e-7, rtol=1e-6).all(),
+                                    'Walking physical metric/reward mismatch')
+        self.calls += 1
+        return result
+
+
+class WalkingTrainingSummary:
+    """GPU accumulators; transfer aggregate data only at update/report boundaries."""
+    def __init__(self, env, *, oracle=False):
+        self.env = env
+        self.reader = WalkingMeasurements(env, oracle=oracle)
+        self.exposure = torch.zeros(len(EXPOSURE_NAMES), dtype=torch.int64, device=env.device)
+        self.sums = torch.zeros(12, dtype=torch.float64, device=env.device)
+        self.samples = 0
+        self.latest = None
+        original = env.reward_manager.compute
+
+        def measured(dt):
+            reward = original(dt)
+            x = self.reader.read()
+            self.latest = x
+            self.exposure += exposure_masks(x['command'], x['head_command']).sum(0)
+            xy = (x['linear'][:, :2]-x['command'][:, :2]).square().sum(-1)
+            yaw = (x['angular'][:, 2]-x['command'][:, 2]).square()
+            head = (x['head_position']-x['head_command']).abs().mean(-1)
+            slip = x['feet_velocity'][..., :2].norm(dim=-1) * x['contact']
+            values = (xy, yaw, head, x['height'], x['tilt'], x['contact'].all(-1),
+                      x['contact'].any(-1), slip.mean(-1), x['failed'],
+                      ~x['feedback_ready'], env.reset_terminated, env.reset_time_outs)
+            self.sums += torch.stack([v.double().sum() for v in values])
+            self.samples += env.num_envs
+            return reward
+        env.reward_manager.compute = measured
+
+    def report(self):
+        values = (self.sums / max(1, self.samples)).cpu().tolist()
+        names = ('xy_velocity_mse', 'yaw_velocity_mse', 'head_mae_rad', 'height_mean_m',
+                 'tilt_mean_rad', 'double_support_fraction', 'any_support_fraction',
+                 'contact_weighted_foot_speed_mean_mps', 'failure_sample_fraction',
+                 'feedback_not_ready_fraction', 'terminated_sample_fraction', 'timeout_sample_fraction')
+        return dict(boundary=BOUNDARY, control_samples=self.samples,
+                    metrics=dict(zip(names, values)),
+                    exposure_control_samples=dict(zip(EXPOSURE_NAMES, self.exposure.cpu().tolist())),
+                    oracle_calls=self.reader.calls if self.reader.oracle else 0,
+                    oracle_max_abs=self.reader.oracle_max.cpu().tolist(),
+                    scope='Training sample statistics, not independent trial success rates')

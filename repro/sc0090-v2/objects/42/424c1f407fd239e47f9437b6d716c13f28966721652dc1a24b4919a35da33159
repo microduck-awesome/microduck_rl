@@ -1,0 +1,68 @@
+"""Physical GroundPick measurements; task truth never enters actor feedback."""
+import math
+import torch
+from .microduck_v2 import POLICY_JOINTS
+from .ground_pick import mouth_payload_step
+BOUNDARY='after reward before reset/forward/next phase; derived geometry lags one 5ms substep'
+LEGS=(0,1,2,3,4,9,10,11,12,13)
+class GroundPickMeasurements:
+ def __init__(self,env,oracle=False):
+  self.env=env;self.robot=env.scene['robot'];self.oracle=oracle;self.calls=0
+  self.ids,names=self.robot.find_joints(POLICY_JOINTS,preserve_order=True);assert tuple(names)==POLICY_JOINTS
+  self.mouth=self.robot.find_sites('mouth_tip')[0][0]
+  self.oracle_max=torch.zeros(7,device=env.device)
+  event=next(t for t in env.event_manager._mode_term_cfgs['step'] if t.func is mouth_payload_step);self.payload_body=int(event.params['asset_cfg'].body_ids[0]);self.payload_global_body=int(self.robot.data.indexing.body_ids[self.payload_body])
+ def read(self):
+  env,r=self.env,self.robot;cmd=env.command_manager.get_command('twist');phase=torch.remainder(torch.atan2(cmd[:,1],cmd[:,0])/(2*torch.pi),1.)
+  q=r.data.joint_pos[:,self.ids]-r.data.default_joint_pos[:,self.ids]
+  height=r.data.root_link_pos_w[:,2]-env.scene.env_origins[:,2];mouth=r.data.site_pos_w[:,self.mouth,2]-env.scene.env_origins[:,2]
+  mq=r.data.site_quat_w[:,self.mouth];down=-2*(mq[:,1]*mq[:,3]-mq[:,0]*mq[:,2])
+  quat=r.data.root_link_quat_w;tilt=torch.acos((1-2*(quat[:,1]**2+quat[:,2]**2)).clamp(-1,1))
+  linear=r.data.root_link_lin_vel_w;omega=r.data.root_link_ang_vel_b.norm(dim=-1)
+  foot=env.scene['feet_ground_contact'].data.found.reshape(env.num_envs,-1).bool();head=env.scene['head_impact_contact'].data.found.reshape(env.num_envs,-1).any(-1)
+  headforce=env.scene['head_impact_contact'].data.force.sum(1).norm(dim=-1)
+  selfcontact=env.scene['self_collision'].data.found.reshape(env.num_envs,-1).any(-1)
+  ready=env._v2_joint_feedback.ready;finite=torch.isfinite(env.sim.data.qpos).all(-1)&torch.isfinite(env.sim.data.qvel).all(-1)
+  body=ready&finite&(~head)&(~selfcontact)&foot.all(-1)&(linear.norm(dim=-1)<.05)&(omega<.5)
+  low=body&(mouth>=0)&(mouth<=.025)&(down>=.95)&(tilt<math.radians(60))
+  standing=body&((height-.112).abs()<.012)&(tilt<math.radians(15))&(q[:,LEGS].abs().mean(-1)<.2)&(q[:,5:9].abs().amax(-1)<.1)
+  x=dict(phase=phase,mouth_height=mouth,mouth_down_cos=down,height=height,tilt=tilt,linear=linear,omega=omega,
+    physical_q=q,head_contact=head,head_force=headforce,self_contact=selfcontact,feet=foot,low_goal=low,standing_goal=standing,
+    feedback_ready=ready,finite=finite,payload_kg=env._mouth_payload_kg,head_torque=r.data.qfrc_actuator[:,self.ids[5:9]].abs().amax(-1))
+  if self.oracle:
+   down_gate=torch.minimum((phase/.375).clamp(0,1),((.8-phase)/(.8-.425)).clamp(0,1))
+   up_gate=((phase-.425)/(.8-.425)).clamp(0,1)
+   proximity_cfg=env.reward_manager.get_term_cfg('mouth_ground_proximity')
+   std,target=proximity_cfg.params['std'],proximity_cfg.params['target_height']
+   assert (std,target) in ((.1,0.),(.025,.020))
+   expected=[down_gate*torch.exp(-((mouth-target)/std).square()),down_gate*down,
+     up_gate*torch.exp(-(q[:,LEGS]/.3).square()).mean(-1),up_gate*torch.exp(-(q[:,5:9]/.15).square()).mean(-1),
+     up_gate*torch.exp(-2*(quat[:,1].square()+quat[:,2].square())/.4**2),
+     (phase<.425)*r.data.joint_vel[:,self.ids[5:9]].square().mean(-1)]
+   names=('mouth_ground_proximity','mouth_perpendicular_to_ground','ground_pick_return_pose_legs','ground_pick_return_pose_neck','return_upright','neck_vel_descent')
+   from .ground_pick_history import healthy_mouth_proximity,healthy_mouth_perpendicular
+   for i,(name,want) in enumerate(zip(names,expected)):
+    t=env.reward_manager.get_term_cfg(name)
+    if t.func in (healthy_mouth_proximity,healthy_mouth_perpendicular):
+     # Independent sign-preserving oracle, at the same native reader boundary.
+     want=torch.where((~head)&(~selfcontact),want,torch.where(want<0,want,torch.zeros_like(want)))
+    actual=t.func(env,**t.params);self.oracle_max[i]=torch.maximum(self.oracle_max[i],(actual-want).abs().max())
+    torch._assert_async(torch.isclose(actual,want,atol=2e-6,rtol=1e-6).all(),'GroundPick physical reward oracle mismatch')
+   force=env.sim.data.xfrc_applied[:,self.payload_global_body,:3];want=torch.zeros_like(force);want[:,2]=-9.81*env._mouth_payload_kg*((phase-.425)/.05).clamp(0,1)
+   self.oracle_max[6]=torch.maximum(self.oracle_max[6],(force-want).abs().max())
+   torch._assert_async(torch.isclose(force,want,atol=2e-6,rtol=1e-6).all(),'GroundPick payload phase/physical force mismatch')
+  self.calls+=1;return x
+class GroundPickTrainingSummary:
+ def __init__(self,env,oracle=False):
+  self.env=env;self.reader=GroundPickMeasurements(env,oracle);self.latest=None;self.samples=0
+  self.sums=torch.zeros(13,device=env.device,dtype=torch.float64);self.exposure=torch.zeros(4,device=env.device,dtype=torch.int64)
+  native=env.reward_manager.compute
+  def record(dt):
+   reward=native(dt);x=self.reader.read();self.latest=x;p=x['phase'];mask=(p<.375,(p>=.375)&(p<.425),(p>=.425)&(p<.8),p>=.8)
+   self.exposure+=torch.stack(mask,-1).sum(0)
+   vals=(x['mouth_height'],x['mouth_down_cos'],x['tilt'],x['physical_q'][:,5:9].abs().mean(-1),x['omega'],x['low_goal']&mask[1],x['standing_goal']&mask[3],x['head_contact'],x['self_contact'],~x['feedback_ready'],~x['finite'],env.reset_time_outs,x['payload_kg'])
+   self.sums+=torch.stack([v.double().sum() for v in vals]);self.samples+=env.num_envs;return reward
+  env.reward_manager.compute=record
+ def report(self):
+  names=('mouth_height_mean_m','mouth_down_cos_mean','body_tilt_mean_rad','head_home_mae_rad','body_omega_mean_radps','low_goal_all_sample_fraction','stand_goal_all_sample_fraction','head_contact_fraction','self_contact_fraction','feedback_not_ready_fraction','nonfinite_fraction','timeout_sample_fraction','payload_mean_kg')
+  return dict(boundary=BOUNDARY,control_samples=self.samples,metrics=dict(zip(names,(self.sums/max(1,self.samples)).cpu().tolist())),exposure_control_samples=dict(zip(('descent','low_hold','rise','stand_hold'),self.exposure.cpu().tolist())),oracle_max_abs=self.reader.oracle_max.cpu().tolist(),scope='Training sample statistics, not complete-cycle success')

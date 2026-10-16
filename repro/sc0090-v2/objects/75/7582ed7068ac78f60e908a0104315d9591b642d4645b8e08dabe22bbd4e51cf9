@@ -1,0 +1,14 @@
+from dataclasses import asdict
+import json,re,hashlib
+from pathlib import Path
+import mjlab.tasks
+from mjlab.tasks.registry import load_env_cfg,load_rl_cfg
+from mjlab_microduck.custom_v2.training import configure_head_precision_learning
+old='Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-DirectionGate-M4-Repaired-S0-O0-R1'
+new='Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-M4-LateEntropy005-Repaired-S0-O0-R1'
+def canonical(x):return re.sub(r'0x[0-9a-fA-F]+','0xADDRESS',json.dumps(asdict(x),sort_keys=True,default=str))
+a=load_env_cfg(old);b=load_env_cfg(new);ra=configure_head_precision_learning(a,2);rb=configure_head_precision_learning(b,2);assert ra==rb;assert canonical(a)==canonical(b)
+x=load_rl_cfg(old);y=load_rl_cfg(new);assert x.algorithm.entropy_coef==.01 and y.algorithm.entropy_coef==.005
+y.algorithm.entropy_coef=.01;assert canonical(x)==canonical(y)
+r=dict(status='PASS',only_behavioral_difference='algorithm.entropy_coef .01→.005',environment_bitwise_configuration_equal=True,head_recipe=ra,agent_equal_except_entropy=True,script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+Path('runs-v2/head2-late-entropy-config.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r),flush=True)

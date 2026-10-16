@@ -1,0 +1,29 @@
+from pathlib import Path
+from dataclasses import asdict
+import ast,json,re,hashlib
+import torch
+import mjlab.tasks
+from mjlab.tasks.registry import load_env_cfg,load_rl_cfg
+from mjlab_microduck.custom_v2.fresh_p04 import HEAD_STD_CAP_LR_TASK,MICRO_EXPOSURE_TASK
+from mjlab_microduck.custom_v2.training import configure_head_precision_learning
+from mjlab_microduck.custom_v2.commands import sample_head,sampling_contract
+
+def canonical(x):return re.sub(r'0x[0-9a-fA-F]+','0xADDRESS',json.dumps(asdict(x),sort_keys=True,default=str))
+a=load_env_cfg(HEAD_STD_CAP_LR_TASK);b=load_env_cfg(MICRO_EXPOSURE_TASK);assert configure_head_precision_learning(a,2)==configure_head_precision_learning(b,2)
+assert a.commands['head_pose'].precision_probability==0 and b.commands['head_pose'].precision_probability==.25
+contract=sampling_contract(b.commands['head_pose']);b.commands['head_pose'].precision_probability=0.;assert canonical(a)==canonical(b)
+assert canonical(load_rl_cfg(HEAD_STD_CAP_LR_TASK))==canonical(load_rl_cfg(MICRO_EXPOSURE_TASK))
+source=Path('runs-v2/rise-head-stdcap-lr-worktree/src/mjlab_microduck/custom_v2/commands.py').read_text();tree=ast.parse(source);node=next(x for x in tree.body if isinstance(x,ast.FunctionDef) and x.name=='sample_head');ns={'torch':torch};exec(compile(ast.Module(body=[node],type_ignores=[]),'<legacy sample_head>','exec'),ns)
+rows=[];ranges=a.commands['head_pose'].ranges
+for device in ('cpu','cuda:0'):
+ torch.manual_seed(255);old=ns['sample_head'](ranges,8192,device,.6)
+ torch.manual_seed(255);new=sample_head(ranges,8192,device,.6,0.)
+ assert torch.equal(old,new),'Default-zero must preserve exact legacy RNG and output'
+ for precision in (0.,.25):
+  torch.manual_seed(144);x=sample_head(ranges,1000000,device,.6,precision);active=x!=0;counts=active.sum(-1);micro=(x.abs()>=.005)&(x.abs()<=.04)
+  fractions=[float((counts==n).float().mean()) for n in (0,1,2,4)]
+  assert all(abs(x-y)<.003 for x,y in zip(fractions,[.6,.2,.1,.1]))
+  assert torch.all(x.abs()<=torch.tensor([max(abs(lo),abs(hi)) for lo,hi in ranges],device=device))
+  rows.append(dict(device=device,precision_probability=precision,zero_single_pair_four=fractions,micro_positive_per_axis=(micro&(x>0)).sum(0).tolist(),micro_negative_per_axis=(micro&(x<0)).sum(0).tolist(),active_per_axis=active.sum(0).tolist(),full_abs_above_04=((x.abs()>.04)&active).sum(0).tolist(),samples=1000000))
+r=dict(status='PASS',only_training_factor='precision command mixture probability0→.25, magnitudes .005–.04; no learning rate transition',same_environment_and_agent_except_precision_probability=True,legacy_zero_sampler_bitwise=True,head_sampling_contract=contract,sampling=rows,script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+Path('runs-v2/head2-micro-exposure-unit-tests.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r),flush=True)

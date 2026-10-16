@@ -1,0 +1,20 @@
+"""Bounded post-kick direction/quiet-return costs; no new state or positive bonus."""
+import torch
+
+def direction_cost_from_values(lateral,valid):
+    return lateral.abs().clamp(max=1.)*valid
+
+def return_cost_from_values(linear,angular,feet,valid):
+    v2=linear.square().sum(-1);w2=angular.square().sum(-1)
+    return ((1-.15**2/(v2+.15**2))+(1-1.5**2/(w2+1.5**2))+(~feet.all(-1)).float())*valid
+
+def ball_direction_cost(env):
+    velocity=env.scene['ball'].data.root_link_lin_vel_w
+    direction=env._ball_kick_dir_w
+    lateral=velocity[:,1]*direction[:,0]-velocity[:,0]*direction[:,1]
+    return direction_cost_from_values(lateral,env._v2_ball_valid_kick)
+
+def postkick_quiet_return_cost(env):
+    robot=env.scene['robot'].data
+    feet=env.scene['feet_ground_contact'].data.found.reshape(env.num_envs,2,-1).sum(-1)>0
+    return return_cost_from_values(robot.root_link_lin_vel_w,robot.root_link_ang_vel_b,feet,env._v2_ball_valid_kick)

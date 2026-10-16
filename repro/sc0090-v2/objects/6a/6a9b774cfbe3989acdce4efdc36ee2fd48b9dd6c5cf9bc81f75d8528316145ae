@@ -1,0 +1,238 @@
+"""V2 task recipes adapted from official tasks, in CAD joint coordinates.
+
+This module never reuses an XL330 actor: V2 reverses several named joint axes.
+Pose candidates must pass the V2 physical preflight before a training allocation.
+"""
+
+from copy import deepcopy
+import re
+import mujoco
+
+from . import microduck_v2 as v2
+
+# Measured world-axis dot products at each model's HOME, 2026-10-15.
+# All magnitudes >= .99985; signs are NOT a bilateral symmetry convention.
+OFFICIAL_TO_V2_SIGNS = (-1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, -1, 1, -1)
+OFFICIAL_HOME = (0., -.0873, -.4579, -.0049, .4530, .3491, .3491,
+                 0., 0., 0., .0873, .4579, .0049, -.4530)
+
+# The old seated knee target maps outside V2's -1.19276 rad lower limit.
+# Use an explicit feasible candidate, then measure its equilibrium in preflight.
+# Left/right pitch-chain joints have the SAME signs in the V2 CAD frame.
+# Both measured GPU hold surveys: ~.112 m standing and .06337 m seated.
+STAND_HEIGHT = .112
+SIT_HEIGHT = .0634
+SIT_CANDIDATE = {1: .0873, 2: -.10, 3: -1.10, 4: -.85,
+                 10: -.0873, 11: -.10, 12: -1.10, 13: -.85}
+
+
+def get_full_spec():
+    return mujoco.MjSpec.from_file(str(v2.ASSETS / 'robot.xml'))
+
+
+def _full_contact_robot(robot):
+    robot = deepcopy(robot)
+    robot.spec_fn = get_full_spec
+    model = get_full_spec().compile()
+    for collision in robot.collisions:
+        names = [model.geom(i).name for i in range(model.ngeom)
+                 if any(re.fullmatch(p, model.geom(i).name)
+                        for p in collision.geom_names_expr)]
+        for field in ('contype', 'conaffinity', 'condim'):
+            setattr(collision, field, {'^' + re.escape(n) + '$':
+                                      int(getattr(model.geom(n), field)[0]) for n in names})
+    return robot
+
+
+def _replace_standing_height(value):
+    """Only explicitly named standing targets; leave unrelated tolerances alone."""
+    if isinstance(value, dict):
+        for key, item in value.items():
+            if key in {'target_height', 'nominal_height', 'stand_z', 'height_high'} and item == .115:
+                value[key] = STAND_HEIGHT
+            else:
+                _replace_standing_height(item)
+    elif isinstance(value, (tuple, list)):
+        for item in value:
+            _replace_standing_height(item)
+
+
+def make_standup_env_cfg(play=False, stage='nominal'):
+    from mjlab.managers import TerminationTermCfg
+    from mjlab_microduck.tasks import mdp
+    from mjlab_microduck.tasks.microduck_standup_env_cfg import make_microduck_standup_env_cfg
+
+    sensor = hasattr(v2, 'make_v2_sensor_env_cfg')
+    base = (v2.make_v2_sensor_env_cfg(play, stage) if sensor
+            else v2.make_v2_baseline_env_cfg(play))
+    cfg = deepcopy(make_microduck_standup_env_cfg(play=play, rough=False))
+    cfg.scene.entities['robot'] = _full_contact_robot(base.scene.entities['robot'])
+    cfg.scene.spec_fn = base.scene.spec_fn
+    cfg.actions['joint_pos'] = deepcopy(base.actions['joint_pos'])
+    cfg.actions['joint_pos'].scale = 1.0  # Official standup scale; 1 rad/action.
+    v2._policy_selectors(cfg)
+    for name in ('randomize_joint_friction', 'randomize_joint_damping',
+                 'randomize_armature', 'randomize_motor_gains'):
+        cfg.events.pop(name, None)
+    for name in ('expand_bam_friction_fields', 'v2_runtime', 'mouth_reset', 'mouth_hold'):
+        if name in base.events:
+            cfg.events[name] = deepcopy(base.events[name])
+    if sensor:
+        cfg.events.pop('encoder_bias', None)
+        for group in ('actor', 'critic'):
+            for name in ('joint_pos', 'joint_vel'):
+                cfg.observations[group].terms[name] = deepcopy(base.observations[group].terms[name])
+        cfg.terminations['sc0090_feedback_fault'] = TerminationTermCfg(
+            func=mdp.v2_feedback_fault, time_out=False)
+
+    # Use absolute ground states below; the generic root event uses an offset.
+    cfg.events['reset_base'].params['pose_range']['z'] = (0., .01)
+    ground = cfg.events['set_ground_state'].params
+    ground['sitting_joint_overrides'] = SIT_CANDIDATE.copy()
+    ground['sitting_z_min'] = SIT_HEIGHT
+    ground['sitting_z_max'] = SIT_HEIGHT + .02
+    ground['standing_z_min'] = v2.HOME_HEIGHT
+    ground['standing_z_max'] = v2.HOME_HEIGHT + .01
+    # The pose/noise may exceed stops, especially V2's asymmetric neck range.
+    # The final reset event guards every sampled pose, including prone and sit.
+    from mjlab.managers import EventTermCfg
+    cfg.events['v2_reset_joint_guards'] = EventTermCfg(func=guard_reset_joints, mode='reset')
+    for section in (cfg.rewards, cfg.curriculum):
+        for term in section.values():
+            _replace_standing_height(term.params)
+    # Head commands are V2 HOME deltas, never XL330 absolute angles.
+    limits = get_full_spec().compile()
+    head = ('neck_pitch', 'head_pitch', 'head_yaw', 'head_roll')
+    for curriculum in ('head_pose_range',):
+        for stage_cfg in cfg.curriculum[curriculum].params['range_stages']:
+            stage_cfg['ranges'] = tuple(
+                (max(lo, float(limits.joint(n).range[0]) * .8),
+                 min(hi, float(limits.joint(n).range[1]) * .8))
+                for n, (lo, hi) in zip(head, stage_cfg['ranges']))
+    cfg.sim.mujoco.timestep = .005
+    cfg.decimation = 4
+    configure_recovery_learning(cfg)
+    from .runtime import configure_origin_markers
+    configure_origin_markers(cfg)
+    return cfg
+
+
+def configure_recovery_learning(cfg):
+    """Historical V3 recovery reward/curriculum, with fresh V2 discovery stages."""
+    from mjlab.managers import RewardTermCfg, SceneEntityCfg
+    from mjlab_microduck.tasks import mdp
+    from . import recovery
+    cfg.episode_length_s = 8.
+    cfg.commands['twist'].rel_forward_envs = 0.
+    cfg.commands['head_pose'].zero_command_prob = .6
+    from .commands import BalancedHeadCommandCfg
+    cfg.commands['head_pose'] = BalancedHeadCommandCfg(**vars(cfg.commands['head_pose']))
+    # Retain gradual physical DR/head discovery for a FRESH actor. Historical
+    # V3 pinned these to mature values because it started from an old expert.
+    cfg.curriculum = {n: t for n, t in cfg.curriculum.items()
+                      if n in ('head_pose_range', 'com_range', 'head_com_range')}
+    cfg.commands['body_pose'].ranges = ((-.005,.005),)*3 + ((-.05,.05),)*3
+    weights = dict(action_rate_l2=-.2, arrival_damping=0., joint_torque_rate_l2=0.,
+        body_pose_tracking=0., head_pose_bias=0., height_stand_sharp=1.,
+        upright_sharp=1.5, standing_composite=3.75, pose_stand_legs=1.,
+        pose_stand_l1=.5, body_ang_vel=-.02, angular_momentum=-.01)
+    for n, value in weights.items():
+        cfg.rewards[n].weight = value
+    cfg.rewards.pop('com_upward_velocity', None)
+    cfg.rewards['recovery_progress'] = RewardTermCfg(func=recovery.sc0090_recovery_progress, weight=1.)
+    cfg.rewards['stable_standing'] = RewardTermCfg(func=recovery.sc0090_stable_standing, weight=1.)
+    cfg.rewards['remaining_fallen'] = RewardTermCfg(func=mdp.fallen_state_penalty, weight=-.5,
+        params=dict(gate_tilt_above_deg=40., release_tilt_below_deg=20., release_z_above=STAND_HEIGHT-.010))
+    cfg.rewards['neck_limit_proximity'] = RewardTermCfg(func=mdp.joint_pos_limit_proximity, weight=-2.,
+        params=dict(asset_cfg=SceneEntityCfg('robot', joint_names=('neck_pitch',)), margin=.20))
+    if 'push_robot' in cfg.events:
+        cfg.events['push_robot'].params['velocity_range'] = {'x':(-.05,.05), 'y':(-.05,.05)}
+    term = cfg.events['set_ground_state']
+    term.func = recovery.sc0090_reset_recovery
+    for key in ('face_down_prob','face_up_prob','sitting_prob','standing_prob','face_up_roll_max'):
+        term.params.pop(key, None)
+    # The formal trainer applies an isolated two-seed assessment every 500
+    # updates. No automatic time-based hardening or training-score promotion.
+
+
+def guard_reset_joints(env, env_ids):
+    import torch
+    asset = env.scene['robot']
+    if env_ids is None:
+        env_ids = torch.arange(env.num_envs, device=env.device)
+    q = asset.data.joint_pos[env_ids].clone()
+    lim = asset.data.joint_pos_limits[env_ids]
+    q = q.clamp(lim[..., 0] + .002, lim[..., 1] - .002)
+    asset.write_joint_state_to_sim(q, torch.zeros_like(q), env_ids=env_ids)
+
+
+def register_training_tasks():
+    from mjlab.tasks.registry import list_tasks, register_mjlab_task
+    from mjlab_microduck.tasks import MicroduckOnPolicyRunner
+    from mjlab_microduck.tasks.microduck_standup_env_cfg import MicroduckStandUpRlCfg
+    sensor = hasattr(v2, 'make_v2_sensor_env_cfg')
+    suffix = 'S0-O0-R1' if sensor else 'Official-Baseline'
+    task = 'Mjlab-StandUp-Flat-MicroDuck-V2-' + suffix
+    if task not in list_tasks():
+        agent = deepcopy(MicroduckStandUpRlCfg)
+        agent.algorithm.class_name = 'mjlab_microduck.custom_v2.ppo:TerminalCriticPPO'
+        agent.experiment_name = 'microduck_v2_standup_' + ('p04' if sensor else 'baseline')
+        agent.run_name = agent.experiment_name
+        register_mjlab_task(task_id=task, env_cfg=make_standup_env_cfg(),
+                           play_env_cfg=make_standup_env_cfg(True), rl_cfg=agent,
+                           runner_cls=MicroduckOnPolicyRunner)
+
+
+def configure_head_precision_learning(cfg,stage=1):
+    """Bounded post-recovery precision experiment, never a fresh-skill default.
+
+    Keep PPO and the seven recovery buckets unchanged. Freeze the previously
+    exposed 1000-update command range while strengthening only head tracking.
+    Wider ranges require response evidence before a later experiment.
+    """
+    ranges=next(s['ranges'] for s in cfg.curriculum['head_pose_range'].params['range_stages']
+                if s['step']==1000*24)
+    final=cfg.curriculum['head_pose_range'].params['range_stages'][-1]['ranges']
+    cfg.commands['head_pose'].ranges=ranges
+    cfg.curriculum['head_pose_range'].params['range_stages']=[dict(step=0,ranges=ranges)]
+    if stage not in (1,2,3,4):raise ValueError('Unknown head precision stage')
+    fine={1:.08,2:.04,3:(.03,.03,.03,.012),4:.04}[stage]
+    term=cfg.rewards['head_pose_tracking']
+    term.weight=3.0
+    term.params.update(std=.5,fine_std=fine,fine_weight=.5)
+    extra={}
+    if stage==4:
+        term.params['precision_scale']=.003
+        cfg.commands['head_pose'].zero_command_prob=.4
+        cfg.commands['head_pose'].precision_probability=.5
+        extra=dict(precision_scale=.003,command_sampling=dict(zero_probability=.4,
+            precision_probability=.5,precision_amplitude_rad=[.005,.04],
+            active_axis_count_probabilities={'1':.5,'2':.25,'4':.25}))
+    return dict(id=f'v2-head-precision-{stage}',stage=stage,ranges=ranges,final_ranges=final,
+                reward_weight=3.,std=.5,fine_std=fine,fine_weight=.5,
+                **extra,reason=('Basic micro/combined-command precision recipe after 3250 small-step 22/128; '
+                        'bounded reward and explicit exposure, no added position DR'
+                        if stage==4 else 'Axis precision experiment after 3756/4012 positive-roll T90 failure; '
+                        'same commands, position randomization, reward mass and PPO'
+                        if stage==3 else '2000-update head response failed despite mastered recovery'))
+
+
+def configure_position_robustness_learning(cfg,stage=1,*,require_corruption=True):
+    """Explicit baseline child experiment after the frozen q/v transfer diagnosis.
+
+    Change actor position coverage only. Preserve physical rewards, motor,
+    command/head recipe, critic and the already-trained recovery curriculum.
+    This is generic randomization, not a claim of reproducing full S0/O0.
+    """
+    from mjlab.utils.noise import UniformNoiseCfg
+    if stage not in (1,2):raise ValueError('Unknown position robustness stage')
+    amplitude=.02 if stage==1 else .04
+    term=cfg.observations['actor'].terms['joint_pos']
+    term.noise=UniformNoiseCfg(n_min=-amplitude,n_max=amplitude)
+    term.delay_min_lag=term.delay_max_lag=1
+    if require_corruption:
+        assert cfg.observations['actor'].enable_corruption
+    return dict(id=f'v2-position-robustness-{stage}',stage=stage,
+        uniform_noise_half_width_rad=amplitude,position_delay_control_steps=1,
+        control_dt_s=.02,encoder_bias_event='retained',velocity_observation='unchanged',
+        purpose='Bounded baseline continuation; evaluate full P04 independently before acceptance')

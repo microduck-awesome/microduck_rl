@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+  "device": "cuda:1",
+  "envs": 64,
+  "iterations": 5,
+  "steps_per_env": 24,
+  "learning_epochs": 5,
+  "minibatches": 4,
+  "losses": [
+    {
+      "value": 0.7987914919853211,
+      "surrogate": -0.01904774343511235,
+      "entropy": 19.85854196548462
+    },
+    {
+      "value": 0.8645200312137604,
+      "surrogate": -0.04214353684801608,
+      "entropy": 19.85232219696045
+    },
+    {
+      "value": 0.7202065050601959,
+      "surrogate": -0.0445130881620571,
+      "entropy": 19.84218692779541
+    },
+    {
+      "value": 0.6423918753862381,
+      "surrogate": -0.041285462054656816,
+      "entropy": 19.830442714691163
+    },
+    {
+      "value": 0.5343092381954193,
+      "surrogate": -0.04383200276788557,
+      "entropy": 19.816929721832274
+    }
+  ],
+  "policy_parameter_max_change": 0.013355191797018051,
+  "finite_policy_parameters": true,
+  "terminal_bootstrap_samples": 32,
+  "elapsed_seconds": 5.636706423014402,
+  "robot_xml": "robot.xml",
+  "robot_xml_sha256": "d52e06595e737ebe0b96529bfa6410b26b5f0e2d221e03ee2c28c4c9fcf0ed69",
+  "action_scale": 1.0,
+  "peak_contacts_across_worlds": 554,
+  "physics_cuda_graph": true,
+  "motor_graph_replays": [
+    478,
+    478
+  ],
+  "contact_capacity_across_worlds": 2240,
+  "contact_capacity_checked_each_physics_step": true,
+  "logging": "local TensorBoard",
+  "upload_model": false,
+  "limitation": "A short PPO smoke validates the training path; it does not demonstrate learned walking or SC0090 sim2real.",
+  "onnx_exported": true,
+  "runtime": "microduck-v2-sc0090-official-baseline-v1",
+  "feedback": "official-joint-noise-delay-and-encoder-bias",
+  "motor_sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+  "onnx_cpu_inference": {
+    "input": [
+      1,
+      61
+    ],
+    "output": [
+      1,
+      14
+    ],
+    "metadata_joint_count": 14,
+    "normalizer_parity_max_error": 1.7881393432617188e-07
+  }
+}

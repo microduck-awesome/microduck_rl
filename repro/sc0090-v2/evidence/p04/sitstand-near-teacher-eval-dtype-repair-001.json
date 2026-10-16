@@ -1,0 +1,10 @@
+{
+  "status": "EXTERNAL_EVALUATOR_ONLY_FIXED",
+  "old_sha": "8a114861e7e5a83e1cf8c92b5673660af379b3ee251394cbcbefa8b98d9ec650",
+  "new_sha": "dd89e8120786649013c6001659d5aa1b8f2b04f76749a7ab411247aeaf53b443",
+  "change": "stable.bool() for newly addedcontactscreen; originalbody/headgate unchanged",
+  "numerical_training_source_changed": false,
+  "first_nominal768_controls_already_completed": 153600,
+  "first_nominal768_repeated_controls": 0,
+  "source_trace": "sitstand-near-teacher-lr3e6-0768-nominal/traces.pt"
+}

@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "mode": "train",
+      "old_forward_override_worlds": 820,
+      "new_forward_override_worlds": 0,
+      "new_max_abs": [
+        0.00999967660754919,
+        0.009998389519751072,
+        0.04999861866235733
+      ],
+      "rng_bitwise_equal": true,
+      "worlds": 4096
+    },
+    {
+      "mode": "eval",
+      "old_forward_override_worlds": 820,
+      "new_forward_override_worlds": 0,
+      "new_max_abs": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rng_bitwise_equal": true,
+      "worlds": 4096
+    }
+  ],
+  "locked_sampler_sha256": "b4c60a2c061946fbfafb324e4c6d3d035411a34d2b3b22a0202ea8ab2d20acaf",
+  "scope": "Exact locked sampler CPU4096\u00d7train/eval; only rel_forward_envs.2\u21920; no physical velocity write because init_velocity_prob0; literal sampler body and RNG preserved"
+}

@@ -1,0 +1,40 @@
+{
+  "status": "FAILED",
+  "created_unix": 1792099040.288092,
+  "phases": [
+    {
+      "name": "resume",
+      "arguments": [
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-repaired-prep-worktree/scripts/v2_python.sh",
+        "scripts/train_v2_walking.py",
+        "--device",
+        "cuda:1",
+        "--num-envs",
+        "64",
+        "--iterations",
+        "2",
+        "--validation-only",
+        "--resume",
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-controller-smoke-64/checkpoint_000005.pt",
+        "--output",
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-controller-resume-64"
+      ],
+      "start_unix": 1792099068.3280332,
+      "pid": 3617463,
+      "returncode": 0,
+      "wall_seconds": 131.08905458450317
+    },
+    {
+      "name": "export",
+      "arguments": [
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-repaired-prep-worktree/scripts/v2_python.sh",
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/verify-walking-export.py"
+      ],
+      "start_unix": 1792099199.4210906,
+      "pid": 3620826,
+      "returncode": 1,
+      "wall_seconds": 5.508310317993164
+    }
+  ],
+  "error": "AssertionError({'name': 'export', 'arguments': ['/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-repaired-prep-worktree/scripts/v2_python.sh', '/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/verify-walking-export.py'], 'start_unix': 1792099199.4210906, 'pid': 3620826, 'returncode': 1, 'wall_seconds': 5.508310317993164})"
+}

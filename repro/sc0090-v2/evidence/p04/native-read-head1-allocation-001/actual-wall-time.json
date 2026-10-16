@@ -1,0 +1,15 @@
+{
+  "status": "MEASURED",
+  "formal_controls": 56623104,
+  "run_json_to_finish_s": 551.8718392848969,
+  "scope": "includes environment initialization, formal updates and final evaluation after run.json; excludes prior Python imports and separate preflight",
+  "actual_run_json_to_finish_controls_per_s": 102601.90857603995,
+  "updates_only_reported_s": 462.46000000000004,
+  "updates_only_controls_per_s": 120738.38169787657,
+  "median_update_s": 6.1,
+  "median_update_controls_per_s": 128923.2786885246,
+  "concurrent_gpu0_jobs": "none in this measured formal allocation",
+  "logged_update_count": 71,
+  "actual_completed_updates": 72,
+  "logged_update_scope": "A safe-stop final update may be saved before its normal logger call; update-only rate uses logged updates only"
+}

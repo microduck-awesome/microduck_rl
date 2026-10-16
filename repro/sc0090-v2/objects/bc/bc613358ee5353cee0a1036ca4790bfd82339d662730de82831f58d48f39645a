@@ -1,0 +1,212 @@
+"""Terminal-correct PPO with frozen V2 walk/recovery teachers.
+
+Uses official v8's on-policy teacher pass. The V2 adaptation routes upright
+zero-twist states to the standing teacher, since this walk parent still steps
+at zero request. All nonzero upright requests retain their walking anchor.
+"""
+import hashlib
+import json
+from pathlib import Path
+
+import torch
+
+from mjlab_microduck.tasks.distill import (
+    PpoWithExpertBc, fallen_mask_from_obs, body_frame_masks,
+    expert_input, remap_anchor_yaw, _with_flat,
+)
+from .ppo import TerminalCriticPPO
+
+
+def teacher_masks(flat, cfg):
+    gravity = tuple(cfg['gravity_slice'])
+    fallen = fallen_mask_from_obs(flat, gravity, cfg['gate_tilt_deg'])
+    upright = ~fallen_mask_from_obs(flat, gravity, cfg['anchor_tilt_deg'])
+    standing = flat[:, cfg['twist_slice'][0]:cfg['twist_slice'][1]].abs().amax(1) <= 1e-6
+    body_frames = torch.zeros_like(fallen)
+    body_teach = torch.zeros_like(fallen)
+    if cfg.get('body_slice'):
+        body_frames, body_teach = body_frame_masks(
+            flat, tuple(cfg['twist_slice']), tuple(cfg['body_slice']),
+            tuple(cfg['body_active_axes']), tuple(cfg['body_no_teacher_axes']))
+    # V2 stand teacher has no qualified body-control skill. Any active
+    # body task stays on PPO rather than receiving an unsupported expert label.
+    still = upright & standing & ~body_frames if cfg.get('standing_teacher') else torch.zeros_like(fallen)
+    stand_teacher = fallen | (body_teach & ~fallen) | still
+    walk_teacher = upright & ~body_frames & ~still
+    masked = fallen & fallen_mask_from_obs(flat, gravity, cfg.get('expert_mask_tilt_deg',75.))
+    return stand_teacher, walk_teacher, masked, still, body_frames
+
+
+def bc_minibatches(permutation, *, requested, minimum):
+    """Balanced disjoint batches; never a1–3 sample remainder update.
+
+    The original floor(n/4) slicing can yield a fifth tiny batch that receives
+    the same Adam step weight as a full batch. Every sample is still visited
+    once per epoch, with at most requested batches and the stated minimum.
+    """
+    count = min(requested, max(1, len(permutation)//minimum))
+    return torch.tensor_split(permutation, count)
+
+
+BC_AXIS_SCOPE = 'standing-all14-walking-legs10-divide14-v1'
+
+
+def teacher_axis_loss(prediction, target, use_stand, weights):
+    """Keep each old leg gradient; omit walking teacher's four head labels.
+
+    The denominator stays14, so removing labels cannot silently amplify leg
+    imitation by14/10. Standing/recovery teacher behavior is unchanged.
+    Shared actor features and restored Adam moments can still change heads;
+    this removes a loss term, not an action override or a frozen subnetwork.
+    """
+    assert prediction.shape == target.shape and prediction.shape[-1] == 14
+    axis_weights = torch.ones_like(prediction)
+    axis_weights[:,5:9] = use_stand[:,None].to(prediction.dtype)
+    return (weights * ((prediction-target).square()*axis_weights).mean(-1)).mean()
+
+
+class VelStandPPO(TerminalCriticPPO, PpoWithExpertBc):
+    def __init__(self, *args, bc_cfg=None, **kwargs):
+        if not bc_cfg or any(not bc_cfg.get(k) for k in ('checkpoint_path','anchor_checkpoint_path')):
+            raise ValueError('VelStand requires two explicit, qualified local V2 teacher checkpoints')
+        files = {}
+        root = Path(__file__).resolve().parents[3]
+        for key in ('checkpoint_path','anchor_checkpoint_path'):
+            path = Path(bc_cfg[key]).resolve()
+            files[key] = dict(path=str(path),sha256=hashlib.sha256(path.read_bytes()).hexdigest())
+            checkpoint = torch.load(path,map_location='cpu',weights_only=False)
+            meta = checkpoint['infos']['v2']
+            assert 'MicroDuck-V2' in meta['task'], 'Teacher must be a native V2 policy'
+            for physical in ('src/mjlab_microduck/sc0090_v2/contract.py',
+                             'src/mjlab_microduck/sc0090_v2/measurement/stream.py',
+                             'src/mjlab_microduck/actuator/sc0090_v5.py'):
+                assert meta['source_sha256'][physical] == hashlib.sha256((root/physical).read_bytes()).hexdigest(), physical
+            files[key]['task'] = meta['task']
+            del checkpoint
+        # MRO composes TerminalCriticPPO's collector with the published BC init.
+        super().__init__(*args,bc_cfg=bc_cfg,**kwargs)
+        self.teacher_contract = dict(schema=1,files=files,
+            routing='v2-upright-zero-twist-to-standing-v1',
+            parameters={k:v for k,v in bc_cfg.items() if 'path' not in k and 'checkpoint_name' not in k})
+        self.bc_update_count = 0
+        assert self.expert is not None and self.anchor is not None
+        assert all(not p.requires_grad for model in (self.expert,self.anchor) for p in model.parameters())
+
+    def _bc_update(self):
+        cfg = self.bc_cfg
+        observations = self.storage.observations.flatten(0,1)
+        groups = list(self.actor.obs_groups)
+        flat = torch.cat([observations[g] for g in groups],-1)
+        stand, walk, masked, still, body = teacher_masks(flat,cfg)
+        stats = {'expert_bc_stand_fraction':float(stand.float().mean()),
+                 'expert_bc_walk_fraction':float(walk.float().mean()),
+                 'expert_bc_zero_command_fraction':float(still.float().mean()),
+                 'expert_bc_body_ppo_fraction':float((body & ~stand & ~walk).float().mean())}
+        # The minimum applies to a sparse teacher slice, as in the v8 recipe.
+        if int(stand.sum()) < cfg['min_samples']:
+            stand = torch.zeros_like(stand)
+        indices = (stand | walk).nonzero().flatten()
+        if not len(indices):
+            return {**stats,'expert_bc':0.,'expert_bc_steps':0.,'expert_bc_kl_mean':0.}
+        selected = observations[indices]
+        use_stand, mask_stand = stand[indices], masked[indices]
+        weights = torch.where(use_stand, cfg['coef'], cfg['anchor_coef']).to(flat.dtype)
+        with torch.no_grad():
+            before = self.actor(selected).detach().clone()
+            std = self.actor.distribution.std_param.detach().clone()
+            target = torch.empty_like(before)
+            if bool(use_stand.any()):
+                obs = selected[use_stand].clone()
+                values = expert_input(torch.cat([obs[g] for g in groups],-1),tuple(cfg['twist_slice']),
+                    tuple(cfg.get('expert_mask_cols',())),mask_stand[use_stand])
+                target[use_stand] = self.expert(_with_flat(obs,groups,values))
+            if bool((~use_stand).any()):
+                obs = selected[~use_stand]
+                if cfg.get('anchor_yaw_remap'):
+                    obs = obs.clone()
+                    values = remap_anchor_yaw(torch.cat([obs[g] for g in groups],-1),
+                                             tuple(cfg['twist_slice']),cfg['anchor_yaw_remap'])
+                    obs = _with_flat(obs,groups,values)
+                target[~use_stand] = self.anchor(obs)
+        torch._assert_async(torch.isfinite(target).all(),'Nonfinite frozen teacher target')
+        n = len(indices)
+        loss_total = torch.zeros((),device=self.device)
+        steps = 0
+        for _ in range(cfg['epochs']):
+            permutation = torch.randperm(n,device=self.device)
+            for take in bc_minibatches(permutation,requested=cfg['mini_batches'],minimum=cfg['min_mini_batch']):
+                prediction = self.actor(selected[take])
+                loss = teacher_axis_loss(prediction,target[take],use_stand[take],weights[take])
+                self.bc_optimizer.zero_grad()
+                loss.backward()
+                torch.nn.utils.clip_grad_norm_(self.actor.parameters(),self.max_grad_norm)
+                self.bc_optimizer.step()
+                loss_total.add_(loss.detach())
+                steps += 1
+        with torch.no_grad():
+            after = self.actor(selected)
+            # This separate mean-action change catches BC instability that the
+            # usual PPO-only KL logger would otherwise miss after its update.
+            kl = .5*((after-before)/std).square().sum(-1)
+            torch._assert_async(torch.isfinite(kl).all(),'Nonfinite post-BC Gaussian KL')
+            stats.update(expert_bc=float(loss_total/max(steps,1)),expert_bc_steps=float(steps),
+                         expert_bc_kl_mean=float(kl.mean()),expert_bc_kl_max=float(kl.max()))
+        self.bc_update_count += 1
+        return stats
+
+    def save(self):
+        saved = super().save()
+        saved['velstand_teacher_contract'] = self.teacher_contract
+        saved['expert_bc_optimizer_state_dict'] = self.bc_optimizer.state_dict()
+        saved['expert_bc_update_count'] = self.bc_update_count
+        saved['velstand_bc_axis_scope'] = BC_AXIS_SCOPE
+        return saved
+
+    def load(self, loaded_dict, load_cfg, strict):
+        contract = loaded_dict.get('velstand_teacher_contract')
+        saved_axis_scope = loaded_dict.get('velstand_bc_axis_scope')
+        if saved_axis_scope is not None:
+            assert saved_axis_scope == BC_AXIS_SCOPE
+        elif contract is not None:
+            assert getattr(self, '_v2_allow_bc_axis_transition', False), 'Legacy all-axis BC needs declared source transition'
+        if contract is not None:
+            # JSON canonicalization allows the checkpoint's tuple/list encoding
+            # to differ, but never relaxes a teacher hash or routing parameter.
+            assert json.dumps(contract,sort_keys=True) == json.dumps(self.teacher_contract,sort_keys=True)
+        result = super().load(loaded_dict,load_cfg,strict)
+        if contract is not None and (load_cfg is None or load_cfg.get('optimizer')):
+            self.bc_optimizer.load_state_dict(loaded_dict['expert_bc_optimizer_state_dict'])
+            self.bc_update_count = loaded_dict['expert_bc_update_count']
+        elif contract is None:
+            assert not self.bc_optimizer.state, 'New task warm start requires a fresh BC optimizer'
+        return result
+
+
+def attach_velstand_diagnostics(runner, path):
+    """Instrument the exact PPO stage, then run the same native BC stage once.
+
+    The shared diagnostic's strict upstream-update guard is kept intact. This
+    adapter only accepts the verified PpoWithExpertBc wrapper, and restoring
+    the monitor restores that wrapper, not a PPO-only learner.
+    """
+    from rsl_rl.algorithms import PPO
+    from mjlab_microduck.ppo_diagnostics import attach_ppo_diagnostics
+    algorithm = runner.alg
+    original = algorithm.update
+    assert type(algorithm) is VelStandPPO
+    assert getattr(original, '__func__', None) is PpoWithExpertBc.update
+    algorithm.update = PPO.update.__get__(algorithm, type(algorithm))
+    try:
+        monitor = attach_ppo_diagnostics(runner, path)
+    except Exception:
+        algorithm.update = original
+        raise
+    measured_ppo = algorithm.update
+    def update():
+        losses = measured_ppo()
+        if algorithm.expert is not None:
+            losses.update(algorithm._bc_update())
+        return losses
+    algorithm.update = update
+    monitor.original_update = original
+    return monitor

@@ -1,0 +1,28 @@
+{
+  "status": "FRESH_VERIFIED",
+  "clock": 0,
+  "completed_updates": 0,
+  "inherited_controls": 0,
+  "optimizer_state_entries": 0,
+  "learning_rate": 0.001,
+  "actor_sha256": "b96f58132bf33682e584bb424d12e163cee6b933ca79bfae10cfe673b379853d",
+  "critic_sha256": "25f4ec846050bf499deedcf752fc9c06ae6b245b62ab6dd0567dff789fd07491",
+  "normalizers": {
+    "actor.obs_normalizer": {
+      "count": 0,
+      "mean0": true,
+      "var1": true,
+      "std1": true
+    },
+    "critic.obs_normalizer": {
+      "count": 0,
+      "mean0": true,
+      "var1": true,
+      "std1": true
+    }
+  },
+  "no_checkpoint_loaded": true,
+  "not_validation_weights": true,
+  "initialization_state_sha256": "d6984a69f78d53ee27dfbc843be4d91f6d0b0040cecd0a9f8ee99a912a8e8fbe",
+  "scope": "Observer after native runner construction; snapshot does not change RNG/state. Fresh actor/critic, empty Adam and normalizer statistics, no checkpoint load."
+}

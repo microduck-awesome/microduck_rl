@@ -1,0 +1,40 @@
+"""Read-only native-range attribution, with every other invalid lane rejected."""
+import json
+from pathlib import Path
+import torch
+from .feedback_diagnostics import FeedbackFaultRecorder
+
+
+def explained_native_range(valid, reason, source_status, raw):
+    count=raw[:,0]
+    return (~valid)&(reason==13)&(source_status==-1)&(raw[:,4]>.5)&torch.isfinite(count)&((count<0)|(count>1023))
+
+
+class CameraFeedbackAudit:
+    def __init__(self,env):
+        self.env=env;f=env._v2_joint_feedback;self.faults=FeedbackFaultRecorder(f)
+        self.invalid_controls=torch.zeros((),dtype=torch.int64,device=env.device)
+        self.unexplained_lanes=torch.zeros_like(self.invalid_controls)
+        self.first_qpos=torch.zeros_like(env.sim.data.qpos);self.first_qvel=torch.zeros_like(env.sim.data.qvel)
+        self.first_estimated_q=torch.zeros_like(f.last_q);self.first_estimated_v=torch.zeros_like(f.last_v)
+        original=env.reward_manager.compute
+        def capture(dt):
+            value=original(dt);fresh=~f.ready & (self.faults.first_step<0)
+            for target,current in ((self.first_qpos,env.sim.data.qpos),(self.first_qvel,env.sim.data.qvel),(self.first_estimated_q,f.last_q),(self.first_estimated_v,f.last_v)):
+                target.copy_(torch.where(fresh.reshape(-1,*([1]*(target.ndim-1))),current,target))
+            self.faults.control_boundary(env.common_step_counter)
+            _,valid=f.pipeline.query(f._time())
+            expected=explained_native_range(valid,self.faults.stream.reason,self.faults.last_source_status,self.faults.last_source_raw)
+            self.unexplained_lanes.add_((~valid&~expected).sum())
+            self.invalid_controls.add_((~f.ready).sum())
+            return value
+        env.reward_manager.compute=capture
+
+    def report(self):
+        return dict(invalid_controls=int(self.invalid_controls),unexplained_invalid_lanes=int(self.unexplained_lanes),scope='Raw count outside0..1023 with valid transaction, reason13/status-1 only. Native episode termination retained; no valid-spike rejection or fabricated replacement.')
+
+    def save(self,out):
+        f=self.faults;ids=(f.first_step>=0).nonzero().flatten()
+        payload=dict(env_ids=ids.cpu(),first_step=f.first_step[ids].cpu(),first={k:v[ids].cpu() for k,v in f.first.items()},qpos=self.first_qpos[ids].cpu(),qvel=self.first_qvel[ids].cpu(),estimated_q=self.first_estimated_q[ids].cpu(),estimated_v=self.first_estimated_v[ids].cpu(),invalid_lane_control_counts=f.bad_controls.reshape(f.shape)[ids].cpu(),source_events=f.source_events.reshape(f.shape)[ids].cpu(),numeric_events=f.numeric_events.reshape(f.shape)[ids].cpu(),joint_names=list(self.env.scene['robot'].joint_names))
+        torch.save(payload,Path(out)/'feedback-first-faults.pt')
+        (Path(out)/'feedback-audit.json').write_text(json.dumps(self.report(),indent=2)+'\n');f.close()

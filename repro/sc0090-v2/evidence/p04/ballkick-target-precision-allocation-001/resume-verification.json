@@ -1,0 +1,20 @@
+{
+  "checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/ballkick-health-history-allocation-001/checkpoint_000256.pt",
+  "checkpoint_sha256": "ae17d7b3e8adf15f072f38195741d14215d4ced7f549ccae06da56fac2dea61d",
+  "actor_critic_normalizer_adam_exact": true,
+  "learning_rate": 0.0002562890625000001,
+  "source_transition": {
+    "manifest": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/ballkick-target-precision-source-transition.json",
+    "sha256": "b3fc44ce2a89dc79776cbbd34580596ec3afa62bef79a98caa713592217f3e60",
+    "recipe": "mature-ball-target-precision-v1",
+    "changed_files": [
+      "scripts/train_v2_ballkick.py",
+      "src/mjlab_microduck/custom_v2/ball_kick_metrics.py",
+      "src/mjlab_microduck/custom_v2/ball_kick_precision.py",
+      "src/mjlab_microduck/tasks/__init__.py"
+    ]
+  },
+  "common_step_counter": 6144,
+  "completed_updates": 256,
+  "inherited_controls": 150994944
+}

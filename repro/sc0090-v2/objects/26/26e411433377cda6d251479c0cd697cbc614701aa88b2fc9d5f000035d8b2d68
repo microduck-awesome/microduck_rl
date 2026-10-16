@@ -1,0 +1,36 @@
+from dataclasses import asdict
+from pathlib import Path
+import torch,json
+from tensordict import TensorDict
+import mjlab.tasks
+from mjlab.tasks.registry import load_rl_cfg
+from rsl_rl.utils import resolve_callable,resolve_obs_groups
+from mjlab_microduck.custom_v2.fresh_p04 import HEAD_STD_CAP_TASK
+state=torch.load('runs-v2/head2-late-entropy-allocation-001/resume_001728.pt',map_location='cuda:0',weights_only=False)
+agent=asdict(load_rl_cfg(HEAD_STD_CAP_TASK));device='cuda:0';torch.set_num_threads(2)
+obs=TensorDict({'actor':torch.zeros(64,61,device=device),'critic':torch.zeros(64,74,device=device)},batch_size=[64])
+groups=resolve_obs_groups(obs,agent['obs_groups'],['actor','critic']);cfg=agent['actor']
+for opt in ('cnn_cfg','distribution_cfg'):
+ if cfg.get(opt) is None:cfg.pop(opt,None)
+if cfg.get('rnn_type') is None:
+ for opt in ('rnn_type','rnn_hidden_dim','rnn_num_layers'):cfg.pop(opt,None)
+actor=resolve_callable(cfg.pop('class_name'))(obs,groups,'actor',14,**cfg).to(device);actor.load_state_dict(state['actor_state_dict'],strict=True);actor.eval()
+# Use a real prior recorded observation batch if available; this audit needs
+# actual mean sensitivity, not invented control values.
+paths=list(Path('runs-v2/head2-full-reward-1728-nominal').rglob('*.pt'))
+print([str(p) for p in paths],flush=True)
+# Distribution test isolates batch-kernel recomputation with learned typical
+# normalizer-scaled observations. It does not call these sampled values physics.
+g=torch.Generator(device=device).manual_seed(991)
+normalizer=actor.obs_normalizer
+x=torch.randn((384,61),device=device,generator=g)*normalizer._std+normalizer._mean
+with torch.inference_mode():
+ parts=[];std=[];actions=[];lp=[]
+ for chunk in x.split(64):
+  y=actor({'actor':chunk},stochastic_output=True);parts.append(actor.output_distribution_params[0].clone());std.append(actor.output_distribution_params[1].clone());actions.append(y);lp.append(actor.get_output_log_prob(y))
+ oldmean=torch.cat(parts);oldstd=torch.cat(std);actions=torch.cat(actions);oldlp=torch.cat(lp)
+ actor({'actor':x},stochastic_output=True);newmean,newstd=actor.output_distribution_params
+ ratio=torch.exp(actor.get_output_log_prob(actions)-oldlp);kl=actor.get_kl_divergence((oldmean,oldstd),(newmean,newstd))
+ assert torch.equal(oldstd,newstd)
+ r=dict(status='PASS',scope='same learned actor and normalized synthetic inputs, batch64 vs384 recomputation; no physics or learning',mean_max_delta=float((oldmean-newmean).abs().max()),std_exact=True,kl_max=float(kl.max()),ratio_max_error=float((ratio-1).abs().max()))
+Path('runs-v2/head2-stdcap-recompute.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r),flush=True)

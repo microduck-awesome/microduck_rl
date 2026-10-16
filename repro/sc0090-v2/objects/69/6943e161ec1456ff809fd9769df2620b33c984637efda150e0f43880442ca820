@@ -1,0 +1,51 @@
+"""Meaningful state-transition boundaries and captured reset geometry replay."""
+from pathlib import Path
+from copy import deepcopy
+from types import SimpleNamespace
+import json,math,torch,mujoco
+from mjlab_microduck.custom_v2.ball_kick_state import kick_state_transition,ball_kick_state_observation,reset_ball_with_kick_state,ball_nonfinite
+from mjlab_microduck.custom_v2.reset_geometry import RouladeResetGeometry
+from mjlab_microduck.custom_v2.training import get_full_spec
+from mjlab_microduck.custom_v2.microduck_v2 import POLICY_JOINTS
+r=Path(__file__).resolve().parents[1]/'runs-v2';checks=[]
+# Four substeps, short valid contact only on substep1; last sample alone misses it.
+v=torch.zeros(6,dtype=torch.bool);bad=torch.zeros_like(v)
+inputs=[v.clone(),bad.clone()]
+for step in range(4):
+ correct=torch.tensor([step==1,step==1,step==1,step==1,False,step==1])
+ wrong=torch.tensor([False,step==1,False,False,step==2,step==3])
+ head=torch.tensor([False,False,False,step==1,False,False])
+ support=torch.tensor([True,True,False,True,True,True]);healthy=torch.ones(6,dtype=torch.bool)
+ v,bad=kick_state_transition(v,bad,correct,wrong,head,support,healthy)
+assert v.tolist()==[True,False,False,False,False,False]
+assert bad.tolist()==[False,True,False,True,True,True]
+checks.append('short_substep_correct_contact_latched_wrong_simultaneous_late_head_and_unsupported_rejected')
+prior=v.clone();new,nb=kick_state_transition(v,bad,torch.zeros_like(v),torch.zeros_like(v),torch.zeros_like(v),torch.ones_like(v),torch.ones_like(v));assert torch.equal(prior,new) and torch.equal(v,prior)
+checks.append('post_contact_rolling_state_persistent_and_transition_inputs_immutable')
+env=SimpleNamespace(num_envs=6,device='cpu',_v2_ball_valid_kick=v.clone(),_v2_ball_bad_contact=bad.clone())
+obs=ball_kick_state_observation(env);assert obs.shape==(6,2);old=[env._v2_ball_valid_kick.clone(),env._v2_ball_bad_contact.clone()];obs.zero_();assert torch.equal(old[0],env._v2_ball_valid_kick) and torch.equal(old[1],env._v2_ball_bad_contact)
+checks.append('critic_only_bits_are_copy_read_only')
+# Replay identical captured GPU q, then only raise by the conservative CAD FK.
+state=torch.load(r/'ballkick-physical-001/initial.pt',map_location='cpu',weights_only=False)
+m=get_full_spec().compile();data=mujoco.MjData(m);geometry=RouladeResetGeometry(m,POLICY_JOINTS,'cpu',torch.float32)
+ids=[int(m.joint(n).qposadr[0]) for n in POLICY_JOINTS];mouth=int(m.joint('mouth').qposadr[0]);q=state['qpos'][:,:m.nq].clone()
+height=geometry.floor_height(q[:,ids],q[:,3:7],mouth_q=q[:,mouth]);newz=torch.maximum(q[:,2],height)
+# All terrain is flatz0; root x/y world offsets do not change floor distance.
+newq=q.clone();newq[:,2]=newz;min_z=[]
+for row in newq.numpy():
+ data.qpos[:]=row;mujoco.mj_forward(m,data);points=[]
+ for g in range(m.ngeom):
+  if not ((m.geom_contype[g]|m.geom_conaffinity[g])&1) or not m.geom_bodyid[g]:continue
+  assert m.geom_type[g]==mujoco.mjtGeom.mjGEOM_MESH
+  mesh=int(m.geom_dataid[g]);a=int(m.mesh_vertadr[mesh]);n=int(m.mesh_vertnum[mesh]);vertices=m.mesh_vert[a:a+n]
+  world=vertices@data.geom_xmat[g].reshape(3,3).T+data.geom_xpos[g];points.append(float(world[:,2].min()))
+ min_z.append(min(points))
+assert min(min_z)>=.000999
+assert torch.equal(newq[:,3:],q[:,3:]) and torch.equal(newq[:,:2],q[:,:2])
+checks.append('captured128_noisy_GPU_resets_raise_only_exact_mesh_floor_clearance_at_least1mm')
+# Invalid free-ball state must terminate independently of finite robot fields.
+data=SimpleNamespace(root_link_pos_w=torch.zeros(2,3),root_link_quat_w=torch.tensor([[1.,0,0,0]]).repeat(2,1),root_link_lin_vel_w=torch.zeros(2,3),root_link_ang_vel_w=torch.zeros(2,3));e=SimpleNamespace(scene={'ball':SimpleNamespace(data=data)})
+assert not bool(ball_nonfinite(e).any());data.root_link_lin_vel_w[1,0]=float('nan');assert ball_nonfinite(e).tolist()==[False,True]
+checks.append('free_ball_nan_detected_independent_of_robot')
+report=dict(status='PASS_CPU_NOT_GPU_QUALIFIED',checks=checks,raised_worlds=int((newz>q[:,2]).sum()),maximum_raise_m=float((newz-q[:,2]).max()),actual_min_mesh_floor_z_m=min(min_z),scope='Finite event fixtures and captured128 actual reset q CPU geometry. Does not validate runtime contact timing, multi-entity successor, actual PPO or skill.')
+(r/'ballkick-state-cpu-001.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report),flush=True)

@@ -35,28 +35,61 @@ def _nan_safe_reward_compute(self, dt: float) -> torch.Tensor:
     # _episode_sums is updated inside compute() before nan_to_num can act.
     # Sanitize in-place so per-term metrics don't show NaN.
     for key in self._episode_sums:
-        torch.nan_to_num_(self._episode_sums[key], nan=0.0)
-    return torch.nan_to_num(result, nan=0.0)
+        torch.nan_to_num_(self._episode_sums[key], nan=0.0,
+                          posinf=float('inf'), neginf=-float('inf'))
+    # Preserve infinities for the rollout guard. Converting them to the largest
+    # finite float only postpones overflow and hides the original failure.
+    return torch.nan_to_num(result, nan=0.0, posinf=float('inf'), neginf=-float('inf'))
 
 _RewardManager.compute = _nan_safe_reward_compute
 
 # ---------------------------------------------------------------------------
-# Patch 2: PPO.compute_returns — sanitize advantages before normalization.
-# At a sudden curriculum step (e.g. reward weight ×2.5) the value function is
-# badly wrong: all TD errors shift by the same amount, std(advantages) → tiny,
-# and (A − mean) / (std + 1e-8) → huge.  That blows up the gradient for std,
-# which the optimizer then pushes below zero.  Zeroing NaN/Inf advantages
-# before normalization keeps them in a safe range.
+# Patch 2: PPO.compute_returns — reject invalid rollout targets before learning.
+# The upstream method already normalizes advantages. Sanitizing AFTER that
+# normalization silently erased every world's policy signal when one world
+# contaminated the global mean/std. A zero return is not a valid replacement
+# for a nonfinite value target. Keep finite arithmetic unchanged and stop before
+# PPO.update() rather than teaching the actor/critic invented targets.
 # ---------------------------------------------------------------------------
 _orig_compute_returns = _PPO.compute_returns
 
+def _ppo_targets_are_finite(algorithm, *values):
+    finite = torch.stack([torch.isfinite(value).all() for value in values]).all().to(torch.int32)
+    if getattr(algorithm, "is_multi_gpu", False):
+        # All ranks must take the same exit path before PPO's later collectives.
+        # A local-only exception would leave healthy peers waiting for gradients.
+        torch.distributed.all_reduce(finite, op=torch.distributed.ReduceOp.MIN)
+    return bool(finite)
+
+
 def _safe_compute_returns(self, obs) -> None:
-    _orig_compute_returns(self, obs)
     st = self.storage
-    torch.nan_to_num_(st.advantages, nan=0.0, posinf=0.0, neginf=0.0)
-    torch.nan_to_num_(st.returns,    nan=0.0, posinf=0.0, neginf=0.0)
+    if not _ppo_targets_are_finite(self, st.rewards, st.values):
+        raise FloatingPointError("Nonfinite PPO rollout reward/value; refusing to update actor or critic")
+    _orig_compute_returns(self, obs)
+    if not _ppo_targets_are_finite(self, st.advantages, st.returns):
+        raise FloatingPointError("Nonfinite PPO return/advantage; refusing to update actor or critic")
 
 _PPO.compute_returns = _safe_compute_returns
+
+# A true terminal state takes precedence when a time limit also fires. Mjlab
+# keeps the two flags independently; its RSL wrapper forwards every truncation
+# as a bootstrap mask. That incorrectly adds continuation value to a fall or
+# other terminal event on the final step. Preserve the raw termination flags,
+# dones, observations and rewards; only pure timeouts may bootstrap.
+from mjlab.rl.vecenv_wrapper import RslRlVecEnvWrapper as _RslRlVecEnvWrapper
+
+_orig_vecenv_step = _RslRlVecEnvWrapper.step
+
+
+def _terminal_precedence_vecenv_step(self, actions):
+    obs, rewards, dones, extras = _orig_vecenv_step(self, actions)
+    if not self.cfg.is_finite_horizon:
+        extras['time_outs'] = extras['time_outs'] & ~self.unwrapped.reset_terminated
+    return obs, rewards, dones, extras
+
+
+_RslRlVecEnvWrapper.step = _terminal_precedence_vecenv_step
 
 # Patch 3 (ActorCritic._update_distribution std-clamp) was REMOVED in the mjlab
 # 1.3.0 migration: rsl_rl 5.0.1 refactored the policy (no ActorCritic class; the
@@ -64,7 +97,7 @@ _PPO.compute_returns = _safe_compute_returns
 # band-aid against std going negative/NaN (microban runs fine without it). If
 # std-blowup recurs under 1.3.0, reinstate it against the new GaussianDistribution.
 
-print("[mdp] Patches 1-2 active: NaN-safe reward/advantage")
+print("[mdp] Patches 1-2 active: finite PPO targets; true terminal takes precedence")
 
 # ---------------------------------------------------------------------------
 # Patch 4: exporter_utils.get_base_metadata — the new microduck model has

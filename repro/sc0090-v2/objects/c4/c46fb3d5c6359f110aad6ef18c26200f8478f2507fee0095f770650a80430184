@@ -1,0 +1,48 @@
+"""Bounded head reward repair: config isolation and command/error ordering oracle."""
+import argparse,copy,json,hashlib,types
+from dataclasses import asdict
+from pathlib import Path
+import torch
+import mjlab.tasks
+from mjlab.tasks.registry import load_env_cfg
+from mjlab_microduck.custom_v2.feedback_repair import CATCH_TASK
+from mjlab_microduck.custom_v2.training import configure_head_precision_learning
+from mjlab_microduck.tasks import mdp
+p=argparse.ArgumentParser();p.add_argument('--device',default='cpu');a=p.parse_args();torch.set_num_threads(2)
+def canon(x):return json.dumps(x,sort_keys=True,default=lambda v:getattr(v,'__qualname__',str(v)))
+for play in (False,True):
+ old=load_env_cfg(CATCH_TASK,play=play);new=copy.deepcopy(old)
+ configure_head_precision_learning(old,4);configure_head_precision_learning(new,5)
+ x,y=asdict(old),asdict(new)
+ assert y['rewards']['head_pose_tracking']['params'].pop('balance_active_axes') is True
+ assert canon(x)==canon(y),'Unexpected config change'
+# Standalone actual production function with explicit physical joint data.
+def score(error,command,balance):
+ n=len(error);data=types.SimpleNamespace(joint_pos=error+command,default_joint_pos=torch.zeros_like(error))
+ env=types.SimpleNamespace(scene={'robot':types.SimpleNamespace(data=data)},device=a.device,
+  command_manager=types.SimpleNamespace(get_command=lambda _:command),
+  _head_pose_neck_ids=torch.arange(4,device=a.device),_head_pose_bl_ids=torch.zeros(4,dtype=torch.long,device=a.device),_head_pose_bl_mask=torch.zeros(4,device=a.device))
+ return mdp.head_pose_tracking(env,std=.5,fine_std=.04,fine_weight=.5,precision_scale=.003,balance_active_axes=balance)
+torch.manual_seed(12547)
+error=torch.randn(10000,4,device=a.device)*.1
+for n in range(5):
+ command=torch.zeros_like(error);command[:,:n]=.03
+ old=score(error,command,False);new=score(error,command,True)
+ if n in (0,2,4):assert torch.equal(old,new),'Idle/two/all command reward changed'
+ # Independent per-axis weight construction: sum rather than production group average.
+ actual_error=(error+command)-command
+ per=(.5*torch.exp(-(actual_error/.5)**2)+.5*torch.exp(-(actual_error/.04)**2))*(.5+.5/(1+actual_error.abs()/.003))
+ weights=torch.full((4,),.25,device=a.device)
+ if n in (1,3):weights[:n]=.5/n;weights[n:]=.5/(4-n)
+ torch.testing.assert_close(new,(per*weights).sum(-1),atol=1e-7,rtol=1e-6)
+ assert torch.isfinite(new).all() and ((new>=0)&(new<=1)).all()
+ assert torch.equal(score(torch.zeros_like(error),command,True),torch.ones(len(error),device=a.device))
+ # The intended response axis error must reduce reward, all else fixed.
+ if n:
+  worse=error.clone();worse[:,0]=torch.abs(error[:,0])+.01
+  better=error.clone();better[:,0]=torch.abs(error[:,0])
+  assert (score(worse,command,True)<=score(better,command,True)+1e-7).all()
+report=dict(status='PASS',device=a.device,only_environment_change='head_pose_tracking.balance_active_axes=True',
+ original_idle_two_and_four_axis_rewards_bitwise_unchanged=True,independent_weight_oracle_pass=True,finite_bounded_max_one=True,
+ commanded_error_monotonicity_pass=True,script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+Path('runs-v2/paired-head-balance-check-'+a.device.replace(':','')+'.json').write_text(json.dumps(report,indent=2));print(report)

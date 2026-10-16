@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "updates": 256,
+  "logged_update_count": 256,
+  "controls": 201326592,
+  "run_json_unix": 1792062770.5350187,
+  "completion_unix": 1792064591.3785594,
+  "run_json_to_completion_s": 1820.8435406684875,
+  "run_json_to_completion_control_steps_per_s": 110567.76021847919,
+  "logged_update_sum_s": 1650.409999999998,
+  "logged_update_control_steps_per_s": 121985.80473942852,
+  "median_update_s": 6.06,
+  "median_update_control_steps_per_s": 129774.25742574259,
+  "limitation": "run.json begins after Python imports; update times rounded by logger; independent measured/nominal/natural-control head evaluations ran concurrently on GPU0, not an isolated benchmark"
+}

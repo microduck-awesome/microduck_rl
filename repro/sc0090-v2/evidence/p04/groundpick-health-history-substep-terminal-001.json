@@ -1,0 +1,109 @@
+{
+  "status": "PASS",
+  "actual_reset_only_subclass_verified": true,
+  "low_start_worlds": 7,
+  "native_reset_controls": 96,
+  "contact_sampling_hz": 200,
+  "contact200Hz_no_zero_contact_claim": true,
+  "physical_reward_oracle_max": [
+    1.862645149230957e-09,
+    1.862645149230957e-09,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "cases": [
+    {
+      "phase": 0.0,
+      "force_full": false,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 22,
+      "force_max_error": 0.0
+    },
+    {
+      "phase": 0.0,
+      "force_full": true,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 22,
+      "force_max_error": 0.0
+    },
+    {
+      "phase": 0.375,
+      "force_full": false,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 22,
+      "force_max_error": 0.0
+    },
+    {
+      "phase": 0.375,
+      "force_full": true,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 22,
+      "force_max_error": 0.0
+    },
+    {
+      "phase": 0.42,
+      "force_full": false,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 22,
+      "force_max_error": 0.0
+    },
+    {
+      "phase": 0.42,
+      "force_full": true,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 22,
+      "force_max_error": 0.0
+    },
+    {
+      "phase": 0.425,
+      "force_full": false,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 22,
+      "force_max_error": 3.725290298461914e-08
+    },
+    {
+      "phase": 0.425,
+      "force_full": true,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 22,
+      "force_max_error": 3.725290298461914e-08
+    },
+    {
+      "phase": 0.47,
+      "force_full": false,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 22,
+      "force_max_error": 1.4901161193847656e-07
+    },
+    {
+      "phase": 0.47,
+      "force_full": true,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 22,
+      "force_max_error": 1.4901161193847656e-07
+    },
+    {
+      "phase": 0.995,
+      "force_full": false,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 22,
+      "force_max_error": 0.0
+    },
+    {
+      "phase": 0.995,
+      "force_full": true,
+      "critic_max_error": 0.0,
+      "live_tensors_unchanged": 22,
+      "force_max_error": 0.0
+    }
+  ],
+  "actor_width": 61,
+  "critic_width": 74,
+  "partial_reset_phase_payload": "PASS",
+  "payload_world_force_and_moment": "PASS",
+  "initial_reset_contract": "After explicit env.reset, apply payload step once before first physical integration; automatic resets receive native post-command step event",
+  "script_sha256": "a9e580434d3d17d52cf64ba4b59a5b0ef9668fd41f9adb27125143b3ed339a7a"
+}

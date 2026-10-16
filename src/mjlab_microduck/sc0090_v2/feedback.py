@@ -6,18 +6,41 @@ coefficients are never replaced by the identification pendulum's mass/inertia.
 
 import torch
 
-from mjlab_microduck.sc0090.registers import RegisterPipeline
+from .measurement.registers import RegisterPipeline
 from .artifacts import TrainingArchive
 
 
 class WholeRobotFeedback:
-    def __init__(self, archive_path, num_envs, *, device, seed=42, stage="nominal", joints=15):
+    @torch.inference_mode(False)
+    def __init__(self, archive_path, num_envs, *, device, seed=42, stage="nominal", joints=15,
+                 compile_stream=False, fuse_registers=False, reset_graph_chunk=1,
+                 observer_frontend='bench', spike_rejection=True, o0_local_history=False):
         if stage not in {"nominal", "measured"}:
             raise ValueError("Expected nominal or measured R1 stage")
         self.archive = TrainingArchive.load(archive_path)
         self.num_envs, self.joints, self.device = num_envs, joints, device
         self.stage = stage
-        self.pipeline = RegisterPipeline(
+        stream_options = {}
+        if o0_local_history and observer_frontend != 'bench':
+            raise ValueError('Local O0 history applies only to the bench O0 frontend')
+        if not spike_rejection:
+            if observer_frontend != 'bench':
+                raise ValueError('Spike-filter ablation applies only to the bench frontend')
+        if observer_frontend=='firmware-ls3':
+            from .measurement.firmware_stream import FirmwareNativeStream
+            stream_options['stream_class']=FirmwareNativeStream
+        elif observer_frontend!='bench':
+            raise ValueError('Unknown observer frontend')
+        elif compile_stream:
+            from .measurement.compiled_stream import CompiledCausalStream
+            stream_options['stream_class'] = CompiledCausalStream
+        pipeline_class = RegisterPipeline
+        if fuse_registers:
+            if not compile_stream:
+                raise ValueError('Register fusion requires the compiled causal stream')
+            from .measurement.compiled_registers import CompiledRegisterPipeline
+            pipeline_class = CompiledRegisterPipeline
+        self.pipeline = pipeline_class(
             self.archive.fit_path,
             self.archive.weight_path,
             num_envs * joints,
@@ -26,11 +49,14 @@ class WholeRobotFeedback:
             device=device,
             seed=seed,
             randomization_path=self.archive.randomization_path,
+            **stream_options,
         )
         # Synthetic register origin, not a hardware calibration. Both directions
         # use this origin; each real joint must supply its own signed count map.
         self.pipeline.stream.zero = 512.0
         self.pipeline.stream.q_limits = (-3.0, 3.0)
+        self.pipeline.stream.spike_rejection = spike_rejection
+        self.pipeline.stream.o0_local_history = o0_local_history
         self.clock = torch.full((num_envs,), 1_280_000, dtype=torch.int64, device=device)
         self.voltage = torch.full((num_envs,), 11.1, device=device)
         self.rng = torch.Generator(device=device).manual_seed(seed + 731)
@@ -38,6 +64,13 @@ class WholeRobotFeedback:
         self.last_q = torch.zeros((num_envs, joints), device=device)
         self.last_v = torch.zeros_like(self.last_q)
         self.ready = torch.zeros(num_envs, dtype=torch.bool, device=device)
+        self._graph = None
+        self.graph_enabled = True
+        self.compact_reset = True
+        self.reset_graph_enabled = True
+        self.reset_graph_chunk = reset_graph_chunk
+        self._reset_workspaces = {}
+        self._prehistory_graphs = {}
 
     def _lane_ids(self, env_ids):
         return (
@@ -95,8 +128,24 @@ class WholeRobotFeedback:
         """
         self._conditions(ids)
         p = self.pipeline
+        subset = None
+        if self.compact_reset and str(self.device).startswith('cuda') and len(ids) < self.num_envs:
+            from .measurement.compact import ResetSubset
+            lanes = self._lane_ids(ids)
+            capacity = min(p.n, (1 << (len(ids)-1).bit_length()) * self.joints)
+            subset = self._reset_workspaces.get(capacity)
+            if subset is None:
+                subset = ResetSubset(p, lanes, capacity)
+                self._reset_workspaces[capacity] = subset
+            else:
+                subset.stage(lanes)
+            p = subset.pipeline
+            pose = pose[p._rng_rows.reshape(-1,self.joints)[:,0]//self.joints]
         mask = torch.zeros(p.n, dtype=torch.bool, device=self.device)
-        mask[self._lane_ids(ids)] = True
+        if subset is None:
+            mask[self._lane_ids(ids)] = True
+        else:
+            mask[:len(ids)*self.joints] = True
         q = pose.flatten().clone()
         zeros = torch.zeros_like(q)
         goal = self.counts(pose).flatten()
@@ -114,16 +163,31 @@ class WholeRobotFeedback:
             p.physical_context[lanes, :, 2] = 1.0
             p.physical_context[lanes, :, 3] = nominal_goal[lanes, None]
             p.stream.command_values[lanes, -1, 0] = goal[lanes]
-            self.reset_attempts[ids] += remaining.reshape(self.num_envs, self.joints)[ids].any(-1)
-            for elapsed in range(0, 280_001, 5000):
-                time = 1_000_000 + elapsed
-                if 0 < elapsed < 280_000 and elapsed % 20_000 == 0:
-                    p.stream.command(time, goal, mask=remaining)
-                p.advance(time, q, zeros, mask=remaining)
+            active = remaining.reshape(-1, self.joints)
+            self.reset_attempts[ids] += (active[ids] if subset is None else active[:len(ids)]).any(-1)
+            if self.reset_graph_enabled and q.is_cuda:
+                from .measurement.prehistory import ResetPrehistory
+                key = ('full' if subset is None else 'partial', p.n)
+                prehistory = self._prehistory_graphs.get(key)
+                if prehistory is None:
+                    # Full-batch reset only runs at initialization; keep its
+                    # capture small. Repeated partial resets amortize 19 ticks
+                    # per launch, without removing ticks or random draws.
+                    prehistory = ResetPrehistory(p, self.reset_graph_chunk if subset else 1)
+                    self._prehistory_graphs[key] = prehistory
+                prehistory.run(q, goal, remaining)
+            else:
+                for elapsed in range(0, 280_001, 5000):
+                    time = 1_000_000 + elapsed
+                    if 0 < elapsed < 280_000 and elapsed % 20_000 == 0:
+                        p.stream.command(time, goal, mask=remaining)
+                    p.advance(time, q, zeros, mask=remaining)
             _, valid = p.query(1_280_000)
             remaining &= ~valid
         if remaining.any():
             raise RuntimeError("S0/O0 held-pose warmup failed; no ideal-state fallback")
+        if subset is not None:
+            subset.commit()
         self.clock[ids] = 1_280_000
         self.refresh()
 
@@ -133,12 +197,24 @@ class WholeRobotFeedback:
         # that seed before simulation starts; later commands are strictly ordered.
         same = self.pipeline.stream.command_t[:, -1] == self._time()
         seed = same & (self._time() == 1_280_000)
-        if seed.any():
-            self.pipeline.stream.command_values[seed, -1, 0] = counts.flatten()[seed]
-        if not (keep | seed).all():
+        target = self.pipeline.stream.command_values[:, -1, 0]
+        target.copy_(torch.where(seed, counts.flatten(), target))
+        if keep.is_cuda:
+            torch._assert_async((keep | seed).all(), "Invalid or non-monotonic simulated joint command")
+        elif not (keep | seed).all():
             raise RuntimeError("Invalid or non-monotonic simulated joint command")
 
     def advance(self, q, v):
+        if self.graph_enabled and q.is_cuda:
+            from .graph import FeedbackGraph
+            if self._graph is None:
+                self._graph = FeedbackGraph(self)
+            self._graph.advance(q, v)
+        else:
+            self._advance_eager(q, v)
+
+    @torch.inference_mode(False)
+    def _advance_eager(self, q, v):
         self.pipeline.advance(self._time(), q.flatten(), v.flatten())
         self.clock += 5000
         self.refresh()
@@ -146,9 +222,9 @@ class WholeRobotFeedback:
     def refresh(self):
         estimate, valid = self.pipeline.query(self._time())
         estimate = estimate.reshape(self.num_envs, self.joints, 2)
-        self.ready = valid.reshape(self.num_envs, self.joints).all(-1)
+        self.ready.copy_(valid.reshape(self.num_envs, self.joints).all(-1))
         # Invalid lanes are retained only until the environment's fault
         # termination resets them. They never receive privileged q/v substitutes.
         good = valid.reshape(self.num_envs, self.joints)
-        self.last_q = torch.where(good, estimate[..., 0], self.last_q)
-        self.last_v = torch.where(good, estimate[..., 1], self.last_v)
+        self.last_q.copy_(torch.where(good, estimate[..., 0], self.last_q))
+        self.last_v.copy_(torch.where(good, estimate[..., 1], self.last_v))

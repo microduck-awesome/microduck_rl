@@ -1,0 +1,68 @@
+"""Validate training-only pitch frontier, partial reset, and unchanged eval RNG/state."""
+import argparse
+from dataclasses import asdict
+from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
+import json
+import math
+import torch
+import mjlab.tasks
+from mjlab.tasks.registry import load_env_cfg, load_rl_cfg
+from mjlab_microduck.custom_v2 import recovery
+from mjlab_microduck.custom_v2.feedback_repair import PITCH10_HEAD_ACCURACY_TASK, PITCH_BUCKET_HEAD_ACCURACY_TASK
+from mjlab_microduck.custom_v2.training import configure_head_precision_learning
+
+p=argparse.ArgumentParser();p.add_argument('--device',default='cpu');a=p.parse_args()
+def canonical(x):
+    return json.dumps(x,sort_keys=True,default=lambda v:getattr(v,'__qualname__',str(v)))
+for play in (False, True):
+    old,new=load_env_cfg(PITCH10_HEAD_ACCURACY_TASK,play=play),load_env_cfg(PITCH_BUCKET_HEAD_ACCURACY_TASK,play=play)
+    assert configure_head_precision_learning(old,5)==configure_head_precision_learning(new,5)
+    x,y=asdict(old),asdict(new)
+    assert tuple(x['events']['set_ground_state']['params']['standing_pitch_frontier'])==(.75,-10.,-7.)
+    assert tuple(y['events']['set_ground_state']['params']['standing_pitch_frontier'])==(.75,-10.,-5.)
+    y['events']['set_ground_state']['params']['standing_pitch_frontier']=x['events']['set_ground_state']['params']['standing_pitch_frontier']
+    assert canonical(x)==canonical(y)
+assert canonical(asdict(load_rl_cfg(PITCH10_HEAD_ACCURACY_TASK)))==canonical(asdict(load_rl_cfg(PITCH_BUCKET_HEAD_ACCURACY_TASK)))
+n=70000
+def make():
+    qpos=torch.zeros(n,21,device=a.device);qpos[:,3]=1
+    return SimpleNamespace(num_envs=n,device=a.device,sim=SimpleNamespace(data=SimpleNamespace(qpos=qpos)))
+def euler(q):
+    w,x,y,z=q.unbind(-1)
+    return torch.stack((torch.atan2(2*(w*x+y*z),1-2*(x*x+y*y)),torch.asin((2*(w*y-z*x)).clamp(-1,1)),torch.atan2(2*(w*z+x*y),1-2*(y*y+z*z))),-1)
+def ground(env,ids,**kw):
+    # Independent construction: uniform original roll/pitch/yaw, row-vector quaternion product.
+    angles=(torch.rand(len(ids),3,device=a.device)*2-1)*torch.tensor([math.radians(10),math.radians(10),math.pi],device=a.device)
+    r,p,y=angles.unbind(-1);cr,sr=torch.cos(r/2),torch.sin(r/2);cp,sp=torch.cos(p/2),torch.sin(p/2);cy,sy=torch.cos(y/2),torch.sin(y/2)
+    env.sim.data.qpos[ids,3:7]=torch.stack((cr*cp*cy+sr*sp*sy,sr*cp*cy-cr*sp*sy,cr*sp*cy+sr*cp*sy,cr*cp*sy-sr*sp*cy),-1)
+
+def rng_seed(): torch.manual_seed(4917)
+with patch.object(recovery,'set_random_ground_state',ground):
+    # Evaluation ignores frontier including random draws; exact entire qpos and RNG.
+    old,new=make(),make();rng_seed();recovery.sc0090_reset_recovery(old,None,evaluation_buckets=True)
+    old_rng=torch.cuda.get_rng_state(a.device) if a.device.startswith('cuda') else torch.get_rng_state()
+    rng_seed();recovery.sc0090_reset_recovery(new,None,evaluation_buckets=True,standing_pitch_frontier=(.75,-10.,-5.))
+    new_rng=torch.cuda.get_rng_state(a.device) if a.device.startswith('cuda') else torch.get_rng_state()
+    assert torch.equal(old.sim.data.qpos,new.sim.data.qpos) and torch.equal(old_rng,new_rng)
+    assert not hasattr(new,'_v2_catch_reset_counts')
+    # Partial standing resets leave all other rows exact and preserve original roll/yaw.
+    ids=torch.arange(0,n,2,device=a.device);old,new=make(),make()
+    rng_seed();recovery.sc0090_reset_recovery(old,ids,training_bucket_probabilities=(1.,0.,0.,0.,0.,0.,0.))
+    rng_seed();recovery.sc0090_reset_recovery(new,ids,training_bucket_probabilities=(1.,0.,0.,0.,0.,0.,0.),standing_pitch_frontier=(.75,-10.,-5.))
+    assert torch.equal(old.sim.data.qpos[1::2],new.sim.data.qpos[1::2])
+    assert torch.equal(old.sim.data.qpos[:,:3],new.sim.data.qpos[:,:3])
+    assert torch.equal(old.sim.data.qpos[:,7:],new.sim.data.qpos[:,7:])
+    x,y=euler(old.sim.data.qpos[ids,3:7]),euler(new.sim.data.qpos[ids,3:7])
+    assert torch.allclose(x[:,0],y[:,0],atol=3e-7,rtol=0)
+    assert (torch.atan2(torch.sin(x[:,2]-y[:,2]),torch.cos(x[:,2]-y[:,2])).abs()<5e-7).all()
+    changed=(old.sim.data.qpos[ids,3:7]!=new.sim.data.qpos[ids,3:7]).any(-1)
+    deg=torch.rad2deg(y[:,1]);assert ((deg[changed]>=-10.00001)&(deg[changed]<=-4.99999)).all()
+    assert abs(float(changed.float().mean())-.75)<.015
+    assert torch.equal(new._v2_catch_reset_counts,torch.stack((changed.sum(),(~changed).sum())))
+    assert torch.allclose(new.sim.data.qpos[:,3:7].norm(dim=-1),torch.ones(n,device=a.device),atol=2e-7,rtol=0)
+middle_fraction=float(((deg>=-7)&(deg<-5)).float().mean())
+assert abs(middle_fraction-.325)<.015
+report=dict(middle_negative_pitch_fraction=middle_fraction,status='PASS',device=a.device,only_change='Training frontier expands [-10,-7] to [-10,-5]deg; 75/25 mixture, durations, rewards and PPO unchanged',evaluation_qpos_and_rng_bitwise_identical=True,partial_reset_and_roll_yaw_height_joints_preserved=True,selected_fraction=float(changed.float().mean()),reset_counts=new._v2_catch_reset_counts.tolist())
+out=Path('runs-v2')/('paired-catch-full-pitch-check-'+a.device.replace(':','')+'.json');out.write_text(json.dumps(report,indent=2));print(report)

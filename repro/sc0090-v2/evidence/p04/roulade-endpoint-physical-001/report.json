@@ -1,0 +1,241 @@
+{
+  "status": "PHYSICAL_DIAGNOSTIC_COMPLETE_NOT_SKILL",
+  "seconds": 3,
+  "num_envs": 128,
+  "results": [
+    {
+      "group": 0,
+      "spawn_pitch_deg": null,
+      "trials": 16,
+      "full3s_fault_trials": 0,
+      "full3s_nonfinite_trials": 0,
+      "last1s_height_mean": 0.11190304160118103,
+      "last1s_tilt_mean_deg": 2.0776617527008057,
+      "healthy_standing_last1s": 16,
+      "head_neutral_last1s": 16,
+      "head_home_last1s_mae_deg": [
+        0.5410578846931458,
+        0.18019500374794006,
+        0.008767292834818363,
+        0.021335849538445473
+      ],
+      "head_pivot_seen_trials": 0,
+      "self_contact_seen_trials": 0,
+      "supported_accum_end_mean": 0.031256332993507385,
+      "camera_last1s_healthy_trials": 16,
+      "camera_last1s_healthy": {
+        "angular_speed_rms_rad_s": 0.02064698562026024,
+        "angular_speed_p95_rad_s": 0.037536248564720154,
+        "exposure_span_p95_rad": 0.0004110118024982512,
+        "exposure_span_max_rad": 0.0005910081090405583
+      }
+    },
+    {
+      "group": 1,
+      "spawn_pitch_deg": 355.0,
+      "trials": 16,
+      "full3s_fault_trials": 0,
+      "full3s_nonfinite_trials": 0,
+      "last1s_height_mean": 0.11193176358938217,
+      "last1s_tilt_mean_deg": 2.235445022583008,
+      "healthy_standing_last1s": 16,
+      "head_neutral_last1s": 16,
+      "head_home_last1s_mae_deg": [
+        0.6109934449195862,
+        2.2146213054656982,
+        1.8514955043792725,
+        1.9006929397583008
+      ],
+      "head_pivot_seen_trials": 0,
+      "self_contact_seen_trials": 0,
+      "supported_accum_end_mean": 6.31484842300415,
+      "camera_last1s_healthy_trials": 16,
+      "camera_last1s_healthy": {
+        "angular_speed_rms_rad_s": 0.017642144113779068,
+        "angular_speed_p95_rad_s": 0.030748454853892326,
+        "exposure_span_p95_rad": 0.00040441169403493404,
+        "exposure_span_max_rad": 0.0005453468766063452
+      }
+    },
+    {
+      "group": 2,
+      "spawn_pitch_deg": 356.0,
+      "trials": 16,
+      "full3s_fault_trials": 0,
+      "full3s_nonfinite_trials": 0,
+      "last1s_height_mean": 0.10315455496311188,
+      "last1s_tilt_mean_deg": 11.60714340209961,
+      "healthy_standing_last1s": 14,
+      "head_neutral_last1s": 14,
+      "head_home_last1s_mae_deg": [
+        0.5722688436508179,
+        1.9486148357391357,
+        1.475974678993225,
+        1.5872104167938232
+      ],
+      "head_pivot_seen_trials": 2,
+      "self_contact_seen_trials": 0,
+      "supported_accum_end_mean": 6.4632720947265625,
+      "camera_last1s_healthy_trials": 14,
+      "camera_last1s_healthy": {
+        "angular_speed_rms_rad_s": 0.016224442049860954,
+        "angular_speed_p95_rad_s": 0.02830340713262558,
+        "exposure_span_p95_rad": 0.00037328561302274466,
+        "exposure_span_max_rad": 0.0005133366212248802
+      }
+    },
+    {
+      "group": 3,
+      "spawn_pitch_deg": 357.0,
+      "trials": 16,
+      "full3s_fault_trials": 0,
+      "full3s_nonfinite_trials": 0,
+      "last1s_height_mean": 0.09424002468585968,
+      "last1s_tilt_mean_deg": 20.851295471191406,
+      "healthy_standing_last1s": 12,
+      "head_neutral_last1s": 12,
+      "head_home_last1s_mae_deg": [
+        0.7471900582313538,
+        1.2207578420639038,
+        1.4375423192977905,
+        1.6387394666671753
+      ],
+      "head_pivot_seen_trials": 4,
+      "self_contact_seen_trials": 0,
+      "supported_accum_end_mean": 6.624678611755371,
+      "camera_last1s_healthy_trials": 12,
+      "camera_last1s_healthy": {
+        "angular_speed_rms_rad_s": 0.01848451979458332,
+        "angular_speed_p95_rad_s": 0.033504318445920944,
+        "exposure_span_p95_rad": 0.00042062834836542606,
+        "exposure_span_max_rad": 0.0005616617854684591
+      }
+    },
+    {
+      "group": 4,
+      "spawn_pitch_deg": 358.0,
+      "trials": 16,
+      "full3s_fault_trials": 0,
+      "full3s_nonfinite_trials": 0,
+      "last1s_height_mean": 0.10746007412672043,
+      "last1s_tilt_mean_deg": 6.826032638549805,
+      "healthy_standing_last1s": 15,
+      "head_neutral_last1s": 15,
+      "head_home_last1s_mae_deg": [
+        0.8344709277153015,
+        2.2994511127471924,
+        1.4903963804244995,
+        1.7559928894042969
+      ],
+      "head_pivot_seen_trials": 1,
+      "self_contact_seen_trials": 0,
+      "supported_accum_end_mean": 6.396517276763916,
+      "camera_last1s_healthy_trials": 15,
+      "camera_last1s_healthy": {
+        "angular_speed_rms_rad_s": 0.016425935551524162,
+        "angular_speed_p95_rad_s": 0.028519906103610992,
+        "exposure_span_p95_rad": 0.0003824825689662248,
+        "exposure_span_max_rad": 0.0004942387458868325
+      }
+    },
+    {
+      "group": 5,
+      "spawn_pitch_deg": 359.0,
+      "trials": 16,
+      "full3s_fault_trials": 0,
+      "full3s_nonfinite_trials": 0,
+      "last1s_height_mean": 0.11143113672733307,
+      "last1s_tilt_mean_deg": 3.0553088188171387,
+      "healthy_standing_last1s": 16,
+      "head_neutral_last1s": 16,
+      "head_home_last1s_mae_deg": [
+        0.6223119497299194,
+        1.3315926790237427,
+        1.5591635704040527,
+        1.5535556077957153
+      ],
+      "head_pivot_seen_trials": 0,
+      "self_contact_seen_trials": 0,
+      "supported_accum_end_mean": 6.333072662353516,
+      "camera_last1s_healthy_trials": 16,
+      "camera_last1s_healthy": {
+        "angular_speed_rms_rad_s": 0.018654510378837585,
+        "angular_speed_p95_rad_s": 0.032510459423065186,
+        "exposure_span_p95_rad": 0.0004319711297284812,
+        "exposure_span_max_rad": 0.0005570963257923722
+      }
+    },
+    {
+      "group": 6,
+      "spawn_pitch_deg": 359.5,
+      "trials": 16,
+      "full3s_fault_trials": 0,
+      "full3s_nonfinite_trials": 0,
+      "last1s_height_mean": 0.11138740926980972,
+      "last1s_tilt_mean_deg": 3.270836114883423,
+      "healthy_standing_last1s": 16,
+      "head_neutral_last1s": 16,
+      "head_home_last1s_mae_deg": [
+        0.6129187345504761,
+        2.6699657440185547,
+        1.7275148630142212,
+        1.8945918083190918
+      ],
+      "head_pivot_seen_trials": 0,
+      "self_contact_seen_trials": 0,
+      "supported_accum_end_mean": 6.335984230041504,
+      "camera_last1s_healthy_trials": 16,
+      "camera_last1s_healthy": {
+        "angular_speed_rms_rad_s": 0.018007926642894745,
+        "angular_speed_p95_rad_s": 0.0313926637172699,
+        "exposure_span_p95_rad": 0.00038824559305794537,
+        "exposure_span_max_rad": 0.000511805759742856
+      }
+    },
+    {
+      "group": 7,
+      "spawn_pitch_deg": 360.0,
+      "trials": 16,
+      "full3s_fault_trials": 0,
+      "full3s_nonfinite_trials": 0,
+      "last1s_height_mean": 0.11117228865623474,
+      "last1s_tilt_mean_deg": 3.8388633728027344,
+      "healthy_standing_last1s": 16,
+      "head_neutral_last1s": 16,
+      "head_home_last1s_mae_deg": [
+        0.6999446749687195,
+        2.4919376373291016,
+        1.6406232118606567,
+        1.645860195159912
+      ],
+      "head_pivot_seen_trials": 0,
+      "self_contact_seen_trials": 0,
+      "supported_accum_end_mean": 6.345254898071289,
+      "camera_last1s_healthy_trials": 16,
+      "camera_last1s_healthy": {
+        "angular_speed_rms_rad_s": 0.01705864444375038,
+        "angular_speed_p95_rad_s": 0.028957072645425797,
+        "exposure_span_p95_rad": 0.00038440380012616515,
+        "exposure_span_max_rad": 0.0004986471030861139
+      }
+    }
+  ],
+  "initial_clearance_range_m": [
+    0.001248392462741544,
+    0.007142137223001298
+  ],
+  "initial_self_penetration_max_m": 0.0,
+  "reward_state_oracle_max_abs": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "oracle_calls": 150,
+  "actor_dim": 61,
+  "critic_dim": 74,
+  "contact_peak_observed": 1059,
+  "scope": "Constant real reset-joint targets. Near-completion angles355..360 with tuck0..0.15/zero initial angular velocity, HOME action. Precredited latch/progress never counts as full roll. Physical health/camera only.",
+  "script_sha256": "1d40b1b42efe81d350ef3470ba953cb9165f9f6568f166d96ba5ce577c3d377f"
+}

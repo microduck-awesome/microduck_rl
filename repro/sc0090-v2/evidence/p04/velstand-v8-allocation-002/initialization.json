@@ -1,0 +1,63 @@
+{
+  "checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/velstand-v8-allocation-001/checkpoint_000128.pt",
+  "checkpoint_sha256": "fa23c252cdd6eef41b0c7b8d4036dde2b5a296948ceba99eb7764cc712d9d66a",
+  "actor_critic_normalizer_adam_exact": true,
+  "learning_rate": 0.0006666666666666669,
+  "warm_start": false,
+  "new_skill_clock": 3072,
+  "bc_adam_fresh": false,
+  "teachers": {
+    "schema": 1,
+    "files": {
+      "checkpoint_path": {
+        "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+        "sha256": "e4772c33149410d62446180a9214b26695cb51ba1d5b7b26fac31d3ea273122b",
+        "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-M4-HeadStdCap001-MicroExposure025-Repaired-S0-O0-R1"
+      },
+      "anchor_checkpoint_path": {
+        "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+        "sha256": "480dbcaee8666e79e541d61719cf9bcfe746444b936661784272347d603e5395",
+        "task": "Mjlab-Velocity-Flat-MicroDuck-V2-YawFine-Repaired-S0-O0-R1"
+      }
+    },
+    "routing": "v2-upright-zero-twist-to-standing-v1",
+    "parameters": {
+      "coef": 1.0,
+      "learning_rate": 3e-05,
+      "gate_tilt_deg": 35.0,
+      "epochs": 5,
+      "mini_batches": 4,
+      "min_mini_batch": 512,
+      "min_samples": 64,
+      "gravity_slice": [
+        3,
+        6
+      ],
+      "twist_slice": [
+        48,
+        51
+      ],
+      "anchor_coef": 1.0,
+      "anchor_tilt_deg": 25.0,
+      "body_slice": [
+        55,
+        61
+      ],
+      "unanchor_turn_in_place": false,
+      "anchor_yaw_remap": null,
+      "body_active_axes": [
+        2,
+        3,
+        4
+      ],
+      "body_no_teacher_axes": [
+        2,
+        3,
+        4
+      ],
+      "expert_mask_cols": [],
+      "expert_mask_tilt_deg": 75.0,
+      "standing_teacher": true
+    }
+  }
+}

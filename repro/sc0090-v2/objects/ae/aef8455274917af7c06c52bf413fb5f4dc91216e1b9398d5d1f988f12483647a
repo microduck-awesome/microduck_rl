@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -euo pipefail
+export SC0090_CUDA_COMPAT_DIR=/home/l40-vm01/Documents/ai-research/microduck/microduck_rl/artifacts/cuda-compat-12.9/usr/local/cuda-12.9/compat
+cd /home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-head-stdcap-worktree
+python3 - <<'GATE'
+import json,hashlib,subprocess
+from pathlib import Path
+r=Path('runs-v2');assert json.loads((r/'paired-stdcap-unit-tests.json').read_text())['status']=='PASS'
+x=json.loads((r/'paired-stdcap-plan.json').read_text())
+for n,h in x['source_sha256'].items():assert hashlib.sha256(Path(n).read_bytes()).hexdigest()==h,n
+subprocess.run(['git','rev-parse','HEAD'],check=True,stdout=subprocess.DEVNULL)
+GATE
+task=Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Catch2sPitch10-LateEntropy005-HeadStdCap001-Repaired-S0-O0-R1
+parent=runs-v2/paired-short-catch-allocation-002/resume_003954.pt
+scripts/v2_python.sh scripts/smoke_v2_ppo.py --task "$task" --device cuda:1 --num-envs 64 --iterations 5 --force-timeouts --compiled-measurement --fused-registers --head-precision --head-precision-stage 5 --mature-resume "$parent" --freeze-normalizers --output-dir runs-v2/paired-stdcap-mature-smoke --report runs-v2/paired-stdcap-mature-smoke/report.json > runs-v2/paired-stdcap-mature-smoke.log 2>&1
+scripts/v2_python.sh scripts/smoke_v2_ppo.py --task "$task" --device cuda:1 --num-envs 32768 --iterations 16 --compiled-measurement --fused-registers --head-precision --head-precision-stage 5 --mature-resume "$parent" --freeze-normalizers --output-dir runs-v2/paired-stdcap-throughput-32768 --report runs-v2/paired-stdcap-throughput-32768/report.json > runs-v2/paired-stdcap-throughput-32768.log 2>&1
+python3 - <<'QUALIFY'
+import json,hashlib,statistics
+from pathlib import Path
+r=Path('runs-v2');x=json.loads((r/'paired-stdcap-plan.json').read_text());x['status']='PASS'
+for label,name in [('unit','paired-stdcap-unit-tests.json'),('smoke','paired-stdcap-mature-smoke/report.json'),('throughput','paired-stdcap-throughput-32768/report.json')]:
+ p=r/name;v=json.loads(p.read_text());assert v['status']=='PASS'
+ if label!='unit':
+  assert v['entropy_coef']==.005 and v['exploration_before']['head_std_cap_rad']==.01
+  assert v['first_minibatch_distribution_consistent_all_updates'] and v['exploration_before']['leg_std_unchanged']
+ x[label]={'path':str(p.resolve()),'sha256':hashlib.sha256(p.read_bytes()).hexdigest()}
+rows=[json.loads(line)['metrics'] for line in (r/'paired-stdcap-throughput-32768/ppo-diagnostics.jsonl').read_text().splitlines()];assert len(rows)==16
+kl=[v['PPO/kl_mean'] for v in rows];clip=[v['PPO/clip_fraction'] for v in rows]
+quality=dict(max_update_mean_kl=max(kl),max_clip_fraction=max(clip),last5_median_kl=statistics.median(kl[-5:]),last5_median_clip_fraction=statistics.median(clip[-5:]),first_update_mean_kl=kl[0],first_update_clip_fraction=clip[0],scope='Actual32768 optimizer stability guard, not behavioral qualification')
+limits=x['optimizer_admission'];quality['status']='PASS' if all(quality[k]<=limits[k] for k in ['max_update_mean_kl','max_clip_fraction','last5_median_kl','last5_median_clip_fraction']) else 'FAIL'
+(r/'paired-stdcap-optimizer-admission.json').write_text(json.dumps(quality,indent=2)+'\n');assert quality['status']=='PASS',quality
+for n,h in x['source_sha256'].items():assert hashlib.sha256(Path(n).read_bytes()).hexdigest()==h,n
+x['optimizer']=quality;(r/'paired-stdcap-qualification.json').write_text(json.dumps(x,indent=2)+'\n')
+QUALIFY
+scripts/v2_python.sh scripts/train_v2_standup.py --task "$task" --device cuda:1 --num-envs 32768 --iterations 64 --eval-interval 64 --eval-samples 128 --head-precision --head-precision-stage 5 --freeze-normalizers --preflight runs-v2/paired-stdcap-throughput-32768/report.json --adapt-from "$parent" --output runs-v2/paired-stdcap-allocation-001 > runs-v2/paired-stdcap-allocation-001.log 2>&1
+for evidence in runs-v2/paired-stdcap-allocation-001/evaluation_*_evidence; do
+ scripts/v2_python.sh scripts/analyze_v2_standing_order.py "$evidence"
+ scripts/v2_python.sh scripts/analyze_standing_pitch_bins.py "$evidence"
+done
+scripts/v2_python.sh scripts/evaluate_v2_head_normalizer.py --task "$task" --checkpoint runs-v2/paired-stdcap-allocation-001/checkpoint_004018.pt --output runs-v2/paired-stdcap-4018-head-measured --device cuda:1 --repeats 8 --randomization-stage measured > runs-v2/paired-stdcap-4018-head-measured.log 2>&1
+scripts/v2_python.sh /home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/head-foundation-worktree/scripts/summarize_v2_head_saved.py --device cpu --reports runs-v2/paired-stdcap-4018-head-measured/report.json --output runs-v2/paired-stdcap-4018-head-summary > runs-v2/paired-stdcap-4018-head-summary.log 2>&1
+scripts/v2_python.sh /home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/head-foundation-worktree/scripts/evaluate_common_p04_candidates.py --checkpoints runs-v2/paired-stdcap-allocation-001/checkpoint_004018.pt --labels stdcap4018 --output runs-v2/paired-stdcap-4018-common-measured --device cuda:1 --samples 128 > runs-v2/paired-stdcap-4018-common-measured.log 2>&1
+scripts/v2_python.sh scripts/analyze_v2_standing_order.py runs-v2/paired-stdcap-4018-common-measured/stdcap4018
+scripts/v2_python.sh scripts/analyze_standing_pitch_bins.py runs-v2/paired-stdcap-4018-common-measured/stdcap4018

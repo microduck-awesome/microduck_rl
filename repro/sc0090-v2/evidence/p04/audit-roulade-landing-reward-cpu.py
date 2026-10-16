@@ -1,0 +1,42 @@
+"""One bounded CPU audit. Recorded-state partial rewards, never full return."""
+import ast,hashlib,json,math,types
+from pathlib import Path
+import torch
+r=Path(__file__).resolve().parent;w=r/'roulade-endpoint-worktree';source=w/'src/mjlab_microduck/tasks/mdp.py';tree=ast.parse(source.read_text());torch.set_num_threads(2)
+run=json.loads((r/'roulade-endpoint-allocation-001/run.json').read_text());cfg=run['environment']['rewards'];assert run['environment']['scene']['entities']['robot']['init_state']['joint_pos']=={'.*':0.0}
+names=['standing_composite_score','_roulade_state','_roulade_completion_gate','roulade_landing_composite','roulade_upright_after_roll','roulade_height_after_roll','roulade_landing_sharp','roulade_stand_tax']
+terms=names[3:];nodes=[x for x in tree.body if isinstance(x,ast.FunctionDef) and x.name in names]
+module=ast.Module(body=[ast.ImportFrom(module='__future__',names=[ast.alias(name='annotations')],level=0),*nodes],type_ignores=[]);ast.fix_missing_locations(module)
+ns=dict(torch=torch,math=math,_DEFAULT_ASSET_CFG=types.SimpleNamespace(name='robot'),_update_roulade_accum=lambda *_:None,_servo_joint_pos=lambda env,asset:asset.data.joint_pos,_servo_default_joint_pos=lambda env,asset:torch.zeros_like(asset.data.joint_pos))
+exec(compile(module,str(source),'exec'),ns)
+class Scene(dict):pass
+def recorded_terms(d):
+ shape=d['height'].shape;z=d['height'].flatten();q=d['physical_q'].reshape(-1,14);quat=d['root_quat'].reshape(-1,4)
+ scene=Scene(robot=types.SimpleNamespace(data=types.SimpleNamespace(root_link_pos_w=torch.stack((torch.zeros_like(z),torch.zeros_like(z),z),-1),root_link_quat_w=quat,joint_pos=q)));scene.terrain=types.SimpleNamespace(env_origins=torch.zeros(len(z),3))
+ env=types.SimpleNamespace(scene=scene,_roulade_accum=d['accum'].flatten(),_roulade_max=d['frontier'].flatten(),_roulade_paid=d['frontier'].flatten().clamp(max=2*math.pi),_roulade_head_latch=d['head_latch'].flatten())
+ out={name:ns[name](env,**cfg[name]['params']).reshape(shape)*cfg[name]['weight'] for name in terms}
+ # Independent formula using recorded quaternion and true q, no environment import/reset/reward mutation.
+ p=cfg['roulade_landing_composite']['params'];x=((d['frontier']-p['gate_lo'])/(p['gate_hi']-p['gate_lo'])).clamp(0,1);gate=x*x*(3-2*x)*d['head_latch'];tilt_sq=2*(d['root_quat'][...,1]**2+d['root_quat'][...,2]**2);height=d['height'];pose=d['physical_q'][...,p['joint_indices']].square().mean(-1)
+ oracle={'roulade_landing_composite':4*torch.exp(-((height-.112)/.04).square())*torch.exp(-tilt_sq/.4**2)*torch.exp(-pose/.4**2)*gate,'roulade_upright_after_roll':1.5*(1-tilt_sq).clamp(min=0)*gate,'roulade_height_after_roll':torch.exp(-((height-.112)/.04).square())*gate,'roulade_landing_sharp':2*torch.exp(-tilt_sq/.3**2)*torch.exp(-((height-.112)/.015).square())*gate,'roulade_stand_tax':-5*(.112-height).clamp(min=0)*gate}
+ errors={k:float((out[k]-oracle[k]).abs().max()) for k in terms};assert max(errors.values())<2e-6,errors
+ return out,gate,errors
+allrows=[];sources=[];allerrors={k:0. for k in terms}
+for candidate,prefix in [('original128','roulade-0128-'),('endpoint256','roulade-endpoint-0256-')]:
+ for stage in ('nominal','measured'):
+  path=r/(prefix+stage)/'traces.pt';t=torch.load(path,map_location='cpu',weights_only=False);d=t['measurements'];v,gate,err=recorded_terms(d);idx=torch.arange(d['height'].shape[1]);total=sum(v.values())
+  for k in terms:allerrors[k]=max(allerrors[k],err[k])
+  for group in range(5):
+   select=idx%8<4 if group==0 else idx%8==group+3;sl=(slice(-25,None),select);values={k:float(x[sl].mean()) for k,x in v.items()};net=total[sl]
+   allrows.append(dict(candidate=candidate,stage=stage,origin='standing' if group==0 else [90,180,270,330][group-1],trials=int(select.sum()),tail_height_m=float(d['height'][sl].mean()),tail_tilt_deg=float(torch.rad2deg(d['tilt'][sl]).mean()),tail_head_latch_fraction=float(d['head_latch'][sl].float().mean()),tail_completion_gate_mean=float(gate[sl].mean()),tail_both_feet_fraction=float(d['feet'][sl].all(-1).float().mean()),tail_self_contact_fraction=float(d['self_contact'][sl].float().mean()),weighted_before_dt=values,five_term_sum_before_dt_mean=float(net.mean()),five_term_reward_per_control_mean=float(net.mean()*.02),five_term_tail500ms_sum_mean=float((net*.02).sum(0).mean()),five_term_positive_sample_fraction=float((net>0).float().mean())))
+  sources.append(dict(path=str(path),sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
+# Real healthy late-roll HOME probe: actual body and progress history recorded, actual leg q NOT recorded.
+p=r/'roulade-endpoint-physical-001/traces.pt';a=torch.load(p,map_location='cpu',weights_only=False);x=a['trace'];idx=torch.arange(128);tail=x[-50:];heads=a['physical_head'][-50:]
+healthy=((tail[...,0]-.112).abs()<.012)&(tail[...,1]<math.radians(15))&(tail[...,2]<.05)&(tail[...,3]<.5)&(tail[...,4]>0)&(tail[...,5:9]==0).all(-1)
+select=healthy.all(0)&(heads.abs().amax((0,2))<.1)&(idx%8!=0);assert int(select.sum())==105
+z=tail[:,select,0];tilt_sq=1-torch.cos(tail[:,select,1]);p=cfg['roulade_landing_composite']['params'];u=((tail[:,select,10]-p['gate_lo'])/(p['gate_hi']-p['gate_lo'])).clamp(0,1);g=u*u*(3-2*u)*tail[:,select,11];assert bool((g==1).all())
+broad=torch.exp(-((z-.112)/.04).square());upright=1.5*(1-tilt_sq).clamp(min=0);sharp=2*torch.exp(-tilt_sq/.3**2)*torch.exp(-((z-.112)/.015).square());tax=-5*(.112-z).clamp(min=0);known=(broad+upright+sharp+tax)*g;composite_upper=4*broad*torch.exp(-tilt_sq/.4**2)*g
+home=dict(kind='actual healthy endpoint physical probe, precredited post-roll gate1; not policy success',healthy_trials=int(select.sum()),sample_count=known.numel(),height_mean_m=float(z.mean()),tilt_mean_deg=float(torch.rad2deg(tail[:,select,1]).mean()),target_height_m=.112,weighted_before_dt_known=dict(roulade_upright_after_roll=float((upright*g).mean()),roulade_height_after_roll=float((broad*g).mean()),roulade_landing_sharp=float((sharp*g).mean()),roulade_stand_tax=float((tax*g).mean())),five_term_lower_bound_mean=float(known.mean()),five_term_upper_bound_mean=float((known+composite_upper).mean()),five_term_lower_bound_min_sample=float(known.min()),missing='actual leg q: composite is bounded in[0,4*height_gaussian*upright_gaussian]; zero HOME action is not substituted for physical q',source=str(p))
+report=dict(status='BOUNDED_CPU_PARTIAL_REWARD_AUDIT_COMPLETE',production_mdp_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),source_sha_verified=hashlib.sha256(source.read_bytes()).hexdigest()==run['source_sha256']['src/mjlab_microduck/tasks/mdp.py'],reward_terms=terms,actual_run_params={k:cfg[k] for k in terms},oracle_max_abs=allerrors,rows=allrows,healthy_reference=home,gate_semantics={'require_head_latch':True,'frontier_lo_deg':260,'frontier_hi_deg':330,'requires_feet_contact':False,'requires_no_self_contact':False,'requires_neutral_head':False,'roll_history_in_actor_or_critic':False,'reverse_curriculum':'midroll/endpoint accum=max=paid=spawn;latch=true; precredit is not measured head crossing'},head_target_audit={'direct_head_HOME_term':False,'landing_composite_joint_indices':p['joint_indices'],'camera_stability_term':False,'head_pivot':'active rolling contact, not neutral-head landing objective'},not_reconstructable=['Full return/advantage: actual actions/previous actions missing, hence nonzero action_rate_l2 unavailable','Whole-body angular momentum sensor absent','Self-contact raw found counts absent: boolean any-contact cannot recover exact self_collision_cost','Joint soft-limit array and mouth/jaw q not saved for whole joint_pos_limits','head_top world orientation not recorded for exact head_pivot; root/head joint reconstruction would require extra FK audit','HOME actual leg q absent: provide five-term interval only'],scope='Read-only CPU over saved exact reward-boundary physical states. Native AST vs independent formula validates five landing terms only; no live stateful reward called twice, no GPU, no new training. Positive partial reward is not proof of positive full reward or global preference.',sources=sources)
+# Explicit source path, preserve all original evidence.
+report['healthy_reference']['source']=str(r/'roulade-endpoint-physical-001/traces.pt')
+(r/'roulade-landing-reward-audit.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({'status':report['status'],'oracle_max_abs':allerrors,'healthy_reference':home,'endpoint_nominal':[x for x in allrows if x['candidate']=='endpoint256' and x['stage']=='nominal']},indent=2))

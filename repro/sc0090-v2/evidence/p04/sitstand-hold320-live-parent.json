@@ -1,0 +1,68 @@
+{
+  "status": "ACTUAL_PARENT_LIVE_STATE_RECORDED",
+  "parent": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/sitstand-history-base-allocation-002/checkpoint_000320.pt",
+  "parent_sha256": "469e0ef087e0552398c6578ca47cfd5fc34ffdf1852d31cb3a0d8f6fd0186f45",
+  "live": {
+    "update": 320,
+    "optimizer_step_calls": 80,
+    "total_optimizer_step_calls": 25600,
+    "native_clock": 7680,
+    "historical_equivalent_clock": 30720,
+    "learning_rate": 0.00038443359375000017,
+    "live_reward_weights": {
+      "body_ang_vel": -0.05,
+      "angular_momentum": -0.02,
+      "dof_pos_limits": -1.0,
+      "action_rate_l2": -0.6,
+      "posture_pose_legs": 4.0,
+      "head_pose_tracking": 0.75,
+      "posture_pose_l1": 1.0,
+      "posture_height": 1.0,
+      "posture_height_sharp": 1.0,
+      "posture_height_l1": 6.0,
+      "rise_bootstrap": 0.75,
+      "descent_speed": 20.0,
+      "rise_speed": 0.0,
+      "gentle_motion": 0.05,
+      "upright_linear": 2.5,
+      "upright_while_tall": 1.5,
+      "posture_stillness": 2.0,
+      "posture_composite": 3.0,
+      "joint_torque_rate_l2": -0.0005,
+      "self_collisions": -1.0
+    },
+    "head_ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ]
+  },
+  "curriculum_scalars": {
+    "head_pose_range": 0.49,
+    "com_range": 0.01,
+    "head_com_range": 0.01,
+    "push_magnitude": 0.05,
+    "action_rate_weight": -0.6,
+    "descent_speed_weight": 20.0,
+    "rise_speed_weight": 0.0,
+    "torque_rate_weight": -0.0005
+  },
+  "live_source": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/sitstand-history-base-allocation-002/curriculum-live.jsonl",
+  "live_source_sha256": "133e4ef90831e074e9f572dfe3a297da4e7dab6de89fbc0d6dc07e69358d0f36",
+  "log_source": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/sitstand-history-base-pipeline-002.log",
+  "log_source_sha256": "d60e12eccdc9224f49f94dd4dc74d2c47cd62221bbf05d96d5f42e838e8b9825",
+  "scope": "Reward/head values directly saved from live managers. COM/push scalars from native curriculum return values; exact symmetric ranges uniquely identified from qualified native stages, not recomputed using clock."
+}

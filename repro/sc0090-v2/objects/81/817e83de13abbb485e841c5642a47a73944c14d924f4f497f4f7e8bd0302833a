@@ -1,0 +1,22 @@
+from dataclasses import asdict
+from pathlib import Path
+from types import SimpleNamespace
+import copy,hashlib,json,re
+import torch
+import mjlab.tasks
+from mjlab.tasks.registry import load_env_cfg,load_rl_cfg
+from mjlab_microduck.custom_v2.fresh_p04 import HEAD_STD_CAP_TASK,HEAD_STD_CAP_LR_TASK
+from mjlab_microduck.custom_v2.optimizer_transition import apply_initial_learning_rate
+from mjlab_microduck.custom_v2.training import configure_head_precision_learning
+
+def canonical(x):return re.sub(r'0x[0-9a-fA-F]+','0xADDRESS',json.dumps(asdict(x),sort_keys=True,default=str))
+a=load_env_cfg(HEAD_STD_CAP_TASK);b=load_env_cfg(HEAD_STD_CAP_LR_TASK);assert configure_head_precision_learning(a,2)==configure_head_precision_learning(b,2);assert canonical(a)==canonical(b)
+a=load_rl_cfg(HEAD_STD_CAP_TASK);b=load_rl_cfg(HEAD_STD_CAP_LR_TASK);assert b.algorithm.learning_rate==1e-5;b.algorithm.learning_rate=a.algorithm.learning_rate;assert canonical(a)==canonical(b)
+p=torch.nn.Parameter(torch.tensor([1.,2.]));opt=torch.optim.Adam([p],lr=.0002562890625);p.square().sum().backward();opt.step();before=copy.deepcopy(opt.state_dict());before_p=p.detach().clone();alg=SimpleNamespace(optimizer=opt,learning_rate=.0002562890625)
+r=apply_initial_learning_rate(alg,1e-5);after=opt.state_dict();assert torch.equal(before_p,p) and alg.learning_rate==1e-5 and opt.param_groups[0]['lr']==1e-5
+for key in before['state'][0]:assert torch.equal(before['state'][0][key],after['state'][0][key])
+for groups in (before['param_groups'],after['param_groups']):
+ for g in groups:g.pop('lr')
+assert before['param_groups']==after['param_groups']
+out=dict(status='PASS',configuration_change='pure cap task plus explicit one-time initial LR1e-5',parameters_and_Adam_moments_unchanged=True,transition=r,script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+Path('runs-v2/head2-stdcap-lr-unit-tests.json').write_text(json.dumps(out,indent=2)+'\n');print(json.dumps(out),flush=True)

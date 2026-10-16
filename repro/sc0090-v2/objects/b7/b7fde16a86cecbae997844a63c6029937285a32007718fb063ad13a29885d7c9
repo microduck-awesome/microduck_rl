@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+export SC0090_CUDA_COMPAT_DIR=/home/l40-vm01/Documents/ai-research/microduck/microduck_rl/artifacts/cuda-compat-12.9/usr/local/cuda-12.9/compat
+cd /home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-catch-frontier-worktree
+task=Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-CatchFrontier-Repaired-S0-O0-R1
+parent=/home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/paired-feedback-allocation-001/resume_003762.pt
+scripts/v2_python.sh scripts/check_catch_frontier.py --device cpu > runs-v2/paired-catch-config-cpu.log 2>&1
+scripts/v2_python.sh scripts/check_catch_frontier.py --device cuda:1 > runs-v2/paired-catch-config-cuda1.log 2>&1
+scripts/v2_python.sh scripts/smoke_v2_ppo.py --task "$task" --device cuda:1 --num-envs 64 --iterations 5 --force-timeouts --compiled-measurement --fused-registers --head-precision --head-precision-stage 4 --mature-resume "$parent" --freeze-normalizers --output-dir runs-v2/paired-catch-mature-smoke --report runs-v2/paired-catch-mature-smoke/report.json > runs-v2/paired-catch-mature-smoke.log 2>&1
+scripts/v2_python.sh scripts/smoke_v2_ppo.py --task "$task" --device cuda:1 --num-envs 32768 --iterations 16 --compiled-measurement --fused-registers --head-precision --head-precision-stage 4 --mature-resume "$parent" --freeze-normalizers --output-dir runs-v2/paired-catch-throughput-32768 --report runs-v2/paired-catch-throughput-32768/report.json > runs-v2/paired-catch-throughput-32768.log 2>&1
+scripts/v2_python.sh scripts/train_v2_standup.py --task "$task" --device cuda:1 --num-envs 32768 --iterations 64 --eval-interval 64 --eval-samples 128 --head-precision --head-precision-stage 4 --freeze-normalizers --preflight runs-v2/paired-catch-throughput-32768/report.json --adapt-from "$parent" --output runs-v2/paired-catch-allocation-001 > runs-v2/paired-catch-allocation-001.log 2>&1
+for evidence in runs-v2/paired-catch-allocation-001/evaluation_*_evidence; do
+ scripts/v2_python.sh scripts/analyze_v2_standing_order.py "$evidence"
+ scripts/v2_python.sh scripts/analyze_standing_pitch_bins.py "$evidence"
+done
+scripts/v2_python.sh scripts/evaluate_v2_head_normalizer.py --task "$task" --checkpoint runs-v2/paired-catch-allocation-001/checkpoint_003826.pt --output runs-v2/paired-catch-3826-head-measured --device cuda:1 --repeats 8 --randomization-stage measured > runs-v2/paired-catch-3826-head-measured.log 2>&1
+scripts/v2_python.sh /home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/head-foundation-worktree/scripts/summarize_v2_head_saved.py --device cpu --reports runs-v2/paired-catch-3826-head-measured/report.json --output runs-v2/paired-catch-3826-head-summary

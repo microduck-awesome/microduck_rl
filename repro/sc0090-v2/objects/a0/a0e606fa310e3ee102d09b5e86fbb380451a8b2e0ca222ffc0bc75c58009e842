@@ -1,0 +1,26 @@
+"""Hold actual live320 difficulty; preserve physical seconds and native clock."""
+from copy import deepcopy
+from .sitstand_history import make_history_sitstand_env_cfg
+HOLD_TASK='Mjlab-SitStand-Flat-MicroDuck-V2-ClearSeat-HistoryHold320-Repaired-S0-O0-R1'
+LIVE_REWARD_WEIGHTS={'body_ang_vel': -0.05, 'angular_momentum': -0.02, 'dof_pos_limits': -1.0, 'action_rate_l2': -0.6, 'posture_pose_legs': 4.0, 'head_pose_tracking': 0.75, 'posture_pose_l1': 1.0, 'posture_height': 1.0, 'posture_height_sharp': 1.0, 'posture_height_l1': 6.0, 'rise_bootstrap': 0.75, 'descent_speed': 20.0, 'rise_speed': 0.0, 'gentle_motion': 0.05, 'upright_linear': 2.5, 'upright_while_tall': 1.5, 'posture_stillness': 2.0, 'posture_composite': 3.0, 'joint_torque_rate_l2': -0.0005, 'self_collisions': -1.0}
+LIVE_HEAD_RANGES=((-0.39, 0.39), (-0.39, 0.39), (-0.49, 0.49), (-0.11, 0.11))
+LIVE_EVENT_PARAMS={'randomize_com':{'ranges':(-.01,.01)},'randomize_head_com':{'ranges':(-.01,.01)},'push_robot':{'velocity_range':{'x':(-.05,.05),'y':(-.05,.05)}}}
+
+def make_hold_sitstand_env_cfg(play=False,stage='nominal'):
+    cfg=make_history_sitstand_env_cfg(play=play,stage=stage)
+    # Evaluation keeps the original common fixed play configuration.
+    if play:return cfg
+    assert cfg.rewards.keys()==LIVE_REWARD_WEIGHTS.keys()
+    for name,value in LIVE_REWARD_WEIGHTS.items():cfg.rewards[name].weight=value
+    cfg.commands['head_pose'].ranges=deepcopy(LIVE_HEAD_RANGES)
+    for name,params in LIVE_EVENT_PARAMS.items():cfg.events[name].params.update(deepcopy(params))
+    cfg.curriculum={}
+    return cfg
+
+def register_hold_sitstand_task():
+    from mjlab.tasks.registry import register_mjlab_task,load_rl_cfg
+    from mjlab_microduck.tasks import MicroduckOnPolicyRunner
+    from .sitstand_history import HISTORY_TASK
+    for task,stage in ((HOLD_TASK,'nominal'),(HOLD_TASK+'-Measured','measured')):
+        agent=load_rl_cfg(HISTORY_TASK)
+        register_mjlab_task(task_id=task,env_cfg=make_hold_sitstand_env_cfg(stage=stage),play_env_cfg=make_hold_sitstand_env_cfg(play=True,stage=stage),rl_cfg=agent,runner_cls=MicroduckOnPolicyRunner)

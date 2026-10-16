@@ -1,0 +1,144 @@
+{
+  "status": "BOUNDED_POSE_HOLD_COMPLETED",
+  "seconds": 3,
+  "num_envs": 128,
+  "candidates": [
+    {
+      "candidate": {
+        "hip": -0.7,
+        "knee": -0.8,
+        "ankle": -0.15,
+        "pose": {
+          "left_hip_roll": 0.0873,
+          "right_hip_roll": -0.0873,
+          "left_hip_pitch": -0.7,
+          "right_hip_pitch": -0.7,
+          "left_knee": -0.8,
+          "right_knee": -0.8,
+          "left_ankle": -0.15,
+          "right_ankle": -0.15
+        },
+        "foot_on_ground_height": 0.07469319024208539,
+        "self_contacts": 0,
+        "min_dist": 0.0,
+        "distance_from_original": 0.94
+      },
+      "worlds": 32,
+      "height_mean": 0.0759992003440857,
+      "height_range": [
+        0.07563145458698273,
+        0.07639114558696747
+      ],
+      "tilt_max_deg": 6.447648525238037,
+      "tilt_tail_mean_deg": 4.637997627258301,
+      "linear_max": 0.0007028472609817982,
+      "angular_max": 0.009752782993018627,
+      "self_contact_worlds": 0,
+      "fault_worlds": 0,
+      "qualified": true
+    },
+    {
+      "candidate": {
+        "hip": -0.5,
+        "knee": -0.8,
+        "ankle": -0.3,
+        "pose": {
+          "left_hip_roll": 0.0873,
+          "right_hip_roll": -0.0873,
+          "left_hip_pitch": -0.5,
+          "right_hip_pitch": -0.5,
+          "left_knee": -0.8,
+          "right_knee": -0.8,
+          "left_ankle": -0.3,
+          "right_ankle": -0.3
+        },
+        "foot_on_ground_height": 0.08010980777001386,
+        "self_contacts": 0,
+        "min_dist": 0.0,
+        "distance_from_original": 0.5525000000000001
+      },
+      "worlds": 32,
+      "height_mean": 0.049423862248659134,
+      "height_range": [
+        0.04835846647620201,
+        0.07473073899745941
+      ],
+      "tilt_max_deg": 91.68603515625,
+      "tilt_tail_mean_deg": 84.93954467773438,
+      "linear_max": 0.0005307557294145226,
+      "angular_max": 0.010272159241139889,
+      "self_contact_worlds": 32,
+      "fault_worlds": 0,
+      "qualified": false
+    },
+    {
+      "candidate": {
+        "hip": -0.5,
+        "knee": -0.8,
+        "ankle": -0.15,
+        "pose": {
+          "left_hip_roll": 0.0873,
+          "right_hip_roll": -0.0873,
+          "left_hip_pitch": -0.5,
+          "right_hip_pitch": -0.5,
+          "left_knee": -0.8,
+          "right_knee": -0.8,
+          "left_ankle": -0.15,
+          "right_ankle": -0.15
+        },
+        "foot_on_ground_height": 0.08235799214888322,
+        "self_contacts": 0,
+        "min_dist": 0.0,
+        "distance_from_original": 0.74
+      },
+      "worlds": 32,
+      "height_mean": 0.04853321984410286,
+      "height_range": [
+        0.048303231596946716,
+        0.048975273966789246
+      ],
+      "tilt_max_deg": 91.80348205566406,
+      "tilt_tail_mean_deg": 87.61941528320312,
+      "linear_max": 0.0004743870231322944,
+      "angular_max": 0.009209580719470978,
+      "self_contact_worlds": 0,
+      "fault_worlds": 0,
+      "qualified": false
+    },
+    {
+      "candidate": {
+        "hip": -0.3,
+        "knee": -0.8,
+        "ankle": -0.3,
+        "pose": {
+          "left_hip_roll": 0.0873,
+          "right_hip_roll": -0.0873,
+          "left_hip_pitch": -0.3,
+          "right_hip_pitch": -0.3,
+          "left_knee": -0.8,
+          "right_knee": -0.8,
+          "left_ankle": -0.3,
+          "right_ankle": -0.3
+        },
+        "foot_on_ground_height": 0.0865840689247045,
+        "self_contacts": 0,
+        "min_dist": 0.0,
+        "distance_from_original": 0.43250000000000005
+      },
+      "worlds": 32,
+      "height_mean": 0.04838769510388374,
+      "height_range": [
+        0.04818965494632721,
+        0.048569489270448685
+      ],
+      "tilt_max_deg": 88.00245666503906,
+      "tilt_tail_mean_deg": 87.78340911865234,
+      "linear_max": 0.00041924603283405304,
+      "angular_max": 0.008717529475688934,
+      "self_contact_worlds": 19,
+      "fault_worlds": 0,
+      "qualified": false
+    }
+  ],
+  "scope": "Physical target qualification only; no transition or learned skill claim"
+}

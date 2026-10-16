@@ -1,0 +1,170 @@
+{
+  "status": "CONTACT_REASON_IDENTIFIED",
+  "original_probe": "groundpick-lowstart-0128-probe-001",
+  "gates": {
+    "mouth_range": {
+      "last200ms_all_trials": 64,
+      "switch": 64
+    },
+    "downcos": {
+      "last200ms_all_trials": 64,
+      "switch": 64
+    },
+    "tilt": {
+      "last200ms_all_trials": 64,
+      "switch": 64
+    },
+    "bothfeet": {
+      "last200ms_all_trials": 64,
+      "switch": 64
+    },
+    "no_self": {
+      "last200ms_all_trials": 64,
+      "switch": 64
+    },
+    "no_head": {
+      "last200ms_all_trials": 0,
+      "switch": 0
+    },
+    "speed": {
+      "last200ms_all_trials": 64,
+      "switch": 64
+    },
+    "omega": {
+      "last200ms_all_trials": 64,
+      "switch": 64
+    },
+    "ready": {
+      "last200ms_all_trials": 64,
+      "switch": 64
+    },
+    "finite": {
+      "last200ms_all_trials": 64,
+      "switch": 64
+    }
+  },
+  "rows": [
+    {
+      "joint": "base",
+      "delta": 0,
+      "mouth_height": 0.012675047534968849,
+      "mouth_down_cos": 0.9972865005984249,
+      "head_floor_distances": [
+        [
+          "ground_head_shell_collision",
+          -6.844078917009333e-05
+        ],
+        [
+          "ground_jaw_collision",
+          0.009426822858618907
+        ]
+      ],
+      "head_floor_contacts": [
+        {
+          "geoms": [
+            "audit_floor",
+            "ground_head_shell_collision"
+          ],
+          "distance": -6.844078917009333e-05
+        }
+      ]
+    },
+    {
+      "joint": "neck_pitch",
+      "delta": -0.02,
+      "mouth_height": 0.013809307233803067,
+      "mouth_down_cos": 0.9985591164185039,
+      "head_floor_distances": [
+        [
+          "ground_head_shell_collision",
+          0.0022148030791771176
+        ],
+        [
+          "ground_jaw_collision",
+          0.010735372083537587
+        ]
+      ],
+      "head_floor_contacts": []
+    },
+    {
+      "joint": "neck_pitch",
+      "delta": 0.02,
+      "mouth_height": 0.011574040156025124,
+      "mouth_down_cos": 0.9956149835599838,
+      "head_floor_distances": [
+        [
+          "ground_head_shell_collision",
+          -0.00231333935096463
+        ],
+        [
+          "ground_jaw_collision",
+          0.0081527995599852
+        ]
+      ],
+      "head_floor_contacts": [
+        {
+          "geoms": [
+            "audit_floor",
+            "ground_head_shell_collision"
+          ],
+          "distance": -0.00231333935096463
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "ground_head_shell_collision"
+          ],
+          "distance": -0.000497984218526433
+        }
+      ]
+    },
+    {
+      "joint": "head_pitch",
+      "delta": -0.02,
+      "mouth_height": 0.0129237666701464,
+      "mouth_down_cos": 0.9985591164185039,
+      "head_floor_distances": [
+        [
+          "ground_head_shell_collision",
+          0.0013292625155204504
+        ],
+        [
+          "ground_jaw_collision",
+          0.00984983151988092
+        ]
+      ],
+      "head_floor_contacts": []
+    },
+    {
+      "joint": "head_pitch",
+      "delta": 0.02,
+      "mouth_height": 0.012450114167765265,
+      "mouth_down_cos": 0.9956149835599839,
+      "head_floor_distances": [
+        [
+          "ground_head_shell_collision",
+          -0.0014372653392245027
+        ],
+        [
+          "ground_jaw_collision",
+          0.00902887357172534
+        ]
+      ],
+      "head_floor_contacts": [
+        {
+          "geoms": [
+            "audit_floor",
+            "ground_head_shell_collision"
+          ],
+          "distance": -0.0014372653392245027
+        }
+      ]
+    }
+  ],
+  "head_force_last200ms_range": [
+    0.6627094745635986,
+    0.7810719013214111
+  ],
+  "qualification_correction": "Old physical reference recorded excess force above1N, not contact found; physical quiet pose is not no-contact low-goal qualified",
+  "scope": "CPU frozen physical state with original CAD and added terrain plane; no integration/model mutation; small local kinematic differences are not dynamic qualification"
+}

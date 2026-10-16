@@ -1,0 +1,29 @@
+{
+  "name": "velstand-v8-allocation-001",
+  "arguments": [
+    "scripts/train_v2_velstand.py",
+    "--output",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/velstand-v8-allocation-001",
+    "--device",
+    "cuda:1",
+    "--num-envs",
+    "24576",
+    "--iterations",
+    "128",
+    "--warm-start",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+    "--walking-teacher",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+    "--standing-teacher",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+    "--qualification",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/velstand-v8-qualification.json"
+  ],
+  "start_unix": 1792108631.5163643,
+  "pid": 3936928,
+  "returncode": 0,
+  "wall_seconds": 1052.0074036121368,
+  "actual_controls": 75497472,
+  "full_process_control_per_second": 71765.1527363538,
+  "scope": "Complete formal subprocess including imports, physics init, export/save"
+}

@@ -1,0 +1,15 @@
+{
+  "status": "PASS_CPU_ONLY_NOT_IN_TASK",
+  "cases": 64,
+  "physics_steps": 0,
+  "body_fk_max_abs": 1.1210126175528405e-16,
+  "collision_min_clearance_m": 0.003288084455884119,
+  "collision_max_clearance_m": 0.034043877481473805,
+  "collision_clearance_p95_m": 0.026195130211077836,
+  "float32_height_max_abs_m": 3.1693283830680485e-08,
+  "source_sha256": "340bd29a2e33aca58e05ab18129fa5a1cf31d4d23171d350c7271a53a59dc539",
+  "test_sha256": "a1a85853e60bcb0b8ce39aa375b91fe18578e8d43193480b9da3bfcf5f6d721e",
+  "floor_contact_mask": 1,
+  "model_modified": false,
+  "scope": "Conservative compiled-mesh OBB enclosing floor-contact geoms; no deep floor penetration guaranteed for tested q, not dynamic support or non-selfcollision. Additional clearance can cause a small drop and must be measured in actual reset/GPU probe."
+}

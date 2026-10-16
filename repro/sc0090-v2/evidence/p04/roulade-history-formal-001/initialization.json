@@ -1,0 +1,18 @@
+{
+  "status": "FRESH_VERIFIED",
+  "warm_start": false,
+  "new_skill_clock": 0,
+  "actor_sha256": "8766f4088eefe6cf3839ab6c2dc395b456a0abec9e6fd88213c645a82415194c",
+  "critic_sha256": "8d5ddcf131fc4c5e0854360adbbc7df17709b7ac4e1781cbe21edaf2bea40512",
+  "normalizers": [
+    "actor.obs_normalizer",
+    "critic.obs_normalizer"
+  ],
+  "normalizer_count": 0,
+  "normalizer_mean": 0,
+  "normalizer_variance": 1,
+  "optimizer_entries": 0,
+  "learning_rate": 0.001,
+  "no_checkpoint_loaded": true,
+  "validation_weights_not_inherited": true
+}

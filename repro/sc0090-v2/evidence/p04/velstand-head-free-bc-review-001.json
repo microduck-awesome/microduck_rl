@@ -1,0 +1,4627 @@
+{
+  "status": "HEAD_BC_BUDGET_COMPLETE_REVIEW_REQUIRED",
+  "formal_additional_controls": 37748736,
+  "results": {
+    "nominal": {
+      "parent256": {
+        "trials": 336,
+        "survived": 336,
+        "feedback_invalid": 0,
+        "groups": {
+          "neutral_idle": {
+            "case_phase_seed_rows": 10,
+            "trial_phase_count": 80,
+            "survived_trial_phase_count": 80,
+            "camera_rms_per_trial_mean_rad_s": 0.9398805215954781,
+            "camera_p95_per_trial_mean_rad_s": 1.63214213848114,
+            "exposure_p95_per_trial_mean_rad": 0.03144230339676142,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 0.9398805124995496,
+            "velocity_tail_pooled_rmse": [
+              0.023211418367279912,
+              0.053950856963096566,
+              0.42383270006845924
+            ],
+            "head_tail_mae_deg": [
+              5.369994282722473,
+              1.490990513563156,
+              1.4384279727935791,
+              3.4357105255126954
+            ],
+            "double_support_fraction": 0.8339999854564667,
+            "touchdown_frequency_per_foot_hz": [
+              0.625,
+              0.675
+            ],
+            "mean_available_case_stride_m": 0.016005184128880502,
+            "head_time90_reached_fraction": null
+          },
+          "straight": {
+            "case_phase_seed_rows": 48,
+            "trial_phase_count": 384,
+            "survived_trial_phase_count": 384,
+            "camera_rms_per_trial_mean_rad_s": 5.700300171971321,
+            "camera_p95_per_trial_mean_rad_s": 8.535719643036524,
+            "exposure_p95_per_trial_mean_rad": 0.16625410054499903,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 5.700300170392404,
+            "velocity_tail_pooled_rmse": [
+              0.09881205807369672,
+              0.18956866846092685,
+              1.0265449479868727
+            ],
+            "head_tail_mae_deg": [
+              5.194195235768954,
+              5.165630092223485,
+              6.891081273555756,
+              5.76691173017025
+            ],
+            "double_support_fraction": 0.07906249792237456,
+            "touchdown_frequency_per_foot_hz": [
+              2.16796875,
+              2.2109375
+            ],
+            "mean_available_case_stride_m": 0.06610849499702454,
+            "head_time90_reached_fraction": null
+          },
+          "turn": {
+            "case_phase_seed_rows": 24,
+            "trial_phase_count": 192,
+            "survived_trial_phase_count": 192,
+            "camera_rms_per_trial_mean_rad_s": 5.903358240922292,
+            "camera_p95_per_trial_mean_rad_s": 8.758399883906046,
+            "exposure_p95_per_trial_mean_rad": 0.17044844230016074,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 5.9061685648878965,
+            "velocity_tail_pooled_rmse": [
+              0.0811525502650647,
+              0.17068592281704678,
+              1.0109882242151274
+            ],
+            "head_tail_mae_deg": [
+              4.961720099051793,
+              5.313639124234517,
+              6.677126030127208,
+              5.943457901477814
+            ],
+            "double_support_fraction": 0.019322916157155607,
+            "touchdown_frequency_per_foot_hz": [
+              2.1354166666666665,
+              2.2760416666666665
+            ],
+            "mean_available_case_stride_m": 0.04085900199910005,
+            "head_time90_reached_fraction": null
+          },
+          "walking_head": {
+            "case_phase_seed_rows": 8,
+            "trial_phase_count": 64,
+            "survived_trial_phase_count": 64,
+            "camera_rms_per_trial_mean_rad_s": 6.071689009666443,
+            "camera_p95_per_trial_mean_rad_s": 8.976867079734802,
+            "exposure_p95_per_trial_mean_rad": 0.17490889504551888,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 6.071688984919915,
+            "velocity_tail_pooled_rmse": [
+              0.08300493041569974,
+              0.16889729497750977,
+              0.9845265929342948
+            ],
+            "head_tail_mae_deg": [
+              4.886969745159149,
+              5.2858846783638,
+              7.033300876617432,
+              6.052401542663574
+            ],
+            "double_support_fraction": 0.022031249129213393,
+            "touchdown_frequency_per_foot_hz": [
+              2.203125,
+              2.265625
+            ],
+            "mean_available_case_stride_m": 0.07855678163468838,
+            "head_time90_reached_fraction": [
+              0.0,
+              0.015625,
+              0.0,
+              0.0
+            ]
+          },
+          "stop": {
+            "case_phase_seed_rows": 40,
+            "trial_phase_count": 320,
+            "survived_trial_phase_count": 320,
+            "camera_rms_per_trial_mean_rad_s": 4.6864038646221164,
+            "camera_p95_per_trial_mean_rad_s": 7.235905027389526,
+            "exposure_p95_per_trial_mean_rad": 0.14045772328972816,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 4.686403827411035,
+            "velocity_tail_pooled_rmse": [
+              0.05146911772982033,
+              0.1208891044492993,
+              0.8722534724741954
+            ],
+            "head_tail_mae_deg": [
+              5.127980107069016,
+              2.662902557849884,
+              4.016027599573135,
+              4.277207791805267
+            ],
+            "double_support_fraction": 0.06056249871617183,
+            "touchdown_frequency_per_foot_hz": [
+              2.55625,
+              2.5125
+            ],
+            "mean_available_case_stride_m": 0.014610254066064953,
+            "head_time90_reached_fraction": null
+          },
+          "return_to_idle": {
+            "case_phase_seed_rows": 40,
+            "trial_phase_count": 320,
+            "survived_trial_phase_count": 320,
+            "camera_rms_per_trial_mean_rad_s": 4.3120512008667,
+            "camera_p95_per_trial_mean_rad_s": 6.769959485530853,
+            "exposure_p95_per_trial_mean_rad": 0.13078814167529346,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 4.312051203981353,
+            "velocity_tail_pooled_rmse": [
+              0.045919619732696,
+              0.1164406571375772,
+              0.8011287486675542
+            ],
+            "head_tail_mae_deg": [
+              5.539670515060425,
+              2.388124704360962,
+              3.6370107412338255,
+              4.400308775901794
+            ],
+            "double_support_fraction": 0.09909374786657281,
+            "touchdown_frequency_per_foot_hz": [
+              2.49375,
+              2.571875
+            ],
+            "mean_available_case_stride_m": 0.01361957029439509,
+            "head_time90_reached_fraction": null
+          }
+        },
+        "survey": {
+          "idle": {
+            "case": "idle",
+            "trials": 16,
+            "tail_healthy_hold_trials": 16,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.0002878794330172241,
+              -0.00011549120245035738,
+              -0.00011783509398810565
+            ],
+            "tail_angular_mean": [
+              -0.0004381706821732223,
+              0.0027655765879899263,
+              -0.0034612377639859915
+            ],
+            "tail_height_mean_m": 0.114406056702137,
+            "tail_tilt_mean_deg": 2.6777689456939697,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.1834985315799713,
+              "angular_speed_p95_rad_s": 0.4060041904449463,
+              "exposure_span_p95_rad": 0.007534051779657602,
+              "exposure_span_max_rad": 0.011170371435582638
+            },
+            "camera_tail_healthy_trials": 16,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.1834985315799713,
+              "angular_speed_p95_rad_s": 0.4060041904449463,
+              "exposure_span_p95_rad": 0.007534051779657602,
+              "exposure_span_max_rad": 0.011170371435582638
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.1834985315799713,
+              "angular_speed_p95_rad_s": 0.4060041904449463,
+              "exposure_span_p95_rad": 0.007534051779657602,
+              "exposure_span_max_rad": 0.011170371435582638
+            }
+          },
+          "forward_01": {
+            "case": "forward_01",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.10183176398277283,
+              -0.008284986950457096,
+              -0.0011993717635050416
+            ],
+            "tail_angular_mean": [
+              -0.0001311358792008832,
+              0.018079513683915138,
+              0.07755408436059952
+            ],
+            "tail_height_mean_m": 0.125955730676651,
+            "tail_tilt_mean_deg": 2.6557459831237793,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.855846405029297,
+              "angular_speed_p95_rad_s": 8.155264854431152,
+              "exposure_span_p95_rad": 0.1591382622718811,
+              "exposure_span_max_rad": 0.17487077414989471
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.855846405029297,
+              "angular_speed_p95_rad_s": 8.155264854431152,
+              "exposure_span_p95_rad": 0.1591382622718811,
+              "exposure_span_max_rad": 0.17487077414989471
+            }
+          },
+          "forward_03": {
+            "case": "forward_03",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.2425871044397354,
+              0.021211832761764526,
+              0.009779947809875011
+            ],
+            "tail_angular_mean": [
+              0.0033273096196353436,
+              0.005306693259626627,
+              0.2974434494972229
+            ],
+            "tail_height_mean_m": 0.12348128110170364,
+            "tail_tilt_mean_deg": 3.943345785140991,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 6.91658878326416,
+              "angular_speed_p95_rad_s": 10.07801628112793,
+              "exposure_span_p95_rad": 0.1968582421541214,
+              "exposure_span_max_rad": 0.22485055029392242
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 6.91658878326416,
+              "angular_speed_p95_rad_s": 10.07801628112793,
+              "exposure_span_p95_rad": 0.1968582421541214,
+              "exposure_span_max_rad": 0.22485055029392242
+            }
+          },
+          "yaw_negative": {
+            "case": "yaw_negative",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.017174651846289635,
+              -0.007905748672783375,
+              -0.0009426100295968354
+            ],
+            "tail_angular_mean": [
+              0.005445700138807297,
+              0.009215590544044971,
+              -0.23606231808662415
+            ],
+            "tail_height_mean_m": 0.12665966153144836,
+            "tail_tilt_mean_deg": 3.4380011558532715,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.570065975189209,
+              "angular_speed_p95_rad_s": 8.257070541381836,
+              "exposure_span_p95_rad": 0.16038182377815247,
+              "exposure_span_max_rad": 0.17848877608776093
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.570065975189209,
+              "angular_speed_p95_rad_s": 8.257070541381836,
+              "exposure_span_p95_rad": 0.16038182377815247,
+              "exposure_span_max_rad": 0.17848877608776093
+            }
+          },
+          "yaw_positive": {
+            "case": "yaw_positive",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.009215989150106907,
+              2.973973641928751e-05,
+              -0.000813476275652647
+            ],
+            "tail_angular_mean": [
+              0.0008251702529378235,
+              -0.006118589546531439,
+              0.19827689230442047
+            ],
+            "tail_height_mean_m": 0.12653231620788574,
+            "tail_tilt_mean_deg": 2.7907633781433105,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.690654754638672,
+              "angular_speed_p95_rad_s": 8.225151062011719,
+              "exposure_span_p95_rad": 0.15960630774497986,
+              "exposure_span_max_rad": 0.17620447278022766
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.690654754638672,
+              "angular_speed_p95_rad_s": 8.225151062011719,
+              "exposure_span_p95_rad": 0.15960630774497986,
+              "exposure_span_max_rad": 0.17620447278022766
+            }
+          },
+          "prone": {
+            "case": "prone",
+            "trials": 16,
+            "tail_healthy_hold_trials": 7,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.0028124265372753143,
+              -0.006475992035120726,
+              0.0005005228449590504
+            ],
+            "tail_angular_mean": [
+              -0.010143311694264412,
+              0.002960778307169676,
+              0.08013641089200974
+            ],
+            "tail_height_mean_m": 0.11457332223653793,
+            "tail_tilt_mean_deg": 7.616463661193848,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 2.324063777923584,
+              "angular_speed_p95_rad_s": 3.3455610275268555,
+              "exposure_span_p95_rad": 0.06409997493028641,
+              "exposure_span_max_rad": 0.07756480574607849
+            },
+            "camera_tail_healthy_trials": 7,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.1856406182050705,
+              "angular_speed_p95_rad_s": 0.3763771951198578,
+              "exposure_span_p95_rad": 0.006472428794950247,
+              "exposure_span_max_rad": 0.014235740527510643
+            },
+            "camera_tail_upright_finite_trials": 15,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 2.478734016418457,
+              "angular_speed_p95_rad_s": 3.5679116249084473,
+              "exposure_span_p95_rad": 0.06836231797933578,
+              "exposure_span_max_rad": 0.08271961659193039
+            }
+          },
+          "crouch": {
+            "case": "crouch",
+            "trials": 16,
+            "tail_healthy_hold_trials": 14,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              9.669866267358884e-05,
+              -0.0024062516167759895,
+              -0.0002407444262644276
+            ],
+            "tail_angular_mean": [
+              -0.0005152928060851991,
+              0.0018514953553676605,
+              0.01833394169807434
+            ],
+            "tail_height_mean_m": 0.11506112664937973,
+            "tail_tilt_mean_deg": 1.9999613761901855,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.7643862962722778,
+              "angular_speed_p95_rad_s": 1.243358850479126,
+              "exposure_span_p95_rad": 0.02348880097270012,
+              "exposure_span_max_rad": 0.030269382521510124
+            },
+            "camera_tail_healthy_trials": 14,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.19739732146263123,
+              "angular_speed_p95_rad_s": 0.45624202489852905,
+              "exposure_span_p95_rad": 0.008413756266236305,
+              "exposure_span_max_rad": 0.012007630430161953
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.7643862962722778,
+              "angular_speed_p95_rad_s": 1.243358850479126,
+              "exposure_span_p95_rad": 0.02348880097270012,
+              "exposure_span_max_rad": 0.030269382521510124
+            }
+          },
+          "sit": {
+            "case": "sit",
+            "trials": 16,
+            "tail_healthy_hold_trials": 9,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.00042142628808505833,
+              -0.0066224317997694016,
+              -0.0032505111303180456
+            ],
+            "tail_angular_mean": [
+              -0.025429390370845795,
+              -0.09961871802806854,
+              -0.06000833958387375
+            ],
+            "tail_height_mean_m": 0.10935613512992859,
+            "tail_tilt_mean_deg": 12.050274848937988,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 1.617790937423706,
+              "angular_speed_p95_rad_s": 2.7391116619110107,
+              "exposure_span_p95_rad": 0.053498901426792145,
+              "exposure_span_max_rad": 0.06247349828481674
+            },
+            "camera_tail_healthy_trials": 9,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.18871484696865082,
+              "angular_speed_p95_rad_s": 0.4046172499656677,
+              "exposure_span_p95_rad": 0.007550882641226053,
+              "exposure_span_max_rad": 0.012003052979707718
+            },
+            "camera_tail_upright_finite_trials": 14,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 1.4615790843963623,
+              "angular_speed_p95_rad_s": 2.2972137928009033,
+              "exposure_span_p95_rad": 0.04403284937143326,
+              "exposure_span_max_rad": 0.05150652304291725
+            }
+          }
+        },
+        "upright_camera": {
+          "neutral_idle": {
+            "trial_phase_count": 80,
+            "eligible_trial_phase_count": 80,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 0.9398805499076843,
+              "angular_speed_p95_rad_s": 1.6321423053741455,
+              "exposure_span_p95_rad": 0.0314423032104969,
+              "exposure_span_max_rad": 0.04253075644373894
+            }
+          },
+          "straight": {
+            "trial_phase_count": 384,
+            "eligible_trial_phase_count": 381,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 5.692110061645508,
+              "angular_speed_p95_rad_s": 8.522359848022461,
+              "exposure_span_p95_rad": 0.1659902185201645,
+              "exposure_span_max_rad": 0.19666540622711182
+            }
+          },
+          "turn": {
+            "trial_phase_count": 192,
+            "eligible_trial_phase_count": 192,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 5.903358459472656,
+              "angular_speed_p95_rad_s": 8.758399963378906,
+              "exposure_span_p95_rad": 0.170448437333107,
+              "exposure_span_max_rad": 0.20098121464252472
+            }
+          },
+          "walking_head": {
+            "trial_phase_count": 64,
+            "eligible_trial_phase_count": 64,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 6.071689605712891,
+              "angular_speed_p95_rad_s": 8.976866722106934,
+              "exposure_span_p95_rad": 0.17490887641906738,
+              "exposure_span_max_rad": 0.209555521607399
+            }
+          },
+          "stop": {
+            "trial_phase_count": 320,
+            "eligible_trial_phase_count": 320,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 4.686403751373291,
+              "angular_speed_p95_rad_s": 7.235905647277832,
+              "exposure_span_p95_rad": 0.14045771956443787,
+              "exposure_span_max_rad": 0.1627134531736374
+            }
+          },
+          "return_to_idle": {
+            "trial_phase_count": 320,
+            "eligible_trial_phase_count": 320,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 4.312051296234131,
+              "angular_speed_p95_rad_s": 6.769959449768066,
+              "exposure_span_p95_rad": 0.13078813254833221,
+              "exposure_span_max_rad": 0.1667335033416748
+            }
+          }
+        }
+      },
+      "full_bc_mild": {
+        "trials": 336,
+        "survived": 335,
+        "feedback_invalid": 0,
+        "groups": {
+          "neutral_idle": {
+            "case_phase_seed_rows": 10,
+            "trial_phase_count": 80,
+            "survived_trial_phase_count": 80,
+            "camera_rms_per_trial_mean_rad_s": 0.23013986498117447,
+            "camera_p95_per_trial_mean_rad_s": 0.49376594424247744,
+            "exposure_p95_per_trial_mean_rad": 0.009280976047739387,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 0.23013986569622524,
+            "velocity_tail_pooled_rmse": [
+              0.0089031997267221,
+              0.006178762327307585,
+              0.07664926048024738
+            ],
+            "head_tail_mae_deg": [
+              4.769340753555298,
+              0.8392591953277588,
+              2.5801562428474427,
+              2.0071326375007628
+            ],
+            "double_support_fraction": 0.9869999945163727,
+            "touchdown_frequency_per_foot_hz": [
+              0.225,
+              0.25
+            ],
+            "mean_available_case_stride_m": 0.004365693312138319,
+            "head_time90_reached_fraction": null
+          },
+          "straight": {
+            "case_phase_seed_rows": 48,
+            "trial_phase_count": 384,
+            "survived_trial_phase_count": 384,
+            "camera_rms_per_trial_mean_rad_s": 4.84801859036088,
+            "camera_p95_per_trial_mean_rad_s": 7.417394494016965,
+            "exposure_p95_per_trial_mean_rad": 0.14426163929359367,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 4.848018631315164,
+            "velocity_tail_pooled_rmse": [
+              0.09811312970352297,
+              0.18567686710845235,
+              0.9256227478037972
+            ],
+            "head_tail_mae_deg": [
+              5.546639114618301,
+              4.801949585477511,
+              6.168780468404293,
+              5.005726670225461
+            ],
+            "double_support_fraction": 0.2219791628255431,
+            "touchdown_frequency_per_foot_hz": [
+              1.8541666666666667,
+              1.93359375
+            ],
+            "mean_available_case_stride_m": 0.06292196081873651,
+            "head_time90_reached_fraction": null
+          },
+          "turn": {
+            "case_phase_seed_rows": 24,
+            "trial_phase_count": 192,
+            "survived_trial_phase_count": 191,
+            "camera_rms_per_trial_mean_rad_s": 5.756335735321045,
+            "camera_p95_per_trial_mean_rad_s": 8.590056955814362,
+            "exposure_p95_per_trial_mean_rad": 0.16668352174262205,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 5.75698860289092,
+            "velocity_tail_pooled_rmse": [
+              0.08024913815492425,
+              0.17026710138317677,
+              0.9889548288534156
+            ],
+            "head_tail_mae_deg": [
+              5.502226293087006,
+              5.435300012429555,
+              6.46766209602356,
+              5.763612707455953
+            ],
+            "double_support_fraction": 0.03192708237717549,
+            "touchdown_frequency_per_foot_hz": [
+              2.1223958333333335,
+              2.203125
+            ],
+            "mean_available_case_stride_m": 0.04266747568423549,
+            "head_time90_reached_fraction": null
+          },
+          "walking_head": {
+            "case_phase_seed_rows": 8,
+            "trial_phase_count": 64,
+            "survived_trial_phase_count": 64,
+            "camera_rms_per_trial_mean_rad_s": 5.936543941497803,
+            "camera_p95_per_trial_mean_rad_s": 8.842395901679993,
+            "exposure_p95_per_trial_mean_rad": 0.17227942682802677,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 5.936544015528016,
+            "velocity_tail_pooled_rmse": [
+              0.08130054759017097,
+              0.1753452073361594,
+              1.0665723863275558
+            ],
+            "head_tail_mae_deg": [
+              5.239373564720154,
+              5.409494936466217,
+              6.8143802881240845,
+              5.780769050121307
+            ],
+            "double_support_fraction": 0.02265624958090484,
+            "touchdown_frequency_per_foot_hz": [
+              2.2578125,
+              2.3125
+            ],
+            "mean_available_case_stride_m": 0.07486099004745483,
+            "head_time90_reached_fraction": [
+              0.0,
+              0.015625,
+              0.0,
+              0.0
+            ]
+          },
+          "stop": {
+            "case_phase_seed_rows": 40,
+            "trial_phase_count": 320,
+            "survived_trial_phase_count": 319,
+            "camera_rms_per_trial_mean_rad_s": 4.091039036214352,
+            "camera_p95_per_trial_mean_rad_s": 6.503793895244598,
+            "exposure_p95_per_trial_mean_rad": 0.12611060668714344,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 4.091038991302975,
+            "velocity_tail_pooled_rmse": [
+              0.05013457908924043,
+              0.10788310906492415,
+              0.7874799136116538
+            ],
+            "head_tail_mae_deg": [
+              5.43691246509552,
+              2.4699220299720763,
+              3.7970289647579194,
+              3.5390111833810804
+            ],
+            "double_support_fraction": 0.21687499507097527,
+            "touchdown_frequency_per_foot_hz": [
+              2.171875,
+              2.2
+            ],
+            "mean_available_case_stride_m": 0.015500845315937813,
+            "head_time90_reached_fraction": null
+          },
+          "return_to_idle": {
+            "case_phase_seed_rows": 40,
+            "trial_phase_count": 320,
+            "survived_trial_phase_count": 319,
+            "camera_rms_per_trial_mean_rad_s": 3.333838537335396,
+            "camera_p95_per_trial_mean_rad_s": 5.828261417150498,
+            "exposure_p95_per_trial_mean_rad": 0.11233828198164701,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 3.3338385318577637,
+            "velocity_tail_pooled_rmse": [
+              0.03644303511718199,
+              0.08560481580502398,
+              0.5629977506106271
+            ],
+            "head_tail_mae_deg": [
+              5.906135225296021,
+              1.9286276131868363,
+              3.1713355630636215,
+              2.9513759315013885
+            ],
+            "double_support_fraction": 0.38999998858198526,
+            "touchdown_frequency_per_foot_hz": [
+              1.7640625,
+              1.8
+            ],
+            "mean_available_case_stride_m": 0.014386654156260193,
+            "head_time90_reached_fraction": null
+          }
+        },
+        "survey": {
+          "idle": {
+            "case": "idle",
+            "trials": 16,
+            "tail_healthy_hold_trials": 15,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.00013598828809335828,
+              -0.00023782745120115578,
+              -3.5155935620423406e-05
+            ],
+            "tail_angular_mean": [
+              0.0011087215971201658,
+              -4.144184276810847e-05,
+              0.002500296803191304
+            ],
+            "tail_height_mean_m": 0.11391357332468033,
+            "tail_tilt_mean_deg": 2.3954029083251953,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.21037593483924866,
+              "angular_speed_p95_rad_s": 0.43524476885795593,
+              "exposure_span_p95_rad": 0.008118648082017899,
+              "exposure_span_max_rad": 0.013070774264633656
+            },
+            "camera_tail_healthy_trials": 15,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.19983257353305817,
+              "angular_speed_p95_rad_s": 0.41476914286613464,
+              "exposure_span_p95_rad": 0.007730939891189337,
+              "exposure_span_max_rad": 0.012665895745158195
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.21037593483924866,
+              "angular_speed_p95_rad_s": 0.43524476885795593,
+              "exposure_span_p95_rad": 0.008118648082017899,
+              "exposure_span_max_rad": 0.013070774264633656
+            }
+          },
+          "forward_01": {
+            "case": "forward_01",
+            "trials": 16,
+            "tail_healthy_hold_trials": 1,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.09400126338005066,
+              -0.002653538715094328,
+              0.0026023020036518574
+            ],
+            "tail_angular_mean": [
+              -0.004017375409603119,
+              0.013225624337792397,
+              0.08057485520839691
+            ],
+            "tail_height_mean_m": 0.1252317726612091,
+            "tail_tilt_mean_deg": 2.8863906860351562,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.482309341430664,
+              "angular_speed_p95_rad_s": 7.806080341339111,
+              "exposure_span_p95_rad": 0.15071752667427063,
+              "exposure_span_max_rad": 0.1707776039838791
+            },
+            "camera_tail_healthy_trials": 1,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.17815883457660675,
+              "angular_speed_p95_rad_s": 0.3331300616264343,
+              "exposure_span_p95_rad": 0.006373146083205938,
+              "exposure_span_max_rad": 0.014502697624266148
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.482309341430664,
+              "angular_speed_p95_rad_s": 7.806080341339111,
+              "exposure_span_p95_rad": 0.15071752667427063,
+              "exposure_span_max_rad": 0.1707776039838791
+            }
+          },
+          "forward_03": {
+            "case": "forward_03",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.2482539713382721,
+              0.013886327855288982,
+              0.009336017072200775
+            ],
+            "tail_angular_mean": [
+              -0.006665988825261593,
+              -0.010683869943022728,
+              0.0566508024930954
+            ],
+            "tail_height_mean_m": 0.12422282993793488,
+            "tail_tilt_mean_deg": 3.728661060333252,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 6.88143253326416,
+              "angular_speed_p95_rad_s": 9.872633934020996,
+              "exposure_span_p95_rad": 0.19409479200839996,
+              "exposure_span_max_rad": 0.22141775488853455
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 6.88143253326416,
+              "angular_speed_p95_rad_s": 9.872633934020996,
+              "exposure_span_p95_rad": 0.19409479200839996,
+              "exposure_span_max_rad": 0.22141775488853455
+            }
+          },
+          "yaw_negative": {
+            "case": "yaw_negative",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.005184611771255732,
+              0.008208154700696468,
+              0.0017336703604087234
+            ],
+            "tail_angular_mean": [
+              -0.0011090949410572648,
+              0.0037228926084935665,
+              -0.2639455795288086
+            ],
+            "tail_height_mean_m": 0.12647764384746552,
+            "tail_tilt_mean_deg": 3.438943862915039,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.689973831176758,
+              "angular_speed_p95_rad_s": 8.216266632080078,
+              "exposure_span_p95_rad": 0.15875419974327087,
+              "exposure_span_max_rad": 0.18180105090141296
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.689973831176758,
+              "angular_speed_p95_rad_s": 8.216266632080078,
+              "exposure_span_p95_rad": 0.15875419974327087,
+              "exposure_span_max_rad": 0.18180105090141296
+            }
+          },
+          "yaw_positive": {
+            "case": "yaw_positive",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.00488357525318861,
+              0.0055846283212304115,
+              -0.000987959443591535
+            ],
+            "tail_angular_mean": [
+              -0.002174115739762783,
+              0.0005651569226756692,
+              0.28626033663749695
+            ],
+            "tail_height_mean_m": 0.12703990936279297,
+            "tail_tilt_mean_deg": 2.911301851272583,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.661386489868164,
+              "angular_speed_p95_rad_s": 8.140439987182617,
+              "exposure_span_p95_rad": 0.15759281814098358,
+              "exposure_span_max_rad": 0.18199065327644348
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.661386489868164,
+              "angular_speed_p95_rad_s": 8.140439987182617,
+              "exposure_span_p95_rad": 0.15759281814098358,
+              "exposure_span_max_rad": 0.18199065327644348
+            }
+          },
+          "prone": {
+            "case": "prone",
+            "trials": 16,
+            "tail_healthy_hold_trials": 16,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.000313275377266109,
+              -0.0003631924046203494,
+              -1.8978575099026784e-05
+            ],
+            "tail_angular_mean": [
+              0.0020918785594403744,
+              -0.0029597135726362467,
+              -0.001566138118505478
+            ],
+            "tail_height_mean_m": 0.11408130079507828,
+            "tail_tilt_mean_deg": 2.419525146484375,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.17818093299865723,
+              "angular_speed_p95_rad_s": 0.39042413234710693,
+              "exposure_span_p95_rad": 0.007275664247572422,
+              "exposure_span_max_rad": 0.011400988325476646
+            },
+            "camera_tail_healthy_trials": 16,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.17818093299865723,
+              "angular_speed_p95_rad_s": 0.39042413234710693,
+              "exposure_span_p95_rad": 0.007275664247572422,
+              "exposure_span_max_rad": 0.011400988325476646
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.17818093299865723,
+              "angular_speed_p95_rad_s": 0.39042413234710693,
+              "exposure_span_p95_rad": 0.007275664247572422,
+              "exposure_span_max_rad": 0.011400988325476646
+            }
+          },
+          "crouch": {
+            "case": "crouch",
+            "trials": 16,
+            "tail_healthy_hold_trials": 16,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -5.039175084675662e-05,
+              -0.0004350757517386228,
+              -0.00019381630409043282
+            ],
+            "tail_angular_mean": [
+              0.0027748888824135065,
+              -0.0021993867121636868,
+              0.0003383016446605325
+            ],
+            "tail_height_mean_m": 0.113560751080513,
+            "tail_tilt_mean_deg": 1.8026474714279175,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.18770816922187805,
+              "angular_speed_p95_rad_s": 0.3816978633403778,
+              "exposure_span_p95_rad": 0.0069770049303770065,
+              "exposure_span_max_rad": 0.01138083916157484
+            },
+            "camera_tail_healthy_trials": 16,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.18770816922187805,
+              "angular_speed_p95_rad_s": 0.3816978633403778,
+              "exposure_span_p95_rad": 0.0069770049303770065,
+              "exposure_span_max_rad": 0.01138083916157484
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.18770816922187805,
+              "angular_speed_p95_rad_s": 0.3816978633403778,
+              "exposure_span_p95_rad": 0.0069770049303770065,
+              "exposure_span_max_rad": 0.01138083916157484
+            }
+          },
+          "sit": {
+            "case": "sit",
+            "trials": 16,
+            "tail_healthy_hold_trials": 14,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              5.524536391021684e-05,
+              -9.12391406018287e-05,
+              -0.00010349952208343893
+            ],
+            "tail_angular_mean": [
+              -0.0022747814655303955,
+              0.0028267668094486,
+              -0.0051577589474618435
+            ],
+            "tail_height_mean_m": 0.11044575273990631,
+            "tail_tilt_mean_deg": 7.158421039581299,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.20439958572387695,
+              "angular_speed_p95_rad_s": 0.44169434905052185,
+              "exposure_span_p95_rad": 0.008131617680191994,
+              "exposure_span_max_rad": 0.011769749224185944
+            },
+            "camera_tail_healthy_trials": 14,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.20814642310142517,
+              "angular_speed_p95_rad_s": 0.45967555046081543,
+              "exposure_span_p95_rad": 0.008490892127156258,
+              "exposure_span_max_rad": 0.01243256963789463
+            },
+            "camera_tail_upright_finite_trials": 15,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.21661880612373352,
+              "angular_speed_p95_rad_s": 0.46846774220466614,
+              "exposure_span_p95_rad": 0.008622094988822937,
+              "exposure_span_max_rad": 0.01246233657002449
+            }
+          }
+        },
+        "upright_camera": {
+          "neutral_idle": {
+            "trial_phase_count": 80,
+            "eligible_trial_phase_count": 80,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 0.2301398515701294,
+              "angular_speed_p95_rad_s": 0.4937658905982971,
+              "exposure_span_p95_rad": 0.009280974976718426,
+              "exposure_span_max_rad": 0.015647396445274353
+            }
+          },
+          "straight": {
+            "trial_phase_count": 384,
+            "eligible_trial_phase_count": 379,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 4.824525356292725,
+              "angular_speed_p95_rad_s": 7.386680603027344,
+              "exposure_span_p95_rad": 0.14363126456737518,
+              "exposure_span_max_rad": 0.1733047217130661
+            }
+          },
+          "turn": {
+            "trial_phase_count": 192,
+            "eligible_trial_phase_count": 189,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 5.77453088760376,
+              "angular_speed_p95_rad_s": 8.60823917388916,
+              "exposure_span_p95_rad": 0.1670129895210266,
+              "exposure_span_max_rad": 0.19941003620624542
+            }
+          },
+          "walking_head": {
+            "trial_phase_count": 64,
+            "eligible_trial_phase_count": 64,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 5.936543941497803,
+              "angular_speed_p95_rad_s": 8.842395782470703,
+              "exposure_span_p95_rad": 0.17227941751480103,
+              "exposure_span_max_rad": 0.20517118275165558
+            }
+          },
+          "stop": {
+            "trial_phase_count": 320,
+            "eligible_trial_phase_count": 319,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 4.091842174530029,
+              "angular_speed_p95_rad_s": 6.496973991394043,
+              "exposure_span_p95_rad": 0.12597835063934326,
+              "exposure_span_max_rad": 0.14897951483726501
+            }
+          },
+          "return_to_idle": {
+            "trial_phase_count": 320,
+            "eligible_trial_phase_count": 319,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 3.3442375659942627,
+              "angular_speed_p95_rad_s": 5.846498966217041,
+              "exposure_span_p95_rad": 0.11268985271453857,
+              "exposure_span_max_rad": 0.1523936688899994
+            }
+          }
+        }
+      },
+      "full_bc_control": {
+        "trials": 336,
+        "survived": 336,
+        "feedback_invalid": 0,
+        "groups": {
+          "neutral_idle": {
+            "case_phase_seed_rows": 10,
+            "trial_phase_count": 80,
+            "survived_trial_phase_count": 80,
+            "camera_rms_per_trial_mean_rad_s": 0.25085867941379547,
+            "camera_p95_per_trial_mean_rad_s": 0.5636686503887176,
+            "exposure_p95_per_trial_mean_rad": 0.010691698174923658,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 0.2508586707475788,
+            "velocity_tail_pooled_rmse": [
+              0.0076585305610553265,
+              0.005206242702858661,
+              0.08328898140213069
+            ],
+            "head_tail_mae_deg": [
+              8.48294153213501,
+              0.7965892255306244,
+              1.2235934257507324,
+              2.9795840263366697
+            ],
+            "double_support_fraction": 0.9884999930858612,
+            "touchdown_frequency_per_foot_hz": [
+              0.225,
+              0.225
+            ],
+            "mean_available_case_stride_m": 0.006075527518987656,
+            "head_time90_reached_fraction": null
+          },
+          "straight": {
+            "case_phase_seed_rows": 48,
+            "trial_phase_count": 384,
+            "survived_trial_phase_count": 384,
+            "camera_rms_per_trial_mean_rad_s": 4.656783973177274,
+            "camera_p95_per_trial_mean_rad_s": 7.084966758886973,
+            "exposure_p95_per_trial_mean_rad": 0.13783226726809517,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 4.656783959275424,
+            "velocity_tail_pooled_rmse": [
+              0.1038186131418115,
+              0.18035687965546385,
+              0.9189409389990044
+            ],
+            "head_tail_mae_deg": [
+              6.9237796266873675,
+              4.579527928183476,
+              6.090629490713279,
+              5.049764417111874
+            ],
+            "double_support_fraction": 0.29463541379664093,
+            "touchdown_frequency_per_foot_hz": [
+              1.6510416666666667,
+              1.7682291666666667
+            ],
+            "mean_available_case_stride_m": 0.0679542969141732,
+            "head_time90_reached_fraction": null
+          },
+          "turn": {
+            "case_phase_seed_rows": 24,
+            "trial_phase_count": 192,
+            "survived_trial_phase_count": 192,
+            "camera_rms_per_trial_mean_rad_s": 5.997311095396678,
+            "camera_p95_per_trial_mean_rad_s": 8.957044641176859,
+            "exposure_p95_per_trial_mean_rad": 0.17394853755831718,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 5.998780247615052,
+            "velocity_tail_pooled_rmse": [
+              0.07996816698800685,
+              0.16984173635670125,
+              1.010110589648651
+            ],
+            "head_tail_mae_deg": [
+              5.040476421515147,
+              5.374076584974925,
+              6.788464347521464,
+              6.322751720746358
+            ],
+            "double_support_fraction": 0.04182291587737078,
+            "touchdown_frequency_per_foot_hz": [
+              2.140625,
+              2.2083333333333335
+            ],
+            "mean_available_case_stride_m": 0.04266605068308612,
+            "head_time90_reached_fraction": null
+          },
+          "walking_head": {
+            "case_phase_seed_rows": 8,
+            "trial_phase_count": 64,
+            "survived_trial_phase_count": 64,
+            "camera_rms_per_trial_mean_rad_s": 6.189750611782074,
+            "camera_p95_per_trial_mean_rad_s": 9.281825184822083,
+            "exposure_p95_per_trial_mean_rad": 0.18127491138875484,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 6.189750751918776,
+            "velocity_tail_pooled_rmse": [
+              0.07896232108711013,
+              0.17236974173267117,
+              1.0478737468311121
+            ],
+            "head_tail_mae_deg": [
+              5.30464905500412,
+              5.418447017669678,
+              7.292082846164703,
+              6.281873106956482
+            ],
+            "double_support_fraction": 0.03234374965541065,
+            "touchdown_frequency_per_foot_hz": [
+              2.2421875,
+              2.390625
+            ],
+            "mean_available_case_stride_m": 0.07721024472266436,
+            "head_time90_reached_fraction": [
+              0.0,
+              0.0,
+              0.015625,
+              0.0
+            ]
+          },
+          "stop": {
+            "case_phase_seed_rows": 40,
+            "trial_phase_count": 320,
+            "survived_trial_phase_count": 320,
+            "camera_rms_per_trial_mean_rad_s": 4.081972400099039,
+            "camera_p95_per_trial_mean_rad_s": 6.606458202004433,
+            "exposure_p95_per_trial_mean_rad": 0.12817542119883002,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 4.081972399462762,
+            "velocity_tail_pooled_rmse": [
+              0.049852822521743057,
+              0.1002390199053611,
+              0.7706275987920189
+            ],
+            "head_tail_mae_deg": [
+              7.272323262691498,
+              2.2326018065214157,
+              3.35855021327734,
+              4.463743382692337
+            ],
+            "double_support_fraction": 0.2864374935859814,
+            "touchdown_frequency_per_foot_hz": [
+              2.090625,
+              2.171875
+            ],
+            "mean_available_case_stride_m": 0.014968444211667197,
+            "head_time90_reached_fraction": null
+          },
+          "return_to_idle": {
+            "case_phase_seed_rows": 40,
+            "trial_phase_count": 320,
+            "survived_trial_phase_count": 320,
+            "camera_rms_per_trial_mean_rad_s": 3.3275679275393486,
+            "camera_p95_per_trial_mean_rad_s": 5.872145345807075,
+            "exposure_p95_per_trial_mean_rad": 0.11354330021422357,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 3.3275679115213066,
+            "velocity_tail_pooled_rmse": [
+              0.03246853640814019,
+              0.08072079384183378,
+              0.5326494915045838
+            ],
+            "head_tail_mae_deg": [
+              8.286562526226044,
+              1.698463773727417,
+              2.497556355595589,
+              4.001255398988723
+            ],
+            "double_support_fraction": 0.4563437394797802,
+            "touchdown_frequency_per_foot_hz": [
+              1.603125,
+              1.63125
+            ],
+            "mean_available_case_stride_m": 0.014247446874710353,
+            "head_time90_reached_fraction": null
+          }
+        },
+        "survey": {
+          "idle": {
+            "case": "idle",
+            "trials": 16,
+            "tail_healthy_hold_trials": 15,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -9.217329352395609e-05,
+              -0.0002872569893952459,
+              -0.0001325789198745042
+            ],
+            "tail_angular_mean": [
+              0.0017284683417528868,
+              0.0007452565478160977,
+              -0.0023690902162343264
+            ],
+            "tail_height_mean_m": 0.11401922255754471,
+            "tail_tilt_mean_deg": 2.68141508102417,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.20226368308067322,
+              "angular_speed_p95_rad_s": 0.42925748229026794,
+              "exposure_span_p95_rad": 0.007777147926390171,
+              "exposure_span_max_rad": 0.012392904609441757
+            },
+            "camera_tail_healthy_trials": 15,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.20109133422374725,
+              "angular_speed_p95_rad_s": 0.42774146795272827,
+              "exposure_span_p95_rad": 0.007719175424426794,
+              "exposure_span_max_rad": 0.012551072053611279
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.20226368308067322,
+              "angular_speed_p95_rad_s": 0.42925748229026794,
+              "exposure_span_p95_rad": 0.007777147926390171,
+              "exposure_span_max_rad": 0.012392904609441757
+            }
+          },
+          "forward_01": {
+            "case": "forward_01",
+            "trials": 16,
+            "tail_healthy_hold_trials": 4,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.06516973674297333,
+              -0.005139212589710951,
+              0.0019401474855840206
+            ],
+            "tail_angular_mean": [
+              -0.017162995412945747,
+              0.004587098024785519,
+              0.1180977001786232
+            ],
+            "tail_height_mean_m": 0.12289170175790787,
+            "tail_tilt_mean_deg": 2.7088022232055664,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 4.176900386810303,
+              "angular_speed_p95_rad_s": 6.029595375061035,
+              "exposure_span_p95_rad": 0.11745575815439224,
+              "exposure_span_max_rad": 0.13913729786872864
+            },
+            "camera_tail_healthy_trials": 4,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.20999768376350403,
+              "angular_speed_p95_rad_s": 0.4450446367263794,
+              "exposure_span_p95_rad": 0.008181541226804256,
+              "exposure_span_max_rad": 0.015199771150946617
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 4.176900386810303,
+              "angular_speed_p95_rad_s": 6.029595375061035,
+              "exposure_span_p95_rad": 0.11745575815439224,
+              "exposure_span_max_rad": 0.13913729786872864
+            }
+          },
+          "forward_03": {
+            "case": "forward_03",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.2423793375492096,
+              0.013284178450703621,
+              0.011118950322270393
+            ],
+            "tail_angular_mean": [
+              0.0013913493603467941,
+              0.013683314435184002,
+              0.15970245003700256
+            ],
+            "tail_height_mean_m": 0.12441455572843552,
+            "tail_tilt_mean_deg": 3.8981096744537354,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 7.199868202209473,
+              "angular_speed_p95_rad_s": 10.462026596069336,
+              "exposure_span_p95_rad": 0.20489296317100525,
+              "exposure_span_max_rad": 0.23297733068466187
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 7.199868202209473,
+              "angular_speed_p95_rad_s": 10.462026596069336,
+              "exposure_span_p95_rad": 0.20489296317100525,
+              "exposure_span_max_rad": 0.23297733068466187
+            }
+          },
+          "yaw_negative": {
+            "case": "yaw_negative",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.013072635978460312,
+              0.0015229930868372321,
+              0.0005141327856108546
+            ],
+            "tail_angular_mean": [
+              0.010333499871194363,
+              -0.010032592341303825,
+              -0.11689827591180801
+            ],
+            "tail_height_mean_m": 0.1269347220659256,
+            "tail_tilt_mean_deg": 3.4118034839630127,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 6.063296318054199,
+              "angular_speed_p95_rad_s": 8.462610244750977,
+              "exposure_span_p95_rad": 0.1638275533914566,
+              "exposure_span_max_rad": 0.18180090188980103
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 6.063296318054199,
+              "angular_speed_p95_rad_s": 8.462610244750977,
+              "exposure_span_p95_rad": 0.1638275533914566,
+              "exposure_span_max_rad": 0.18180090188980103
+            }
+          },
+          "yaw_positive": {
+            "case": "yaw_positive",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.0025457527954131365,
+              0.0033952738158404827,
+              0.001831863191910088
+            ],
+            "tail_angular_mean": [
+              0.010114231146872044,
+              -0.00400891900062561,
+              0.3378732204437256
+            ],
+            "tail_height_mean_m": 0.12723544239997864,
+            "tail_tilt_mean_deg": 2.874725341796875,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.9246063232421875,
+              "angular_speed_p95_rad_s": 8.17551326751709,
+              "exposure_span_p95_rad": 0.1582145094871521,
+              "exposure_span_max_rad": 0.1742611527442932
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.9246063232421875,
+              "angular_speed_p95_rad_s": 8.17551326751709,
+              "exposure_span_p95_rad": 0.1582145094871521,
+              "exposure_span_max_rad": 0.1742611527442932
+            }
+          },
+          "prone": {
+            "case": "prone",
+            "trials": 16,
+            "tail_healthy_hold_trials": 16,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.00019028618407901376,
+              -0.000242198962951079,
+              -7.795468991389498e-05
+            ],
+            "tail_angular_mean": [
+              0.0007365380879491568,
+              0.0008404082618653774,
+              -0.0026573948562145233
+            ],
+            "tail_height_mean_m": 0.1142096295952797,
+            "tail_tilt_mean_deg": 2.69693922996521,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.191524475812912,
+              "angular_speed_p95_rad_s": 0.3944453001022339,
+              "exposure_span_p95_rad": 0.007401512004435062,
+              "exposure_span_max_rad": 0.012067452073097229
+            },
+            "camera_tail_healthy_trials": 16,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.191524475812912,
+              "angular_speed_p95_rad_s": 0.3944453001022339,
+              "exposure_span_p95_rad": 0.007401512004435062,
+              "exposure_span_max_rad": 0.012067452073097229
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.191524475812912,
+              "angular_speed_p95_rad_s": 0.3944453001022339,
+              "exposure_span_p95_rad": 0.007401512004435062,
+              "exposure_span_max_rad": 0.012067452073097229
+            }
+          },
+          "crouch": {
+            "case": "crouch",
+            "trials": 16,
+            "tail_healthy_hold_trials": 16,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.0002849508891813457,
+              -0.0002304871304659173,
+              -9.871202928479761e-05
+            ],
+            "tail_angular_mean": [
+              0.0012359890388324857,
+              -0.0020794302690774202,
+              0.0014223213074728847
+            ],
+            "tail_height_mean_m": 0.11390510201454163,
+            "tail_tilt_mean_deg": 1.9854402542114258,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.26565665006637573,
+              "angular_speed_p95_rad_s": 0.582899808883667,
+              "exposure_span_p95_rad": 0.010853244923055172,
+              "exposure_span_max_rad": 0.016847727820277214
+            },
+            "camera_tail_healthy_trials": 16,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.26565665006637573,
+              "angular_speed_p95_rad_s": 0.582899808883667,
+              "exposure_span_p95_rad": 0.010853244923055172,
+              "exposure_span_max_rad": 0.016847727820277214
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.26565665006637573,
+              "angular_speed_p95_rad_s": 0.582899808883667,
+              "exposure_span_p95_rad": 0.010853244923055172,
+              "exposure_span_max_rad": 0.016847727820277214
+            }
+          },
+          "sit": {
+            "case": "sit",
+            "trials": 16,
+            "tail_healthy_hold_trials": 16,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.00016819316078908741,
+              -0.00033195794094353914,
+              -6.437324918806553e-05
+            ],
+            "tail_angular_mean": [
+              0.00012011179205728695,
+              -0.000939823396038264,
+              -0.0017147120088338852
+            ],
+            "tail_height_mean_m": 0.11406037956476212,
+            "tail_tilt_mean_deg": 2.683412790298462,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.15706002712249756,
+              "angular_speed_p95_rad_s": 0.32871347665786743,
+              "exposure_span_p95_rad": 0.0060255266726017,
+              "exposure_span_max_rad": 0.010704580694437027
+            },
+            "camera_tail_healthy_trials": 16,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.15706002712249756,
+              "angular_speed_p95_rad_s": 0.32871347665786743,
+              "exposure_span_p95_rad": 0.0060255266726017,
+              "exposure_span_max_rad": 0.010704580694437027
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.15706002712249756,
+              "angular_speed_p95_rad_s": 0.32871347665786743,
+              "exposure_span_p95_rad": 0.0060255266726017,
+              "exposure_span_max_rad": 0.010704580694437027
+            }
+          }
+        },
+        "upright_camera": {
+          "neutral_idle": {
+            "trial_phase_count": 80,
+            "eligible_trial_phase_count": 80,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 0.25085869431495667,
+              "angular_speed_p95_rad_s": 0.5636685490608215,
+              "exposure_span_p95_rad": 0.010691697709262371,
+              "exposure_span_max_rad": 0.01841709017753601
+            }
+          },
+          "straight": {
+            "trial_phase_count": 384,
+            "eligible_trial_phase_count": 383,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 4.65158224105835,
+              "angular_speed_p95_rad_s": 7.07856559753418,
+              "exposure_span_p95_rad": 0.13770148158073425,
+              "exposure_span_max_rad": 0.1675373762845993
+            }
+          },
+          "turn": {
+            "trial_phase_count": 192,
+            "eligible_trial_phase_count": 192,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 5.997311115264893,
+              "angular_speed_p95_rad_s": 8.957045555114746,
+              "exposure_span_p95_rad": 0.1739485263824463,
+              "exposure_span_max_rad": 0.2079012542963028
+            }
+          },
+          "walking_head": {
+            "trial_phase_count": 64,
+            "eligible_trial_phase_count": 64,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 6.189750671386719,
+              "angular_speed_p95_rad_s": 9.28182601928711,
+              "exposure_span_p95_rad": 0.1812749058008194,
+              "exposure_span_max_rad": 0.21471849083900452
+            }
+          },
+          "stop": {
+            "trial_phase_count": 320,
+            "eligible_trial_phase_count": 319,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 4.0836639404296875,
+              "angular_speed_p95_rad_s": 6.600244045257568,
+              "exposure_span_p95_rad": 0.12805378437042236,
+              "exposure_span_max_rad": 0.15082234144210815
+            }
+          },
+          "return_to_idle": {
+            "trial_phase_count": 320,
+            "eligible_trial_phase_count": 319,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 3.3256211280822754,
+              "angular_speed_p95_rad_s": 5.8654608726501465,
+              "exposure_span_p95_rad": 0.11340506374835968,
+              "exposure_span_max_rad": 0.15086473524570465
+            }
+          }
+        }
+      },
+      "walking_leg_bc": {
+        "trials": 336,
+        "survived": 335,
+        "feedback_invalid": 0,
+        "groups": {
+          "neutral_idle": {
+            "case_phase_seed_rows": 10,
+            "trial_phase_count": 80,
+            "survived_trial_phase_count": 80,
+            "camera_rms_per_trial_mean_rad_s": 0.18193672001361846,
+            "camera_p95_per_trial_mean_rad_s": 0.3752154141664505,
+            "exposure_p95_per_trial_mean_rad": 0.006886474741622806,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 0.18193671569194864,
+            "velocity_tail_pooled_rmse": [
+              0.008511424472584616,
+              0.004993351795594286,
+              0.08093526201643962
+            ],
+            "head_tail_mae_deg": [
+              6.091999244689942,
+              0.9471906960010529,
+              1.2554880619049071,
+              0.32236312329769135
+            ],
+            "double_support_fraction": 0.9932499945163726,
+            "touchdown_frequency_per_foot_hz": [
+              0.2,
+              0.2125
+            ],
+            "mean_available_case_stride_m": 0.007821503095328808,
+            "head_time90_reached_fraction": null
+          },
+          "straight": {
+            "case_phase_seed_rows": 48,
+            "trial_phase_count": 384,
+            "survived_trial_phase_count": 383,
+            "camera_rms_per_trial_mean_rad_s": 3.285901164636016,
+            "camera_p95_per_trial_mean_rad_s": 5.545791884263356,
+            "exposure_p95_per_trial_mean_rad": 0.10807907800578202,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 3.2859011655357997,
+            "velocity_tail_pooled_rmse": [
+              0.10897876879647167,
+              0.19159735247477352,
+              1.0114349734043515
+            ],
+            "head_tail_mae_deg": [
+              11.184136350949606,
+              3.353287622332573,
+              5.30622931321462,
+              4.935448586940765
+            ],
+            "double_support_fraction": 0.2082552022378271,
+            "touchdown_frequency_per_foot_hz": [
+              1.8815104166666667,
+              1.9348958333333333
+            ],
+            "mean_available_case_stride_m": 0.06242308060366971,
+            "head_time90_reached_fraction": null
+          },
+          "turn": {
+            "case_phase_seed_rows": 24,
+            "trial_phase_count": 192,
+            "survived_trial_phase_count": 192,
+            "camera_rms_per_trial_mean_rad_s": 3.676815648873647,
+            "camera_p95_per_trial_mean_rad_s": 6.128213187058766,
+            "exposure_p95_per_trial_mean_rad": 0.11909261718392372,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 3.658024353046393,
+            "velocity_tail_pooled_rmse": [
+              0.08601903066568345,
+              0.17785011034149764,
+              1.0125397856842429
+            ],
+            "head_tail_mae_deg": [
+              11.417828579743704,
+              3.8147059977054596,
+              5.510611653327942,
+              5.446679135163625
+            ],
+            "double_support_fraction": 0.028281249455176294,
+            "touchdown_frequency_per_foot_hz": [
+              2.1458333333333335,
+              2.2083333333333335
+            ],
+            "mean_available_case_stride_m": 0.044877347613995276,
+            "head_time90_reached_fraction": null
+          },
+          "walking_head": {
+            "case_phase_seed_rows": 8,
+            "trial_phase_count": 64,
+            "survived_trial_phase_count": 64,
+            "camera_rms_per_trial_mean_rad_s": 3.819235533475876,
+            "camera_p95_per_trial_mean_rad_s": 6.354539334774017,
+            "exposure_p95_per_trial_mean_rad": 0.1236797021701932,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 3.819235523238971,
+            "velocity_tail_pooled_rmse": [
+              0.09580212858992593,
+              0.18069400471347685,
+              1.098725431996972
+            ],
+            "head_tail_mae_deg": [
+              13.344877779483795,
+              3.4671830534934998,
+              5.658981502056122,
+              5.7336439192295074
+            ],
+            "double_support_fraction": 0.024218749371357262,
+            "touchdown_frequency_per_foot_hz": [
+              2.1640625,
+              2.2734375
+            ],
+            "mean_available_case_stride_m": 0.07285374868661165,
+            "head_time90_reached_fraction": [
+              0.0,
+              0.046875,
+              0.078125,
+              0.0
+            ]
+          },
+          "stop": {
+            "case_phase_seed_rows": 40,
+            "trial_phase_count": 320,
+            "survived_trial_phase_count": 320,
+            "camera_rms_per_trial_mean_rad_s": 2.5937434524297713,
+            "camera_p95_per_trial_mean_rad_s": 4.63664618730545,
+            "exposure_p95_per_trial_mean_rad": 0.0897775437682867,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 2.5937434914352573,
+            "velocity_tail_pooled_rmse": [
+              0.04750604551131849,
+              0.10708704416571262,
+              0.8177396058102051
+            ],
+            "head_tail_mae_deg": [
+              9.373531317710876,
+              1.9317353874444962,
+              2.574123074114323,
+              3.2790843516588213
+            ],
+            "double_support_fraction": 0.22449999811360613,
+            "touchdown_frequency_per_foot_hz": [
+              2.234375,
+              2.271875
+            ],
+            "mean_available_case_stride_m": 0.01604668515501544,
+            "head_time90_reached_fraction": null
+          },
+          "return_to_idle": {
+            "case_phase_seed_rows": 40,
+            "trial_phase_count": 320,
+            "survived_trial_phase_count": 319,
+            "camera_rms_per_trial_mean_rad_s": 2.189181478321552,
+            "camera_p95_per_trial_mean_rad_s": 4.072749185562134,
+            "exposure_p95_per_trial_mean_rad": 0.07874219859950245,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 2.1891814837209784,
+            "velocity_tail_pooled_rmse": [
+              0.03971951239000518,
+              0.09279246501379097,
+              0.6625667027718218
+            ],
+            "head_tail_mae_deg": [
+              8.49001088142395,
+              1.6722192957997322,
+              2.115305259823799,
+              2.44953935071826
+            ],
+            "double_support_fraction": 0.34115624325349925,
+            "touchdown_frequency_per_foot_hz": [
+              1.859375,
+              1.9265625
+            ],
+            "mean_available_case_stride_m": 0.0152609575772658,
+            "head_time90_reached_fraction": null
+          }
+        },
+        "survey": {
+          "idle": {
+            "case": "idle",
+            "trials": 16,
+            "tail_healthy_hold_trials": 16,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.00024485611356794834,
+              -0.00033309616264887154,
+              -0.0002863476984202862
+            ],
+            "tail_angular_mean": [
+              0.002201544353738427,
+              0.0026361793279647827,
+              0.0013652312336489558
+            ],
+            "tail_height_mean_m": 0.11327685415744781,
+            "tail_tilt_mean_deg": 2.3793859481811523,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.16957692801952362,
+              "angular_speed_p95_rad_s": 0.3341261148452759,
+              "exposure_span_p95_rad": 0.006137375254184008,
+              "exposure_span_max_rad": 0.009741757065057755
+            },
+            "camera_tail_healthy_trials": 16,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.16957692801952362,
+              "angular_speed_p95_rad_s": 0.3341261148452759,
+              "exposure_span_p95_rad": 0.006137375254184008,
+              "exposure_span_max_rad": 0.009741757065057755
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.16957692801952362,
+              "angular_speed_p95_rad_s": 0.3341261148452759,
+              "exposure_span_p95_rad": 0.006137375254184008,
+              "exposure_span_max_rad": 0.009741757065057755
+            }
+          },
+          "forward_01": {
+            "case": "forward_01",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.10417861491441727,
+              -0.014133208431303501,
+              -0.0017163815209642053
+            ],
+            "tail_angular_mean": [
+              0.00587341608479619,
+              0.018902434036135674,
+              0.1316143125295639
+            ],
+            "tail_height_mean_m": 0.12683261930942535,
+            "tail_tilt_mean_deg": 3.0577614307403564,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 3.265221118927002,
+              "angular_speed_p95_rad_s": 5.4787139892578125,
+              "exposure_span_p95_rad": 0.10533878952264786,
+              "exposure_span_max_rad": 0.13026373088359833
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 3.265221118927002,
+              "angular_speed_p95_rad_s": 5.4787139892578125,
+              "exposure_span_p95_rad": 0.10533878952264786,
+              "exposure_span_max_rad": 0.13026373088359833
+            }
+          },
+          "forward_03": {
+            "case": "forward_03",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.2638798952102661,
+              -0.04351752996444702,
+              0.008009860292077065
+            ],
+            "tail_angular_mean": [
+              -0.002993955509737134,
+              0.02102009579539299,
+              0.30676671862602234
+            ],
+            "tail_height_mean_m": 0.1240929514169693,
+            "tail_tilt_mean_deg": 4.0416107177734375,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 4.996680736541748,
+              "angular_speed_p95_rad_s": 7.914897918701172,
+              "exposure_span_p95_rad": 0.15394693613052368,
+              "exposure_span_max_rad": 0.183306023478508
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 4.996680736541748,
+              "angular_speed_p95_rad_s": 7.914897918701172,
+              "exposure_span_p95_rad": 0.15394693613052368,
+              "exposure_span_max_rad": 0.183306023478508
+            }
+          },
+          "yaw_negative": {
+            "case": "yaw_negative",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.02484459988772869,
+              -0.00550421979278326,
+              0.0002859292726498097
+            ],
+            "tail_angular_mean": [
+              0.0011436727363616228,
+              0.005106199998408556,
+              -0.1269443929195404
+            ],
+            "tail_height_mean_m": 0.12800318002700806,
+            "tail_tilt_mean_deg": 3.4973092079162598,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 3.2282469272613525,
+              "angular_speed_p95_rad_s": 5.280417442321777,
+              "exposure_span_p95_rad": 0.10172213613986969,
+              "exposure_span_max_rad": 0.1216304823756218
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 3.2282469272613525,
+              "angular_speed_p95_rad_s": 5.280417442321777,
+              "exposure_span_p95_rad": 0.10172213613986969,
+              "exposure_span_max_rad": 0.1216304823756218
+            }
+          },
+          "yaw_positive": {
+            "case": "yaw_positive",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.022769944742321968,
+              -0.007237415760755539,
+              0.0015344214625656605
+            ],
+            "tail_angular_mean": [
+              0.01067899540066719,
+              0.016708504408597946,
+              0.4416028559207916
+            ],
+            "tail_height_mean_m": 0.1276606172323227,
+            "tail_tilt_mean_deg": 3.1229028701782227,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 3.286684036254883,
+              "angular_speed_p95_rad_s": 5.636975288391113,
+              "exposure_span_p95_rad": 0.10926422476768494,
+              "exposure_span_max_rad": 0.13305357098579407
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 3.286684036254883,
+              "angular_speed_p95_rad_s": 5.636975288391113,
+              "exposure_span_p95_rad": 0.10926422476768494,
+              "exposure_span_max_rad": 0.13305357098579407
+            }
+          },
+          "prone": {
+            "case": "prone",
+            "trials": 16,
+            "tail_healthy_hold_trials": 16,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              7.253114017657936e-05,
+              7.776054553687572e-05,
+              -0.00022387206263374537
+            ],
+            "tail_angular_mean": [
+              -0.001866243197582662,
+              0.0046402220614254475,
+              0.00047182320849969983
+            ],
+            "tail_height_mean_m": 0.11355915665626526,
+            "tail_tilt_mean_deg": 2.3867056369781494,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.13357335329055786,
+              "angular_speed_p95_rad_s": 0.26337260007858276,
+              "exposure_span_p95_rad": 0.004675273783504963,
+              "exposure_span_max_rad": 0.007680393755435944
+            },
+            "camera_tail_healthy_trials": 16,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.13357335329055786,
+              "angular_speed_p95_rad_s": 0.26337260007858276,
+              "exposure_span_p95_rad": 0.004675273783504963,
+              "exposure_span_max_rad": 0.007680393755435944
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.13357335329055786,
+              "angular_speed_p95_rad_s": 0.26337260007858276,
+              "exposure_span_p95_rad": 0.004675273783504963,
+              "exposure_span_max_rad": 0.007680393755435944
+            }
+          },
+          "crouch": {
+            "case": "crouch",
+            "trials": 16,
+            "tail_healthy_hold_trials": 16,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              1.0274145097355358e-05,
+              -0.00011609122157096863,
+              -0.0004255558014847338
+            ],
+            "tail_angular_mean": [
+              0.0026675290428102016,
+              0.0009909564396366477,
+              -0.0006881391745992005
+            ],
+            "tail_height_mean_m": 0.11301407217979431,
+            "tail_tilt_mean_deg": 2.1386544704437256,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.20720244944095612,
+              "angular_speed_p95_rad_s": 0.3964086174964905,
+              "exposure_span_p95_rad": 0.00685753533616662,
+              "exposure_span_max_rad": 0.011953230947256088
+            },
+            "camera_tail_healthy_trials": 16,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.20720244944095612,
+              "angular_speed_p95_rad_s": 0.3964086174964905,
+              "exposure_span_p95_rad": 0.00685753533616662,
+              "exposure_span_max_rad": 0.011953230947256088
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.20720244944095612,
+              "angular_speed_p95_rad_s": 0.3964086174964905,
+              "exposure_span_p95_rad": 0.00685753533616662,
+              "exposure_span_max_rad": 0.011953230947256088
+            }
+          },
+          "sit": {
+            "case": "sit",
+            "trials": 16,
+            "tail_healthy_hold_trials": 15,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -1.0653664503479376e-05,
+              -0.00016118101484607905,
+              -0.0002782050287351012
+            ],
+            "tail_angular_mean": [
+              0.002564577152952552,
+              0.003634046297520399,
+              0.006926400121301413
+            ],
+            "tail_height_mean_m": 0.11346515268087387,
+            "tail_tilt_mean_deg": 2.4744906425476074,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.14179633557796478,
+              "angular_speed_p95_rad_s": 0.2763969898223877,
+              "exposure_span_p95_rad": 0.004750079941004515,
+              "exposure_span_max_rad": 0.007906580343842506
+            },
+            "camera_tail_healthy_trials": 15,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.12789659202098846,
+              "angular_speed_p95_rad_s": 0.24954521656036377,
+              "exposure_span_p95_rad": 0.004379507154226303,
+              "exposure_span_max_rad": 0.007469527423381805
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.14179633557796478,
+              "angular_speed_p95_rad_s": 0.2763969898223877,
+              "exposure_span_p95_rad": 0.004750079941004515,
+              "exposure_span_max_rad": 0.007906580343842506
+            }
+          }
+        },
+        "upright_camera": {
+          "neutral_idle": {
+            "trial_phase_count": 80,
+            "eligible_trial_phase_count": 80,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 0.18193672597408295,
+              "angular_speed_p95_rad_s": 0.37521564960479736,
+              "exposure_span_p95_rad": 0.00688647385686636,
+              "exposure_span_max_rad": 0.01215807069092989
+            }
+          },
+          "straight": {
+            "trial_phase_count": 384,
+            "eligible_trial_phase_count": 381,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 3.263045072555542,
+              "angular_speed_p95_rad_s": 5.501153945922852,
+              "exposure_span_p95_rad": 0.10717258602380753,
+              "exposure_span_max_rad": 0.1350390762090683
+            }
+          },
+          "turn": {
+            "trial_phase_count": 192,
+            "eligible_trial_phase_count": 192,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 3.6768157482147217,
+              "angular_speed_p95_rad_s": 6.128213405609131,
+              "exposure_span_p95_rad": 0.11909262090921402,
+              "exposure_span_max_rad": 0.15053148567676544
+            }
+          },
+          "walking_head": {
+            "trial_phase_count": 64,
+            "eligible_trial_phase_count": 64,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 3.819235324859619,
+              "angular_speed_p95_rad_s": 6.354539394378662,
+              "exposure_span_p95_rad": 0.12367970496416092,
+              "exposure_span_max_rad": 0.15493269264698029
+            }
+          },
+          "stop": {
+            "trial_phase_count": 320,
+            "eligible_trial_phase_count": 320,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 2.5937435626983643,
+              "angular_speed_p95_rad_s": 4.636646270751953,
+              "exposure_span_p95_rad": 0.08977754414081573,
+              "exposure_span_max_rad": 0.11355002969503403
+            }
+          },
+          "return_to_idle": {
+            "trial_phase_count": 320,
+            "eligible_trial_phase_count": 319,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 2.1878504753112793,
+              "angular_speed_p95_rad_s": 4.07097053527832,
+              "exposure_span_p95_rad": 0.07870855927467346,
+              "exposure_span_max_rad": 0.10961546748876572
+            }
+          }
+        }
+      }
+    },
+    "measured": {
+      "parent256": {
+        "trials": 336,
+        "survived": 336,
+        "feedback_invalid": 0,
+        "groups": {
+          "neutral_idle": {
+            "case_phase_seed_rows": 10,
+            "trial_phase_count": 80,
+            "survived_trial_phase_count": 80,
+            "camera_rms_per_trial_mean_rad_s": 1.0886254340410233,
+            "camera_p95_per_trial_mean_rad_s": 1.8735992789268494,
+            "exposure_p95_per_trial_mean_rad": 0.03590812850743532,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 1.0886254277358849,
+            "velocity_tail_pooled_rmse": [
+              0.0300920707694686,
+              0.056912764829541516,
+              0.4531288933216467
+            ],
+            "head_tail_mae_deg": [
+              5.505577421188354,
+              1.5870654821395873,
+              1.5041496753692627,
+              3.5056488513946533
+            ],
+            "double_support_fraction": 0.8272499859333038,
+            "touchdown_frequency_per_foot_hz": [
+              0.675,
+              0.6875
+            ],
+            "mean_available_case_stride_m": 0.015777748357504607,
+            "head_time90_reached_fraction": null
+          },
+          "straight": {
+            "case_phase_seed_rows": 48,
+            "trial_phase_count": 384,
+            "survived_trial_phase_count": 384,
+            "camera_rms_per_trial_mean_rad_s": 5.783574223518372,
+            "camera_p95_per_trial_mean_rad_s": 8.644711722930273,
+            "exposure_p95_per_trial_mean_rad": 0.16832862763355175,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 5.783574206895288,
+            "velocity_tail_pooled_rmse": [
+              0.10011091808944936,
+              0.1906533043044792,
+              1.0147610614200753
+            ],
+            "head_tail_mae_deg": [
+              5.490691060821216,
+              5.128555923700333,
+              6.931300352017085,
+              5.856844196716945
+            ],
+            "double_support_fraction": 0.08083333210864414,
+            "touchdown_frequency_per_foot_hz": [
+              2.17578125,
+              2.2265625
+            ],
+            "mean_available_case_stride_m": 0.06509182388739039,
+            "head_time90_reached_fraction": null
+          },
+          "turn": {
+            "case_phase_seed_rows": 24,
+            "trial_phase_count": 192,
+            "survived_trial_phase_count": 192,
+            "camera_rms_per_trial_mean_rad_s": 5.940191765626271,
+            "camera_p95_per_trial_mean_rad_s": 8.859438161055246,
+            "exposure_p95_per_trial_mean_rad": 0.17223060131072998,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 5.944960972085042,
+            "velocity_tail_pooled_rmse": [
+              0.07917365892384244,
+              0.16991969925151962,
+              1.0286157384853487
+            ],
+            "head_tail_mae_deg": [
+              4.835539768139522,
+              5.217925051848094,
+              6.9016391436258955,
+              5.851608117421468
+            ],
+            "double_support_fraction": 0.022135416181602825,
+            "touchdown_frequency_per_foot_hz": [
+              2.1536458333333335,
+              2.2994791666666665
+            ],
+            "mean_available_case_stride_m": 0.03965599345974624,
+            "head_time90_reached_fraction": null
+          },
+          "walking_head": {
+            "case_phase_seed_rows": 8,
+            "trial_phase_count": 64,
+            "survived_trial_phase_count": 64,
+            "camera_rms_per_trial_mean_rad_s": 6.073702156543732,
+            "camera_p95_per_trial_mean_rad_s": 9.071955561637878,
+            "exposure_p95_per_trial_mean_rad": 0.17693469487130642,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 6.073702084440858,
+            "velocity_tail_pooled_rmse": [
+              0.08020562205208577,
+              0.17119098113502978,
+              1.0942363460700852
+            ],
+            "head_tail_mae_deg": [
+              5.348881125450134,
+              5.223086059093475,
+              6.910773932933807,
+              5.966183602809906
+            ],
+            "double_support_fraction": 0.02578124956926331,
+            "touchdown_frequency_per_foot_hz": [
+              2.2890625,
+              2.3984375
+            ],
+            "mean_available_case_stride_m": 0.07234546728432178,
+            "head_time90_reached_fraction": [
+              0.015625,
+              0.015625,
+              0.03125,
+              0.0
+            ]
+          },
+          "stop": {
+            "case_phase_seed_rows": 40,
+            "trial_phase_count": 320,
+            "survived_trial_phase_count": 320,
+            "camera_rms_per_trial_mean_rad_s": 4.758299040794372,
+            "camera_p95_per_trial_mean_rad_s": 7.384334683418274,
+            "exposure_p95_per_trial_mean_rad": 0.1429530166089535,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 4.758298996343736,
+            "velocity_tail_pooled_rmse": [
+              0.05489422780270461,
+              0.11829634397351033,
+              0.9007866120626241
+            ],
+            "head_tail_mae_deg": [
+              5.4861097753047945,
+              2.7377742767333983,
+              3.904960426688194,
+              4.503688228130341
+            ],
+            "double_support_fraction": 0.0801249977434054,
+            "touchdown_frequency_per_foot_hz": [
+              2.628125,
+              2.54375
+            ],
+            "mean_available_case_stride_m": 0.014675266365520656,
+            "head_time90_reached_fraction": null
+          },
+          "return_to_idle": {
+            "case_phase_seed_rows": 40,
+            "trial_phase_count": 320,
+            "survived_trial_phase_count": 320,
+            "camera_rms_per_trial_mean_rad_s": 4.30605581998825,
+            "camera_p95_per_trial_mean_rad_s": 6.868996167182923,
+            "exposure_p95_per_trial_mean_rad": 0.13287293091416358,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 4.3060557924996665,
+            "velocity_tail_pooled_rmse": [
+              0.04861418821397792,
+              0.10992490289617858,
+              0.7417001472974395
+            ],
+            "head_tail_mae_deg": [
+              6.091991972923279,
+              2.4990063339471815,
+              3.4320983231067657,
+              4.482956600189209
+            ],
+            "double_support_fraction": 0.17081249569309875,
+            "touchdown_frequency_per_foot_hz": [
+              2.4875,
+              2.509375
+            ],
+            "mean_available_case_stride_m": 0.013740972639061511,
+            "head_time90_reached_fraction": null
+          }
+        },
+        "survey": {
+          "idle": {
+            "case": "idle",
+            "trials": 16,
+            "tail_healthy_hold_trials": 13,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.0022788962814956903,
+              0.00033527007326483727,
+              -0.0002761830110102892
+            ],
+            "tail_angular_mean": [
+              -0.0031345849856734276,
+              0.007682662457227707,
+              0.01836402714252472
+            ],
+            "tail_height_mean_m": 0.1148282140493393,
+            "tail_tilt_mean_deg": 2.599567413330078,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.4943527281284332,
+              "angular_speed_p95_rad_s": 0.9097356200218201,
+              "exposure_span_p95_rad": 0.01715848222374916,
+              "exposure_span_max_rad": 0.026951344683766365
+            },
+            "camera_tail_healthy_trials": 13,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.19892242550849915,
+              "angular_speed_p95_rad_s": 0.42699000239372253,
+              "exposure_span_p95_rad": 0.007954348810017109,
+              "exposure_span_max_rad": 0.01417734194546938
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.4943527281284332,
+              "angular_speed_p95_rad_s": 0.9097356200218201,
+              "exposure_span_p95_rad": 0.01715848222374916,
+              "exposure_span_max_rad": 0.026951344683766365
+            }
+          },
+          "forward_01": {
+            "case": "forward_01",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.09685343503952026,
+              -0.010895313695073128,
+              0.0008386602276004851
+            ],
+            "tail_angular_mean": [
+              -0.014574509114027023,
+              0.004452207591384649,
+              0.03626258671283722
+            ],
+            "tail_height_mean_m": 0.12623630464076996,
+            "tail_tilt_mean_deg": 2.856940507888794,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 6.0151262283325195,
+              "angular_speed_p95_rad_s": 8.555096626281738,
+              "exposure_span_p95_rad": 0.1648235023021698,
+              "exposure_span_max_rad": 0.19146853685379028
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 6.0151262283325195,
+              "angular_speed_p95_rad_s": 8.555096626281738,
+              "exposure_span_p95_rad": 0.1648235023021698,
+              "exposure_span_max_rad": 0.19146853685379028
+            }
+          },
+          "forward_03": {
+            "case": "forward_03",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.23454871773719788,
+              0.008561923168599606,
+              0.011629607528448105
+            ],
+            "tail_angular_mean": [
+              -0.0067984857596457005,
+              0.020322974771261215,
+              0.27888724207878113
+            ],
+            "tail_height_mean_m": 0.12341772019863129,
+            "tail_tilt_mean_deg": 4.1132330894470215,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 6.826237678527832,
+              "angular_speed_p95_rad_s": 9.919788360595703,
+              "exposure_span_p95_rad": 0.1942419707775116,
+              "exposure_span_max_rad": 0.22304220497608185
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 6.826237678527832,
+              "angular_speed_p95_rad_s": 9.919788360595703,
+              "exposure_span_p95_rad": 0.1942419707775116,
+              "exposure_span_max_rad": 0.22304220497608185
+            }
+          },
+          "yaw_negative": {
+            "case": "yaw_negative",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.025730371475219727,
+              0.0027027225587517023,
+              0.00030801634420640767
+            ],
+            "tail_angular_mean": [
+              0.004184712655842304,
+              -0.0039021747652441263,
+              -0.17751151323318481
+            ],
+            "tail_height_mean_m": 0.1263195276260376,
+            "tail_tilt_mean_deg": 3.360128402709961,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.66727352142334,
+              "angular_speed_p95_rad_s": 8.195821762084961,
+              "exposure_span_p95_rad": 0.15874947607517242,
+              "exposure_span_max_rad": 0.1791328638792038
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.66727352142334,
+              "angular_speed_p95_rad_s": 8.195821762084961,
+              "exposure_span_p95_rad": 0.15874947607517242,
+              "exposure_span_max_rad": 0.1791328638792038
+            }
+          },
+          "yaw_positive": {
+            "case": "yaw_positive",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.005807474721223116,
+              0.0057423729449510574,
+              -0.0001730266958475113
+            ],
+            "tail_angular_mean": [
+              -0.008031564764678478,
+              -0.0012004366144537926,
+              0.23714300990104675
+            ],
+            "tail_height_mean_m": 0.12681913375854492,
+            "tail_tilt_mean_deg": 2.8318700790405273,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 6.043686866760254,
+              "angular_speed_p95_rad_s": 8.601285934448242,
+              "exposure_span_p95_rad": 0.16558340191841125,
+              "exposure_span_max_rad": 0.1862073838710785
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 6.043686866760254,
+              "angular_speed_p95_rad_s": 8.601285934448242,
+              "exposure_span_p95_rad": 0.16558340191841125,
+              "exposure_span_max_rad": 0.1862073838710785
+            }
+          },
+          "prone": {
+            "case": "prone",
+            "trials": 16,
+            "tail_healthy_hold_trials": 6,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.0023404881358146667,
+              -0.01186920702457428,
+              -0.0009771500481292605
+            ],
+            "tail_angular_mean": [
+              0.010210060514509678,
+              0.003729740623384714,
+              0.08199727535247803
+            ],
+            "tail_height_mean_m": 0.1150999590754509,
+            "tail_tilt_mean_deg": 7.692402362823486,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 2.9311585426330566,
+              "angular_speed_p95_rad_s": 4.2569990158081055,
+              "exposure_span_p95_rad": 0.08218555897474289,
+              "exposure_span_max_rad": 0.09492089599370956
+            },
+            "camera_tail_healthy_trials": 6,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.18598292768001556,
+              "angular_speed_p95_rad_s": 0.38313549757003784,
+              "exposure_span_p95_rad": 0.00694183399900794,
+              "exposure_span_max_rad": 0.01451861672103405
+            },
+            "camera_tail_upright_finite_trials": 15,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 3.125904083251953,
+              "angular_speed_p95_rad_s": 4.539849281311035,
+              "exposure_span_p95_rad": 0.08764389157295227,
+              "exposure_span_max_rad": 0.10120335966348648
+            }
+          },
+          "crouch": {
+            "case": "crouch",
+            "trials": 16,
+            "tail_healthy_hold_trials": 10,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.005661349277943373,
+              -0.00699307257309556,
+              -0.0005716667510569096
+            ],
+            "tail_angular_mean": [
+              0.0075075156055390835,
+              0.003702900605276227,
+              0.09831660240888596
+            ],
+            "tail_height_mean_m": 0.1169455498456955,
+            "tail_tilt_mean_deg": 2.3228626251220703,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 2.0849967002868652,
+              "angular_speed_p95_rad_s": 3.1496589183807373,
+              "exposure_span_p95_rad": 0.06055361032485962,
+              "exposure_span_max_rad": 0.06943103671073914
+            },
+            "camera_tail_healthy_trials": 10,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.25200435519218445,
+              "angular_speed_p95_rad_s": 0.567570149898529,
+              "exposure_span_p95_rad": 0.010565097443759441,
+              "exposure_span_max_rad": 0.015556925907731056
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 2.0849967002868652,
+              "angular_speed_p95_rad_s": 3.1496589183807373,
+              "exposure_span_p95_rad": 0.06055361032485962,
+              "exposure_span_max_rad": 0.06943103671073914
+            }
+          },
+          "sit": {
+            "case": "sit",
+            "trials": 16,
+            "tail_healthy_hold_trials": 13,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.0010553393512964249,
+              -0.002703544683754444,
+              0.00029876086045987904
+            ],
+            "tail_angular_mean": [
+              0.009287347085773945,
+              -0.009890692308545113,
+              0.025815291330218315
+            ],
+            "tail_height_mean_m": 0.115656279027462,
+            "tail_tilt_mean_deg": 2.822056770324707,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 1.015220284461975,
+              "angular_speed_p95_rad_s": 1.6584985256195068,
+              "exposure_span_p95_rad": 0.031572386622428894,
+              "exposure_span_max_rad": 0.04288174957036972
+            },
+            "camera_tail_healthy_trials": 13,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.18815965950489044,
+              "angular_speed_p95_rad_s": 0.39286723732948303,
+              "exposure_span_p95_rad": 0.00727961165830493,
+              "exposure_span_max_rad": 0.013532266952097416
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 1.015220284461975,
+              "angular_speed_p95_rad_s": 1.6584985256195068,
+              "exposure_span_p95_rad": 0.031572386622428894,
+              "exposure_span_max_rad": 0.04288174957036972
+            }
+          }
+        },
+        "upright_camera": {
+          "neutral_idle": {
+            "trial_phase_count": 80,
+            "eligible_trial_phase_count": 80,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 1.0886255502700806,
+              "angular_speed_p95_rad_s": 1.8735990524291992,
+              "exposure_span_p95_rad": 0.03590812906622887,
+              "exposure_span_max_rad": 0.04760003089904785
+            }
+          },
+          "straight": {
+            "trial_phase_count": 384,
+            "eligible_trial_phase_count": 382,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 5.781867980957031,
+              "angular_speed_p95_rad_s": 8.641239166259766,
+              "exposure_span_p95_rad": 0.1682501584291458,
+              "exposure_span_max_rad": 0.2005528211593628
+            }
+          },
+          "turn": {
+            "trial_phase_count": 192,
+            "eligible_trial_phase_count": 192,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 5.940191745758057,
+              "angular_speed_p95_rad_s": 8.859437942504883,
+              "exposure_span_p95_rad": 0.17223060131072998,
+              "exposure_span_max_rad": 0.20339958369731903
+            }
+          },
+          "walking_head": {
+            "trial_phase_count": 64,
+            "eligible_trial_phase_count": 64,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 6.073701858520508,
+              "angular_speed_p95_rad_s": 9.071955680847168,
+              "exposure_span_p95_rad": 0.17693468928337097,
+              "exposure_span_max_rad": 0.21307875216007233
+            }
+          },
+          "stop": {
+            "trial_phase_count": 320,
+            "eligible_trial_phase_count": 320,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 4.758299350738525,
+              "angular_speed_p95_rad_s": 7.384335517883301,
+              "exposure_span_p95_rad": 0.14295300841331482,
+              "exposure_span_max_rad": 0.1676565557718277
+            }
+          },
+          "return_to_idle": {
+            "trial_phase_count": 320,
+            "eligible_trial_phase_count": 320,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 4.306056022644043,
+              "angular_speed_p95_rad_s": 6.868995666503906,
+              "exposure_span_p95_rad": 0.13287292420864105,
+              "exposure_span_max_rad": 0.1686657965183258
+            }
+          }
+        }
+      },
+      "full_bc_mild": {
+        "trials": 336,
+        "survived": 335,
+        "feedback_invalid": 0,
+        "groups": {
+          "neutral_idle": {
+            "case_phase_seed_rows": 10,
+            "trial_phase_count": 80,
+            "survived_trial_phase_count": 80,
+            "camera_rms_per_trial_mean_rad_s": 0.3586327418684959,
+            "camera_p95_per_trial_mean_rad_s": 0.727742749452591,
+            "exposure_p95_per_trial_mean_rad": 0.01373815881088376,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 0.35863274195981687,
+            "velocity_tail_pooled_rmse": [
+              0.011625916953451491,
+              0.013665993357229962,
+              0.16224712268648567
+            ],
+            "head_tail_mae_deg": [
+              4.870627784729004,
+              0.8635725617408753,
+              2.580843710899353,
+              2.072834646701813
+            ],
+            "double_support_fraction": 0.9546249866485595,
+            "touchdown_frequency_per_foot_hz": [
+              0.44375,
+              0.425
+            ],
+            "mean_available_case_stride_m": 0.006666666781529784,
+            "head_time90_reached_fraction": null
+          },
+          "straight": {
+            "case_phase_seed_rows": 48,
+            "trial_phase_count": 384,
+            "survived_trial_phase_count": 383,
+            "camera_rms_per_trial_mean_rad_s": 5.009462039917707,
+            "camera_p95_per_trial_mean_rad_s": 7.646609101444483,
+            "exposure_p95_per_trial_mean_rad": 0.14872507019511735,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 5.009462104709262,
+            "velocity_tail_pooled_rmse": [
+              0.10244051159532735,
+              0.18494537410265235,
+              1.0321090152322194
+            ],
+            "head_tail_mae_deg": [
+              5.785161321361859,
+              4.9167176857590675,
+              6.332769279678662,
+              5.105513031284015
+            ],
+            "double_support_fraction": 0.20174478679837193,
+            "touchdown_frequency_per_foot_hz": [
+              1.9192708333333333,
+              1.9752604166666667
+            ],
+            "mean_available_case_stride_m": 0.062242468639548555,
+            "head_time90_reached_fraction": null
+          },
+          "turn": {
+            "case_phase_seed_rows": 24,
+            "trial_phase_count": 192,
+            "survived_trial_phase_count": 192,
+            "camera_rms_per_trial_mean_rad_s": 5.853197515010834,
+            "camera_p95_per_trial_mean_rad_s": 8.746735274791718,
+            "exposure_p95_per_trial_mean_rad": 0.16949217828611532,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 5.852766831520181,
+            "velocity_tail_pooled_rmse": [
+              0.07911714462902648,
+              0.16947601971664367,
+              1.036148438214651
+            ],
+            "head_tail_mae_deg": [
+              4.763651371002197,
+              5.259445329507192,
+              6.4634159207344055,
+              5.843010226885478
+            ],
+            "double_support_fraction": 0.03348958245866621,
+            "touchdown_frequency_per_foot_hz": [
+              2.15625,
+              2.2421875
+            ],
+            "mean_available_case_stride_m": 0.04088554570140938,
+            "head_time90_reached_fraction": null
+          },
+          "walking_head": {
+            "case_phase_seed_rows": 8,
+            "trial_phase_count": 64,
+            "survived_trial_phase_count": 64,
+            "camera_rms_per_trial_mean_rad_s": 5.9596235156059265,
+            "camera_p95_per_trial_mean_rad_s": 8.926060795783997,
+            "exposure_p95_per_trial_mean_rad": 0.17359962314367294,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 5.959623423518548,
+            "velocity_tail_pooled_rmse": [
+              0.08675385972709068,
+              0.17199879197315018,
+              0.9962335928240841
+            ],
+            "head_tail_mae_deg": [
+              5.518640160560608,
+              5.438284516334534,
+              6.977626204490662,
+              5.8266138434410095
+            ],
+            "double_support_fraction": 0.03046874888241291,
+            "touchdown_frequency_per_foot_hz": [
+              2.2578125,
+              2.2421875
+            ],
+            "mean_available_case_stride_m": 0.0767001947388053,
+            "head_time90_reached_fraction": [
+              0.0,
+              0.03125,
+              0.0,
+              0.0
+            ]
+          },
+          "stop": {
+            "case_phase_seed_rows": 40,
+            "trial_phase_count": 320,
+            "survived_trial_phase_count": 320,
+            "camera_rms_per_trial_mean_rad_s": 4.214579163491726,
+            "camera_p95_per_trial_mean_rad_s": 6.6661656439304355,
+            "exposure_p95_per_trial_mean_rad": 0.1291722587775439,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 4.214579137522647,
+            "velocity_tail_pooled_rmse": [
+              0.05264767012101314,
+              0.10787622977736959,
+              0.7602031655194964
+            ],
+            "head_tail_mae_deg": [
+              5.301007604598999,
+              2.550117018818855,
+              3.683943635225296,
+              3.558062019944191
+            ],
+            "double_support_fraction": 0.23399999607354402,
+            "touchdown_frequency_per_foot_hz": [
+              2.20625,
+              2.240625
+            ],
+            "mean_available_case_stride_m": 0.015225721857486626,
+            "head_time90_reached_fraction": null
+          },
+          "return_to_idle": {
+            "case_phase_seed_rows": 40,
+            "trial_phase_count": 320,
+            "survived_trial_phase_count": 319,
+            "camera_rms_per_trial_mean_rad_s": 3.6828802973031998,
+            "camera_p95_per_trial_mean_rad_s": 6.244790196418762,
+            "exposure_p95_per_trial_mean_rad": 0.12058599824085832,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 3.6828802599504433,
+            "velocity_tail_pooled_rmse": [
+              0.044356573498893125,
+              0.09319513260141304,
+              0.5880739869722968
+            ],
+            "head_tail_mae_deg": [
+              5.720012378692627,
+              2.2682602763175965,
+              3.3663930714130403,
+              3.1205330908298494
+            ],
+            "double_support_fraction": 0.38196874037384987,
+            "touchdown_frequency_per_foot_hz": [
+              1.7671875,
+              1.8328125
+            ],
+            "mean_available_case_stride_m": 0.015527613833546639,
+            "head_time90_reached_fraction": null
+          }
+        },
+        "survey": {
+          "idle": {
+            "case": "idle",
+            "trials": 16,
+            "tail_healthy_hold_trials": 13,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.001332776271738112,
+              0.0003030458465218544,
+              -0.00024283713719341904
+            ],
+            "tail_angular_mean": [
+              -0.0019087956752628088,
+              0.005246539134532213,
+              -0.005463838577270508
+            ],
+            "tail_height_mean_m": 0.11384781450033188,
+            "tail_tilt_mean_deg": 2.4228880405426025,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.27663499116897583,
+              "angular_speed_p95_rad_s": 0.5772387981414795,
+              "exposure_span_p95_rad": 0.01067027635872364,
+              "exposure_span_max_rad": 0.015095913782715797
+            },
+            "camera_tail_healthy_trials": 13,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.19470568001270294,
+              "angular_speed_p95_rad_s": 0.4044592082500458,
+              "exposure_span_p95_rad": 0.007319469936192036,
+              "exposure_span_max_rad": 0.011456720530986786
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.27663499116897583,
+              "angular_speed_p95_rad_s": 0.5772387981414795,
+              "exposure_span_p95_rad": 0.01067027635872364,
+              "exposure_span_max_rad": 0.015095913782715797
+            }
+          },
+          "forward_01": {
+            "case": "forward_01",
+            "trials": 16,
+            "tail_healthy_hold_trials": 2,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.07747289538383484,
+              -0.002726496895775199,
+              -0.0006309000309556723
+            ],
+            "tail_angular_mean": [
+              0.0034132516011595726,
+              0.011462344788014889,
+              0.02269393391907215
+            ],
+            "tail_height_mean_m": 0.12467498332262039,
+            "tail_tilt_mean_deg": 2.760922431945801,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.184998512268066,
+              "angular_speed_p95_rad_s": 7.378429412841797,
+              "exposure_span_p95_rad": 0.1436680108308792,
+              "exposure_span_max_rad": 0.1675027310848236
+            },
+            "camera_tail_healthy_trials": 2,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.37590885162353516,
+              "angular_speed_p95_rad_s": 0.8290623426437378,
+              "exposure_span_p95_rad": 0.016121063381433487,
+              "exposure_span_max_rad": 0.022656438872218132
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.184998512268066,
+              "angular_speed_p95_rad_s": 7.378429412841797,
+              "exposure_span_p95_rad": 0.1436680108308792,
+              "exposure_span_max_rad": 0.1675027310848236
+            }
+          },
+          "forward_03": {
+            "case": "forward_03",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.23745663464069366,
+              -0.018533343449234962,
+              0.010575959458947182
+            ],
+            "tail_angular_mean": [
+              0.005092862527817488,
+              -0.0034983335062861443,
+              0.2908061444759369
+            ],
+            "tail_height_mean_m": 0.12327411025762558,
+            "tail_tilt_mean_deg": 3.7796196937561035,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 6.829423427581787,
+              "angular_speed_p95_rad_s": 9.861475944519043,
+              "exposure_span_p95_rad": 0.1931944489479065,
+              "exposure_span_max_rad": 0.22726301848888397
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 6.829423427581787,
+              "angular_speed_p95_rad_s": 9.861475944519043,
+              "exposure_span_p95_rad": 0.1931944489479065,
+              "exposure_span_max_rad": 0.22726301848888397
+            }
+          },
+          "yaw_negative": {
+            "case": "yaw_negative",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.013098995201289654,
+              0.00841387640684843,
+              0.00029829470440745354
+            ],
+            "tail_angular_mean": [
+              0.012275989167392254,
+              -0.008063466288149357,
+              -0.26232415437698364
+            ],
+            "tail_height_mean_m": 0.126618891954422,
+            "tail_tilt_mean_deg": 3.59153151512146,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.394134044647217,
+              "angular_speed_p95_rad_s": 7.873050212860107,
+              "exposure_span_p95_rad": 0.15232756733894348,
+              "exposure_span_max_rad": 0.17711123824119568
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.394134044647217,
+              "angular_speed_p95_rad_s": 7.873050212860107,
+              "exposure_span_p95_rad": 0.15232756733894348,
+              "exposure_span_max_rad": 0.17711123824119568
+            }
+          },
+          "yaw_positive": {
+            "case": "yaw_positive",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.0028108209371566772,
+              0.0027848954778164625,
+              0.000885703251697123
+            ],
+            "tail_angular_mean": [
+              -0.014001026749610901,
+              -0.008734556846320629,
+              0.2409292608499527
+            ],
+            "tail_height_mean_m": 0.1272125393152237,
+            "tail_tilt_mean_deg": 2.867138147354126,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.971741676330566,
+              "angular_speed_p95_rad_s": 8.649394989013672,
+              "exposure_span_p95_rad": 0.16643886268138885,
+              "exposure_span_max_rad": 0.19150201976299286
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.971741676330566,
+              "angular_speed_p95_rad_s": 8.649394989013672,
+              "exposure_span_p95_rad": 0.16643886268138885,
+              "exposure_span_max_rad": 0.19150201976299286
+            }
+          },
+          "prone": {
+            "case": "prone",
+            "trials": 16,
+            "tail_healthy_hold_trials": 13,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.0006948154768906534,
+              -0.0005522886640392244,
+              9.734717605169863e-05
+            ],
+            "tail_angular_mean": [
+              -0.005805002525448799,
+              -0.004146524704992771,
+              -3.3120810257969424e-05
+            ],
+            "tail_height_mean_m": 0.11476445943117142,
+            "tail_tilt_mean_deg": 2.449484348297119,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.629925012588501,
+              "angular_speed_p95_rad_s": 1.0929973125457764,
+              "exposure_span_p95_rad": 0.020781710743904114,
+              "exposure_span_max_rad": 0.03014436736702919
+            },
+            "camera_tail_healthy_trials": 13,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.2464599758386612,
+              "angular_speed_p95_rad_s": 0.5078074336051941,
+              "exposure_span_p95_rad": 0.009423619136214256,
+              "exposure_span_max_rad": 0.01639191061258316
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.629925012588501,
+              "angular_speed_p95_rad_s": 1.0929973125457764,
+              "exposure_span_p95_rad": 0.020781710743904114,
+              "exposure_span_max_rad": 0.03014436736702919
+            }
+          },
+          "crouch": {
+            "case": "crouch",
+            "trials": 16,
+            "tail_healthy_hold_trials": 14,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -8.270522084785625e-05,
+              -0.0032441350631415844,
+              -2.4164537535398267e-05
+            ],
+            "tail_angular_mean": [
+              0.007078328635543585,
+              -0.0016669165343046188,
+              -0.0009841363644227386
+            ],
+            "tail_height_mean_m": 0.1142943724989891,
+            "tail_tilt_mean_deg": 2.020167112350464,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.6472960114479065,
+              "angular_speed_p95_rad_s": 1.0661439895629883,
+              "exposure_span_p95_rad": 0.020302388817071915,
+              "exposure_span_max_rad": 0.028388602659106255
+            },
+            "camera_tail_healthy_trials": 14,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.265735000371933,
+              "angular_speed_p95_rad_s": 0.550589919090271,
+              "exposure_span_p95_rad": 0.010265870951116085,
+              "exposure_span_max_rad": 0.016892682760953903
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.6472960114479065,
+              "angular_speed_p95_rad_s": 1.0661439895629883,
+              "exposure_span_p95_rad": 0.020302388817071915,
+              "exposure_span_max_rad": 0.028388602659106255
+            }
+          },
+          "sit": {
+            "case": "sit",
+            "trials": 16,
+            "tail_healthy_hold_trials": 14,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.004239688627421856,
+              -0.0003481285530142486,
+              -9.308668813901022e-05
+            ],
+            "tail_angular_mean": [
+              -0.0003519160964060575,
+              -0.011568870395421982,
+              0.035258423537015915
+            ],
+            "tail_height_mean_m": 0.11451355367898941,
+            "tail_tilt_mean_deg": 2.520509958267212,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.5950089693069458,
+              "angular_speed_p95_rad_s": 1.0922775268554688,
+              "exposure_span_p95_rad": 0.020702702924609184,
+              "exposure_span_max_rad": 0.02713829278945923
+            },
+            "camera_tail_healthy_trials": 14,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.22760388255119324,
+              "angular_speed_p95_rad_s": 0.4807896614074707,
+              "exposure_span_p95_rad": 0.009091030806303024,
+              "exposure_span_max_rad": 0.013119418174028397
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.5950089693069458,
+              "angular_speed_p95_rad_s": 1.0922775268554688,
+              "exposure_span_p95_rad": 0.020702702924609184,
+              "exposure_span_max_rad": 0.02713829278945923
+            }
+          }
+        },
+        "upright_camera": {
+          "neutral_idle": {
+            "trial_phase_count": 80,
+            "eligible_trial_phase_count": 80,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 0.35863274335861206,
+              "angular_speed_p95_rad_s": 0.7277427911758423,
+              "exposure_span_p95_rad": 0.013738158158957958,
+              "exposure_span_max_rad": 0.021363794803619385
+            }
+          },
+          "straight": {
+            "trial_phase_count": 384,
+            "eligible_trial_phase_count": 380,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 4.988785266876221,
+              "angular_speed_p95_rad_s": 7.61576509475708,
+              "exposure_span_p95_rad": 0.148100808262825,
+              "exposure_span_max_rad": 0.17919638752937317
+            }
+          },
+          "turn": {
+            "trial_phase_count": 192,
+            "eligible_trial_phase_count": 191,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 5.851640701293945,
+              "angular_speed_p95_rad_s": 8.743452072143555,
+              "exposure_span_p95_rad": 0.16942308843135834,
+              "exposure_span_max_rad": 0.20333974063396454
+            }
+          },
+          "walking_head": {
+            "trial_phase_count": 64,
+            "eligible_trial_phase_count": 64,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 5.95962381362915,
+              "angular_speed_p95_rad_s": 8.926061630249023,
+              "exposure_span_p95_rad": 0.17359961569309235,
+              "exposure_span_max_rad": 0.20573540031909943
+            }
+          },
+          "stop": {
+            "trial_phase_count": 320,
+            "eligible_trial_phase_count": 319,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 4.214766979217529,
+              "angular_speed_p95_rad_s": 6.661951541900635,
+              "exposure_span_p95_rad": 0.12908636033535004,
+              "exposure_span_max_rad": 0.15282127261161804
+            }
+          },
+          "return_to_idle": {
+            "trial_phase_count": 320,
+            "eligible_trial_phase_count": 319,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 3.6714658737182617,
+              "angular_speed_p95_rad_s": 6.23356819152832,
+              "exposure_span_p95_rad": 0.12035056203603745,
+              "exposure_span_max_rad": 0.15781275928020477
+            }
+          }
+        }
+      },
+      "full_bc_control": {
+        "trials": 336,
+        "survived": 336,
+        "feedback_invalid": 0,
+        "groups": {
+          "neutral_idle": {
+            "case_phase_seed_rows": 10,
+            "trial_phase_count": 80,
+            "survived_trial_phase_count": 80,
+            "camera_rms_per_trial_mean_rad_s": 0.31412695348262787,
+            "camera_p95_per_trial_mean_rad_s": 0.6989541202783585,
+            "exposure_p95_per_trial_mean_rad": 0.013338565360754728,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 0.3141269478617748,
+            "velocity_tail_pooled_rmse": [
+              0.00885496569348706,
+              0.0065761326639180466,
+              0.11059996736445843
+            ],
+            "head_tail_mae_deg": [
+              8.77042202949524,
+              0.8547812700271606,
+              1.241764748096466,
+              2.943186950683594
+            ],
+            "double_support_fraction": 0.9862499892711639,
+            "touchdown_frequency_per_foot_hz": [
+              0.25625,
+              0.2875
+            ],
+            "mean_available_case_stride_m": 0.003487272886559367,
+            "head_time90_reached_fraction": null
+          },
+          "straight": {
+            "case_phase_seed_rows": 48,
+            "trial_phase_count": 384,
+            "survived_trial_phase_count": 384,
+            "camera_rms_per_trial_mean_rad_s": 4.965705941120784,
+            "camera_p95_per_trial_mean_rad_s": 7.522976266841094,
+            "exposure_p95_per_trial_mean_rad": 0.1465215141264101,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 4.965705957265482,
+            "velocity_tail_pooled_rmse": [
+              0.1073884521276646,
+              0.1825103365887745,
+              0.9862295620926564
+            ],
+            "head_tail_mae_deg": [
+              6.747927000125249,
+              4.724041057129701,
+              6.357595848540465,
+              5.253283396363258
+            ],
+            "double_support_fraction": 0.25401041034880717,
+            "touchdown_frequency_per_foot_hz": [
+              1.7734375,
+              1.87890625
+            ],
+            "mean_available_case_stride_m": 0.06288913365763922,
+            "head_time90_reached_fraction": null
+          },
+          "turn": {
+            "case_phase_seed_rows": 24,
+            "trial_phase_count": 192,
+            "survived_trial_phase_count": 192,
+            "camera_rms_per_trial_mean_rad_s": 6.05275313059489,
+            "camera_p95_per_trial_mean_rad_s": 8.970784723758698,
+            "exposure_p95_per_trial_mean_rad": 0.1746068106343349,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 6.05374677248992,
+            "velocity_tail_pooled_rmse": [
+              0.08027944135977312,
+              0.16868853305040396,
+              0.9941811196470766
+            ],
+            "head_tail_mae_deg": [
+              5.1592397292455034,
+              5.341579417387645,
+              6.581737379233043,
+              6.321163336435954
+            ],
+            "double_support_fraction": 0.04213541570546416,
+            "touchdown_frequency_per_foot_hz": [
+              2.1458333333333335,
+              2.2447916666666665
+            ],
+            "mean_available_case_stride_m": 0.041753094332913555,
+            "head_time90_reached_fraction": null
+          },
+          "walking_head": {
+            "case_phase_seed_rows": 8,
+            "trial_phase_count": 64,
+            "survived_trial_phase_count": 64,
+            "camera_rms_per_trial_mean_rad_s": 6.186483085155487,
+            "camera_p95_per_trial_mean_rad_s": 9.310538530349731,
+            "exposure_p95_per_trial_mean_rad": 0.18143710494041443,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 6.186483050621385,
+            "velocity_tail_pooled_rmse": [
+              0.09098139718559706,
+              0.17435150142224257,
+              1.0787664429878423
+            ],
+            "head_tail_mae_deg": [
+              5.885128080844879,
+              5.535867750644684,
+              7.370220601558685,
+              6.387447237968445
+            ],
+            "double_support_fraction": 0.03718749922700226,
+            "touchdown_frequency_per_foot_hz": [
+              2.1875,
+              2.421875
+            ],
+            "mean_available_case_stride_m": 0.07329531107097864,
+            "head_time90_reached_fraction": [
+              0.015625,
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          "stop": {
+            "case_phase_seed_rows": 40,
+            "trial_phase_count": 320,
+            "survived_trial_phase_count": 320,
+            "camera_rms_per_trial_mean_rad_s": 4.323423904180527,
+            "camera_p95_per_trial_mean_rad_s": 6.881639361381531,
+            "exposure_p95_per_trial_mean_rad": 0.1331089504994452,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 4.323423946877478,
+            "velocity_tail_pooled_rmse": [
+              0.05218998419508933,
+              0.10510179909264071,
+              0.7543468101778148
+            ],
+            "head_tail_mae_deg": [
+              7.090578860044479,
+              2.464250299334526,
+              3.5339498788118364,
+              4.3774183094501495
+            ],
+            "double_support_fraction": 0.2791249960893765,
+            "touchdown_frequency_per_foot_hz": [
+              2.121875,
+              2.1875
+            ],
+            "mean_available_case_stride_m": 0.017282655416056513,
+            "head_time90_reached_fraction": null
+          },
+          "return_to_idle": {
+            "case_phase_seed_rows": 40,
+            "trial_phase_count": 320,
+            "survived_trial_phase_count": 320,
+            "camera_rms_per_trial_mean_rad_s": 3.607036477327347,
+            "camera_p95_per_trial_mean_rad_s": 6.193348380923271,
+            "exposure_p95_per_trial_mean_rad": 0.11977210789918899,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 3.6070364339861056,
+            "velocity_tail_pooled_rmse": [
+              0.04080943434361568,
+              0.08805524602121152,
+              0.5566896455924171
+            ],
+            "head_tail_mae_deg": [
+              8.100827383995057,
+              1.9888049617409707,
+              2.8208459824323655,
+              3.9952434062957765
+            ],
+            "double_support_fraction": 0.45287499082623983,
+            "touchdown_frequency_per_foot_hz": [
+              1.6109375,
+              1.64375
+            ],
+            "mean_available_case_stride_m": 0.015675004618242384,
+            "head_time90_reached_fraction": null
+          }
+        },
+        "survey": {
+          "idle": {
+            "case": "idle",
+            "trials": 16,
+            "tail_healthy_hold_trials": 16,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.0003068565856665373,
+              -3.9374448533635587e-05,
+              -8.136151154758409e-05
+            ],
+            "tail_angular_mean": [
+              -0.0011676129652187228,
+              -0.001127609284594655,
+              0.00019771356892306358
+            ],
+            "tail_height_mean_m": 0.1138821542263031,
+            "tail_tilt_mean_deg": 2.5881764888763428,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.20466068387031555,
+              "angular_speed_p95_rad_s": 0.4316245913505554,
+              "exposure_span_p95_rad": 0.0076630860567092896,
+              "exposure_span_max_rad": 0.01334721315652132
+            },
+            "camera_tail_healthy_trials": 16,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.20466068387031555,
+              "angular_speed_p95_rad_s": 0.4316245913505554,
+              "exposure_span_p95_rad": 0.0076630860567092896,
+              "exposure_span_max_rad": 0.01334721315652132
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.20466068387031555,
+              "angular_speed_p95_rad_s": 0.4316245913505554,
+              "exposure_span_p95_rad": 0.0076630860567092896,
+              "exposure_span_max_rad": 0.01334721315652132
+            }
+          },
+          "forward_01": {
+            "case": "forward_01",
+            "trials": 16,
+            "tail_healthy_hold_trials": 2,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.062319230288267136,
+              -0.0019292227225378156,
+              0.0004201230767648667
+            ],
+            "tail_angular_mean": [
+              -0.005041227675974369,
+              0.002899616025388241,
+              0.10044702887535095
+            ],
+            "tail_height_mean_m": 0.12373461574316025,
+            "tail_tilt_mean_deg": 2.8390493392944336,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 4.8765459060668945,
+              "angular_speed_p95_rad_s": 7.033915042877197,
+              "exposure_span_p95_rad": 0.13661327958106995,
+              "exposure_span_max_rad": 0.15664225816726685
+            },
+            "camera_tail_healthy_trials": 2,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.0976095050573349,
+              "angular_speed_p95_rad_s": 0.2074475884437561,
+              "exposure_span_p95_rad": 0.003828789107501507,
+              "exposure_span_max_rad": 0.006186766549944878
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 4.8765459060668945,
+              "angular_speed_p95_rad_s": 7.033915042877197,
+              "exposure_span_p95_rad": 0.13661327958106995,
+              "exposure_span_max_rad": 0.15664225816726685
+            }
+          },
+          "forward_03": {
+            "case": "forward_03",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.24621930718421936,
+              0.0020360248163342476,
+              0.017187366262078285
+            ],
+            "tail_angular_mean": [
+              -0.006121770013123751,
+              0.012826962396502495,
+              0.1653476506471634
+            ],
+            "tail_height_mean_m": 0.12348394095897675,
+            "tail_tilt_mean_deg": 4.086224555969238,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 6.8680524826049805,
+              "angular_speed_p95_rad_s": 9.98344612121582,
+              "exposure_span_p95_rad": 0.1957729309797287,
+              "exposure_span_max_rad": 0.21570487320423126
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 6.8680524826049805,
+              "angular_speed_p95_rad_s": 9.98344612121582,
+              "exposure_span_p95_rad": 0.1957729309797287,
+              "exposure_span_max_rad": 0.21570487320423126
+            }
+          },
+          "yaw_negative": {
+            "case": "yaw_negative",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.021314548328518867,
+              0.009357651695609093,
+              0.0015587243251502514
+            ],
+            "tail_angular_mean": [
+              0.004469227511435747,
+              -0.00672490056604147,
+              -0.2148909866809845
+            ],
+            "tail_height_mean_m": 0.1267852485179901,
+            "tail_tilt_mean_deg": 3.3524293899536133,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.862506866455078,
+              "angular_speed_p95_rad_s": 8.274234771728516,
+              "exposure_span_p95_rad": 0.1605338752269745,
+              "exposure_span_max_rad": 0.18025276064872742
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 5.862506866455078,
+              "angular_speed_p95_rad_s": 8.274234771728516,
+              "exposure_span_p95_rad": 0.1605338752269745,
+              "exposure_span_max_rad": 0.18025276064872742
+            }
+          },
+          "yaw_positive": {
+            "case": "yaw_positive",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.007552496623247862,
+              -0.0016548836138099432,
+              0.0018520733574405313
+            ],
+            "tail_angular_mean": [
+              -0.0029275263659656048,
+              0.0022322458680719137,
+              0.31703370809555054
+            ],
+            "tail_height_mean_m": 0.1276678442955017,
+            "tail_tilt_mean_deg": 2.9586105346679688,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 6.425686836242676,
+              "angular_speed_p95_rad_s": 9.212446212768555,
+              "exposure_span_p95_rad": 0.17801068723201752,
+              "exposure_span_max_rad": 0.20134377479553223
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 6.425686836242676,
+              "angular_speed_p95_rad_s": 9.212446212768555,
+              "exposure_span_p95_rad": 0.17801068723201752,
+              "exposure_span_max_rad": 0.20134377479553223
+            }
+          },
+          "prone": {
+            "case": "prone",
+            "trials": 16,
+            "tail_healthy_hold_trials": 15,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.00045650414540432394,
+              -0.00018918863497674465,
+              -9.636798495193943e-05
+            ],
+            "tail_angular_mean": [
+              0.00010428569657960907,
+              0.003113331040367484,
+              0.0020474635530263186
+            ],
+            "tail_height_mean_m": 0.11433936655521393,
+            "tail_tilt_mean_deg": 2.557377815246582,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.27314597368240356,
+              "angular_speed_p95_rad_s": 0.5781842470169067,
+              "exposure_span_p95_rad": 0.010688562877476215,
+              "exposure_span_max_rad": 0.01789730414748192
+            },
+            "camera_tail_healthy_trials": 15,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.2580440640449524,
+              "angular_speed_p95_rad_s": 0.5483064651489258,
+              "exposure_span_p95_rad": 0.010113599710166454,
+              "exposure_span_max_rad": 0.017297288402915
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.27314597368240356,
+              "angular_speed_p95_rad_s": 0.5781842470169067,
+              "exposure_span_p95_rad": 0.010688562877476215,
+              "exposure_span_max_rad": 0.01789730414748192
+            }
+          },
+          "crouch": {
+            "case": "crouch",
+            "trials": 16,
+            "tail_healthy_hold_trials": 16,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.00034891851828433573,
+              -0.00043903462938033044,
+              -0.00010936132457572967
+            ],
+            "tail_angular_mean": [
+              0.002410349901765585,
+              -0.002378938253968954,
+              0.0028852480463683605
+            ],
+            "tail_height_mean_m": 0.11386218667030334,
+            "tail_tilt_mean_deg": 2.088242769241333,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.261114239692688,
+              "angular_speed_p95_rad_s": 0.5489558577537537,
+              "exposure_span_p95_rad": 0.009976252913475037,
+              "exposure_span_max_rad": 0.01530461385846138
+            },
+            "camera_tail_healthy_trials": 16,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.261114239692688,
+              "angular_speed_p95_rad_s": 0.5489558577537537,
+              "exposure_span_p95_rad": 0.009976252913475037,
+              "exposure_span_max_rad": 0.01530461385846138
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.261114239692688,
+              "angular_speed_p95_rad_s": 0.5489558577537537,
+              "exposure_span_p95_rad": 0.009976252913475037,
+              "exposure_span_max_rad": 0.01530461385846138
+            }
+          },
+          "sit": {
+            "case": "sit",
+            "trials": 16,
+            "tail_healthy_hold_trials": 15,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.002958769677206874,
+              0.0008506609592586756,
+              0.0001397488813381642
+            ],
+            "tail_angular_mean": [
+              -0.002831780817359686,
+              -0.001512038055807352,
+              0.019398964941501617
+            ],
+            "tail_height_mean_m": 0.11456428468227386,
+            "tail_tilt_mean_deg": 2.869671106338501,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.5892750024795532,
+              "angular_speed_p95_rad_s": 0.957325279712677,
+              "exposure_span_p95_rad": 0.018068615347146988,
+              "exposure_span_max_rad": 0.02359544113278389
+            },
+            "camera_tail_healthy_trials": 15,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.19503960013389587,
+              "angular_speed_p95_rad_s": 0.4440957009792328,
+              "exposure_span_p95_rad": 0.008057871833443642,
+              "exposure_span_max_rad": 0.012252068147063255
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.5892750024795532,
+              "angular_speed_p95_rad_s": 0.957325279712677,
+              "exposure_span_p95_rad": 0.018068615347146988,
+              "exposure_span_max_rad": 0.02359544113278389
+            }
+          }
+        },
+        "upright_camera": {
+          "neutral_idle": {
+            "trial_phase_count": 80,
+            "eligible_trial_phase_count": 80,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 0.31412696838378906,
+              "angular_speed_p95_rad_s": 0.6989542245864868,
+              "exposure_span_p95_rad": 0.013338565826416016,
+              "exposure_span_max_rad": 0.022250669077038765
+            }
+          },
+          "straight": {
+            "trial_phase_count": 384,
+            "eligible_trial_phase_count": 380,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 4.95172119140625,
+              "angular_speed_p95_rad_s": 7.501296520233154,
+              "exposure_span_p95_rad": 0.1460825651884079,
+              "exposure_span_max_rad": 0.17804649472236633
+            }
+          },
+          "turn": {
+            "trial_phase_count": 192,
+            "eligible_trial_phase_count": 191,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 6.0520501136779785,
+              "angular_speed_p95_rad_s": 8.971293449401855,
+              "exposure_span_p95_rad": 0.17460621893405914,
+              "exposure_span_max_rad": 0.20652411878108978
+            }
+          },
+          "walking_head": {
+            "trial_phase_count": 64,
+            "eligible_trial_phase_count": 64,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 6.186482906341553,
+              "angular_speed_p95_rad_s": 9.310539245605469,
+              "exposure_span_p95_rad": 0.18143710494041443,
+              "exposure_span_max_rad": 0.21630285680294037
+            }
+          },
+          "stop": {
+            "trial_phase_count": 320,
+            "eligible_trial_phase_count": 320,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 4.323424339294434,
+              "angular_speed_p95_rad_s": 6.8816399574279785,
+              "exposure_span_p95_rad": 0.1331089437007904,
+              "exposure_span_max_rad": 0.15859314799308777
+            }
+          },
+          "return_to_idle": {
+            "trial_phase_count": 320,
+            "eligible_trial_phase_count": 320,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 3.607036590576172,
+              "angular_speed_p95_rad_s": 6.1933488845825195,
+              "exposure_span_p95_rad": 0.11977211385965347,
+              "exposure_span_max_rad": 0.15581312775611877
+            }
+          }
+        }
+      },
+      "walking_leg_bc": {
+        "trials": 336,
+        "survived": 336,
+        "feedback_invalid": 0,
+        "groups": {
+          "neutral_idle": {
+            "case_phase_seed_rows": 10,
+            "trial_phase_count": 80,
+            "survived_trial_phase_count": 80,
+            "camera_rms_per_trial_mean_rad_s": 0.2197266161441803,
+            "camera_p95_per_trial_mean_rad_s": 0.45666109025478363,
+            "exposure_p95_per_trial_mean_rad": 0.008329699002206325,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 0.21972661799757437,
+            "velocity_tail_pooled_rmse": [
+              0.008590802720942821,
+              0.005551987747602901,
+              0.09718408723689342
+            ],
+            "head_tail_mae_deg": [
+              6.206654357910156,
+              0.9862868070602417,
+              1.157772558927536,
+              0.3391598120331764
+            ],
+            "double_support_fraction": 0.9916249930858612,
+            "touchdown_frequency_per_foot_hz": [
+              0.20625,
+              0.2625
+            ],
+            "mean_available_case_stride_m": 0.005159576423466206,
+            "head_time90_reached_fraction": null
+          },
+          "straight": {
+            "case_phase_seed_rows": 48,
+            "trial_phase_count": 384,
+            "survived_trial_phase_count": 384,
+            "camera_rms_per_trial_mean_rad_s": 3.330841270585855,
+            "camera_p95_per_trial_mean_rad_s": 5.618715456376473,
+            "exposure_p95_per_trial_mean_rad": 0.10919970964702468,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 3.3308412683756656,
+            "velocity_tail_pooled_rmse": [
+              0.10508114068429751,
+              0.19139414242410416,
+              1.030562420132938
+            ],
+            "head_tail_mae_deg": [
+              11.300479809443155,
+              3.491022656361262,
+              5.22815877199173,
+              5.121533253540595
+            ],
+            "double_support_fraction": 0.201953119438258,
+            "touchdown_frequency_per_foot_hz": [
+              1.9427083333333333,
+              1.9739583333333333
+            ],
+            "mean_available_case_stride_m": 0.0630680928204922,
+            "head_time90_reached_fraction": null
+          },
+          "turn": {
+            "case_phase_seed_rows": 24,
+            "trial_phase_count": 192,
+            "survived_trial_phase_count": 192,
+            "camera_rms_per_trial_mean_rad_s": 3.716124107440313,
+            "camera_p95_per_trial_mean_rad_s": 6.217303653558095,
+            "exposure_p95_per_trial_mean_rad": 0.12060692440718412,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 3.6999467365626675,
+            "velocity_tail_pooled_rmse": [
+              0.08244361304996162,
+              0.1774562865493284,
+              1.0499078298332536
+            ],
+            "head_tail_mae_deg": [
+              11.57036660114924,
+              3.9760037660598755,
+              5.437107503414154,
+              5.548538784186046
+            ],
+            "double_support_fraction": 0.03890624906246861,
+            "touchdown_frequency_per_foot_hz": [
+              2.1536458333333335,
+              2.2291666666666665
+            ],
+            "mean_available_case_stride_m": 0.04264050155567626,
+            "head_time90_reached_fraction": null
+          },
+          "walking_head": {
+            "case_phase_seed_rows": 8,
+            "trial_phase_count": 64,
+            "survived_trial_phase_count": 64,
+            "camera_rms_per_trial_mean_rad_s": 3.8161119520664215,
+            "camera_p95_per_trial_mean_rad_s": 6.314515948295593,
+            "exposure_p95_per_trial_mean_rad": 0.12254318129271269,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 3.8161119562899204,
+            "velocity_tail_pooled_rmse": [
+              0.08813167496359267,
+              0.18320491540043665,
+              1.1154183227427994
+            ],
+            "head_tail_mae_deg": [
+              13.21099853515625,
+              3.607319712638855,
+              5.595313668251038,
+              5.635157555341721
+            ],
+            "double_support_fraction": 0.02921874914318323,
+            "touchdown_frequency_per_foot_hz": [
+              2.203125,
+              2.328125
+            ],
+            "mean_available_case_stride_m": 0.073771967086941,
+            "head_time90_reached_fraction": [
+              0.015625,
+              0.046875,
+              0.078125,
+              0.015625
+            ]
+          },
+          "stop": {
+            "case_phase_seed_rows": 40,
+            "trial_phase_count": 320,
+            "survived_trial_phase_count": 320,
+            "camera_rms_per_trial_mean_rad_s": 2.6155505321919916,
+            "camera_p95_per_trial_mean_rad_s": 4.696794259548187,
+            "exposure_p95_per_trial_mean_rad": 0.09085162319242954,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 2.615550547477904,
+            "velocity_tail_pooled_rmse": [
+              0.05058288034217506,
+              0.10963900306477523,
+              0.8137034511046504
+            ],
+            "head_tail_mae_deg": [
+              9.450176274776458,
+              1.970742604136467,
+              2.55045757740736,
+              3.1282543733716013
+            ],
+            "double_support_fraction": 0.24074999510776252,
+            "touchdown_frequency_per_foot_hz": [
+              2.21875,
+              2.265625
+            ],
+            "mean_available_case_stride_m": 0.01541166726674419,
+            "head_time90_reached_fraction": null
+          },
+          "return_to_idle": {
+            "case_phase_seed_rows": 40,
+            "trial_phase_count": 320,
+            "survived_trial_phase_count": 320,
+            "camera_rms_per_trial_mean_rad_s": 2.2528241157531737,
+            "camera_p95_per_trial_mean_rad_s": 4.205345928668976,
+            "exposure_p95_per_trial_mean_rad": 0.08127814969047904,
+            "requested_yaw_residual_rms_per_trial_mean_rad_s": 2.252824094894458,
+            "velocity_tail_pooled_rmse": [
+              0.04475306137225743,
+              0.09486303227316309,
+              0.6381309506950638
+            ],
+            "head_tail_mae_deg": [
+              8.793228650093079,
+              1.7607076078653336,
+              2.207706080377102,
+              2.3252236425876616
+            ],
+            "double_support_fraction": 0.37503124146023764,
+            "touchdown_frequency_per_foot_hz": [
+              1.76875,
+              1.825
+            ],
+            "mean_available_case_stride_m": 0.015921186469495297,
+            "head_time90_reached_fraction": null
+          }
+        },
+        "survey": {
+          "idle": {
+            "case": "idle",
+            "trials": 16,
+            "tail_healthy_hold_trials": 14,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.00010830534301931038,
+              -4.675262516684597e-06,
+              -0.00028880799072794616
+            ],
+            "tail_angular_mean": [
+              0.0018857832765206695,
+              0.0018316194182261825,
+              0.007823343388736248
+            ],
+            "tail_height_mean_m": 0.11327805370092392,
+            "tail_tilt_mean_deg": 2.4077377319335938,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.20262938737869263,
+              "angular_speed_p95_rad_s": 0.4083699584007263,
+              "exposure_span_p95_rad": 0.007510982919484377,
+              "exposure_span_max_rad": 0.012642117217183113
+            },
+            "camera_tail_healthy_trials": 14,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.1677553355693817,
+              "angular_speed_p95_rad_s": 0.32543057203292847,
+              "exposure_span_p95_rad": 0.0058874995447695255,
+              "exposure_span_max_rad": 0.010186697356402874
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.20262938737869263,
+              "angular_speed_p95_rad_s": 0.4083699584007263,
+              "exposure_span_p95_rad": 0.007510982919484377,
+              "exposure_span_max_rad": 0.012642117217183113
+            }
+          },
+          "forward_01": {
+            "case": "forward_01",
+            "trials": 16,
+            "tail_healthy_hold_trials": 1,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.08878069370985031,
+              -0.007782489061355591,
+              -0.0032670749351382256
+            ],
+            "tail_angular_mean": [
+              0.012669808231294155,
+              0.016943434253335,
+              0.13913071155548096
+            ],
+            "tail_height_mean_m": 0.1262092888355255,
+            "tail_tilt_mean_deg": 3.2769458293914795,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 3.279731273651123,
+              "angular_speed_p95_rad_s": 5.501021385192871,
+              "exposure_span_p95_rad": 0.10709821432828903,
+              "exposure_span_max_rad": 0.13576889038085938
+            },
+            "camera_tail_healthy_trials": 1,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.18298038840293884,
+              "angular_speed_p95_rad_s": 0.4898770749568939,
+              "exposure_span_p95_rad": 0.008432768285274506,
+              "exposure_span_max_rad": 0.013479189947247505
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 3.279731273651123,
+              "angular_speed_p95_rad_s": 5.501021385192871,
+              "exposure_span_p95_rad": 0.10709821432828903,
+              "exposure_span_max_rad": 0.13576889038085938
+            }
+          },
+          "forward_03": {
+            "case": "forward_03",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.2500394880771637,
+              -0.014461200684309006,
+              0.007004310842603445
+            ],
+            "tail_angular_mean": [
+              -0.01653486303985119,
+              0.003710349090397358,
+              0.23891478776931763
+            ],
+            "tail_height_mean_m": 0.12281865626573563,
+            "tail_tilt_mean_deg": 3.856659173965454,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 4.867015838623047,
+              "angular_speed_p95_rad_s": 7.883561134338379,
+              "exposure_span_p95_rad": 0.15504305064678192,
+              "exposure_span_max_rad": 0.1773318350315094
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 4.867015838623047,
+              "angular_speed_p95_rad_s": 7.883561134338379,
+              "exposure_span_p95_rad": 0.15504305064678192,
+              "exposure_span_max_rad": 0.1773318350315094
+            }
+          },
+          "yaw_negative": {
+            "case": "yaw_negative",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.0079271849244833,
+              -0.006704218219965696,
+              0.0028176712803542614
+            ],
+            "tail_angular_mean": [
+              0.007250827271491289,
+              -0.0004226240562275052,
+              -0.06452976912260056
+            ],
+            "tail_height_mean_m": 0.12739337980747223,
+            "tail_tilt_mean_deg": 3.498000383377075,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 3.2185850143432617,
+              "angular_speed_p95_rad_s": 5.423796653747559,
+              "exposure_span_p95_rad": 0.10561336576938629,
+              "exposure_span_max_rad": 0.12038960307836533
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 3.2185850143432617,
+              "angular_speed_p95_rad_s": 5.423796653747559,
+              "exposure_span_p95_rad": 0.10561336576938629,
+              "exposure_span_max_rad": 0.12038960307836533
+            }
+          },
+          "yaw_positive": {
+            "case": "yaw_positive",
+            "trials": 16,
+            "tail_healthy_hold_trials": 0,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.01794283650815487,
+              0.003855662187561393,
+              0.00021424471924547106
+            ],
+            "tail_angular_mean": [
+              -0.006472679320722818,
+              0.014966272749006748,
+              0.3606679439544678
+            ],
+            "tail_height_mean_m": 0.12814363837242126,
+            "tail_tilt_mean_deg": 3.325174570083618,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 3.582219362258911,
+              "angular_speed_p95_rad_s": 6.041066646575928,
+              "exposure_span_p95_rad": 0.11614570021629333,
+              "exposure_span_max_rad": 0.13385072350502014
+            },
+            "camera_tail_healthy_trials": 0,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": null,
+              "angular_speed_p95_rad_s": null,
+              "exposure_span_p95_rad": null,
+              "exposure_span_max_rad": null
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 3.582219362258911,
+              "angular_speed_p95_rad_s": 6.041066646575928,
+              "exposure_span_p95_rad": 0.11614570021629333,
+              "exposure_span_max_rad": 0.13385072350502014
+            }
+          },
+          "prone": {
+            "case": "prone",
+            "trials": 16,
+            "tail_healthy_hold_trials": 13,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.00218125875107944,
+              -0.0018413930665701628,
+              -0.0007574050687253475
+            ],
+            "tail_angular_mean": [
+              0.001295218477025628,
+              0.0037650458980351686,
+              0.021918006241321564
+            ],
+            "tail_height_mean_m": 0.11484716087579727,
+            "tail_tilt_mean_deg": 2.6087353229522705,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.6468416452407837,
+              "angular_speed_p95_rad_s": 1.1322908401489258,
+              "exposure_span_p95_rad": 0.021456856280565262,
+              "exposure_span_max_rad": 0.028037793934345245
+            },
+            "camera_tail_healthy_trials": 13,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.1908639818429947,
+              "angular_speed_p95_rad_s": 0.39813587069511414,
+              "exposure_span_p95_rad": 0.007377156522125006,
+              "exposure_span_max_rad": 0.011786974966526031
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.6468416452407837,
+              "angular_speed_p95_rad_s": 1.1322908401489258,
+              "exposure_span_p95_rad": 0.021456856280565262,
+              "exposure_span_max_rad": 0.028037793934345245
+            }
+          },
+          "crouch": {
+            "case": "crouch",
+            "trials": 16,
+            "tail_healthy_hold_trials": 16,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              -0.0003571516426745802,
+              5.6423305068165064e-05,
+              -0.00023576519743073732
+            ],
+            "tail_angular_mean": [
+              0.000845239672344178,
+              -0.005918407812714577,
+              0.00240470957942307
+            ],
+            "tail_height_mean_m": 0.1131090596318245,
+            "tail_tilt_mean_deg": 2.1424546241760254,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.24020841717720032,
+              "angular_speed_p95_rad_s": 0.48701339960098267,
+              "exposure_span_p95_rad": 0.00859070010483265,
+              "exposure_span_max_rad": 0.01348775252699852
+            },
+            "camera_tail_healthy_trials": 16,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.24020841717720032,
+              "angular_speed_p95_rad_s": 0.48701339960098267,
+              "exposure_span_p95_rad": 0.00859070010483265,
+              "exposure_span_max_rad": 0.01348775252699852
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.24020841717720032,
+              "angular_speed_p95_rad_s": 0.48701339960098267,
+              "exposure_span_p95_rad": 0.00859070010483265,
+              "exposure_span_max_rad": 0.01348775252699852
+            }
+          },
+          "sit": {
+            "case": "sit",
+            "trials": 16,
+            "tail_healthy_hold_trials": 13,
+            "feedback_invalid_trials": 0,
+            "nonfinite_trials": 0,
+            "tail_linear_mean": [
+              0.00034319108817726374,
+              -0.0009199853520840406,
+              -0.0002855852071661502
+            ],
+            "tail_angular_mean": [
+              0.0011292269919067621,
+              0.0013512384612113237,
+              -0.014063398353755474
+            ],
+            "tail_height_mean_m": 0.11456695199012756,
+            "tail_tilt_mean_deg": 2.6646440029144287,
+            "camera_tail_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.49219751358032227,
+              "angular_speed_p95_rad_s": 0.8500196933746338,
+              "exposure_span_p95_rad": 0.016019269824028015,
+              "exposure_span_max_rad": 0.0214302446693182
+            },
+            "camera_tail_healthy_trials": 13,
+            "camera_tail_healthy_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.1306832730770111,
+              "angular_speed_p95_rad_s": 0.25867775082588196,
+              "exposure_span_p95_rad": 0.004583259113132954,
+              "exposure_span_max_rad": 0.009071871638298035
+            },
+            "camera_tail_upright_finite_trials": 16,
+            "camera_tail_upright_finite_per_trial_mean": {
+              "angular_speed_rms_rad_s": 0.49219751358032227,
+              "angular_speed_p95_rad_s": 0.8500196933746338,
+              "exposure_span_p95_rad": 0.016019269824028015,
+              "exposure_span_max_rad": 0.0214302446693182
+            }
+          }
+        },
+        "upright_camera": {
+          "neutral_idle": {
+            "trial_phase_count": 80,
+            "eligible_trial_phase_count": 80,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 0.21972663700580597,
+              "angular_speed_p95_rad_s": 0.45666104555130005,
+              "exposure_span_p95_rad": 0.00832969881594181,
+              "exposure_span_max_rad": 0.015039307996630669
+            }
+          },
+          "straight": {
+            "trial_phase_count": 384,
+            "eligible_trial_phase_count": 382,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 3.321864366531372,
+              "angular_speed_p95_rad_s": 5.600505828857422,
+              "exposure_span_p95_rad": 0.1088288426399231,
+              "exposure_span_max_rad": 0.1379021257162094
+            }
+          },
+          "turn": {
+            "trial_phase_count": 192,
+            "eligible_trial_phase_count": 192,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 3.7161242961883545,
+              "angular_speed_p95_rad_s": 6.2173027992248535,
+              "exposure_span_p95_rad": 0.120606929063797,
+              "exposure_span_max_rad": 0.1516595184803009
+            }
+          },
+          "walking_head": {
+            "trial_phase_count": 64,
+            "eligible_trial_phase_count": 64,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 3.8161120414733887,
+              "angular_speed_p95_rad_s": 6.314515590667725,
+              "exposure_span_p95_rad": 0.12254318594932556,
+              "exposure_span_max_rad": 0.15474796295166016
+            }
+          },
+          "stop": {
+            "trial_phase_count": 320,
+            "eligible_trial_phase_count": 320,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 2.6155505180358887,
+              "angular_speed_p95_rad_s": 4.6967949867248535,
+              "exposure_span_p95_rad": 0.09085162729024887,
+              "exposure_span_max_rad": 0.1127810925245285
+            }
+          },
+          "return_to_idle": {
+            "trial_phase_count": 320,
+            "eligible_trial_phase_count": 320,
+            "criteria": "whole phase height>=.102m/tilt<=20deg/finite/feedback/no prior walking failure; no requirement for double support in motion",
+            "metrics": {
+              "angular_speed_rms_rad_s": 2.252824306488037,
+              "angular_speed_p95_rad_s": 4.20534610748291,
+              "exposure_span_p95_rad": 0.08127814531326294,
+              "exposure_span_max_rad": 0.11408396065235138
+            }
+          }
+        }
+      }
+    }
+  },
+  "initial_comparisons": [
+    {
+      "stage": "nominal",
+      "seed": 2026101612,
+      "fields": {
+        "qpos": {
+          "exact": true,
+          "max_abs": 0.0
+        },
+        "qvel": {
+          "exact": true,
+          "max_abs": 0.0
+        },
+        "actor": {
+          "exact": true,
+          "max_abs": 0.0
+        },
+        "origins": {
+          "exact": true,
+          "max_abs": 0.0
+        }
+      }
+    },
+    {
+      "stage": "nominal",
+      "seed": 2026101613,
+      "fields": {
+        "qpos": {
+          "exact": true,
+          "max_abs": 0.0
+        },
+        "qvel": {
+          "exact": true,
+          "max_abs": 0.0
+        },
+        "actor": {
+          "exact": true,
+          "max_abs": 0.0
+        },
+        "origins": {
+          "exact": true,
+          "max_abs": 0.0
+        }
+      }
+    },
+    {
+      "stage": "measured",
+      "seed": 2026101612,
+      "fields": {
+        "qpos": {
+          "exact": true,
+          "max_abs": 0.0
+        },
+        "qvel": {
+          "exact": true,
+          "max_abs": 0.0
+        },
+        "actor": {
+          "exact": true,
+          "max_abs": 0.0
+        },
+        "origins": {
+          "exact": true,
+          "max_abs": 0.0
+        }
+      }
+    },
+    {
+      "stage": "measured",
+      "seed": 2026101613,
+      "fields": {
+        "qpos": {
+          "exact": true,
+          "max_abs": 0.0
+        },
+        "qvel": {
+          "exact": true,
+          "max_abs": 0.0
+        },
+        "actor": {
+          "exact": true,
+          "max_abs": 0.0
+        },
+        "origins": {
+          "exact": true,
+          "max_abs": 0.0
+        }
+      }
+    }
+  ],
+  "evidence": {
+    "nominal/parent256": {
+      "checkpoint_sha256": "e18524d00d516727e2a5d5504b9423a32ee5bb72aa61d1cc86a26c526b35bcab",
+      "commands_sha256": "c4a2235be35fb036acebdf5c71642804fef3431381c478d69f90d987bf9ba2f5",
+      "survey_sha256": "5219fc6b184e991c1aca78595b7e18fc41a424fc8873791291e2983d0727ed6b",
+      "residual_sha256": "05483473e2c82c473a0ea8be483fa5cc27f27f56f4324bc01c59d1bd66211242"
+    },
+    "nominal/full_bc_mild": {
+      "checkpoint_sha256": "ab6dea2e942527549b5cf28201cc279b8e1b656e29842487575bcab607137835",
+      "commands_sha256": "1093dafae257dc237f0bb54ee6b66560d039f7325fb3c5fbcee8635397b17c7d",
+      "survey_sha256": "5090a10130c9ab05ef5b691f05c8a83570a1b815844f9a248531738f32fd1e4b",
+      "residual_sha256": "5ec317eda3b61bf0a2cf8b7671774f6e40cf3222fe64c5d0c3371865a77edbd7"
+    },
+    "nominal/full_bc_control": {
+      "checkpoint_sha256": "ce6fdd3834b2bf8b6e5637e07737985465043b0488cede70d6e68ad6beef2f08",
+      "commands_sha256": "b85e47b23de0d5cbe1a73fc7ac2cb1ed51220c9ca6d118e059c73b151705180d",
+      "survey_sha256": "6c6fab3d18c6be7fde71bfbbefed8844897f68820c176e6c129a45c55008ce62",
+      "residual_sha256": "b3b65a1b090d39fcf8efb118fecd0da11b9d17fe164ab245ccf53423ea5ba3b2"
+    },
+    "nominal/walking_leg_bc": {
+      "checkpoint_sha256": "c6f2ddcbaa39071bf243afe8690587a130d5ae55655fa0326d6e8d9c0705a9e9",
+      "commands_sha256": "52b9490c09c8df41fdd46c70833feb64c9587f41565c2f40086b393e19d93ec9",
+      "survey_sha256": "21544880916ad42834ff51534e5d6c5f5ae4e593d22781b57e4e07351e32baf2",
+      "residual_sha256": "5f9cd30c035a3607ef9be933bd89962b76df061b2e0133b73c16f7f730a55432"
+    },
+    "measured/parent256": {
+      "checkpoint_sha256": "e18524d00d516727e2a5d5504b9423a32ee5bb72aa61d1cc86a26c526b35bcab",
+      "commands_sha256": "06c52b39cc27148ce08d6e67dd5c735df099587c4e9042849f6273b4e59d9265",
+      "survey_sha256": "a5d732f2dba11707b7dedcb5886318f478d4bdb91487201a867261b0373867da",
+      "residual_sha256": "ef8be72a4bfd43ec478ef8cc92836066511184d9a2d20a55d5c8e0385ad74555"
+    },
+    "measured/full_bc_mild": {
+      "checkpoint_sha256": "ab6dea2e942527549b5cf28201cc279b8e1b656e29842487575bcab607137835",
+      "commands_sha256": "9909e47a5106c7d55dee29b8ec4b19685fb91c0ab772bf3a893dd32ac2bfb02a",
+      "survey_sha256": "f0c8f1cad51294a5b68b555e7af1100ac8986351bf2825e162f373973fb68096",
+      "residual_sha256": "8e236c831926cfa4f26193d8b57f2c5be5f13da5a4679f46a080d505fed7ec78"
+    },
+    "measured/full_bc_control": {
+      "checkpoint_sha256": "ce6fdd3834b2bf8b6e5637e07737985465043b0488cede70d6e68ad6beef2f08",
+      "commands_sha256": "ee73c981ba520e9369a6f6eea371b200cc2485230bfc5f3d51f2615da126ce88",
+      "survey_sha256": "46a1ea34e1663739c3c0cadd0ace3d095fafbd31f019c7c560f025245a7ee837",
+      "residual_sha256": "66e35857c9f3b6c396f0a04d5f363d7aac0f008a1c51a526604fbc948ed7c781"
+    },
+    "measured/walking_leg_bc": {
+      "checkpoint_sha256": "c6f2ddcbaa39071bf243afe8690587a130d5ae55655fa0326d6e8d9c0705a9e9",
+      "commands_sha256": "a11c6a5c261c7018e11c00eb4fe4b4a9af6889522b5e788317d741dc04571f69",
+      "survey_sha256": "770da96a381b819bedc7c5e62be70e06dc06cb4cf49bf6bdc34f63a788905781",
+      "residual_sha256": "27ebbc35ba590bf31519e4aa93320f4bb5475976624876f93fce251d344cf39e"
+    }
+  },
+  "source_sha256": "91c825dc22d8f6e2468bdbbd383024012235e1ab32ce7de805a232b4d6fc2f62",
+  "scope": "One new fixed64 from original256, compared with retained original mild64 from same parent; control320 and parent256 also retained. Not simultaneous reruns. No validation checkpoint inherited. Initial equality tested, no bitwise trajectory claim. Upright-window camera is supplemental and does not loosen original failure/command gates.",
+  "training": {
+    "completed_updates": 320,
+    "allocation_controls": 37748736,
+    "throughput": {
+      "median_control_per_second": 98744.46661165783,
+      "aggregate_control_per_second": 98605.7601423576
+    },
+    "feedback_audit": {
+      "invalid_controls": 0,
+      "unexplained_invalid_lanes": 0,
+      "scope": "Raw count outside0..1023 with valid transaction, reason13/status-1 only. Native episode termination retained; no valid-spike rejection or fabricated replacement.",
+      "budget": 16
+    },
+    "camera_audit": {
+      "control_samples": 37748736,
+      "raw_gated_fault_nonfinite_totals": [
+        1542183393.2818966,
+        1328835597.9755983,
+        0.0,
+        0.0
+      ],
+      "weight": -0.01
+    },
+    "terminal_bootstrap_samples": 24576,
+    "contact_peak": 129852,
+    "contact_capacity": 1572864
+  }
+}

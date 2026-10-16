@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "actual_controls": 50331648,
+  "wall_seconds_from_run_json": 490.70869851112366,
+  "run_json_controls_per_s": 102569.30059058053,
+  "full_process_wall_seconds": 542.3488328456879,
+  "full_process_controls_per_s": 92803.0908371488,
+  "full_process_precision_s": 1,
+  "full_process_scope": "Python process creation to ALLOCATION_COMPLETE, includes all imports/model/reset/graph/PPO/formal evaluation",
+  "logged_updates": 64,
+  "update_median_s": 5.97,
+  "update_median_controls_per_s": 131730.65326633168
+}

@@ -1,0 +1,1401 @@
+{
+  "head_sampling_contract": {
+    "zero_probability": 0.6,
+    "precision_probability": 0.25,
+    "precision_magnitude_range": [
+      0.005,
+      0.04
+    ],
+    "ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ],
+    "conditional_active_axis_probabilities": {
+      "1": 0.5,
+      "2": 0.25,
+      "4": 0.25
+    },
+    "full_range_endpoint_probability": 0.2,
+    "source_sha256": "44bc36a9f4b6211b83aca531c924b493316abe31a33936b8ea2ea93786efe9cd"
+  },
+  "status": "PASS",
+  "head_precision_recipe": {
+    "accuracy_bonus": {
+      "id": "v2-command-axis-accuracy-v1",
+      "weight": 0.5,
+      "params": {
+        "relative_band": 0.1,
+        "minimum_band": 0.002
+      },
+      "active_axis_threshold": 1e-09,
+      "idle": "mean_over_all_four_axes",
+      "physical_output": "V2 joint_pos minus HOME, no passive backlash",
+      "formula": "mean_active(1/(1+abs(error)/max(relative_band*abs(command),minimum_band)))",
+      "source_sha256": "746d6b3d7a3e40deaf5a88f9a904604e754db399e6b185d89e324dbb3a0ba29e"
+    },
+    "id": "v2-head-precision-2",
+    "stage": 2,
+    "ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ],
+    "final_ranges": [
+      [
+        -0.48577760000000003,
+        1.1
+      ],
+      [
+        -1.1,
+        0.904656
+      ],
+      [
+        -1.4,
+        1.4
+      ],
+      [
+        -0.31,
+        0.31
+      ]
+    ],
+    "reward_weight": 3.0,
+    "std": 0.5,
+    "fine_std": 0.04,
+    "fine_weight": 0.5,
+    "reason": "2000-update head response failed despite mastered recovery"
+  },
+  "normalization_recipe": {
+    "id": "mature-parent-normalizer-freeze-v1",
+    "targets": [
+      "actor",
+      "critic"
+    ],
+    "semantics": "retain parent mean/variance/std/count exactly; stop future statistic updates",
+    "until_counts": {
+      "actor": 1107296256,
+      "critic": 1107296256
+    }
+  },
+  "initialization": {
+    "kind": "validation_exact_mature_resume",
+    "checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-cap005-allocation-001/resume_001920.pt",
+    "sha256": "7f626ba167f60845a184d071bea8e56a4654e3be14e5048af3482c2e24803a7d",
+    "inherited_completed_updates": 1920,
+    "actor_critic_normalizers_optimizer_exact": true,
+    "learning_rate": 1e-05,
+    "curriculum_clock": 46080,
+    "recovery_stage": 10,
+    "polish": true,
+    "limitation": "Validation segment only; not counted as formal learned-policy progress"
+  },
+  "optimizer_transition": null,
+  "rng_restore": {
+    "status": "PASS",
+    "source_device": "cuda:0",
+    "target_device": "cuda:0",
+    "active_stream_mapped": false,
+    "saved_visible_device_count": 2,
+    "cpu_rng_sha256": "78c5ee4f40bdca6ce0766a7fa959da54b4fe32204d7910a43d9feb443fecd520",
+    "source_active_cuda_rng_sha256": "1f06fefecb13a8dfd9ad29f2d82de6467477a00a211820bccb32c7159c6ca731",
+    "target_restored_cuda_rng_sha256": "1f06fefecb13a8dfd9ad29f2d82de6467477a00a211820bccb32c7159c6ca731",
+    "inactive_streams_restored_bitwise": true,
+    "source_sha256": "eb196432cfe67bf2e048f6d5a03c117ccc0ccdf904cdf8379bd5a0c7d5236e53",
+    "scope": "Native torch CPU/CUDA random streams; not a full simulator-state replay"
+  },
+  "accuracy_oracle": {
+    "calls": 1248,
+    "max_abs_delta": 1.7881393432617188e-07,
+    "status": "PASS"
+  },
+  "timeout_phase": {
+    "status": "PASS",
+    "recipe": {
+      "id": "first-timeout-deadline-phase-v1",
+      "interval": "uniform integer 1..max_episode_length",
+      "physical_episode_age": "unchanged",
+      "after_reset": "native full episode length",
+      "rng": "dedicated device Generator; seed base + inherited completed updates",
+      "scope": "once per process after exact mature restore and native initial reset"
+    },
+    "source_sha256": "0a6b945b4e9bcc797b8ab073cb2bb208abcbfefca449d8d472dc87624c1830ec",
+    "seed": 2026103427,
+    "inherited_completed_updates": 1920,
+    "initial_native_age_zero": true,
+    "initial_state_and_observation_bitwise_unchanged": true,
+    "global_cpu_cuda_rng_bitwise_unchanged": true,
+    "captured_state_sha256": {
+      "age": "8a39d2abd3999ab73c34db2476849cddf303ce389b35826850f9a700589b4a90",
+      "qpos": "4a44c1faa704e66e65bf622626623454694140a85cfd823b7769dad144c3c355",
+      "qvel": "bfbe59c022a8459063dd75cea8b0fd930750f5ef9c4833a3c86c6d72d7a6085a",
+      "origins": "4c90ddb17c21a493226156dcdb6d3d5ba0c23524079b1ee9273a7c7478c253fd",
+      "obs_actor": "a1b00462e01adbdd6b734a2c8ac498949358732f307c0b9a612b66e832158e25",
+      "obs_critic": "467a24f53b7262cd61649c797143eb4da86eab997d835eb842de3f474c487c56"
+    },
+    "deadline_sha256": "3f874a0cd5c84927cdbfe7585e0bdf399ecec91e65a973657d41d295f29c278b",
+    "deadline_histogram": [
+      0,
+      78,
+      68,
+      88,
+      81,
+      80,
+      68,
+      85,
+      81,
+      89,
+      69,
+      85,
+      66,
+      90,
+      80,
+      76,
+      78,
+      97,
+      79,
+      77,
+      65,
+      80,
+      85,
+      84,
+      91,
+      101,
+      95,
+      67,
+      77,
+      72,
+      78,
+      89,
+      98,
+      90,
+      72,
+      77,
+      83,
+      71,
+      87,
+      79,
+      97,
+      90,
+      83,
+      79,
+      103,
+      78,
+      70,
+      77,
+      80,
+      88,
+      82,
+      85,
+      80,
+      83,
+      86,
+      98,
+      81,
+      90,
+      86,
+      94,
+      82,
+      77,
+      70,
+      87,
+      74,
+      81,
+      88,
+      88,
+      77,
+      82,
+      93,
+      85,
+      89,
+      66,
+      84,
+      77,
+      87,
+      83,
+      85,
+      78,
+      95,
+      68,
+      80,
+      89,
+      93,
+      85,
+      60,
+      105,
+      91,
+      78,
+      76,
+      70,
+      60,
+      79,
+      73,
+      78,
+      81,
+      82,
+      83,
+      87,
+      94,
+      96,
+      94,
+      76,
+      71,
+      82,
+      83,
+      72,
+      61,
+      72,
+      85,
+      86,
+      64,
+      82,
+      74,
+      91,
+      93,
+      71,
+      88,
+      99,
+      73,
+      87,
+      77,
+      78,
+      76,
+      71,
+      69,
+      72,
+      89,
+      79,
+      81,
+      72,
+      74,
+      89,
+      77,
+      71,
+      71,
+      68,
+      68,
+      95,
+      87,
+      68,
+      92,
+      78,
+      79,
+      89,
+      83,
+      78,
+      84,
+      81,
+      86,
+      91,
+      74,
+      70,
+      94,
+      68,
+      67,
+      92,
+      89,
+      68,
+      78,
+      86,
+      82,
+      67,
+      79,
+      75,
+      80,
+      75,
+      80,
+      85,
+      86,
+      68,
+      81,
+      79,
+      87,
+      89,
+      76,
+      77,
+      95,
+      98,
+      90,
+      75,
+      80,
+      75,
+      77,
+      82,
+      68,
+      88,
+      95,
+      85,
+      83,
+      77,
+      79,
+      67,
+      87,
+      94,
+      87,
+      96,
+      64,
+      75,
+      78,
+      80,
+      93,
+      80,
+      85,
+      97,
+      91,
+      72,
+      79,
+      82,
+      75,
+      93,
+      88,
+      80,
+      80,
+      69,
+      74,
+      70,
+      91,
+      73,
+      78,
+      93,
+      86,
+      74,
+      94,
+      74,
+      92,
+      86,
+      91,
+      81,
+      88,
+      82,
+      89,
+      80,
+      78,
+      77,
+      85,
+      101,
+      78,
+      89,
+      83,
+      59,
+      80,
+      74,
+      71,
+      76,
+      81,
+      94,
+      95,
+      70,
+      92,
+      76,
+      88,
+      110,
+      69,
+      81,
+      96,
+      75,
+      79,
+      77,
+      92,
+      77,
+      70,
+      98,
+      88,
+      99,
+      78,
+      67,
+      70,
+      84,
+      83,
+      90,
+      79,
+      82,
+      82,
+      82,
+      91,
+      77,
+      83,
+      76,
+      79,
+      76,
+      89,
+      106,
+      94,
+      82,
+      83,
+      91,
+      112,
+      86,
+      90,
+      83,
+      95,
+      102,
+      83,
+      81,
+      88,
+      81,
+      97,
+      85,
+      85,
+      92,
+      85,
+      82,
+      74,
+      81,
+      90,
+      69,
+      81,
+      62,
+      91,
+      78,
+      77,
+      82,
+      89,
+      75,
+      75,
+      81,
+      80,
+      61,
+      79,
+      92,
+      90,
+      78,
+      81,
+      78,
+      72,
+      76,
+      91,
+      84,
+      77,
+      91,
+      79,
+      75,
+      77,
+      76,
+      93,
+      100,
+      91,
+      84,
+      80,
+      76,
+      69,
+      90,
+      80,
+      96,
+      72,
+      77,
+      96,
+      96,
+      65,
+      80,
+      91,
+      78,
+      72,
+      100,
+      81,
+      73,
+      84,
+      92,
+      70,
+      73,
+      75,
+      79,
+      67,
+      84,
+      78,
+      95,
+      78,
+      99,
+      68,
+      79,
+      95,
+      74,
+      89,
+      79,
+      67,
+      78,
+      77,
+      84,
+      98,
+      79,
+      70,
+      89,
+      86,
+      102,
+      88,
+      87,
+      96,
+      69,
+      70,
+      82,
+      81,
+      84,
+      74,
+      82,
+      77,
+      79,
+      84,
+      82,
+      88
+    ]
+  },
+  "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-M4-HeadStdCap005-MicroExposure025-TimeoutPhase-AccuracyBonus05-Repaired-S0-O0-R1",
+  "device": "cuda:0",
+  "envs": 32768,
+  "iterations": 52,
+  "steps_per_env": 24,
+  "learning_epochs": 5,
+  "minibatches": 4,
+  "entropy_coef": 0.005,
+  "distribution_cfg": {
+    "class_name": "mjlab_microduck.custom_v2.head_exploration:HeadCappedGaussianDistribution",
+    "init_std": 1.0,
+    "std_type": "scalar",
+    "head_std_cap": 0.005
+  },
+  "first_minibatch_tolerances": {
+    "std_max_delta": 0.0,
+    "kl_max": 1e-06,
+    "ratio_max_abs_error": 0.002,
+    "reason": "FP32 actor recomputation across batch sizes; effective std remains bitwise identical"
+  },
+  "exploration_before": {
+    "id": "v2-head-effective-std-cap-v1",
+    "head_std_cap_rad": 0.005,
+    "policy_joint_order": [
+      "left_hip_yaw",
+      "left_hip_roll",
+      "left_hip_pitch",
+      "left_knee",
+      "left_ankle",
+      "neck_pitch",
+      "head_pitch",
+      "head_yaw",
+      "head_roll",
+      "right_hip_yaw",
+      "right_hip_roll",
+      "right_hip_pitch",
+      "right_knee",
+      "right_ankle"
+    ],
+    "head_joint_names": [
+      "neck_pitch",
+      "head_pitch",
+      "head_yaw",
+      "head_roll"
+    ],
+    "raw_std_parameter_rad": [
+      0.058934591710567474,
+      0.07454771548509598,
+      0.05922073870897293,
+      0.05718185380101204,
+      0.050044234842061996,
+      0.040495723485946655,
+      0.043065641075372696,
+      0.04355427250266075,
+      0.042853713035583496,
+      0.06434262543916702,
+      0.07258348166942596,
+      0.05609215423464775,
+      0.06632764637470245,
+      0.052396126091480255
+    ],
+    "effective_std_rad": [
+      0.058934591710567474,
+      0.07454771548509598,
+      0.05922073870897293,
+      0.05718185380101204,
+      0.050044234842061996,
+      0.004999999888241291,
+      0.004999999888241291,
+      0.004999999888241291,
+      0.004999999888241291,
+      0.06434262543916702,
+      0.07258348166942596,
+      0.05609215423464775,
+      0.06632764637470245,
+      0.052396126091480255
+    ],
+    "leg_std_unchanged": true,
+    "raw_parameter_and_optimizer_preserved": true,
+    "state_dict_keys": [
+      "std_param"
+    ],
+    "source_sha256": "e47e8a240c912e45b0f08ce7d5469e2f91f030ce839065fe9a5098cc05612b14",
+    "semantics": "cap actual Normal before sampling, log_prob, entropy, params and KL; deterministic identity"
+  },
+  "exploration_after": {
+    "id": "v2-head-effective-std-cap-v1",
+    "head_std_cap_rad": 0.005,
+    "policy_joint_order": [
+      "left_hip_yaw",
+      "left_hip_roll",
+      "left_hip_pitch",
+      "left_knee",
+      "left_ankle",
+      "neck_pitch",
+      "head_pitch",
+      "head_yaw",
+      "head_roll",
+      "right_hip_yaw",
+      "right_hip_roll",
+      "right_hip_pitch",
+      "right_knee",
+      "right_ankle"
+    ],
+    "head_joint_names": [
+      "neck_pitch",
+      "head_pitch",
+      "head_yaw",
+      "head_roll"
+    ],
+    "raw_std_parameter_rad": [
+      0.06100662425160408,
+      0.07756812870502472,
+      0.06299658119678497,
+      0.06063776835799217,
+      0.05315709486603737,
+      0.040495723485946655,
+      0.043065641075372696,
+      0.04355427250266075,
+      0.042853713035583496,
+      0.06638455390930176,
+      0.07539010047912598,
+      0.060360100120306015,
+      0.06890223920345306,
+      0.0555686391890049
+    ],
+    "effective_std_rad": [
+      0.06100662425160408,
+      0.07756812870502472,
+      0.06299658119678497,
+      0.06063776835799217,
+      0.05315709486603737,
+      0.004999999888241291,
+      0.004999999888241291,
+      0.004999999888241291,
+      0.004999999888241291,
+      0.06638455390930176,
+      0.07539010047912598,
+      0.060360100120306015,
+      0.06890223920345306,
+      0.0555686391890049
+    ],
+    "leg_std_unchanged": true,
+    "raw_parameter_and_optimizer_preserved": true,
+    "state_dict_keys": [
+      "std_param"
+    ],
+    "source_sha256": "e47e8a240c912e45b0f08ce7d5469e2f91f030ce839065fe9a5098cc05612b14",
+    "semantics": "cap actual Normal before sampling, log_prob, entropy, params and KL; deterministic identity"
+  },
+  "first_minibatch_distribution_consistent_all_updates": true,
+  "losses": [
+    {
+      "value": 0.1708380937576294,
+      "surrogate": 0.013658232020679862,
+      "entropy": -29.347377872467042
+    },
+    {
+      "value": 0.08972666822373868,
+      "surrogate": 0.0029872119179344737,
+      "entropy": -29.34282579421997
+    },
+    {
+      "value": 0.03616041075438261,
+      "surrogate": 0.006923375418409705,
+      "entropy": -29.33419351577759
+    },
+    {
+      "value": 0.01990660196170211,
+      "surrogate": 0.005870068472904677,
+      "entropy": -29.324794483184814
+    },
+    {
+      "value": 0.01908570034429431,
+      "surrogate": 0.006222381484985817,
+      "entropy": -29.314180088043212
+    },
+    {
+      "value": 0.019985986035317184,
+      "surrogate": 0.005977610928675858,
+      "entropy": -29.30056800842285
+    },
+    {
+      "value": 0.020766085665673017,
+      "surrogate": 0.007757057715207338,
+      "entropy": -29.285756397247315
+    },
+    {
+      "value": 0.020415354706346988,
+      "surrogate": 0.009283435925317463,
+      "entropy": -29.271308040618898
+    },
+    {
+      "value": 0.021726565528661014,
+      "surrogate": 0.005741693569416384,
+      "entropy": -29.261872673034667
+    },
+    {
+      "value": 0.020132507756352426,
+      "surrogate": 0.0055077556986361745,
+      "entropy": -29.250281047821044
+    },
+    {
+      "value": 0.01937268292531371,
+      "surrogate": 0.007068799916305579,
+      "entropy": -29.23824472427368
+    },
+    {
+      "value": 0.01757874134927988,
+      "surrogate": 0.00342005306010833,
+      "entropy": -29.22792844772339
+    },
+    {
+      "value": 0.01954543199390173,
+      "surrogate": 0.005384308627981227,
+      "entropy": -29.21694746017456
+    },
+    {
+      "value": 0.017048121150583028,
+      "surrogate": 0.006685795867815614,
+      "entropy": -29.207382202148438
+    },
+    {
+      "value": 0.01708536921069026,
+      "surrogate": 0.0053127965395106,
+      "entropy": -29.198086547851563
+    },
+    {
+      "value": 0.01824737377464771,
+      "surrogate": 0.005560709221754223,
+      "entropy": -29.187229347229003
+    },
+    {
+      "value": 0.018887837138026952,
+      "surrogate": 0.0059100746002513915,
+      "entropy": -29.175075912475585
+    },
+    {
+      "value": 0.01629765648394823,
+      "surrogate": 0.010356756826513446,
+      "entropy": -29.166978549957275
+    },
+    {
+      "value": 0.015868762554600836,
+      "surrogate": 0.0035648473236506105,
+      "entropy": -29.161518859863282
+    },
+    {
+      "value": 0.017909018322825432,
+      "surrogate": 0.007542773312889039,
+      "entropy": -29.154787731170654
+    },
+    {
+      "value": 0.016511448472738267,
+      "surrogate": 0.0072496216162107885,
+      "entropy": -29.145540714263916
+    },
+    {
+      "value": 0.017158847767859697,
+      "surrogate": 0.007310528622474522,
+      "entropy": -29.13766794204712
+    },
+    {
+      "value": 0.014748873421922326,
+      "surrogate": 0.006034964938044141,
+      "entropy": -29.130040550231932
+    },
+    {
+      "value": 0.02047999044880271,
+      "surrogate": 0.009166908304905519,
+      "entropy": -29.119893550872803
+    },
+    {
+      "value": 0.01807020641863346,
+      "surrogate": 0.0071937019982897255,
+      "entropy": -29.112450981140135
+    },
+    {
+      "value": 0.018905324395745993,
+      "surrogate": 0.0062109004589729015,
+      "entropy": -29.103493690490723
+    },
+    {
+      "value": 0.018021375220268965,
+      "surrogate": 0.008516840790980496,
+      "entropy": -29.092870426177978
+    },
+    {
+      "value": 0.015208944864571094,
+      "surrogate": 0.004546481589204632,
+      "entropy": -29.084925746917726
+    },
+    {
+      "value": 0.019224413949996234,
+      "surrogate": 0.008683250506874175,
+      "entropy": -29.073058795928954
+    },
+    {
+      "value": 0.01815155316144228,
+      "surrogate": 0.0051546802802477035,
+      "entropy": -29.06207141876221
+    },
+    {
+      "value": 0.01668020375072956,
+      "surrogate": 0.005440649046795443,
+      "entropy": -29.053888511657714
+    },
+    {
+      "value": 0.01683192513883114,
+      "surrogate": 0.0061011591780697925,
+      "entropy": -29.043068408966064
+    },
+    {
+      "value": 0.016838617995381354,
+      "surrogate": 0.005200626232544891,
+      "entropy": -29.028749465942383
+    },
+    {
+      "value": 0.017833115067332983,
+      "surrogate": 0.0052798537188209595,
+      "entropy": -29.019596099853516
+    },
+    {
+      "value": 0.017377115786075592,
+      "surrogate": 0.005627192195970565,
+      "entropy": -29.009677028656007
+    },
+    {
+      "value": 0.015986312925815583,
+      "surrogate": 0.004843633804557612,
+      "entropy": -28.997408866882324
+    },
+    {
+      "value": 0.018054248206317423,
+      "surrogate": 0.005171313559731061,
+      "entropy": -28.986546421051024
+    },
+    {
+      "value": 0.0170686487108469,
+      "surrogate": 0.0057075298274867235,
+      "entropy": -28.97904682159424
+    },
+    {
+      "value": 0.01612843475304544,
+      "surrogate": 0.004562167612311896,
+      "entropy": -28.97223081588745
+    },
+    {
+      "value": 0.01838212748989463,
+      "surrogate": 0.005218563333619386,
+      "entropy": -28.96189785003662
+    },
+    {
+      "value": 0.015796735510230066,
+      "surrogate": 0.007131344609661028,
+      "entropy": -28.951030254364014
+    },
+    {
+      "value": 0.018625359889119862,
+      "surrogate": 0.007410816787160002,
+      "entropy": -28.936547470092773
+    },
+    {
+      "value": 0.016504372656345367,
+      "surrogate": 0.007222256748354994,
+      "entropy": -28.926454162597658
+    },
+    {
+      "value": 0.01680658310651779,
+      "surrogate": 0.004066012602561386,
+      "entropy": -28.918341541290282
+    },
+    {
+      "value": 0.015007207076996565,
+      "surrogate": 0.004899304114223924,
+      "entropy": -28.907265663146973
+    },
+    {
+      "value": 0.016251962911337615,
+      "surrogate": 0.00432903322216589,
+      "entropy": -28.89905481338501
+    },
+    {
+      "value": 0.016828302294015884,
+      "surrogate": 0.005416842286285828,
+      "entropy": -28.89198818206787
+    },
+    {
+      "value": 0.015650875819846987,
+      "surrogate": 0.006052649465163995,
+      "entropy": -28.8844352722168
+    },
+    {
+      "value": 0.01800542613491416,
+      "surrogate": 0.005093761809985153,
+      "entropy": -28.87650508880615
+    },
+    {
+      "value": 0.016171980090439318,
+      "surrogate": 0.003869418110116385,
+      "entropy": -28.870378684997558
+    },
+    {
+      "value": 0.01488198284059763,
+      "surrogate": 0.005858592590084299,
+      "entropy": -28.8649338722229
+    },
+    {
+      "value": 0.01687514828518033,
+      "surrogate": 0.004885527779697441,
+      "entropy": -28.85872392654419
+    }
+  ],
+  "policy_parameter_max_change": 0.004267945885658264,
+  "finite_policy_parameters": true,
+  "terminal_bootstrap_samples": 102217,
+  "elapsed_seconds": 433.8873189340811,
+  "robot_xml": "robot.xml",
+  "robot_xml_sha256": "d52e06595e737ebe0b96529bfa6410b26b5f0e2d221e03ee2c28c4c9fcf0ed69",
+  "action_scale": 1.0,
+  "peak_contacts_across_worlds": 255457,
+  "physics_cuda_graph": true,
+  "motor_graph_replays": [
+    4990,
+    4990
+  ],
+  "contact_capacity_across_worlds": 1146880,
+  "contact_capacity_checked_each_physics_step": true,
+  "logging": "local TensorBoard",
+  "upload_model": false,
+  "limitation": "A short PPO smoke validates the training path; it does not demonstrate learned walking or SC0090 sim2real.",
+  "timeout_phase_remaining_first_episodes": 0,
+  "timeout_phase_default_after_reset": true,
+  "normalization_source_sha256": "e75be9b1214c4bd8a0fabd79987284849c866ebb73914786dce61bda48f37a02",
+  "normalization_unchanged_all_updates": true,
+  "iteration_timing": [
+    {
+      "iteration": 1920,
+      "collection_s": 32.47296977043152,
+      "learning_s": 0.8020164966583252,
+      "wall_s": 34.994858948048204
+    },
+    {
+      "iteration": 1921,
+      "collection_s": 6.825635194778442,
+      "learning_s": 0.7105638980865479,
+      "wall_s": 7.640156969893724
+    },
+    {
+      "iteration": 1922,
+      "collection_s": 6.8686723709106445,
+      "learning_s": 0.7162840366363525,
+      "wall_s": 7.680880586151034
+    },
+    {
+      "iteration": 1923,
+      "collection_s": 7.037211656570435,
+      "learning_s": 0.7290585041046143,
+      "wall_s": 7.953849893063307
+    },
+    {
+      "iteration": 1924,
+      "collection_s": 6.904278039932251,
+      "learning_s": 0.7214865684509277,
+      "wall_s": 7.715645633870736
+    },
+    {
+      "iteration": 1925,
+      "collection_s": 6.847419261932373,
+      "learning_s": 0.7219572067260742,
+      "wall_s": 7.669899611035362
+    },
+    {
+      "iteration": 1926,
+      "collection_s": 6.924937009811401,
+      "learning_s": 0.7282276153564453,
+      "wall_s": 7.746262388071045
+    },
+    {
+      "iteration": 1927,
+      "collection_s": 6.894650220870972,
+      "learning_s": 0.7223381996154785,
+      "wall_s": 7.715486143017188
+    },
+    {
+      "iteration": 1928,
+      "collection_s": 6.9005348682403564,
+      "learning_s": 0.7248897552490234,
+      "wall_s": 7.721892084926367
+    },
+    {
+      "iteration": 1929,
+      "collection_s": 6.904941082000732,
+      "learning_s": 0.7234694957733154,
+      "wall_s": 7.718206204008311
+    },
+    {
+      "iteration": 1930,
+      "collection_s": 6.871929883956909,
+      "learning_s": 0.7266356945037842,
+      "wall_s": 7.692719548940659
+    },
+    {
+      "iteration": 1931,
+      "collection_s": 6.886810302734375,
+      "learning_s": 0.7248961925506592,
+      "wall_s": 7.800637744134292
+    },
+    {
+      "iteration": 1932,
+      "collection_s": 6.918635606765747,
+      "learning_s": 0.7269022464752197,
+      "wall_s": 7.738053239881992
+    },
+    {
+      "iteration": 1933,
+      "collection_s": 6.921920537948608,
+      "learning_s": 0.7314834594726562,
+      "wall_s": 7.748049163958058
+    },
+    {
+      "iteration": 1934,
+      "collection_s": 6.929835319519043,
+      "learning_s": 0.7305855751037598,
+      "wall_s": 7.753679997986183
+    },
+    {
+      "iteration": 1935,
+      "collection_s": 6.926902770996094,
+      "learning_s": 0.7284154891967773,
+      "wall_s": 7.750815873965621
+    },
+    {
+      "iteration": 1936,
+      "collection_s": 6.986454963684082,
+      "learning_s": 0.7314426898956299,
+      "wall_s": 7.810492866206914
+    },
+    {
+      "iteration": 1937,
+      "collection_s": 7.041328191757202,
+      "learning_s": 0.7320027351379395,
+      "wall_s": 7.865051309810951
+    },
+    {
+      "iteration": 1938,
+      "collection_s": 7.05604362487793,
+      "learning_s": 0.7322947978973389,
+      "wall_s": 7.878402154194191
+    },
+    {
+      "iteration": 1939,
+      "collection_s": 7.013176441192627,
+      "learning_s": 0.7308292388916016,
+      "wall_s": 7.832486906787381
+    },
+    {
+      "iteration": 1940,
+      "collection_s": 7.021273851394653,
+      "learning_s": 0.729912519454956,
+      "wall_s": 7.8472449271939695
+    },
+    {
+      "iteration": 1941,
+      "collection_s": 6.993133068084717,
+      "learning_s": 0.7357056140899658,
+      "wall_s": 7.820745908888057
+    },
+    {
+      "iteration": 1942,
+      "collection_s": 7.035109519958496,
+      "learning_s": 0.7411065101623535,
+      "wall_s": 7.8719807509332895
+    },
+    {
+      "iteration": 1943,
+      "collection_s": 7.028082609176636,
+      "learning_s": 0.7372567653656006,
+      "wall_s": 7.85454381396994
+    },
+    {
+      "iteration": 1944,
+      "collection_s": 7.002016067504883,
+      "learning_s": 0.7341382503509521,
+      "wall_s": 7.822151589207351
+    },
+    {
+      "iteration": 1945,
+      "collection_s": 6.893038749694824,
+      "learning_s": 0.7366702556610107,
+      "wall_s": 7.726396951824427
+    },
+    {
+      "iteration": 1946,
+      "collection_s": 6.950226545333862,
+      "learning_s": 0.7362029552459717,
+      "wall_s": 7.78429971402511
+    },
+    {
+      "iteration": 1947,
+      "collection_s": 6.985392093658447,
+      "learning_s": 0.7410664558410645,
+      "wall_s": 7.810239386977628
+    },
+    {
+      "iteration": 1948,
+      "collection_s": 7.012945652008057,
+      "learning_s": 0.7319827079772949,
+      "wall_s": 7.833942739060149
+    },
+    {
+      "iteration": 1949,
+      "collection_s": 6.955044746398926,
+      "learning_s": 0.7322280406951904,
+      "wall_s": 7.781522246077657
+    },
+    {
+      "iteration": 1950,
+      "collection_s": 6.931509256362915,
+      "learning_s": 0.7335109710693359,
+      "wall_s": 7.757030806038529
+    },
+    {
+      "iteration": 1951,
+      "collection_s": 6.941420316696167,
+      "learning_s": 0.739473819732666,
+      "wall_s": 7.769055001903325
+    },
+    {
+      "iteration": 1952,
+      "collection_s": 6.979769706726074,
+      "learning_s": 0.739116907119751,
+      "wall_s": 7.816242699045688
+    },
+    {
+      "iteration": 1953,
+      "collection_s": 7.024255037307739,
+      "learning_s": 0.7337460517883301,
+      "wall_s": 7.850933803943917
+    },
+    {
+      "iteration": 1954,
+      "collection_s": 7.022460699081421,
+      "learning_s": 0.7456824779510498,
+      "wall_s": 7.865370329003781
+    },
+    {
+      "iteration": 1955,
+      "collection_s": 7.071951389312744,
+      "learning_s": 0.7335796356201172,
+      "wall_s": 7.906123952940106
+    },
+    {
+      "iteration": 1956,
+      "collection_s": 7.007986307144165,
+      "learning_s": 0.7407341003417969,
+      "wall_s": 7.8401143059600145
+    },
+    {
+      "iteration": 1957,
+      "collection_s": 7.024735450744629,
+      "learning_s": 0.7421627044677734,
+      "wall_s": 7.864436200121418
+    },
+    {
+      "iteration": 1958,
+      "collection_s": 7.077643156051636,
+      "learning_s": 0.7362263202667236,
+      "wall_s": 7.892674244940281
+    },
+    {
+      "iteration": 1959,
+      "collection_s": 6.992223739624023,
+      "learning_s": 0.736335039138794,
+      "wall_s": 7.815727167995647
+    },
+    {
+      "iteration": 1960,
+      "collection_s": 6.9731669425964355,
+      "learning_s": 0.740436315536499,
+      "wall_s": 7.801284559071064
+    },
+    {
+      "iteration": 1961,
+      "collection_s": 6.986156702041626,
+      "learning_s": 0.7319867610931396,
+      "wall_s": 7.805661429883912
+    },
+    {
+      "iteration": 1962,
+      "collection_s": 6.989916801452637,
+      "learning_s": 0.740833044052124,
+      "wall_s": 7.818495262181386
+    },
+    {
+      "iteration": 1963,
+      "collection_s": 6.995417594909668,
+      "learning_s": 0.7401044368743896,
+      "wall_s": 7.831858773948625
+    },
+    {
+      "iteration": 1964,
+      "collection_s": 6.953288316726685,
+      "learning_s": 0.7384796142578125,
+      "wall_s": 7.786192310042679
+    },
+    {
+      "iteration": 1965,
+      "collection_s": 6.933789014816284,
+      "learning_s": 0.7343764305114746,
+      "wall_s": 7.760035358835012
+    },
+    {
+      "iteration": 1966,
+      "collection_s": 6.940693378448486,
+      "learning_s": 0.7354884147644043,
+      "wall_s": 7.765567426104099
+    },
+    {
+      "iteration": 1967,
+      "collection_s": 6.973607063293457,
+      "learning_s": 0.7327871322631836,
+      "wall_s": 7.7989335369784385
+    },
+    {
+      "iteration": 1968,
+      "collection_s": 6.975077390670776,
+      "learning_s": 0.7295405864715576,
+      "wall_s": 7.801704915007576
+    },
+    {
+      "iteration": 1969,
+      "collection_s": 6.942754507064819,
+      "learning_s": 0.7360315322875977,
+      "wall_s": 7.767736914101988
+    },
+    {
+      "iteration": 1970,
+      "collection_s": 6.925288677215576,
+      "learning_s": 0.7383556365966797,
+      "wall_s": 7.75665902486071
+    },
+    {
+      "iteration": 1971,
+      "collection_s": 6.968018531799316,
+      "learning_s": 0.7389945983886719,
+      "wall_s": 7.801381919998676
+    }
+  ],
+  "throughput": {
+    "warmup_updates": 3,
+    "measured_updates": 49,
+    "median_wall_s": 7.801381919998676,
+    "median_end_to_end_steps_per_s": 100806.75552929903,
+    "median_collection_steps_per_s": 112772.62869304657,
+    "aggregate_wall_steps_per_s": 100840.99512440855
+  },
+  "measurement_graph": {
+    "captures": 1,
+    "replays": 4990
+  },
+  "measurement_backend": {
+    "pipeline": "CompiledRegisterPipeline",
+    "frontend": "CompiledCausalStream"
+  },
+  "reset_graphs": {
+    "('full', 491520)": {
+      "captures": 1,
+      "replays": 169,
+      "tick_replays": 169,
+      "chunk_ticks": 1
+    },
+    "('partial', 1920)": {
+      "captures": 2,
+      "replays": 3688,
+      "tick_replays": 69766,
+      "chunk_ticks": 19
+    },
+    "('partial', 960)": {
+      "captures": 2,
+      "replays": 88,
+      "tick_replays": 1366,
+      "chunk_ticks": 19
+    }
+  },
+  "onnx_exported": true,
+  "measurement_execution": {
+    "candidate_count": 1024,
+    "command_count_limits": [
+      20,
+      1001
+    ],
+    "compact_reset": true,
+    "donor_sampler": "v2-device-donor-1024-v1",
+    "frontend": "CompiledCausalStream",
+    "native_feedback_count_limits": [
+      0,
+      1023
+    ],
+    "o0_local_history": true,
+    "pipeline": "CompiledRegisterPipeline",
+    "reset_graph": true,
+    "reset_graph_chunk": 19,
+    "rollout_graph": true,
+    "schema": 1,
+    "source_sha256": {
+      "feedback.py": "dc5ef0c04cc9a7e84bbe12a3a8319a22e102eb69c66f993a38b8587fc97e4740",
+      "graph.py": "a49eff096fe2246dce595ea03af8bd84261636cde58598a1a3a1e4ce5f5e7222",
+      "measurement/__init__.py": "96d1f26fe354f1a6f9a74a4c7cc89ff76a2069851d8b4afbf734785d9205dfcd",
+      "measurement/compact.py": "cc1b50271c30d1ebb0f9995f5b48a87f24af663cd1b59b0c526248a2895a8b4d",
+      "measurement/compiled_registers.py": "0f9671f5a31ddcf232b389d8fcf5b3b736953d00290f470574e0f0882819e4f1",
+      "measurement/compiled_stream.py": "da609f2b075e45bd19be091cb89467fe26e5ef6a1bc9c9b56a3b2a58a33d0aa3",
+      "measurement/firmware_stream.py": "fba17e7e10b4aa37945ccda08f72a3d874281984ba90f1fff8ed1291760ec77f",
+      "measurement/gpu_donors.py": "8eefaa07664482f194df1abec679d95d092ae7da293b91c63944bf337e1b686d",
+      "measurement/precision.py": "792d990f742cec691fee4c1247e11b385520693e206f70faff2aa47536751717",
+      "measurement/prehistory.py": "9f37748c6fd25d8b7a1743ef4681f2ca88e15454fc927e0ac3456fb4374bc4e0",
+      "measurement/registers.py": "089e44fd3eb15eabe0ad1f9d335ae77e7721346db129fef6df4cc613895c3134",
+      "measurement/stream.py": "2ffcf8729f6482c67f5622cc3a0ca5165f5b6f2e5ae6e992941f36c5a569e5d0"
+    },
+    "spike_rejection": false
+  },
+  "training_contract_sha256": "1a12ef15ee8d9208ad29eab25342fc5a37cf3c1f5b02e85a5a19ceab953680af",
+  "randomization_stage": "nominal",
+  "onnx_cpu_inference": {
+    "input": [
+      1,
+      61
+    ],
+    "output": [
+      1,
+      14
+    ],
+    "metadata_joint_count": 14,
+    "normalizer_parity_max_error": 3.5762786865234375e-07
+  }
+}

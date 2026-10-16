@@ -1,0 +1,813 @@
+{
+  "status": "BOUNDED_CPU_REVIEW_COMPLETE",
+  "formal_training_controls_added": 0,
+  "gpu_controls_added": 0,
+  "scope": "Single review of frozen source and saved data; no training edits, no new simulation",
+  "source_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-repaired-worktree",
+  "input_sha256": {
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-allocation-001/run.json": "b72cdf5b72823ce4cb03ba84d186ec8d0581b80e82152d82be67c11f5417ff27",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-allocation-001/report.json": "172902257ab895d8112f1422233360345370ab874e6893c7219a1d318c696a50",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-training-input-contract.json": "61f2b61c21079ecc218feb295d6ba48338a51186f7f09155ba349ab674b6bef4",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-reach-hold-002/traces.pt": "69052e5ebaeef89a585242ceb218964b65d25fddbd88ba41bfa0130c1772472d",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-reach-screen-001.json": "821b911e72b0f5cc7a465e1fa5b0d8655f9c9bd3b323b38de28d51cae9be78dd",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-repaired-worktree/src/mjlab_microduck/tasks/mdp.py": "28fab160ee3baa140d7b415f3db63e1cf11800a69c35ac95c8284f599d394544",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-repaired-worktree/src/mjlab_microduck/tasks/microduck_ground_pick_env_cfg.py": "9b68951e2c84fdccb5894701efa97e060438eb56c956a34c65e844ba3fa6185e",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-repaired-worktree/src/mjlab_microduck/custom_v2/ground_pick.py": "20ea572800b4e9770ce4d7cc1f966c18fc78673f3b668031fb20f5dd444487ec",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-0128-nominal/traces.pt": "ce59548a2d315dd773d64aa710aba971b31d8abbfb86a039328b230a2d06d0c6",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-0128-measured/traces.pt": "e884e6d3c0bee5ce2bdef2a436abdec7f41f34b70f15b50191c6e9ea0297eb5c",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-allocation-001/events.out.tfevents.1792109901.l40vm01.3972041.0": "9b2412ad8de57d847e249933c7bb5db2345a92c8729b866517d214924cfca59d",
+    "/home/l40-vm01/Documents/ai-research/microduck/microduck-web/web/simulator/assets/policies/alpha_ground_pick.onnx": "ffbf5109982ff999b0ba53afe86b9ae731bbec679d67fb7f8ab4c52152c88872"
+  },
+  "pure_gate_function_sha256": {
+    "phase_pose_blend": "8e74e5b78d58e2d2dfedb014e0a32be44ff76554da66bd01e450eedfe9649ba1",
+    "phase_rise_gate": "1ef31eb760dd8d6cdffe6aa3ea3f0af2c2a84018a389ad07e426b945f69349d4"
+  },
+  "actual_training": {
+    "num_envs": 24576,
+    "T": 24,
+    "epochs": 5,
+    "minibatches": 4,
+    "updates": 128,
+    "controls": 75497472,
+    "common_step_counter": 3072,
+    "phase_exposure": {
+      "descent": 25120041,
+      "low_hold": 3153796,
+      "rise": 28634950,
+      "stand_hold": 18588685
+    },
+    "low_goal_all_sample_fraction": 0.0,
+    "initial_cfg_action_rate_weight": -2.0,
+    "logged_curricula": {
+      "Curriculum/action_rate_weight": {
+        "count": 128,
+        "first": [
+          0,
+          -1.4500000476837158
+        ],
+        "second": [
+          1,
+          -0.8000000715255737
+        ],
+        "last": [
+          127,
+          -0.8000000715255737
+        ],
+        "min": -1.4500000476837158,
+        "max": -0.8000000715255737
+      },
+      "Curriculum/com_range": {
+        "count": 128,
+        "first": [
+          0,
+          0.003000000026077032
+        ],
+        "second": [
+          1,
+          0.003000000026077032
+        ],
+        "last": [
+          127,
+          0.003000000026077032
+        ],
+        "min": 0.003000000026077032,
+        "max": 0.003000000026077032
+      },
+      "Curriculum/head_com_range": {
+        "count": 128,
+        "first": [
+          0,
+          0.003000000026077032
+        ],
+        "second": [
+          1,
+          0.003000000026077032
+        ],
+        "last": [
+          127,
+          0.003000000026077032
+        ],
+        "min": 0.003000000026077032,
+        "max": 0.003000000026077032
+      }
+    }
+  },
+  "command_contract": {
+    "status": "TRAINING_CONTRACT_ONLY_NOT_RUNTIME_QUALIFIED",
+    "task": "Mjlab-GroundPick-Flat-MicroDuck-V2-Repaired-S0-O0-R1",
+    "actor_width": 61,
+    "policy_actions": 14,
+    "mouth_policy_action": false,
+    "home_joint_angles_rad": 0,
+    "policy_period_s": 0.02,
+    "physics_period_s": 0.005,
+    "command_slots": {
+      "48:51": "[cos(2*pi*phase), sin(2*pi*phase), 0], phase advances period4s",
+      "51:55": "head command padding: always0; head moves for mouth task",
+      "55:61": "body command padding: always0"
+    },
+    "phase_segments": {
+      "descent": [
+        0,
+        0.375
+      ],
+      "low_hold": [
+        0.375,
+        0.425
+      ],
+      "rise": [
+        0.425,
+        0.8
+      ],
+      "stand_hold": [
+        0.8,
+        1.0
+      ]
+    },
+    "training_phase_reset": "random",
+    "evaluation_phase_reset": "0 from HOME",
+    "feedback": "actual repaired S0/O0 valid-raw-native-counts-v2; no physical truth substituted into actor",
+    "actuation": "frozen v5, existing P04 native count mapping/limits; unchanged CAD/zero convention",
+    "payload": "simulated downward gravity wrench and moment at mouth_tip after grab ramp; no grasp object or added object inertia",
+    "normalization": "official runner ONNX includes learned actor normalization; tested against real actor obs",
+    "runtime_qualified": false,
+    "hardware_tested": false,
+    "source_files": {
+      "src/mjlab_microduck/custom_v2/ground_pick.py": "20ea572800b4e9770ce4d7cc1f966c18fc78673f3b668031fb20f5dd444487ec",
+      "src/mjlab_microduck/custom_v2/ground_pick_metrics.py": "43da1075f504bcf6c97d87dffb083bec884e73500abd6f145360d90ff3bb20a9",
+      "src/mjlab_microduck/custom_v2/terminal.py": "398c13daa970808e1e0a3fb671c75245f4482fb020dbf262286305a7855b4f41"
+    }
+  },
+  "command_semantics": {
+    "actual_phase_segments": [
+      0,
+      0.375,
+      0.425,
+      0.8,
+      1
+    ],
+    "period_s": 4.0,
+    "inherited_rel_forward_envs": 0.2,
+    "rel_forward_effect": "none: GroundPickPhaseCommand.compute writes cos/sin directly, _resample/_update no-op",
+    "actor_phase_slots": [
+      48,
+      51
+    ],
+    "actor_phase_scaling": "none",
+    "actual_eval_obs_equals_native_command": true
+  },
+  "reward_audit": {
+    "low_return_gate_exact_zero": true,
+    "default_joint_pose_all_zero": true,
+    "low_pose_target": "none; current recipe is task-space mouth geometry",
+    "all_reward_weights_initial_cfg": {
+      "upright": 0.2,
+      "body_ang_vel": -0.05,
+      "angular_momentum": -0.02,
+      "dof_pos_limits": -1.0,
+      "action_rate_l2": -2.0,
+      "soft_landing": -1e-05,
+      "mouth_ground_proximity": 3.0,
+      "mouth_perpendicular_to_ground": 2.0,
+      "ground_pick_return_pose_legs": 6.0,
+      "ground_pick_return_pose_neck": 6.0,
+      "return_upright": 4.0,
+      "neck_vel_descent": -0.1,
+      "feet_grounded": 3.0,
+      "feet_flat": -2.0,
+      "neck_action_rate_l2": -1.0,
+      "joint_torques_l2": -0.005,
+      "self_collisions": -1.0,
+      "head_impact_penalty": -2.0
+    },
+    "saved_policy_low": [
+      {
+        "stage": "nominal",
+        "low_control_samples": 7680,
+        "worlds": 256,
+        "cycles": 3,
+        "repeated_worlds_not_independent": true,
+        "mouth_mean_m": 0.09189121543216364,
+        "down_cos_mean": 0.9379203585907817,
+        "physical_head_mean_rad": [
+          -0.3872862691505967,
+          1.126168711312736,
+          0.2009285368488539,
+          0.403774899065805
+        ],
+        "physical_q_mean_rad": [
+          -0.3934075908230928,
+          0.45463018214795736,
+          0.05033941039843436,
+          -0.8942910792694116,
+          0.521583540031376,
+          -0.3872862691505967,
+          1.126168711312736,
+          0.2009285368488539,
+          0.403774899065805,
+          0.39361235476487005,
+          0.1615118382588359,
+          -0.33200350154947955,
+          -0.7817294902012993,
+          0.5849250241570796
+        ],
+        "low_mouth_reward_rate_mean": 1.289794734489939,
+        "low_orientation_reward_rate_mean": 1.8758407171815634,
+        "low_two_task_terms_sum_mean": 3.1656354516715024,
+        "mouth_reward_height_derivative_mean_per_m": -23.686272740990308,
+        "return_pose_and_upright_gate_max_during_low": 0.0,
+        "low_goal_samples": 0,
+        "head_contact_low_samples": 0,
+        "self_contact_low_samples": 0,
+        "recorded_fields": [
+          "feedback_ready",
+          "feet",
+          "finite",
+          "head_contact",
+          "head_force",
+          "head_torque",
+          "height",
+          "linear",
+          "low_goal",
+          "mouth_down_cos",
+          "mouth_height",
+          "omega",
+          "payload_kg",
+          "phase",
+          "physical_q",
+          "self_contact",
+          "standing_goal",
+          "tilt"
+        ],
+        "source_boundary": "after reward before reset/forward/next phase; derived geometry lags one 5ms substep"
+      },
+      {
+        "stage": "measured",
+        "low_control_samples": 7680,
+        "worlds": 256,
+        "cycles": 3,
+        "repeated_worlds_not_independent": true,
+        "mouth_mean_m": 0.09205785405356437,
+        "down_cos_mean": 0.9372738436795771,
+        "physical_head_mean_rad": [
+          -0.3878736292438892,
+          1.126119440033411,
+          0.20115990494371846,
+          0.4039690700631278
+        ],
+        "physical_q_mean_rad": [
+          -0.3935590526787564,
+          0.45444009453446294,
+          0.0491623892951542,
+          -0.8919206500208626,
+          0.5216740492614917,
+          -0.3878736292438892,
+          1.126119440033411,
+          0.20115990494371846,
+          0.4039690700631278,
+          0.39340477021178233,
+          0.16170845970591471,
+          -0.33192302541780616,
+          -0.7784816444929068,
+          0.5827349531522487
+        ],
+        "low_mouth_reward_rate_mean": 1.2860222146490288,
+        "low_orientation_reward_rate_mean": 1.8745476873591542,
+        "low_two_task_terms_sum_mean": 3.160569902008183,
+        "mouth_reward_height_derivative_mean_per_m": -23.653064712534327,
+        "return_pose_and_upright_gate_max_during_low": 0.0,
+        "low_goal_samples": 0,
+        "head_contact_low_samples": 0,
+        "self_contact_low_samples": 0,
+        "recorded_fields": [
+          "feedback_ready",
+          "feet",
+          "finite",
+          "head_contact",
+          "head_force",
+          "head_torque",
+          "height",
+          "linear",
+          "low_goal",
+          "mouth_down_cos",
+          "mouth_height",
+          "omega",
+          "payload_kg",
+          "phase",
+          "physical_q",
+          "self_contact",
+          "standing_goal",
+          "tilt"
+        ],
+        "source_boundary": "after reward before reset/forward/next phase; derived geometry lags one 5ms substep"
+      }
+    ],
+    "physical_low_reference": [
+      {
+        "payload_kg": 0.0,
+        "worlds": 16,
+        "time_window": "physical direct-target last1s of3s, reward counterfactual at low gate=1/up=0",
+        "mouth_mean_m": 0.012574099148623645,
+        "down_cos_mean": 0.9974217940866947,
+        "physical_head_mean_rad": [
+          2.010256914198399,
+          -0.8606654900312424,
+          -0.00018986078115858617,
+          -0.0004391998664868879
+        ],
+        "mouth_reward_rate_mean": 2.9529362622231012,
+        "orientation_reward_rate_mean": 1.9948435881733895,
+        "two_task_terms_sum_mean": 4.94777985039649,
+        "return_head_at_full_up_gate_mean": 2.9996534120427754,
+        "return_head_absolute_derivative_per_axis_full_up_gate": [
+          2.731074082693279e-76,
+          5.820797364702896e-13,
+          0.14625513778320623,
+          0.20592531635755365
+        ],
+        "bothfeet_fraction": 1.0,
+        "body_tilt_mean_deg": 28.154843921786664,
+        "linear_max_mps": 0.0012337714433670044,
+        "omega_max_radps": 0.01370812114328146,
+        "self_contact_settled_trials": 0,
+        "head_impact_settled_trials": 0,
+        "full_fault_trials": 0
+      },
+      {
+        "payload_kg": 0.03,
+        "worlds": 16,
+        "time_window": "physical direct-target last1s of3s, reward counterfactual at low gate=1/up=0",
+        "mouth_mean_m": 0.012485174792818726,
+        "down_cos_mean": 0.9975657093524933,
+        "physical_head_mean_rad": [
+          2.0085457164049147,
+          -0.8624114778637886,
+          0.00024992529976316293,
+          -6.253741870750674e-05
+        ],
+        "mouth_reward_rate_mean": 2.95359611692121,
+        "orientation_reward_rate_mean": 1.9951314187049867,
+        "two_task_terms_sum_mean": 4.948727535626197,
+        "return_head_at_full_up_gate_mean": 2.9996666911389025,
+        "return_head_absolute_derivative_per_axis_full_up_gate": [
+          3.789321477301196e-76,
+          5.125171571939662e-13,
+          0.1727139897207053,
+          0.20302539661152147
+        ],
+        "bothfeet_fraction": 1.0,
+        "body_tilt_mean_deg": 28.301545128153013,
+        "linear_max_mps": 0.0011364032980054617,
+        "omega_max_radps": 0.01249267254024744,
+        "self_contact_settled_trials": 0,
+        "head_impact_settled_trials": 0,
+        "full_fault_trials": 0
+      }
+    ],
+    "analytical_gates": {
+      "down_gate_time_integral_seconds": 1.7,
+      "up_gate_time_integral_seconds": 1.55,
+      "down_two_term_max_cycle_return": 8.5,
+      "up_legs_head_upright_max_cycle_return": 24.8,
+      "interpretation": "Theoretical maxima only, not observed full returns or proof of reward preference"
+    },
+    "limits": [
+      "Old evaluation traces lack actions, previous actions, joint velocity, all joint torques, foot orientation, angular momentum and exact entire reward stack; cannot reconstruct full returns or PPO gradients.",
+      "Physical direct-target trials and policy trials are not paired initial states; partial task rewards are a source-based counterfactual, not whole-policy causal evidence.",
+      "Height reward analytic derivative is nonzero near92mm; this is not action Jacobian or PPO optimizer gradient.",
+      "Return head Gaussian can have negligible derivative at deep neck/head offsets, but no trial proves this caused failure."
+    ]
+  },
+  "optimization_count_comparison": [
+    {
+      "num_envs": 24576,
+      "rollout_T": 24,
+      "controls": 75497472,
+      "updates": 128,
+      "adam_minibatch_steps": 2560,
+      "minibatch_samples": 147456,
+      "common_control_clock": 3072,
+      "kind": "actual"
+    },
+    {
+      "num_envs": 8192,
+      "rollout_T": 24,
+      "controls": 75497472,
+      "updates": 384,
+      "adam_minibatch_steps": 7680,
+      "minibatch_samples": 49152,
+      "common_control_clock": 9216,
+      "kind": "arithmetic_counterfactual_not_historical_run"
+    },
+    {
+      "num_envs": 4096,
+      "rollout_T": 24,
+      "controls": 75497472,
+      "updates": 768,
+      "adam_minibatch_steps": 15360,
+      "minibatch_samples": 24576,
+      "common_control_clock": 18432,
+      "kind": "arithmetic_counterfactual_not_historical_run"
+    }
+  ],
+  "historical_evidence": {
+    "published_model_path": "/home/l40-vm01/Documents/ai-research/microduck/microduck-web/web/simulator/assets/policies/alpha_ground_pick.onnx",
+    "metadata": {
+      "run_path": "None",
+      "joint_names": "left_hip_yaw,left_hip_roll,left_hip_pitch,left_knee,left_ankle,neck_pitch,head_pitch,head_yaw,head_roll,right_hip_yaw,right_hip_roll,right_hip_pitch,right_knee,right_ankle",
+      "joint_stiffness": "1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000",
+      "joint_damping": "0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000",
+      "default_joint_pos": "0.000,-0.087,-0.458,-0.005,0.453,0.349,0.349,0.000,0.000,0.000,0.087,0.458,0.005,-0.453",
+      "command_names": "twist",
+      "observation_names": "base_ang_vel,projected_gravity,joint_pos,joint_vel,actions,command,head_command,body_command",
+      "action_scale": "1.0"
+    },
+    "actual_success_run_N_T_updates_curriculum": "UNKNOWN: no provenance-linked historical run/config found in bounded local review; ONNX run_path=None and no N/T/update metadata",
+    "current_default_T": 24,
+    "current_default_epochs": 5,
+    "current_default_minibatches": 4,
+    "current_default_max_iterations": 20000,
+    "defaults_are_not_actual_success_run": true,
+    "history_reverted_pose_following_commit": "ffd0b055f2a02be534fd6204fd9b6e60dec20023\n2026-07-27T15:42:31+02:00\nfeat(ground_pick): reset vers l'objectif espace-t\u00e2che (bouche pr\u00e8s du sol sans toucher)\n\nAbandon de l'approche pose-following (DOWN pose) : elle enfon\u00e7ait la t\u00eate et\npeinait \u00e0 se relever. Retour au ground_pick d'origine (espace-t\u00e2che sur\nmouth_tip), ajust\u00e9 pour \"au plus pr\u00e8s du sol SANS toucher + bien orient\u00e9\" :\n- mouth_ground_proximity (target 0, tire vers le sol) poids 2->3\n- head_impact_penalty (no-touch) poids -0.5->-2.0, seuil 2->1 N\n  -> \u00e9quilibre = bouche juste au-dessus du sol\n- mouth_perpendicular_to_ground (orientation) poids 1->2\n- retour debout conserv\u00e9 (ground_pick_return_pose_legs/neck)\n- neck_pitch XML remis \u00e0 l'original (-1.571..1.047 ; l'\u00e9largissement -2.6\n  ne servait qu'\u00e0 l'approche pose, abandonn\u00e9e)\n- tests r\u00e9\u00e9crits pour le design espace-t\u00e2che\n\nRobuste au cabrage : la proximit\u00e9 r\u00e9compense directement la bouche basse\n(pas dilu\u00e9 sur 14 joints comme le suivi de pose).\n\nCo-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>\n\n",
+    "design_doc": "docs/superpowers/specs/2026-07-24-ground-pick-pose-following-design.md",
+    "design_doc_is_not_active_recipe_or_success_evidence": true
+  },
+  "findings": [
+    "No demonstrated command phase/sign/scale or default HOME error.",
+    "Low hold has no return-pose reward; current low task-space objective does not prescribe neck/head branch.",
+    "All reset joint poses are HOME despite randomized phase; zero observed healthy low_goal across75,497,472 samples; successful low-state exposure absent in recorded metrics.",
+    "Current128 updates are only one third/sixth the optimizer iterations of equal-control N8192/N4096 arithmetic examples; this does not establish historical-run comparison or authorize more budget."
+  ],
+  "one_repair_direction": {
+    "name": "phase-consistent verified low-endpoint reverse-reset curriculum",
+    "status": "hypothesis only, no source modification or training authorized",
+    "evidence": "Physically healthy low endpoint exists, but current HOME-only resets and frozen trajectory never reach it",
+    "constraints": "keep task-space rewards/PPO fixed, no forced joint interpolation, preserve original HOME full-cycle acceptance",
+    "next_evidence": "authorized separate frozen128/64world lowstart probe at phase.375, with real observation/action/target records"
+  },
+  "logged_episode_reward_summary": {
+    "Episode_Reward/upright": {
+      "count": 128,
+      "first": [
+        0,
+        0.000880194827914238
+      ],
+      "second": [
+        1,
+        0.0033768080174922943
+      ],
+      "last": [
+        127,
+        0.14820930361747742
+      ],
+      "min": 0.000880194827914238,
+      "max": 0.14945605397224426
+    },
+    "Episode_Reward/body_ang_vel": {
+      "count": 128,
+      "first": [
+        0,
+        -0.010455658659338951
+      ],
+      "second": [
+        1,
+        -0.024777879938483238
+      ],
+      "last": [
+        127,
+        -0.14196795225143433
+      ],
+      "min": -0.1572188436985016,
+      "max": -0.010455658659338951
+    },
+    "Episode_Reward/angular_momentum": {
+      "count": 128,
+      "first": [
+        0,
+        -2.3397864978846883e-08
+      ],
+      "second": [
+        1,
+        -5.665692626166674e-08
+      ],
+      "last": [
+        127,
+        -3.0159736752466415e-07
+      ],
+      "min": -3.35267458240196e-07,
+      "max": -2.3397864978846883e-08
+    },
+    "Episode_Reward/dof_pos_limits": {
+      "count": 128,
+      "first": [
+        0,
+        -0.00020695009152404964
+      ],
+      "second": [
+        1,
+        -0.000717588234692812
+      ],
+      "last": [
+        127,
+        -0.059231605380773544
+      ],
+      "min": -0.059231605380773544,
+      "max": -0.00020695009152404964
+    },
+    "Episode_Reward/action_rate_l2": {
+      "count": 128,
+      "first": [
+        0,
+        -0.3938526511192322
+      ],
+      "second": [
+        1,
+        -0.9750139713287354
+      ],
+      "last": [
+        127,
+        -1.591190218925476
+      ],
+      "min": -1.6790603399276733,
+      "max": -0.06939477473497391
+    },
+    "Episode_Reward/soft_landing": {
+      "count": 128,
+      "first": [
+        0,
+        -2.723391503423045e-07
+      ],
+      "second": [
+        1,
+        -8.666700068715727e-07
+      ],
+      "last": [
+        127,
+        -1.8448969058226794e-05
+      ],
+      "min": -1.8629407350090332e-05,
+      "max": -2.723391503423045e-07
+    },
+    "Episode_Reward/mouth_ground_proximity": {
+      "count": 128,
+      "first": [
+        0,
+        0.0017279693856835365
+      ],
+      "second": [
+        1,
+        0.006573941558599472
+      ],
+      "last": [
+        127,
+        0.22668048739433289
+      ],
+      "min": 0.0017279693856835365,
+      "max": 0.22668048739433289
+    },
+    "Episode_Reward/mouth_perpendicular_to_ground": {
+      "count": 128,
+      "first": [
+        0,
+        0.001484244829043746
+      ],
+      "second": [
+        1,
+        0.004459274932742119
+      ],
+      "last": [
+        127,
+        0.5342575907707214
+      ],
+      "min": 0.001484244829043746,
+      "max": 0.5342575907707214
+    },
+    "Episode_Reward/ground_pick_return_pose_legs": {
+      "count": 128,
+      "first": [
+        0,
+        0.01840873435139656
+      ],
+      "second": [
+        1,
+        0.04410688579082489
+      ],
+      "last": [
+        127,
+        1.9627940654754639
+      ],
+      "min": 0.01840873435139656,
+      "max": 1.9627940654754639
+    },
+    "Episode_Reward/ground_pick_return_pose_neck": {
+      "count": 128,
+      "first": [
+        0,
+        0.011398288421332836
+      ],
+      "second": [
+        1,
+        0.025456627830863
+      ],
+      "last": [
+        127,
+        1.7972955703735352
+      ],
+      "min": 0.011398288421332836,
+      "max": 1.7972955703735352
+    },
+    "Episode_Reward/return_upright": {
+      "count": 128,
+      "first": [
+        0,
+        0.009974476881325245
+      ],
+      "second": [
+        1,
+        0.026386737823486328
+      ],
+      "last": [
+        127,
+        1.4768441915512085
+      ],
+      "min": 0.009974476881325245,
+      "max": 1.4768441915512085
+    },
+    "Episode_Reward/neck_vel_descent": {
+      "count": 128,
+      "first": [
+        0,
+        -0.003484517801553011
+      ],
+      "second": [
+        1,
+        -0.023514796048402786
+      ],
+      "last": [
+        127,
+        -0.15458336472511292
+      ],
+      "min": -0.17163090407848358,
+      "max": -0.003484517801553011
+    },
+    "Episode_Reward/feet_grounded": {
+      "count": 128,
+      "first": [
+        0,
+        0.020589590072631836
+      ],
+      "second": [
+        1,
+        0.07413671910762787
+      ],
+      "last": [
+        127,
+        2.906735420227051
+      ],
+      "min": 0.020589590072631836,
+      "max": 2.906735420227051
+    },
+    "Episode_Reward/feet_flat": {
+      "count": 128,
+      "first": [
+        0,
+        -0.005399288143962622
+      ],
+      "second": [
+        1,
+        -0.025069773197174072
+      ],
+      "last": [
+        127,
+        -0.09901554882526398
+      ],
+      "min": -0.11913150548934937,
+      "max": -0.005399288143962622
+    },
+    "Episode_Reward/neck_action_rate_l2": {
+      "count": 128,
+      "first": [
+        0,
+        -0.06456124782562256
+      ],
+      "second": [
+        1,
+        -0.23113088309764862
+      ],
+      "last": [
+        127,
+        -0.2828367352485657
+      ],
+      "min": -0.29873284697532654,
+      "max": -0.01580781303346157
+    },
+    "Episode_Reward/joint_torques_l2": {
+      "count": 128,
+      "first": [
+        0,
+        -3.3016745874192566e-05
+      ],
+      "second": [
+        1,
+        -0.00011429486039560288
+      ],
+      "last": [
+        127,
+        -0.0018427245086058974
+      ],
+      "min": -0.0018854511436074972,
+      "max": -3.3016745874192566e-05
+    },
+    "Episode_Reward/self_collisions": {
+      "count": 128,
+      "first": [
+        0,
+        -0.0017501474358141422
+      ],
+      "second": [
+        1,
+        -0.005328294821083546
+      ],
+      "last": [
+        127,
+        -0.014857947826385498
+      ],
+      "min": -0.01804317533969879,
+      "max": -0.001445174217224121
+    },
+    "Episode_Reward/head_impact_penalty": {
+      "count": 128,
+      "first": [
+        0,
+        -0.006218065973371267
+      ],
+      "second": [
+        1,
+        -0.025694768875837326
+      ],
+      "last": [
+        127,
+        -5.417167994892225e-05
+      ],
+      "min": -0.025694768875837326,
+      "max": 0.0
+    },
+    "Curriculum/action_rate_weight": {
+      "count": 128,
+      "first": [
+        0,
+        -1.4500000476837158
+      ],
+      "second": [
+        1,
+        -0.8000000715255737
+      ],
+      "last": [
+        127,
+        -0.8000000715255737
+      ],
+      "min": -1.4500000476837158,
+      "max": -0.8000000715255737
+    },
+    "Curriculum/com_range": {
+      "count": 128,
+      "first": [
+        0,
+        0.003000000026077032
+      ],
+      "second": [
+        1,
+        0.003000000026077032
+      ],
+      "last": [
+        127,
+        0.003000000026077032
+      ],
+      "min": 0.003000000026077032,
+      "max": 0.003000000026077032
+    },
+    "Curriculum/head_com_range": {
+      "count": 128,
+      "first": [
+        0,
+        0.003000000026077032
+      ],
+      "second": [
+        1,
+        0.003000000026077032
+      ],
+      "last": [
+        127,
+        0.003000000026077032
+      ],
+      "min": 0.003000000026077032,
+      "max": 0.003000000026077032
+    }
+  },
+  "script_sha256": "4abe1d3d43b51b98ddcfe7f1f06ef24460a77165dd04603e8668d482dea6acee",
+  "subsequent_qualification_correction": {
+    "evidence": "groundpick-physical-qualification-erratum.json",
+    "status": "physical low reference quiet but no-contact qualification disproven by probe001; do not use earlier healthy wording as passed gate",
+    "original_evidence_and_numeric_results_preserved": true
+  }
+}

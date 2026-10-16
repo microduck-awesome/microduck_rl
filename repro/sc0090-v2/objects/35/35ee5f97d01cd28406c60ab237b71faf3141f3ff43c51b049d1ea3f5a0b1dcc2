@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+export SC0090_CUDA_COMPAT_DIR=/home/l40-vm01/Documents/ai-research/microduck/microduck_rl/artifacts/cuda-compat-12.9/usr/local/cuda-12.9/compat
+cd /home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-adapt-worktree
+while kill -0 2727823 2>/dev/null; do sleep 10; done
+test -f runs-v2/paired-p04-adapt-allocation-001/checkpoint_003826.pt
+parent=/home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/paired-feedback-allocation-001/checkpoint_003762.pt
+baseline_scripts=/home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/head-foundation-worktree/scripts
+scripts/v2_python.sh scripts/evaluate_v2_head.py --task Mjlab-StandUp-Flat-MicroDuck-V2-Repaired-S0-O0-R1 --checkpoint "$parent" --output runs-v2/paired-baseline-3762-head-actual-p04-measured --device cuda:1 --repeats 8 --randomization-stage measured > runs-v2/paired-baseline-3762-head-actual-p04-measured.log 2>&1
+scripts/v2_python.sh "$baseline_scripts/evaluate_common_p04_candidates.py" --device cuda:1 --samples 128 --labels paired_before_3762 paired_after_3826 --checkpoints "$parent" runs-v2/paired-p04-adapt-allocation-001/checkpoint_003826.pt --output runs-v2/paired-adaptation-common-comparison > runs-v2/paired-adaptation-common-comparison.log 2>&1
+for label in paired_before_3762 paired_after_3826; do
+ scripts/v2_python.sh scripts/analyze_v2_standing_order.py "runs-v2/paired-adaptation-common-comparison/$label"
+ scripts/v2_python.sh scripts/analyze_v2_standing_traces.py "runs-v2/paired-adaptation-common-comparison/$label"
+done
+scripts/v2_python.sh "$baseline_scripts/summarize_v2_head_saved.py" --device cuda:1 --reports runs-v2/paired-baseline-3762-head-actual-p04-measured/report.json runs-v2/paired-p04-adapt-3826-head-measured/report.json --output runs-v2/paired-adaptation-head-comparison

@@ -1,0 +1,42 @@
+"""Physical roll metrics at the actual reward boundary; no feedback substitution."""
+import math
+import torch
+from .microduck_v2 import POLICY_JOINTS
+from .roulade import HEAD_TOP_AXIS
+BOUNDARY='after native reward before reset/forward/next command; derived geometry lags one5ms substep'
+LEGS=(0,1,2,3,4,9,10,11,12,13)
+class RouladeMeasurements:
+ def __init__(self,env):
+  self.env=env;self.robot=env.scene['robot'];self.ids,names=self.robot.find_joints(POLICY_JOINTS,preserve_order=True);assert tuple(names)==POLICY_JOINTS
+ def read(self):
+  env,r=self.env,self.robot;q=r.data.joint_pos[:,self.ids]-r.data.default_joint_pos[:,self.ids];b=r.data.root_link_quat_w
+  z=r.data.root_link_pos_w[:,2]-env.scene.env_origins[:,2];tilt=torch.acos((1-2*(b[:,1]**2+b[:,2]**2)).clamp(-1,1));vel=r.data.root_link_lin_vel_w;omega=r.data.root_link_ang_vel_b
+  feet=env.scene['feet_ground_contact'].data.found.reshape(env.num_envs,-1).bool();head=env.scene['head_ground_contact'].data.found.reshape(env.num_envs,-1).any(-1);support=env.scene['robot_ground_contact'].data.found.reshape(env.num_envs,-1).any(-1);sc=env.scene['self_collision'].data.found.reshape(env.num_envs,-1).any(-1)
+  ready=env._v2_joint_feedback.ready;finite=torch.isfinite(env.sim.data.qpos).all(-1)&torch.isfinite(env.sim.data.qvel).all(-1)
+  flat=2*(b[:,2]*b[:,3]+b[:,0]*b[:,1]);stable=ready&finite&feet.all(-1)&(~head)&(~sc)&((z-.112).abs()<.012)&(tilt<math.radians(15))&(vel.norm(dim=-1)<.05)&(omega.norm(dim=-1)<.5)&(q[:,LEGS].abs().mean(-1)<.2)&(q[:,5:9].abs().amax(-1)<.1)
+  return dict(height=z,tilt=tilt,linear=vel,omega=omega,physical_q=q,feet=feet,head_contact=head,self_contact=sc,support=support,lateral_axis_z=flat,feedback_ready=ready,finite=finite,stable=stable,accum=env._roulade_accum,frontier=env._roulade_max,head_latch=env._roulade_head_latch,spawn_mid=env._v2_roulade_spawn_mid,spawn_angle=env._v2_roulade_spawn_angle)
+class RouladeTrainingSummary:
+ def __init__(self,env,oracle=False):
+  self.env=env;self.reader=RouladeMeasurements(env);self.latest=None;self.samples=0;self.sums=torch.zeros(14,device=env.device,dtype=torch.float64);self.oracle_max=torch.zeros(5,device=env.device);self.oracle=oracle
+  if oracle:
+   term=env.reward_manager.get_term_cfg('roulade_progress');native_progress=term.func
+   def progress(env,**kw):
+    robot=env.scene['robot'];before=[env._roulade_accum.clone(),env._roulade_max.clone(),env._roulade_paid.clone()];old_latch=env._roulade_head_latch.clone();last=env._roulade_last_update_step
+    b=robot.data.root_link_quat_w;flat=(2*(b[:,2]*b[:,3]+b[:,0]*b[:,1])).abs();t=((.866-flat)/(.866-.5)).clamp(0,1)
+    support=env.scene['robot_ground_contact'].data.found.reshape(env.num_envs,-1).any(-1);head=env.scene['head_ground_contact'].data.found.reshape(env.num_envs,-1).any(-1)
+    accum=before[0]+robot.data.root_link_ang_vel_b[:,1]*env.step_dt*support*t*t*(3-2*t)
+    if int(env.common_step_counter)==last:accum=before[0]
+    maximum=torch.maximum(before[1],accum);paid=torch.maximum(before[2],maximum.clamp(max=2*math.pi));h=robot.data.body_link_quat_w[:,env._roulade_head_body_id];w,x,y,z=h.unbind(-1);ax,ay,az=HEAD_TOP_AXIS;topz=2*(x*z-w*y)*ax+2*(y*z+w*x)*ay+(1-2*(x*x+y*y))*az
+    latch=old_latch|(head&(accum>math.radians(20))&(accum<math.radians(170))&(topz<-.3));want=(maximum.clamp(max=2*math.pi)-before[2].clamp(max=2*math.pi)).clamp(0,kw['max_paid_rate']*env.step_dt)/(2*math.pi*env.step_dt)
+    actual=native_progress(env,**kw)
+    error=torch.stack(((actual-want).abs().max(),(env._roulade_accum-accum).abs().max(),(env._roulade_max-maximum).abs().max(),(env._roulade_paid-paid).abs().max(),(env._roulade_head_latch!=latch).float().max()));self.oracle_max=torch.maximum(self.oracle_max,error);torch._assert_async((error<2e-5).all(),'Roulade native progress/state oracle mismatch');return actual
+   term.func=progress  # get_term_cfg returns the manager's resolved config reference.
+  native=env.reward_manager.compute
+  def record(dt):
+   reward=native(dt);v=self.reader.read();self.latest=v;eligible=v['head_latch']&(v['frontier']>=math.radians(330))
+   xs=(v['frontier'],v['tilt'],v['omega'].norm(dim=-1),v['lateral_axis_z'].abs(),v['support'],v['head_contact'],v['head_latch'],v['stable'],v['stable']&eligible,(~v['spawn_mid'])&v['stable']&eligible,v['spawn_mid'],~v['feedback_ready'],~v['finite'],env.reset_time_outs)
+   self.sums+=torch.stack([x.double().sum() for x in xs]);self.samples+=env.num_envs;return reward
+  env.reward_manager.compute=record
+ def report(self):
+  names=('frontier_mean_rad','body_tilt_mean_rad','body_angular_speed_mean_radps','lateral_axis_abs_mean','support_fraction','head_contact_fraction','head_latch_fraction','stable_fraction','eligible_after_roll_stable_fraction','standing_origin_after_roll_stable_fraction','midroll_origin_fraction','feedback_invalid_fraction','nonfinite_fraction','timeout_fraction')
+  return dict(boundary=BOUNDARY,control_samples=self.samples,metrics=dict(zip(names,(self.sums/max(1,self.samples)).cpu().tolist())),oracle_max_abs=self.oracle_max.cpu().tolist(),scope='Training sample fractions, not independent standing-origin full-roll completion. Midroll inherited latch does not prove head crossing.')

@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "accum_rad": 0.0,
+      "force_full": false,
+      "critic_max_abs": 0.0,
+      "live_tensors_unchanged": 23
+    },
+    {
+      "accum_rad": 0.0,
+      "force_full": true,
+      "critic_max_abs": 0.0,
+      "live_tensors_unchanged": 23
+    },
+    {
+      "accum_rad": 3.0,
+      "force_full": false,
+      "critic_max_abs": 0.0,
+      "live_tensors_unchanged": 23
+    },
+    {
+      "accum_rad": 3.0,
+      "force_full": true,
+      "critic_max_abs": 0.0,
+      "live_tensors_unchanged": 23
+    },
+    {
+      "accum_rad": 6.0,
+      "force_full": false,
+      "critic_max_abs": 0.0,
+      "live_tensors_unchanged": 23
+    },
+    {
+      "accum_rad": 6.0,
+      "force_full": true,
+      "critic_max_abs": 0.0,
+      "live_tensors_unchanged": 23
+    }
+  ],
+  "partial_reset_roulade_state": "PASS",
+  "actor_dim": 61,
+  "critic_dim": 74,
+  "scope": "True no-reset critic successor and no mutation of live roll history/commands/RNG; no reward function is called twice"
+}

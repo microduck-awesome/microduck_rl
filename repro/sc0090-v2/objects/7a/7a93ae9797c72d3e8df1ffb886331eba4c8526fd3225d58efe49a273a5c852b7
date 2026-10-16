@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+export SC0090_CUDA_COMPAT_DIR=/home/l40-vm01/Documents/ai-research/microduck/microduck_rl/artifacts/cuda-compat-12.9/usr/local/cuda-12.9/compat
+cd /home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-adapt-standing20-worktree
+watch_deadline=$((SECONDS+1800))
+while [[ ! -f runs-v2/paired-p04-standing20-allocation-001/evaluation_003776.json ]]; do
+ if (( SECONDS > watch_deadline )); then exit 1; fi
+ sleep 10
+done
+scripts/v2_python.sh scripts/evaluate_v2_head.py --task Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Standing20-Repaired-S0-O0-R1 --checkpoint runs-v2/paired-p04-standing20-allocation-001/checkpoint_003776.pt --output runs-v2/paired-p04-standing20-3776-head-measured --device cuda:1 --repeats 8 --randomization-stage measured > runs-v2/paired-p04-standing20-3776-head-measured.log 2>&1
+scripts/v2_python.sh /home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/head-foundation-worktree/scripts/summarize_v2_head_saved.py --device cpu --reports runs-v2/paired-p04-standing20-3776-head-measured/report.json --output runs-v2/paired-p04-standing20-3776-head-summary

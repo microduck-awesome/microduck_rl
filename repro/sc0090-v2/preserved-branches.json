@@ -1,0 +1,23 @@
+{
+  "microduck_rl": {
+    "head": "2ca93c96ae8d9fb282a598a3f207f5fd0feca4fc",
+    "branch": "backup/local-work-20261015",
+    "head_unchanged": true,
+    "branch_unchanged": true,
+    "changed_source_files": []
+  },
+  "microduck-v2-p04": {
+    "head": "070d6069e1aacbba9a22a905eaa8f4fe0dd6729a",
+    "branch": "train/v2-p04-20261015",
+    "head_unchanged": true,
+    "branch_unchanged": true,
+    "changed_source_files": []
+  },
+  "microduck-v2-baseline": {
+    "head": "bc8a4d3f3b59d35ee21993b57b600e697846e930",
+    "branch": "train/v2-baseline-20261015",
+    "head_unchanged": true,
+    "branch_unchanged": true,
+    "changed_source_files": []
+  }
+}

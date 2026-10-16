@@ -1,0 +1,6 @@
+{
+  "controls": 50331648,
+  "wall_seconds": 551.7842602729797,
+  "control_interactions_per_second": 91216.1720145838,
+  "scope": "run.json creation through completed status; embedded evaluation and overlapping head/full-reward diagnostics included; preceding imports and later head evaluation excluded"
+}

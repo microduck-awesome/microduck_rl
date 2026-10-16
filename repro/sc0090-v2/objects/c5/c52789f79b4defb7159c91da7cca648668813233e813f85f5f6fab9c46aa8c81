@@ -1,0 +1,53 @@
+"""Read-only frozen P04 frontier coverage and measured recovery; no learning."""
+import argparse
+from dataclasses import asdict
+import hashlib,json,tarfile
+from pathlib import Path
+import torch
+from tensordict import TensorDict
+import mjlab.tasks
+from mjlab.tasks.registry import load_rl_cfg
+from rsl_rl.utils import resolve_callable,resolve_obs_groups
+from train_v2_standup import evaluate
+
+p=argparse.ArgumentParser(__doc__)
+p.add_argument('--checkpoint',type=Path,required=True)
+p.add_argument('--output',type=Path,required=True)
+p.add_argument('--device',default='cuda:0')
+p.add_argument('--samples',type=int,default=128)
+p.add_argument('--stages',type=int,nargs='+',default=list(range(4,11)))
+p.add_argument('--randomization-stage',choices=('nominal','measured'),default='nominal')
+a=p.parse_args();a.output.mkdir(parents=True,exist_ok=False)
+torch.set_num_threads(2);torch.cuda.set_device(a.device)
+parent=json.loads((a.checkpoint.parent/'run.json').read_text());task=parent['task']
+assert task in ('Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-M4-HeadStdCap001-MicroExposure025-Repaired-S0-O0-R1','Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-M4-HeadStdCap001-WarmLR1e5-Repaired-S0-O0-R1','Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-DirectionGate-M4-Repaired-S0-O0-R1','Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-M4-HeadStdCap001-Repaired-S0-O0-R1','Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-M4-LateEntropy005-Repaired-S0-O0-R1')
+s=torch.load(a.checkpoint,map_location=a.device,weights_only=False)
+assert not s['infos']['v2'].get('position_robustness_recipe')
+head_recipe=s['infos']['v2'].get('head_precision_recipe')
+assert not head_recipe or head_recipe['stage'] in (1,2), 'Only head recipes with no actor/reset change are covered by zero-head recovery evaluation'
+cfg=asdict(load_rl_cfg(task));obs=TensorDict({'actor':torch.zeros(1,61,device=a.device),'critic':torch.zeros(1,74,device=a.device)},batch_size=[1])
+groups=resolve_obs_groups(obs,cfg['obs_groups'],['actor','critic'])
+for option in ('cnn_cfg','distribution_cfg'):
+ if cfg['actor'].get(option) is None:cfg['actor'].pop(option,None)
+if cfg['actor'].get('rnn_type') is None:
+ for option in ('rnn_type','rnn_hidden_dim','rnn_num_layers'):cfg['actor'].pop(option,None)
+ctor=resolve_callable(cfg['actor'].pop('class_name'));actor=ctor(obs,groups,'actor',14,**cfg['actor']).to(a.device)
+actor.load_state_dict(s['actor_state_dict'],strict=True);actor.eval()
+paths=[*Path('src').glob('**/*.py'),Path(__file__),Path('scripts/train_v2_standup.py')]
+hashes={str(x):hashlib.sha256(x.read_bytes()).hexdigest() for x in paths}
+with tarfile.open(a.output/'source.tar.gz','w:gz') as archive:
+ for x in paths:archive.add(x,arcname=str(x.relative_to(Path.cwd()) if x.is_absolute() else x))
+from mjlab_microduck.custom_v2.fresh_p04 import DIRECTION_FRONTIERS
+r=dict(schema=1,task=task,checkpoint=str(a.checkpoint.resolve()),checkpoint_sha256=hashlib.sha256(a.checkpoint.read_bytes()).hexdigest(),completed_updates=s['infos']['v2']['completed_updates'],randomization_stage=a.randomization_stage,head_precision_recipe=head_recipe,execution_version='p04-o0-valid-raw-native-counts-v2',samples_per_bucket_per_seed=a.samples,protocol='unchanged formal 8s zero-command recovery evaluation; explicit frozen frontier stages, two seeds; not a training stage or hardware qualification',source_sha256=hashes,stages=[])
+for stage in a.stages:
+ assert 0<=stage<len(DIRECTION_FRONTIERS)
+ out=a.output/f'stage-{stage:02d}';out.mkdir()
+ with torch.inference_mode():cases=evaluate(task,actor,a.device,stage,a.samples,compiled_measurement=True,randomization_stage=a.randomization_stage,evidence_dir=out)
+ for k,v in s['actor_state_dict'].items():torch.testing.assert_close(actor.state_dict()[k],v,rtol=0,atol=0)
+ direction_pass=all(g['trials']>=32 and g['faults']==0 and g['wins']/g['trials']>=.7 for c in cases for g in c['frontier_directions'].values())
+ all_pose_pass=all(g['wins']/g['trials']>=.7 and g['faults']==0 for c in cases for g in c['groups'].values())
+ item=dict(stage=stage,frontier_low_deg=DIRECTION_FRONTIERS[stage],frontier_width_deg=30,cases=cases,actor_and_normalizer_unchanged=True,existing_direction_gate_pass=direction_pass,existing_all_pose_gate_pass=all_pose_pass)
+ r['stages'].append(item);(a.output/'progress.json').write_text(json.dumps(r,indent=2)+'\n')
+ print('stage',stage,'counts',{name:sum(c['groups'][name]['wins'] for c in cases) for name in cases[0]['groups']},'direction_gate',direction_pass,flush=True)
+assert hashes=={str(x):hashlib.sha256(x.read_bytes()).hexdigest() for x in paths}
+r['source_unchanged']=True;(a.output/'report.json').write_text(json.dumps(r,indent=2)+'\n')

@@ -1,0 +1,13 @@
+{
+  "status": "MEASURED",
+  "additional_controls": 50331648,
+  "run_json_created_unix": 1792065991.927197,
+  "allocation_complete_unix": 1792066531.168258,
+  "wall_s": 539.2410609722137,
+  "controls_per_s": 93337.93667206199,
+  "scope": "run.json creation to allocation complete; includes environment initialization, resume, three embedded recovery evaluations, export; excludes Python imports before run.json and separate later head/evaluation; shared small smoke diagnostic occurred late",
+  "update_count": 64,
+  "reported_update_s_sum": 410.57000000000016,
+  "reported_update_portion_controls_per_s": 122589.68750761132,
+  "preflight_steady_median_controls_per_s": 136242.24692258975
+}

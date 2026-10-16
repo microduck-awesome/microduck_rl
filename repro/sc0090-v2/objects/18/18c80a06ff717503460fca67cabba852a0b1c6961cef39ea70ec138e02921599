@@ -1,0 +1,355 @@
+"""Independent standing head-command response, return and camera-motion battery.
+
+No learning or checkpoint writes. Current-training and final command ranges are
+reported separately. Numerical evaluation is not a declaration of real-robot
+qualification, and standing results do not cover walking/turning contexts.
+"""
+import argparse
+from dataclasses import asdict
+import hashlib
+import inspect
+import itertools
+import json
+import math
+import tarfile
+from pathlib import Path
+
+import numpy as np
+import torch
+import mjlab.tasks
+from mjlab.envs import ManagerBasedRlEnv
+from mjlab.managers import RewardTermCfg
+from mjlab.rl import RslRlVecEnvWrapper
+from mjlab.tasks.registry import load_env_cfg,load_rl_cfg,load_runner_cls
+from mjlab_microduck.custom_v2 import recovery
+from mjlab_microduck.custom_v2.microduck_v2 import POLICY_JOINTS
+from mjlab_microduck.custom_v2.head_metrics import response_metrics,summarize_response,camera_metrics
+from mjlab_microduck.tasks import mdp
+
+JOINTS=('neck_pitch','head_pitch','head_yaw','head_roll')
+
+
+def cases_for(current,final):
+    cases=[dict(name='idle',range='zero',target=[0.,0.,0.,0.])]
+    for i,name in enumerate(JOINTS):
+        for level,ranges in (('small',current),('current',current),('final',final)):
+            for sign in (-1,1):
+                edge=ranges[i][0 if sign<0 else 1]
+                value=math.copysign(min(.03,abs(edge)*.5),edge) if level=='small' else edge
+                target=[0.,0.,0.,0.];target[i]=value
+                cases.append(dict(name=f'{name}_{level}_{sign:+}',range=level,target=target))
+    for level,ranges in (('current',current),('final',final)):
+        for pair in itertools.combinations(range(4),2):
+            for signs in itertools.product((-1,1),repeat=2):
+                target=[0.,0.,0.,0.]
+                for i,sign in zip(pair,signs):target[i]=.5*ranges[i][0 if sign<0 else 1]
+                cases.append(dict(name=f'pair_{pair}_{signs}_{level}',range=level,target=target))
+        for signs in ((1,1,1,1),(-1,-1,-1,-1),(1,-1,1,-1),(-1,1,-1,1)):
+            target=[.5*ranges[i][0 if sign<0 else 1] for i,sign in enumerate(signs)]
+            cases.append(dict(name=f'four_{signs}_{level}',range=level,target=target))
+    return cases
+
+
+class FrozenHeadSplice(torch.nn.Module):
+    """Diagnostic only: two frozen actors read the same measured 61D observation."""
+    def __init__(self, body, head):
+        super().__init__()
+        self.body, self.head = body, head
+        self.register_buffer('head_ids',torch.tensor([POLICY_JOINTS.index(n) for n in JOINTS],device=next(body.parameters()).device),persistent=False)
+
+    def forward(self, obs):
+        result = self.body(obs).clone()
+        head = self.head(obs)
+        result[:,self.head_ids] = head[:,self.head_ids]
+        return result
+
+
+def evaluate_seed(args,seed,cases,output):
+    cfg=load_env_cfg(args.task,play=True)
+    cfg.actions['joint_pos'].compile_measurement=True
+    cfg.actions['joint_pos'].randomization_stage=args.randomization_stage
+    if args.position_recipe:
+        from mjlab_microduck.custom_v2.training import configure_position_robustness_learning
+        applied=configure_position_robustness_learning(cfg,args.position_recipe['stage'],require_corruption=False)
+        assert applied==args.position_recipe
+    if args.head_recipe:
+        from mjlab_microduck.custom_v2.training import configure_head_precision_learning
+        applied=configure_head_precision_learning(cfg,args.head_recipe.get("stage",1))
+        assert applied["id"]==args.head_recipe["id"]
+        assert tuple(map(tuple,applied["ranges"]))==tuple(map(tuple,args.head_recipe["ranges"]))
+    cfg.seed,cfg.scene.num_envs=seed,len(cases)*args.repeats
+    cfg.curriculum,cfg.terminations={},{}
+    head_reward=cfg.rewards['head_pose_tracking']
+    cfg.rewards={'stable_standing':RewardTermCfg(func=recovery.sc0090_stable_standing,weight=1.)}
+    cfg.events={n:t for n,t in cfg.events.items() if n in {
+        'expand_bam_friction_fields','v2_runtime','mouth_reset','mouth_hold',
+        'reset_base','set_ground_state','v2_reset_joint_guards','sensor_error_reset'}}
+    ground=cfg.events['set_ground_state']
+    allowed=inspect.signature(mdp.set_random_ground_state).parameters
+    ground.params={k:v for k,v in ground.params.items() if k in allowed}
+    ground.func=mdp.set_random_ground_state
+    ground.params.update(standing_prob=1.,sitting_prob=0.,face_down_prob=0.,face_up_prob=0.)
+    cfg.observations['actor'].enable_corruption=False
+    for name in ('head_pose','body_pose'):
+        cfg.commands[name].ranges=tuple((0.,0.) for _ in cfg.commands[name].ranges)
+    # This battery supplies commands explicitly. Keep unused sampler RNG
+    # consumption independent of the checkpoint's training-exposure recipe.
+    cfg.commands['head_pose'].zero_command_prob=.6
+    if hasattr(cfg.commands['head_pose'],'precision_probability'):
+        cfg.commands['head_pose'].precision_probability=0.
+    twist=cfg.commands['twist'];twist.rel_standing_envs=1.;twist.rel_forward_envs=0.
+    for name in ('lin_vel_x','lin_vel_y','ang_vel_z'):setattr(twist.ranges,name,(0.,0.))
+    (output/f'eval-config-{seed}.json').write_text(json.dumps(asdict(cfg),indent=2,default=str))
+    env=ManagerBasedRlEnv(cfg,device=args.device)
+    assert math.isclose(env.step_dt,.02) and math.isclose(env.physics_dt,.005)
+    try:
+        robot=env.scene['robot'];ids,names=robot.find_joints(JOINTS,preserve_order=True)
+        assert tuple(names)==JOINTS
+        site_ids,_=robot.find_sites('head_camera');assert len(site_ids)==1
+        n=env.num_envs;count=300
+        desired=torch.zeros(n,4,device=args.device)
+        target=torch.tensor([c['target'] for c in cases],device=args.device).repeat_interleave(args.repeats,0)
+        native_command_compute=env.command_manager.compute
+        def commanded_compute(dt):
+            native_command_compute(dt)
+            env.command_manager.get_command('head_pose').copy_(desired)
+            env.command_manager.get_command('twist').zero_()
+            env.command_manager.get_command('body_pose').zero_()
+        env.command_manager.compute=commanded_compute
+        agent=load_rl_cfg(args.task);agent.upload_model=False;agent.logger='tensorboard'
+        wrapped=RslRlVecEnvWrapper(env,clip_actions=agent.clip_actions)
+        runner=load_runner_cls(args.task)(wrapped,asdict(agent),None,args.device)
+        runner.load(str(args.checkpoint),map_location=args.device)
+        policy=runner.alg.get_policy().eval()
+        if args.normalizer_checkpoint is not None:
+            before={k:v.detach().clone() for k,v in policy.state_dict().items()}
+            other=torch.load(args.normalizer_checkpoint,map_location=args.device,weights_only=False)['actor_state_dict']
+            selected={k.removeprefix('obs_normalizer.'):v for k,v in other.items() if k.startswith('obs_normalizer.')}
+            assert selected and 'count' in selected
+            policy.obs_normalizer.load_state_dict(selected,strict=True)
+            for k,v in before.items():
+                if not k.startswith('obs_normalizer.'):
+                    torch.testing.assert_close(policy.state_dict()[k],v,rtol=0,atol=0)
+            for k,v in selected.items():torch.testing.assert_close(policy.obs_normalizer.state_dict()[k],v,rtol=0,atol=0)
+        import copy
+        assert args.normalizer_checkpoint is None and not args.direct_head_target
+        teacher = copy.deepcopy(policy)
+        teacher_state = torch.load(args.head_teacher,map_location=args.device,weights_only=False)['actor_state_dict']
+        teacher.load_state_dict(teacher_state,strict=True)
+        for key,value in teacher_state.items():
+            torch.testing.assert_close(teacher.state_dict()[key],value,rtol=0,atol=0)
+        teacher.eval()
+        policy = FrozenHeadSplice(policy,teacher).eval()
+        stream=env._v2_joint_feedback.pipeline.stream
+        count_contract=dict(native_feedback_count_limits=list(getattr(stream,'raw_count_limits',stream.count_limits)),
+                            command_count_limits=list(stream.count_limits),spike_rejection=stream.spike_rejection,
+                            o0_local_history=stream.o0_local_history)
+        if hasattr(args,'count_contract'):assert args.count_contract==count_contract
+        args.count_contract=count_contract
+        initial_actor={name:value.detach().clone() for name,value in policy.state_dict().items()}
+        obs,_=env.reset(seed=seed)
+        with torch.inference_mode():
+            hybrid = policy(obs)
+            body = policy.body(obs)
+            head = policy.head(obs)
+            head_ids = [POLICY_JOINTS.index(n) for n in JOINTS]
+            leg_ids = [i for i in range(14) if i not in head_ids]
+            torch.testing.assert_close(hybrid[:,leg_ids],body[:,leg_ids],rtol=0,atol=0)
+            torch.testing.assert_close(hybrid[:,head_ids],head[:,head_ids],rtol=0,atol=0)
+            same = FrozenHeadSplice(policy.body,policy.body)(obs)
+            torch.testing.assert_close(same,body,rtol=0,atol=0)
+        reset_qpos=env.sim.data.qpos.clone();reset_qvel=env.sim.data.qvel.clone();reset_actor_obs=obs['actor'].clone()
+        head_actions=[POLICY_JOINTS.index(name) for name in JOINTS]
+        if args.direct_head_target:
+            assert args.task.endswith('Official-Baseline')
+            action_cfg=cfg.actions['joint_pos']
+            assert action_cfg.scale==1. and action_cfg.use_default_offset
+            assert tuple(action_cfg.actuator_names)==tuple(POLICY_JOINTS)
+        actor_terms=env.observation_manager.active_terms['actor']
+        actor_dims=env.observation_manager.group_obs_term_dim['actor']
+        head_index=actor_terms.index('head_command')
+        head_offset=sum(math.prod(dim) for dim in actor_dims[:head_index])
+        assert head_offset==51 and actor_dims[head_index]==(4,)
+        initial=robot.data.joint_pos[:,ids]-robot.data.default_joint_pos[:,ids]
+        positions=torch.empty(count,n,4,device=args.device)
+        commands=torch.empty_like(positions)
+        health=torch.empty(count,n,4,device=args.device)
+        invalid=torch.zeros(count,n,dtype=torch.bool,device=args.device)
+        camera=torch.empty(count*4+1,n,4,device=args.device)
+        qpos=torch.empty(count,n,env.sim.mj_model.nq,device=args.device)
+        control=[0];substep=[0]
+        native_reward=env.reward_manager.compute
+        fine_scale = head_reward.params.get('fine_std')
+        if fine_scale is not None:
+            fine_scale = torch.as_tensor(fine_scale, dtype=torch.float32, device=args.device)
+        def recorded_reward(dt):
+            result=native_reward(dt)
+            index=control[0]
+            q=robot.data.joint_pos[:,ids]-robot.data.default_joint_pos[:,ids]
+            command=env.command_manager.get_command('head_pose')
+            positions[index].copy_(q);commands[index].copy_(command)
+            root=robot.data.root_link_quat_w
+            tilt=torch.acos((1-2*(root[:,1].square()+root[:,2].square())).clamp(-1,1))
+            height=robot.data.root_link_pos_w[:,2]-env.scene.env_origins[:,2]
+            stable=recovery._sc0090_recovery_state(env).hold>=25
+            health[index].copy_(torch.stack((height,tilt,robot.data.root_link_ang_vel_b.norm(dim=1),stable.float()),-1))
+            invalid[index].copy_(~torch.isfinite(env.sim.data.qpos[...]).all(-1))
+            feedback=getattr(env,'_v2_joint_feedback',None)
+            if feedback is not None:invalid[index] |= ~feedback.ready
+            # Independent per-axis errors must reproduce the task's actual
+            # physical head reward at the same pre-reset boundary.
+            params=head_reward.params;error=q-command
+            expected=torch.exp(-(error/params.get('std',.5)).square())
+            if params.get('fine_std') is not None:
+                weight=params.get('fine_weight',.5)
+                expected=(1-weight)*expected+weight*torch.exp(-(error/fine_scale).square())
+            if params.get('precision_scale') is not None:
+                expected *= .5 + .5/(1 + error.abs()/params['precision_scale'])
+            if params.get('balance_active_axes',False):
+                # Independent weighted-axis oracle, separate from production group means.
+                active=command!=0
+                count=active.sum(-1,keepdim=True)
+                weights=torch.where(active,.5/count.clamp_min(1),.5/(4-count).clamp_min(1))
+                weights=torch.where((count==1)|(count==3),weights,torch.full_like(weights,.25))
+                expected=expected*weights*4
+            actual=mdp.head_pose_tracking(env,**params)
+            torch._assert_async(torch.isclose(expected.mean(-1),actual,rtol=1e-6,atol=1e-7).all(),
+                                'Head metric and training reward disagree')
+            return result
+        env.reward_manager.compute=recorded_reward
+        native_substep=env.metrics_manager.compute_substep
+        def recorded_substep():
+            native_substep()
+            camera[substep[0]].copy_(robot.data.site_quat_w[:,site_ids[0]])
+            substep[0]+=1
+        env.metrics_manager.compute_substep=recorded_substep
+        with torch.inference_mode():
+            for step in range(count):
+                control[0]=step
+                torch._assert_async((obs['actor'][:,head_offset:head_offset+4]
+                    == env.command_manager.get_command('head_pose')).all(),
+                    'Actor head command does not match the command used for this action')
+                # Set the command that will populate the NEXT observation.
+                # The action being applied now uses the existing observation.
+                desired.copy_(target if 100<=step+1<200 else torch.zeros_like(target))
+                action=policy(obs)
+                if args.direct_head_target:
+                    action=action.clone()
+                    action[:,head_actions]=env.command_manager.get_command('head_pose')
+                obs,_,_,_=wrapped.step(action)
+                qpos[step].copy_(env.sim.data.qpos[...])
+            camera[-1].copy_(robot.data.site_quat_w[:,site_ids[0]])
+        torch.cuda.synchronize(args.device)
+        assert substep[0]==1200
+        torch.testing.assert_close(commands[:100],torch.zeros_like(commands[:100]),rtol=0,atol=0)
+        torch.testing.assert_close(commands[100:200],target[None].expand(100,-1,-1),rtol=0,atol=0)
+        torch.testing.assert_close(commands[200:],torch.zeros_like(commands[200:]),rtol=0,atol=0)
+        responses={
+            'step':response_metrics(positions[100:200],positions[99],target,target),
+            'return':response_metrics(positions[200:],positions[199],torch.zeros_like(target),-target)}
+        cameras={name:camera_metrics(camera[a*4:b*4+1]) for name,a,b in
+                 (('idle',0,100),('step',100,200),('return',200,300))}
+        results=[]
+        for i,case in enumerate(cases):
+            rows=slice(i*args.repeats,(i+1)*args.repeats)
+            item={**case,'seed':seed,'trials':args.repeats,
+                  'invalid_trials':int(invalid[:,rows].any(0).sum()),
+                  'initial_head_error_deg':(initial[rows].mean(0)*180/math.pi).tolist()}
+            for phase,a,b in (('step',100,200),('return',200,300)):
+                h=health[a:b,rows]
+                item[phase]={**summarize_response({k:v[rows] for k,v in responses[phase].items()}),
+                    'stable_fraction':float(h[...,3].mean()),
+                    'height_min_m':float(h[...,0].min()),
+                    'tilt_p95_deg':float(torch.quantile(h[...,1],.95)*180/math.pi)}
+            item['camera']={phase:{k:float(v[rows].mean()) for k,v in metrics.items()}
+                            for phase,metrics in cameras.items()}
+            results.append(item)
+        np.savez_compressed(output/f'traces-{seed}.npz',
+            physical_head_rad=positions.cpu().numpy(),command_rad=commands.cpu().numpy(),
+            camera_quat_w=camera.cpu().numpy(),health=health.cpu().numpy(),
+            invalid=invalid.cpu().numpy(),qpos=qpos.cpu().numpy(),env_origins=env.scene.env_origins.cpu().numpy(),
+            initial_qpos=reset_qpos.cpu().numpy(),initial_qvel=reset_qvel.cpu().numpy(),initial_actor_obs=reset_actor_obs.cpu().numpy())
+        for name,value in initial_actor.items():
+            torch.testing.assert_close(policy.state_dict()[name],value,rtol=0,atol=0)
+        return results
+    finally:
+        env.close()
+
+
+def main():
+    p=argparse.ArgumentParser(__doc__)
+    p.add_argument('--task',required=True);p.add_argument('--checkpoint',type=Path,required=True)
+    p.add_argument('--output',type=Path,required=True);p.add_argument('--device',default='cuda:0')
+    p.add_argument('--repeats',type=int,default=8)
+    p.add_argument('--normalizer-checkpoint',type=Path)
+    p.add_argument('--head-teacher',type=Path,required=True)
+    p.add_argument('--randomization-stage',choices=('nominal','measured'),default='measured')
+    p.add_argument('--reference-report',type=Path,
+                   help='Also evaluate the exact current-range cases of an earlier report')
+    p.add_argument('--direct-head-target',action='store_true',
+                   help='Diagnostic only: replace head actions by requested motor position targets')
+    args=p.parse_args();args.output.mkdir(parents=True,exist_ok=False)
+    torch.set_num_threads(2);torch.cuda.set_device(args.device)
+    checkpoint=torch.load(args.checkpoint,map_location='cpu',weights_only=False)
+    args.head_recipe=checkpoint['infos']['v2'].get('head_precision_recipe')
+    args.position_recipe=checkpoint['infos']['v2'].get('position_robustness_recipe')
+    with tarfile.open(args.output/'source.tar.gz','w:gz') as archive:
+        for source in [Path(__file__),*Path('src').glob('**/*.py')]:
+            archive.add(source,arcname=str(source.relative_to(Path.cwd()) if source.is_absolute() else source))
+    cfg=load_env_cfg(args.task)
+    steps=checkpoint['infos']['env_state']['common_step_counter']
+    stages=cfg.curriculum['head_pose_range'].params['range_stages']
+    # A stage introduced at the checkpoint boundary has had no complete
+    # rollout of exposure yet. Assess the last complete rollout's range.
+    trained_step=max(0,steps-load_rl_cfg(args.task).num_steps_per_env)
+    current=next(s['ranges'] for s in reversed(stages) if trained_step>=s['step'])
+    if args.head_recipe:
+        current=args.head_recipe['ranges']
+    final=stages[-1]['ranges'];cases=cases_for(current,final)
+    reference=None
+    if args.reference_report is not None:
+        previous=json.loads(args.reference_report.read_text())
+        reference=dict(path=str(args.reference_report.resolve()),
+            sha256=hashlib.sha256(args.reference_report.read_bytes()).hexdigest(),
+            ranges=previous['current_ranges'])
+        for case in cases_for(reference['ranges'],final):
+            if case['range']=='current':
+                cases.append({**case,'name':case['name'].replace('current','reference'),
+                              'range':'reference'})
+    records=[]
+    for seed in (2026101503,2026101504):records.extend(evaluate_seed(args,seed,cases,args.output))
+    report=dict(schema=1,task=args.task,checkpoint=str(args.checkpoint.resolve()),
+        checkpoint_sha256=hashlib.sha256(args.checkpoint.read_bytes()).hexdigest(),
+        completed_updates=checkpoint['infos']['v2']['completed_updates'],
+        randomization_stage=args.randomization_stage,
+        execution_version=('p04-o0-valid-raw-native-counts-v2' if args.count_contract['native_feedback_count_limits']==[0,1023]
+                           else 'p04-o0-valid-raw-local-history-v1'),
+        count_contract=args.count_contract,
+        normalizer_checkpoint=str(args.normalizer_checkpoint.resolve()) if args.normalizer_checkpoint else None,
+        normalizer_checkpoint_sha256=hashlib.sha256(args.normalizer_checkpoint.read_bytes()).hexdigest() if args.normalizer_checkpoint else None,
+        frozen_actor_and_normalizer_unchanged_during_rollout=True,
+        non_normalizer_actor_state_exact_to_checkpoint=False,
+        body_actor_and_head_teacher_state_exact_to_respective_checkpoints=True,
+        head_teacher=str(args.head_teacher.resolve()),
+        head_teacher_sha256=hashlib.sha256(args.head_teacher.read_bytes()).hexdigest(),
+        splice_definition='Four named head action means from teacher; ten leg action means from body; both own unchanged normalizers read same real measured actor input, no truth substitution, no learning',
+        diagnostic_normalizer_swap=args.normalizer_checkpoint is not None,
+        action_mode=('diagnostic_direct_head_motor_target_with_policy_legs' if args.direct_head_target
+                     else 'diagnostic_frozen_head_splice'),
+        direct_target_limitation=('No gravity/friction compensation; failure does not establish physical '
+            'unreachability and results do not qualify the policy' if args.direct_head_target else None),
+        protocol='standing 2s idle + 2s step + 2s return; physical q at reward boundary; camera 200 Hz',
+        camera_timing='substep forward geometry at t=0,.005,...,5.995; final forward at 6.0',
+        current_ranges=current,final_ranges=final,joint_order=JOINTS,head_precision_recipe=args.head_recipe,
+        position_observation_recipe=args.position_recipe,
+        camera_site='head_camera CAD placeholder; angular metrics only, not calibrated pixel blur',
+        head_reward_boundary_parity_checked=True,actor_command_slot_checked=True,
+        reference_range_source=reference,records=records,
+        limitation='Diagnostic two-actor composition, not a trained or deployment-qualified policy. Standing head battery only; all-recovery compatibility not established. Own preserved normalizers, no learning or actor truth substitution.',
+        source_sha256={name:hashlib.sha256(Path(name).read_bytes()).hexdigest() for name in
+            (str(Path(__file__).relative_to(Path.cwd())),'src/mjlab_microduck/custom_v2/head_metrics.py')})
+    (args.output/'report.json').write_text(json.dumps(report,indent=2,allow_nan=False))
+    print(json.dumps(dict(output=str(args.output),cases=len(cases),seeds=2,records=len(records))))
+
+
+if __name__=='__main__':main()

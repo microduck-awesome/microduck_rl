@@ -1,0 +1,29 @@
+"""Healthy-contact full historical BallKick curriculum; actor stays ball-blind."""
+from copy import deepcopy
+from .ball_kick import make_ball_kick_env_cfg
+HEALTH_TASK='Mjlab-BallKick-Right-Flat-MicroDuck-V2-HealthHistory-Repaired-S0-O0-R1'
+EXPOSURE_FACTOR=6
+
+def make_health_ball_kick_env_cfg(play=False,stage='nominal',kick_foot='right'):
+    from .ball_kick_health_state import install_health_ball_kick_state
+    cfg=make_ball_kick_env_cfg(play=play,stage=stage,kick_foot=kick_foot)
+    cfg.events['ball_kick_state'].func=install_health_ball_kick_state
+    for term in cfg.curriculum.values():
+        for stages in term.params.values():
+            if isinstance(stages,list):
+                for item in stages:
+                    if isinstance(item,dict)and 'step'in item:
+                        assert item['step']%EXPOSURE_FACTOR==0
+                        item['step']//=EXPOSURE_FACTOR
+    return cfg
+
+def register_health_ball_kick_tasks():
+    from mjlab.tasks.registry import register_mjlab_task
+    from mjlab_microduck.tasks import MicroduckOnPolicyRunner
+    from mjlab_microduck.tasks.microduck_ball_kick_env_cfg import MicroduckBallKickRlCfg
+    for foot in('right','left'):
+        for stage in('nominal','measured'):
+            task=HEALTH_TASK.replace('-Right-','-'+foot.title()+'-')+('-Measured'if stage=='measured'else'')
+            agent=deepcopy(MicroduckBallKickRlCfg);agent.algorithm.class_name='mjlab_microduck.custom_v2.ppo:TerminalCriticPPO';agent.algorithm.symmetry_cfg=None;agent.algorithm.num_mini_batches=24
+            agent.experiment_name='microduck_v2_p04_ballkick';agent.run_name=foot+'_'+stage
+            register_mjlab_task(task_id=task,env_cfg=make_health_ball_kick_env_cfg(stage=stage,kick_foot=foot),play_env_cfg=make_health_ball_kick_env_cfg(play=True,stage=stage,kick_foot=foot),rl_cfg=agent,runner_cls=MicroduckOnPolicyRunner)

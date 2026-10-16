@@ -1,0 +1,28 @@
+{
+  "name": "formal384_to512",
+  "arguments": [
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-worktree/scripts/v2_python.sh",
+    "scripts/train_v2_walking.py",
+    "--task",
+    "Mjlab-Velocity-Flat-MicroDuck-V2-YawFine-Repaired-S0-O0-R1",
+    "--device",
+    "cuda:1",
+    "--num-envs",
+    "32768",
+    "--iterations",
+    "128",
+    "--resume",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-allocation-001/checkpoint_000384.pt",
+    "--qualification",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-qualification.json",
+    "--output",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-allocation-002"
+  ],
+  "start_unix": 1792104558.3976405,
+  "pid": 3783182,
+  "returncode": 0,
+  "wall_seconds": 1072.8363721370697,
+  "actual_controls": 100663296,
+  "full_process_control_per_second": 93829.12307445414,
+  "scope": "Entire formal process including imports/init/save and any concurrent read-only evaluations"
+}

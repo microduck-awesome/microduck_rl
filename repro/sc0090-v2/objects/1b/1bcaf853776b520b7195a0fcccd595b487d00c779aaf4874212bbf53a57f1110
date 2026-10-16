@@ -1,0 +1,115 @@
+"""Bounded full-V2 HOME hold and physical ball rolling objective audit; no PPO."""
+from pathlib import Path
+from dataclasses import asdict
+import argparse,json,hashlib,math,time
+import numpy as np
+import torch,mujoco,warp as wp
+from mjlab.envs import ManagerBasedRlEnv
+from mjlab_microduck.custom_v2.ball_kick import make_ball_kick_env_cfg,HOME_ROOT_Z
+from mjlab_microduck.custom_v2.head_metrics import camera_metrics
+p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True);p.add_argument('--device',default='cuda:0');args=p.parse_args()
+out=args.output;out.mkdir(exist_ok=False);torch.set_num_threads(2)
+names=('home_near_ball','noisy_home_near_ball','home_nearest_ball','incoming_ball_right','far_speed_05','far_speed_10','far_speed_15','far_speed_20');N=128;repeat=16;steps=250
+cfg=make_ball_kick_env_cfg();cfg.scene.num_envs=N;cfg.seed=2026101631;cfg.auto_reset=False;cfg.terminations={};cfg.curriculum={};cfg.events={k:v for k,v in cfg.events.items() if v.mode!='interval'};cfg.observations['actor'].enable_corruption=False
+native_reset=cfg.events['set_ground_state'].func
+# Noisy group retains native +/-5deg root and +/-0.05rad joint reset. Others
+# hold actual HOME for the physical equilibrium and isolated rolling controls.
+def root_reset(env,env_ids,**params):
+ native_reset(env,env_ids,**params)
+ ids=torch.as_tensor(env_ids,device=env.device,dtype=torch.long);ids=ids[ids//repeat!=1]
+ if len(ids):
+  robot=env.scene['robot'];pose=env.sim.data.qpos[ids][:,robot.indexing.free_joint_q_adr].clone();pose[:,2]=env.scene.env_origins[ids,2]+HOME_ROOT_Z;pose[:,3:]=0;pose[:,3]=1
+  robot.write_root_link_pose_to_sim(pose,env_ids=ids);robot.write_root_link_velocity_to_sim(torch.zeros(len(ids),6,device=env.device),env_ids=ids)
+  robot.write_joint_position_to_sim(robot.data.default_joint_pos[ids],env_ids=ids);robot.write_joint_velocity_to_sim(torch.zeros_like(robot.data.default_joint_pos[ids]),env_ids=ids)
+cfg.events['set_ground_state'].func=root_reset
+native_ball=cfg.events['reset_ball'].func
+speeds=(0.,0.,0.,-.5,.5,1.,1.5,2.)
+def ball_reset(env,env_ids,**params):
+ ids=torch.as_tensor(env_ids,device=env.device,dtype=torch.long);native_ball(env,ids,**params)
+ ball=env.scene['ball'];robot=env.scene['robot'];root=env.sim.data.qpos[ids][:,robot.indexing.free_joint_q_adr];group=ids//repeat
+ fixed=group!=1;part=ids[fixed]
+ if len(part):
+  g=part//repeat;pose=torch.zeros(len(part),7,device=env.device);pose[:,0]=env.sim.data.qpos[part,0]+torch.where(g>=4,2.,torch.where(g==3,.15,torch.where(g==2,params['offset'][0]-.015,params['offset'][0])));pose[:,1]=env.sim.data.qpos[part,1]+params['offset'][1];pose[:,2]=env.scene.env_origins[part,2]+.035;pose[:,3]=1
+  ball.write_root_link_pose_to_sim(pose,env_ids=part)
+  velocity=torch.zeros(len(part),6,device=env.device);speed=torch.tensor(speeds,device=env.device)[g];velocity[:,0]=speed
+  # First8 trials pure roll at matching angular velocity, remaining8 no spin.
+  velocity[:,4]=torch.where((part%repeat<8)&(g>=4),speed/.035,0.)
+  ball.write_root_link_velocity_to_sim(velocity,env_ids=part)
+cfg.events['reset_ball'].func=ball_reset
+(out/'config.json').write_text(json.dumps(asdict(cfg),indent=2,default=str)+'\n')
+env=ManagerBasedRlEnv(cfg,device=args.device)
+try:
+ robot=env.scene['robot'];ball=env.scene['ball'];original=env.command_manager.compute
+ def commands(dt):
+  original(dt);env.command_manager.get_command('twist').zero_();env.command_manager.get_term('twist').is_standing_env.fill_(True)
+ env.command_manager.compute=commands
+ obs,_=env.reset();assert obs['actor'].shape==(N,61);assert not any('ball' in k for k in cfg.observations['actor'].terms)
+ initial=dict(qpos=env.sim.data.qpos.clone(),qvel=env.sim.data.qvel.clone(),actor=obs['actor'].clone(),critic=obs['critic'].clone())
+ torch.save({k:v.cpu() for k,v in initial.items()},out/'initial.pt')
+ # Independent CPU geometry oracle on exactly the GPU-reset qpos; one readback.
+ # All trajectory integration and per-step measurements remain on CUDA.
+ model=env.sim.mj_model;data=mujoco.MjData(model);q=initial['qpos'].cpu().numpy();robot_geoms=set(robot.indexing.geom_ids.cpu().tolist());ball_geoms=set(ball.indexing.geom_ids.cpu().tolist());floor_geoms={i for i in range(model.ngeom) if int(model.geom_type[i])==int(mujoco.mjtGeom.mjGEOM_PLANE)};assert len(floor_geoms)==1
+ initial_rows=[]
+ for world in range(N):
+  data.qpos[:]=q[world];mujoco.mj_forward(model,data);floor=own=ball_pen=0.;pairs=[]
+  for contact in data.contact[:data.ncon]:
+   a,b=int(contact.geom1),int(contact.geom2);depth=max(0.,-float(contact.dist))
+   if a in robot_geoms and b in robot_geoms:own=max(own,depth);kind='self'
+   elif (a in ball_geoms and b in robot_geoms) or (b in ball_geoms and a in robot_geoms):ball_pen=max(ball_pen,depth);kind='ball_robot'
+   elif ((a in robot_geoms and b in floor_geoms) or (b in robot_geoms and a in floor_geoms)):floor=max(floor,depth);kind='robot_floor'
+   else:continue
+   if depth>1e-5:pairs.append(dict(kind=kind,a=model.geom(a).name,b=model.geom(b).name,depth_m=depth))
+  initial_rows.append(dict(world=world,case=names[world//repeat],floor_penetration_m=floor,self_penetration_m=own,ball_robot_penetration_m=ball_pen,pairs=pairs))
+ rejected=[v for v in initial_rows if v['floor_penetration_m']>.001 or v['self_penetration_m']>.001 or v['ball_robot_penetration_m']>.0001]
+ (out/'initial-geometry.json').write_text(json.dumps(dict(status='REJECTED' if rejected else 'PASS',rows=initial_rows,rejected_worlds=[v['world'] for v in rejected],scope='Actual compiled MuJoCo contact geometry at identical GPU reset qpos, before integration'),indent=2)+'\n')
+ if rejected:
+  report=dict(status='INITIAL_GEOMETRY_REJECTED',physics_controls=0,formal_controls=0,rejected_worlds=len(rejected),actor_dim=obs['actor'].shape[-1],critic_dim=obs['critic'].shape[-1],scope='No dynamics run from deeply intersecting initial states; preserve evidence for minimal reset repair.')
+  (out/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report),flush=True)
+ else:
+  camera=torch.empty(steps*4+1,N,4,device=env.device);camera_index=[0];control=[0];substate=torch.empty(steps*4,N,2,dtype=torch.bool,device=env.device);subtouch=torch.empty(steps*4,N,4,dtype=torch.bool,device=env.device);site,actual=robot.find_sites('head_camera');assert len(site)==1
+  native_substep=env.metrics_manager.compute_substep
+  def substep():
+   native_substep();camera[camera_index[0]].copy_(robot.data.site_quat_w[:,site[0]])
+   substate[camera_index[0],:,0].copy_(env._v2_ball_valid_kick);substate[camera_index[0],:,1].copy_(env._v2_ball_bad_contact)
+   for slot,name in enumerate(('kick_foot_ball_contact','other_robot_ball_contact','v2_head_ground_contact','support_foot_ground_contact')):
+    data=env.scene[name].data;found=data.found.reshape(N,-1)>0
+    if slot<3:found=found & (data.force.reshape(N,-1,3).norm(dim=-1)>.001)
+    subtouch[camera_index[0],:,slot].copy_(found.any(-1))
+   camera_index[0]+=1
+  env.metrics_manager.compute_substep=substep
+  count=wp.to_torch(env.sim.wp_data.nacon);peak=torch.zeros_like(count);native_physics=env.sim.step
+  def checked():
+   native_physics();peak.copy_(torch.maximum(peak,count));torch._assert_async((count<=env.sim.wp_data.naconmax).all(),'Contact capacity exceeded')
+  env.sim.step=checked
+  names_reward=env.reward_manager.active_terms;rewards=torch.empty(steps,N,len(names_reward),device=env.device);values={};oracle_max=torch.zeros(3,device=env.device)
+  native_reward=env.reward_manager.compute
+  def record(dt):
+   result=native_reward(dt);quat=robot.data.root_link_quat_w;found=env.scene['feet_ground_contact'].data.found.reshape(N,2,-1).sum(-1)>0
+   x=dict(height=robot.data.root_link_pos_w[:,2]-env.scene.env_origins[:,2],tilt=torch.acos((1-2*(quat[:,1].square()+quat[:,2].square())).clamp(-1,1)),linear=robot.data.root_link_lin_vel_b,angular=robot.data.root_link_ang_vel_b,feet=found,ball_position=ball.data.root_link_pos_w-env.scene.env_origins,ball_velocity=ball.data.root_link_lin_vel_w,ball_angular=ball.data.root_link_ang_vel_w,valid_kick=env._v2_ball_valid_kick,bad_contact=env._v2_ball_bad_contact,feedback_ready=env._v2_joint_feedback.ready,finite=torch.isfinite(env.sim.data.qpos).all(-1)&torch.isfinite(env.sim.data.qvel).all(-1))
+   for name in ('kick_foot_ball_contact','other_robot_ball_contact','v2_head_ground_contact','self_collision'):
+    x[name]=env.scene[name].data.found.reshape(N,-1).sum(-1)>0
+   if not values:values.update({k:torch.empty((steps,*v.shape),dtype=v.dtype,device=env.device) for k,v in x.items()})
+   for k,v in x.items():values[k][control[0]].copy_(v)
+   rewards[control[0]].copy_(env.reward_manager._step_reward)
+   forward=(x['ball_velocity'][:,:2]*env._ball_kick_dir_w).sum(-1)
+   support=env.scene['support_foot_ground_contact'].data.found.reshape(N,-1).sum(-1).clamp(0,1)
+   for i,(name,wanted) in enumerate((('ball_forward_velocity',12*forward.clamp(0,1)*env._v2_ball_valid_kick),('ball_speed_overshoot',-4*(forward-1).clamp(0,5)),('support_foot_grounded',2*support))):
+    actual=env.reward_manager._step_reward[:,names_reward.index(name)];delta=(actual-wanted).abs();oracle_max[i]=torch.maximum(oracle_max[i],delta.max());torch._assert_async(torch.isclose(actual,wanted,atol=2e-6,rtol=1e-6).all(),'Ball objective physical oracle mismatch')
+   return result
+  env.reward_manager.compute=record
+  action=torch.zeros(N,14,device=env.device)
+  with torch.inference_mode():
+   for step in range(steps):
+    control[0]=step;torch._assert_async((obs['actor'][:,48:61]==0).all(),'Ball actor command slots not zero');obs,*_=env.step(action);torch._assert_async((obs['critic'][:,-2:]==torch.stack((env._v2_ball_valid_kick,env._v2_ball_bad_contact),-1).float()).all(),'Ball state critic boundary mismatch')
+   camera[-1].copy_(robot.data.site_quat_w[:,site[0]])
+  assert camera_index[0]==steps*4
+  healthy=(values['height']>=.102)&(values['tilt']<=math.radians(20))&(values['linear'].norm(dim=-1)<.15)&(values['angular'].norm(dim=-1)<1.5)&values['feet'].all(-1)&values['finite']&values['feedback_ready']
+  rows=[];ball_reward=rewards[:,:,names_reward.index('ball_forward_velocity')]+rewards[:,:,names_reward.index('ball_speed_overshoot')]
+  for group,name in enumerate(names):
+   for kind,lo,hi in (('all',0,16),('pure_rolling',0,8),('no_spin',8,16)) if group>=4 else (('all',0,16),):
+    sl=slice(group*repeat+lo,group*repeat+hi);good=healthy[-50:,sl].all(0);cam=camera_metrics(camera[-201:,sl])
+    rows.append(dict(case=name,spin=kind,trials=hi-lo,valid_kick_trials=int(values['valid_kick'][:,sl].any(0).sum()),bad_contact_trials=int(values['bad_contact'][:,sl].any(0).sum()),physics_correct_touch_samples=int(subtouch[:,sl,0].sum()),control_correct_touch_samples=int(subtouch[3::4,sl,0].sum()),tail_healthy_trials=int(good.sum()),feedback_invalid_trials=int((~values['feedback_ready'][:,sl]).any(0).sum()),nonfinite_trials=int((~values['finite'][:,sl]).any(0).sum()),kick_foot_ball_contact_trials=int(values['kick_foot_ball_contact'][:,sl].any(0).sum()),other_robot_ball_contact_trials=int(values['other_robot_ball_contact'][:,sl].any(0).sum()),head_floor_trials=int(values['v2_head_ground_contact'][:,sl].any(0).sum()),self_contact_trials=int(values['self_collision'][:,sl].any(0).sum()),ball_vx_initial_mean=float(values['ball_velocity'][0,sl,0].mean()),ball_vx_final_mean=float(values['ball_velocity'][-1,sl,0].mean()),ball_forward_distance_mean=float((values['ball_position'][-1,sl,0]-values['ball_position'][0,sl,0]).mean()),ball_reward_integral_mean=float(ball_reward[:,sl].sum(0).mean()*.02),ball_discounted_reward_integral_mean=float((ball_reward[:,sl]*torch.pow(.99,torch.arange(steps,device=env.device))[:,None]).sum(0).mean()*.02),camera_healthy_per_trial_mean={k:float(v[good].mean()) if bool(good.any()) else None for k,v in cam.items()}))
+  torch.save(dict(initial={k:v.cpu() for k,v in initial.items()},values={k:v.cpu() for k,v in values.items()},camera=camera.cpu(),physics_kick_state=substate.cpu(),physics_touches=subtouch.cpu(),rewards=rewards.cpu(),reward_names=names_reward),out/'trace.pt')
+  report=dict(status='PHYSICAL_PROBE_COMPLETE_NOT_TRAINING_QUALIFIED',physics_controls=N*steps,formal_controls=0,rows=rows,actor_dim=obs['actor'].shape[-1],critic_dim=obs['critic'].shape[-1],oracle_max_abs=oracle_max.cpu().tolist(),contact_peak=int(peak.max()),contact_capacity=env.sim.wp_data.naconmax,scope='Constant HOME actions through native P04, not a learned kick policy. Far ball velocities are explicit physical counterfactuals; actuator/geometry/reward unchanged. Contacts sampled at control boundary; substep camera actual200Hz. No full terminal/PPO admission.')
+  (out/'report.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n');print(json.dumps(report),flush=True)
+finally:env.close()

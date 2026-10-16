@@ -1,0 +1,3311 @@
+{
+  "rise_p04_micro1856": {
+    "snapshot": "rise_p04_micro1856",
+    "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-M4-HeadStdCap001-MicroExposure025-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_standup.py",
+    "checkpoint": "p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+    "checkpoint_sha256": "e4772c33149410d62446180a9214b26695cb51ba1d5b7b26fac31d3ea273122b",
+    "run_manifest": "evidence/p04/head2-micro-exposure-allocation-001/run.json",
+    "recorded_arguments": {},
+    "ppo": {
+      "N": 32768,
+      "T": 24,
+      "E": 5,
+      "M": 4,
+      "sample_batch": 786432
+    },
+    "agent": {
+      "seed": 20261015,
+      "num_steps_per_env": 24,
+      "max_iterations": 15000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 250,
+      "experiment_name": "microduck_v2_p04_from_random",
+      "run_name": "microduck_stand",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "mjlab_microduck.custom_v2.head_exploration:HeadCappedGaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar",
+          "head_std_cap": 0.01
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "learning_rate": 1e-05,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.005,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.ppo:TerminalCriticPPO",
+        "symmetry_cfg": null
+      }
+    },
+    "seed": 20261015,
+    "limits": [
+      "Recovery success does not imply active head precision, world camera stability or hardware qualification.",
+      "Development seeds used for selection; do not claim held-out acceptance."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "rise_baseline_paired3762": {
+    "snapshot": "rise_baseline_paired3762",
+    "task": "Mjlab-StandUp-Flat-MicroDuck-V2-PairedError-Baseline",
+    "trainer": "scripts/train_v2_standup.py",
+    "checkpoint": "baseline/paired-feedback-allocation-001/checkpoint_003762.pt",
+    "checkpoint_sha256": "e753856776bb43e44d9465b4067a0b9cd2d10fe03fc8cb88ee4177ec786f93e1",
+    "run_manifest": "evidence/baseline/paired-feedback-allocation-001/run.json",
+    "recorded_arguments": {},
+    "ppo": {
+      "N": 8192,
+      "T": 24,
+      "E": 5,
+      "M": 4,
+      "sample_batch": 196608
+    },
+    "agent": {
+      "seed": 20261015,
+      "num_steps_per_env": 24,
+      "max_iterations": 15000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 250,
+      "experiment_name": "v2_paired_error_baseline",
+      "run_name": "v2_paired_error_baseline",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.ppo:TerminalCriticPPO",
+        "symmetry_cfg": null
+      }
+    },
+    "seed": 20261015,
+    "limits": [
+      "Recovery success does not imply active head precision, world camera stability or hardware qualification.",
+      "Development seeds used for selection; do not claim held-out acceptance.",
+      "Paired error-bank baseline uses continuous actions and synthetic measured P04 error blocks; no standalone action-quantization stage was validated.",
+      "Direct transfer used earlier valid-raw frontend. Native-count-v2 later fixes must be retained in new work."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "rise_baseline_to_p04_4466": {
+    "snapshot": "rise_baseline_to_p04_4466",
+    "task": "Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Catch2sPitch10-LateEntropy005-HeadStdCap001-AccuracyBonus05-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_standup.py",
+    "checkpoint": "p04/paired-head-accuracy-allocation-002/checkpoint_004466.pt",
+    "checkpoint_sha256": "f5a9a86b9acd16faeca12a9aefc63e204fff7fe90a7f328b6aad32ce7133159f",
+    "run_manifest": "evidence/p04/paired-head-accuracy-allocation-002/run.json",
+    "recorded_arguments": {},
+    "ppo": {
+      "N": 32768,
+      "T": 24,
+      "E": 5,
+      "M": 4,
+      "sample_batch": 786432
+    },
+    "agent": {
+      "seed": 20261015,
+      "num_steps_per_env": 24,
+      "max_iterations": 15000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 250,
+      "experiment_name": "microduck_v2_p04_repaired_standup",
+      "run_name": "microduck_stand",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "mjlab_microduck.custom_v2.head_exploration:HeadCappedGaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar",
+          "head_std_cap": 0.01
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.005,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.ppo:TerminalCriticPPO",
+        "symmetry_cfg": null
+      }
+    },
+    "seed": 20261015,
+    "limits": [
+      "Recovery success does not imply active head precision, world camera stability or hardware qualification.",
+      "Development seeds used for selection; do not claim held-out acceptance."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "walking449": {
+    "snapshot": "walking449",
+    "task": "Mjlab-Velocity-Flat-MicroDuck-V2-YawFine-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_walking.py",
+    "checkpoint": "p04/walking-yaw-fine-allocation-002/model_448.pt",
+    "checkpoint_sha256": "8ecccd9395fade3f20f7945cd4510e655c282079cb5a367546935053c49189da",
+    "run_manifest": "evidence/p04/walking-yaw-fine-allocation-002/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/walking-yaw-fine-allocation-002",
+      "task": "Mjlab-Velocity-Flat-MicroDuck-V2-YawFine-Repaired-S0-O0-R1",
+      "device": "cuda:1",
+      "num_envs": 32768,
+      "iterations": 128,
+      "seed": 2026101611,
+      "resume": "${ARTIFACT_ROOT}/p04/walking-yaw-fine-allocation-001/checkpoint_000384.pt",
+      "source_transition": null,
+      "qualification": "${ARTIFACT_ROOT}/p04/walking-yaw-fine-qualification.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 32768,
+      "T": 24,
+      "E": 5,
+      "M": 4,
+      "sample_batch": 786432
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 50000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_yaw_fine_walking",
+      "run_name": "microduck_v2_yaw_fine_walking_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.ppo:TerminalCriticPPO",
+        "symmetry_cfg": null
+      }
+    },
+    "seed": 2026101611,
+    "limits": [
+      "Survival is not velocity tracking/zero-speed no-stepping or head/camera success.",
+      "449 is metadata completed_updates=449 in native filename model_448.pt; filename alone is not iteration authority."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "walking512": {
+    "snapshot": "walking449",
+    "task": "Mjlab-Velocity-Flat-MicroDuck-V2-YawFine-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_walking.py",
+    "checkpoint": "p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+    "checkpoint_sha256": "480dbcaee8666e79e541d61719cf9bcfe746444b936661784272347d603e5395",
+    "run_manifest": "evidence/p04/walking-yaw-fine-allocation-002/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/walking-yaw-fine-allocation-002",
+      "task": "Mjlab-Velocity-Flat-MicroDuck-V2-YawFine-Repaired-S0-O0-R1",
+      "device": "cuda:1",
+      "num_envs": 32768,
+      "iterations": 128,
+      "seed": 2026101611,
+      "resume": "${ARTIFACT_ROOT}/p04/walking-yaw-fine-allocation-001/checkpoint_000384.pt",
+      "source_transition": null,
+      "qualification": "${ARTIFACT_ROOT}/p04/walking-yaw-fine-qualification.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 32768,
+      "T": 24,
+      "E": 5,
+      "M": 4,
+      "sample_batch": 786432
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 50000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_yaw_fine_walking",
+      "run_name": "microduck_v2_yaw_fine_walking_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.ppo:TerminalCriticPPO",
+        "symmetry_cfg": null
+      }
+    },
+    "seed": 2026101611,
+    "limits": [
+      "Survival is not velocity tracking/zero-speed no-stepping or head/camera success.",
+      "449 is metadata completed_updates=449 in native filename model_448.pt; filename alone is not iteration authority."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "velstand256": {
+    "snapshot": "velstand256",
+    "task": "Mjlab-VelStand-Flat-MicroDuck-V2-V8-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_velstand.py",
+    "checkpoint": "p04/velstand-v8-allocation-002/checkpoint_000256.pt",
+    "checkpoint_sha256": "e18524d00d516727e2a5d5504b9423a32ee5bb72aa61d1cc86a26c526b35bcab",
+    "run_manifest": "evidence/p04/velstand-v8-allocation-002/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/velstand-v8-allocation-002",
+      "task": "Mjlab-VelStand-Flat-MicroDuck-V2-V8-Repaired-S0-O0-R1",
+      "device": "cuda:1",
+      "num_envs": 24576,
+      "iterations": 128,
+      "seed": 2026101618,
+      "resume": "${ARTIFACT_ROOT}/p04/velstand-v8-allocation-001/checkpoint_000128.pt",
+      "warm_start": null,
+      "standing_teacher": "${ARTIFACT_ROOT}/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+      "walking_teacher": "${ARTIFACT_ROOT}/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+      "qualification": "${ARTIFACT_ROOT}/p04/velstand-v8-mature-qualified-native-range.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 24576,
+      "T": 24,
+      "E": 5,
+      "M": 4,
+      "sample_batch": 589824
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 6000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_velstand_v8",
+      "run_name": "velstand_v8_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.velstand_ppo:VelStandPPO",
+        "symmetry_cfg": null,
+        "bc_cfg": {
+          "wandb_run_path": null,
+          "checkpoint_name": "model_9750.pt",
+          "checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+          "coef": 1.0,
+          "learning_rate": 3e-05,
+          "gate_tilt_deg": 35.0,
+          "epochs": 5,
+          "mini_batches": 4,
+          "min_mini_batch": 512,
+          "min_samples": 64,
+          "gravity_slice": [
+            3,
+            6
+          ],
+          "twist_slice": [
+            48,
+            51
+          ],
+          "anchor_wandb_run_path": null,
+          "anchor_checkpoint_name": "model_3750.pt",
+          "anchor_checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+          "anchor_coef": 1.0,
+          "anchor_tilt_deg": 25.0,
+          "body_slice": [
+            55,
+            61
+          ],
+          "unanchor_turn_in_place": false,
+          "anchor_yaw_remap": null,
+          "body_active_axes": [
+            2,
+            3,
+            4
+          ],
+          "body_no_teacher_axes": [
+            2,
+            3,
+            4
+          ],
+          "expert_mask_cols": [],
+          "expert_mask_tilt_deg": 75.0,
+          "standing_teacher": true
+        }
+      }
+    },
+    "seed": 2026101618,
+    "limits": [
+      "Camera RMS and active head accuracy trade off; surviving all commands is not full acceptance.",
+      "World camera 200Hz metrics must retain healthy/upright denominators; requested turns and active head motions are separate.",
+      "Teacher preprocessing and independent normalizers are part of replay contract; no deployment actor switching."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "velstand_control320": {
+    "snapshot": "velstand_control320",
+    "task": "Mjlab-VelStand-Flat-MicroDuck-V2-V8-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_velstand.py",
+    "checkpoint": "p04/velstand-camera-control-allocation-001/checkpoint_000320.pt",
+    "checkpoint_sha256": "ce6fdd3834b2bf8b6e5637e07737985465043b0488cede70d6e68ad6beef2f08",
+    "run_manifest": "evidence/p04/velstand-camera-control-allocation-001/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/velstand-camera-control-allocation-001",
+      "task": "Mjlab-VelStand-Flat-MicroDuck-V2-V8-Repaired-S0-O0-R1",
+      "device": "cuda:1",
+      "num_envs": 24576,
+      "iterations": 64,
+      "seed": 2026101618,
+      "resume": "${ARTIFACT_ROOT}/p04/velstand-v8-allocation-002/checkpoint_000256.pt",
+      "source_transition": "${ARTIFACT_ROOT}/p04/velstand-camera-source-transition-002.json",
+      "native_range_budget": 16,
+      "camera_weight": 0.0,
+      "warm_start": null,
+      "standing_teacher": "${ARTIFACT_ROOT}/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+      "walking_teacher": "${ARTIFACT_ROOT}/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+      "qualification": "${ARTIFACT_ROOT}/p04/velstand-camera-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 24576,
+      "T": 24,
+      "E": 5,
+      "M": 4,
+      "sample_batch": 589824
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 6000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_velstand_v8",
+      "run_name": "velstand_v8_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.velstand_ppo:VelStandPPO",
+        "symmetry_cfg": null,
+        "bc_cfg": {
+          "wandb_run_path": null,
+          "checkpoint_name": "model_9750.pt",
+          "checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+          "coef": 1.0,
+          "learning_rate": 3e-05,
+          "gate_tilt_deg": 35.0,
+          "epochs": 5,
+          "mini_batches": 4,
+          "min_mini_batch": 512,
+          "min_samples": 64,
+          "gravity_slice": [
+            3,
+            6
+          ],
+          "twist_slice": [
+            48,
+            51
+          ],
+          "anchor_wandb_run_path": null,
+          "anchor_checkpoint_name": "model_3750.pt",
+          "anchor_checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+          "anchor_coef": 1.0,
+          "anchor_tilt_deg": 25.0,
+          "body_slice": [
+            55,
+            61
+          ],
+          "unanchor_turn_in_place": false,
+          "anchor_yaw_remap": null,
+          "body_active_axes": [
+            2,
+            3,
+            4
+          ],
+          "body_no_teacher_axes": [
+            2,
+            3,
+            4
+          ],
+          "expert_mask_cols": [],
+          "expert_mask_tilt_deg": 75.0,
+          "standing_teacher": true
+        }
+      }
+    },
+    "seed": 2026101618,
+    "limits": [
+      "Camera RMS and active head accuracy trade off; surviving all commands is not full acceptance.",
+      "World camera 200Hz metrics must retain healthy/upright denominators; requested turns and active head motions are separate.",
+      "Teacher preprocessing and independent normalizers are part of replay contract; no deployment actor switching."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "velstand_camera_mild320": {
+    "snapshot": "velstand_control320",
+    "task": "Mjlab-VelStand-Flat-MicroDuck-V2-V8-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_velstand.py",
+    "checkpoint": "p04/velstand-camera-mild-allocation-001/checkpoint_000320.pt",
+    "checkpoint_sha256": "ab6dea2e942527549b5cf28201cc279b8e1b656e29842487575bcab607137835",
+    "run_manifest": "evidence/p04/velstand-camera-mild-allocation-001/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/velstand-camera-mild-allocation-001",
+      "task": "Mjlab-VelStand-Flat-MicroDuck-V2-V8-Repaired-S0-O0-R1",
+      "device": "cuda:0",
+      "num_envs": 24576,
+      "iterations": 64,
+      "seed": 2026101618,
+      "resume": "${ARTIFACT_ROOT}/p04/velstand-v8-allocation-002/checkpoint_000256.pt",
+      "source_transition": "${ARTIFACT_ROOT}/p04/velstand-camera-source-transition-002.json",
+      "native_range_budget": 16,
+      "camera_weight": -0.01,
+      "warm_start": null,
+      "standing_teacher": "${ARTIFACT_ROOT}/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+      "walking_teacher": "${ARTIFACT_ROOT}/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+      "qualification": "${ARTIFACT_ROOT}/p04/velstand-camera-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 24576,
+      "T": 24,
+      "E": 5,
+      "M": 4,
+      "sample_batch": 589824
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 6000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_velstand_v8",
+      "run_name": "velstand_v8_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.velstand_ppo:VelStandPPO",
+        "symmetry_cfg": null,
+        "bc_cfg": {
+          "wandb_run_path": null,
+          "checkpoint_name": "model_9750.pt",
+          "checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+          "coef": 1.0,
+          "learning_rate": 3e-05,
+          "gate_tilt_deg": 35.0,
+          "epochs": 5,
+          "mini_batches": 4,
+          "min_mini_batch": 512,
+          "min_samples": 64,
+          "gravity_slice": [
+            3,
+            6
+          ],
+          "twist_slice": [
+            48,
+            51
+          ],
+          "anchor_wandb_run_path": null,
+          "anchor_checkpoint_name": "model_3750.pt",
+          "anchor_checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+          "anchor_coef": 1.0,
+          "anchor_tilt_deg": 25.0,
+          "body_slice": [
+            55,
+            61
+          ],
+          "unanchor_turn_in_place": false,
+          "anchor_yaw_remap": null,
+          "body_active_axes": [
+            2,
+            3,
+            4
+          ],
+          "body_no_teacher_axes": [
+            2,
+            3,
+            4
+          ],
+          "expert_mask_cols": [],
+          "expert_mask_tilt_deg": 75.0,
+          "standing_teacher": true
+        }
+      }
+    },
+    "seed": 2026101618,
+    "limits": [
+      "Camera RMS and active head accuracy trade off; surviving all commands is not full acceptance.",
+      "World camera 200Hz metrics must retain healthy/upright denominators; requested turns and active head motions are separate.",
+      "Teacher preprocessing and independent normalizers are part of replay contract; no deployment actor switching."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "velstand_head_free320": {
+    "snapshot": "velstand_head_free320",
+    "task": "Mjlab-VelStand-Flat-MicroDuck-V2-V8-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_velstand.py",
+    "checkpoint": "p04/velstand-head-free-bc-allocation-001/checkpoint_000320.pt",
+    "checkpoint_sha256": "c6f2ddcbaa39071bf243afe8690587a130d5ae55655fa0326d6e8d9c0705a9e9",
+    "run_manifest": "evidence/p04/velstand-head-free-bc-allocation-001/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/velstand-head-free-bc-allocation-001",
+      "task": "Mjlab-VelStand-Flat-MicroDuck-V2-V8-Repaired-S0-O0-R1",
+      "device": "cuda:0",
+      "num_envs": 24576,
+      "iterations": 64,
+      "seed": 2026101618,
+      "resume": "${ARTIFACT_ROOT}/p04/velstand-v8-allocation-002/checkpoint_000256.pt",
+      "source_transition": "${ARTIFACT_ROOT}/p04/velstand-head-free-bc-source-transition-001.json",
+      "native_range_budget": 16,
+      "camera_weight": -0.01,
+      "warm_start": null,
+      "standing_teacher": "${ARTIFACT_ROOT}/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+      "walking_teacher": "${ARTIFACT_ROOT}/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+      "qualification": "${ARTIFACT_ROOT}/p04/velstand-head-free-bc-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 24576,
+      "T": 24,
+      "E": 5,
+      "M": 4,
+      "sample_batch": 589824
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 6000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_velstand_v8",
+      "run_name": "velstand_v8_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.velstand_ppo:VelStandPPO",
+        "symmetry_cfg": null,
+        "bc_cfg": {
+          "wandb_run_path": null,
+          "checkpoint_name": "model_9750.pt",
+          "checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+          "coef": 1.0,
+          "learning_rate": 3e-05,
+          "gate_tilt_deg": 35.0,
+          "epochs": 5,
+          "mini_batches": 4,
+          "min_mini_batch": 512,
+          "min_samples": 64,
+          "gravity_slice": [
+            3,
+            6
+          ],
+          "twist_slice": [
+            48,
+            51
+          ],
+          "anchor_wandb_run_path": null,
+          "anchor_checkpoint_name": "model_3750.pt",
+          "anchor_checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+          "anchor_coef": 1.0,
+          "anchor_tilt_deg": 25.0,
+          "body_slice": [
+            55,
+            61
+          ],
+          "unanchor_turn_in_place": false,
+          "anchor_yaw_remap": null,
+          "body_active_axes": [
+            2,
+            3,
+            4
+          ],
+          "body_no_teacher_axes": [
+            2,
+            3,
+            4
+          ],
+          "expert_mask_cols": [],
+          "expert_mask_tilt_deg": 75.0,
+          "standing_teacher": true
+        }
+      }
+    },
+    "seed": 2026101618,
+    "limits": [
+      "Camera RMS and active head accuracy trade off; surviving all commands is not full acceptance.",
+      "World camera 200Hz metrics must retain healthy/upright denominators; requested turns and active head motions are separate.",
+      "Teacher preprocessing and independent normalizers are part of replay contract; no deployment actor switching."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "velstand_head_bias384": {
+    "snapshot": "velstand_head_bias384",
+    "task": "Mjlab-VelStand-Flat-MicroDuck-V2-V8-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_velstand.py",
+    "checkpoint": "p04/velstand-head-bias-allocation-001/checkpoint_000384.pt",
+    "checkpoint_sha256": "cb30a13905a1d636b26d466acc57cb1ba8e80975e20c526b175d26b20e160645",
+    "run_manifest": "evidence/p04/velstand-head-bias-allocation-001/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/velstand-head-bias-allocation-001",
+      "task": "Mjlab-VelStand-Flat-MicroDuck-V2-V8-Repaired-S0-O0-R1",
+      "device": "cuda:0",
+      "num_envs": 24576,
+      "iterations": 64,
+      "seed": 2026101618,
+      "resume": "${ARTIFACT_ROOT}/p04/velstand-head-free-bc-allocation-001/checkpoint_000320.pt",
+      "source_transition": "${ARTIFACT_ROOT}/p04/velstand-head-bias-source-transition-001.json",
+      "native_range_budget": 16,
+      "camera_weight": -0.01,
+      "warm_start": null,
+      "standing_teacher": "${ARTIFACT_ROOT}/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+      "walking_teacher": "${ARTIFACT_ROOT}/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+      "qualification": "${ARTIFACT_ROOT}/p04/velstand-head-bias-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 24576,
+      "T": 24,
+      "E": 5,
+      "M": 4,
+      "sample_batch": 589824
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 6000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_velstand_v8",
+      "run_name": "velstand_v8_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.velstand_ppo:VelStandPPO",
+        "symmetry_cfg": null,
+        "bc_cfg": {
+          "wandb_run_path": null,
+          "checkpoint_name": "model_9750.pt",
+          "checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+          "coef": 1.0,
+          "learning_rate": 3e-05,
+          "gate_tilt_deg": 35.0,
+          "epochs": 5,
+          "mini_batches": 4,
+          "min_mini_batch": 512,
+          "min_samples": 64,
+          "gravity_slice": [
+            3,
+            6
+          ],
+          "twist_slice": [
+            48,
+            51
+          ],
+          "anchor_wandb_run_path": null,
+          "anchor_checkpoint_name": "model_3750.pt",
+          "anchor_checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+          "anchor_coef": 1.0,
+          "anchor_tilt_deg": 25.0,
+          "body_slice": [
+            55,
+            61
+          ],
+          "unanchor_turn_in_place": false,
+          "anchor_yaw_remap": null,
+          "body_active_axes": [
+            2,
+            3,
+            4
+          ],
+          "body_no_teacher_axes": [
+            2,
+            3,
+            4
+          ],
+          "expert_mask_cols": [],
+          "expert_mask_tilt_deg": 75.0,
+          "standing_teacher": true
+        }
+      }
+    },
+    "seed": 2026101618,
+    "limits": [
+      "Camera RMS and active head accuracy trade off; surviving all commands is not full acceptance.",
+      "World camera 200Hz metrics must retain healthy/upright denominators; requested turns and active head motions are separate.",
+      "Teacher preprocessing and independent normalizers are part of replay contract; no deployment actor switching."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "velstand_head_bias448": {
+    "snapshot": "velstand_head_bias384",
+    "task": "Mjlab-VelStand-Flat-MicroDuck-V2-V8-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_velstand.py",
+    "checkpoint": "p04/velstand-head-bias-allocation-002/checkpoint_000448.pt",
+    "checkpoint_sha256": "59faeaf98b11b0361d01a796b73d044f0daafff1561ecdd0fa00c2262e533bb5",
+    "run_manifest": "evidence/p04/velstand-head-bias-allocation-002/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/velstand-head-bias-allocation-002",
+      "task": "Mjlab-VelStand-Flat-MicroDuck-V2-V8-Repaired-S0-O0-R1",
+      "device": "cuda:0",
+      "num_envs": 24576,
+      "iterations": 64,
+      "seed": 2026101618,
+      "resume": "${ARTIFACT_ROOT}/p04/velstand-head-bias-allocation-001/checkpoint_000384.pt",
+      "source_transition": null,
+      "native_range_budget": 16,
+      "camera_weight": -0.01,
+      "warm_start": null,
+      "standing_teacher": "${ARTIFACT_ROOT}/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+      "walking_teacher": "${ARTIFACT_ROOT}/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+      "qualification": "${ARTIFACT_ROOT}/p04/velstand-head-bias-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 24576,
+      "T": 24,
+      "E": 5,
+      "M": 4,
+      "sample_batch": 589824
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 6000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_velstand_v8",
+      "run_name": "velstand_v8_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.velstand_ppo:VelStandPPO",
+        "symmetry_cfg": null,
+        "bc_cfg": {
+          "wandb_run_path": null,
+          "checkpoint_name": "model_9750.pt",
+          "checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+          "coef": 1.0,
+          "learning_rate": 3e-05,
+          "gate_tilt_deg": 35.0,
+          "epochs": 5,
+          "mini_batches": 4,
+          "min_mini_batch": 512,
+          "min_samples": 64,
+          "gravity_slice": [
+            3,
+            6
+          ],
+          "twist_slice": [
+            48,
+            51
+          ],
+          "anchor_wandb_run_path": null,
+          "anchor_checkpoint_name": "model_3750.pt",
+          "anchor_checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+          "anchor_coef": 1.0,
+          "anchor_tilt_deg": 25.0,
+          "body_slice": [
+            55,
+            61
+          ],
+          "unanchor_turn_in_place": false,
+          "anchor_yaw_remap": null,
+          "body_active_axes": [
+            2,
+            3,
+            4
+          ],
+          "body_no_teacher_axes": [
+            2,
+            3,
+            4
+          ],
+          "expert_mask_cols": [],
+          "expert_mask_tilt_deg": 75.0,
+          "standing_teacher": true
+        }
+      }
+    },
+    "seed": 2026101618,
+    "limits": [
+      "Camera RMS and active head accuracy trade off; surviving all commands is not full acceptance.",
+      "World camera 200Hz metrics must retain healthy/upright denominators; requested turns and active head motions are separate.",
+      "Teacher preprocessing and independent normalizers are part of replay contract; no deployment actor switching."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "velstand_head_bias512": {
+    "snapshot": "velstand_head_bias384",
+    "task": "Mjlab-VelStand-Flat-MicroDuck-V2-V8-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_velstand.py",
+    "checkpoint": "p04/velstand-head-bias-allocation-003/checkpoint_000512.pt",
+    "checkpoint_sha256": "77175a0fa9b73766e501e0647a6b55bb0cc5c936e9d1d37e03894bea4cf25e1f",
+    "run_manifest": "evidence/p04/velstand-head-bias-allocation-003/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/velstand-head-bias-allocation-003",
+      "task": "Mjlab-VelStand-Flat-MicroDuck-V2-V8-Repaired-S0-O0-R1",
+      "device": "cuda:0",
+      "num_envs": 24576,
+      "iterations": 64,
+      "seed": 2026101618,
+      "resume": "${ARTIFACT_ROOT}/p04/velstand-head-bias-allocation-002/checkpoint_000448.pt",
+      "source_transition": null,
+      "native_range_budget": 16,
+      "camera_weight": -0.01,
+      "warm_start": null,
+      "standing_teacher": "${ARTIFACT_ROOT}/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+      "walking_teacher": "${ARTIFACT_ROOT}/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+      "qualification": "${ARTIFACT_ROOT}/p04/velstand-head-bias-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 24576,
+      "T": 24,
+      "E": 5,
+      "M": 4,
+      "sample_batch": 589824
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 6000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_velstand_v8",
+      "run_name": "velstand_v8_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.velstand_ppo:VelStandPPO",
+        "symmetry_cfg": null,
+        "bc_cfg": {
+          "wandb_run_path": null,
+          "checkpoint_name": "model_9750.pt",
+          "checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+          "coef": 1.0,
+          "learning_rate": 3e-05,
+          "gate_tilt_deg": 35.0,
+          "epochs": 5,
+          "mini_batches": 4,
+          "min_mini_batch": 512,
+          "min_samples": 64,
+          "gravity_slice": [
+            3,
+            6
+          ],
+          "twist_slice": [
+            48,
+            51
+          ],
+          "anchor_wandb_run_path": null,
+          "anchor_checkpoint_name": "model_3750.pt",
+          "anchor_checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+          "anchor_coef": 1.0,
+          "anchor_tilt_deg": 25.0,
+          "body_slice": [
+            55,
+            61
+          ],
+          "unanchor_turn_in_place": false,
+          "anchor_yaw_remap": null,
+          "body_active_axes": [
+            2,
+            3,
+            4
+          ],
+          "body_no_teacher_axes": [
+            2,
+            3,
+            4
+          ],
+          "expert_mask_cols": [],
+          "expert_mask_tilt_deg": 75.0,
+          "standing_teacher": true
+        }
+      }
+    },
+    "seed": 2026101618,
+    "limits": [
+      "Camera RMS and active head accuracy trade off; surviving all commands is not full acceptance.",
+      "World camera 200Hz metrics must retain healthy/upright denominators; requested turns and active head motions are separate.",
+      "Teacher preprocessing and independent normalizers are part of replay contract; no deployment actor switching."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "velstand_head_bias576": {
+    "snapshot": "velstand_head_bias384",
+    "task": "Mjlab-VelStand-Flat-MicroDuck-V2-V8-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_velstand.py",
+    "checkpoint": "p04/velstand-head-bias-allocation-004/checkpoint_000576.pt",
+    "checkpoint_sha256": "b6bcf30be62a5661fd1e448734f2b52b9de69fe0cbe1c64b188df52da520a966",
+    "run_manifest": "evidence/p04/velstand-head-bias-allocation-004/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/velstand-head-bias-allocation-004",
+      "task": "Mjlab-VelStand-Flat-MicroDuck-V2-V8-Repaired-S0-O0-R1",
+      "device": "cuda:0",
+      "num_envs": 24576,
+      "iterations": 64,
+      "seed": 2026101618,
+      "resume": "${ARTIFACT_ROOT}/p04/velstand-head-bias-allocation-003/checkpoint_000512.pt",
+      "source_transition": null,
+      "native_range_budget": 16,
+      "camera_weight": -0.01,
+      "warm_start": null,
+      "standing_teacher": "${ARTIFACT_ROOT}/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+      "walking_teacher": "${ARTIFACT_ROOT}/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+      "qualification": "${ARTIFACT_ROOT}/p04/velstand-head-bias-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 24576,
+      "T": 24,
+      "E": 5,
+      "M": 4,
+      "sample_batch": 589824
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 6000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_velstand_v8",
+      "run_name": "velstand_v8_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 4,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.velstand_ppo:VelStandPPO",
+        "symmetry_cfg": null,
+        "bc_cfg": {
+          "wandb_run_path": null,
+          "checkpoint_name": "model_9750.pt",
+          "checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+          "coef": 1.0,
+          "learning_rate": 3e-05,
+          "gate_tilt_deg": 35.0,
+          "epochs": 5,
+          "mini_batches": 4,
+          "min_mini_batch": 512,
+          "min_samples": 64,
+          "gravity_slice": [
+            3,
+            6
+          ],
+          "twist_slice": [
+            48,
+            51
+          ],
+          "anchor_wandb_run_path": null,
+          "anchor_checkpoint_name": "model_3750.pt",
+          "anchor_checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+          "anchor_coef": 1.0,
+          "anchor_tilt_deg": 25.0,
+          "body_slice": [
+            55,
+            61
+          ],
+          "unanchor_turn_in_place": false,
+          "anchor_yaw_remap": null,
+          "body_active_axes": [
+            2,
+            3,
+            4
+          ],
+          "body_no_teacher_axes": [
+            2,
+            3,
+            4
+          ],
+          "expert_mask_cols": [],
+          "expert_mask_tilt_deg": 75.0,
+          "standing_teacher": true
+        }
+      }
+    },
+    "seed": 2026101618,
+    "limits": [
+      "Camera RMS and active head accuracy trade off; surviving all commands is not full acceptance.",
+      "World camera 200Hz metrics must retain healthy/upright denominators; requested turns and active head motions are separate.",
+      "Teacher preprocessing and independent normalizers are part of replay contract; no deployment actor switching."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "sitstand640": {
+    "snapshot": "sitstand640",
+    "task": "Mjlab-SitStand-Flat-MicroDuck-V2-ClearSeat-HistoryHold320-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_sitstand.py",
+    "checkpoint": "p04/sitstand-history-hold320-allocation-001/checkpoint_000640.pt",
+    "checkpoint_sha256": "90b00e9867030d72bd97bf7a91490761c18306b754e2fc8aaeb80cdb3dc85ec5",
+    "run_manifest": "evidence/p04/sitstand-history-hold320-allocation-001/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/sitstand-history-hold320-allocation-001",
+      "task": "Mjlab-SitStand-Flat-MicroDuck-V2-ClearSeat-HistoryHold320-Repaired-S0-O0-R1",
+      "device": "cuda:1",
+      "num_envs": 16384,
+      "iterations": 320,
+      "seed": 2026101611,
+      "resume": "${ARTIFACT_ROOT}/p04/sitstand-history-base-allocation-002/checkpoint_000320.pt",
+      "source_transition": "${SOURCE}/source-transition.json",
+      "qualification": "${ARTIFACT_ROOT}/p04/sitstand-history-hold320-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 16384,
+      "T": 24,
+      "E": 5,
+      "M": 16,
+      "sample_batch": 393216
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 15000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_p04_sitstand",
+      "run_name": "history_base_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 16,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.ppo:TerminalCriticPPO",
+        "symmetry_cfg": null
+      }
+    },
+    "seed": 2026101611,
+    "limits": [
+      "SIT endpoint hold learned; STAND0/384 in both conditions; active head0/672.",
+      "Command-clock-fixed original12s four initial/target groups, reversals and original gates.",
+      "No healthy standing camera denominator; low angular speed of head-supported/fallen posture is not head stability.",
+      "768 nominal first report reconstructed from completed600-step saved traces after external bool dtype reporting failure; no simulation repeat and unknown original oracle maximum left null."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "sitstand_near_teacher768": {
+    "snapshot": "sitstand_near_teacher768",
+    "task": "Mjlab-SitStand-Flat-MicroDuck-V2-NearTeacher-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_sitstand.py",
+    "checkpoint": "p04/sitstand-near-teacher-lr3e6-allocation-001/checkpoint_000768.pt",
+    "checkpoint_sha256": "006bb61caee3d9565fd08a0423d39163f8acd5607987b0bd9e596f0b2a45550b",
+    "run_manifest": "evidence/p04/sitstand-near-teacher-lr3e6-allocation-001/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/sitstand-near-teacher-lr3e6-allocation-001",
+      "task": "Mjlab-SitStand-Flat-MicroDuck-V2-NearTeacher-Repaired-S0-O0-R1",
+      "device": "cuda:1",
+      "num_envs": 16384,
+      "iterations": 320,
+      "seed": 2026101611,
+      "resume": "${ARTIFACT_ROOT}/p04/sitstand-history-hold320-allocation-001/checkpoint_000640.pt",
+      "source_transition": "${SOURCE}/source-transition.json",
+      "standing_teacher": "${ARTIFACT_ROOT}/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+      "sit_anchor": "${ARTIFACT_ROOT}/p04/sitstand-history-hold320-allocation-001/checkpoint_000640.pt",
+      "qualification": "${ARTIFACT_ROOT}/p04/sitstand-near-teacher-lr3e6-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 16384,
+      "T": 24,
+      "E": 5,
+      "M": 16,
+      "sample_batch": 393216
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 15000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_p04_sitstand",
+      "run_name": "history_base_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 16,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.sitstand_teacher:SitStandNearTeacherPPO",
+        "symmetry_cfg": null,
+        "bc_cfg": {
+          "wandb_run_path": null,
+          "checkpoint_name": "model_9750.pt",
+          "checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+          "coef": 1.0,
+          "learning_rate": 3e-06,
+          "gate_tilt_deg": 35.0,
+          "epochs": 5,
+          "mini_batches": 4,
+          "min_mini_batch": 512,
+          "min_samples": 64,
+          "gravity_slice": [
+            3,
+            6
+          ],
+          "twist_slice": [
+            48,
+            51
+          ],
+          "anchor_wandb_run_path": null,
+          "anchor_checkpoint_name": "model_3750.pt",
+          "anchor_checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/sitstand-history-hold320-allocation-001/checkpoint_000640.pt",
+          "anchor_coef": 1.0,
+          "anchor_tilt_deg": 25.0,
+          "body_slice": null,
+          "unanchor_turn_in_place": false,
+          "anchor_yaw_remap": null,
+          "body_active_axes": [
+            2,
+            3,
+            4
+          ],
+          "body_no_teacher_axes": [
+            2
+          ],
+          "expert_mask_cols": [],
+          "expert_mask_tilt_deg": 75.0
+        }
+      }
+    },
+    "seed": 2026101611,
+    "limits": [
+      "SIT endpoint hold learned; STAND0/384 in both conditions; active head0/672.",
+      "Command-clock-fixed original12s four initial/target groups, reversals and original gates.",
+      "No healthy standing camera denominator; low angular speed of head-supported/fallen posture is not head stability.",
+      "768 nominal first report reconstructed from completed600-step saved traces after external bool dtype reporting failure; no simulation repeat and unknown original oracle maximum left null."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "sitstand_near_teacher896": {
+    "snapshot": "sitstand_near_teacher768",
+    "task": "Mjlab-SitStand-Flat-MicroDuck-V2-NearTeacher-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_sitstand.py",
+    "checkpoint": "p04/sitstand-near-teacher-lr3e6-allocation-001/checkpoint_000896.pt",
+    "checkpoint_sha256": "a355555c4331c2847bce31d014b0089353b671348fc8ab0eba809ded568472fa",
+    "run_manifest": "evidence/p04/sitstand-near-teacher-lr3e6-allocation-001/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/sitstand-near-teacher-lr3e6-allocation-001",
+      "task": "Mjlab-SitStand-Flat-MicroDuck-V2-NearTeacher-Repaired-S0-O0-R1",
+      "device": "cuda:1",
+      "num_envs": 16384,
+      "iterations": 320,
+      "seed": 2026101611,
+      "resume": "${ARTIFACT_ROOT}/p04/sitstand-history-hold320-allocation-001/checkpoint_000640.pt",
+      "source_transition": "${SOURCE}/source-transition.json",
+      "standing_teacher": "${ARTIFACT_ROOT}/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+      "sit_anchor": "${ARTIFACT_ROOT}/p04/sitstand-history-hold320-allocation-001/checkpoint_000640.pt",
+      "qualification": "${ARTIFACT_ROOT}/p04/sitstand-near-teacher-lr3e6-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 16384,
+      "T": 24,
+      "E": 5,
+      "M": 16,
+      "sample_batch": 393216
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 15000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_p04_sitstand",
+      "run_name": "history_base_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 16,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.sitstand_teacher:SitStandNearTeacherPPO",
+        "symmetry_cfg": null,
+        "bc_cfg": {
+          "wandb_run_path": null,
+          "checkpoint_name": "model_9750.pt",
+          "checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+          "coef": 1.0,
+          "learning_rate": 3e-06,
+          "gate_tilt_deg": 35.0,
+          "epochs": 5,
+          "mini_batches": 4,
+          "min_mini_batch": 512,
+          "min_samples": 64,
+          "gravity_slice": [
+            3,
+            6
+          ],
+          "twist_slice": [
+            48,
+            51
+          ],
+          "anchor_wandb_run_path": null,
+          "anchor_checkpoint_name": "model_3750.pt",
+          "anchor_checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/sitstand-history-hold320-allocation-001/checkpoint_000640.pt",
+          "anchor_coef": 1.0,
+          "anchor_tilt_deg": 25.0,
+          "body_slice": null,
+          "unanchor_turn_in_place": false,
+          "anchor_yaw_remap": null,
+          "body_active_axes": [
+            2,
+            3,
+            4
+          ],
+          "body_no_teacher_axes": [
+            2
+          ],
+          "expert_mask_cols": [],
+          "expert_mask_tilt_deg": 75.0
+        }
+      }
+    },
+    "seed": 2026101611,
+    "limits": [
+      "SIT endpoint hold learned; STAND0/384 in both conditions; active head0/672.",
+      "Command-clock-fixed original12s four initial/target groups, reversals and original gates.",
+      "No healthy standing camera denominator; low angular speed of head-supported/fallen posture is not head stability.",
+      "768 nominal first report reconstructed from completed600-step saved traces after external bool dtype reporting failure; no simulation repeat and unknown original oracle maximum left null."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "sitstand_near_teacher960": {
+    "snapshot": "sitstand_near_teacher768",
+    "task": "Mjlab-SitStand-Flat-MicroDuck-V2-NearTeacher-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_sitstand.py",
+    "checkpoint": "p04/sitstand-near-teacher-lr3e6-allocation-001/checkpoint_000960.pt",
+    "checkpoint_sha256": "e7ca35bd8f641a9dbecc9b5b14477b6a9bf09cb8b561d5d3ad5be526fe7975f5",
+    "run_manifest": "evidence/p04/sitstand-near-teacher-lr3e6-allocation-001/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/sitstand-near-teacher-lr3e6-allocation-001",
+      "task": "Mjlab-SitStand-Flat-MicroDuck-V2-NearTeacher-Repaired-S0-O0-R1",
+      "device": "cuda:1",
+      "num_envs": 16384,
+      "iterations": 320,
+      "seed": 2026101611,
+      "resume": "${ARTIFACT_ROOT}/p04/sitstand-history-hold320-allocation-001/checkpoint_000640.pt",
+      "source_transition": "${SOURCE}/source-transition.json",
+      "standing_teacher": "${ARTIFACT_ROOT}/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+      "sit_anchor": "${ARTIFACT_ROOT}/p04/sitstand-history-hold320-allocation-001/checkpoint_000640.pt",
+      "qualification": "${ARTIFACT_ROOT}/p04/sitstand-near-teacher-lr3e6-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 16384,
+      "T": 24,
+      "E": 5,
+      "M": 16,
+      "sample_batch": 393216
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 15000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_p04_sitstand",
+      "run_name": "history_base_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 16,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.sitstand_teacher:SitStandNearTeacherPPO",
+        "symmetry_cfg": null,
+        "bc_cfg": {
+          "wandb_run_path": null,
+          "checkpoint_name": "model_9750.pt",
+          "checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+          "coef": 1.0,
+          "learning_rate": 3e-06,
+          "gate_tilt_deg": 35.0,
+          "epochs": 5,
+          "mini_batches": 4,
+          "min_mini_batch": 512,
+          "min_samples": 64,
+          "gravity_slice": [
+            3,
+            6
+          ],
+          "twist_slice": [
+            48,
+            51
+          ],
+          "anchor_wandb_run_path": null,
+          "anchor_checkpoint_name": "model_3750.pt",
+          "anchor_checkpoint_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/sitstand-history-hold320-allocation-001/checkpoint_000640.pt",
+          "anchor_coef": 1.0,
+          "anchor_tilt_deg": 25.0,
+          "body_slice": null,
+          "unanchor_turn_in_place": false,
+          "anchor_yaw_remap": null,
+          "body_active_axes": [
+            2,
+            3,
+            4
+          ],
+          "body_no_teacher_axes": [
+            2
+          ],
+          "expert_mask_cols": [],
+          "expert_mask_tilt_deg": 75.0
+        }
+      }
+    },
+    "seed": 2026101611,
+    "limits": [
+      "SIT endpoint hold learned; STAND0/384 in both conditions; active head0/672.",
+      "Command-clock-fixed original12s four initial/target groups, reversals and original gates.",
+      "No healthy standing camera denominator; low angular speed of head-supported/fallen posture is not head stability.",
+      "768 nominal first report reconstructed from completed600-step saved traces after external bool dtype reporting failure; no simulation repeat and unknown original oracle maximum left null."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "groundpick_history512": {
+    "snapshot": "groundpick_history512",
+    "task": "Mjlab-GroundPick-Flat-MicroDuck-V2-HealthHistory-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_ground_pick.py",
+    "checkpoint": "p04/groundpick-health-history-allocation-001/checkpoint_000512.pt",
+    "checkpoint_sha256": "33b7cce82b2cbaad87e2c55b64fcc3fe9872ff7c43365f063a8c0045019092fb",
+    "run_manifest": "evidence/p04/groundpick-health-history-allocation-001/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/groundpick-health-history-allocation-001",
+      "task": "Mjlab-GroundPick-Flat-MicroDuck-V2-HealthHistory-Repaired-S0-O0-R1",
+      "device": "cuda:0",
+      "num_envs": 24576,
+      "iterations": 512,
+      "seed": 2026101636,
+      "resume": null,
+      "source_transition": null,
+      "qualification": "${ARTIFACT_ROOT}/p04/groundpick-health-history-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 24576,
+      "T": 24,
+      "E": 5,
+      "M": 24,
+      "sample_batch": 589824
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 20000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_p04_groundpick",
+      "run_name": "health_history_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 24,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.ppo:TerminalCriticPPO",
+        "symmetry_cfg": null
+      }
+    },
+    "seed": 2026101636,
+    "limits": [
+      "Original low gate: mouth0..25mm/down>=.95 plus healthy feet/body/nohead/noself; not relaxed.",
+      "512 reference uses same newseed as precision for exact paired comparison, distinct from original512 seed2607 reports.",
+      "Saved contact health50Hz native reader plus supplemental200Hz contacts; this does not certify200Hz body state.",
+      "Repeated3cycles fromsame256 worlds are correlated; do not count768 independent trials."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "groundpick_precision704": {
+    "snapshot": "groundpick_precision704",
+    "task": "Mjlab-GroundPick-Flat-MicroDuck-V2-TargetPrecision-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_ground_pick.py",
+    "checkpoint": "p04/groundpick-target-precision-allocation-001/checkpoint_000704.pt",
+    "checkpoint_sha256": "cc90338395cadc86f88fea7992a3a29474b961c734d349e80b4a3eec0955e64f",
+    "run_manifest": "evidence/p04/groundpick-target-precision-allocation-001/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/groundpick-target-precision-allocation-001",
+      "task": "Mjlab-GroundPick-Flat-MicroDuck-V2-TargetPrecision-Repaired-S0-O0-R1",
+      "device": "cuda:0",
+      "num_envs": 24576,
+      "iterations": 256,
+      "seed": 2026101632,
+      "resume": "${ARTIFACT_ROOT}/p04/groundpick-health-history-allocation-001/checkpoint_000512.pt",
+      "source_transition": "${ARTIFACT_ROOT}/p04/groundpick-target-precision-source-transition.json",
+      "qualification": "${ARTIFACT_ROOT}/p04/groundpick-target-precision-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 24576,
+      "T": 24,
+      "E": 5,
+      "M": 24,
+      "sample_batch": 589824
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 20000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_p04_groundpick",
+      "run_name": "health_history_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 24,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.ppo:TerminalCriticPPO",
+        "symmetry_cfg": null
+      }
+    },
+    "seed": 2026101632,
+    "limits": [
+      "Original low gate: mouth0..25mm/down>=.95 plus healthy feet/body/nohead/noself; not relaxed.",
+      "512 reference uses same newseed as precision for exact paired comparison, distinct from original512 seed2607 reports.",
+      "Saved contact health50Hz native reader plus supplemental200Hz contacts; this does not certify200Hz body state.",
+      "Repeated3cycles fromsame256 worlds are correlated; do not count768 independent trials."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "groundpick_precision768": {
+    "snapshot": "groundpick_precision704",
+    "task": "Mjlab-GroundPick-Flat-MicroDuck-V2-TargetPrecision-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_ground_pick.py",
+    "checkpoint": "p04/groundpick-target-precision-allocation-001/checkpoint_000768.pt",
+    "checkpoint_sha256": "52cc6d28d62051fd03fa3074fa71c98cfcb2ec6a3f01b6fdad008fb2246976c6",
+    "run_manifest": "evidence/p04/groundpick-target-precision-allocation-001/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/groundpick-target-precision-allocation-001",
+      "task": "Mjlab-GroundPick-Flat-MicroDuck-V2-TargetPrecision-Repaired-S0-O0-R1",
+      "device": "cuda:0",
+      "num_envs": 24576,
+      "iterations": 256,
+      "seed": 2026101632,
+      "resume": "${ARTIFACT_ROOT}/p04/groundpick-health-history-allocation-001/checkpoint_000512.pt",
+      "source_transition": "${ARTIFACT_ROOT}/p04/groundpick-target-precision-source-transition.json",
+      "qualification": "${ARTIFACT_ROOT}/p04/groundpick-target-precision-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 24576,
+      "T": 24,
+      "E": 5,
+      "M": 24,
+      "sample_batch": 589824
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 20000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_p04_groundpick",
+      "run_name": "health_history_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 24,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.ppo:TerminalCriticPPO",
+        "symmetry_cfg": null
+      }
+    },
+    "seed": 2026101632,
+    "limits": [
+      "Original low gate: mouth0..25mm/down>=.95 plus healthy feet/body/nohead/noself; not relaxed.",
+      "512 reference uses same newseed as precision for exact paired comparison, distinct from original512 seed2607 reports.",
+      "Saved contact health50Hz native reader plus supplemental200Hz contacts; this does not certify200Hz body state.",
+      "Repeated3cycles fromsame256 worlds are correlated; do not count768 independent trials."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "ballkick_health256": {
+    "snapshot": "ballkick_health256",
+    "task": "Mjlab-BallKick-Right-Flat-MicroDuck-V2-HealthHistory-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_ballkick.py",
+    "checkpoint": "p04/ballkick-health-history-allocation-001/checkpoint_000256.pt",
+    "checkpoint_sha256": "ae17d7b3e8adf15f072f38195741d14215d4ced7f549ccae06da56fac2dea61d",
+    "run_manifest": "evidence/p04/ballkick-health-history-allocation-001/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/ballkick-health-history-allocation-001",
+      "task": "Mjlab-BallKick-Right-Flat-MicroDuck-V2-HealthHistory-Repaired-S0-O0-R1",
+      "device": "cuda:1",
+      "num_envs": 24576,
+      "iterations": 384,
+      "seed": 2026101632,
+      "resume": null,
+      "source_transition": null,
+      "qualification": "${ARTIFACT_ROOT}/p04/ballkick-health-history-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 24576,
+      "T": 24,
+      "E": 5,
+      "M": 24,
+      "sample_batch": 589824
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 10000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_p04_ballkick",
+      "run_name": "right_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 24,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.ppo:TerminalCriticPPO",
+        "symmetry_cfg": null
+      }
+    },
+    "seed": 2026101632,
+    "limits": [
+      "Right foot only; raw correct touch, healthy valid latch, complete kick and neutral-head strict complete are separate.",
+      "200Hz bad-latch includes self contact; earlier170 model lacked this protection and is not comparable by valid count alone.",
+      "Precision branch improves target speed but may lose quiet/head return; latest is not automatically best."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "ballkick_health384": {
+    "snapshot": "ballkick_health256",
+    "task": "Mjlab-BallKick-Right-Flat-MicroDuck-V2-HealthHistory-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_ballkick.py",
+    "checkpoint": "p04/ballkick-health-history-allocation-001/checkpoint_000384.pt",
+    "checkpoint_sha256": "e3eff0691642d91a0226f0b56e65f93a8dd553d3483419bd79046ee6bcbaed9d",
+    "run_manifest": "evidence/p04/ballkick-health-history-allocation-001/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/ballkick-health-history-allocation-001",
+      "task": "Mjlab-BallKick-Right-Flat-MicroDuck-V2-HealthHistory-Repaired-S0-O0-R1",
+      "device": "cuda:1",
+      "num_envs": 24576,
+      "iterations": 384,
+      "seed": 2026101632,
+      "resume": null,
+      "source_transition": null,
+      "qualification": "${ARTIFACT_ROOT}/p04/ballkick-health-history-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 24576,
+      "T": 24,
+      "E": 5,
+      "M": 24,
+      "sample_batch": 589824
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 10000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_p04_ballkick",
+      "run_name": "right_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 24,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.ppo:TerminalCriticPPO",
+        "symmetry_cfg": null
+      }
+    },
+    "seed": 2026101632,
+    "limits": [
+      "Right foot only; raw correct touch, healthy valid latch, complete kick and neutral-head strict complete are separate.",
+      "200Hz bad-latch includes self contact; earlier170 model lacked this protection and is not comparable by valid count alone.",
+      "Precision branch improves target speed but may lose quiet/head return; latest is not automatically best."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "ballkick_precision384": {
+    "snapshot": "ballkick_precision384",
+    "task": "Mjlab-BallKick-Right-Flat-MicroDuck-V2-TargetPrecision-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_ballkick.py",
+    "checkpoint": "p04/ballkick-target-precision-allocation-001/checkpoint_000384.pt",
+    "checkpoint_sha256": "dcd6773174ce3d2ae58f12aba963f4797cc0fc886b633154719e944648b50a27",
+    "run_manifest": "evidence/p04/ballkick-target-precision-allocation-001/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/ballkick-target-precision-allocation-001",
+      "task": "Mjlab-BallKick-Right-Flat-MicroDuck-V2-TargetPrecision-Repaired-S0-O0-R1",
+      "device": "cuda:1",
+      "num_envs": 24576,
+      "iterations": 256,
+      "seed": 2026101632,
+      "resume": "${ARTIFACT_ROOT}/p04/ballkick-health-history-allocation-001/checkpoint_000256.pt",
+      "source_transition": "${ARTIFACT_ROOT}/p04/ballkick-target-precision-source-transition.json",
+      "qualification": "${ARTIFACT_ROOT}/p04/ballkick-target-precision-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 24576,
+      "T": 24,
+      "E": 5,
+      "M": 24,
+      "sample_batch": 589824
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 10000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_p04_ballkick",
+      "run_name": "right_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 24,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.ppo:TerminalCriticPPO",
+        "symmetry_cfg": null
+      }
+    },
+    "seed": 2026101632,
+    "limits": [
+      "Right foot only; raw correct touch, healthy valid latch, complete kick and neutral-head strict complete are separate.",
+      "200Hz bad-latch includes self contact; earlier170 model lacked this protection and is not comparable by valid count alone.",
+      "Precision branch improves target speed but may lose quiet/head return; latest is not automatically best."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "ballkick_precision512": {
+    "snapshot": "ballkick_precision384",
+    "task": "Mjlab-BallKick-Right-Flat-MicroDuck-V2-TargetPrecision-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_ballkick.py",
+    "checkpoint": "p04/ballkick-target-precision-allocation-001/checkpoint_000512.pt",
+    "checkpoint_sha256": "37a517218e751d963cc62f58c9617996ce02a34c164dd57713a98082e529ca82",
+    "run_manifest": "evidence/p04/ballkick-target-precision-allocation-001/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/ballkick-target-precision-allocation-001",
+      "task": "Mjlab-BallKick-Right-Flat-MicroDuck-V2-TargetPrecision-Repaired-S0-O0-R1",
+      "device": "cuda:1",
+      "num_envs": 24576,
+      "iterations": 256,
+      "seed": 2026101632,
+      "resume": "${ARTIFACT_ROOT}/p04/ballkick-health-history-allocation-001/checkpoint_000256.pt",
+      "source_transition": "${ARTIFACT_ROOT}/p04/ballkick-target-precision-source-transition.json",
+      "qualification": "${ARTIFACT_ROOT}/p04/ballkick-target-precision-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 24576,
+      "T": 24,
+      "E": 5,
+      "M": 24,
+      "sample_batch": 589824
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 10000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_p04_ballkick",
+      "run_name": "right_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 24,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.ppo:TerminalCriticPPO",
+        "symmetry_cfg": null
+      }
+    },
+    "seed": 2026101632,
+    "limits": [
+      "Right foot only; raw correct touch, healthy valid latch, complete kick and neutral-head strict complete are separate.",
+      "200Hz bad-latch includes self contact; earlier170 model lacked this protection and is not comparable by valid count alone.",
+      "Precision branch improves target speed but may lose quiet/head return; latest is not automatically best."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  },
+  "roulade1536": {
+    "snapshot": "roulade1536",
+    "task": "Mjlab-Roulade-Flat-MicroDuck-V2-History-Repaired-S0-O0-R1",
+    "trainer": "scripts/train_v2_roulade.py",
+    "checkpoint": "p04/roulade-history-formal-001/checkpoint_001536.pt",
+    "checkpoint_sha256": "21b07a7e07ea721be59fad61d6efe30d9102536d9af3eaf53b15e21546ca6b8d",
+    "run_manifest": "evidence/p04/roulade-history-formal-001/run.json",
+    "recorded_arguments": {
+      "output": "${ARTIFACT_ROOT}/p04/roulade-history-formal-001",
+      "task": "Mjlab-Roulade-Flat-MicroDuck-V2-History-Repaired-S0-O0-R1",
+      "device": "cuda:0",
+      "num_envs": 16384,
+      "iterations": 1536,
+      "seed": 2026101611,
+      "resume": null,
+      "source_transition": null,
+      "qualification": "${ARTIFACT_ROOT}/p04/roulade-history-qualification-001.json",
+      "validation_only": false,
+      "force_timeouts": false
+    },
+    "ppo": {
+      "N": 16384,
+      "T": 24,
+      "E": 5,
+      "M": 16,
+      "sample_batch": 393216
+    },
+    "agent": {
+      "seed": 42,
+      "num_steps_per_env": 24,
+      "max_iterations": 10000,
+      "obs_groups": {
+        "actor": [
+          "actor"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "save_interval": 64,
+      "experiment_name": "microduck_v2_p04_roulade",
+      "run_name": "history_nominal",
+      "logger": "tensorboard",
+      "wandb_project": "mjlab_microduck",
+      "wandb_tags": [],
+      "resume": false,
+      "load_run": ".*",
+      "load_checkpoint": "model_.*.pt",
+      "clip_actions": null,
+      "upload_model": false,
+      "class_name": "OnPolicyRunner",
+      "actor": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": {
+          "class_name": "GaussianDistribution",
+          "init_std": 1.0,
+          "std_type": "scalar"
+        },
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "critic": {
+        "hidden_dims": [
+          512,
+          256,
+          128
+        ],
+        "activation": "elu",
+        "obs_normalization": true,
+        "cnn_cfg": null,
+        "distribution_cfg": null,
+        "rnn_type": null,
+        "rnn_hidden_dim": 256,
+        "rnn_num_layers": 1,
+        "class_name": "MLPModel"
+      },
+      "algorithm": {
+        "num_learning_epochs": 5,
+        "num_mini_batches": 16,
+        "learning_rate": 0.001,
+        "schedule": "adaptive",
+        "gamma": 0.99,
+        "lam": 0.95,
+        "entropy_coef": 0.01,
+        "desired_kl": 0.01,
+        "max_grad_norm": 1.0,
+        "value_loss_coef": 1.0,
+        "use_clipped_value_loss": true,
+        "clip_param": 0.2,
+        "normalize_advantage_per_mini_batch": false,
+        "optimizer": "adam",
+        "share_cnn_encoders": false,
+        "class_name": "mjlab_microduck.custom_v2.ppo:TerminalCriticPPO",
+        "symmetry_cfg": {
+          "use_data_augmentation": false,
+          "use_mirror_loss": true,
+          "mirror_loss_coeff": 0.5,
+          "data_augmentation_func": "mjlab_microduck.custom_v2.roulade_symmetry.microduck_v2_symmetry"
+        }
+      }
+    },
+    "seed": 2026101611,
+    "limits": [
+      "Full1536 historical curriculum complete, standing-origin core0/128 each condition and all midroll landing0.",
+      "Midroll precredited frontier/latch cannot imply a full roll.",
+      "Low folded posture~60mm can have low camera speed; healthy landing denominator0."
+    ],
+    "source_guard": "Use exact materialized snapshot. Requalify before formal training; archived qualification is historical evidence only."
+  }
+}

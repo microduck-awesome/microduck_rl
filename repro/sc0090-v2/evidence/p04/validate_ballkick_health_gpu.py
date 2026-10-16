@@ -1,0 +1,72 @@
+"""Actual two-entity successor, explicit kick state and partial-reset isolation."""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import torch
+from mjlab.envs import ManagerBasedRlEnv
+from mjlab_microduck.custom_v2.ball_kick_health import make_health_ball_kick_env_cfg as make_ball_kick_env_cfg
+from ballkick_health_gpu_fixture import physical_self_test
+from mjlab_microduck.custom_v2.terminal import SC0090TerminalCriticObserver
+
+
+def states(env):
+    out={k:getattr(env.sim.data,k).clone() for k in ('qpos','qvel','xfrc_applied','qfrc_applied')}
+    out.update(age=env.episode_length_buf.clone(),valid=env._v2_ball_valid_kick.clone(),bad=env._v2_ball_bad_contact.clone(),direction=env._ball_kick_dir_w.clone(),cpu_rng=torch.get_rng_state().clone(),cuda_rng=torch.cuda.get_rng_state(env.device).clone())
+    for name,term in env.command_manager._terms.items():
+        for key,value in vars(term).items():
+            if isinstance(value,torch.Tensor):out['cmd/'+name+'/'+key]=value.clone()
+    for i,value in enumerate(env.event_manager._interval_term_time_left):out['timer/'+str(i)]=value.clone()
+    return out
+
+
+def main():
+    p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True);a=p.parse_args()
+    assert not a.output.exists()
+    torch.set_num_threads(2);torch.cuda.set_device('cuda:1')
+    cfg=make_ball_kick_env_cfg();cfg.scene.num_envs=32;cfg.seed=2026101632;cfg.curriculum={}
+    env=ManagerBasedRlEnv(cfg,device='cuda:1');rows=[]
+    try:
+        env.reset();physical=physical_self_test(env,a.output.with_name(a.output.stem+'-physical'));observer=SC0090TerminalCriticObserver(env)
+        ball=env.scene['ball'];ids=torch.arange(32,device=env.device)
+        velocity=torch.zeros(32,6,device=env.device)
+        velocity[:,0]=torch.linspace(-.5,1.5,32,device=env.device);velocity[:,4]=velocity[:,0]/.035
+        ball.write_root_link_velocity_to_sim(velocity,ids)
+        for condition in ('ordinary','command_resample','interval_push'):
+            for full in (False,True):
+                env.sim.forward();env.sim.sense()
+                env._v2_ball_valid_kick.copy_(ids%3==1);env._v2_ball_bad_contact.copy_(ids%3==2)
+                env.episode_length_buf.fill_(100)
+                for term in env.command_manager._terms.values():
+                    term.time_left.fill_(0. if condition=='command_resample' else 5.)
+                for timer in env.event_manager._interval_term_time_left:
+                    timer.fill_(0. if condition=='interval_push' else 5.)
+                before=states(env)
+                actual=observer.capture(env,force_full=full).clone()
+                after=states(env)
+                for key in before:assert torch.equal(before[key],after[key]),('live mutated',condition,full,key)
+                env.sim.forward();env.command_manager.compute(env.step_dt)
+                for mode in ('step','interval'):
+                    if mode in env.event_manager.available_modes:env.event_manager.apply(mode=mode,dt=env.step_dt)
+                env.sim.sense();expected=env.observation_manager.compute_group('critic',update_history=True)
+                assert actual.shape==(32,82)
+                torch.testing.assert_close(actual,expected,rtol=0,atol=2e-6)
+                assert torch.equal(actual[:,-2:],torch.stack((env._v2_ball_valid_kick,env._v2_ball_bad_contact),-1).float())
+                for key in ('qpos','qvel'):torch.testing.assert_close(getattr(env.sim.data,key),getattr(observer.shadow.sim.data,key),rtol=0,atol=2e-6)
+                rows.append(dict(condition=condition,force_full=full,critic_max_abs=float((actual-expected).abs().max()),live_tensors_unchanged=len(before)))
+        selected=torch.tensor([1,3,9],device=env.device);others=torch.ones(32,dtype=torch.bool,device=env.device);others[selected]=False
+        before=states(env);env.reset(env_ids=selected);after=states(env)
+        for key in ('qpos','qvel','valid','bad','direction'):
+            assert torch.equal(before[key][others],after[key][others]),('partial reset mutated other',key)
+        assert not bool(env._v2_ball_valid_kick[selected].any())
+        assert not bool(env._v2_ball_bad_contact[selected].any())
+        assert bool((ball.data.root_link_lin_vel_w[selected]==0).all())
+        obs=env.observation_manager.compute_group('critic',update_history=True)
+        assert bool((obs[selected,-2:]==0).all())
+        assert observer.fast_captures>0 and observer.full_captures>0
+        report=dict(status='PASS',physical_self_latch=physical,cases=rows,actor_width=env.observation_manager.group_obs_dim['actor'][0],critic_width=82,partial_reset_ball_and_latches='PASS',fast_captures=observer.fast_captures,full_captures=observer.full_captures,formal_controls=0,script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+        a.output.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report),flush=True)
+    finally:env.close()
+
+
+if __name__=='__main__':main()

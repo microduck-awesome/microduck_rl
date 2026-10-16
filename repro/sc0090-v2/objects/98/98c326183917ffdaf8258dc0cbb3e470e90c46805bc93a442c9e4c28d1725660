@@ -1,0 +1,48 @@
+"""Recovery-gated angle history, expressed against the current head command.
+
+Physical joint view matches the existing head tracking reward/evaluator.
+This is reward-only state; it never enters actor observations or actions.
+"""
+import torch
+
+
+def update_history(moment, mass, angle, command, gate, fresh, alpha):
+    """Unnormalized gated EMA: m=EMA(g*q), h=EMA(g), error=m-h*cmd.
+
+    Keeping h prevents command jumps from inventing fallen-state history.
+    Fresh episodes and recovery start with zero exposure, hence no arrival wall.
+    """
+    moment = torch.where(fresh[:, None], 0., moment)
+    mass = torch.where(fresh, 0., mass)
+    moment = (1-alpha)*moment + alpha*gate[:, None]*angle
+    mass = (1-alpha)*mass + alpha*gate
+    error = moment-mass[:, None]*command
+    return moment, mass, -error.abs().mean(-1)*gate
+
+
+def gated_current_command_bias(env, command_name='head_pose', tau_s=1.,
+        gate_height_low=.09, gate_height_high=.11, gate_tilt_full_deg=20.,
+        gate_tilt_zero_deg=40., rebase_command=True):
+    from mjlab_microduck.tasks import mdp
+    assert rebase_command and gate_height_low is not None
+    if not hasattr(env, '_head_pose_neck_ids'):
+        mdp.head_pose_tracking(env, command_name=command_name)
+    data=env.scene['robot'].data
+    ids=env._head_pose_neck_ids
+    angle=(data.joint_pos[:,ids] + data.joint_pos[:,env._head_pose_bl_ids]*env._head_pose_bl_mask
+           - data.default_joint_pos[:,ids])
+    cmd=env.command_manager.get_command(command_name)
+    height=data.root_link_pos_w[:,2]-env.scene.env_origins[:,2]
+    quat=data.root_link_quat_w
+    tilt=torch.rad2deg(torch.acos((1-2*(quat[:,1].square()+quat[:,2].square())).clamp(-1,1)))
+    a=((height-gate_height_low)/(gate_height_high-gate_height_low)).clamp(0,1)
+    b=((gate_tilt_zero_deg-tilt)/(gate_tilt_zero_deg-gate_tilt_full_deg)).clamp(0,1)
+    gate=a*a*(3-2*a)*b*b*(3-2*b)
+    if not hasattr(env,'_v2_head_bias_moment'):
+        env._v2_head_bias_moment=torch.zeros_like(angle)
+        env._v2_head_bias_mass=torch.zeros_like(gate)
+    moment,mass,out=update_history(env._v2_head_bias_moment,env._v2_head_bias_mass,
+        angle,cmd,gate,env.episode_length_buf<=1,min(1.,float(env.step_dt)/max(tau_s,1e-6)))
+    env._v2_head_bias_moment=moment
+    env._v2_head_bias_mass=mass
+    return out

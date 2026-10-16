@@ -1,0 +1,99 @@
+{
+  "status": "ALLOCATION_COMPLETE",
+  "pid": 3417279,
+  "completed_updates": 4466,
+  "updated_unix": 1792092343.3254209,
+  "common_step_counter": 107184,
+  "controls": 1293287424,
+  "inherited_controls": 1192624128,
+  "allocation_controls": 100663296,
+  "catch_reset_counts": [
+    145815,
+    48563
+  ],
+  "goal_complete": false,
+  "resume_checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-head-accuracy-allocation-002/resume_004466.pt",
+  "command_exposure": {
+    "environment_control_steps": 100663296,
+    "combinations": [
+      40296112,
+      30294842,
+      15040257,
+      15032085
+    ],
+    "recovery_pose_control_steps": [
+      20889848,
+      10002112,
+      9855592,
+      29804384,
+      10071616,
+      9979592,
+      10060152
+    ],
+    "standing_first_half_second_control_steps": 5267675,
+    "combination_axes": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "positive": [
+      15023122,
+      14980958,
+      15108950,
+      15077599
+    ],
+    "negative": [
+      15066691,
+      15110753,
+      15065999,
+      15069624
+    ],
+    "range_quarters": [
+      [
+        18034912,
+        3020837,
+        2984377,
+        6049687
+      ],
+      [
+        18068968,
+        3027530,
+        2992935,
+        6002278
+      ],
+      [
+        18135480,
+        2993013,
+        3024267,
+        6022189
+      ],
+      [
+        12695264,
+        8419873,
+        3014793,
+        6017293
+      ]
+    ],
+    "current_ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ]
+  },
+  "exposure_segment_start_update": 4338,
+  "recovery_stage": 5
+}

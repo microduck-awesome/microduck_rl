@@ -1,0 +1,162 @@
+"""V2 adaptation of the independently validated historical terminal observer."""
+import torch
+import mujoco
+from mjlab.tasks.velocity.mdp import observations as _velocity_obs
+from mjlab_microduck.tasks.mdp import (
+    foot_height_safe, foot_air_time_safe, foot_contact_forces_safe,
+    VelocityCommandCommandOnly, UniformPoseCommand, StandingGatedPoseCommand,
+)
+from .commands import BalancedHeadCommand
+class SC0090TerminalCriticObserver:
+    """No-reset successor observation using isolated dynamics and managers.
+
+    Called after rewards/metrics, before reset. Current SC0090 walking critics
+    are feedforward and have stateless observation processing; their explicit
+    reward histories are read-only references to the just-computed transition.
+    This is not installed by default while its full-batch cost is evaluated.
+    """
+
+    def __init__(self, env):
+        from copy import copy
+        from mjlab.envs.mdp.events import push_by_setting_velocity
+        from mjlab.envs.mdp import observations
+        from mjlab.sensor.builtin_sensor import BuiltinSensor
+        from mjlab_microduck.sim.terminal import TerminalSimulation
+
+        allowed_observations = {
+            observations.base_lin_vel, observations.builtin_sensor, observations.projected_gravity,
+            observations.joint_pos_rel, observations.joint_vel_rel, observations.last_action,
+            observations.generated_commands, _velocity_obs.foot_contact,
+            foot_height_safe, foot_air_time_safe, foot_contact_forces_safe,
+        }
+        self._cached_sensor_names = set()
+        self._kinematics_allowed = True
+        self.fast_captures = self.full_captures = 0
+        for term in env.observation_manager._group_obs_term_cfgs['critic']:
+            if term.noise is not None or term.delay_max_lag or term.history_length:
+                raise ValueError('Terminal critic requires noiseless observations without delay/stacking')
+            if term.func not in allowed_observations:
+                raise ValueError('Unsupported stateful or unknown terminal critic observation')
+            name = term.params.get('sensor_name')
+            if name is not None:
+                sensor = env.scene[name]
+                if isinstance(sensor, BuiltinSensor):
+                    self._kinematics_allowed &= (
+                        int(env.sim.mj_model.sensor(name).type[0]) == int(mujoco.mjtSensor.mjSENS_GYRO))
+                else:
+                    self._cached_sensor_names.add(name)
+        allowed_commands = {VelocityCommandCommandOnly, UniformPoseCommand, BalancedHeadCommand, StandingGatedPoseCommand}
+        if any(type(term) not in allowed_commands for term in env.command_manager._terms.values()):
+            raise ValueError('Terminal critic requires the validated SC0090 command classes')
+        for mode in ('step', 'interval'):
+            for term in env.event_manager._mode_term_cfgs.get(mode, []):
+                from .microduck_v2 import hold_mouth
+                if term.func not in (push_by_setting_velocity, hold_mouth):
+                    raise ValueError('Terminal capture only supports velocity-push step/interval events')
+        self.physics = TerminalSimulation(env)
+        self.shadow = copy(env)
+
+    def capture(self, env, *, force_full=False):
+        with self.physics.execution(env.sim) as caller:
+            result = self._capture_on_stream(env, force_full=force_full)
+            # The caller indexes this output after returning; its allocator must
+            # retain the shadow allocation until that consumer finishes too.
+            result.record_stream(caller)
+            return result
+
+    def _capture_on_stream(self, env, *, force_full):
+        from copy import copy, deepcopy
+
+        self.physics.sync(env)
+        shadow = self.shadow
+        # The remaining env fields are read-only in the explicitly supported
+        # command/event/observation path (notably reward histories and actions).
+        vars(shadow).update(vars(env))
+        shadow.sim, shadow.scene = self.physics.sim, self.physics.scene
+        memo = self.physics.memo(env, shadow)
+        shadow.command_manager = deepcopy(env.command_manager, memo)
+        shadow._sc0090_control_scenarios = shadow.command_manager.get_term('twist')
+        shadow.event_manager = copy(env.event_manager)
+        shadow.event_manager._env = shadow
+        from .microduck_v2 import hold_mouth
+        shadow.event_manager._mode_term_cfgs = {
+            mode: [term for term in terms if term.func is not hold_mouth]
+            for mode, terms in env.event_manager._mode_term_cfgs.items()}
+        shadow.event_manager._mode_term_names = {
+            mode: [name for name,term in zip(env.event_manager._mode_term_names[mode],terms)
+                   if term.func is not hold_mouth]
+            for mode, terms in env.event_manager._mode_term_cfgs.items()}
+
+        shadow.event_manager._interval_term_time_left = [
+            value.clone() for value in env.event_manager._interval_term_time_left]
+        shadow.observation_manager = copy(env.observation_manager)
+        shadow.observation_manager._env = shadow
+        kinematic = (not force_full and self._kinematics_allowed
+                     and all(env.scene[name]._cache_valid for name in self._cached_sensor_names))
+        device = torch.device(env.device)
+        with torch.random.fork_rng(devices=[device.index]):
+            if kinematic:
+                self.physics.kinematic_forward()
+                self.fast_captures += 1
+            else:
+                shadow.sim.forward()
+                self.full_captures += 1
+            shadow.command_manager.compute(dt=env.step_dt)
+            for mode in ('step', 'interval'):
+                if mode in shadow.event_manager.available_modes:
+                    shadow.event_manager.apply(mode=mode, dt=env.step_dt)
+            if not kinematic:
+                shadow.sim.sense()
+            return shadow.observation_manager.compute_group('critic', update_history=True)
+
+class SC0090TerminalCriticRecorder:
+    """Compose a terminal producer with the existing recorder, on the same thread."""
+
+    def __init__(self, env):
+        self._env = env
+        self._original = env.recorder_manager
+        self._observer = SC0090TerminalCriticObserver(env)
+        self._captured_step = None
+        width = env.observation_manager.group_obs_dim['critic'][0]
+        self._empty_ids = torch.empty(0, dtype=torch.long, device=env.device)
+        self._empty_critic = torch.empty((0, width), device=env.device)
+
+    @classmethod
+    def install(cls, env):
+        if not env.cfg.auto_reset:
+            raise ValueError('Terminal critic collector requires automatic reset')
+        recorder = cls(env)
+        env.recorder_manager = recorder
+        env._sc0090_terminal_critic_recorder = recorder
+        return recorder
+
+    def record_pre_reset(self, env_ids):
+        from .ppo import TERMINAL_CRITIC_KEY
+        self._original.record_pre_reset(env_ids)
+        env = self._env
+        ids = (env.reset_time_outs & ~env.reset_terminated).nonzero(as_tuple=False).flatten()
+        if len(ids) and not env.cfg.is_finite_horizon:
+            critic = self._observer.capture(env)
+            env.extras[TERMINAL_CRITIC_KEY] = {
+                'step': env.common_step_counter, 'env_ids': ids, 'critic': critic[ids].clone()}
+            self._captured_step = env.common_step_counter
+
+    def record_post_reset(self, env_ids):
+        self._original.record_post_reset(env_ids)
+
+    def record_post_step(self):
+        from .ppo import TERMINAL_CRITIC_KEY
+        self._original.record_post_step()
+        env = self._env
+        if env.cfg.is_finite_horizon:
+            env.extras.pop(TERMINAL_CRITIC_KEY, None)
+        elif self._captured_step != env.common_step_counter:
+            # Empty records are explicit: yesterday's terminal observations
+            # cannot leak into a later step without a timeout.
+            env.extras[TERMINAL_CRITIC_KEY] = {
+                'step': env.common_step_counter, 'env_ids': self._empty_ids,
+                'critic': self._empty_critic}
+
+    def close(self):
+        self._original.close()
+        self._observer = None

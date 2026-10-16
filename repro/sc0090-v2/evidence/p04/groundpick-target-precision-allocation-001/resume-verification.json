@@ -1,0 +1,20 @@
+{
+  "checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-health-history-allocation-001/checkpoint_000512.pt",
+  "checkpoint_sha256": "33b7cce82b2cbaad87e2c55b64fcc3fe9872ff7c43365f063a8c0045019092fb",
+  "actor_critic_normalizer_adam_exact": true,
+  "learning_rate": 7.593750000000002e-05,
+  "source_transition": {
+    "manifest": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-target-precision-source-transition.json",
+    "sha256": "a1eb73d7e8f372c40d4f8e463febff968e711906ff98a545f996e9dfe67fbcc5",
+    "recipe": "mature-groundpick-height-precision-v1",
+    "changed_files": [
+      "scripts/train_v2_ground_pick.py",
+      "src/mjlab_microduck/custom_v2/ground_pick_metrics.py",
+      "src/mjlab_microduck/custom_v2/ground_pick_precision.py",
+      "src/mjlab_microduck/tasks/__init__.py"
+    ]
+  },
+  "common_step_counter": 12288,
+  "completed_updates": 512,
+  "inherited_controls": 301989888
+}

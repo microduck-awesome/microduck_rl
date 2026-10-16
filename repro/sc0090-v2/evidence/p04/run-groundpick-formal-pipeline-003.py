@@ -1,0 +1,29 @@
+import json,os,subprocess,time,signal
+from pathlib import Path
+root=Path('/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04');work=root/'groundpick-repaired-worktree'
+env=dict(os.environ,SC0090_CUDA_COMPAT_DIR='/home/l40-vm01/Documents/ai-research/microduck/microduck_rl/artifacts/cuda-compat-12.9/usr/local/cuda-12.9/compat');env.pop('MICRODUCK_WARM_START',None)
+task='Mjlab-GroundPick-Flat-MicroDuck-V2-Repaired-S0-O0-R1'
+patterns=('ccd overflow','contact overflow','constraint buffer full','broadphase overflow','narrowphase overflow','height field collision overflow','nefc overflow','njmax_nnz overflow')
+statepath=root/'groundpick-pipeline-status.json'
+def write(value):
+ p=statepath.with_suffix('.tmp');p.write_text(json.dumps(value,indent=2)+'\n');p.replace(statepath)
+def run(args,logname,phase):
+ logpath=root/logname;start=time.monotonic()
+ with logpath.open('w') as log:
+  child=subprocess.Popen(['scripts/v2_python.sh',*args],cwd=work,env=env,stdout=log,stderr=subprocess.STDOUT)
+  write(dict(status='RUNNING',phase=phase,pid=child.pid,log=str(logpath),updated_unix=time.time()));print(phase,'PID',child.pid,flush=True);bad=False
+  while child.poll() is None:
+   text=logpath.read_text().lower()
+   if not bad and any(p in text for p in patterns):bad=True;child.send_signal(signal.SIGTERM)
+   time.sleep(2)
+  assert child.returncode==0 and not bad,(phase,child.returncode,bad)
+ return time.monotonic()-start
+qualification=root/'groundpick-qualification-002.json'
+assert json.loads(qualification.read_text())['status']=='PASS'
+out=root/'groundpick-allocation-001'
+wall=run(['scripts/train_v2_ground_pick.py','--task',task,'--output',str(out),'--device','cuda:0','--num-envs','24576','--iterations','128','--qualification',str(qualification)],'groundpick-allocation-001.log','formal-fresh-128')
+r=json.loads((out/'report.json').read_text());assert r['completed_updates']==128 and r['controls']==75497472 and r['fresh_initialization']
+(out/'outer-process-wall.json').write_text(json.dumps(dict(wall_seconds_including_imports=wall,controls=r['allocation_controls'],controls_per_second=r['allocation_controls']/wall),indent=2)+'\n')
+for stage in ('nominal','measured'):
+ run(['scripts/evaluate_v2_ground_pick.py','--checkpoint',str(out/'checkpoint_000128.pt'),'--output',str(root/('groundpick-0128-'+stage)),'--device','cuda:0','--stage',stage],'groundpick-0128-'+stage+'.log','independent-'+stage)
+write(dict(status='EVALUATION_COMPLETE_DECISION_REQUIRED',completed_updates=128,total_groundpick_formal_controls=75497472,stage_max_controls=100663296,updated_unix=time.time(),scope='No automatic second allocation; evaluate full-cycle pickup/return/body/head-camera and identify bounded next decision'))

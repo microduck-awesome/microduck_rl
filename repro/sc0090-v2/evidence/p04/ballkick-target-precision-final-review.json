@@ -1,0 +1,2870 @@
+{
+  "status": "STAGE_CLOSED_NO_AUTOMATIC_CONTINUATION",
+  "recorded_unix": 1792141937.2694228,
+  "formal_new_controls": 150994944,
+  "previous_formal_controls": 326762496,
+  "all_history_formal_controls": 477757440,
+  "completed_updates": 512,
+  "native_Adam_steps": 30720,
+  "native_clock": 12288,
+  "full_shared_process_phase": {
+    "seconds_including_environment_and_validation": 1875.2969273161143,
+    "imports_shared": true,
+    "controls": 150994944,
+    "controls_per_second": 80517.88588813016
+  },
+  "steady_throughput": {
+    "median_control_per_second": 81001.48007080854,
+    "aggregate_control_per_second": 81318.11484225396
+  },
+  "worker_wall_including_admission_and_evaluation": 2246.4070008201525,
+  "live_reward_weights_by_node": [
+    {
+      "allocation_update": 1,
+      "completed_updates": 257,
+      "optimizer_step_calls": 120,
+      "total_optimizer_step_calls": 120,
+      "native_clock": 6168,
+      "learning_rate": 0.00011390625000000006,
+      "live_reward_weights": {
+        "upright": 2.0,
+        "body_ang_vel": -0.05,
+        "angular_momentum": -0.02,
+        "dof_pos_limits": -1.0,
+        "action_rate_l2": -1.0,
+        "ball_forward_velocity": 12.0,
+        "ball_speed_overshoot": -4.0,
+        "support_foot_grounded": 2.0,
+        "pose_stand_legs": 2.0,
+        "pose_stand_neck": 1.0,
+        "height_stand": 1.0,
+        "self_collisions": -1.0,
+        "ball_direction_cost": -4.0,
+        "postkick_quiet_return_cost": -2.0
+      },
+      "live_event_params": {
+        "randomize_com": {
+          "asset_cfg": "SceneEntityCfg(name='robot', joint_names=['left_hip_yaw', 'left_hip_roll', 'left_hip_pitch', 'left_knee', 'left_ankle', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'right_hip_yaw', 'right_hip_roll', 'right_hip_pitch', 'right_knee', 'right_ankle'], joint_ids=[0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14], body_names=['trunk_base'], body_ids=[0], geom_names=None, geom_ids=slice(None, None, None), site_names=None, site_ids=slice(None, None, None), actuator_names=None, actuator_ids=slice(None, None, None), tendon_names=None, tendon_ids=slice(None, None, None), camera_names=None, camera_ids=slice(None, None, None), light_names=None, light_ids=slice(None, None, None), material_names=None, material_ids=slice(None, None, None), pair_names=None, pair_ids=slice(None, None, None), preserve_order=True)",
+          "operation": "add",
+          "ranges": [
+            -0.015,
+            0.015
+          ]
+        },
+        "randomize_head_com": {
+          "asset_cfg": "SceneEntityCfg(name='robot', joint_names=['left_hip_yaw', 'left_hip_roll', 'left_hip_pitch', 'left_knee', 'left_ankle', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'right_hip_yaw', 'right_hip_roll', 'right_hip_pitch', 'right_knee', 'right_ankle'], joint_ids=[0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14], body_names=['neck', 'neck_pitch', 'yaw_roll_motion', 'bottom_head_shell', 'jaw_soft', 'bearing_roll'], body_ids=[6, 7, 8, 9, 10, 11], geom_names=None, geom_ids=slice(None, None, None), site_names=None, site_ids=slice(None, None, None), actuator_names=None, actuator_ids=slice(None, None, None), tendon_names=None, tendon_ids=slice(None, None, None), camera_names=None, camera_ids=slice(None, None, None), light_names=None, light_ids=slice(None, None, None), material_names=None, material_ids=slice(None, None, None), pair_names=None, pair_ids=slice(None, None, None), preserve_order=True)",
+          "operation": "add",
+          "ranges": [
+            -0.01,
+            0.01
+          ]
+        },
+        "push_robot": {
+          "velocity_range": {
+            "x": [
+              -0.3,
+              0.3
+            ],
+            "y": [
+              -0.3,
+              0.3
+            ]
+          },
+          "asset_cfg": "SceneEntityCfg(name='robot', joint_names=['left_hip_yaw', 'left_hip_roll', 'left_hip_pitch', 'left_knee', 'left_ankle', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'right_hip_yaw', 'right_hip_roll', 'right_hip_pitch', 'right_knee', 'right_ankle'], joint_ids=[0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14], body_names=None, body_ids=slice(None, None, None), geom_names=None, geom_ids=slice(None, None, None), site_names=None, site_ids=slice(None, None, None), actuator_names=None, actuator_ids=slice(None, None, None), tendon_names=None, tendon_ids=slice(None, None, None), camera_names=None, camera_ids=slice(None, None, None), light_names=None, light_ids=slice(None, None, None), material_names=None, material_ids=slice(None, None, None), pair_names=None, pair_ids=slice(None, None, None), preserve_order=True)"
+        }
+      }
+    },
+    {
+      "allocation_update": 64,
+      "completed_updates": 320,
+      "optimizer_step_calls": 120,
+      "total_optimizer_step_calls": 7680,
+      "native_clock": 7680,
+      "learning_rate": 0.00011390625000000006,
+      "live_reward_weights": {
+        "upright": 2.0,
+        "body_ang_vel": -0.05,
+        "angular_momentum": -0.02,
+        "dof_pos_limits": -1.0,
+        "action_rate_l2": -1.0,
+        "ball_forward_velocity": 12.0,
+        "ball_speed_overshoot": -4.0,
+        "support_foot_grounded": 2.0,
+        "pose_stand_legs": 2.0,
+        "pose_stand_neck": 1.0,
+        "height_stand": 1.0,
+        "self_collisions": -1.0,
+        "ball_direction_cost": -4.0,
+        "postkick_quiet_return_cost": -2.0
+      },
+      "live_event_params": {
+        "randomize_com": {
+          "asset_cfg": "SceneEntityCfg(name='robot', joint_names=['left_hip_yaw', 'left_hip_roll', 'left_hip_pitch', 'left_knee', 'left_ankle', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'right_hip_yaw', 'right_hip_roll', 'right_hip_pitch', 'right_knee', 'right_ankle'], joint_ids=[0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14], body_names=['trunk_base'], body_ids=[0], geom_names=None, geom_ids=slice(None, None, None), site_names=None, site_ids=slice(None, None, None), actuator_names=None, actuator_ids=slice(None, None, None), tendon_names=None, tendon_ids=slice(None, None, None), camera_names=None, camera_ids=slice(None, None, None), light_names=None, light_ids=slice(None, None, None), material_names=None, material_ids=slice(None, None, None), pair_names=None, pair_ids=slice(None, None, None), preserve_order=True)",
+          "operation": "add",
+          "ranges": [
+            -0.015,
+            0.015
+          ]
+        },
+        "randomize_head_com": {
+          "asset_cfg": "SceneEntityCfg(name='robot', joint_names=['left_hip_yaw', 'left_hip_roll', 'left_hip_pitch', 'left_knee', 'left_ankle', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'right_hip_yaw', 'right_hip_roll', 'right_hip_pitch', 'right_knee', 'right_ankle'], joint_ids=[0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14], body_names=['neck', 'neck_pitch', 'yaw_roll_motion', 'bottom_head_shell', 'jaw_soft', 'bearing_roll'], body_ids=[6, 7, 8, 9, 10, 11], geom_names=None, geom_ids=slice(None, None, None), site_names=None, site_ids=slice(None, None, None), actuator_names=None, actuator_ids=slice(None, None, None), tendon_names=None, tendon_ids=slice(None, None, None), camera_names=None, camera_ids=slice(None, None, None), light_names=None, light_ids=slice(None, None, None), material_names=None, material_ids=slice(None, None, None), pair_names=None, pair_ids=slice(None, None, None), preserve_order=True)",
+          "operation": "add",
+          "ranges": [
+            -0.01,
+            0.01
+          ]
+        },
+        "push_robot": {
+          "velocity_range": {
+            "x": [
+              -0.3,
+              0.3
+            ],
+            "y": [
+              -0.3,
+              0.3
+            ]
+          },
+          "asset_cfg": "SceneEntityCfg(name='robot', joint_names=['left_hip_yaw', 'left_hip_roll', 'left_hip_pitch', 'left_knee', 'left_ankle', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'right_hip_yaw', 'right_hip_roll', 'right_hip_pitch', 'right_knee', 'right_ankle'], joint_ids=[0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14], body_names=None, body_ids=slice(None, None, None), geom_names=None, geom_ids=slice(None, None, None), site_names=None, site_ids=slice(None, None, None), actuator_names=None, actuator_ids=slice(None, None, None), tendon_names=None, tendon_ids=slice(None, None, None), camera_names=None, camera_ids=slice(None, None, None), light_names=None, light_ids=slice(None, None, None), material_names=None, material_ids=slice(None, None, None), pair_names=None, pair_ids=slice(None, None, None), preserve_order=True)"
+        }
+      }
+    },
+    {
+      "allocation_update": 128,
+      "completed_updates": 384,
+      "optimizer_step_calls": 120,
+      "total_optimizer_step_calls": 15360,
+      "native_clock": 9216,
+      "learning_rate": 0.0002562890625000001,
+      "live_reward_weights": {
+        "upright": 2.0,
+        "body_ang_vel": -0.05,
+        "angular_momentum": -0.02,
+        "dof_pos_limits": -1.0,
+        "action_rate_l2": -1.0,
+        "ball_forward_velocity": 12.0,
+        "ball_speed_overshoot": -4.0,
+        "support_foot_grounded": 2.0,
+        "pose_stand_legs": 2.0,
+        "pose_stand_neck": 1.0,
+        "height_stand": 1.0,
+        "self_collisions": -1.0,
+        "ball_direction_cost": -4.0,
+        "postkick_quiet_return_cost": -2.0
+      },
+      "live_event_params": {
+        "randomize_com": {
+          "asset_cfg": "SceneEntityCfg(name='robot', joint_names=['left_hip_yaw', 'left_hip_roll', 'left_hip_pitch', 'left_knee', 'left_ankle', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'right_hip_yaw', 'right_hip_roll', 'right_hip_pitch', 'right_knee', 'right_ankle'], joint_ids=[0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14], body_names=['trunk_base'], body_ids=[0], geom_names=None, geom_ids=slice(None, None, None), site_names=None, site_ids=slice(None, None, None), actuator_names=None, actuator_ids=slice(None, None, None), tendon_names=None, tendon_ids=slice(None, None, None), camera_names=None, camera_ids=slice(None, None, None), light_names=None, light_ids=slice(None, None, None), material_names=None, material_ids=slice(None, None, None), pair_names=None, pair_ids=slice(None, None, None), preserve_order=True)",
+          "operation": "add",
+          "ranges": [
+            -0.015,
+            0.015
+          ]
+        },
+        "randomize_head_com": {
+          "asset_cfg": "SceneEntityCfg(name='robot', joint_names=['left_hip_yaw', 'left_hip_roll', 'left_hip_pitch', 'left_knee', 'left_ankle', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'right_hip_yaw', 'right_hip_roll', 'right_hip_pitch', 'right_knee', 'right_ankle'], joint_ids=[0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14], body_names=['neck', 'neck_pitch', 'yaw_roll_motion', 'bottom_head_shell', 'jaw_soft', 'bearing_roll'], body_ids=[6, 7, 8, 9, 10, 11], geom_names=None, geom_ids=slice(None, None, None), site_names=None, site_ids=slice(None, None, None), actuator_names=None, actuator_ids=slice(None, None, None), tendon_names=None, tendon_ids=slice(None, None, None), camera_names=None, camera_ids=slice(None, None, None), light_names=None, light_ids=slice(None, None, None), material_names=None, material_ids=slice(None, None, None), pair_names=None, pair_ids=slice(None, None, None), preserve_order=True)",
+          "operation": "add",
+          "ranges": [
+            -0.01,
+            0.01
+          ]
+        },
+        "push_robot": {
+          "velocity_range": {
+            "x": [
+              -0.3,
+              0.3
+            ],
+            "y": [
+              -0.3,
+              0.3
+            ]
+          },
+          "asset_cfg": "SceneEntityCfg(name='robot', joint_names=['left_hip_yaw', 'left_hip_roll', 'left_hip_pitch', 'left_knee', 'left_ankle', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'right_hip_yaw', 'right_hip_roll', 'right_hip_pitch', 'right_knee', 'right_ankle'], joint_ids=[0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14], body_names=None, body_ids=slice(None, None, None), geom_names=None, geom_ids=slice(None, None, None), site_names=None, site_ids=slice(None, None, None), actuator_names=None, actuator_ids=slice(None, None, None), tendon_names=None, tendon_ids=slice(None, None, None), camera_names=None, camera_ids=slice(None, None, None), light_names=None, light_ids=slice(None, None, None), material_names=None, material_ids=slice(None, None, None), pair_names=None, pair_ids=slice(None, None, None), preserve_order=True)"
+        }
+      }
+    },
+    {
+      "allocation_update": 192,
+      "completed_updates": 448,
+      "optimizer_step_calls": 120,
+      "total_optimizer_step_calls": 23040,
+      "native_clock": 10752,
+      "learning_rate": 0.0002562890625000001,
+      "live_reward_weights": {
+        "upright": 2.0,
+        "body_ang_vel": -0.05,
+        "angular_momentum": -0.02,
+        "dof_pos_limits": -1.0,
+        "action_rate_l2": -1.0,
+        "ball_forward_velocity": 12.0,
+        "ball_speed_overshoot": -4.0,
+        "support_foot_grounded": 2.0,
+        "pose_stand_legs": 2.0,
+        "pose_stand_neck": 1.0,
+        "height_stand": 1.0,
+        "self_collisions": -1.0,
+        "ball_direction_cost": -4.0,
+        "postkick_quiet_return_cost": -2.0
+      },
+      "live_event_params": {
+        "randomize_com": {
+          "asset_cfg": "SceneEntityCfg(name='robot', joint_names=['left_hip_yaw', 'left_hip_roll', 'left_hip_pitch', 'left_knee', 'left_ankle', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'right_hip_yaw', 'right_hip_roll', 'right_hip_pitch', 'right_knee', 'right_ankle'], joint_ids=[0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14], body_names=['trunk_base'], body_ids=[0], geom_names=None, geom_ids=slice(None, None, None), site_names=None, site_ids=slice(None, None, None), actuator_names=None, actuator_ids=slice(None, None, None), tendon_names=None, tendon_ids=slice(None, None, None), camera_names=None, camera_ids=slice(None, None, None), light_names=None, light_ids=slice(None, None, None), material_names=None, material_ids=slice(None, None, None), pair_names=None, pair_ids=slice(None, None, None), preserve_order=True)",
+          "operation": "add",
+          "ranges": [
+            -0.015,
+            0.015
+          ]
+        },
+        "randomize_head_com": {
+          "asset_cfg": "SceneEntityCfg(name='robot', joint_names=['left_hip_yaw', 'left_hip_roll', 'left_hip_pitch', 'left_knee', 'left_ankle', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'right_hip_yaw', 'right_hip_roll', 'right_hip_pitch', 'right_knee', 'right_ankle'], joint_ids=[0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14], body_names=['neck', 'neck_pitch', 'yaw_roll_motion', 'bottom_head_shell', 'jaw_soft', 'bearing_roll'], body_ids=[6, 7, 8, 9, 10, 11], geom_names=None, geom_ids=slice(None, None, None), site_names=None, site_ids=slice(None, None, None), actuator_names=None, actuator_ids=slice(None, None, None), tendon_names=None, tendon_ids=slice(None, None, None), camera_names=None, camera_ids=slice(None, None, None), light_names=None, light_ids=slice(None, None, None), material_names=None, material_ids=slice(None, None, None), pair_names=None, pair_ids=slice(None, None, None), preserve_order=True)",
+          "operation": "add",
+          "ranges": [
+            -0.01,
+            0.01
+          ]
+        },
+        "push_robot": {
+          "velocity_range": {
+            "x": [
+              -0.3,
+              0.3
+            ],
+            "y": [
+              -0.3,
+              0.3
+            ]
+          },
+          "asset_cfg": "SceneEntityCfg(name='robot', joint_names=['left_hip_yaw', 'left_hip_roll', 'left_hip_pitch', 'left_knee', 'left_ankle', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'right_hip_yaw', 'right_hip_roll', 'right_hip_pitch', 'right_knee', 'right_ankle'], joint_ids=[0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14], body_names=None, body_ids=slice(None, None, None), geom_names=None, geom_ids=slice(None, None, None), site_names=None, site_ids=slice(None, None, None), actuator_names=None, actuator_ids=slice(None, None, None), tendon_names=None, tendon_ids=slice(None, None, None), camera_names=None, camera_ids=slice(None, None, None), light_names=None, light_ids=slice(None, None, None), material_names=None, material_ids=slice(None, None, None), pair_names=None, pair_ids=slice(None, None, None), preserve_order=True)"
+        }
+      }
+    },
+    {
+      "allocation_update": 256,
+      "completed_updates": 512,
+      "optimizer_step_calls": 120,
+      "total_optimizer_step_calls": 30720,
+      "native_clock": 12288,
+      "learning_rate": 0.0002562890625000001,
+      "live_reward_weights": {
+        "upright": 2.0,
+        "body_ang_vel": -0.05,
+        "angular_momentum": -0.02,
+        "dof_pos_limits": -1.0,
+        "action_rate_l2": -1.0,
+        "ball_forward_velocity": 12.0,
+        "ball_speed_overshoot": -4.0,
+        "support_foot_grounded": 2.0,
+        "pose_stand_legs": 2.0,
+        "pose_stand_neck": 1.0,
+        "height_stand": 1.0,
+        "self_collisions": -1.0,
+        "ball_direction_cost": -4.0,
+        "postkick_quiet_return_cost": -2.0
+      },
+      "live_event_params": {
+        "randomize_com": {
+          "asset_cfg": "SceneEntityCfg(name='robot', joint_names=['left_hip_yaw', 'left_hip_roll', 'left_hip_pitch', 'left_knee', 'left_ankle', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'right_hip_yaw', 'right_hip_roll', 'right_hip_pitch', 'right_knee', 'right_ankle'], joint_ids=[0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14], body_names=['trunk_base'], body_ids=[0], geom_names=None, geom_ids=slice(None, None, None), site_names=None, site_ids=slice(None, None, None), actuator_names=None, actuator_ids=slice(None, None, None), tendon_names=None, tendon_ids=slice(None, None, None), camera_names=None, camera_ids=slice(None, None, None), light_names=None, light_ids=slice(None, None, None), material_names=None, material_ids=slice(None, None, None), pair_names=None, pair_ids=slice(None, None, None), preserve_order=True)",
+          "operation": "add",
+          "ranges": [
+            -0.015,
+            0.015
+          ]
+        },
+        "randomize_head_com": {
+          "asset_cfg": "SceneEntityCfg(name='robot', joint_names=['left_hip_yaw', 'left_hip_roll', 'left_hip_pitch', 'left_knee', 'left_ankle', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'right_hip_yaw', 'right_hip_roll', 'right_hip_pitch', 'right_knee', 'right_ankle'], joint_ids=[0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14], body_names=['neck', 'neck_pitch', 'yaw_roll_motion', 'bottom_head_shell', 'jaw_soft', 'bearing_roll'], body_ids=[6, 7, 8, 9, 10, 11], geom_names=None, geom_ids=slice(None, None, None), site_names=None, site_ids=slice(None, None, None), actuator_names=None, actuator_ids=slice(None, None, None), tendon_names=None, tendon_ids=slice(None, None, None), camera_names=None, camera_ids=slice(None, None, None), light_names=None, light_ids=slice(None, None, None), material_names=None, material_ids=slice(None, None, None), pair_names=None, pair_ids=slice(None, None, None), preserve_order=True)",
+          "operation": "add",
+          "ranges": [
+            -0.01,
+            0.01
+          ]
+        },
+        "push_robot": {
+          "velocity_range": {
+            "x": [
+              -0.3,
+              0.3
+            ],
+            "y": [
+              -0.3,
+              0.3
+            ]
+          },
+          "asset_cfg": "SceneEntityCfg(name='robot', joint_names=['left_hip_yaw', 'left_hip_roll', 'left_hip_pitch', 'left_knee', 'left_ankle', 'neck_pitch', 'head_pitch', 'head_yaw', 'head_roll', 'right_hip_yaw', 'right_hip_roll', 'right_hip_pitch', 'right_knee', 'right_ankle'], joint_ids=[0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14], body_names=None, body_ids=slice(None, None, None), geom_names=None, geom_ids=slice(None, None, None), site_names=None, site_ids=slice(None, None, None), actuator_names=None, actuator_ids=slice(None, None, None), tendon_names=None, tendon_ids=slice(None, None, None), camera_names=None, camera_ids=slice(None, None, None), light_names=None, light_ids=slice(None, None, None), material_names=None, material_ids=slice(None, None, None), pair_names=None, pair_ids=slice(None, None, None), preserve_order=True)"
+        }
+      }
+    }
+  ],
+  "rows": [
+    {
+      "stage": "nominal",
+      "trials": 256,
+      "raw_correct_foot_touch_trials_200hz": 256,
+      "healthy_valid_ever_trials_200hz": 256,
+      "bad_latch_ever_trials_200hz": 1,
+      "raw_self_touch_trials_200hz": 1,
+      "valid_contact_trials": 256,
+      "clean_motion_trials": 255,
+      "rolling_target_last1s_trials": 143,
+      "body_standing_last05s_trials": 108,
+      "body_and_neutral_head_last05s_trials": 76,
+      "complete_kick_trials": 60,
+      "complete_kick_and_neutral_head_trials": 41,
+      "feedback_fault_trials": 0,
+      "nonfinite_trials": 0,
+      "ball_forward_distance_mean_m": 4.335217475891113,
+      "ball_tail_forward_speed_mean_mps": 0.9050222635269165,
+      "ball_tail_lateral_abs_mean_mps": 0.19249947369098663,
+      "head_tail_home_mae_deg": [
+        4.5222554206848145,
+        2.3886890411376953,
+        4.188937664031982,
+        2.340611457824707
+      ],
+      "camera": {
+        "prepare_0_to_05s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 256,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 6.077337265014648,
+              "p95_over_trials": 6.803141117095947
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 11.637090682983398,
+              "p95_over_trials": 12.915964126586914
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.23243391513824463,
+              "p95_over_trials": 0.2559467554092407
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.25834009051322937,
+              "p95_over_trials": 0.28206151723861694
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 6.077337265014648,
+              "p95_over_trials": 6.803141117095947
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 11.637090682983398,
+              "p95_over_trials": 12.915964126586914
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.23243391513824463,
+              "p95_over_trials": 0.2559467554092407
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.25834009051322937,
+              "p95_over_trials": 0.28206151723861694
+            }
+          }
+        },
+        "motion_05_to_2s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 256,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.8724706172943115,
+              "p95_over_trials": 3.948803186416626
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 4.590370178222656,
+              "p95_over_trials": 9.184481620788574
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.08976349979639053,
+              "p95_over_trials": 0.18101777136325836
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.1272505521774292,
+              "p95_over_trials": 0.22763170301914215
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.8724706172943115,
+              "p95_over_trials": 3.948803186416626
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 4.590370178222656,
+              "p95_over_trials": 9.184481620788574
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.08976349979639053,
+              "p95_over_trials": 0.18101777136325836
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.1272505521774292,
+              "p95_over_trials": 0.22763170301914215
+            }
+          }
+        },
+        "return_4_to_5s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 52,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.3867106437683105,
+              "p95_over_trials": 4.087105751037598
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 3.268077850341797,
+              "p95_over_trials": 9.431013107299805
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.06367732584476471,
+              "p95_over_trials": 0.18811284005641937
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.08155182749032974,
+              "p95_over_trials": 0.22483006119728088
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 0.22578269243240356,
+              "p95_over_trials": 0.6550702452659607
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 0.48259487748146057,
+              "p95_over_trials": 1.3382585048675537
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.009332887828350067,
+              "p95_over_trials": 0.02679777704179287
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.01426787581294775,
+              "p95_over_trials": 0.03730437532067299
+            }
+          }
+        },
+        "contact_minus05_to_plus05s": null
+      },
+      "node": 320,
+      "camera_cpu_parity_and_200Hz_contact_screen": {
+        "prepare_0_to_05s": {
+          "original50Hz_health_trials": 256,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 256,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 6.077337741851807,
+              "p95_over_trials": 6.803141117095947
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 11.637090682983398,
+              "p95_over_trials": 12.915964126586914
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.23243391513824463,
+              "p95_over_trials": 0.25594672560691833
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.25834009051322937,
+              "p95_over_trials": 0.28206151723861694
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        },
+        "motion_05_to_2s": {
+          "original50Hz_health_trials": 256,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 256,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.872470498085022,
+              "p95_over_trials": 3.948803186416626
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 4.5903706550598145,
+              "p95_over_trials": 9.184481620788574
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.08976349234580994,
+              "p95_over_trials": 0.18101778626441956
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.1272505521774292,
+              "p95_over_trials": 0.22763170301914215
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        },
+        "return_4_to_5s": {
+          "original50Hz_health_trials": 52,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 52,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 0.22578269243240356,
+              "p95_over_trials": 0.6550702452659607
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 0.48259449005126953,
+              "p95_over_trials": 1.3382586240768433
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.009332888759672642,
+              "p95_over_trials": 0.02679777890443802
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.01426787581294775,
+              "p95_over_trials": 0.03730437532067299
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        }
+      },
+      "first_raw_correct_contact": {
+        "trials": 256,
+        "first_substep_index_median": 54.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "first_self_contact": {
+        "trials": 1,
+        "first_substep_index_median": 995.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "first_bad_latch": {
+        "trials": 1,
+        "first_substep_index_median": 995.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "tail1s_height_m": 0.11206312477588654,
+      "tail1s_tilt_deg": 2.098844051361084,
+      "tail1s_linear_speed_mps": 0.039048951119184494,
+      "tail1s_angular_speed_radps": 0.35626715421676636,
+      "tail1s_both_feet_fraction": 0.9171093702316284,
+      "tail1s_standing_sample_fraction": 0.8728906512260437,
+      "initial_paired_with320": {
+        "qpos": true,
+        "qvel": true,
+        "actor_obs": true,
+        "origins": true
+      },
+      "qualification": "UNQUALIFIED_UNLESS_ALL_ORIGINAL_GATES_PASS",
+      "runtime_qualified": false,
+      "hardware_tested": false
+    },
+    {
+      "stage": "measured",
+      "trials": 256,
+      "raw_correct_foot_touch_trials_200hz": 256,
+      "healthy_valid_ever_trials_200hz": 256,
+      "bad_latch_ever_trials_200hz": 0,
+      "raw_self_touch_trials_200hz": 0,
+      "valid_contact_trials": 256,
+      "clean_motion_trials": 256,
+      "rolling_target_last1s_trials": 126,
+      "body_standing_last05s_trials": 104,
+      "body_and_neutral_head_last05s_trials": 80,
+      "complete_kick_trials": 50,
+      "complete_kick_and_neutral_head_trials": 35,
+      "feedback_fault_trials": 0,
+      "nonfinite_trials": 0,
+      "ball_forward_distance_mean_m": 4.361452579498291,
+      "ball_tail_forward_speed_mean_mps": 0.9102756977081299,
+      "ball_tail_lateral_abs_mean_mps": 0.18726184964179993,
+      "head_tail_home_mae_deg": [
+        4.512134075164795,
+        2.534555435180664,
+        4.079781532287598,
+        2.385469913482666
+      ],
+      "camera": {
+        "prepare_0_to_05s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 256,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 6.195913314819336,
+              "p95_over_trials": 7.542959213256836
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 11.664597511291504,
+              "p95_over_trials": 13.423909187316895
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.23217672109603882,
+              "p95_over_trials": 0.2656339406967163
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.25782206654548645,
+              "p95_over_trials": 0.301328182220459
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 6.195913314819336,
+              "p95_over_trials": 7.542959213256836
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 11.664597511291504,
+              "p95_over_trials": 13.423909187316895
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.23217672109603882,
+              "p95_over_trials": 0.2656339406967163
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.25782206654548645,
+              "p95_over_trials": 0.301328182220459
+            }
+          }
+        },
+        "motion_05_to_2s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 256,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.8787566423416138,
+              "p95_over_trials": 4.0105204582214355
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 4.668440818786621,
+              "p95_over_trials": 9.300917625427246
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.09120005369186401,
+              "p95_over_trials": 0.18587076663970947
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.12841959297657013,
+              "p95_over_trials": 0.2408641129732132
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.8787566423416138,
+              "p95_over_trials": 4.0105204582214355
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 4.668440818786621,
+              "p95_over_trials": 9.300917625427246
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.09120005369186401,
+              "p95_over_trials": 0.18587076663970947
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.12841959297657013,
+              "p95_over_trials": 0.2408641129732132
+            }
+          }
+        },
+        "return_4_to_5s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 51,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.550492763519287,
+              "p95_over_trials": 4.337095737457275
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 3.647136688232422,
+              "p95_over_trials": 9.782825469970703
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.07100671529769897,
+              "p95_over_trials": 0.19190454483032227
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.09166570007801056,
+              "p95_over_trials": 0.2256075143814087
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 0.22182327508926392,
+              "p95_over_trials": 0.5792862772941589
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 0.47574588656425476,
+              "p95_over_trials": 1.2447896003723145
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.009277059696614742,
+              "p95_over_trials": 0.02461198717355728
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.014380717650055885,
+              "p95_over_trials": 0.02925606071949005
+            }
+          }
+        },
+        "contact_minus05_to_plus05s": null
+      },
+      "node": 320,
+      "camera_cpu_parity_and_200Hz_contact_screen": {
+        "prepare_0_to_05s": {
+          "original50Hz_health_trials": 256,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 256,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 6.195913791656494,
+              "p95_over_trials": 7.542960166931152
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 11.66459846496582,
+              "p95_over_trials": 13.423910140991211
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.23217672109603882,
+              "p95_over_trials": 0.2656339108943939
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.25782206654548645,
+              "p95_over_trials": 0.30132821202278137
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        },
+        "motion_05_to_2s": {
+          "original50Hz_health_trials": 256,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 256,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.8787567615509033,
+              "p95_over_trials": 4.010520935058594
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 4.668440818786621,
+              "p95_over_trials": 9.300917625427246
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.09120006114244461,
+              "p95_over_trials": 0.18587075173854828
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.12841959297657013,
+              "p95_over_trials": 0.240864098072052
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        },
+        "return_4_to_5s": {
+          "original50Hz_health_trials": 51,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 51,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 0.22182326018810272,
+              "p95_over_trials": 0.5792863368988037
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 0.4757460653781891,
+              "p95_over_trials": 1.2447896003723145
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.009277059696614742,
+              "p95_over_trials": 0.02461198717355728
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.01438071671873331,
+              "p95_over_trials": 0.029256053268909454
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        }
+      },
+      "first_raw_correct_contact": {
+        "trials": 256,
+        "first_substep_index_median": 54.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "first_self_contact": {
+        "trials": 0,
+        "first_substep_index_median": null,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "first_bad_latch": {
+        "trials": 0,
+        "first_substep_index_median": null,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "tail1s_height_m": 0.11210224032402039,
+      "tail1s_tilt_deg": 2.1086061000823975,
+      "tail1s_linear_speed_mps": 0.04148247092962265,
+      "tail1s_angular_speed_radps": 0.39180222153663635,
+      "tail1s_both_feet_fraction": 0.9117968678474426,
+      "tail1s_standing_sample_fraction": 0.8630468845367432,
+      "initial_paired_with320": {
+        "qpos": true,
+        "qvel": true,
+        "actor_obs": true,
+        "origins": true
+      },
+      "qualification": "UNQUALIFIED_UNLESS_ALL_ORIGINAL_GATES_PASS",
+      "runtime_qualified": false,
+      "hardware_tested": false
+    },
+    {
+      "stage": "nominal",
+      "trials": 256,
+      "raw_correct_foot_touch_trials_200hz": 256,
+      "healthy_valid_ever_trials_200hz": 256,
+      "bad_latch_ever_trials_200hz": 7,
+      "raw_self_touch_trials_200hz": 6,
+      "valid_contact_trials": 256,
+      "clean_motion_trials": 249,
+      "rolling_target_last1s_trials": 128,
+      "body_standing_last05s_trials": 119,
+      "body_and_neutral_head_last05s_trials": 67,
+      "complete_kick_trials": 67,
+      "complete_kick_and_neutral_head_trials": 39,
+      "feedback_fault_trials": 0,
+      "nonfinite_trials": 0,
+      "ball_forward_distance_mean_m": 4.500936508178711,
+      "ball_tail_forward_speed_mean_mps": 0.9465875029563904,
+      "ball_tail_lateral_abs_mean_mps": 0.21873371303081512,
+      "head_tail_home_mae_deg": [
+        5.7571492195129395,
+        3.809337854385376,
+        3.8843588829040527,
+        2.271552324295044
+      ],
+      "camera": {
+        "prepare_0_to_05s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 256,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 6.848014831542969,
+              "p95_over_trials": 7.6411638259887695
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 13.555810928344727,
+              "p95_over_trials": 14.575434684753418
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.2684726119041443,
+              "p95_over_trials": 0.2869083881378174
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.2892758846282959,
+              "p95_over_trials": 0.30645453929901123
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 6.848014831542969,
+              "p95_over_trials": 7.6411638259887695
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 13.555810928344727,
+              "p95_over_trials": 14.575434684753418
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.2684726119041443,
+              "p95_over_trials": 0.2869083881378174
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.2892758846282959,
+              "p95_over_trials": 0.30645453929901123
+            }
+          }
+        },
+        "motion_05_to_2s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 256,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 2.289085626602173,
+              "p95_over_trials": 4.45900821685791
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 5.543908596038818,
+              "p95_over_trials": 10.59241008758545
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.10741065442562103,
+              "p95_over_trials": 0.20810292661190033
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.161770761013031,
+              "p95_over_trials": 0.26693838834762573
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 2.289085626602173,
+              "p95_over_trials": 4.45900821685791
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 5.543908596038818,
+              "p95_over_trials": 10.59241008758545
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.10741065442562103,
+              "p95_over_trials": 0.20810292661190033
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.161770761013031,
+              "p95_over_trials": 0.26693838834762573
+            }
+          }
+        },
+        "return_4_to_5s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 62,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.480236291885376,
+              "p95_over_trials": 4.9449052810668945
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 3.466700792312622,
+              "p95_over_trials": 10.867145538330078
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.06762127578258514,
+              "p95_over_trials": 0.21473130583763123
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.08607248961925507,
+              "p95_over_trials": 0.2615160644054413
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 0.2337455302476883,
+              "p95_over_trials": 0.7402750253677368
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 0.5283829569816589,
+              "p95_over_trials": 1.6320713758468628
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.010395295917987823,
+              "p95_over_trials": 0.03301142901182175
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.014022661373019218,
+              "p95_over_trials": 0.043266039341688156
+            }
+          }
+        },
+        "contact_minus05_to_plus05s": {
+          "trials": 5,
+          "healthy_entire_window_trials": 5,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 5.514344692230225,
+              "p95_over_trials": 6.205447673797607
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 11.711634635925293,
+              "p95_over_trials": 13.046871185302734
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.22982262074947357,
+              "p95_over_trials": 0.2562680244445801
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.2736205458641052,
+              "p95_over_trials": 0.2816908061504364
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 5.514344692230225,
+              "p95_over_trials": 6.205447673797607
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 11.711634635925293,
+              "p95_over_trials": 13.046871185302734
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.22982262074947357,
+              "p95_over_trials": 0.2562680244445801
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.2736205458641052,
+              "p95_over_trials": 0.2816908061504364
+            }
+          }
+        }
+      },
+      "node": 384,
+      "camera_cpu_parity_and_200Hz_contact_screen": {
+        "prepare_0_to_05s": {
+          "original50Hz_health_trials": 256,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 256,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 6.848014831542969,
+              "p95_over_trials": 7.6411638259887695
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 13.555811882019043,
+              "p95_over_trials": 14.575434684753418
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.2684726119041443,
+              "p95_over_trials": 0.2869083881378174
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.2892758846282959,
+              "p95_over_trials": 0.30645453929901123
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        },
+        "motion_05_to_2s": {
+          "original50Hz_health_trials": 256,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 256,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 2.289085626602173,
+              "p95_over_trials": 4.45900821685791
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 5.54390811920166,
+              "p95_over_trials": 10.59241008758545
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.10741065442562103,
+              "p95_over_trials": 0.20810292661190033
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.161770761013031,
+              "p95_over_trials": 0.26693838834762573
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        },
+        "return_4_to_5s": {
+          "original50Hz_health_trials": 62,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 62,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 0.2337455451488495,
+              "p95_over_trials": 0.7402750849723816
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 0.5283826589584351,
+              "p95_over_trials": 1.6320713758468628
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.010395295917987823,
+              "p95_over_trials": 0.03301142901182175
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.014022661373019218,
+              "p95_over_trials": 0.043266039341688156
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        }
+      },
+      "first_raw_correct_contact": {
+        "trials": 256,
+        "first_substep_index_median": 65.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "first_self_contact": {
+        "trials": 6,
+        "first_substep_index_median": 657.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "first_bad_latch": {
+        "trials": 7,
+        "first_substep_index_median": 648.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "tail1s_height_m": 0.10715246945619583,
+      "tail1s_tilt_deg": 3.371138334274292,
+      "tail1s_linear_speed_mps": 0.03779349476099014,
+      "tail1s_angular_speed_radps": 0.35784846544265747,
+      "tail1s_both_feet_fraction": 0.9146093726158142,
+      "tail1s_standing_sample_fraction": 0.8395312428474426,
+      "initial_paired_with320": {
+        "qpos": true,
+        "qvel": true,
+        "actor_obs": true,
+        "origins": true
+      },
+      "qualification": "UNQUALIFIED_UNLESS_ALL_ORIGINAL_GATES_PASS",
+      "runtime_qualified": false,
+      "hardware_tested": false
+    },
+    {
+      "stage": "measured",
+      "trials": 256,
+      "raw_correct_foot_touch_trials_200hz": 256,
+      "healthy_valid_ever_trials_200hz": 256,
+      "bad_latch_ever_trials_200hz": 0,
+      "raw_self_touch_trials_200hz": 0,
+      "valid_contact_trials": 256,
+      "clean_motion_trials": 256,
+      "rolling_target_last1s_trials": 105,
+      "body_standing_last05s_trials": 122,
+      "body_and_neutral_head_last05s_trials": 71,
+      "complete_kick_trials": 51,
+      "complete_kick_and_neutral_head_trials": 27,
+      "feedback_fault_trials": 0,
+      "nonfinite_trials": 0,
+      "ball_forward_distance_mean_m": 4.566279411315918,
+      "ball_tail_forward_speed_mean_mps": 0.9605981111526489,
+      "ball_tail_lateral_abs_mean_mps": 0.21557044982910156,
+      "head_tail_home_mae_deg": [
+        5.066969871520996,
+        3.0294084548950195,
+        3.703878879547119,
+        2.086134195327759
+      ],
+      "camera": {
+        "prepare_0_to_05s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 256,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 6.927063941955566,
+              "p95_over_trials": 8.236505508422852
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 13.52452564239502,
+              "p95_over_trials": 15.358874320983887
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.2681136727333069,
+              "p95_over_trials": 0.30421698093414307
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.28949594497680664,
+              "p95_over_trials": 0.33285844326019287
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 6.927063941955566,
+              "p95_over_trials": 8.236505508422852
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 13.52452564239502,
+              "p95_over_trials": 15.358874320983887
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.2681136727333069,
+              "p95_over_trials": 0.30421698093414307
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.28949594497680664,
+              "p95_over_trials": 0.33285844326019287
+            }
+          }
+        },
+        "motion_05_to_2s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 256,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 2.331125020980835,
+              "p95_over_trials": 4.534945011138916
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 5.724373817443848,
+              "p95_over_trials": 10.829879760742188
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.11051599681377411,
+              "p95_over_trials": 0.2140778750181198
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.16594156622886658,
+              "p95_over_trials": 0.2766503393650055
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 2.331125020980835,
+              "p95_over_trials": 4.534945011138916
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 5.724373817443848,
+              "p95_over_trials": 10.829879760742188
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.11051599681377411,
+              "p95_over_trials": 0.2140778750181198
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.16594156622886658,
+              "p95_over_trials": 0.2766503393650055
+            }
+          }
+        },
+        "return_4_to_5s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 60,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.4425976276397705,
+              "p95_over_trials": 4.8675408363342285
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 3.3891725540161133,
+              "p95_over_trials": 10.99138069152832
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.06613215804100037,
+              "p95_over_trials": 0.21492716670036316
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.08632765710353851,
+              "p95_over_trials": 0.25800323486328125
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 0.2046218067407608,
+              "p95_over_trials": 0.5064502358436584
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 0.4782692492008209,
+              "p95_over_trials": 1.20199453830719
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.009265979751944542,
+              "p95_over_trials": 0.02372710220515728
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.013015424832701683,
+              "p95_over_trials": 0.025970550253987312
+            }
+          }
+        },
+        "contact_minus05_to_plus05s": {
+          "trials": 5,
+          "healthy_entire_window_trials": 5,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 5.459888458251953,
+              "p95_over_trials": 6.029959678649902
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 11.550190925598145,
+              "p95_over_trials": 12.650718688964844
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.22636918723583221,
+              "p95_over_trials": 0.2486218810081482
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.2785540521144867,
+              "p95_over_trials": 0.30367863178253174
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 5.459888458251953,
+              "p95_over_trials": 6.029959678649902
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 11.550190925598145,
+              "p95_over_trials": 12.650718688964844
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.22636918723583221,
+              "p95_over_trials": 0.2486218810081482
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.2785540521144867,
+              "p95_over_trials": 0.30367863178253174
+            }
+          }
+        }
+      },
+      "node": 384,
+      "camera_cpu_parity_and_200Hz_contact_screen": {
+        "prepare_0_to_05s": {
+          "original50Hz_health_trials": 256,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 256,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 6.927063941955566,
+              "p95_over_trials": 8.236506462097168
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 13.52452564239502,
+              "p95_over_trials": 15.358875274658203
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.2681136727333069,
+              "p95_over_trials": 0.30421698093414307
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.28949594497680664,
+              "p95_over_trials": 0.33285844326019287
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        },
+        "motion_05_to_2s": {
+          "original50Hz_health_trials": 256,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 256,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 2.331125020980835,
+              "p95_over_trials": 4.534945487976074
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 5.724373817443848,
+              "p95_over_trials": 10.829877853393555
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.11051599681377411,
+              "p95_over_trials": 0.2140778750181198
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.16594155132770538,
+              "p95_over_trials": 0.2766503393650055
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        },
+        "return_4_to_5s": {
+          "original50Hz_health_trials": 60,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 60,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 0.20462177693843842,
+              "p95_over_trials": 0.5064502358436584
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 0.47826895117759705,
+              "p95_over_trials": 1.2020049095153809
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.009265978820621967,
+              "p95_over_trials": 0.023727137595415115
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.013015424832701683,
+              "p95_over_trials": 0.025970550253987312
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        }
+      },
+      "first_raw_correct_contact": {
+        "trials": 256,
+        "first_substep_index_median": 64.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "first_self_contact": {
+        "trials": 0,
+        "first_substep_index_median": null,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "first_bad_latch": {
+        "trials": 0,
+        "first_substep_index_median": null,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "tail1s_height_m": 0.107516810297966,
+      "tail1s_tilt_deg": 2.5972015857696533,
+      "tail1s_linear_speed_mps": 0.035304956138134,
+      "tail1s_angular_speed_radps": 0.34088966250419617,
+      "tail1s_both_feet_fraction": 0.9222656488418579,
+      "tail1s_standing_sample_fraction": 0.8572656512260437,
+      "initial_paired_with320": {
+        "qpos": true,
+        "qvel": true,
+        "actor_obs": true,
+        "origins": true
+      },
+      "qualification": "UNQUALIFIED_UNLESS_ALL_ORIGINAL_GATES_PASS",
+      "runtime_qualified": false,
+      "hardware_tested": false
+    },
+    {
+      "stage": "nominal",
+      "trials": 256,
+      "raw_correct_foot_touch_trials_200hz": 256,
+      "healthy_valid_ever_trials_200hz": 254,
+      "bad_latch_ever_trials_200hz": 4,
+      "raw_self_touch_trials_200hz": 4,
+      "valid_contact_trials": 254,
+      "clean_motion_trials": 252,
+      "rolling_target_last1s_trials": 123,
+      "body_standing_last05s_trials": 94,
+      "body_and_neutral_head_last05s_trials": 32,
+      "complete_kick_trials": 44,
+      "complete_kick_and_neutral_head_trials": 13,
+      "feedback_fault_trials": 0,
+      "nonfinite_trials": 0,
+      "ball_forward_distance_mean_m": 4.400851249694824,
+      "ball_tail_forward_speed_mean_mps": 0.9209966659545898,
+      "ball_tail_lateral_abs_mean_mps": 0.19476789236068726,
+      "head_tail_home_mae_deg": [
+        7.467423915863037,
+        2.960878610610962,
+        2.6637537479400635,
+        2.155545473098755
+      ],
+      "camera": {
+        "prepare_0_to_05s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 254,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 7.236924171447754,
+              "p95_over_trials": 7.711885452270508
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 12.592418670654297,
+              "p95_over_trials": 13.609110832214355
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.24992185831069946,
+              "p95_over_trials": 0.2694922387599945
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.26163411140441895,
+              "p95_over_trials": 0.2812032401561737
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 7.235208988189697,
+              "p95_over_trials": 7.7082839012146
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 12.597175598144531,
+              "p95_over_trials": 13.613081932067871
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.2500063180923462,
+              "p95_over_trials": 0.2695080637931824
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.26176369190216064,
+              "p95_over_trials": 0.2812228500843048
+            }
+          }
+        },
+        "motion_05_to_2s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 256,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 2.1227173805236816,
+              "p95_over_trials": 4.370852470397949
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 4.960689544677734,
+              "p95_over_trials": 10.173861503601074
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.09577722102403641,
+              "p95_over_trials": 0.19618573784828186
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.14953599870204926,
+              "p95_over_trials": 0.24756208062171936
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 2.1227173805236816,
+              "p95_over_trials": 4.370852470397949
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 4.960689544677734,
+              "p95_over_trials": 10.173861503601074
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.09577722102403641,
+              "p95_over_trials": 0.19618573784828186
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.14953599870204926,
+              "p95_over_trials": 0.24756208062171936
+            }
+          }
+        },
+        "return_4_to_5s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 52,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.4324707984924316,
+              "p95_over_trials": 4.766793727874756
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 3.355574607849121,
+              "p95_over_trials": 10.262252807617188
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.06535079330205917,
+              "p95_over_trials": 0.20215748250484467
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.08190347254276276,
+              "p95_over_trials": 0.23961332440376282
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 0.2583187520503998,
+              "p95_over_trials": 0.7034482955932617
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 0.5726470351219177,
+              "p95_over_trials": 1.668834924697876
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.0110292574390769,
+              "p95_over_trials": 0.028278464451432228
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.017037730664014816,
+              "p95_over_trials": 0.04513657093048096
+            }
+          }
+        },
+        "contact_minus05_to_plus05s": null
+      },
+      "node": 448,
+      "camera_cpu_parity_and_200Hz_contact_screen": {
+        "prepare_0_to_05s": {
+          "original50Hz_health_trials": 254,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 254,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 7.2352094650268555,
+              "p95_over_trials": 7.7082839012146
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 12.597175598144531,
+              "p95_over_trials": 13.613081932067871
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.2500063180923462,
+              "p95_over_trials": 0.2695080637931824
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.26176372170448303,
+              "p95_over_trials": 0.2812228202819824
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        },
+        "motion_05_to_2s": {
+          "original50Hz_health_trials": 256,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 256,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 2.1227173805236816,
+              "p95_over_trials": 4.370852470397949
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 4.960689544677734,
+              "p95_over_trials": 10.17386245727539
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.09577721357345581,
+              "p95_over_trials": 0.19618572294712067
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.14953599870204926,
+              "p95_over_trials": 0.24756208062171936
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        },
+        "return_4_to_5s": {
+          "original50Hz_health_trials": 52,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 52,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 0.25831878185272217,
+              "p95_over_trials": 0.7034482955932617
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 0.572647213935852,
+              "p95_over_trials": 1.668834924697876
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.0110292574390769,
+              "p95_over_trials": 0.028278464451432228
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.017037730664014816,
+              "p95_over_trials": 0.04513657093048096
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        }
+      },
+      "first_raw_correct_contact": {
+        "trials": 256,
+        "first_substep_index_median": 62.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "first_self_contact": {
+        "trials": 4,
+        "first_substep_index_median": 72.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "first_bad_latch": {
+        "trials": 4,
+        "first_substep_index_median": 72.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "tail1s_height_m": 0.10754860937595367,
+      "tail1s_tilt_deg": 3.379396915435791,
+      "tail1s_linear_speed_mps": 0.03708438575267792,
+      "tail1s_angular_speed_radps": 0.3375464379787445,
+      "tail1s_both_feet_fraction": 0.9175781011581421,
+      "tail1s_standing_sample_fraction": 0.7224218845367432,
+      "initial_paired_with320": {
+        "qpos": true,
+        "qvel": true,
+        "actor_obs": true,
+        "origins": true
+      },
+      "qualification": "UNQUALIFIED_UNLESS_ALL_ORIGINAL_GATES_PASS",
+      "runtime_qualified": false,
+      "hardware_tested": false
+    },
+    {
+      "stage": "measured",
+      "trials": 256,
+      "raw_correct_foot_touch_trials_200hz": 256,
+      "healthy_valid_ever_trials_200hz": 255,
+      "bad_latch_ever_trials_200hz": 3,
+      "raw_self_touch_trials_200hz": 3,
+      "valid_contact_trials": 255,
+      "clean_motion_trials": 253,
+      "rolling_target_last1s_trials": 99,
+      "body_standing_last05s_trials": 96,
+      "body_and_neutral_head_last05s_trials": 28,
+      "complete_kick_trials": 35,
+      "complete_kick_and_neutral_head_trials": 10,
+      "feedback_fault_trials": 0,
+      "nonfinite_trials": 0,
+      "ball_forward_distance_mean_m": 4.483882904052734,
+      "ball_tail_forward_speed_mean_mps": 0.9386101961135864,
+      "ball_tail_lateral_abs_mean_mps": 0.1954875886440277,
+      "head_tail_home_mae_deg": [
+        7.0644354820251465,
+        2.4512743949890137,
+        2.6325314044952393,
+        1.965865969657898
+      ],
+      "camera": {
+        "prepare_0_to_05s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 255,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 7.28536319732666,
+              "p95_over_trials": 8.412419319152832
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 12.637651443481445,
+              "p95_over_trials": 14.597932815551758
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.25058531761169434,
+              "p95_over_trials": 0.2919372320175171
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.26273179054260254,
+              "p95_over_trials": 0.30383381247520447
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 7.284065246582031,
+              "p95_over_trials": 8.41374397277832
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 12.636629104614258,
+              "p95_over_trials": 14.59993839263916
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.2505566477775574,
+              "p95_over_trials": 0.2919452488422394
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.2627410590648651,
+              "p95_over_trials": 0.30385535955429077
+            }
+          }
+        },
+        "motion_05_to_2s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 256,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 2.238107204437256,
+              "p95_over_trials": 4.531913757324219
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 5.236262798309326,
+              "p95_over_trials": 10.276931762695312
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.10144278407096863,
+              "p95_over_trials": 0.20206546783447266
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.1542874276638031,
+              "p95_over_trials": 0.24995866417884827
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 2.238107204437256,
+              "p95_over_trials": 4.531913757324219
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 5.236262798309326,
+              "p95_over_trials": 10.276931762695312
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.10144278407096863,
+              "p95_over_trials": 0.20206546783447266
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.1542874276638031,
+              "p95_over_trials": 0.24995866417884827
+            }
+          }
+        },
+        "return_4_to_5s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 48,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.4372820854187012,
+              "p95_over_trials": 4.777368545532227
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 3.37379789352417,
+              "p95_over_trials": 10.323690414428711
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.06584837287664413,
+              "p95_over_trials": 0.20186109840869904
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.08260321617126465,
+              "p95_over_trials": 0.23144511878490448
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 0.24649827182292938,
+              "p95_over_trials": 0.5445534586906433
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 0.5407018065452576,
+              "p95_over_trials": 1.2517777681350708
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.010634842328727245,
+              "p95_over_trials": 0.024958863854408264
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.014170239679515362,
+              "p95_over_trials": 0.029153382405638695
+            }
+          }
+        },
+        "contact_minus05_to_plus05s": {
+          "trials": 2,
+          "healthy_entire_window_trials": 2,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 5.180289268493652,
+              "p95_over_trials": 5.756460666656494
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 11.307535171508789,
+              "p95_over_trials": 12.050579071044922
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.22109857201576233,
+              "p95_over_trials": 0.23361796140670776
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.26979705691337585,
+              "p95_over_trials": 0.29581499099731445
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 5.180289268493652,
+              "p95_over_trials": 5.756460666656494
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 11.307535171508789,
+              "p95_over_trials": 12.050579071044922
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.22109857201576233,
+              "p95_over_trials": 0.23361796140670776
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.26979705691337585,
+              "p95_over_trials": 0.29581499099731445
+            }
+          }
+        }
+      },
+      "node": 448,
+      "camera_cpu_parity_and_200Hz_contact_screen": {
+        "prepare_0_to_05s": {
+          "original50Hz_health_trials": 255,
+          "extra200Hz_head_self_contact_rejected_trials": 1,
+          "contact_screened_healthy_trials": 254,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 7.275623321533203,
+              "p95_over_trials": 8.395099639892578
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 12.620903015136719,
+              "p95_over_trials": 14.504328727722168
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.2502850294113159,
+              "p95_over_trials": 0.2909623086452484
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.2624478042125702,
+              "p95_over_trials": 0.3037002384662628
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        },
+        "motion_05_to_2s": {
+          "original50Hz_health_trials": 256,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 256,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 2.238107204437256,
+              "p95_over_trials": 4.531913757324219
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 5.236262798309326,
+              "p95_over_trials": 10.276932716369629
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.10144278407096863,
+              "p95_over_trials": 0.20206546783447266
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.1542874127626419,
+              "p95_over_trials": 0.24995866417884827
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        },
+        "return_4_to_5s": {
+          "original50Hz_health_trials": 48,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 48,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 0.24649827182292938,
+              "p95_over_trials": 0.5445535182952881
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 0.5407020449638367,
+              "p95_over_trials": 1.2517778873443604
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.010634846054017544,
+              "p95_over_trials": 0.024958863854408264
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.014170239679515362,
+              "p95_over_trials": 0.029153384268283844
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        }
+      },
+      "first_raw_correct_contact": {
+        "trials": 256,
+        "first_substep_index_median": 62.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "first_self_contact": {
+        "trials": 3,
+        "first_substep_index_median": 74.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "first_bad_latch": {
+        "trials": 3,
+        "first_substep_index_median": 74.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "tail1s_height_m": 0.1077566146850586,
+      "tail1s_tilt_deg": 2.860224723815918,
+      "tail1s_linear_speed_mps": 0.03683224692940712,
+      "tail1s_angular_speed_radps": 0.33220088481903076,
+      "tail1s_both_feet_fraction": 0.9235156178474426,
+      "tail1s_standing_sample_fraction": 0.727734386920929,
+      "initial_paired_with320": {
+        "qpos": true,
+        "qvel": true,
+        "actor_obs": true,
+        "origins": true
+      },
+      "qualification": "UNQUALIFIED_UNLESS_ALL_ORIGINAL_GATES_PASS",
+      "runtime_qualified": false,
+      "hardware_tested": false
+    },
+    {
+      "stage": "nominal",
+      "trials": 256,
+      "raw_correct_foot_touch_trials_200hz": 256,
+      "healthy_valid_ever_trials_200hz": 255,
+      "bad_latch_ever_trials_200hz": 2,
+      "raw_self_touch_trials_200hz": 2,
+      "valid_contact_trials": 255,
+      "clean_motion_trials": 254,
+      "rolling_target_last1s_trials": 109,
+      "body_standing_last05s_trials": 84,
+      "body_and_neutral_head_last05s_trials": 21,
+      "complete_kick_trials": 28,
+      "complete_kick_and_neutral_head_trials": 8,
+      "feedback_fault_trials": 0,
+      "nonfinite_trials": 0,
+      "ball_forward_distance_mean_m": 4.856915473937988,
+      "ball_tail_forward_speed_mean_mps": 1.0190894603729248,
+      "ball_tail_lateral_abs_mean_mps": 0.21752230823040009,
+      "head_tail_home_mae_deg": [
+        6.137489318847656,
+        4.978833198547363,
+        3.0188233852386475,
+        3.3090670108795166
+      ],
+      "camera": {
+        "prepare_0_to_05s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 255,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 7.0838165283203125,
+              "p95_over_trials": 7.635043621063232
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 13.173588752746582,
+              "p95_over_trials": 14.052781105041504
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.2608901262283325,
+              "p95_over_trials": 0.27873682975769043
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.27322918176651,
+              "p95_over_trials": 0.29368647933006287
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 7.0856547355651855,
+              "p95_over_trials": 7.637104034423828
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 13.177800178527832,
+              "p95_over_trials": 14.053070068359375
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.26097869873046875,
+              "p95_over_trials": 0.278742253780365
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.2732991874217987,
+              "p95_over_trials": 0.2936927080154419
+            }
+          }
+        },
+        "motion_05_to_2s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 255,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 2.153049945831299,
+              "p95_over_trials": 4.094169616699219
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 5.232409954071045,
+              "p95_over_trials": 9.80748462677002
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.10136809200048447,
+              "p95_over_trials": 0.19278904795646667
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.15136943757534027,
+              "p95_over_trials": 0.24657131731510162
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 2.1590349674224854,
+              "p95_over_trials": 4.094282627105713
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 5.245934963226318,
+              "p95_over_trials": 9.816343307495117
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.10163205862045288,
+              "p95_over_trials": 0.1929771453142166
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.15175221860408783,
+              "p95_over_trials": 0.24668623507022858
+            }
+          }
+        },
+        "return_4_to_5s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 42,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.2426059246063232,
+              "p95_over_trials": 4.294173240661621
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 2.9526915550231934,
+              "p95_over_trials": 10.350899696350098
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.057471033185720444,
+              "p95_over_trials": 0.20243385434150696
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.073357954621315,
+              "p95_over_trials": 0.23322397470474243
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 0.21330098807811737,
+              "p95_over_trials": 0.6004354357719421
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 0.48274290561676025,
+              "p95_over_trials": 1.3823177814483643
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.009377568028867245,
+              "p95_over_trials": 0.027503302320837975
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.01378606352955103,
+              "p95_over_trials": 0.038262199610471725
+            }
+          }
+        },
+        "contact_minus05_to_plus05s": null
+      },
+      "node": 512,
+      "camera_cpu_parity_and_200Hz_contact_screen": {
+        "prepare_0_to_05s": {
+          "original50Hz_health_trials": 255,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 255,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 7.085654258728027,
+              "p95_over_trials": 7.637104034423828
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 13.177800178527832,
+              "p95_over_trials": 14.053071022033691
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.26097866892814636,
+              "p95_over_trials": 0.278742253780365
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.2732991576194763,
+              "p95_over_trials": 0.2936927080154419
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        },
+        "motion_05_to_2s": {
+          "original50Hz_health_trials": 255,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 255,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 2.1590349674224854,
+              "p95_over_trials": 4.094282627105713
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 5.24593448638916,
+              "p95_over_trials": 9.816343307495117
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.10163204371929169,
+              "p95_over_trials": 0.19297713041305542
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.15175218880176544,
+              "p95_over_trials": 0.24668622016906738
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        },
+        "return_4_to_5s": {
+          "original50Hz_health_trials": 42,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 42,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 0.21330097317695618,
+              "p95_over_trials": 0.6004354953765869
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 0.48274266719818115,
+              "p95_over_trials": 1.3823177814483643
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.009377564303576946,
+              "p95_over_trials": 0.027503304183483124
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.013786067254841328,
+              "p95_over_trials": 0.038262199610471725
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        }
+      },
+      "first_raw_correct_contact": {
+        "trials": 256,
+        "first_substep_index_median": 60.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "first_self_contact": {
+        "trials": 2,
+        "first_substep_index_median": 72.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "first_bad_latch": {
+        "trials": 2,
+        "first_substep_index_median": 72.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "tail1s_height_m": 0.10652830451726913,
+      "tail1s_tilt_deg": 2.787388801574707,
+      "tail1s_linear_speed_mps": 0.032955922186374664,
+      "tail1s_angular_speed_radps": 0.29327860474586487,
+      "tail1s_both_feet_fraction": 0.9296875,
+      "tail1s_standing_sample_fraction": 0.6877343654632568,
+      "initial_paired_with320": {
+        "qpos": true,
+        "qvel": true,
+        "actor_obs": true,
+        "origins": true
+      },
+      "qualification": "UNQUALIFIED_UNLESS_ALL_ORIGINAL_GATES_PASS",
+      "runtime_qualified": false,
+      "hardware_tested": false
+    },
+    {
+      "stage": "measured",
+      "trials": 256,
+      "raw_correct_foot_touch_trials_200hz": 256,
+      "healthy_valid_ever_trials_200hz": 251,
+      "bad_latch_ever_trials_200hz": 6,
+      "raw_self_touch_trials_200hz": 6,
+      "valid_contact_trials": 251,
+      "clean_motion_trials": 250,
+      "rolling_target_last1s_trials": 99,
+      "body_standing_last05s_trials": 80,
+      "body_and_neutral_head_last05s_trials": 18,
+      "complete_kick_trials": 19,
+      "complete_kick_and_neutral_head_trials": 5,
+      "feedback_fault_trials": 0,
+      "nonfinite_trials": 0,
+      "ball_forward_distance_mean_m": 4.889549255371094,
+      "ball_tail_forward_speed_mean_mps": 1.0260674953460693,
+      "ball_tail_lateral_abs_mean_mps": 0.21023395657539368,
+      "head_tail_home_mae_deg": [
+        6.226539611816406,
+        5.063982963562012,
+        2.884791374206543,
+        3.178938150405884
+      ],
+      "camera": {
+        "prepare_0_to_05s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 252,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 7.106715679168701,
+              "p95_over_trials": 7.909232139587402
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 13.188440322875977,
+              "p95_over_trials": 15.078059196472168
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.26120367646217346,
+              "p95_over_trials": 0.29947391152381897
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.27389681339263916,
+              "p95_over_trials": 0.31606751680374146
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 7.095237731933594,
+              "p95_over_trials": 7.907480716705322
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 13.177238464355469,
+              "p95_over_trials": 15.054084777832031
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.260978639125824,
+              "p95_over_trials": 0.2989061176776886
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.273672878742218,
+              "p95_over_trials": 0.3145446479320526
+            }
+          }
+        },
+        "motion_05_to_2s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 255,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 2.2677817344665527,
+              "p95_over_trials": 4.248537540435791
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 5.490805149078369,
+              "p95_over_trials": 10.206622123718262
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.10627035796642303,
+              "p95_over_trials": 0.19831904768943787
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.15526801347732544,
+              "p95_over_trials": 0.2541506290435791
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 2.2742605209350586,
+              "p95_over_trials": 4.259606838226318
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 5.5065202713012695,
+              "p95_over_trials": 10.206965446472168
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.10657259821891785,
+              "p95_over_trials": 0.19833187758922577
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.15565112233161926,
+              "p95_over_trials": 0.25415873527526855
+            }
+          }
+        },
+        "return_4_to_5s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 36,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.3207712173461914,
+              "p95_over_trials": 4.385959625244141
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 3.1868090629577637,
+              "p95_over_trials": 10.153768539428711
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.062097106128931046,
+              "p95_over_trials": 0.20008687674999237
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.0776757001876831,
+              "p95_over_trials": 0.2397589534521103
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 0.23978431522846222,
+              "p95_over_trials": 0.7112923860549927
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 0.5463131666183472,
+              "p95_over_trials": 1.7706336975097656
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.010634432546794415,
+              "p95_over_trials": 0.035128675401210785
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.016458358615636826,
+              "p95_over_trials": 0.05275634303689003
+            }
+          }
+        },
+        "contact_minus05_to_plus05s": null
+      },
+      "node": 512,
+      "camera_cpu_parity_and_200Hz_contact_screen": {
+        "prepare_0_to_05s": {
+          "original50Hz_health_trials": 252,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 252,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 7.0952372550964355,
+              "p95_over_trials": 7.9074811935424805
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 13.177238464355469,
+              "p95_over_trials": 15.054084777832031
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.2609786093235016,
+              "p95_over_trials": 0.298906147480011
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.273672878742218,
+              "p95_over_trials": 0.3145446181297302
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        },
+        "motion_05_to_2s": {
+          "original50Hz_health_trials": 255,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 255,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 2.2742602825164795,
+              "p95_over_trials": 4.259606838226318
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 5.506519317626953,
+              "p95_over_trials": 10.206966400146484
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.10657259076833725,
+              "p95_over_trials": 0.19833187758922577
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.15565110743045807,
+              "p95_over_trials": 0.25415876507759094
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        },
+        "return_4_to_5s": {
+          "original50Hz_health_trials": 36,
+          "extra200Hz_head_self_contact_rejected_trials": 0,
+          "contact_screened_healthy_trials": 36,
+          "camera_contact_screened": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 0.23978431522846222,
+              "p95_over_trials": 0.7112923860549927
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 0.5463131070137024,
+              "p95_over_trials": 1.7706338167190552
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.010634432546794415,
+              "p95_over_trials": 0.035128675401210785
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.016458358615636826,
+              "p95_over_trials": 0.05275634676218033
+            }
+          },
+          "scope": "Same original50Hz body/velocity/feet criteria, additionally no head/self found in saved200Hz window; original protocol results retained. This is not200Hz body-state certification."
+        }
+      },
+      "first_raw_correct_contact": {
+        "trials": 256,
+        "first_substep_index_median": 60.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "first_self_contact": {
+        "trials": 6,
+        "first_substep_index_median": 66.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "first_bad_latch": {
+        "trials": 6,
+        "first_substep_index_median": 66.0,
+        "scope": "0-based native substep callback index, no interpolated physical onset"
+      },
+      "tail1s_height_m": 0.10636547207832336,
+      "tail1s_tilt_deg": 2.7590298652648926,
+      "tail1s_linear_speed_mps": 0.033806249499320984,
+      "tail1s_angular_speed_radps": 0.3001216948032379,
+      "tail1s_both_feet_fraction": 0.9257031083106995,
+      "tail1s_standing_sample_fraction": 0.6428906321525574,
+      "initial_paired_with320": {
+        "qpos": true,
+        "qvel": true,
+        "actor_obs": true,
+        "origins": true
+      },
+      "qualification": "UNQUALIFIED_UNLESS_ALL_ORIGINAL_GATES_PASS",
+      "runtime_qualified": false,
+      "hardware_tested": false
+    }
+  ],
+  "initial_pairing": {
+    "320-nominal": {
+      "qpos": true,
+      "qvel": true,
+      "actor_obs": true,
+      "origins": true
+    },
+    "320-measured": {
+      "qpos": true,
+      "qvel": true,
+      "actor_obs": true,
+      "origins": true
+    },
+    "384-nominal": {
+      "qpos": true,
+      "qvel": true,
+      "actor_obs": true,
+      "origins": true
+    },
+    "384-measured": {
+      "qpos": true,
+      "qvel": true,
+      "actor_obs": true,
+      "origins": true
+    },
+    "448-nominal": {
+      "qpos": true,
+      "qvel": true,
+      "actor_obs": true,
+      "origins": true
+    },
+    "448-measured": {
+      "qpos": true,
+      "qvel": true,
+      "actor_obs": true,
+      "origins": true
+    },
+    "512-nominal": {
+      "qpos": true,
+      "qvel": true,
+      "actor_obs": true,
+      "origins": true
+    },
+    "512-measured": {
+      "qpos": true,
+      "qvel": true,
+      "actor_obs": true,
+      "origins": true
+    }
+  },
+  "report_sha256": {
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/ballkick-target-precision-0320-nominal/report.json": "d299442bfc178e0fb40a2e6261a5e44a91f27408dd2dd8ed1aa52840af89c75d",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/ballkick-target-precision-0320-measured/report.json": "6a08493e4f781a5473a28381c28fc719e463ff66bbfec5a464a0c368da2ddb80",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/ballkick-target-precision-0384-nominal/report.json": "94c95b6d76b2446a525c6bc58c3edf9a311a1b80a801eef7ee45a61990894715",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/ballkick-target-precision-0384-measured/report.json": "c654c4c9e5bfa3f474275e17e7a4009f1abd356d9d984a554fe106a8070eae4d",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/ballkick-target-precision-0448-nominal/report.json": "904ef92664158611ed61dc5ac22df274d31c83b222c0c86b61cda741c221bae3",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/ballkick-target-precision-0448-measured/report.json": "fe1b13b24246e4e41b4508ae3158f0d59b94a6b8376cae68f7457756fafbdec8",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/ballkick-target-precision-0512-nominal/report.json": "cc1b01b490fd033907a0baecd4a9524c9c9fe0b645adebb1fd14216c0a8f0e1c",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/ballkick-target-precision-0512-measured/report.json": "154c4b86639f1db187d815a122e740b470839b727f1682c6b9300d01fc125def"
+  },
+  "mature_original_parent": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/ballkick-health-history-allocation-001/checkpoint_000256.pt",
+  "original_parent256_results": [
+    {
+      "status": "EVALUATED_NOT_AUTOMATIC_SKILL_ACCEPTANCE",
+      "task": "Mjlab-BallKick-Right-Flat-MicroDuck-V2-HealthHistory-Repaired-S0-O0-R1",
+      "checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/ballkick-health-history-allocation-001/checkpoint_000256.pt",
+      "checkpoint_sha256": "ae17d7b3e8adf15f072f38195741d14215d4ced7f549ccae06da56fac2dea61d",
+      "stage": "nominal",
+      "seed": 2026101633,
+      "trials": 256,
+      "boundary": "after reward before reset/forward/next commands; derived geometry retains native 5ms lag",
+      "actor_normalizer_unchanged": true,
+      "oracle_max_abs": [
+        9.5367431640625e-07,
+        2.384185791015625e-07,
+        0.0,
+        2.384185791015625e-07,
+        9.5367431640625e-07
+      ],
+      "raw_correct_foot_touch_trials_200hz": 256,
+      "healthy_valid_ever_trials_200hz": 256,
+      "bad_latch_ever_trials_200hz": 1,
+      "raw_self_touch_trials_200hz": 0,
+      "contact_semantics": "Raw foot touch is separate from health-qualified valid latch; newself rejection can reducevalid without reducingrawcontact. Existing50Hz valid_contact_trials kept for compatibility.",
+      "valid_contact_trials": 256,
+      "clean_motion_trials": 255,
+      "rolling_target_last1s_trials": 127,
+      "body_standing_last05s_trials": 107,
+      "body_and_neutral_head_last05s_trials": 101,
+      "complete_kick_trials": 51,
+      "complete_kick_and_neutral_head_trials": 48,
+      "feedback_fault_trials": 0,
+      "nonfinite_trials": 0,
+      "ball_forward_distance_mean_m": 4.743661880493164,
+      "ball_tail_forward_speed_mean_mps": 0.9866167902946472,
+      "ball_tail_lateral_abs_mean_mps": 0.22824528813362122,
+      "head_tail_home_mae_deg": [
+        2.5334181785583496,
+        1.8264728784561157,
+        3.0279948711395264,
+        3.2121992111206055
+      ],
+      "camera": {
+        "prepare_0_to_05s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 256,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 6.956976890563965,
+              "p95_over_trials": 7.660922050476074
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 11.927577018737793,
+              "p95_over_trials": 12.787129402160645
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.23709367215633392,
+              "p95_over_trials": 0.2527190148830414
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.2565828561782837,
+              "p95_over_trials": 0.27660107612609863
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 6.956976890563965,
+              "p95_over_trials": 7.660922050476074
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 11.927577018737793,
+              "p95_over_trials": 12.787129402160645
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.23709367215633392,
+              "p95_over_trials": 0.2527190148830414
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.2565828561782837,
+              "p95_over_trials": 0.27660107612609863
+            }
+          }
+        },
+        "motion_05_to_2s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 256,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.4967970848083496,
+              "p95_over_trials": 3.443159818649292
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 3.7202866077423096,
+              "p95_over_trials": 8.657509803771973
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.07261306047439575,
+              "p95_over_trials": 0.16871538758277893
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.10392317920923233,
+              "p95_over_trials": 0.22041478753089905
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.4967970848083496,
+              "p95_over_trials": 3.443159818649292
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 3.7202866077423096,
+              "p95_over_trials": 8.657509803771973
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.07261306047439575,
+              "p95_over_trials": 0.16871538758277893
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.10392317920923233,
+              "p95_over_trials": 0.22041478753089905
+            }
+          }
+        },
+        "return_4_to_5s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 57,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.3806533813476562,
+              "p95_over_trials": 4.142128944396973
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 3.255744695663452,
+              "p95_over_trials": 9.167441368103027
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.06393308937549591,
+              "p95_over_trials": 0.17973247170448303
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.08020558953285217,
+              "p95_over_trials": 0.2139560431241989
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 0.21487942337989807,
+              "p95_over_trials": 0.4767405688762665
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 0.495994508266449,
+              "p95_over_trials": 1.0510482788085938
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.009797648526728153,
+              "p95_over_trials": 0.021080918610095978
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.013174251653254032,
+              "p95_over_trials": 0.026586728170514107
+            }
+          }
+        },
+        "contact_minus05_to_plus05s": null
+      },
+      "protocol": "5s original ball-at-rest noisy placement; original play startup randomization; no autoreset or true-state actor input; no forced incoming ball.",
+      "development_gate": "correct-foot supported healthy contact; no bad/head/self contact, tilt<=45deg height>=.08 and finite feedback throughout; tail1s forward.8\u20131.2m/s and lateral<=.2m/s; distance>=.25m; last.5s healthy body standing. Neutral headmax<.1rad separate. Thresholds are experimental, not user or hardware specification.",
+      "camera_protocol": "Actual head_camera CAD site,200Hz/20ms exposure; angular metrics not calibrated pixel blur. Fixed windows plus real contact-aligned window; all and healthy denominators separate. Camera motion during kick is not automatically jitter.",
+      "script_sha256": "5bfaf68eec72d4c46b17c3cf51cc6e37e560e95767d46c84327b876317528e45"
+    },
+    {
+      "status": "EVALUATED_NOT_AUTOMATIC_SKILL_ACCEPTANCE",
+      "task": "Mjlab-BallKick-Right-Flat-MicroDuck-V2-HealthHistory-Repaired-S0-O0-R1",
+      "checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/ballkick-health-history-allocation-001/checkpoint_000256.pt",
+      "checkpoint_sha256": "ae17d7b3e8adf15f072f38195741d14215d4ced7f549ccae06da56fac2dea61d",
+      "stage": "measured",
+      "seed": 2026101633,
+      "trials": 256,
+      "boundary": "after reward before reset/forward/next commands; derived geometry retains native 5ms lag",
+      "actor_normalizer_unchanged": true,
+      "oracle_max_abs": [
+        9.5367431640625e-07,
+        2.384185791015625e-07,
+        0.0,
+        2.384185791015625e-07,
+        9.5367431640625e-07
+      ],
+      "raw_correct_foot_touch_trials_200hz": 256,
+      "healthy_valid_ever_trials_200hz": 256,
+      "bad_latch_ever_trials_200hz": 0,
+      "raw_self_touch_trials_200hz": 0,
+      "contact_semantics": "Raw foot touch is separate from health-qualified valid latch; newself rejection can reducevalid without reducingrawcontact. Existing50Hz valid_contact_trials kept for compatibility.",
+      "valid_contact_trials": 256,
+      "clean_motion_trials": 256,
+      "rolling_target_last1s_trials": 107,
+      "body_standing_last05s_trials": 103,
+      "body_and_neutral_head_last05s_trials": 96,
+      "complete_kick_trials": 44,
+      "complete_kick_and_neutral_head_trials": 41,
+      "feedback_fault_trials": 0,
+      "nonfinite_trials": 0,
+      "ball_forward_distance_mean_m": 4.79136848449707,
+      "ball_tail_forward_speed_mean_mps": 0.9969202876091003,
+      "ball_tail_lateral_abs_mean_mps": 0.23842330276966095,
+      "head_tail_home_mae_deg": [
+        2.6020777225494385,
+        1.9105138778686523,
+        3.1358959674835205,
+        3.165699005126953
+      ],
+      "camera": {
+        "prepare_0_to_05s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 256,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 7.031854629516602,
+              "p95_over_trials": 8.300954818725586
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 11.983606338500977,
+              "p95_over_trials": 13.631179809570312
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.23818932473659515,
+              "p95_over_trials": 0.2692771553993225
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.25722286105155945,
+              "p95_over_trials": 0.29044219851493835
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 7.031854629516602,
+              "p95_over_trials": 8.300954818725586
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 11.983606338500977,
+              "p95_over_trials": 13.631179809570312
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.23818932473659515,
+              "p95_over_trials": 0.2692771553993225
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.25722286105155945,
+              "p95_over_trials": 0.29044219851493835
+            }
+          }
+        },
+        "motion_05_to_2s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 256,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.5777424573898315,
+              "p95_over_trials": 3.6667065620422363
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 3.871429681777954,
+              "p95_over_trials": 9.046965599060059
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.07548293471336365,
+              "p95_over_trials": 0.17951364815235138
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.10890962183475494,
+              "p95_over_trials": 0.2242533564567566
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.5777424573898315,
+              "p95_over_trials": 3.6667065620422363
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 3.871429681777954,
+              "p95_over_trials": 9.046965599060059
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.07548293471336365,
+              "p95_over_trials": 0.17951364815235138
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.10890962183475494,
+              "p95_over_trials": 0.2242533564567566
+            }
+          }
+        },
+        "return_4_to_5s": {
+          "trials": 256,
+          "healthy_entire_window_trials": 57,
+          "all_trials": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 1.413393259048462,
+              "p95_over_trials": 4.144482135772705
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 3.339639663696289,
+              "p95_over_trials": 9.154335021972656
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.06526602804660797,
+              "p95_over_trials": 0.1800500750541687
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.08199397474527359,
+              "p95_over_trials": 0.22159148752689362
+            }
+          },
+          "healthy_entire_window": {
+            "angular_speed_rms_rad_s": {
+              "mean_over_trials": 0.22962723672389984,
+              "p95_over_trials": 0.5355862379074097
+            },
+            "angular_speed_p95_rad_s": {
+              "mean_over_trials": 0.5321640372276306,
+              "p95_over_trials": 1.3032965660095215
+            },
+            "exposure_span_p95_rad": {
+              "mean_over_trials": 0.010301952250301838,
+              "p95_over_trials": 0.02629132941365242
+            },
+            "exposure_span_max_rad": {
+              "mean_over_trials": 0.015153324231505394,
+              "p95_over_trials": 0.03917143493890762
+            }
+          }
+        },
+        "contact_minus05_to_plus05s": null
+      },
+      "protocol": "5s original ball-at-rest noisy placement; original play startup randomization; no autoreset or true-state actor input; no forced incoming ball.",
+      "development_gate": "correct-foot supported healthy contact; no bad/head/self contact, tilt<=45deg height>=.08 and finite feedback throughout; tail1s forward.8\u20131.2m/s and lateral<=.2m/s; distance>=.25m; last.5s healthy body standing. Neutral headmax<.1rad separate. Thresholds are experimental, not user or hardware specification.",
+      "camera_protocol": "Actual head_camera CAD site,200Hz/20ms exposure; angular metrics not calibrated pixel blur. Fixed windows plus real contact-aligned window; all and healthy denominators separate. Camera motion during kick is not automatically jitter.",
+      "script_sha256": "5bfaf68eec72d4c46b17c3cf51cc6e37e560e95767d46c84327b876317528e45"
+    }
+  ],
+  "parent256_initial_pairing": {
+    "nominal": {
+      "qpos": true,
+      "qvel": true,
+      "actor_obs": true,
+      "origins": true
+    },
+    "measured": {
+      "qpos": true,
+      "qvel": true,
+      "actor_obs": true,
+      "origins": true
+    }
+  },
+  "source_unchanged": true,
+  "camera_metric_source_sha256": "5641c7679671f9fe124af5968a585df9e1425b9d3fa4462992f0c3d35f503599",
+  "scope": "Frozen deterministic native five-second battery. Rawcontact differs from supportedhealthy valid. Camera uses recorded200Hz head site and original healthy denominators; no hardware/complete-skill inference from a single component. Counts across nodes are repeated trials, not independent samples.",
+  "limitations": [
+    "Validation and formal budget separate; full-worker wall also includes qualification/evaluation.",
+    "Per-node healthy-camera denominators differ, so aggregate camera means are not causal matched-subset comparisons.",
+    "Historical official successful BallKick raw run/checkpoint not located; dose/curriculum based on actual template and explicit scaling."
+  ]
+}

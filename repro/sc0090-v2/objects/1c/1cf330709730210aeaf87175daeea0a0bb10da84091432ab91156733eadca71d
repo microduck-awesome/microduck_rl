@@ -1,0 +1,141 @@
+"""V2 BallKick configuration preparation, NOT admitted for formal training.
+
+Keep native ball-blind slots, speed objective and weights. Positive ball reward
+requires a supported healthy correct-foot contact. GPU/terminal admission pending.
+"""
+from copy import deepcopy
+from . import microduck_v2 as v2
+from .training import _full_contact_robot, guard_reset_joints
+
+BALL_KICK_TASK = 'Mjlab-BallKick-Right-Flat-MicroDuck-V2-Repaired-S0-O0-R1'
+BALL_OFFSET_X = .07866059964186117
+BALL_OFFSET_ABS_Y = .04339325325830079
+HOME_ROOT_Z = .11638049189959615
+
+
+def initialize_ball_reset_geometry(env, env_ids):
+    from .reset_geometry import RouladeResetGeometry
+    from .training import get_full_spec
+    env._v2_ball_reset_geometry = RouladeResetGeometry(get_full_spec().compile(), v2.POLICY_JOINTS, env.device)
+    robot = env.scene['robot']
+    ids, names = robot.find_joints(v2.POLICY_JOINTS, preserve_order=True)
+    assert tuple(names) == tuple(v2.POLICY_JOINTS)
+    mouth, _ = robot.find_joints('^mouth$')
+    env._v2_ball_reset_ids = (ids, mouth[0])
+    env._v2_ball_root_z_adr = int(robot.indexing.free_joint_q_adr[2])
+    assert env._v2_ball_root_z_adr == 2
+
+
+def raise_ball_task_robot_from_floor(env, env_ids):
+    """Only raise sampled V2 root enough to clear immutable CAD collision OBBs."""
+    import torch
+    if env_ids is None:
+        env_ids = torch.arange(env.num_envs, device=env.device)
+    robot = env.scene['robot']
+    ids, mouth_id = env._v2_ball_reset_ids
+    root = env.sim.data.qpos[env_ids][:, robot.indexing.free_joint_q_adr]
+    wanted = env._v2_ball_reset_geometry.floor_height(robot.data.joint_pos[env_ids][:,ids], root[:,3:7], mouth_q=robot.data.joint_pos[env_ids,mouth_id])
+    env.sim.data.qpos[env_ids,2] = torch.maximum(root[:,2], wanted+env.scene.env_origins[env_ids,2])
+
+
+def make_ball_kick_env_cfg(play=False, stage='nominal', kick_foot='right'):
+    from mjlab.managers import EventTermCfg, TerminationTermCfg, ObservationTermCfg, RewardTermCfg
+    from mjlab.sensor import ContactMatch, ContactSensorCfg
+    from mjlab_microduck.tasks import mdp
+    from mjlab_microduck.tasks.microduck_ball_kick_env_cfg import make_microduck_ball_kick_env_cfg
+    from .runtime import configure_origin_markers
+    from .ball_kick_state import (install_ball_kick_state, reset_ball_with_kick_state,
+        ball_kick_state_observation, gated_ball_forward_velocity, ball_nonfinite)
+    assert kick_foot in ('right', 'left')
+    base = v2.make_v2_sensor_env_cfg(play=play, stage=stage)
+    cfg = deepcopy(make_microduck_ball_kick_env_cfg(play=play, kick_foot=kick_foot))
+    assert tuple(cfg.scene.entities) == ('robot', 'ball')
+    cfg.scene.entities['robot'] = _full_contact_robot(base.scene.entities['robot'])
+    cfg.scene.spec_fn = base.scene.spec_fn
+    cfg.actions['joint_pos'] = deepcopy(base.actions['joint_pos'])
+    action = cfg.actions['joint_pos']
+    action.scale = 1.
+    action.spike_rejection = False
+    action.o0_local_history = True
+    action.compile_measurement = action.fuse_registers = True
+    # Tune batch throughput only after correctness, not by copying an unmeasured N.
+    action.reset_graph_chunk = 19
+    v2._policy_selectors(cfg)
+    for name in ('randomize_joint_friction', 'randomize_joint_damping',
+                 'randomize_armature', 'randomize_motor_gains', 'encoder_bias'):
+        cfg.events.pop(name, None)
+    for name in ('expand_bam_friction_fields', 'v2_runtime', 'mouth_reset', 'mouth_hold'):
+        if name in base.events:
+            cfg.events[name] = deepcopy(base.events[name])
+        else:
+            cfg.events.pop(name, None)
+    for group in ('actor', 'critic'):
+        for name in ('joint_pos', 'joint_vel'):
+            cfg.observations[group].terms[name] = deepcopy(base.observations[group].terms[name])
+        for term in cfg.observations[group].terms.values():
+            if term.func is mdp.raw_accelerometer:
+                term.func = v2.body_accelerometer_direction
+                term.params = {}
+    for name in ('foot_air_time', 'foot_contact_forces'):
+        if name in cfg.observations['critic'].terms:
+            cfg.observations['critic'].terms[name] = deepcopy(base.observations['critic'].terms[name])
+    cfg.terminations['sc0090_feedback_fault'] = TerminationTermCfg(func=mdp.v2_feedback_fault, time_out=False)
+    cfg.events['v2_reset_joint_guards'] = EventTermCfg(func=guard_reset_joints, mode='reset')
+    cfg.events['ball_reset_geometry'] = EventTermCfg(func=initialize_ball_reset_geometry, mode='startup')
+    cfg.events['ball_robot_floor_clearance'] = EventTermCfg(func=raise_ball_task_robot_from_floor, mode='reset')
+    cfg.events['ball_kick_state'] = EventTermCfg(func=install_ball_kick_state, mode='startup')
+    cfg.commands['twist'].rel_forward_envs = 0.
+    standing = cfg.events['set_ground_state'].params
+    standing.update(standing_z_min=HOME_ROOT_Z, standing_z_max=HOME_ROOT_Z+.005)
+    # Placement derives from final root pose, after all joint/mouth reset guards.
+    ball = cfg.events.pop('reset_ball')
+    ball.params['offset'] = (BALL_OFFSET_X, -BALL_OFFSET_ABS_Y if kick_foot=='right' else BALL_OFFSET_ABS_Y)
+    ball.func = reset_ball_with_kick_state
+    cfg.events['reset_ball'] = ball
+    cfg.observations['critic'].terms['ball_kick_state'] = ObservationTermCfg(func=ball_kick_state_observation)
+    cfg.rewards['ball_forward_velocity'].func = gated_ball_forward_velocity
+    cfg.terminations['ball_nonfinite'] = TerminationTermCfg(func=ball_nonfinite,time_out=False)
+    cfg.rewards['height_stand'].params['target_height'] = .112
+    from .ball_kick_finish import ball_direction_cost,postkick_quiet_return_cost
+    cfg.rewards['ball_direction_cost']=RewardTermCfg(func=ball_direction_cost,weight=-4.)
+    cfg.rewards['postkick_quiet_return_cost']=RewardTermCfg(func=postkick_quiet_return_cost,weight=-2.)
+    # Physical contact identities feed the explicit200Hz positive-reward gate.
+    sensors = list(cfg.scene.sensors)
+    for name, pattern in (
+        ('kick_foot_ball_contact', rf'^{kick_foot}_foot_collision$'),
+        ('other_robot_ball_contact', rf'^(?!{kick_foot}_foot_collision$).+'),
+    ):
+        sensors.append(ContactSensorCfg(name=name,
+            primary=ContactMatch(mode='geom', entity='robot', pattern=pattern),
+            secondary=ContactMatch(mode='geom', entity='ball', pattern=r'.*'),
+            fields=('found','force'), reduce='netforce', num_slots=1))
+    sensors.append(ContactSensorCfg(name='v2_head_ground_contact',
+        primary=ContactMatch(mode='geom', entity='robot', pattern=r'^ground_head_shell_collision$'),
+        secondary=ContactMatch(mode='body', pattern='terrain'),
+        fields=('found','force'), reduce='netforce', num_slots=1))
+    cfg.scene.sensors = tuple(sensors)
+    cfg.sim.mujoco.timestep = .005
+    cfg.decimation = 4
+    cfg.sim.nconmax = 64
+    configure_origin_markers(cfg)
+    return cfg
+
+
+def register_ball_kick_tasks():
+    from mjlab.tasks.registry import register_mjlab_task
+    from mjlab_microduck.tasks import MicroduckOnPolicyRunner
+    from mjlab_microduck.tasks.microduck_ball_kick_env_cfg import MicroduckBallKickRlCfg
+    for foot in ('right', 'left'):
+        for stage in ('nominal', 'measured'):
+            task = BALL_KICK_TASK.replace('-Right-', '-'+foot.title()+'-')
+            if stage == 'measured':
+                task += '-Measured'
+            agent = deepcopy(MicroduckBallKickRlCfg)
+            agent.algorithm.class_name = 'mjlab_microduck.custom_v2.ppo:TerminalCriticPPO'
+            agent.algorithm.symmetry_cfg = None
+            agent.experiment_name = 'microduck_v2_p04_ballkick'
+            agent.run_name = foot+'_'+stage
+            register_mjlab_task(task_id=task,
+                env_cfg=make_ball_kick_env_cfg(stage=stage, kick_foot=foot),
+                play_env_cfg=make_ball_kick_env_cfg(play=True, stage=stage, kick_foot=foot),
+                rl_cfg=agent, runner_cls=MicroduckOnPolicyRunner)

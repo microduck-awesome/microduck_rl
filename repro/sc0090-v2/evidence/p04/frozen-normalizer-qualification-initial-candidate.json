@@ -1,0 +1,16 @@
+{
+  "status": "CPU_PASS_GPU_PREFLIGHT_RUNNING",
+  "source": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/rise-frozen-normalizer-worktree",
+  "source_sha256": {
+    "src/mjlab_microduck/custom_v2/frozen_normalization.py": "e75be9b1214c4bd8a0fabd79987284849c866ebb73914786dce61bda48f37a02",
+    "src/mjlab_microduck/ppo_diagnostics.py": "b373aee0ced9ed9cba30588c870605aaa8a2d80bbcffc5a79230d93295d4f089",
+    "scripts/train_v2_standup.py": "a9de4a923eb2ff6436e72d09ec626e895fc40c0f6758a33b5b512b51048cc23d",
+    "scripts/smoke_v2_ppo.py": "4b4f0b439cc858f2c1814c140974c94f8bbc34692312571aef20af783620cf19"
+  },
+  "cpu_checks": "2 PASS: train-mode and optimizer leave mature stats exact; checkpoint reload re-applies schedule; fresh rejected",
+  "cpu_test_sha256": "fd0f7579715d45b628afebff93462e86429ca03ce7fc722c1c848ee15398f514",
+  "first_kl_evidence": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/native-read-preupdate-audit-001/report.json",
+  "preflight_session": 2609,
+  "formal_budget": 64,
+  "parent_update": 1408
+}

@@ -1,0 +1,107 @@
+"""GroundPick native successor + isolated payload wrench and reset oracle."""
+import argparse,hashlib,json,os
+from pathlib import Path
+import torch
+from mjlab.envs import ManagerBasedRlEnv
+from mjlab_microduck.custom_v2.ground_pick import mouth_payload_step,initialize_ground_pick_payload
+from mjlab_microduck.custom_v2.ground_pick_history import LOW_Q,LOW_ROOT_HEIGHT,LOW_ROOT_PITCH
+from mjlab_microduck.custom_v2.ground_pick_baseline import make_baseline_ground_pick_env_cfg as make_ground_pick_env_cfg,SENSOR_CHAIN
+from mjlab_microduck.custom_v2.ground_pick_metrics import GroundPickMeasurements,GroundPickTrainingSummary
+from mjlab_microduck.custom_v2.microduck_v2 import POLICY_JOINTS
+from mjlab_microduck.custom_v2.terminal import SC0090TerminalCriticObserver
+
+def states(env):
+ out={k:getattr(env.sim.data,k).clone() for k in ('qpos','qvel','xfrc_applied','qfrc_applied')}
+ robot=env.scene['robot']
+ for k in ('encoder_bias','joint_pos_target','joint_vel_target'):out['robot/'+k]=getattr(robot.data,k).clone()
+ out.update(low_reset_mask=env._gp_low_reset_mask.clone(),reset_exposure=env._gp_reset_exposure.clone(),age=env.episode_length_buf.clone(),payload=env._mouth_payload_kg.clone(),cpu_rng=torch.get_rng_state().clone(),cuda_rng=torch.cuda.get_rng_state(env.device).clone())
+ for name,term in env.command_manager._terms.items():
+  for key,v in vars(term).items():
+   if isinstance(v,torch.Tensor):out['cmd/'+name+'/'+key]=v.clone()
+ for i,v in enumerate(env.event_manager._interval_term_time_left):out['timer/'+str(i)]=v.clone()
+ return out
+
+def main():
+ p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True);a=p.parse_args();torch.set_num_threads(2);torch.cuda.set_device('cuda:1')
+ cfg=make_ground_pick_env_cfg();cfg.scene.num_envs=32;cfg.seed=2606;cfg.curriculum={};env=ManagerBasedRlEnv(cfg,device='cuda:1');rows=[]
+ try:
+  obs,_=env.reset();initialize_ground_pick_payload(env);robot=env.scene['robot']
+  assert not hasattr(env,'_v2_joint_feedback') and env._v2_ground_pick_baseline and env._v2_sensor_chain==SENSOR_CHAIN
+  assert 'sc0090_feedback_fault' not in env.cfg.terminations
+  assert env.observation_manager.group_obs_dim['actor']==(61,)
+  assert env.action_manager.total_action_dim==14
+  actual_terms={}
+  for group in ('actor','critic'):
+   actual_terms[group]=dict(zip(env.observation_manager._group_obs_term_names[group],env.observation_manager._group_obs_term_cfgs[group]))
+  assert all(actual_terms['critic'][n].noise is None and actual_terms['critic'][n].delay_max_lag==0 for n in ('joint_pos','joint_vel'))
+  assert actual_terms['actor']['joint_pos'].params['biased'] and not actual_terms['critic']['joint_pos'].params['biased']
+  assert actual_terms['actor']['joint_vel'].delay_min_lag==actual_terms['actor']['joint_vel'].delay_max_lag==1
+  mouth_ids,_=robot.find_joints('^mouth$')
+  assert bool((robot.data.joint_pos_target[:,mouth_ids]==0).all())
+  term=env.command_manager.get_term('twist');mask=env._gp_low_reset_mask.clone()
+  assert bool(mask.any())and bool((~mask).any())
+  assert bool((term._gp_phase[mask]==.375).all())
+  assert torch.equal(obs['actor'][:,48:51],term.command)
+  joint_ids,_=robot.find_joints(POLICY_JOINTS,preserve_order=True)
+  q=robot.data.joint_pos[:,joint_ids];torch.testing.assert_close(q[mask],torch.tensor(LOW_Q,device=env.device).expand_as(q[mask]),rtol=0,atol=.00301)
+  assert bool(torch.isfinite(obs['actor']).all())
+  native_reward=env.reward_manager.compute;summary=GroundPickTrainingSummary(env,oracle=True);reader=summary.reader
+  assert not reader.feedback_fault_metric_applicable
+  summary_reward=env.reward_manager.compute
+  def reward_read(dt):
+   return summary_reward(dt)
+  env.reward_manager.compute=reward_read
+  contact_rows=[];native_sub=env.metrics_manager.compute_substep
+  def contacts():
+   native_sub();contact_rows.append(torch.stack((env.scene['head_impact_contact'].data.found.reshape(32,-1).any(-1),env.scene['self_collision'].data.found.reshape(32,-1).any(-1)),-1).clone())
+  env.metrics_manager.compute_substep=contacts
+  rawobs=[]
+  for _ in range(3):
+   rawobs.append(obs['actor'].clone());assert torch.equal(obs['actor'][:,48:51],term.command)
+   obs,_,_,_,_=env.step(q.clone())
+   assert not hasattr(env,'_v2_joint_feedback')
+   assert bool((robot.data.joint_pos_target[:,mouth_ids]==0).all())
+   # Native physical action compensates the same encoder bias used by actor q.
+   torch.testing.assert_close(robot.data.joint_pos_target[:,joint_ids],q-robot.data.encoder_bias[:,joint_ids],rtol=0,atol=1e-7)
+  env.metrics_manager.compute_substep=native_sub;env.reward_manager.compute=native_reward
+  assert reader.calls==3
+  public=summary.report();assert public['feedback_fault_metric_applicable'] is False and public['metrics']['feedback_not_ready_fraction'] is None
+  assert public['metrics']['nonfinite_fraction']==0 and max(public['oracle_max_abs'])<2e-6
+  assert len(contact_rows)==12
+  assert bool(torch.isfinite(obs['actor']).all())
+  torch.save(dict(initial_low_mask=mask.cpu(),contact200Hz=torch.stack(contact_rows).cpu(),rawactor=torch.stack(rawobs).cpu(),scope='96diagnostic controls using physicalq fixed targets only to validate measurement/reset timing; not teacher/PPO or endpoint success'),a.output.with_suffix('.pt'))
+  env.reset();initialize_ground_pick_payload(env);observer=SC0090TerminalCriticObserver(env)
+  params=next(t.params for t in env.event_manager._mode_term_cfgs['step'] if t.func is mouth_payload_step)
+  bid=int(params['asset_cfg'].body_ids[0]);sid=int(params['asset_cfg'].site_ids[0]);globalbid=int(robot.data.indexing.body_ids[bid])
+  for phase in (0.,.375,.420,.425,.470,.995):
+   for full in (False,True):
+    term=env.command_manager.get_term('twist');term._gp_phase.fill_(phase);env.command_manager.compute(0.)
+    env._mouth_payload_kg.copy_(torch.linspace(.01,.04,32,device=env.device));mouth_payload_step(env,None,**params)
+    env.episode_length_buf.fill_(100)
+    for timer in env.event_manager._interval_term_time_left:timer.fill_(0.)
+    before=states(env);actual=observer.capture(env,force_full=full).clone();after=states(env)
+    for k in before:assert torch.equal(before[k],after[k]),('live mutated',phase,full,k)
+    shadow=observer.shadow;st=shadow.command_manager.get_term('twist');assert st._gp_phase.data_ptr()!=term._gp_phase.data_ptr()
+    env.sim.forward();env.command_manager.compute(env.step_dt)
+    for mode in ('step','interval'):
+     if mode in env.event_manager.available_modes:env.event_manager.apply(mode=mode,dt=env.step_dt)
+    env.sim.sense();expected=env.observation_manager.compute_group('critic',update_history=True)
+    torch.testing.assert_close(actual,expected,rtol=0,atol=2e-6)
+    torch.testing.assert_close(env.sim.data.xfrc_applied,shadow.sim.data.xfrc_applied,rtol=0,atol=1e-7)
+    assert torch.equal(term._gp_phase,st._gp_phase)
+    phase_after=(phase+.02/4)%1.;gate=max(0.,min(1.,(phase_after-.425)/.05))
+    force=torch.zeros(32,3,device=env.device);force[:,2]=-env._mouth_payload_kg*9.81*gate
+    torque=torch.cross(robot.data.site_pos_w[:,sid]-robot.data.body_com_pos_w[:,bid],force,dim=-1)
+    torch.testing.assert_close(env.sim.data.xfrc_applied[:,globalbid,:3],force,rtol=0,atol=2e-6)
+    torch.testing.assert_close(env.sim.data.xfrc_applied[:,globalbid,3:],torque,rtol=0,atol=2e-6)
+    rows.append(dict(phase=phase,force_full=full,critic_max_error=float((actual-expected).abs().max()),live_tensors_unchanged=len(before),force_max_error=float((env.sim.data.xfrc_applied[:,globalbid,:3]-force).abs().max())))
+  term=env.command_manager.get_term('twist');oldphase=term._gp_phase.clone();oldmass=env._mouth_payload_kg.clone();oldmask=env._gp_low_reset_mask.clone();oldqpos=env.sim.data.qpos.clone();oldqvel=env.sim.data.qvel.clone();ids=torch.tensor([1,3,9],device=env.device);others=torch.ones(32,dtype=torch.bool,device=env.device);others[ids]=False
+  resetobs,_=env.reset(env_ids=ids);assert torch.equal(resetobs['actor'][:,48:51],term.command);assert torch.equal(env.sim.data.qpos[others],oldqpos[others]);assert torch.equal(env.sim.data.qvel[others],oldqvel[others]);assert torch.equal(env._gp_low_reset_mask[others],oldmask[others]);assert bool((term._gp_phase[ids][env._gp_low_reset_mask[ids]]==.375).all());assert torch.equal(term._gp_phase[others],oldphase[others]);assert torch.equal(env._mouth_payload_kg[others],oldmass[others])
+  assert bool(((env._mouth_payload_kg[ids]>=.01)&(env._mouth_payload_kg[ids]<=.04)).all())
+  # Reset clears external forces; initialize the already-computed reset phase's
+  # payload before the first physical interval. Training/eval must do the same.
+  mouth_payload_step(env,None,**params)
+  report=dict(status='PASS',pid=os.getpid(),device='cuda:1',sensor_chain=SENSOR_CHAIN,feedback_fault_metric_applicable=False,feedback_not_ready_fraction=None,no_feedback_object=True,native_joint_action_encoder_bias_compensation='PASS',actual_critic_noise_delay_none='PASS',mouth_hold_zero='PASS',actual_reset_only_subclass_verified=True,low_start_worlds=int(mask.sum()),native_reset_controls=96,contact_sampling_hz=200,contact200Hz_no_zero_contact_claim=True,physical_reward_oracle_max=reader.oracle_max.cpu().tolist(),cases=rows,actor_width=env.observation_manager.group_obs_dim['actor'][0],critic_width=env.observation_manager.group_obs_dim['critic'][0],partial_reset_phase_payload='PASS',payload_world_force_and_moment='PASS',initial_reset_contract='After explicit env.reset, apply payload step once before first physical integration; automatic resets receive native post-command step event',script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+  a.output.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report),flush=True);return report
+ finally:env.close()
+if __name__=='__main__':main()

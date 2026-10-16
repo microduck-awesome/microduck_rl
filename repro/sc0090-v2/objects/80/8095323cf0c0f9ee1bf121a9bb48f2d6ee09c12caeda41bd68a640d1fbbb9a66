@@ -1,0 +1,39 @@
+from dataclasses import asdict
+import json
+import re
+from types import SimpleNamespace
+import pytest
+import torch
+import mjlab.tasks
+from mjlab.tasks.registry import load_env_cfg, load_rl_cfg
+from mjlab_microduck.custom_v2.microduck_v2 import REPAIRED_WALK_TASK_ID, YAW_FINE_WALK_TASK_ID
+from mjlab_microduck.tasks import mdp
+
+
+def canonical(value):
+    return re.sub(r'0x[0-9a-fA-F]+', '0xADDRESS', json.dumps(asdict(value), sort_keys=True, default=str))
+
+
+@pytest.mark.parametrize('play', [False, True])
+@pytest.mark.parametrize('suffix', ['', '-Measured'])
+def test_only_additive_yaw_reward_changes(play, suffix):
+    old = load_env_cfg(REPAIRED_WALK_TASK_ID+suffix, play=play)
+    new = load_env_cfg(YAW_FINE_WALK_TASK_ID+suffix, play=play)
+    term = new.rewards.pop('track_yaw_fine')
+    assert term.func is mdp.track_yaw_rate_fine
+    assert term.weight == 2. and term.params == {'std': .35, 'command_name': 'twist'}
+    assert canonical(new) == canonical(old)
+    original_agent = load_rl_cfg(REPAIRED_WALK_TASK_ID+suffix)
+    new_agent = load_rl_cfg(YAW_FINE_WALK_TASK_ID+suffix)
+    new_agent.experiment_name = original_agent.experiment_name
+    new_agent.run_name = original_agent.run_name
+    assert canonical(new_agent) == canonical(original_agent)
+
+
+def test_yaw_precision_does_not_tax_required_roll_pitch_motion():
+    command = torch.tensor([[0.,0.,.5],[0.,0.,.5],[0.,0.,.5]])
+    angular = torch.tensor([[0.,0.,.5],[3.,-2.,.5],[3.,-2.,.15]])
+    env = SimpleNamespace(scene={'robot':SimpleNamespace(data=SimpleNamespace(root_link_ang_vel_b=angular))},
+                          command_manager=SimpleNamespace(get_command=lambda _: command))
+    score = mdp.track_yaw_rate_fine(env, std=.35, command_name='twist')
+    torch.testing.assert_close(score, torch.tensor([1.,1.,0.3678794412]))

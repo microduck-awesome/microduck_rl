@@ -1,0 +1,24 @@
+"""Exact config delta for the paired late-entropy ablation."""
+from pathlib import Path
+from dataclasses import asdict
+import json,hashlib
+import mjlab.tasks
+from mjlab.tasks.registry import load_env_cfg,load_rl_cfg
+from mjlab_microduck.custom_v2.feedback_repair import PITCH10_TASK,PITCH10_LATE_ENTROPY_TASK
+from mjlab_microduck.custom_v2.training import configure_head_precision_learning
+
+def canonical(value):return json.dumps(value,sort_keys=True,default=lambda x:getattr(x,'__qualname__',str(x)))
+for play in (False,True):
+ a=load_env_cfg(PITCH10_TASK,play=play);b=load_env_cfg(PITCH10_LATE_ENTROPY_TASK,play=play)
+ assert canonical(asdict(a))==canonical(asdict(b))
+ old=configure_head_precision_learning(a,5);new=configure_head_precision_learning(b,5)
+ assert old==new and canonical(asdict(a))==canonical(asdict(b))
+ assert a.events['set_ground_state'].params['standing_pitch_frontier']==(.75,-10.,-7.)
+ assert a.actions['joint_pos'].spike_rejection is False
+old=asdict(load_rl_cfg(PITCH10_TASK));new=asdict(load_rl_cfg(PITCH10_LATE_ENTROPY_TASK))
+assert old['algorithm']['entropy_coef']==.01 and new['algorithm']['entropy_coef']==.005
+new['algorithm']['entropy_coef']=.01
+assert canonical(old)==canonical(new)
+assert old['num_steps_per_env']==24 and old['algorithm']['num_learning_epochs']==5 and old['algorithm']['num_mini_batches']==4
+report=dict(status='PASS',only_difference='algorithm.entropy_coef .01 to .005',training_and_play_environments_identical=True,head5_recipe_identical=True,all_other_agent_configuration_identical=True,task=PITCH10_LATE_ENTROPY_TASK,script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+Path('runs-v2/paired-late-entropy-config.json').write_text(json.dumps(report,indent=2)+'\n');print(report)

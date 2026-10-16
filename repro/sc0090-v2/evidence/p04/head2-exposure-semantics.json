@@ -1,0 +1,162 @@
+{
+  "status": "PASS",
+  "environment_diff": [
+    {
+      "path": "environment.commands.head_pose.zero_command_prob",
+      "old": 0.6,
+      "new": 0.3
+    }
+  ],
+  "base_recipe": {
+    "id": "v2-head-precision-2",
+    "stage": 2,
+    "ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ],
+    "final_ranges": [
+      [
+        -0.48577760000000003,
+        1.1
+      ],
+      [
+        -1.1,
+        0.904656
+      ],
+      [
+        -1.4,
+        1.4
+      ],
+      [
+        -0.31,
+        0.31
+      ]
+    ],
+    "zero_command_prob": 0.6,
+    "reward_weight": 3.0,
+    "std": 0.5,
+    "fine_std": 0.04,
+    "fine_weight": 0.5,
+    "reason": "2000-update head response failed despite mastered recovery"
+  },
+  "new_recipe": {
+    "id": "v2-head-precision-2-active-exposure-v1",
+    "stage": 6,
+    "ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ],
+    "final_ranges": [
+      [
+        -0.48577760000000003,
+        1.1
+      ],
+      [
+        -1.1,
+        0.904656
+      ],
+      [
+        -1.4,
+        1.4
+      ],
+      [
+        -0.31,
+        0.31
+      ]
+    ],
+    "zero_command_prob": 0.3,
+    "reward_weight": 3.0,
+    "std": 0.5,
+    "fine_std": 0.04,
+    "fine_weight": 0.5,
+    "reason": "Same1664/64 Head2 comparison: idle commands .6 to .3 only; active1/2/4 relative mix and amplitude unchanged"
+  },
+  "sampler": [
+    {
+      "device": "cpu",
+      "counts_0_1_2_4": [
+        78482,
+        92035,
+        45655,
+        45972
+      ],
+      "signs_negative_positive": [
+        [
+          45756,
+          46060
+        ],
+        [
+          46117,
+          45745
+        ],
+        [
+          45745,
+          46150
+        ],
+        [
+          45990,
+          45670
+        ]
+      ],
+      "old_active_amplitudes_bitwise": true
+    },
+    {
+      "device": "cuda:0",
+      "counts_0_1_2_4": [
+        78997,
+        91398,
+        45689,
+        46060
+      ],
+      "signs_negative_positive": [
+        [
+          45883,
+          45941
+        ],
+        [
+          45648,
+          45835
+        ],
+        [
+          45942,
+          45972
+        ],
+        [
+          45820,
+          45975
+        ]
+      ],
+      "old_active_amplitudes_bitwise": true
+    }
+  ],
+  "script_sha256": "8a743aafcc902478402ca4c521aae27de3037824c208b1db9fb83d19e5cb0886",
+  "scope": "Configuration and sampler qualification, not learned behavior"
+}

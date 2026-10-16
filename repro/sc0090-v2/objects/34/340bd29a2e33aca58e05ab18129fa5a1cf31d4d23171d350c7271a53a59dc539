@@ -1,0 +1,56 @@
+"""Preparatory V2 reset geometry; CPU qualified only until task GPU checks.
+
+Compute a conservative floor clearance from immutable CAD collision OBBs and
+named reset q. This does not alter collision geometry or run physics forward.
+It is not attached to any task in this preparation version.
+"""
+from itertools import product
+import numpy as np
+import mujoco
+import torch
+
+def quat_mul(a,b):
+ aw,ax,ay,az=a.unbind(-1);bw,bx,by,bz=b.unbind(-1)
+ return torch.stack((aw*bw-ax*bx-ay*by-az*bz,aw*bx+ax*bw+ay*bz-az*by,aw*by-ax*bz+ay*bw+az*bx,aw*bz+ax*by-ay*bx+az*bw),-1)
+def quat_apply(q,v):
+ t=2*torch.cross(q[...,1:],v,dim=-1)
+ return v+q[...,:1]*t+torch.cross(q[...,1:],t,dim=-1)
+
+class RouladeResetGeometry:
+ def __init__(self,model,policy_joint_names,device='cpu',dtype=torch.float32):
+  self.names=tuple(policy_joint_names);self.body_count=model.nbody
+  self.parent=tuple(map(int,model.body_parentid));self.root=model.body('trunk_base').id
+  self.body_joint=[];self.body_axes=[]
+  for b in range(model.nbody):
+   if b in (0,self.root):self.body_joint.append(-1);self.body_axes.append([0.,0.,0.]);continue
+   assert model.body_jntnum[b]==1
+   j=int(model.body_jntadr[b]);assert model.jnt_type[j]==mujoco.mjtJoint.mjJNT_HINGE and np.max(abs(model.jnt_pos[j]))==0
+   name=model.joint(j).name;assert name in self.names or name=='mouth'
+   self.body_joint.append(self.names.index(name) if name in self.names else -2);self.body_axes.append(model.jnt_axis[j].tolist())
+  def tensor(x):return torch.as_tensor(x,device=device,dtype=dtype)
+  self.pos=tensor(model.body_pos);self.quat=tensor(model.body_quat);self.axes=tensor(self.body_axes)
+  self.geom_body=[];centers=[];corners=[];self.geom_names=[]
+  # Terrain is contype=1/conaffinity=1. Internal-only bit2 structures do not hit it.
+  for g in range(model.ngeom):
+   if not ((model.geom_contype[g]|model.geom_conaffinity[g])&1) or not model.geom_bodyid[g]:continue
+   assert model.geom_type[g]==mujoco.mjtGeom.mjGEOM_MESH
+   mid=int(model.geom_dataid[g]);a=int(model.mesh_vertadr[mid]);n=int(model.mesh_vertnum[mid]);v=model.mesh_vert[a:a+n].astype(float)
+   lo,hi=v.min(0),v.max(0);c=np.array(list(product(*zip(lo,hi))))
+   rot=np.empty(9);mujoco.mju_quat2Mat(rot,model.geom_quat[g]);c=c@rot.reshape(3,3).T+model.geom_pos[g]
+   corners.append(c);centers.append(c.mean(0));self.geom_body.append(int(model.geom_bodyid[g]));self.geom_names.append(model.geom(g).name)
+  self.corners=tensor(np.array(corners));self.geom_body_tensor=torch.tensor(self.geom_body,device=device,dtype=torch.long)
+ def forward(self,policy_q,root_quat,mouth_q=None):
+  assert policy_q.shape[-1]==14 and root_quat.shape==(*policy_q.shape[:-1],4)
+  n=policy_q.shape[0];zero=policy_q.new_zeros(n,3);identity=policy_q.new_zeros(n,4);identity[:,0]=1
+  p=[zero];q=[identity]
+  for b in range(1,self.body_count):
+   if b==self.root:p.append(zero);q.append(root_quat);continue
+   par=self.parent[b];p.append(p[par]+quat_apply(q[par],self.pos[b].expand(n,-1)))
+   j=self.body_joint[b];angle=policy_q[:,j] if j>=0 else (policy_q.new_zeros(n) if mouth_q is None else mouth_q)
+   h=.5*angle;jq=torch.cat((torch.cos(h)[:,None],torch.sin(h)[:,None]*self.axes[b]),-1)
+   q.append(quat_mul(quat_mul(q[par],self.quat[b].expand(n,-1)),jq))
+  return torch.stack(p,1),torch.stack(q,1)
+ def floor_height(self,policy_q,root_quat,clearance=.001,mouth_q=None):
+  p,q=self.forward(policy_q,root_quat,mouth_q);ids=self.geom_body_tensor
+  corners=quat_apply(q[:,ids,None,:].expand(-1,-1,8,-1),self.corners[None].expand(policy_q.shape[0],-1,-1,-1))+p[:,ids,None,:]
+  return -corners[...,2].amin(dim=(1,2))+clearance

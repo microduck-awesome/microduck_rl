@@ -1,0 +1,34 @@
+{
+  "status": "WAITING_DIAGNOSTIC_CANCELLED_ZERO_CONTROLS",
+  "records": [
+    {
+      "marker": "roulade-history-late-teacher-closeout-status-002.json",
+      "before": {
+        "pid": 584038,
+        "updated_unix": 1792145360.2957637,
+        "status": "CANCELLED_BEFORE_DIAGNOSTIC_USER_ROUTE_COMPARISON",
+        "cancelled_unix": 1792145457.1681285,
+        "reason": "User requests baseline-pretraining route comparison before further P04-only skill iteration.",
+        "new_formal_controls": 0
+      },
+      "argv": "python3 /home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/watch-roulade-history-late-teacher-closeout-002.py "
+    },
+    {
+      "marker": "roulade-history-late-teacher-status-002.json",
+      "before": {
+        "pid": 583739,
+        "updated_unix": 1792145438.489953,
+        "completed_diagnostic_controls": 0,
+        "diagnostic_controls_cap": 64000,
+        "new_formal_controls": 0,
+        "status": "CANCELLED_BEFORE_DIAGNOSTIC_USER_ROUTE_COMPARISON",
+        "cancelled_unix": 1792145457.171034,
+        "reason": "User requests baseline-pretraining route comparison before further P04-only skill iteration."
+      },
+      "argv": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/venv-p04/bin/python /home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/run-roulade-history-late-teacher-002.py "
+    }
+  ],
+  "new_diagnostic_controls": 0,
+  "new_formal_controls": 0,
+  "probe_and_cpu_evidence_preserved": true
+}

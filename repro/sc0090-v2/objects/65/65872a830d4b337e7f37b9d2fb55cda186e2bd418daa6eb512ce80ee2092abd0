@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+export SC0090_CUDA_COMPAT_DIR=/home/l40-vm01/Documents/ai-research/microduck/microduck_rl/artifacts/cuda-compat-12.9/usr/local/cuda-12.9/compat
+root=/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04
+validation_deadline=$((SECONDS+1800))
+while [[ ! -f "$root/paired-frozen20-throughput-32768/report.json" ]]; do
+ if (( SECONDS > validation_deadline )); then exit 1; fi
+ sleep 10
+done
+python3 - <<'PY'
+import json
+assert json.load(open('/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-frozen20-throughput-32768/report.json'))['status']=='PASS'
+PY
+cd "$root/rise-frozen-normalizer-worktree"
+task=Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-DirectionGate-M4-Repaired-S0-O0-R1
+scripts/v2_python.sh scripts/evaluate_v2_head.py --task "$task" --checkpoint runs-v2/frozen-norm-head1-allocation-001/checkpoint_001472.pt --output runs-v2/frozen-head1-1472-head-measured --device cuda:1 --repeats 8 --randomization-stage measured > runs-v2/frozen-head1-1472-head-measured.log 2>&1
+baseline_scripts=/home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/head-foundation-worktree/scripts
+scripts/v2_python.sh "$baseline_scripts/summarize_v2_head_saved.py" --device cpu --reports runs-v2/frozen-head1-1472-head-measured/report.json --output runs-v2/frozen-head1-1472-head-summary
+scripts/v2_python.sh "$baseline_scripts/evaluate_common_p04_candidates.py" --device cuda:1 --samples 128 --labels p04_frozen_1472 --checkpoints runs-v2/frozen-norm-head1-allocation-001/checkpoint_001472.pt --output runs-v2/frozen-head1-1472-common-measured > runs-v2/frozen-head1-1472-common-measured.log 2>&1
+scripts/v2_python.sh scripts/analyze_v2_standing_order.py runs-v2/frozen-head1-1472-common-measured/p04_frozen_1472

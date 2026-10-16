@@ -1,0 +1,9 @@
+{
+  "status": "ALLOCATION_COMPLETE",
+  "controls": 100663296,
+  "run_json_mtime_unix": 1792070320.1234517,
+  "completed_unix": 1792071281.8998394,
+  "wall_seconds": 961.7763876914978,
+  "control_interactions_per_second": 104663.9294624574,
+  "scope": "run.json creation through final status; includes initialization after manifest, embedded evaluation and concurrent early head evaluation; excludes preceding Python imports and later head/common validation"
+}

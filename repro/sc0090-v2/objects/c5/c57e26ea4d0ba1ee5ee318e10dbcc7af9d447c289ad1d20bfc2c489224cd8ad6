@@ -1,0 +1,21 @@
+"""V2 kinematic mirror prior; not a claim of exact S0 stochastic symmetry.
+
+Only actor mirror loss is qualified. Critic data augmentation is not supported.
+"""
+import torch
+from tensordict import TensorDict
+JOINT_PERM=[9,10,11,12,13,5,6,7,8,0,1,2,3,4]
+JOINT_SIGN=[-1,-1,1,1,1,1,1,-1,-1,-1,-1,1,1,1]
+OBS_PERM=list(range(6))+[6+i for i in JOINT_PERM]+[20+i for i in JOINT_PERM]+[34+i for i in JOINT_PERM]+list(range(48,61))
+OBS_SIGN=[-1,1,-1,1,-1,1]+JOINT_SIGN*3+[1,-1,-1,1,1,-1,-1,1,-1,1,-1,1,-1]
+_cache={}
+def microduck_v2_symmetry(env,obs,actions):
+ device=obs['actor'].device if obs is not None else actions.device
+ if device not in _cache:_cache[device]=tuple(torch.tensor(x,device=device,dtype=torch.long if i%2==0 else torch.float32) for i,x in enumerate((OBS_PERM,OBS_SIGN,JOINT_PERM,JOINT_SIGN)))
+ op,os,ap,ass=_cache[device];out_obs=out_actions=None
+ if obs is not None:
+  assert obs['actor'].shape[-1]==61
+  actor=obs['actor'];out_obs=TensorDict({'actor':torch.cat((actor,actor[:,op]*os),0),'critic':torch.cat((obs['critic'],obs['critic']),0)},batch_size=[2*len(actor)],device=device)
+ if actions is not None:
+  assert actions.shape[-1]==14;out_actions=torch.cat((actions,actions[:,ap]*ass),0)
+ return out_obs,out_actions

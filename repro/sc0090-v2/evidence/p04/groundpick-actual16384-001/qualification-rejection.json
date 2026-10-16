@@ -1,0 +1,18 @@
+{
+  "status": "NOT_QUALIFIED_FOR_FORMAL",
+  "reasons": [
+    "throughput below100k",
+    "zero natural timeouts because policy fell early; not evidence of broken bootstrap"
+  ],
+  "throughput": {
+    "median_control_per_second": 84381.53153776565,
+    "aggregate_control_per_second": 83047.16455848745
+  },
+  "true_forced_timeouts_in_prior64_smoke": 32,
+  "collection_median_s": 4.204736709594727,
+  "learning_median_s": 0.38410019874572754,
+  "mean_episode_length_final_controls": 27.5,
+  "nonfinite_fraction": 0.0,
+  "feedback_not_ready_fraction": 0.0,
+  "next": "One24576x16 validation with explicit forced timeouts; no reward/PPO/solver change"
+}

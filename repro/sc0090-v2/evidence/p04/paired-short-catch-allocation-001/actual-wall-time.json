@@ -1,0 +1,6 @@
+{
+  "controls": 50331648,
+  "wall_seconds": 550.1810274124146,
+  "control_interactions_per_second": 91481.9768262774,
+  "scope": "run.json to final status including embedded recovery and concurrent measured/nominal head evaluation; excludes initial Python imports and later final head"
+}

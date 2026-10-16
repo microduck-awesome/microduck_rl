@@ -1,0 +1,6 @@
+
+# Immutable reproduction objects/evidence retain their byte identity on every checkout.
+# Readable active source remains under src/ and scripts/; archived copies are not a review diff.
+repro/sc0090-v2/objects/** -text -diff linguist-generated=true
+repro/sc0090-v2/evidence/** -text -diff linguist-generated=true
+repro/sc0090-v2/history/** -text -diff linguist-generated=true

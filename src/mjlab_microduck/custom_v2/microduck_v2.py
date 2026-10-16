@@ -41,19 +41,21 @@ def install_policy_mapping():
     if getattr(mdp,'_microduck_v2_mapping',False):return
     original_servo=mdp._servo_joint_ids
     def servo_ids(env,asset):
+        cached = getattr(asset, '_v2_policy_servo_ids', None)
+        if cached is not None:
+            return cached
         if _is_v2(asset):
             ids,names=asset.find_joints(POLICY_JOINTS,preserve_order=True)
             if tuple(names)!=POLICY_JOINTS:raise ValueError('V2 policy joint order mismatch')
+            # Entity topology is immutable after compilation. Resolve this
+            # named mapping once, not through 14 regexes at every reward/reset.
+            asset._v2_policy_servo_ids = ids
             return ids
         return original_servo(env,asset)
     mdp._servo_joint_ids=servo_ids
-    original_positions=mdp._servo_joint_pos
-    def servo_positions(env,asset):
-        if _is_v2(asset):
-            feedback=getattr(env.unwrapped,'_v2_joint_feedback',None)
-            if feedback is not None:return feedback.last_q[:,:14]
-        return original_positions(env,asset)
-    mdp._servo_joint_pos=servo_positions
+    # This helper feeds physical pose rewards. S0/O0 belongs only in actor
+    # observations; substituting its biased estimate here rewards sensor-error
+    # cancellation rather than reaching the requested physical pose.
     original_metadata=mdp._get_base_metadata_no_passive
     def metadata(env,run_path):
         result=original_metadata(env,run_path)
@@ -61,7 +63,17 @@ def install_policy_mapping():
             ids=[result['joint_names'].index(n) for n in POLICY_JOINTS]
             for field in ('joint_names','joint_stiffness','joint_damping','default_joint_pos'):
                 result[field]=[result[field][i] for i in ids]
-            if getattr(env.unwrapped,'_v2_joint_feedback',None) is not None:
+            if getattr(env.unwrapped,'_v2_fast_native',False):
+                from .fast_native import FAST_RUNTIME
+                result['microduck_robot']='microduck-v2-sc0090'
+                result['microduck_runtime']=FAST_RUNTIME
+                result['microduck_deployment']='simulation-pretraining-only'
+                result['microduck_feedback']='official-noise-delay-and-encoder-bias'
+                result['microduck_commands']='P04 native count mapping, clamps and configured slew'
+                if hasattr(env.unwrapped,'_v2_sensor_proxy'):
+                    result['microduck_feedback']='bench-p04-output-error-block-proxy-v1'
+                    result['microduck_sensor_proxy']=json.dumps(env.unwrapped._v2_sensor_proxy,sort_keys=True)
+            elif getattr(env.unwrapped,'_v2_joint_feedback',None) is not None:
                 from mjlab_microduck.sc0090_v2.contract import export_contract,load_contract
                 result.update(export_contract(env,load_contract(ASSETS/'training.json')))
             else:
@@ -252,7 +264,8 @@ def make_v2_bam_env_cfg(play=False):
             term.noise=None
             term.delay_min_lag=0;term.delay_max_lag=0
             if 'biased' in term.params:term.params['biased']=False
-    return cfg
+    from .runtime import configure_runtime
+    return configure_runtime(cfg)
 
 def make_v2_sensor_env_cfg(play=False,stage='nominal'):
     """Formal V2 training: S0/O0 from reset, staged measured R1 conditions."""

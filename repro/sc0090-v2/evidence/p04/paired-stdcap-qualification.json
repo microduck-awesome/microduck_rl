@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "task": "Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Catch2sPitch10-LateEntropy005-HeadStdCap001-Repaired-S0-O0-R1",
+  "parent": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-short-catch-allocation-002/resume_003954.pt",
+  "control": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-late-entropy-allocation-001",
+  "iterations": 64,
+  "only_difference": "Effective four head exploration std capped at .01rad; legs/raw parameters/optimizer/normalizer/entropy .005/head5/pitch10/32768x24/5 epochs/4 minibatches retained; action collection and all PPO probabilities share the same Normal",
+  "git_head": "070d6069e1aacbba9a22a905eaa8f4fe0dd6729a",
+  "production_patch_sha256": "48dbd4371d4834f6b92af8bbdbbe28227a98aef4c172d007372e2db857f81064",
+  "source_sha256": {
+    "src/mjlab_microduck/custom_v2/head_exploration.py": "e47e8a240c912e45b0f08ce7d5469e2f91f030ce839065fe9a5098cc05612b14",
+    "src/mjlab_microduck/custom_v2/feedback_repair.py": "66d109e94b58d1a7346020998a1e5a1cfd38fcd0f9cd7c450d30167855840db8",
+    "src/mjlab_microduck/ppo_diagnostics.py": "ba7b23147263c5b9a54e9475f6996d2e77d189d177c6eb8952ece74667452a8f",
+    "scripts/train_v2_standup.py": "de75920ed37eba9285fa865417e3ffe66c81b3cde90e7a149b9849eba7887966",
+    "scripts/smoke_v2_ppo.py": "a1968bc7b5181b016978344f2673e720c180538ac7e2e67e589b7c0340dbe1b3",
+    "scripts/check_paired_head_std_cap.py": "17cabb5947d0265a158d1b7c50b2236eafef8351d87bda80d164cee9acb91ab6"
+  },
+  "diagnostic_revision": "v2 FP32 tolerance, exact effective std; timed_log retains wrapped upstream signature",
+  "optimizer_admission": {
+    "max_update_mean_kl": 0.5,
+    "max_clip_fraction": 0.8,
+    "last5_median_kl": 0.1,
+    "last5_median_clip_fraction": 0.5,
+    "scope": "Stops known unstable updates before formal; not behavior qualification"
+  },
+  "unit": {
+    "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-stdcap-unit-tests.json",
+    "sha256": "41424794d305162bf1aea0dad8e9f39b81f224f9de044d07b91fc7493f49f66c"
+  },
+  "smoke": {
+    "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-stdcap-mature-smoke/report.json",
+    "sha256": "434dc5331a071076cc0c3607dbc888cd3dfa18d719988868bd752c2bea620e1d"
+  },
+  "throughput": {
+    "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-stdcap-throughput-32768/report.json",
+    "sha256": "e6516e7c7bafc6c2b1c59b4fd684212b901bdfa434c00baa2a383e5c09375db9"
+  },
+  "optimizer": {
+    "max_update_mean_kl": 0.060627308148343335,
+    "max_clip_fraction": 0.3453135172526042,
+    "last5_median_kl": 0.012190796140031697,
+    "last5_median_clip_fraction": 0.14921442667643228,
+    "first_update_mean_kl": 0.060627308148343335,
+    "first_update_clip_fraction": 0.3453135172526042,
+    "scope": "Actual32768 optimizer stability guard, not behavioral qualification",
+    "status": "PASS"
+  }
+}

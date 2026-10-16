@@ -1,0 +1,63 @@
+from dataclasses import asdict
+from pathlib import Path
+from types import SimpleNamespace
+import json,re,hashlib
+import numpy as np
+import torch
+import mjlab.tasks
+from mjlab.tasks.registry import load_env_cfg,load_rl_cfg
+from mjlab_microduck.custom_v2.feedback_repair import PITCH10_HEAD_STD_CAP_TASK as MICRO_EXPOSURE_TASK, PITCH10_HEAD_ACCURACY_TASK as HEAD_ACCURACY_TASK
+from mjlab_microduck.custom_v2.training import configure_head_precision_learning
+from mjlab_microduck.custom_v2.head_accuracy import accuracy_scores,physical_head_command_accuracy,HEAD_JOINTS
+from mjlab_microduck.tasks.mdp import head_pose_tracking
+
+def canonical(x):return re.sub(r'0x[0-9a-fA-F]+','0xADDRESS',json.dumps(asdict(x),sort_keys=True,default=str))
+a=load_env_cfg(MICRO_EXPOSURE_TASK);b=load_env_cfg(HEAD_ACCURACY_TASK)
+ra=configure_head_precision_learning(a,5);rb=configure_head_precision_learning(b,5)
+bonus=b.rewards.pop('head_command_accuracy');assert bonus.weight==.5
+assert canonical(a)==canonical(b)
+assert canonical(load_rl_cfg(MICRO_EXPOSURE_TASK))==canonical(load_rl_cfg(HEAD_ACCURACY_TASK))
+assert load_rl_cfg(HEAD_ACCURACY_TASK).num_steps_per_env==24
+for play in [False,True]:
+ old=load_env_cfg(MICRO_EXPOSURE_TASK,play=play);new=load_env_cfg(HEAD_ACCURACY_TASK,play=play)
+ configure_head_precision_learning(old,5);configure_head_precision_learning(new,5)
+ term=new.rewards.pop('head_command_accuracy')
+ assert term.weight==.5 and term.params==dict(relative_band=.1,minimum_band=.002)
+ assert canonical(old)==canonical(new)
+ assert new.terminations['standing_catch_timeout'].params['seconds']==2.
+ assert new.events['set_ground_state'].params['standing_pitch_frontier']==(.75,-10.,-7.)
+ assert new.actions['joint_pos'].spike_rejection is False
+root=Path(__file__).resolve().parents[1]
+original=root.parent/'paired-head-stdcap-worktree/src/mjlab_microduck/tasks/mdp.py'
+assert original.read_bytes()==(root/'src/mjlab_microduck/tasks/mdp.py').read_bytes()
+rows=[]
+for device in ['cpu','cuda:1']:
+ torch.manual_seed(981);error=(torch.rand(4096,4,device=device)-.5)*.4
+ command=(torch.rand(4096,4,device=device)-.5)*.78
+ command[::4]=0;command[1::4,1:]=0;command[2::4,2:]=0
+ actual,axis,band=accuracy_scores(error,command)
+ c=command.cpu().double().numpy();e=error.cpu().double().numpy()
+ bn=np.maximum(.1*np.abs(c),.002);sc=bn/(bn+np.abs(e));mask=np.abs(c)>1e-9
+ oracle=np.array([s[m].mean() if m.any() else s.mean() for s,m in zip(sc,mask)])
+ np.testing.assert_allclose(actual.cpu().numpy(),oracle,rtol=1e-6,atol=1e-7)
+ assert torch.equal(actual,accuracy_scores(-error,-command)[0])
+ assert bool((actual>0).all()) and bool((actual<=1).all())
+ assert torch.equal(accuracy_scores(torch.zeros_like(error),command)[0],torch.ones_like(actual))
+ boundary=accuracy_scores(band,command)[0];torch.testing.assert_close(boundary,torch.full_like(boundary,.5),rtol=0,atol=0)
+ single_command=command[1::4];single_error=error[1::4].clone();before=accuracy_scores(single_error,single_command)[0];single_error[:,1:]=10000
+ assert torch.equal(before,accuracy_scores(single_error,single_command)[0])
+ idle=accuracy_scores(error[::4],command[::4])[0];assert torch.equal(idle,axis[::4].mean(-1))
+ # Independent physical HOME and named permutation check.
+ perm=[2,0,3,1];names=[HEAD_JOINTS[i] for i in perm];ids=[names.index(n) for n in HEAD_JOINTS]
+ home=torch.randn_like(error);q=home+(command+error)[:,perm]
+ robot=SimpleNamespace(joint_names=names,data=SimpleNamespace(joint_pos=q,default_joint_pos=home),find_joints=lambda requested,preserve_order:(ids,list(HEAD_JOINTS)),find_joints_by_actuator_names=lambda patterns:(ids,list(HEAD_JOINTS)))
+ env=SimpleNamespace(scene={'robot':robot},device=device,command_manager=SimpleNamespace(get_command=lambda name:command))
+ before_old=head_pose_tracking(env,std=.5,fine_std=.04,fine_weight=.5,precision_scale=.003,balance_active_axes=True)
+ physical=physical_head_command_accuracy(env)
+ np.testing.assert_allclose(physical.cpu().numpy(),oracle,rtol=3e-5,atol=2e-6)
+ after_old=head_pose_tracking(env,std=.5,fine_std=.04,fine_weight=.5,precision_scale=.003,balance_active_axes=True)
+ assert torch.equal(before_old,after_old)
+ assert torch.equal(env._v2_head_accuracy_error,q[:,ids]-home[:,ids]-command)
+ rows.append(dict(device=device,status='PASS',old_reward_bitwise=True,independent_float64_oracle=True,negative_symmetry=True,threshold_boundary_half=True,idle_four_axis_mean=True,inactive_axes_cannot_compensate=True,named_physical_HOME_permutation=True))
+r=dict(status='PASS',only_factor='Independent bounded command-axis accuracy bonus weight0.5; original Head5 source/config/reward and all PPO/exposure unchanged',recipe=rb,tests=rows,script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+Path('runs-v2/paired-head-accuracy-unit-tests.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r),flush=True)

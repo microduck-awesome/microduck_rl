@@ -1,0 +1,62 @@
+from dataclasses import asdict
+import json,re,hashlib
+from pathlib import Path
+import torch
+from torch.distributions import Normal
+from tensordict import TensorDict
+import mjlab.tasks
+from mjlab.tasks.registry import load_env_cfg,load_rl_cfg
+from rsl_rl.modules.distribution import GaussianDistribution
+from rsl_rl.storage import RolloutStorage
+from mjlab_microduck.custom_v2.head_exploration import HeadCappedGaussianDistribution,HEAD_NAMES
+from mjlab_microduck.custom_v2.microduck_v2 import POLICY_JOINTS
+from mjlab_microduck.custom_v2.feedback_repair import PITCH10_LATE_ENTROPY_TASK as LATE_ENTROPY_TASK,PITCH10_HEAD_STD_CAP_TASK as HEAD_STD_CAP_TASK
+from mjlab_microduck.custom_v2.training import configure_head_precision_learning
+
+def canonical(x):return re.sub(r'0x[0-9a-fA-F]+','0xADDRESS',json.dumps(asdict(x),sort_keys=True,default=str))
+for play in (False,True):
+ a=load_env_cfg(LATE_ENTROPY_TASK,play=play);b=load_env_cfg(HEAD_STD_CAP_TASK,play=play)
+ assert configure_head_precision_learning(a,5)==configure_head_precision_learning(b,5)
+ assert canonical(a)==canonical(b)
+a=load_rl_cfg(LATE_ENTROPY_TASK);b=load_rl_cfg(HEAD_STD_CAP_TASK)
+assert b.actor.distribution_cfg.pop('head_std_cap')==.01
+assert b.actor.distribution_cfg.pop('class_name').endswith(':HeadCappedGaussianDistribution')
+b.actor.distribution_cfg['class_name']='GaussianDistribution'
+assert canonical(a)==canonical(b)
+parent=torch.load('runs-v2/paired-short-catch-allocation-002/resume_003954.pt',map_location='cpu',weights_only=False)
+raw=parent['actor_state_dict']['distribution.std_param']; results=[]
+head=[POLICY_JOINTS.index(n) for n in HEAD_NAMES];legs=[i for i in range(14) if i not in head]
+for device in ('cpu','cuda:1'):
+ torch.manual_seed(11)
+ cap=HeadCappedGaussianDistribution(14).to(device);plain=GaussianDistribution(14).to(device)
+ plain.load_state_dict({'std_param':raw.to(device)},strict=True);cap.load_state_dict(plain.state_dict(),strict=True)
+ assert list(cap.state_dict())==['std_param'] and torch.equal(cap.std_param,plain.std_param)
+ mean=torch.linspace(-.5,.5,64*14,device=device).reshape(64,14).requires_grad_()
+ cap.update(mean);plain.update(mean)
+ assert torch.equal(cap.std[:,legs],plain.std[:,legs])
+ assert torch.equal(cap.std[:,head],torch.full_like(cap.std[:,head],.01))
+ assert torch.equal(cap.deterministic_output(mean),plain.deterministic_output(mean))
+ assert torch.equal(cap.as_deterministic_output_module()(mean),mean)
+ torch.manual_seed(33);actions=cap.sample()
+ torch.manual_seed(33);plain_actions=plain.sample()
+ assert torch.equal(actions[:,legs],plain_actions[:,legs])
+ reference=Normal(mean,torch.minimum(raw.to(device),cap._head_std_limits).expand_as(mean))
+ assert torch.equal(cap.log_prob(actions),reference.log_prob(actions).sum(-1))
+ assert torch.equal(cap.entropy,reference.entropy().sum(-1))
+ obs=TensorDict({'actor':mean.detach().clone()},batch_size=[64])
+ storage=RolloutStorage('rl',64,1,obs,[14],device=device)
+ tr=RolloutStorage.Transition();tr.observations=obs;tr.actions=actions.detach();tr.rewards=torch.zeros(64,device=device);tr.dones=torch.zeros(64,device=device);tr.values=torch.zeros(64,1,device=device);tr.actions_log_prob=cap.log_prob(actions).detach();tr.distribution_params=tuple(x.detach() for x in cap.params)
+ storage.add_transition(tr)
+ assert torch.equal(storage.distribution_params[1][0],cap.std)
+ batch=next(storage.mini_batch_generator(1,1));cap.update(batch.observations['actor'])
+ ratio=torch.exp(cap.log_prob(batch.actions)-batch.old_actions_log_prob.squeeze(-1))
+ kl=cap.kl_divergence(batch.old_distribution_params,cap.params)
+ assert torch.equal(ratio,torch.ones_like(ratio)) and torch.count_nonzero(kl)==0
+ # Above-cap gradients vanish on raw sigma; lower sigma remains learnable.
+ cap.update(mean);(-cap.entropy.mean()).backward();assert torch.count_nonzero(cap.std_param.grad[head])==0
+ assert (cap.std_param.grad[legs]!=0).all()
+ with torch.no_grad():cap.std_param[head]=.005
+ cap.std_param.grad=None;cap.update(mean);(-cap.entropy.mean()).backward();assert (cap.std_param.grad[head]!=0).all()
+ results.append(dict(device=device,status='PASS',leg_samples_bitwise_equal=True,stored_std_effective=True,ratio_one=True,kl_zero=True,scalar_state_keys_unchanged=True,export_identity_unchanged=True,gradient_above_below_cap=True))
+r=dict(status='PASS',only_behavioral_difference='effective head Gaussian std <= .01 rad',configuration_except_distribution_equal=True,tests=results,parent_checkpoint='paired-short-catch-allocation-002/resume_003954.pt',script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+Path('runs-v2/paired-stdcap-unit-tests.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r),flush=True)

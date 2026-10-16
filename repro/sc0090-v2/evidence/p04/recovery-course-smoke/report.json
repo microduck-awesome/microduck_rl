@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "task": "Mjlab-StandUp-Flat-MicroDuck-V2-S0-O0-R1",
+  "device": "cuda:0",
+  "envs": 64,
+  "iterations": 5,
+  "steps_per_env": 24,
+  "learning_epochs": 5,
+  "minibatches": 4,
+  "losses": [
+    {
+      "value": 0.7707702845335007,
+      "surrogate": -0.024642517510801553,
+      "entropy": 19.870429229736327
+    },
+    {
+      "value": 0.812452244758606,
+      "surrogate": -0.038980647712014614,
+      "entropy": 19.86574754714966
+    },
+    {
+      "value": 0.6376986145973206,
+      "surrogate": -0.04625606900808634,
+      "entropy": 19.849221897125243
+    },
+    {
+      "value": 0.5828643843531609,
+      "surrogate": -0.04499020629154984,
+      "entropy": 19.834265995025635
+    },
+    {
+      "value": 0.5849097341299057,
+      "surrogate": -0.03997176239208784,
+      "entropy": 19.821569633483886
+    }
+  ],
+  "policy_parameter_max_change": 0.013505473732948303,
+  "finite_policy_parameters": true,
+  "elapsed_seconds": 13.021144652971998,
+  "robot_xml": "robot.xml",
+  "robot_xml_sha256": "d52e06595e737ebe0b96529bfa6410b26b5f0e2d221e03ee2c28c4c9fcf0ed69",
+  "action_scale": 1.0,
+  "peak_contacts_across_worlds": 565,
+  "physics_cuda_graph": true,
+  "motor_graph_replays": [
+    478,
+    478
+  ],
+  "contact_capacity_across_worlds": 2240,
+  "contact_capacity_checked_each_physics_step": true,
+  "logging": "local TensorBoard",
+  "upload_model": false,
+  "limitation": "A short PPO smoke validates the training path; it does not demonstrate learned walking or SC0090 sim2real.",
+  "onnx_exported": true,
+  "training_contract_sha256": "ee282f2b510783966747d416b0c7d967bfcaa382ecce151a1babfcdd323f7ac0",
+  "randomization_stage": "nominal",
+  "onnx_cpu_inference": {
+    "input": [
+      1,
+      61
+    ],
+    "output": [
+      1,
+      14
+    ],
+    "metadata_joint_count": 14,
+    "normalizer_parity_max_error": 1.7881393432617188e-07
+  }
+}

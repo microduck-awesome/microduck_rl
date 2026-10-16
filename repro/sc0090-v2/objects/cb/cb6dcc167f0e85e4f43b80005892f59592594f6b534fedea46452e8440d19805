@@ -1,0 +1,86 @@
+"""Boundary and optimizer/teacher persistence checks before GPU admission."""
+from copy import deepcopy
+from dataclasses import asdict
+import json,math,pathlib,time
+import torch
+from tensordict import TensorDict
+from rsl_rl.models import MLPModel
+from rsl_rl.storage import RolloutStorage
+from mjlab.tasks.registry import load_env_cfg,load_rl_cfg
+from mjlab_microduck.custom_v2.velstand import TASK,SIT_POSE,SIT_HEIGHT
+from mjlab_microduck.custom_v2.velstand_ppo import VelStandPPO,teacher_masks
+from mjlab_microduck.custom_v2.ppo import TerminalCriticPPO
+from mjlab_microduck.custom_v2.head_exploration import HeadCappedGaussianDistribution
+from mjlab_microduck.custom_v2.training import get_full_spec
+
+r=pathlib.Path(__file__).resolve().parents[1]/'runs-v2';torch.set_num_threads(2);checks=[]
+walk=r/'walking-yaw-fine-allocation-002/checkpoint_000512.pt';stand=r/'head2-micro-exposure-allocation-001/checkpoint_001856.pt'
+cfg=load_env_cfg(TASK);agent=load_rl_cfg(TASK);bc=deepcopy(agent.algorithm.bc_cfg)
+bc.update(checkpoint_path=str(stand),anchor_checkpoint_path=str(walk),min_samples=1,min_mini_batch=32,epochs=1,mini_batches=2)
+assert cfg.rewards['body_pose_tracking'].params['nominal_height']==.112
+assert cfg.commands['twist'].rel_standing_envs==.25 and cfg.actions['joint_pos'].spike_rejection is False
+model=get_full_spec().compile();servo_names=cfg.actions['joint_pos'].actuator_names
+assert len(servo_names)==14 and model.njnt==16
+for i,a in SIT_POSE.items():assert float(model.joint(servo_names[i]).range[0])<=a<=float(model.joint(servo_names[i]).range[1])
+checks.append('V2_named_pose_limits_and_retained_raw_feedback')
+# Disjoint walk/stand/body-PPO routing, including the unlabelled tilt band.
+x=torch.zeros(7,61);angles=torch.tensor([0.,0.,30.,40.,80.,0.,0.])*math.pi/180
+x[:,4]=torch.sin(angles);x[:,5]=-torch.cos(angles);x[1,48]=.2;x[5,58]=.1;x[6,57]=-.01
+before=x.clone();s,w,m,idle,body=teacher_masks(x,bc)
+assert s.tolist()==[True,False,False,True,True,False,False]
+assert w.tolist()==[False,True,False,False,False,False,False]
+assert m.tolist()==[False,False,False,False,True,False,False]
+assert torch.equal(x,before) and not bool((s&w).any())
+checks.append('teacher_routing_zero_move_body_fall_boundary_and_input_immutability')
+assert VelStandPPO.act is TerminalCriticPPO.act and VelStandPPO.process_env_step is TerminalCriticPPO.process_env_step
+checks.append('BC_and_terminal_bootstrap_method_composition')
+# Real teacher checkpoints, real raw actor observations, own normalizers.
+raw=torch.load(r/'walking-yaw-fine-000512-measured/trace-2026101612.pt',map_location='cpu',weights_only=False)['initial']['actor'][:64]
+obs=TensorDict({'actor':raw.clone(),'critic':torch.zeros(64,76)},batch_size=[64])
+groups={'actor':['actor'],'critic':['critic']}
+def actor(distribution):
+ return MLPModel(obs,groups,'actor',14,hidden_dims=(512,256,128),activation='elu',obs_normalization=True,distribution_cfg=distribution)
+normal=dict(class_name='GaussianDistribution',init_std=1.,std_type='scalar')
+a=actor(deepcopy(normal));c=MLPModel(obs,groups,'critic',1,hidden_dims=(512,256,128),activation='elu',obs_normalization=True)
+wp=torch.load(walk,map_location='cpu',weights_only=False);sp=torch.load(stand,map_location='cpu',weights_only=False)
+a.load_state_dict(wp['actor_state_dict'],strict=True);c.load_state_dict(wp['critic_state_dict'],strict=True)
+storage=RolloutStorage('rl',64,2,obs,(14,),'cpu');storage.observations['actor'][0].copy_(raw);storage.observations['actor'][1].copy_(raw)
+storage.observations['actor'][0,:,48:51]=0;storage.observations['actor'][1,:,48]=.2
+storage.observations['actor'][:,:,55:61]=0
+learner=VelStandPPO(a,c,storage,bc_cfg=bc,device='cpu')
+reference=actor(dict(class_name='mjlab_microduck.custom_v2.head_exploration:HeadCappedGaussianDistribution',init_std=1.,std_type='scalar',head_std_cap=.01)).eval();reference.load_state_dict(sp['actor_state_dict'],strict=True)
+with torch.no_grad():
+ assert torch.equal(reference(obs),learner.expert(obs))
+ assert torch.equal(learner.anchor(obs),learner.actor(obs))
+checks.append('actual_capped_recovery_teacher_mean_identity_and_own_normalizers')
+teacher_state=[deepcopy(z.state_dict()) for z in (learner.expert,learner.anchor)]
+observations=storage.observations.clone();std=learner.actor.distribution.std_param.detach().clone()
+stats=learner._bc_update();assert stats['expert_bc_steps']>0 and all(math.isfinite(v) for v in stats.values())
+assert torch.equal(std,learner.actor.distribution.std_param)
+for old,new in zip(teacher_state,(learner.expert,learner.anchor)):
+ for k,v in old.items():assert torch.equal(v,new.state_dict()[k]),k
+for k in observations.keys():assert torch.equal(observations[k],storage.observations[k])
+checks.append('BC_real_update_finite_frozen_teachers_std_and_rollout_preserved')
+saved=deepcopy(learner.save());assert saved['expert_bc_optimizer_state_dict']['state']
+b=actor(deepcopy(normal));d=MLPModel(obs,groups,'critic',1,hidden_dims=(512,256,128),activation='elu',obs_normalization=True)
+restored=VelStandPPO(b,d,storage,bc_cfg=deepcopy(bc),device='cpu');restored.load(saved,None,True)
+def exact(a,b):
+ if isinstance(a,torch.Tensor):assert torch.equal(a,b)
+ elif isinstance(a,dict):
+  assert a.keys()==b.keys()
+  for k in a:exact(a[k],b[k])
+ elif isinstance(a,(list,tuple)):
+  assert len(a)==len(b)
+  for x,y in zip(a,b):exact(x,y)
+ else:assert a==b
+exact(saved,restored.save());checks.append('both_Adam_states_teacher_contract_and_update_count_exact_resume')
+bad=deepcopy(saved);bad['velstand_teacher_contract']['files']['checkpoint_path']['sha256']='wrong'
+try:restored.load(bad,None,True)
+except AssertionError:pass
+else:raise AssertionError('Changed teacher accepted')
+checks.append('changed_teacher_resume_rejected')
+try:VelStandPPO(b,d,storage,bc_cfg=None,device='cpu')
+except ValueError:pass
+else:raise AssertionError('Missing local teachers accepted')
+checks.append('missing_local_teachers_rejected_without_network_download')
+output=r/'velstand-v8-cpu-boundaries.json';assert not output.exists();output.write_text(json.dumps(dict(status='PASS',checks=checks,BC_diagnostic=stats,scope='CPU boundary/teacher/optimizer checks; not GPU physics, throughput or skill acceptance'),indent=2)+'\n');print(json.dumps(dict(status='PASS',checks=len(checks),BC=stats)),flush=True)

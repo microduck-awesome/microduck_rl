@@ -1,0 +1,155 @@
+{
+  "schema": 1,
+  "metric": "Standing initial bucket, t>.2s, tilt>45deg AND z<.08m; exact reward-time stable flag",
+  "grouping": "Exact reset quaternion pitch, 0.001 deg outer rounding tolerance",
+  "overlap": "A trajectory can fall before and after first stability; these two counts are not disjoint",
+  "script_sha256": "78ca6571249108492882c8651af5baf1fe758dc53f44bfa0ae37fcbc88e44f30",
+  "cases": [
+    {
+      "seed": 2026101591,
+      "bins": [
+        {
+          "pitch_bounds_deg": [
+            -10.001,
+            -5
+          ],
+          "trials": 38,
+          "ever_fell": 0,
+          "fell_before_first_stable": 0,
+          "fell_after_any_prior_stable": 0,
+          "final_stable": 38
+        },
+        {
+          "pitch_bounds_deg": [
+            -5,
+            0
+          ],
+          "trials": 23,
+          "ever_fell": 0,
+          "fell_before_first_stable": 0,
+          "fell_after_any_prior_stable": 0,
+          "final_stable": 23
+        },
+        {
+          "pitch_bounds_deg": [
+            0,
+            5
+          ],
+          "trials": 29,
+          "ever_fell": 0,
+          "fell_before_first_stable": 0,
+          "fell_after_any_prior_stable": 0,
+          "final_stable": 29
+        },
+        {
+          "pitch_bounds_deg": [
+            5,
+            10.001
+          ],
+          "trials": 38,
+          "ever_fell": 0,
+          "fell_before_first_stable": 0,
+          "fell_after_any_prior_stable": 0,
+          "final_stable": 38
+        }
+      ],
+      "trace_sha256": "e2c5f95651e415e032e8fc9510f762d5e9564917aa08d2b38292dcd5a4b56182"
+    },
+    {
+      "seed": 2026101592,
+      "bins": [
+        {
+          "pitch_bounds_deg": [
+            -10.001,
+            -5
+          ],
+          "trials": 33,
+          "ever_fell": 0,
+          "fell_before_first_stable": 0,
+          "fell_after_any_prior_stable": 0,
+          "final_stable": 33
+        },
+        {
+          "pitch_bounds_deg": [
+            -5,
+            0
+          ],
+          "trials": 34,
+          "ever_fell": 0,
+          "fell_before_first_stable": 0,
+          "fell_after_any_prior_stable": 0,
+          "final_stable": 34
+        },
+        {
+          "pitch_bounds_deg": [
+            0,
+            5
+          ],
+          "trials": 30,
+          "ever_fell": 0,
+          "fell_before_first_stable": 0,
+          "fell_after_any_prior_stable": 0,
+          "final_stable": 30
+        },
+        {
+          "pitch_bounds_deg": [
+            5,
+            10.001
+          ],
+          "trials": 31,
+          "ever_fell": 0,
+          "fell_before_first_stable": 0,
+          "fell_after_any_prior_stable": 0,
+          "final_stable": 31
+        }
+      ],
+      "trace_sha256": "db33e04993b3607a08bc63ece0f6108a1f94d9bcb942018fa736e36b92beed7e"
+    }
+  ],
+  "totals": [
+    {
+      "pitch_bounds_deg": [
+        -10.001,
+        -5
+      ],
+      "trials": 71,
+      "ever_fell": 0,
+      "fell_before_first_stable": 0,
+      "fell_after_any_prior_stable": 0,
+      "final_stable": 71
+    },
+    {
+      "pitch_bounds_deg": [
+        -5,
+        0
+      ],
+      "trials": 57,
+      "ever_fell": 0,
+      "fell_before_first_stable": 0,
+      "fell_after_any_prior_stable": 0,
+      "final_stable": 57
+    },
+    {
+      "pitch_bounds_deg": [
+        0,
+        5
+      ],
+      "trials": 59,
+      "ever_fell": 0,
+      "fell_before_first_stable": 0,
+      "fell_after_any_prior_stable": 0,
+      "final_stable": 59
+    },
+    {
+      "pitch_bounds_deg": [
+        5,
+        10.001
+      ],
+      "trials": 69,
+      "ever_fell": 0,
+      "fell_before_first_stable": 0,
+      "fell_after_any_prior_stable": 0,
+      "final_stable": 69
+    }
+  ]
+}

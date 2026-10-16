@@ -1,0 +1,37 @@
+from pathlib import Path
+from types import SimpleNamespace
+from dataclasses import asdict
+import json,copy,hashlib,torch,re
+from mjlab.tasks.registry import load_env_cfg,load_rl_cfg
+from mjlab_microduck.custom_v2.fresh_p04 import HEAD_CAP005_TASK,TIMEOUT_PHASE_TASK
+from mjlab_microduck.custom_v2.timeout_phase import reset_timeout_deadlines,phased_time_out,activate_first_timeout_phase
+
+def serial(x):return re.sub(r"0x[0-9a-fA-F]+","0xADDRESS",json.dumps(asdict(x),sort_keys=True,default=str))
+a=load_env_cfg(HEAD_CAP005_TASK);c=load_env_cfg(TIMEOUT_PHASE_TASK)
+assert c.terminations['time_out'].time_out is True
+assert c.events.pop('first_timeout_deadline_reset').func is reset_timeout_deadlines
+c.terminations['time_out'].func=a.terminations['time_out'].func
+assert serial(a)==serial(c)
+assert serial(load_env_cfg(HEAD_CAP005_TASK,play=True))==serial(load_env_cfg(TIMEOUT_PHASE_TASK,play=True))
+assert serial(load_rl_cfg(HEAD_CAP005_TASK))==serial(load_rl_cfg(TIMEOUT_PHASE_TASK))
+results=[]
+for device in ['cpu','cuda:0']:
+ n=4096
+ env=SimpleNamespace(device=torch.device(device),max_episode_length=400,episode_length_buf=torch.zeros(n,dtype=torch.long,device=device),sim=SimpleNamespace(data=SimpleNamespace(qpos=torch.zeros(n,22,device=device),qvel=torch.zeros(n,21,device=device))),scene=SimpleNamespace(env_origins=torch.zeros(n,3,device=device)),obs_buf={'actor':torch.zeros(n,61,device=device),'critic':torch.zeros(n,74,device=device)})
+ reset_timeout_deadlines(env,None)
+ assert not phased_time_out(env).any()
+ report=activate_first_timeout_phase(env,1920)
+ assert report['deadline_histogram'][0]==0 and sum(report['deadline_histogram'])==n
+ assert env._first_timeout_deadline.min()>=1 and env._first_timeout_deadline.max()<=400
+ assert torch.equal(env._first_timeout_deadline,torch.randint(1,401,(n,),device=device,generator=torch.Generator(device=device).manual_seed(2026101507+1920)))
+ deadlines=env._first_timeout_deadline.clone();env.episode_length_buf.copy_(deadlines-1);assert not phased_time_out(env).any();env.episode_length_buf.add_(1);assert phased_time_out(env).all()
+ ids=torch.tensor([1,7,1023],device=device);saved=env._first_timeout_deadline.clone();ages=env.episode_length_buf.clone();reset_timeout_deadlines(env,ids);mask=torch.ones(n,dtype=torch.bool,device=device);mask[ids]=False
+ assert torch.equal(env._first_timeout_deadline[mask],saved[mask]);assert torch.equal(env.episode_length_buf,ages)
+ env.episode_length_buf[ids]=399;assert not phased_time_out(env)[ids].any();env.episode_length_buf[ids]=400;assert phased_time_out(env)[ids].all()
+ try:activate_first_timeout_phase(env,1920)
+ except AssertionError:pass
+ else:raise AssertionError('Double activation accepted')
+ reset_timeout_deadlines(env,None);assert (env._first_timeout_deadline==400).all() and not env._first_timeout_active.any()
+ results.append(dict(device=device,status='PASS',recipe=report['recipe'],source_sha256=report['source_sha256'],global_rng_unchanged=report['global_cpu_cuda_rng_bitwise_unchanged'],actual_age_and_state_unchanged=report['initial_state_and_observation_bitwise_unchanged'],deadline_sha256=report['deadline_sha256'],tests=['zero_age','private_rng','threshold_before_at','partial_reset','full_reset','later_full_400','double_activation_rejected']))
+out=dict(status='PASS',configuration_diff=['train.terminations.time_out.func','train.events.first_timeout_deadline_reset'],all_other_train_play_agent_config_equal=True,devices=results)
+p=Path(__file__).resolve().parents[1]/'runs-v2/head2-timeout-phase-unit.json';p.write_text(json.dumps(out,indent=2)+'\n');print(json.dumps(out,indent=2))

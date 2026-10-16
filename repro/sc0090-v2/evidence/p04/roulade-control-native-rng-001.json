@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "restoration": {
+    "status": "PASS",
+    "source_device": "cuda:0",
+    "target_device": "cuda:1",
+    "active_stream_mapped": true,
+    "cpu_rng_sha256": "58c456f999849356ded13e6b78884216fae2fd03523a619c092b977ceff9aa2c",
+    "source_active_cuda_rng_sha256": "e6bdbe796fdffe4fa13e89e5b8b1d979cd3b5528adf96d1a2cdd856769740645",
+    "target_restored_cuda_rng_sha256": "e6bdbe796fdffe4fa13e89e5b8b1d979cd3b5528adf96d1a2cdd856769740645",
+    "cpu_and_active_cuda_states_exact": true,
+    "other_device_streams_touched": false,
+    "scope": "One saved active torch stream mapped before native new-episode reset; not physical trajectory replay"
+  },
+  "draw_oracles": [
+    {
+      "kind": "normal",
+      "values": 257,
+      "bitwise_equal": true
+    },
+    {
+      "kind": "uniform",
+      "values": 257,
+      "bitwise_equal": true
+    },
+    {
+      "kind": "permutation",
+      "values": 257,
+      "bitwise_equal": true
+    }
+  ],
+  "scope": "Actual saved cuda0 stream mapped to cuda1; default stream draws match independent native CUDA1 generator from identical saved bytes; no GPU0 allocations/streams accessed"
+}

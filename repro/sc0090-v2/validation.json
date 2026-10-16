@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "status": "PASS_PACKAGE_AND_OFFLINE_MODEL_CHECKS",
+  "generated_unix": 1792147917.5814857,
+  "pytest": {
+    "passed": 19,
+    "failed": 0,
+    "seconds": 100.7,
+    "tests": [
+      "test_sc0090_v2_cfg.py",
+      "test_sc0090_v2_feedback.py",
+      "test_sc0090_v5.py",
+      "test_sc0090_archive.py"
+    ],
+    "python": "3.12.14",
+    "pytest": "8.4.2",
+    "scope": "CPU; isolated pytest target, training venv unchanged"
+  },
+  "snapshots": 16,
+  "source_objects_sha256_verified": 615,
+  "distinct_python_sources_parsed": 321,
+  "checkpoint_sha256_verified": 25,
+  "materialized_snapshot": "groundpick_precision704",
+  "materialized_exact": true,
+  "onnx_parity": "export-parity.json",
+  "preserved_branches": "preserved-branches.json",
+  "credential_literal_scan": "no hits",
+  "new_training_or_hardware_validation": false,
+  "hardware_compatibility": "Current firmware requires alignment; see FIRMWARE-CONTRACT.md",
+  "git_index_checkout_objects_verified": 615,
+  "release_archive_entries_verified": 31,
+  "portable_launcher_import_and_help": "PASS",
+  "portable_launcher_fix": "Preserve venv executable symlink path; resolving it to base Python dropped installed packages. Fixed and actual evaluator import/help passed."
+}

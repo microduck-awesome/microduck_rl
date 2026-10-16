@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+export SC0090_CUDA_COMPAT_DIR=/home/l40-vm01/Documents/ai-research/microduck/microduck_rl/artifacts/cuda-compat-12.9/usr/local/cuda-12.9/compat
+cd /home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-catch-pitch10-worktree
+task=Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Catch2sPitch10-Repaired-S0-O0-R1
+parent=/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-short-catch-allocation-002/resume_003954.pt
+test -f runs-v2/paired-catch-pitch10-check-cpu.json
+python3 -c 'import json; assert json.load(open("runs-v2/paired-catch-pitch10-check-cpu.json"))["status"]=="PASS"'
+scripts/v2_python.sh scripts/check_catch_pitch10.py --device cuda:1 > runs-v2/paired-catch-pitch10-check-cuda1.log 2>&1
+scripts/v2_python.sh scripts/smoke_v2_ppo.py --task "$task" --device cuda:1 --num-envs 64 --iterations 5 --force-timeouts --compiled-measurement --fused-registers --head-precision --head-precision-stage 5 --mature-resume "$parent" --freeze-normalizers --output-dir runs-v2/paired-catch-pitch10-mature-smoke --report runs-v2/paired-catch-pitch10-mature-smoke/report.json > runs-v2/paired-catch-pitch10-mature-smoke.log 2>&1
+python3 -c 'import json; d=json.load(open("runs-v2/paired-catch-pitch10-mature-smoke/report.json")); assert d["terminal_bootstrap_samples"]>32; assert sum(d["actual_pose_exposure"]["recovery_pose_control_steps"])==64*24*5'
+scripts/v2_python.sh scripts/smoke_v2_ppo.py --task "$task" --device cuda:1 --num-envs 32768 --iterations 16 --compiled-measurement --fused-registers --head-precision --head-precision-stage 5 --mature-resume "$parent" --freeze-normalizers --output-dir runs-v2/paired-catch-pitch10-throughput-32768 --report runs-v2/paired-catch-pitch10-throughput-32768/report.json > runs-v2/paired-catch-pitch10-throughput-32768.log 2>&1
+python3 - <<'GATE'
+import json
+from pathlib import Path
+r=Path('runs-v2')
+g=json.loads((r/'paired-short-catch-frontier-3826-3954/report.json').read_text())
+assert g['initial_qpos_qvel_obs_origins_bitwise_paired'] and all(x['pass_current_frontier'] for x in g['frontier_gate_per_seed'])
+v=json.loads((r/'paired-short-catch-3954-common-measured/short3954/report.json').read_text())
+assert v['wins']==v['trials']==1792 and v['faults']==0
+GATE
+scripts/v2_python.sh scripts/train_v2_standup.py --task "$task" --device cuda:1 --num-envs 32768 --iterations 64 --eval-interval 64 --eval-samples 128 --head-precision --head-precision-stage 5 --freeze-normalizers --preflight runs-v2/paired-catch-pitch10-throughput-32768/report.json --adapt-from "$parent" --output runs-v2/paired-catch-pitch10-allocation-001 > runs-v2/paired-catch-pitch10-allocation-001.log 2>&1
+for evidence in runs-v2/paired-catch-pitch10-allocation-001/evaluation_*_evidence; do
+ scripts/v2_python.sh scripts/analyze_v2_standing_order.py "$evidence"
+ scripts/v2_python.sh scripts/analyze_standing_pitch_bins.py "$evidence"
+done
+scripts/v2_python.sh scripts/evaluate_v2_head_normalizer.py --task "$task" --checkpoint runs-v2/paired-catch-pitch10-allocation-001/checkpoint_004018.pt --output runs-v2/paired-catch-pitch10-4018-head-measured --device cuda:1 --repeats 8 --randomization-stage measured > runs-v2/paired-catch-pitch10-4018-head-measured.log 2>&1
+scripts/v2_python.sh /home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/head-foundation-worktree/scripts/summarize_v2_head_saved.py --device cpu --reports runs-v2/paired-catch-pitch10-4018-head-measured/report.json --output runs-v2/paired-catch-pitch10-4018-head-summary

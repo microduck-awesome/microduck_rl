@@ -110,6 +110,8 @@ class SC0090V5ActuatorCfg(BamActuatorCfg):
     kp_fw: float | None = 15.0
     kd_fw: float = 30.0
     vin: float | None = 11.1
+    graph_compute: bool = True
+    fast_friction_force: bool = True
 
     def __post_init__(self):
         super().__post_init__()
@@ -134,6 +136,10 @@ class SC0090V5Actuator(BamActuator):
         super().__init__(cfg, entity, target_ids, target_names)
         self._bam_model = load_v5_model(cfg.json_path, kp=cfg.kp_fw, kd=cfg.kd_fw, vin=cfg.vin)
         self.source_sha256 = MODEL_SHA256
+        self._compute_graph = None
+        self._graph_compute_supported = False
+        self._capture_friction = False
+        self._damping_scalar = None
 
     def edit_spec(self, spec, target_names):
         super().edit_spec(spec, target_names)
@@ -182,7 +188,35 @@ class SC0090V5Actuator(BamActuator):
         friction += stribeck_coeff * quadratic * (external_torque.sign() != motor_torque.sign())
         return friction * self.friction_scale
 
+    def _write_frictions(self, frictionloss, damping):
+        if self._capture_friction:
+            self._captured_friction = frictionloss
+            return
+        if self._damping_scalar is None or self._damping_scalar.device != frictionloss.device:
+            self._damping_scalar = torch.tensor(damping, device=frictionloss.device,
+                                                dtype=frictionloss.dtype)
+        super()._write_frictions(frictionloss, self._damping_scalar)
+
+    def _dof_friction_force(self, nv):
+        if self.cfg.fast_friction_force:
+            efc = self._data.efc
+            types, ids, forces, counts = [self._as_tensor(x) for x in
+                (efc.type, efc.id, efc.force, self._data.nefc)]
+            if (forces.is_cuda and forces.dtype == torch.float32
+                    and types.dtype == ids.dtype == counts.dtype == torch.int32):
+                from .friction_force import friction_force
+                return friction_force(types, ids, forces, counts, nv)
+        return super()._dof_friction_force(nv)
+
     def compute(self, cmd):
+        if self.cfg.graph_compute and self._graph_compute_supported:
+            from .v5_graph import V5ComputeGraph
+            if self._compute_graph is None:
+                self._compute_graph = V5ComputeGraph(self)
+            return self._compute_graph.compute(cmd, self._compute_eager)
+        return self._compute_eager(cmd)
+
+    def _compute_eager(self, cmd):
         # Keep actual velocity in the firmware D term; upstream kd_scale is
         # electrical damping, a different quantity from the firmware D register.
         model, act = self._bam_model, self._bam_model.actuator

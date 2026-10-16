@@ -1,0 +1,9 @@
+{
+  "actual_controls": 50331648,
+  "wall_seconds_from_run_json": 492.56329131126404,
+  "actual_end_to_end_controls_per_s": 102183.10801442584,
+  "wall_scope": "run.json write to ALLOCATION_COMPLETE; includes model/init/evaluation, excludes earlier imports",
+  "logged_updates": 64,
+  "update_median_s": 5.99,
+  "update_median_controls_per_s": 131290.81803005008
+}

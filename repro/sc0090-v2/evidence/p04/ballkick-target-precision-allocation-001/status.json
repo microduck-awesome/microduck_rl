@@ -1,0 +1,1738 @@
+{
+  "status": "ALLOCATION_COMPLETE",
+  "pid": 475752,
+  "updated_unix": 1792141854.5008612,
+  "completed_updates": 512,
+  "allocation_end": 512,
+  "inherited_controls": 150994944,
+  "controls": 301989888,
+  "allocation_controls": 150994944,
+  "common_step_counter": 12288,
+  "stop_reason": null,
+  "training_metrics": {
+    "boundary": "after reward before reset/forward/next commands; derived geometry retains native 5ms lag",
+    "control_samples": 150994944,
+    "metrics": {
+      "ball_forward_mean_mps": 0.7885453768769486,
+      "ball_lateral_abs_mean_mps": 0.17146252109827329,
+      "valid_contact_fraction": 0.8896636499298943,
+      "bad_contact_fraction": 0.03344339794582791,
+      "rolling_target_fraction": 0.35924924744500053,
+      "body_standing_fraction": 0.7827715012762281,
+      "head_home_mae_rad": 0.09771019887683424,
+      "head_contact_fraction": 0.000263320075141059,
+      "self_contact_fraction": 0.0002837379773457845,
+      "feedback_not_ready_fraction": 0.0,
+      "nonfinite_fraction": 0.0,
+      "timeout_sample_fraction": 0.0039036406411064994,
+      "positive_ball_reward_before_dt_mean": 3.107234924949538,
+      "ball_direction_cost_before_dt_mean": -0.6617346446160983,
+      "quiet_return_cost_before_dt_mean": -0.8118991553658771,
+      "ball_overshoot_cost_before_dt_mean": -0.059837465902707734
+    },
+    "completed_episodes": {
+      "total": 590958,
+      "ever_valid_contact": 565073,
+      "ever_rolling_target": 332765,
+      "body_standing_at_end": 483519
+    },
+    "oracle_max_abs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "scope": "Sample statistics and contact attribution; not completed kick/settle acceptance or camera stability. Independent 200Hz camera evaluation required."
+  },
+  "goal_complete": false,
+  "resume_checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/ballkick-target-precision-allocation-001/checkpoint_000512.pt",
+  "wall_seconds": 1874.9743715671357,
+  "full_process_control_per_second": 80531.73754785556,
+  "throughput": {
+    "median_control_per_second": 81001.48007080854,
+    "aggregate_control_per_second": 81318.11484225396
+  },
+  "last_ppo_diagnostics": {
+    "PPO/kl_mean": 0.00902656973397781,
+    "PPO/kl_p95": 0.018136857077479362,
+    "PPO/kl_max": 16.181804656982422,
+    "PPO/kl_minibatch_mean_max": 0.025480563867783225,
+    "PPO/clip_fraction": 0.12148640950520834,
+    "PPO/sample_visits": 2949120.0,
+    "PPO/kl_first_minibatch_mean": 5.1723594272819655e-06,
+    "PPO/kl_first_minibatch_max": 0.0002636909484863281,
+    "PPO/mean_first_minibatch_max_abs_recompute_delta": 0.0019834041595458984,
+    "PPO/std_first_minibatch_max_abs_recompute_delta": 0.0,
+    "PPO/ratio_first_minibatch_max_abs_error_from_one": 0.030842602252960205,
+    "PPO/learning_rate_after_update": 0.0002562890625000001,
+    "Grad/actor_norm_pre_mean": 4.249443476398786,
+    "Grad/actor_norm_pre_max": 11.080080032348633,
+    "Grad/actor_norm_post_mean": 0.9999997248252233,
+    "Grad/actor_norm_post_max": 1.0,
+    "Grad/actor_clip_fraction": 1.0,
+    "Grad/critic_norm_pre_mean": 11.414089270929495,
+    "Grad/critic_norm_pre_max": 24.082063674926758,
+    "Grad/critic_norm_post_mean": 0.996145686507225,
+    "Grad/critic_norm_post_max": 1.0,
+    "Grad/critic_clip_fraction": 0.9916666666666667,
+    "Grad/max_norm_limit": 1.0,
+    "Critic/return_variance": 16.463919717981476,
+    "Critic/explained_variance_valid": 1.0,
+    "Critic/explained_variance_rollout": 0.9729840166309907,
+    "Critic/mse_rollout": 0.44698662079877066,
+    "Critic/explained_variance_before": 0.9729679769504334,
+    "Critic/mse_before": 0.44790826029093367,
+    "Critic/explained_variance_after": 0.973185325542326,
+    "Critic/mse_after": 0.4439560780063734,
+    "PPO/minibatches": 120.0
+  },
+  "terminal_bootstrap_samples": 589427,
+  "timing": [
+    {
+      "completed_updates": 257,
+      "wall_s": 6.372047601034865,
+      "collection_s": 5.152204513549805,
+      "learning_s": 1.2124905586242676
+    },
+    {
+      "completed_updates": 258,
+      "wall_s": 7.524561889935285,
+      "collection_s": 6.207608222961426,
+      "learning_s": 1.1716029644012451
+    },
+    {
+      "completed_updates": 259,
+      "wall_s": 6.899781031999737,
+      "collection_s": 5.655179262161255,
+      "learning_s": 1.1638665199279785
+    },
+    {
+      "completed_updates": 260,
+      "wall_s": 6.571003786055371,
+      "collection_s": 5.309285640716553,
+      "learning_s": 1.1686458587646484
+    },
+    {
+      "completed_updates": 261,
+      "wall_s": 6.401592969894409,
+      "collection_s": 5.182484149932861,
+      "learning_s": 1.1299049854278564
+    },
+    {
+      "completed_updates": 262,
+      "wall_s": 6.332571184029803,
+      "collection_s": 5.107183218002319,
+      "learning_s": 1.1418657302856445
+    },
+    {
+      "completed_updates": 263,
+      "wall_s": 6.557950637070462,
+      "collection_s": 5.334108114242554,
+      "learning_s": 1.1440589427947998
+    },
+    {
+      "completed_updates": 264,
+      "wall_s": 6.357119027059525,
+      "collection_s": 5.1559553146362305,
+      "learning_s": 1.1247971057891846
+    },
+    {
+      "completed_updates": 265,
+      "wall_s": 6.962155700894073,
+      "collection_s": 5.721619606018066,
+      "learning_s": 1.1617097854614258
+    },
+    {
+      "completed_updates": 266,
+      "wall_s": 6.539128080941737,
+      "collection_s": 5.299417972564697,
+      "learning_s": 1.1527016162872314
+    },
+    {
+      "completed_updates": 267,
+      "wall_s": 7.1487977351062,
+      "collection_s": 5.937194585800171,
+      "learning_s": 1.1325709819793701
+    },
+    {
+      "completed_updates": 268,
+      "wall_s": 7.018249915912747,
+      "collection_s": 5.719222545623779,
+      "learning_s": 1.2169487476348877
+    },
+    {
+      "completed_updates": 269,
+      "wall_s": 7.295059001073241,
+      "collection_s": 5.981439590454102,
+      "learning_s": 1.2066259384155273
+    },
+    {
+      "completed_updates": 270,
+      "wall_s": 6.674312263960019,
+      "collection_s": 5.341547727584839,
+      "learning_s": 1.2465622425079346
+    },
+    {
+      "completed_updates": 271,
+      "wall_s": 6.54025115002878,
+      "collection_s": 5.306535482406616,
+      "learning_s": 1.145742654800415
+    },
+    {
+      "completed_updates": 272,
+      "wall_s": 6.430366649990901,
+      "collection_s": 5.169739484786987,
+      "learning_s": 1.1757962703704834
+    },
+    {
+      "completed_updates": 273,
+      "wall_s": 6.36589286592789,
+      "collection_s": 5.1386895179748535,
+      "learning_s": 1.1423046588897705
+    },
+    {
+      "completed_updates": 274,
+      "wall_s": 6.477500403067097,
+      "collection_s": 5.2420814037323,
+      "learning_s": 1.1530113220214844
+    },
+    {
+      "completed_updates": 275,
+      "wall_s": 6.706382822943851,
+      "collection_s": 5.490538120269775,
+      "learning_s": 1.1414451599121094
+    },
+    {
+      "completed_updates": 276,
+      "wall_s": 6.896975211100653,
+      "collection_s": 5.679644346237183,
+      "learning_s": 1.135643482208252
+    },
+    {
+      "completed_updates": 277,
+      "wall_s": 7.439809896983206,
+      "collection_s": 6.204885244369507,
+      "learning_s": 1.1515555381774902
+    },
+    {
+      "completed_updates": 278,
+      "wall_s": 6.228947431081906,
+      "collection_s": 5.018070459365845,
+      "learning_s": 1.1230769157409668
+    },
+    {
+      "completed_updates": 279,
+      "wall_s": 7.292950709816068,
+      "collection_s": 6.069669008255005,
+      "learning_s": 1.1353793144226074
+    },
+    {
+      "completed_updates": 280,
+      "wall_s": 7.091251623118296,
+      "collection_s": 5.895860195159912,
+      "learning_s": 1.1111083030700684
+    },
+    {
+      "completed_updates": 281,
+      "wall_s": 6.724543728865683,
+      "collection_s": 5.536831855773926,
+      "learning_s": 1.11324143409729
+    },
+    {
+      "completed_updates": 282,
+      "wall_s": 6.430422133998945,
+      "collection_s": 5.195785760879517,
+      "learning_s": 1.1504387855529785
+    },
+    {
+      "completed_updates": 283,
+      "wall_s": 6.429778571007773,
+      "collection_s": 5.183359146118164,
+      "learning_s": 1.158804178237915
+    },
+    {
+      "completed_updates": 284,
+      "wall_s": 6.666354385204613,
+      "collection_s": 5.445452928543091,
+      "learning_s": 1.133955955505371
+    },
+    {
+      "completed_updates": 285,
+      "wall_s": 6.799675702815875,
+      "collection_s": 5.611203908920288,
+      "learning_s": 1.1080620288848877
+    },
+    {
+      "completed_updates": 286,
+      "wall_s": 6.830510484986007,
+      "collection_s": 5.6174657344818115,
+      "learning_s": 1.131716012954712
+    },
+    {
+      "completed_updates": 287,
+      "wall_s": 7.06954499008134,
+      "collection_s": 5.827497959136963,
+      "learning_s": 1.152395486831665
+    },
+    {
+      "completed_updates": 288,
+      "wall_s": 7.067510769935325,
+      "collection_s": 5.86555814743042,
+      "learning_s": 1.1146595478057861
+    },
+    {
+      "completed_updates": 289,
+      "wall_s": 7.062537371180952,
+      "collection_s": 5.863247632980347,
+      "learning_s": 1.1190049648284912
+    },
+    {
+      "completed_updates": 290,
+      "wall_s": 7.2236729168798774,
+      "collection_s": 6.019057035446167,
+      "learning_s": 1.1232998371124268
+    },
+    {
+      "completed_updates": 291,
+      "wall_s": 6.589382156962529,
+      "collection_s": 5.357385635375977,
+      "learning_s": 1.1469478607177734
+    },
+    {
+      "completed_updates": 292,
+      "wall_s": 6.719984994968399,
+      "collection_s": 5.503903150558472,
+      "learning_s": 1.127197265625
+    },
+    {
+      "completed_updates": 293,
+      "wall_s": 6.459676880156621,
+      "collection_s": 5.246238708496094,
+      "learning_s": 1.13472318649292
+    },
+    {
+      "completed_updates": 294,
+      "wall_s": 6.5148371800314635,
+      "collection_s": 5.30926775932312,
+      "learning_s": 1.1271390914916992
+    },
+    {
+      "completed_updates": 295,
+      "wall_s": 6.566920857876539,
+      "collection_s": 5.316920757293701,
+      "learning_s": 1.1727619171142578
+    },
+    {
+      "completed_updates": 296,
+      "wall_s": 7.225478144129738,
+      "collection_s": 6.009177923202515,
+      "learning_s": 1.127864122390747
+    },
+    {
+      "completed_updates": 297,
+      "wall_s": 7.29256558790803,
+      "collection_s": 6.050249814987183,
+      "learning_s": 1.1514372825622559
+    },
+    {
+      "completed_updates": 298,
+      "wall_s": 7.663210273953155,
+      "collection_s": 6.432065010070801,
+      "learning_s": 1.1457493305206299
+    },
+    {
+      "completed_updates": 299,
+      "wall_s": 6.373834418132901,
+      "collection_s": 5.143349885940552,
+      "learning_s": 1.1454169750213623
+    },
+    {
+      "completed_updates": 300,
+      "wall_s": 7.841727057937533,
+      "collection_s": 6.548683404922485,
+      "learning_s": 1.206620693206787
+    },
+    {
+      "completed_updates": 301,
+      "wall_s": 6.902277937857434,
+      "collection_s": 5.6916422843933105,
+      "learning_s": 1.1207315921783447
+    },
+    {
+      "completed_updates": 302,
+      "wall_s": 6.749063044087961,
+      "collection_s": 5.578928709030151,
+      "learning_s": 1.088909387588501
+    },
+    {
+      "completed_updates": 303,
+      "wall_s": 6.418864126084372,
+      "collection_s": 5.210490465164185,
+      "learning_s": 1.1244683265686035
+    },
+    {
+      "completed_updates": 304,
+      "wall_s": 6.731048184912652,
+      "collection_s": 5.486421585083008,
+      "learning_s": 1.1559712886810303
+    },
+    {
+      "completed_updates": 305,
+      "wall_s": 6.531097800005227,
+      "collection_s": 5.3338916301727295,
+      "learning_s": 1.1225953102111816
+    },
+    {
+      "completed_updates": 306,
+      "wall_s": 7.03625858691521,
+      "collection_s": 5.806553363800049,
+      "learning_s": 1.1430046558380127
+    },
+    {
+      "completed_updates": 307,
+      "wall_s": 7.445188044104725,
+      "collection_s": 6.223504066467285,
+      "learning_s": 1.1351993083953857
+    },
+    {
+      "completed_updates": 308,
+      "wall_s": 7.280894724885002,
+      "collection_s": 6.024615526199341,
+      "learning_s": 1.166616678237915
+    },
+    {
+      "completed_updates": 309,
+      "wall_s": 7.14257601602003,
+      "collection_s": 5.90411639213562,
+      "learning_s": 1.1533925533294678
+    },
+    {
+      "completed_updates": 310,
+      "wall_s": 7.281644724076614,
+      "collection_s": 6.095374822616577,
+      "learning_s": 1.1039998531341553
+    },
+    {
+      "completed_updates": 311,
+      "wall_s": 7.4719541859813035,
+      "collection_s": 6.252663612365723,
+      "learning_s": 1.1373610496520996
+    },
+    {
+      "completed_updates": 312,
+      "wall_s": 6.791546755004674,
+      "collection_s": 5.581710338592529,
+      "learning_s": 1.1241364479064941
+    },
+    {
+      "completed_updates": 313,
+      "wall_s": 6.769109176006168,
+      "collection_s": 5.54567289352417,
+      "learning_s": 1.140580177307129
+    },
+    {
+      "completed_updates": 314,
+      "wall_s": 6.435892325127497,
+      "collection_s": 5.211544036865234,
+      "learning_s": 1.1411314010620117
+    },
+    {
+      "completed_updates": 315,
+      "wall_s": 6.647011730819941,
+      "collection_s": 5.424919605255127,
+      "learning_s": 1.1354870796203613
+    },
+    {
+      "completed_updates": 316,
+      "wall_s": 6.599276419961825,
+      "collection_s": 5.386079549789429,
+      "learning_s": 1.1355617046356201
+    },
+    {
+      "completed_updates": 317,
+      "wall_s": 7.56504080304876,
+      "collection_s": 6.355031728744507,
+      "learning_s": 1.1277496814727783
+    },
+    {
+      "completed_updates": 318,
+      "wall_s": 7.43962243408896,
+      "collection_s": 6.203032732009888,
+      "learning_s": 1.1484291553497314
+    },
+    {
+      "completed_updates": 319,
+      "wall_s": 7.482438610866666,
+      "collection_s": 6.239443778991699,
+      "learning_s": 1.1633930206298828
+    },
+    {
+      "completed_updates": 320,
+      "wall_s": 6.698226809035987,
+      "collection_s": 5.4214043617248535,
+      "learning_s": 1.1924865245819092
+    },
+    {
+      "completed_updates": 321,
+      "wall_s": 7.854326526168734,
+      "collection_s": 6.542115926742554,
+      "learning_s": 1.1473119258880615
+    },
+    {
+      "completed_updates": 322,
+      "wall_s": 7.100368574960157,
+      "collection_s": 5.839681386947632,
+      "learning_s": 1.105666160583496
+    },
+    {
+      "completed_updates": 323,
+      "wall_s": 6.82377166301012,
+      "collection_s": 5.599034547805786,
+      "learning_s": 1.1326797008514404
+    },
+    {
+      "completed_updates": 324,
+      "wall_s": 6.485333293909207,
+      "collection_s": 5.2430830001831055,
+      "learning_s": 1.1563282012939453
+    },
+    {
+      "completed_updates": 325,
+      "wall_s": 6.759086441947147,
+      "collection_s": 5.532339096069336,
+      "learning_s": 1.1361627578735352
+    },
+    {
+      "completed_updates": 326,
+      "wall_s": 6.605813713045791,
+      "collection_s": 5.408951044082642,
+      "learning_s": 1.1156539916992188
+    },
+    {
+      "completed_updates": 327,
+      "wall_s": 7.184961372055113,
+      "collection_s": 5.936061382293701,
+      "learning_s": 1.1561763286590576
+    },
+    {
+      "completed_updates": 328,
+      "wall_s": 7.587807250907645,
+      "collection_s": 6.355895280838013,
+      "learning_s": 1.1498982906341553
+    },
+    {
+      "completed_updates": 329,
+      "wall_s": 8.030267840018496,
+      "collection_s": 6.823519706726074,
+      "learning_s": 1.1275594234466553
+    },
+    {
+      "completed_updates": 330,
+      "wall_s": 6.2159045620355755,
+      "collection_s": 4.99604058265686,
+      "learning_s": 1.1349666118621826
+    },
+    {
+      "completed_updates": 331,
+      "wall_s": 7.958881258964539,
+      "collection_s": 6.738995313644409,
+      "learning_s": 1.1344573497772217
+    },
+    {
+      "completed_updates": 332,
+      "wall_s": 7.597777032991871,
+      "collection_s": 6.360562324523926,
+      "learning_s": 1.1562223434448242
+    },
+    {
+      "completed_updates": 333,
+      "wall_s": 6.818065745988861,
+      "collection_s": 5.586572647094727,
+      "learning_s": 1.1438148021697998
+    },
+    {
+      "completed_updates": 334,
+      "wall_s": 6.77964528510347,
+      "collection_s": 5.50780725479126,
+      "learning_s": 1.1870112419128418
+    },
+    {
+      "completed_updates": 335,
+      "wall_s": 6.430408045882359,
+      "collection_s": 5.204549074172974,
+      "learning_s": 1.144256830215454
+    },
+    {
+      "completed_updates": 336,
+      "wall_s": 6.758945690002292,
+      "collection_s": 5.53265905380249,
+      "learning_s": 1.1313300132751465
+    },
+    {
+      "completed_updates": 337,
+      "wall_s": 6.914572898065671,
+      "collection_s": 5.667985916137695,
+      "learning_s": 1.1629676818847656
+    },
+    {
+      "completed_updates": 338,
+      "wall_s": 7.551558170001954,
+      "collection_s": 6.298990964889526,
+      "learning_s": 1.1759552955627441
+    },
+    {
+      "completed_updates": 339,
+      "wall_s": 7.570401577046141,
+      "collection_s": 6.329834222793579,
+      "learning_s": 1.1563920974731445
+    },
+    {
+      "completed_updates": 340,
+      "wall_s": 7.288361386861652,
+      "collection_s": 6.107562303543091,
+      "learning_s": 1.0971016883850098
+    },
+    {
+      "completed_updates": 341,
+      "wall_s": 7.138112414162606,
+      "collection_s": 5.8986499309539795,
+      "learning_s": 1.1550030708312988
+    },
+    {
+      "completed_updates": 342,
+      "wall_s": 7.739106362918392,
+      "collection_s": 6.516459703445435,
+      "learning_s": 1.1424188613891602
+    },
+    {
+      "completed_updates": 343,
+      "wall_s": 7.058749509043992,
+      "collection_s": 5.8540403842926025,
+      "learning_s": 1.119877576828003
+    },
+    {
+      "completed_updates": 344,
+      "wall_s": 6.8191814159508795,
+      "collection_s": 5.5739662647247314,
+      "learning_s": 1.161698818206787
+    },
+    {
+      "completed_updates": 345,
+      "wall_s": 6.469354531029239,
+      "collection_s": 5.266207218170166,
+      "learning_s": 1.1164145469665527
+    },
+    {
+      "completed_updates": 346,
+      "wall_s": 6.7741788499988616,
+      "collection_s": 5.532849073410034,
+      "learning_s": 1.1575984954833984
+    },
+    {
+      "completed_updates": 347,
+      "wall_s": 6.693811071105301,
+      "collection_s": 5.492099761962891,
+      "learning_s": 1.1118228435516357
+    },
+    {
+      "completed_updates": 348,
+      "wall_s": 7.286887403810397,
+      "collection_s": 6.058517932891846,
+      "learning_s": 1.1242971420288086
+    },
+    {
+      "completed_updates": 349,
+      "wall_s": 7.710010724142194,
+      "collection_s": 6.475471258163452,
+      "learning_s": 1.1497862339019775
+    },
+    {
+      "completed_updates": 350,
+      "wall_s": 7.942518384894356,
+      "collection_s": 6.754411458969116,
+      "learning_s": 1.1014189720153809
+    },
+    {
+      "completed_updates": 351,
+      "wall_s": 6.295788767049089,
+      "collection_s": 5.083035707473755,
+      "learning_s": 1.1345067024230957
+    },
+    {
+      "completed_updates": 352,
+      "wall_s": 7.864447636064142,
+      "collection_s": 6.621217727661133,
+      "learning_s": 1.1598875522613525
+    },
+    {
+      "completed_updates": 353,
+      "wall_s": 7.420219936873764,
+      "collection_s": 6.190667629241943,
+      "learning_s": 1.1384108066558838
+    },
+    {
+      "completed_updates": 354,
+      "wall_s": 7.012890184065327,
+      "collection_s": 5.786253213882446,
+      "learning_s": 1.1432368755340576
+    },
+    {
+      "completed_updates": 355,
+      "wall_s": 6.506166082108393,
+      "collection_s": 5.284445762634277,
+      "learning_s": 1.1393530368804932
+    },
+    {
+      "completed_updates": 356,
+      "wall_s": 6.54796478478238,
+      "collection_s": 5.334701061248779,
+      "learning_s": 1.1289594173431396
+    },
+    {
+      "completed_updates": 357,
+      "wall_s": 6.795276829041541,
+      "collection_s": 5.540045738220215,
+      "learning_s": 1.1695566177368164
+    },
+    {
+      "completed_updates": 358,
+      "wall_s": 7.004548652097583,
+      "collection_s": 5.8291850090026855,
+      "learning_s": 1.0906240940093994
+    },
+    {
+      "completed_updates": 359,
+      "wall_s": 7.643200056860223,
+      "collection_s": 6.430080413818359,
+      "learning_s": 1.1254003047943115
+    },
+    {
+      "completed_updates": 360,
+      "wall_s": 7.793515027035028,
+      "collection_s": 6.572165012359619,
+      "learning_s": 1.1369726657867432
+    },
+    {
+      "completed_updates": 361,
+      "wall_s": 7.150817552115768,
+      "collection_s": 5.9765541553497314,
+      "learning_s": 1.0887815952301025
+    },
+    {
+      "completed_updates": 362,
+      "wall_s": 7.270215956028551,
+      "collection_s": 6.021082162857056,
+      "learning_s": 1.1519813537597656
+    },
+    {
+      "completed_updates": 363,
+      "wall_s": 7.885156024014577,
+      "collection_s": 6.610065698623657,
+      "learning_s": 1.1874775886535645
+    },
+    {
+      "completed_updates": 364,
+      "wall_s": 7.285472239833325,
+      "collection_s": 6.054328203201294,
+      "learning_s": 1.1347270011901855
+    },
+    {
+      "completed_updates": 365,
+      "wall_s": 6.832405511988327,
+      "collection_s": 5.5561604499816895,
+      "learning_s": 1.1888930797576904
+    },
+    {
+      "completed_updates": 366,
+      "wall_s": 6.594109214143828,
+      "collection_s": 5.294203519821167,
+      "learning_s": 1.2117741107940674
+    },
+    {
+      "completed_updates": 367,
+      "wall_s": 6.739081194857135,
+      "collection_s": 5.47916316986084,
+      "learning_s": 1.1790015697479248
+    },
+    {
+      "completed_updates": 368,
+      "wall_s": 6.877986830193549,
+      "collection_s": 5.608819007873535,
+      "learning_s": 1.1809618473052979
+    },
+    {
+      "completed_updates": 369,
+      "wall_s": 7.624928172910586,
+      "collection_s": 6.390938997268677,
+      "learning_s": 1.1442604064941406
+    },
+    {
+      "completed_updates": 370,
+      "wall_s": 7.804798187920824,
+      "collection_s": 6.528972625732422,
+      "learning_s": 1.193269968032837
+    },
+    {
+      "completed_updates": 371,
+      "wall_s": 7.868551786988974,
+      "collection_s": 6.636242866516113,
+      "learning_s": 1.1468417644500732
+    },
+    {
+      "completed_updates": 372,
+      "wall_s": 6.6629857800435275,
+      "collection_s": 5.417834997177124,
+      "learning_s": 1.1400678157806396
+    },
+    {
+      "completed_updates": 373,
+      "wall_s": 7.951171234948561,
+      "collection_s": 6.697158336639404,
+      "learning_s": 1.175830364227295
+    },
+    {
+      "completed_updates": 374,
+      "wall_s": 7.6999614760279655,
+      "collection_s": 6.431769847869873,
+      "learning_s": 1.184934377670288
+    },
+    {
+      "completed_updates": 375,
+      "wall_s": 7.0569553070236,
+      "collection_s": 5.8144543170928955,
+      "learning_s": 1.1603977680206299
+    },
+    {
+      "completed_updates": 376,
+      "wall_s": 6.4647918730042875,
+      "collection_s": 5.27304744720459,
+      "learning_s": 1.1051263809204102
+    },
+    {
+      "completed_updates": 377,
+      "wall_s": 6.592747896909714,
+      "collection_s": 5.384617328643799,
+      "learning_s": 1.1252624988555908
+    },
+    {
+      "completed_updates": 378,
+      "wall_s": 6.761943013174459,
+      "collection_s": 5.509126901626587,
+      "learning_s": 1.1436424255371094
+    },
+    {
+      "completed_updates": 379,
+      "wall_s": 7.311124535044655,
+      "collection_s": 6.086771249771118,
+      "learning_s": 1.1376934051513672
+    },
+    {
+      "completed_updates": 380,
+      "wall_s": 7.706434255000204,
+      "collection_s": 6.45988917350769,
+      "learning_s": 1.1644558906555176
+    },
+    {
+      "completed_updates": 381,
+      "wall_s": 8.519524782896042,
+      "collection_s": 7.308800220489502,
+      "learning_s": 1.1297132968902588
+    },
+    {
+      "completed_updates": 382,
+      "wall_s": 6.507325416896492,
+      "collection_s": 5.227219104766846,
+      "learning_s": 1.1785433292388916
+    },
+    {
+      "completed_updates": 383,
+      "wall_s": 7.5642421850934625,
+      "collection_s": 6.292898654937744,
+      "learning_s": 1.1859488487243652
+    },
+    {
+      "completed_updates": 384,
+      "wall_s": 8.099842634052038,
+      "collection_s": 6.832008600234985,
+      "learning_s": 1.1800892353057861
+    },
+    {
+      "completed_updates": 385,
+      "wall_s": 7.39900838304311,
+      "collection_s": 6.077734708786011,
+      "learning_s": 1.1422793865203857
+    },
+    {
+      "completed_updates": 386,
+      "wall_s": 6.955349277006462,
+      "collection_s": 5.612217426300049,
+      "learning_s": 1.1931791305541992
+    },
+    {
+      "completed_updates": 387,
+      "wall_s": 6.610127002932131,
+      "collection_s": 5.337185382843018,
+      "learning_s": 1.1868886947631836
+    },
+    {
+      "completed_updates": 388,
+      "wall_s": 6.740721497917548,
+      "collection_s": 5.48674464225769,
+      "learning_s": 1.1668436527252197
+    },
+    {
+      "completed_updates": 389,
+      "wall_s": 6.984278494026512,
+      "collection_s": 5.745361566543579,
+      "learning_s": 1.1584768295288086
+    },
+    {
+      "completed_updates": 390,
+      "wall_s": 7.636550097959116,
+      "collection_s": 6.421613454818726,
+      "learning_s": 1.129206657409668
+    },
+    {
+      "completed_updates": 391,
+      "wall_s": 7.650477214017883,
+      "collection_s": 6.427438497543335,
+      "learning_s": 1.1347370147705078
+    },
+    {
+      "completed_updates": 392,
+      "wall_s": 7.699410364031792,
+      "collection_s": 6.447091102600098,
+      "learning_s": 1.168088436126709
+    },
+    {
+      "completed_updates": 393,
+      "wall_s": 7.006969616981223,
+      "collection_s": 5.756068468093872,
+      "learning_s": 1.1665899753570557
+    },
+    {
+      "completed_updates": 394,
+      "wall_s": 7.835556179983541,
+      "collection_s": 6.628272294998169,
+      "learning_s": 1.1229560375213623
+    },
+    {
+      "completed_updates": 395,
+      "wall_s": 7.524203256005421,
+      "collection_s": 6.316296815872192,
+      "learning_s": 1.1301605701446533
+    },
+    {
+      "completed_updates": 396,
+      "wall_s": 6.9011875400319695,
+      "collection_s": 5.701612949371338,
+      "learning_s": 1.1115672588348389
+    },
+    {
+      "completed_updates": 397,
+      "wall_s": 6.611113507067785,
+      "collection_s": 5.367460012435913,
+      "learning_s": 1.1604835987091064
+    },
+    {
+      "completed_updates": 398,
+      "wall_s": 6.618110843002796,
+      "collection_s": 5.398327589035034,
+      "learning_s": 1.1398735046386719
+    },
+    {
+      "completed_updates": 399,
+      "wall_s": 6.83235876285471,
+      "collection_s": 5.600700855255127,
+      "learning_s": 1.1454637050628662
+    },
+    {
+      "completed_updates": 400,
+      "wall_s": 7.563632493140176,
+      "collection_s": 6.304418563842773,
+      "learning_s": 1.179807186126709
+    },
+    {
+      "completed_updates": 401,
+      "wall_s": 7.829595573013648,
+      "collection_s": 6.6096882820129395,
+      "learning_s": 1.1403920650482178
+    },
+    {
+      "completed_updates": 402,
+      "wall_s": 8.310973237035796,
+      "collection_s": 7.091390132904053,
+      "learning_s": 1.1405417919158936
+    },
+    {
+      "completed_updates": 403,
+      "wall_s": 6.536209665937349,
+      "collection_s": 5.347835063934326,
+      "learning_s": 1.1059491634368896
+    },
+    {
+      "completed_updates": 404,
+      "wall_s": 7.795512035954744,
+      "collection_s": 6.570154190063477,
+      "learning_s": 1.1407442092895508
+    },
+    {
+      "completed_updates": 405,
+      "wall_s": 7.865519151091576,
+      "collection_s": 6.609591007232666,
+      "learning_s": 1.1694777011871338
+    },
+    {
+      "completed_updates": 406,
+      "wall_s": 7.528296462958679,
+      "collection_s": 6.215732574462891,
+      "learning_s": 1.2338054180145264
+    },
+    {
+      "completed_updates": 407,
+      "wall_s": 6.789540842873976,
+      "collection_s": 5.50736141204834,
+      "learning_s": 1.1913490295410156
+    },
+    {
+      "completed_updates": 408,
+      "wall_s": 6.746129946084693,
+      "collection_s": 5.494384765625,
+      "learning_s": 1.168212652206421
+    },
+    {
+      "completed_updates": 409,
+      "wall_s": 6.8165441900491714,
+      "collection_s": 5.531047582626343,
+      "learning_s": 1.1992735862731934
+    },
+    {
+      "completed_updates": 410,
+      "wall_s": 7.274772725068033,
+      "collection_s": 6.0329999923706055,
+      "learning_s": 1.15869140625
+    },
+    {
+      "completed_updates": 411,
+      "wall_s": 7.888098826864734,
+      "collection_s": 6.622107982635498,
+      "learning_s": 1.1797890663146973
+    },
+    {
+      "completed_updates": 412,
+      "wall_s": 7.933259275043383,
+      "collection_s": 6.668234348297119,
+      "learning_s": 1.1779601573944092
+    },
+    {
+      "completed_updates": 413,
+      "wall_s": 7.648148654028773,
+      "collection_s": 6.416892766952515,
+      "learning_s": 1.1444079875946045
+    },
+    {
+      "completed_updates": 414,
+      "wall_s": 7.4171003110241145,
+      "collection_s": 6.149177551269531,
+      "learning_s": 1.18039870262146
+    },
+    {
+      "completed_updates": 415,
+      "wall_s": 7.971103438874707,
+      "collection_s": 6.736076354980469,
+      "learning_s": 1.1509242057800293
+    },
+    {
+      "completed_updates": 416,
+      "wall_s": 7.54335822397843,
+      "collection_s": 6.306764841079712,
+      "learning_s": 1.1499192714691162
+    },
+    {
+      "completed_updates": 417,
+      "wall_s": 7.033590339124203,
+      "collection_s": 5.760230302810669,
+      "learning_s": 1.1826956272125244
+    },
+    {
+      "completed_updates": 418,
+      "wall_s": 6.779460462043062,
+      "collection_s": 5.4980857372283936,
+      "learning_s": 1.1967613697052002
+    },
+    {
+      "completed_updates": 419,
+      "wall_s": 6.798039763933048,
+      "collection_s": 5.56209659576416,
+      "learning_s": 1.1504793167114258
+    },
+    {
+      "completed_updates": 420,
+      "wall_s": 6.980621465016156,
+      "collection_s": 5.69350266456604,
+      "learning_s": 1.202535629272461
+    },
+    {
+      "completed_updates": 421,
+      "wall_s": 7.764484243933111,
+      "collection_s": 6.504046678543091,
+      "learning_s": 1.1713809967041016
+    },
+    {
+      "completed_updates": 422,
+      "wall_s": 7.789168325951323,
+      "collection_s": 6.560699939727783,
+      "learning_s": 1.1420025825500488
+    },
+    {
+      "completed_updates": 423,
+      "wall_s": 8.053820873145014,
+      "collection_s": 6.825751543045044,
+      "learning_s": 1.142287254333496
+    },
+    {
+      "completed_updates": 424,
+      "wall_s": 6.700564153958112,
+      "collection_s": 5.458824872970581,
+      "learning_s": 1.1562457084655762
+    },
+    {
+      "completed_updates": 425,
+      "wall_s": 7.8593609989620745,
+      "collection_s": 6.622474670410156,
+      "learning_s": 1.1500890254974365
+    },
+    {
+      "completed_updates": 426,
+      "wall_s": 7.811786209931597,
+      "collection_s": 6.555254697799683,
+      "learning_s": 1.1780307292938232
+    },
+    {
+      "completed_updates": 427,
+      "wall_s": 7.281866084085777,
+      "collection_s": 6.071051359176636,
+      "learning_s": 1.1273260116577148
+    },
+    {
+      "completed_updates": 428,
+      "wall_s": 6.782584925880656,
+      "collection_s": 5.542065143585205,
+      "learning_s": 1.1567199230194092
+    },
+    {
+      "completed_updates": 429,
+      "wall_s": 6.909485859097913,
+      "collection_s": 5.627601861953735,
+      "learning_s": 1.1932165622711182
+    },
+    {
+      "completed_updates": 430,
+      "wall_s": 6.762824329081923,
+      "collection_s": 5.562854290008545,
+      "learning_s": 1.115515947341919
+    },
+    {
+      "completed_updates": 431,
+      "wall_s": 7.508376129902899,
+      "collection_s": 6.256176710128784,
+      "learning_s": 1.168752670288086
+    },
+    {
+      "completed_updates": 432,
+      "wall_s": 7.803223139140755,
+      "collection_s": 6.584136486053467,
+      "learning_s": 1.1358070373535156
+    },
+    {
+      "completed_updates": 433,
+      "wall_s": 7.72705137799494,
+      "collection_s": 6.496918201446533,
+      "learning_s": 1.1452436447143555
+    },
+    {
+      "completed_updates": 434,
+      "wall_s": 7.379593079909682,
+      "collection_s": 6.142052412033081,
+      "learning_s": 1.1566038131713867
+    },
+    {
+      "completed_updates": 435,
+      "wall_s": 7.509258476085961,
+      "collection_s": 6.200975656509399,
+      "learning_s": 1.2184574604034424
+    },
+    {
+      "completed_updates": 436,
+      "wall_s": 7.858983678976074,
+      "collection_s": 6.611110210418701,
+      "learning_s": 1.1609036922454834
+    },
+    {
+      "completed_updates": 437,
+      "wall_s": 7.397082303883508,
+      "collection_s": 6.196840524673462,
+      "learning_s": 1.1148700714111328
+    },
+    {
+      "completed_updates": 438,
+      "wall_s": 7.291418259963393,
+      "collection_s": 6.027666807174683,
+      "learning_s": 1.1401755809783936
+    },
+    {
+      "completed_updates": 439,
+      "wall_s": 6.624917237088084,
+      "collection_s": 5.397542715072632,
+      "learning_s": 1.1412603855133057
+    },
+    {
+      "completed_updates": 440,
+      "wall_s": 6.909600618062541,
+      "collection_s": 5.678617000579834,
+      "learning_s": 1.1472249031066895
+    },
+    {
+      "completed_updates": 441,
+      "wall_s": 7.234484247863293,
+      "collection_s": 6.021081209182739,
+      "learning_s": 1.1280057430267334
+    },
+    {
+      "completed_updates": 442,
+      "wall_s": 7.873707075137645,
+      "collection_s": 6.68175745010376,
+      "learning_s": 1.1034331321716309
+    },
+    {
+      "completed_updates": 443,
+      "wall_s": 7.929199924925342,
+      "collection_s": 6.641745567321777,
+      "learning_s": 1.2057945728302002
+    },
+    {
+      "completed_updates": 444,
+      "wall_s": 7.968304282985628,
+      "collection_s": 6.737883806228638,
+      "learning_s": 1.1471881866455078
+    },
+    {
+      "completed_updates": 445,
+      "wall_s": 6.943939636927098,
+      "collection_s": 5.703291177749634,
+      "learning_s": 1.1508421897888184
+    },
+    {
+      "completed_updates": 446,
+      "wall_s": 7.899710130179301,
+      "collection_s": 6.675490856170654,
+      "learning_s": 1.114441156387329
+    },
+    {
+      "completed_updates": 447,
+      "wall_s": 7.83726391592063,
+      "collection_s": 6.6181557178497314,
+      "learning_s": 1.1315572261810303
+    },
+    {
+      "completed_updates": 448,
+      "wall_s": 7.410801675869152,
+      "collection_s": 6.160830974578857,
+      "learning_s": 1.1652095317840576
+    },
+    {
+      "completed_updates": 449,
+      "wall_s": 7.277117391116917,
+      "collection_s": 5.958147764205933,
+      "learning_s": 1.1537220478057861
+    },
+    {
+      "completed_updates": 450,
+      "wall_s": 7.154470650013536,
+      "collection_s": 5.832470893859863,
+      "learning_s": 1.142054557800293
+    },
+    {
+      "completed_updates": 451,
+      "wall_s": 7.226010773098096,
+      "collection_s": 5.9725096225738525,
+      "learning_s": 1.1653633117675781
+    },
+    {
+      "completed_updates": 452,
+      "wall_s": 7.720207802951336,
+      "collection_s": 6.457809925079346,
+      "learning_s": 1.178898811340332
+    },
+    {
+      "completed_updates": 453,
+      "wall_s": 7.876291388878599,
+      "collection_s": 6.659220933914185,
+      "learning_s": 1.131377935409546
+    },
+    {
+      "completed_updates": 454,
+      "wall_s": 8.380866416031495,
+      "collection_s": 7.179327011108398,
+      "learning_s": 1.118809700012207
+    },
+    {
+      "completed_updates": 455,
+      "wall_s": 6.594163476023823,
+      "collection_s": 5.380110740661621,
+      "learning_s": 1.1342706680297852
+    },
+    {
+      "completed_updates": 456,
+      "wall_s": 7.745637519983575,
+      "collection_s": 6.517159938812256,
+      "learning_s": 1.1434967517852783
+    },
+    {
+      "completed_updates": 457,
+      "wall_s": 7.866943048080429,
+      "collection_s": 6.649198532104492,
+      "learning_s": 1.1320362091064453
+    },
+    {
+      "completed_updates": 458,
+      "wall_s": 7.6528686999809,
+      "collection_s": 6.426938533782959,
+      "learning_s": 1.138404369354248
+    },
+    {
+      "completed_updates": 459,
+      "wall_s": 7.194907611003146,
+      "collection_s": 5.9975645542144775,
+      "learning_s": 1.1154229640960693
+    },
+    {
+      "completed_updates": 460,
+      "wall_s": 6.909117573872209,
+      "collection_s": 5.666039228439331,
+      "learning_s": 1.1574442386627197
+    },
+    {
+      "completed_updates": 461,
+      "wall_s": 7.228126561036333,
+      "collection_s": 5.983541011810303,
+      "learning_s": 1.159010410308838
+    },
+    {
+      "completed_updates": 462,
+      "wall_s": 7.53973283409141,
+      "collection_s": 6.303496360778809,
+      "learning_s": 1.159212350845337
+    },
+    {
+      "completed_updates": 463,
+      "wall_s": 7.89406448090449,
+      "collection_s": 6.660379648208618,
+      "learning_s": 1.1478567123413086
+    },
+    {
+      "completed_updates": 464,
+      "wall_s": 7.826153570087627,
+      "collection_s": 6.59037709236145,
+      "learning_s": 1.1554841995239258
+    },
+    {
+      "completed_updates": 465,
+      "wall_s": 7.7829833519645035,
+      "collection_s": 6.5235066413879395,
+      "learning_s": 1.1675889492034912
+    },
+    {
+      "completed_updates": 466,
+      "wall_s": 7.100585902109742,
+      "collection_s": 5.896437406539917,
+      "learning_s": 1.1233601570129395
+    },
+    {
+      "completed_updates": 467,
+      "wall_s": 7.847254345891997,
+      "collection_s": 6.628216028213501,
+      "learning_s": 1.133115530014038
+    },
+    {
+      "completed_updates": 468,
+      "wall_s": 7.808160671964288,
+      "collection_s": 6.569930791854858,
+      "learning_s": 1.1524503231048584
+    },
+    {
+      "completed_updates": 469,
+      "wall_s": 7.305724896956235,
+      "collection_s": 6.031349420547485,
+      "learning_s": 1.1887500286102295
+    },
+    {
+      "completed_updates": 470,
+      "wall_s": 7.1888272990472615,
+      "collection_s": 5.985438346862793,
+      "learning_s": 1.119652271270752
+    },
+    {
+      "completed_updates": 471,
+      "wall_s": 7.235605572117493,
+      "collection_s": 5.945008277893066,
+      "learning_s": 1.2072904109954834
+    },
+    {
+      "completed_updates": 472,
+      "wall_s": 7.3660056500229985,
+      "collection_s": 6.1061811447143555,
+      "learning_s": 1.1770496368408203
+    },
+    {
+      "completed_updates": 473,
+      "wall_s": 7.757274651899934,
+      "collection_s": 6.544304370880127,
+      "learning_s": 1.126978874206543
+    },
+    {
+      "completed_updates": 474,
+      "wall_s": 7.853426896966994,
+      "collection_s": 6.632185220718384,
+      "learning_s": 1.1354327201843262
+    },
+    {
+      "completed_updates": 475,
+      "wall_s": 8.238175955135375,
+      "collection_s": 7.012247800827026,
+      "learning_s": 1.1393988132476807
+    },
+    {
+      "completed_updates": 476,
+      "wall_s": 6.639508803840727,
+      "collection_s": 5.413581848144531,
+      "learning_s": 1.1412358283996582
+    },
+    {
+      "completed_updates": 477,
+      "wall_s": 8.029663446126506,
+      "collection_s": 6.81963038444519,
+      "learning_s": 1.1210825443267822
+    },
+    {
+      "completed_updates": 478,
+      "wall_s": 7.81376723991707,
+      "collection_s": 6.611943483352661,
+      "learning_s": 1.1175508499145508
+    },
+    {
+      "completed_updates": 479,
+      "wall_s": 7.842785893008113,
+      "collection_s": 6.508567571640015,
+      "learning_s": 1.2544429302215576
+    },
+    {
+      "completed_updates": 480,
+      "wall_s": 7.602253027027473,
+      "collection_s": 6.354275941848755,
+      "learning_s": 1.1657969951629639
+    },
+    {
+      "completed_updates": 481,
+      "wall_s": 7.202966901939362,
+      "collection_s": 5.94983696937561,
+      "learning_s": 1.1629583835601807
+    },
+    {
+      "completed_updates": 482,
+      "wall_s": 7.190734195057303,
+      "collection_s": 5.936875820159912,
+      "learning_s": 1.1691782474517822
+    },
+    {
+      "completed_updates": 483,
+      "wall_s": 7.706034230999649,
+      "collection_s": 6.465530157089233,
+      "learning_s": 1.1542398929595947
+    },
+    {
+      "completed_updates": 484,
+      "wall_s": 7.889577166875824,
+      "collection_s": 6.655830383300781,
+      "learning_s": 1.152559518814087
+    },
+    {
+      "completed_updates": 485,
+      "wall_s": 7.849727693013847,
+      "collection_s": 6.6547627449035645,
+      "learning_s": 1.1082396507263184
+    },
+    {
+      "completed_updates": 486,
+      "wall_s": 7.602891059126705,
+      "collection_s": 6.3568620681762695,
+      "learning_s": 1.1365232467651367
+    },
+    {
+      "completed_updates": 487,
+      "wall_s": 7.448325366945937,
+      "collection_s": 6.213976621627808,
+      "learning_s": 1.1454524993896484
+    },
+    {
+      "completed_updates": 488,
+      "wall_s": 7.902748103952035,
+      "collection_s": 6.6570234298706055,
+      "learning_s": 1.1657750606536865
+    },
+    {
+      "completed_updates": 489,
+      "wall_s": 7.8458157251589,
+      "collection_s": 6.544324159622192,
+      "learning_s": 1.213181495666504
+    },
+    {
+      "completed_updates": 490,
+      "wall_s": 7.593775979941711,
+      "collection_s": 6.369572639465332,
+      "learning_s": 1.1353018283843994
+    },
+    {
+      "completed_updates": 491,
+      "wall_s": 7.297491727862507,
+      "collection_s": 6.036117076873779,
+      "learning_s": 1.1791326999664307
+    },
+    {
+      "completed_updates": 492,
+      "wall_s": 7.454414473148063,
+      "collection_s": 6.177055835723877,
+      "learning_s": 1.1900367736816406
+    },
+    {
+      "completed_updates": 493,
+      "wall_s": 7.5433837219607085,
+      "collection_s": 6.340137481689453,
+      "learning_s": 1.118624210357666
+    },
+    {
+      "completed_updates": 494,
+      "wall_s": 7.864166725892574,
+      "collection_s": 6.628645420074463,
+      "learning_s": 1.1562211513519287
+    },
+    {
+      "completed_updates": 495,
+      "wall_s": 7.825460780179128,
+      "collection_s": 6.596760034561157,
+      "learning_s": 1.1551024913787842
+    },
+    {
+      "completed_updates": 496,
+      "wall_s": 8.08012067200616,
+      "collection_s": 6.809216260910034,
+      "learning_s": 1.1834237575531006
+    },
+    {
+      "completed_updates": 497,
+      "wall_s": 6.9179685458075255,
+      "collection_s": 5.690204858779907,
+      "learning_s": 1.1431078910827637
+    },
+    {
+      "completed_updates": 498,
+      "wall_s": 7.942910614190623,
+      "collection_s": 6.655968904495239,
+      "learning_s": 1.2050304412841797
+    },
+    {
+      "completed_updates": 499,
+      "wall_s": 7.815758920973167,
+      "collection_s": 6.6123387813568115,
+      "learning_s": 1.1209712028503418
+    },
+    {
+      "completed_updates": 500,
+      "wall_s": 7.8276198748499155,
+      "collection_s": 6.572544574737549,
+      "learning_s": 1.1656410694122314
+    },
+    {
+      "completed_updates": 501,
+      "wall_s": 7.526795263169333,
+      "collection_s": 6.274534702301025,
+      "learning_s": 1.1694526672363281
+    },
+    {
+      "completed_updates": 502,
+      "wall_s": 7.317570767831057,
+      "collection_s": 6.09503436088562,
+      "learning_s": 1.1387474536895752
+    },
+    {
+      "completed_updates": 503,
+      "wall_s": 7.424357976065949,
+      "collection_s": 6.179573059082031,
+      "learning_s": 1.1603991985321045
+    },
+    {
+      "completed_updates": 504,
+      "wall_s": 8.144743771059439,
+      "collection_s": 6.8936827182769775,
+      "learning_s": 1.1661605834960938
+    },
+    {
+      "completed_updates": 505,
+      "wall_s": 7.79550430807285,
+      "collection_s": 6.576920509338379,
+      "learning_s": 1.1305344104766846
+    },
+    {
+      "completed_updates": 506,
+      "wall_s": 8.527187843807042,
+      "collection_s": 7.288718938827515,
+      "learning_s": 1.153022050857544
+    },
+    {
+      "completed_updates": 507,
+      "wall_s": 6.612048545153812,
+      "collection_s": 5.359043598175049,
+      "learning_s": 1.169706106185913
+    },
+    {
+      "completed_updates": 508,
+      "wall_s": 7.724778076866642,
+      "collection_s": 6.47191596031189,
+      "learning_s": 1.1746177673339844
+    },
+    {
+      "completed_updates": 509,
+      "wall_s": 7.946775882039219,
+      "collection_s": 6.706629991531372,
+      "learning_s": 1.1513679027557373
+    },
+    {
+      "completed_updates": 510,
+      "wall_s": 7.844243668951094,
+      "collection_s": 6.595630407333374,
+      "learning_s": 1.162182092666626
+    },
+    {
+      "completed_updates": 511,
+      "wall_s": 7.704382373020053,
+      "collection_s": 6.460801601409912,
+      "learning_s": 1.168766975402832
+    },
+    {
+      "completed_updates": 512,
+      "wall_s": 7.37179213995114,
+      "collection_s": 6.166216135025024,
+      "learning_s": 1.1233766078948975
+    }
+  ],
+  "source_sha256": {
+    "scripts/train_v2_ballkick.py": "a9abc693748a5c57e7106581e48fbf98bde862a91ea5124f49c062ea5a5ffe1b",
+    "scripts/v2_python.sh": "a51513a2ec91e2664b757db012c1b8d955dfd79642389e59f7976a6dd8549ae5",
+    "src/mjlab_microduck/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/actuator/__init__.py": "181bfbec32115818720695915322f6e2c860fe87767570662a029f8e2d01f12d",
+    "src/mjlab_microduck/actuator/friction_dr_bam.py": "20d25ce2fd06a94bc4fd5356a657710a0959a352bad3dfcc670122f0f0bcd4d4",
+    "src/mjlab_microduck/actuator/friction_force.py": "c84648a4c15a7173a9580d72deff2a9356b8c3aa2fd086413a795924d438a7f6",
+    "src/mjlab_microduck/actuator/sc0090_v5.py": "c42a7e54aac610c9ef1f142b32706821e54ea42163480393842632f35924e451",
+    "src/mjlab_microduck/actuator/v5_graph.py": "9cc192dfb180f67922565742398311c5d007c1aa3946ac5788722f31b2d71796",
+    "src/mjlab_microduck/custom_v2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/custom_v2/ball_kick.py": "1cf330709730210aeaf87175daeea0a0bb10da84091432ab91156733eadca71d",
+    "src/mjlab_microduck/custom_v2/ball_kick_finish.py": "2f6158e60aeede3b8acd4dc475dd503f3ea2d9d9172b1a38811438ffe18903c9",
+    "src/mjlab_microduck/custom_v2/ball_kick_health.py": "a428ee254a8cae9f85051a0bdadd191da4e43d2732dc005fab2f17076d6f1e2b",
+    "src/mjlab_microduck/custom_v2/ball_kick_health_state.py": "76b098d2d05d37f3afee6fcd3e93704b986aa9b87d07ec902e0e7ce43130d56b",
+    "src/mjlab_microduck/custom_v2/ball_kick_metrics.py": "9d9fe6711d11993f68c5cb874137e774a35384aa2561bb23bbfdeadd78cc5e7a",
+    "src/mjlab_microduck/custom_v2/ball_kick_precision.py": "4677914ee27dc344d126a4bc75e6e5b6fdad569169171a836302626785640c3a",
+    "src/mjlab_microduck/custom_v2/ball_kick_state.py": "0b48cea2ab820b56afd64a872174fc2795124393fd5c219411fa889ca25b361d",
+    "src/mjlab_microduck/custom_v2/commands.py": "5dc0c05ffe76bbdb2cb2b492b55e201d6993253521417fc56fd64b67b028fd9c",
+    "src/mjlab_microduck/custom_v2/error_proxy.py": "5b1449037b5ee33d74e350cd5e44f02592618152f24166ce054f1e44d2670874",
+    "src/mjlab_microduck/custom_v2/exposure.py": "25df3d2d91c517976a43c91dc8051b971b6e056c43ce596d1d54ab43cc8babb4",
+    "src/mjlab_microduck/custom_v2/fast_native.py": "f841badf9793af5085b75c93e8c5078c67aebd6c701a9f9aa917a93fa444af9e",
+    "src/mjlab_microduck/custom_v2/feedback_diagnostics.py": "50c7f2697bde7821ba5777ee3199ab10cab578dda6e3f465d22c888c52933439",
+    "src/mjlab_microduck/custom_v2/feedback_repair.py": "52da329408923297f52d98585714f554e472100334b1f57d43204da3c5fffa55",
+    "src/mjlab_microduck/custom_v2/firmware_ls3.py": "b39086c7a288a06bb606bb9c1a57be1a12cb56b28b6c7f24d9591a4fbbd1bdab",
+    "src/mjlab_microduck/custom_v2/fresh_p04.py": "57dd70686b3874b6e8ae7b97d9378df8eab7dfb9890936563bccb96941aa079d",
+    "src/mjlab_microduck/custom_v2/frozen_normalization.py": "e75be9b1214c4bd8a0fabd79987284849c866ebb73914786dce61bda48f37a02",
+    "src/mjlab_microduck/custom_v2/head_accuracy.py": "746d6b3d7a3e40deaf5a88f9a904604e754db399e6b185d89e324dbb3a0ba29e",
+    "src/mjlab_microduck/custom_v2/head_exploration.py": "e47e8a240c912e45b0f08ce7d5469e2f91f030ce839065fe9a5098cc05612b14",
+    "src/mjlab_microduck/custom_v2/head_metrics.py": "5641c7679671f9fe124af5968a585df9e1425b9d3fa4462992f0c3d35f503599",
+    "src/mjlab_microduck/custom_v2/microduck_v2.py": "c59ea7d490fb2030fb335588734e921d0104d03a718569bff83d5f0fd1952213",
+    "src/mjlab_microduck/custom_v2/ppo.py": "a2574a090d59a257217a7ce97bc762b3220a974c1f5aaafa59dbaa99c3a4532a",
+    "src/mjlab_microduck/custom_v2/recovery.py": "f4e14fe56c4b44b7004ca16d8d38b8b7d51fa5e2f597a55e4d17b53adc94172e",
+    "src/mjlab_microduck/custom_v2/reset_geometry.py": "340bd29a2e33aca58e05ab18129fa5a1cf31d4d23171d350c7271a53a59dc539",
+    "src/mjlab_microduck/custom_v2/runtime.py": "66786dc0f292f161343e03ddf8ed55e885bc119c554aa6279e3e8cd8c14a918e",
+    "src/mjlab_microduck/custom_v2/terminal.py": "a6e476ebf4f2667431f1be15f4f1b08dd32736a322c873ed8d07edaaa2a6626b",
+    "src/mjlab_microduck/custom_v2/training.py": "5a27543094e9ca522f922f8b0546acd17aa51701970a163659aca2c1c75656da",
+    "src/mjlab_microduck/custom_v2/velstand.py": "69b6c3c8563b4aa24c9cc1d24e9beb25e93a0506088e7f4e01a416f123ad9ee5",
+    "src/mjlab_microduck/custom_v2/velstand_ppo.py": "0ddbddd09a11758dbca4bf067734f85358ed74d9ad0b966a8aeebd1e92651781",
+    "src/mjlab_microduck/custom_v2/walking_metrics.py": "5c7f0b802a526ef863c2bba2ad79097ee07058f492af4ee54c11071bb02deb65",
+    "src/mjlab_microduck/export.py": "ef4d851eee70ce0d1c896a0be14fd4a936a0d17e83649dfd572a5282ffcdf5b9",
+    "src/mjlab_microduck/hf_jobs.py": "d447a20e1feed595ef29a1a19e6a51630327341eb270f0acf4fcb314f69fd285",
+    "src/mjlab_microduck/physics/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/physics/_cpu_warp_contacts.cpp": "9c3f41f8eb31e10f691423ea4694deb4ae13619128429dadb558776191388346",
+    "src/mjlab_microduck/physics/cpu_warp_contacts.py": "84ad6f3a96c06bc5552ca63fbd9f396d255545c54b956f8bd9bdba0abaa827dc",
+    "src/mjlab_microduck/pickup/__init__.py": "7f9ef6fbcbd8b157b71f978092f41cdf8505992a6ecd91b59fc2b0fdef8cad2f",
+    "src/mjlab_microduck/pickup/features.py": "e1f49f64ce597215bca8d2734476fe5aa615a46a6bb6387c57fdd9a4b35f5015",
+    "src/mjlab_microduck/pickup/hand.py": "6b3229a8784e685b2837d44aa11d2c5cdb46e8337de62db8591572ba17537c3a",
+    "src/mjlab_microduck/pickup/model.py": "d738f60870bfa44be8d14afca4ec05d2c1920968202419bd814949b25d94813e",
+    "src/mjlab_microduck/ppo_diagnostics.py": "ba7b23147263c5b9a54e9475f6996d2e77d189d177c6eb8952ece74667452a8f",
+    "src/mjlab_microduck/publish/__init__.py": "7768b41714b565cc97b5553a170b5d95cf17abafe6baa0f9a4be0b7e8cfec7bf",
+    "src/mjlab_microduck/publish/cli.py": "adb198a8b2c0aa10069cbcc3fe2c32b5540533cf04b410caa190b3bdcc24058b",
+    "src/mjlab_microduck/publish/manifest.py": "d66bae7920c2a86fef56877d8ced25c4b1fee67d5637da56d284056722dc7866",
+    "src/mjlab_microduck/robot/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/robot/microduck/add_backlash.py": "805a17ba4ad60f7a2ba20ff90879ad93a6db66013150c5ad9be3d31bc7b4252c",
+    "src/mjlab_microduck/robot/microduck_constants.py": "0e7097afe833ac1259b197f9854d01c1666be03ac0c9b090233b4fbc7619eb94",
+    "src/mjlab_microduck/robot/testbench_constants.py": "bf5e95376131471443e1daddf5abb0bc6326bc6b5c49bfb352774bcc6b011b9f",
+    "src/mjlab_microduck/sc0090/__init__.py": "2ca18a32cf435624efd6bc3113c498d189da24dc0f8ea728a120172c3f71c9e5",
+    "src/mjlab_microduck/sc0090/observer.py": "7b9da38512efda458621b63387bc317ed1b676e5d4a3e8b98a506a95cd5c06c7",
+    "src/mjlab_microduck/sc0090/registers.py": "5dc1b99ee04d38bcf08d792caa9bf4798212c665286858c5447c9d0b83faf2e2",
+    "src/mjlab_microduck/sc0090/stream.py": "f4d4a48af4d2d03b24aa45233b7660de21925dcb5a1cee8c1f26c42a0cc1c6f6",
+    "src/mjlab_microduck/sc0090_v2/__init__.py": "3cb742a139209151b93552e2e5f28d289faf8e35a25ee3f23e968da544cd5e0a",
+    "src/mjlab_microduck/sc0090_v2/action.py": "9ceaa9a68bb22e35a827e014600cc59fdbec1efb4adb9f45b35a9f0a8a482e3e",
+    "src/mjlab_microduck/sc0090_v2/artifacts.py": "30fb7e7f46a31946b5c0be4b1144770a8ad6d1613db7aead770365734cf549f3",
+    "src/mjlab_microduck/sc0090_v2/contract.py": "3de49158641ebfdc92f22ab5a7a086fb49f01457d1414ce752ce45f7e609c0bf",
+    "src/mjlab_microduck/sc0090_v2/feedback.py": "dc5ef0c04cc9a7e84bbe12a3a8319a22e102eb69c66f993a38b8587fc97e4740",
+    "src/mjlab_microduck/sc0090_v2/graph.py": "a49eff096fe2246dce595ea03af8bd84261636cde58598a1a3a1e4ce5f5e7222",
+    "src/mjlab_microduck/sc0090_v2/measurement/__init__.py": "96d1f26fe354f1a6f9a74a4c7cc89ff76a2069851d8b4afbf734785d9205dfcd",
+    "src/mjlab_microduck/sc0090_v2/measurement/compact.py": "cc1b50271c30d1ebb0f9995f5b48a87f24af663cd1b59b0c526248a2895a8b4d",
+    "src/mjlab_microduck/sc0090_v2/measurement/compiled_registers.py": "0f9671f5a31ddcf232b389d8fcf5b3b736953d00290f470574e0f0882819e4f1",
+    "src/mjlab_microduck/sc0090_v2/measurement/compiled_stream.py": "da609f2b075e45bd19be091cb89467fe26e5ef6a1bc9c9b56a3b2a58a33d0aa3",
+    "src/mjlab_microduck/sc0090_v2/measurement/firmware_stream.py": "fba17e7e10b4aa37945ccda08f72a3d874281984ba90f1fff8ed1291760ec77f",
+    "src/mjlab_microduck/sc0090_v2/measurement/gpu_donors.py": "8eefaa07664482f194df1abec679d95d092ae7da293b91c63944bf337e1b686d",
+    "src/mjlab_microduck/sc0090_v2/measurement/precision.py": "792d990f742cec691fee4c1247e11b385520693e206f70faff2aa47536751717",
+    "src/mjlab_microduck/sc0090_v2/measurement/prehistory.py": "9f37748c6fd25d8b7a1743ef4681f2ca88e15454fc927e0ac3456fb4374bc4e0",
+    "src/mjlab_microduck/sc0090_v2/measurement/registers.py": "089e44fd3eb15eabe0ad1f9d335ae77e7721346db129fef6df4cc613895c3134",
+    "src/mjlab_microduck/sc0090_v2/measurement/stream.py": "2ffcf8729f6482c67f5622cc3a0ca5165f5b6f2e5ae6e992941f36c5a569e5d0",
+    "src/mjlab_microduck/sim/__init__.py": "f13d4940266b9579529074bc60426353ed8fc6f49bf8f480691d30e8e4276e22",
+    "src/mjlab_microduck/sim/body_server.py": "2040c827628c33fee998944bce1fcd456c4b993802bb473f016681688bff7b08",
+    "src/mjlab_microduck/sim/camera.py": "5f2e6c83b33e594583cbd5f3e003c3b8bb77f7a0e7b734d86ba0b2c821eaed71",
+    "src/mjlab_microduck/sim/recompute.py": "a5281fe33ab2c83cc4a1aafe127aee3b657b72d14663fbfd95962770e715b35c",
+    "src/mjlab_microduck/sim/terminal.py": "970b529849b5ee63474c7b5981f308b02bdf77a005dcbed106bbe906c9cd797f",
+    "src/mjlab_microduck/sim/tof.py": "256c06bac5ac64a02f3e065785bd70314b616c58da3cb94f93484c9e00d42663",
+    "src/mjlab_microduck/tasks/__init__.py": "979abff0bece78b77fc2865f5ef7bea3a2be36365c3906b806e98c9a3e4fadef",
+    "src/mjlab_microduck/tasks/backlash.py": "35598c2a3db496527fb8835269b4e0ac0eddcc86e683a7af447933c7281d0e22",
+    "src/mjlab_microduck/tasks/distill.py": "d7a2326d3a3b85ba0acb8910dde2701208e61e5bfce0f246eace3d11f51a6026",
+    "src/mjlab_microduck/tasks/mdp.py": "34dcadb99efba9b46b37e71c5f6ffa66fb57235a246b78fa8ff08e37b4bc4fd7",
+    "src/mjlab_microduck/tasks/microduck_ball_kick_env_cfg.py": "313180628c0d0364ea6d0f1843e7e3e10b76585491b90b0c1f0e301d9e5fd30c",
+    "src/mjlab_microduck/tasks/microduck_ground_pick_env_cfg.py": "9b68951e2c84fdccb5894701efa97e060438eb56c956a34c65e844ba3fa6185e",
+    "src/mjlab_microduck/tasks/microduck_roller_crouch_env_cfg.py": "745142fab9ffc4c43a6b7d367d6be37f5675f5fbf255ac4341a9e2a21a4062ee",
+    "src/mjlab_microduck/tasks/microduck_roller_slope_env_cfg.py": "92738df650e3527c8cbe194169f60fb2a232933b1eabbbaf7d4b7d2aa67e2b42",
+    "src/mjlab_microduck/tasks/microduck_roller_standup_env_cfg.py": "146e417c082823039b87d2ff350e96e84007df80c268d53984d7c160f25cdeee",
+    "src/mjlab_microduck/tasks/microduck_roulade_env_cfg.py": "5e923d9ba69946228062c72102fe2b97bce02b9fd6f52c2418a42bbd4f919b42",
+    "src/mjlab_microduck/tasks/microduck_sitstand_env_cfg.py": "65b1961566b0772852ba36af8e92c02a13a53de9b9a98f91e2dce1f4d8d627b1",
+    "src/mjlab_microduck/tasks/microduck_spin_env_cfg.py": "ba85e26407a29a208f871aa229bb2c7971eca6087f0740e7de6f898adbc5b395",
+    "src/mjlab_microduck/tasks/microduck_standup_env_cfg.py": "b20b8f3fac5a374dd602f371f0b500955b4dbcb4d3f7330bddfa15b327826873",
+    "src/mjlab_microduck/tasks/microduck_velocity_env_cfg.py": "75a0430b814ac7495eb237ab806fbd4dd10309b9fd3027ac3eee3c2e3c5a944a",
+    "src/mjlab_microduck/tasks/microduck_velocity_rollers_env_cfg.py": "53567a5ed91b4c70166b57c79fc31917fdcf41287128aff12d3b9ff678f4c38c",
+    "src/mjlab_microduck/tasks/microduck_velocity_swizzle_env_cfg.py": "75197c956afd77586f60e4b773033ace15e088179bb5912a88328862b0a10f49",
+    "src/mjlab_microduck/tasks/microduck_velstand_env_cfg.py": "4b0aebefcc33ad43c2741bf09d8516be82c3ec859bcac54d4ef6531c2759898d",
+    "src/mjlab_microduck/tasks/slope_terrain.py": "1ce48eef8b4bd82cde94d7c9f50f19d2992f4dc8d3b5b5d314b7381bc572b8a0",
+    "src/mjlab_microduck/tasks/symmetry.py": "e37980389773f2f87b8f376df449af4d70e0c983744459f9a35a3ee7b686186b",
+    "src/mjlab_microduck/tasks/testbench_env_cfg.py": "d254218ca3f491e52d471ad033ebd1cb39a339f1f21394ea55e2bec4f3dc2776",
+    "src/mjlab_microduck/train_cli.py": "6c1e118d2bf65f86f6b932dd41b4ddff2a20a0633194a03072f700c7bfa8e372",
+    "src/mjlab_microduck/train_hook.py": "db1bcbceadd41d65077983eaadcb89dee146dc14ea9c9cc3df9d29c1cba20db5"
+  },
+  "contact_peak": 219194,
+  "contact_capacity": 1572864,
+  "cuda_peak_allocated_bytes": 4246193664,
+  "fresh_initialization": false
+}

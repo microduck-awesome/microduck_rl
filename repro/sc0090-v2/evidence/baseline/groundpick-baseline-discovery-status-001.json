@@ -1,0 +1,7 @@
+{
+  "pid": 604659,
+  "updated_unix": 1792146357.0265493,
+  "B0_formal_cap": 301989888,
+  "status": "FAILED_REQUIRES_DIAGNOSIS",
+  "exception": "Traceback (most recent call last):\n  File \"/home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/run-groundpick-baseline-discovery-001.py\", line 88, in <module>\n    cpu=cpucheck.main();assert cpu['status']=='PASS';write(status='CPU_PASS_WAITING_TERMINAL_SCRIPT',formal_controls=0)\n        ^^^^^^^^^^^^^^^\n  File \"/home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/validate_groundpick_baseline_cpu.py\", line 49, in main\n    assert all(cr[n].noise is None and cr[n].delay_max_lag==0 for n in('joint_pos','joint_vel'))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+}

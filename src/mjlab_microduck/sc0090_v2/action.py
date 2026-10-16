@@ -13,6 +13,12 @@ class V2JointPositionActionCfg(JointPositionActionCfg):
     archive_path: str
     randomization_stage: str = "nominal"
     command_rate_rad_s: float | None = None
+    compile_measurement: bool = False
+    fuse_registers: bool = False
+    reset_graph_chunk: int = 1
+    observer_frontend: str = 'bench'
+    spike_rejection: bool = True
+    o0_local_history: bool = False
 
     def build(self, env):
         return V2JointPositionAction(self, env)
@@ -38,7 +44,17 @@ class V2JointPositionAction(JointPositionAction):
             device=self.device,
             seed=env.cfg.seed or 42,
             stage=cfg.randomization_stage,
+            compile_stream=cfg.compile_measurement,
+            fuse_registers=cfg.fuse_registers,
+            reset_graph_chunk=cfg.reset_graph_chunk,
+            observer_frontend=cfg.observer_frontend,
+            spike_rejection=cfg.spike_rejection,
+            o0_local_history=cfg.o0_local_history,
         )
+        if cfg.observer_frontend=='firmware-ls3':
+            limits=self._entity.data.joint_pos_limits[:,self._all_ids]
+            self.feedback.pipeline.stream.position_min.copy_(limits[...,0].flatten())
+            self.feedback.pipeline.stream.position_max.copy_(limits[...,1].flatten())
         env.unwrapped._v2_joint_feedback = self.feedback
         model = load_v5_model()
         self._feedback_bias, self._feedback_scale = (
@@ -63,7 +79,9 @@ class V2JointPositionAction(JointPositionAction):
         self._apply_targets()
 
     def process_actions(self, actions):
-        if not torch.isfinite(actions).all():
+        if actions.is_cuda:
+            torch._assert_async(torch.isfinite(actions).all(), "Nonfinite V2 policy action")
+        elif not torch.isfinite(actions).all():
             raise FloatingPointError("Nonfinite V2 policy action")
         super().process_actions(actions)
         limits = self._entity.data.joint_pos_limits[:, self._all_ids]

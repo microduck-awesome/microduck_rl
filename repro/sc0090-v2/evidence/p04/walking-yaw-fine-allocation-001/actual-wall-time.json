@@ -1,0 +1,30 @@
+{
+  "name": "walking-yaw-fine-formal",
+  "arguments": [
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-worktree/scripts/v2_python.sh",
+    "scripts/train_v2_walking.py",
+    "--task",
+    "Mjlab-Velocity-Flat-MicroDuck-V2-YawFine-Repaired-S0-O0-R1",
+    "--device",
+    "cuda:1",
+    "--resume",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-discovery-allocation-001/checkpoint_000256.pt",
+    "--source-transition",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-source-transition.json",
+    "--num-envs",
+    "32768",
+    "--iterations",
+    "128",
+    "--qualification",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-qualification.json",
+    "--output",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-allocation-001"
+  ],
+  "start_unix": 1792102835.0861366,
+  "pid": 3734661,
+  "returncode": 0,
+  "wall_seconds": 1071.370815038681,
+  "actual_controls": 100663296,
+  "full_process_control_per_second": 93957.4744682266,
+  "scope": "Entire formal process including imports/init/save, may include concurrent independent evaluations"
+}

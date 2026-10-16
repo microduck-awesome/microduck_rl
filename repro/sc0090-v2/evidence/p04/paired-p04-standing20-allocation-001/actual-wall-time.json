@@ -1,0 +1,12 @@
+{
+  "status": "MEASURED",
+  "additional_controls": 100663296,
+  "run_json_created_unix": 1792067600.4739766,
+  "allocation_complete_unix": 1792068561.3763502,
+  "wall_s": 960.9023735523224,
+  "controls_per_s": 104759.12930453257,
+  "reported_update_count": 128,
+  "reported_update_s_sum": 826.0200000000002,
+  "reported_update_portion_controls_per_s": 121865.44635723103,
+  "scope": "run.json creation through allocation complete, includes initialization/resume/embedded evaluations/export; excludes earlier imports and later frozen evaluations; overlapped read-only head diagnostics are included in wall"
+}

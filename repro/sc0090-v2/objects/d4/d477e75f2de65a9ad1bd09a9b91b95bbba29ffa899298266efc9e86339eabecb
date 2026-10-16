@@ -1,0 +1,94 @@
+"""Near-STAND teacher + frozen SIT anchor; routing only, one deployed actor."""
+import hashlib,json,math
+from pathlib import Path
+import torch
+from mjlab_microduck.tasks.distill import PpoWithExpertBc,expert_input,_with_flat
+from .ppo import TerminalCriticPPO
+from .microduck_v2 import POLICY_JOINTS
+
+def near_stand_mask(flag,alpha,height,tilt,leg_mae,bothfeet,ready,finite):
+    return (flag==0)&((alpha-flag).abs()<.02)&(height>.1)&(tilt<math.pi/6)&(leg_mae<.2)&bothfeet.bool()&ready.bool()&finite.bool()
+
+def balanced_batches(permutation,requested,minimum):
+    return torch.tensor_split(permutation,min(requested,max(1,len(permutation)//minimum)))
+
+class SitStandNearTeacherPPO(TerminalCriticPPO,PpoWithExpertBc):
+    def __init__(self,*args,bc_cfg=None,**kwargs):
+        if not bc_cfg or not all(bc_cfg.get(k)for k in('checkpoint_path','anchor_checkpoint_path')):raise ValueError('Both frozen local teachers required')
+        root=Path(__file__).resolve().parents[3];files={}
+        for key,update,skill in [('checkpoint_path',1856,'StandUp'),('anchor_checkpoint_path',640,'SitStand')]:
+            path=Path(bc_cfg[key]).resolve();c=torch.load(path,map_location='cpu',weights_only=False);m=c['infos']['v2'];assert m['completed_updates']==update and skill in m['task']
+            for p in ['src/mjlab_microduck/sc0090_v2/contract.py','src/mjlab_microduck/sc0090_v2/measurement/stream.py','src/mjlab_microduck/actuator/sc0090_v5.py']:
+                assert m['source_sha256'][p]==hashlib.sha256((root/p).read_bytes()).hexdigest(),p
+            files[key]=dict(path=str(path),sha256=hashlib.sha256(path.read_bytes()).hexdigest(),task=m['task']);del c
+        super().__init__(*args,bc_cfg=bc_cfg,**kwargs)
+        self.teacher_contract=dict(schema=1,files=files,routing='stand0_rampdone_height_gt10cm_tilt_lt30deg_legs_lt.2_bothfeet_finite_ready;SIT1_anchor;otherSTAND_PPOonly',parameters={k:v for k,v in bc_cfg.items()if 'path'not in k and 'checkpoint_name'not in k})
+        self.bc_update_count=0;self.teacher_context=torch.empty(self.storage.num_transitions_per_env,self.storage.num_envs,8,device=self.device);self.context_clock=[];self.last_bc_context_audit=None
+        self.teacher_frozen=[{k:v.detach().clone()for k,v in t.state_dict().items()}for t in(self.expert,self.anchor)]
+        assert all(not p.requires_grad for t in(self.expert,self.anchor)for p in t.parameters())
+        print('[Sit BC] NearSTAND/rampdone only; SIT frozen640anchor; generictilt routinglogabove unused',flush=True)
+    def act(self,obs):
+        env=self._terminal_env;index=self.storage.step;assert index==len(self.context_clock)<self.storage.num_transitions_per_env
+        if self.context_clock:assert env.common_step_counter==self.context_clock[-1]+1
+        robot=env.scene['robot'];ids,names=robot.find_joints(POLICY_JOINTS,preserve_order=True);assert tuple(names)==POLICY_JOINTS
+        command=env.command_manager.get_term('twist');flag=command.command[:,0];alpha=command.alpha
+        raw=torch.cat([obs[g]for g in self.actor.obs_groups],-1)
+        torch._assert_async((raw[:,48]==flag).all()&(raw[:,49:51]==0).all()&(raw[:,55:61]==0).all(),'Sit teacher raw command timing mismatch')
+        quat=robot.data.root_link_quat_w;tilt=torch.acos((1-2*(quat[:,1].square()+quat[:,2].square())).clamp(-1,1))
+        height=robot.data.root_link_pos_w[:,2]-env.scene.env_origins[:,2];q=robot.data.joint_pos[:,ids]-robot.data.default_joint_pos[:,ids];leg=q[:,[0,1,2,3,4,9,10,11,12,13]].abs().mean(-1)
+        feet=env.scene['feet_ground_contact'].data.found.reshape(env.num_envs,2,-1).any(-1).all(-1)
+        finite=torch.isfinite(env.sim.data.qpos).all(-1)&torch.isfinite(env.sim.data.qvel).all(-1)&torch.isfinite(raw).all(-1)
+        self.teacher_context[index].copy_(torch.stack((flag,alpha,height,tilt,leg,feet,env._v2_joint_feedback.ready,finite),-1))
+        self.context_clock.append(env.common_step_counter)
+        return super().act(obs)
+    def _bc_update(self):
+        cfg=self.bc_cfg;assert len(self.context_clock)==self.storage.num_transitions_per_env and self._terminal_env.common_step_counter==self.context_clock[-1]+1
+        obs=self.storage.observations.flatten(0,1);groups=list(self.actor.obs_groups);flat=torch.cat([obs[g]for g in groups],-1);ctx=self.teacher_context.flatten(0,1);assert flat.shape==(len(ctx),61)
+        torch._assert_async((flat[:,48]==ctx[:,0]).all(),'Same24step rawobs/context ordering mismatch')
+        eligible=near_stand_mask(*ctx.unbind(-1));teach=eligible if int(eligible.sum())>=cfg['min_samples']else torch.zeros_like(eligible)
+        anchor=ctx[:,0]==1;selected=teach|anchor;stats=dict(expert_bc_near_stand_fraction=float(eligible.float().mean()),expert_bc_effective_stand_fraction=float(teach.float().mean()),expert_bc_sit_anchor_fraction=float(anchor.float().mean()),expert_bc_ignored_fraction=float((~selected).float().mean()))
+        self.last_bc_context_audit=dict(first_clock=self.context_clock[0],last_clock=self.context_clock[-1],frames=len(ctx),eligible_stand_frames=int(eligible.sum()),effective_stand_frames=int(teach.sum()),sit_anchor_frames=int(anchor.sum()),ignored_stand_frames=int((~selected).sum()),scope='Current24preaction frames; time-major rawobs andprivilegedroutingcache. No gate/state addedtoactor/critic. No headcontact exclusion.')
+        self.last_bc_selected=selected.detach().clone();self.last_bc_stand=teach.detach().clone()
+        self.context_clock.clear();self.bc_update_count+=1
+        if int(selected.sum())<cfg['min_samples']:
+            stats.update(expert_bc=0.,expert_bc_steps=0.,expert_bc_kl_mean=0.,expert_bc_kl_max=0.,expert_bc_stand_mse=0.,expert_bc_sit_mse=0.);return stats
+        with torch.no_grad():
+            before=self.actor(obs).detach().clone();std=self.actor.distribution.std_param.detach().clone();target=torch.zeros_like(before)
+            if bool(teach.any()):
+                td=obs[teach].clone();values=expert_input(torch.cat([td[g]for g in groups],-1),(48,51));values[:,55:61]=0
+                target[teach]=self.expert(_with_flat(td,groups,values))
+            if bool(anchor.any()):target[anchor]=self.anchor(obs[anchor])
+        torch._assert_async(torch.isfinite(target[selected]).all(),'Nonfinite frozenSitteacher labels')
+        indices=selected.nonzero().flatten();weights=torch.where(teach,cfg['coef'],cfg['anchor_coef']).to(flat.dtype);total=torch.zeros((),device=self.device);steps=0
+        for _ in range(cfg['epochs']):
+            order=indices[torch.randperm(len(indices),device=self.device)]
+            for take in balanced_batches(order,cfg['mini_batches'],cfg['min_mini_batch']):
+                pred=self.actor(obs[take]);loss=(weights[take]*(pred-target[take]).square().mean(-1)).mean();self.bc_optimizer.zero_grad();loss.backward();torch.nn.utils.clip_grad_norm_(self.actor.parameters(),self.max_grad_norm);self.bc_optimizer.step();total.add_(loss.detach());steps+=1
+        with torch.no_grad():
+            after=self.actor(obs);assert torch.equal(std,self.actor.distribution.std_param);kl=.5*((after-before)/std).square().sum(-1);torch._assert_async(torch.isfinite(kl).all(),'Nonfinite postBC KL');mse=(after-target).square().mean(-1)
+            stats.update(expert_bc=float(total/max(steps,1)),expert_bc_steps=float(steps),expert_bc_kl_mean=float(kl.mean()),expert_bc_kl_max=float(kl.max()),expert_bc_stand_mse=float(mse[teach].mean())if bool(teach.any())else 0.,expert_bc_sit_mse=float(mse[anchor].mean())if bool(anchor.any())else 0.)
+        return stats
+    def assert_teachers_unchanged(self):
+        for t,frozen in zip((self.expert,self.anchor),self.teacher_frozen):
+            for k,v in t.state_dict().items():assert torch.equal(v,frozen[k]),k
+    def save(self):
+        out=super().save();out['sitstand_teacher_contract']=self.teacher_contract;out['expert_bc_optimizer_state_dict']=self.bc_optimizer.state_dict();out['expert_bc_update_count']=self.bc_update_count;return out
+    def load(self,loaded_dict,load_cfg,strict):
+        contract=loaded_dict.get('sitstand_teacher_contract')
+        if contract is not None:assert json.dumps(contract,sort_keys=True)==json.dumps(self.teacher_contract,sort_keys=True)
+        out=super().load(loaded_dict,load_cfg,strict)
+        if contract is not None and(load_cfg is None or load_cfg.get('optimizer')):self.bc_optimizer.load_state_dict(loaded_dict['expert_bc_optimizer_state_dict']);self.bc_update_count=loaded_dict['expert_bc_update_count']
+        elif contract is None:assert not self.bc_optimizer.state
+        return out
+
+def attach_teacher_diagnostics(runner,path):
+    from rsl_rl.algorithms import PPO
+    from mjlab_microduck.ppo_diagnostics import attach_ppo_diagnostics
+    a=runner.alg;original=a.update;assert type(a)is SitStandNearTeacherPPO and getattr(original,'__func__',None)is PpoWithExpertBc.update
+    a.update=PPO.update.__get__(a,type(a))
+    try:monitor=attach_ppo_diagnostics(runner,path)
+    except Exception:a.update=original;raise
+    measured=a.update
+    def update():
+        losses=measured();losses.update(a._bc_update());return losses
+    a.update=update;monitor.original_update=original;return monitor

@@ -1,0 +1,37 @@
+"""Configuration checks only; no policy or GPU admission claim."""
+from pathlib import Path
+from dataclasses import asdict
+import json,hashlib
+from mjlab_microduck.custom_v2.ball_kick import make_ball_kick_env_cfg, BALL_KICK_TASK
+from mjlab_microduck.custom_v2.training import get_full_spec
+from mjlab_microduck.tasks import mdp
+from mjlab_microduck.tasks.microduck_ball_kick_env_cfg import make_microduck_ball_kick_env_cfg
+from mjlab_microduck.custom_v2.ball_kick_state import gated_ball_forward_velocity,ball_kick_state_observation,ball_nonfinite
+cfg=make_ball_kick_env_cfg();old=make_microduck_ball_kick_env_cfg();model=get_full_spec().compile()
+assert tuple(cfg.scene.entities)==('robot','ball')
+action=cfg.actions['joint_pos'];assert len(action.actuator_names)==14 and not action.spike_rejection and action.o0_local_history
+assert action.scale==1. and action.compile_measurement and action.fuse_registers
+assert cfg.decimation==4 and cfg.sim.mujoco.timestep==.005
+assert list(cfg.events)[-1]=='reset_ball'
+assert cfg.events['reset_ball'].params['noise_xy']==.015
+assert cfg.commands['twist'].rel_forward_envs==0.
+assert list(cfg.events).index('v2_reset_joint_guards')<list(cfg.events).index('ball_robot_floor_clearance')<list(cfg.events).index('reset_ball')
+assert cfg.rewards['ball_forward_velocity'].func is gated_ball_forward_velocity
+assert cfg.observations['critic'].terms['ball_kick_state'].func is ball_kick_state_observation
+assert cfg.terminations['ball_nonfinite'].func is ball_nonfinite
+assert cfg.rewards['height_stand'].params['target_height']==.112
+for group in ('actor','critic'):
+ assert cfg.observations[group].terms['head_command'].func is mdp.zero_command_padding
+ assert cfg.observations[group].terms['body_command'].func is mdp.zero_command_padding
+assert not any('ball' in key for key in cfg.observations['actor'].terms)
+assert cfg.observations['critic'].terms['ball_position'].func is mdp.ball_pos_in_base
+assert cfg.observations['critic'].terms['ball_velocity'].func is mdp.ball_vel_in_base
+for name in ('randomize_joint_friction','randomize_joint_damping','randomize_armature','randomize_motor_gains','encoder_bias'):assert name not in cfg.events
+assert {k:v.weight for k,v in cfg.rewards.items()}=={k:v.weight for k,v in old.rewards.items()}
+assert cfg.rewards['ball_forward_velocity'].params['max_speed']==1.
+assert cfg.rewards['ball_forward_velocity'].weight==12. and cfg.rewards['ball_speed_overshoot'].weight==-4.
+for name in action.actuator_names:assert model.joint(name).id>=0
+assert model.geom('ground_head_shell_collision').id>=0
+r=Path(__file__).resolve().parents[1]/'runs-v2';out=r/'ballkick-cfg-cpu-002.json';assert not out.exists()
+report=dict(status='CPU_CONFIG_PASS_NOT_GPU_QUALIFIED',task=BALL_KICK_TASK,actor_ball_blind=True,actor_dimensions='Expected61, must measure actual constructed observation',critic_dimensions='Actual must be measured; ball pos/vel retained',physics_dt=.005,control_dt=.02,ball_reset_last=True,reward_weights_unchanged=True,stand_height=.112,source_sha256=hashlib.sha256((Path(__file__).resolve().parents[1]/'src/mjlab_microduck/custom_v2/ball_kick.py').read_bytes()).hexdigest(),environment=asdict(cfg),remaining=['noisy reset physical clearance and initial ball ejection','real correct-foot/other-contact and rolling-return audit','3s healthy stance/perturbed physics','multi-entity successor physics and RNG isolation','64x5/actualN before any formal'])
+out.write_text(json.dumps(report,indent=2,default=str)+'\n');print('CPU_CONFIG_PASS_NOT_GPU_QUALIFIED',flush=True)

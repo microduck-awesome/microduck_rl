@@ -1,0 +1,58 @@
+{
+  "status": "PASS_AFTER_EXTERNAL_CHECKER_FIX",
+  "created_unix": 1792099040.288092,
+  "phases": [
+    {
+      "name": "resume",
+      "arguments": [
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-repaired-prep-worktree/scripts/v2_python.sh",
+        "scripts/train_v2_walking.py",
+        "--device",
+        "cuda:1",
+        "--num-envs",
+        "64",
+        "--iterations",
+        "2",
+        "--validation-only",
+        "--resume",
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-controller-smoke-64/checkpoint_000005.pt",
+        "--output",
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-controller-resume-64"
+      ],
+      "start_unix": 1792099068.3280332,
+      "pid": 3617463,
+      "returncode": 0,
+      "wall_seconds": 131.08905458450317
+    },
+    {
+      "name": "export",
+      "arguments": [
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-repaired-prep-worktree/scripts/v2_python.sh",
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/verify-walking-export.py"
+      ],
+      "start_unix": 1792099199.4210906,
+      "pid": 3620826,
+      "returncode": 1,
+      "wall_seconds": 5.508310317993164
+    }
+  ],
+  "export_attempt3": {
+    "status": "PASS",
+    "samples": 84,
+    "max_abs_error": 7.82310962677002e-08,
+    "actor_shape": [
+      1,
+      61
+    ],
+    "action_shape": [
+      1,
+      14
+    ],
+    "normalizer_baked": true,
+    "source": "actual nominal+measured qualification initial actor observations",
+    "checkpoint_sha256": "7575d6001da0135190c009b1ad1d1ab5cb58a03d867486bca4b4e8ffb412cfa8",
+    "onnx_sha256": "c010ffca2e40dd3946d782f30bb5ba5caf8da26956ecf19adf40453a8fcf620f",
+    "scope": "offline inference check only; no hardware/deployment"
+  },
+  "error_history": "AssertionError({'name': 'export', 'arguments': ['/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-repaired-prep-worktree/scripts/v2_python.sh', '/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/verify-walking-export.py'], 'start_unix': 1792099199.4210906, 'pid': 3620826, 'returncode': 1, 'wall_seconds': 5.508310317993164})"
+}

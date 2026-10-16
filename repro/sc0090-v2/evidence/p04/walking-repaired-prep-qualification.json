@@ -1,0 +1,32 @@
+{
+  "status": "CPU_PREPARATION_PASS",
+  "created_unix": 1792096081.2711124,
+  "source": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-repaired-prep-worktree",
+  "source_parent_sha256": "bf66e6c5e10f8692dd9d6c48d35c024d1e12dcede18e317aef1403814d98012d",
+  "tests": 7,
+  "test_log": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-repaired-prep-cpu.log",
+  "test_log_sha256": "2d8d39610f7a00619bff98ed4c5da12b410b9bf9b97b08255c355e3e81efa5fb",
+  "test_sha256": "9e13eef58d5e7130cec6ed60497332848f407580ba4bef23084767880510474c",
+  "tasks": [
+    "Mjlab-Velocity-Flat-MicroDuck-V2-Repaired-S0-O0-R1",
+    "Mjlab-Velocity-Flat-MicroDuck-V2-Repaired-S0-O0-R1-Measured"
+  ],
+  "changes": [
+    "Explicit walking-only repaired feedback flags and compiled/fused GPU path",
+    "Successor critic PPO with unchanged remaining gait hyperparameters",
+    "Physical standing height 0.112 m",
+    "Exact idle and axis-combination head command exposure",
+    "Ungated walking head-bias current-command rebasing with default legacy function bitwise preserved"
+  ],
+  "evidence_scope": "CPU config/model construction and pure reward behavior; no walking physics rollout, throughput, GPU qualification or policy training",
+  "gpu_smoke_pass": false,
+  "formal_ready": false,
+  "walk_policy_trained": false,
+  "existing_recovery_factories_unchanged": true,
+  "limitations": [
+    "Keep current temporary rise/standing/head/transfer training scope",
+    "Do not inherit mature standing normalizers into walking",
+    "No narrow instantaneous head tax during gait discovery",
+    "Body and head command ranges, zero/turn-in-place exposure, full gait metrics and actual-N budget still require task-specific verification"
+  ]
+}

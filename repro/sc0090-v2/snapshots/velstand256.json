@@ -1,0 +1,2458 @@
+{
+  "schema": 1,
+  "id": "velstand256",
+  "historical_source_worktree": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/velstand-v8-repaired-worktree",
+  "files": {
+    "AGENTS.md": {
+      "sha256": "2230a98be94bd8944c50600bed472bde53bc2480045a41ebab67c57a6a38079b",
+      "bytes": 17872,
+      "executable": false
+    },
+    "LICENSE": {
+      "sha256": "2d3fd9ffffa70a4307498ec630b14a6b4731e010f8ddda92686eaf65733c2dfe",
+      "bytes": 11351,
+      "executable": false
+    },
+    "LICENSE-MODELS.md": {
+      "sha256": "33770e7b20f8888d4a7e5668c63f1b6d0f76319a4eded206c1cc6870e9864e1d",
+      "bytes": 1552,
+      "executable": false
+    },
+    "README.md": {
+      "sha256": "d27abc721e2106129e985994ffe7e72307b2d6ed8974bb01a9af6c0908702d9a",
+      "bytes": 18961,
+      "executable": false
+    },
+    "pyproject.toml": {
+      "sha256": "8f02478242546ae2d63db47708bf1b2d8dd75cbe967c93a4cc5a7255d04827da",
+      "bytes": 5280,
+      "executable": false
+    },
+    "scripts/analyze_standing_pitch_bins.py": {
+      "sha256": "78ca6571249108492882c8651af5baf1fe758dc53f44bfa0ae37fcbc88e44f30",
+      "bytes": 2540,
+      "executable": false
+    },
+    "scripts/analyze_v2_recovery_evidence.py": {
+      "sha256": "bce54d8ae8a6828bff736a495710e70b2a754130469561b7be2bbd8449b4c944",
+      "bytes": 2676,
+      "executable": false
+    },
+    "scripts/analyze_v2_standing_order.py": {
+      "sha256": "bdc0a0d1b246281ac1818b9413dc6c676a57a55f76b0824293894c73f14d28da",
+      "bytes": 2002,
+      "executable": false
+    },
+    "scripts/analyze_v2_standing_traces.py": {
+      "sha256": "a1b2d292ad5c9e2fd6c550d0cbb259023808df504b75a365a8774f1cc866c54b",
+      "bytes": 1727,
+      "executable": false
+    },
+    "scripts/check_catch_frontier.py": {
+      "sha256": "bcad1ccab816088b37cf4b9799aa36a3ab9a6161a5f1e4d58d291149eded2395",
+      "bytes": 4604,
+      "executable": false
+    },
+    "scripts/check_catch_full_pitch.py": {
+      "sha256": "1dbf60aff99d9415f7cd0fdf7dcfcfdacdf1e47863e7225203f70f5274ff08cd",
+      "bytes": 5150,
+      "executable": false
+    },
+    "scripts/check_catch_pitch10.py": {
+      "sha256": "13ca15dea3b8a7a4b8b735cc0e078eac1b6500f3028558a5f4cea681d681ca11",
+      "bytes": 4907,
+      "executable": false
+    },
+    "scripts/check_head_balance.py": {
+      "sha256": "c46fb3d5c6359f110aad6ef18c26200f8478f2507fee0095f770650a80430184",
+      "bytes": 3292,
+      "executable": false
+    },
+    "scripts/check_paired_head_accuracy.py": {
+      "sha256": "5f1cb5e0b7a3a8a6bb3bb3ece8c71c6d0f70aabc219eac1c5466a21b12567f8e",
+      "bytes": 4857,
+      "executable": false
+    },
+    "scripts/check_paired_head_std_cap.py": {
+      "sha256": "17cabb5947d0265a158d1b7c50b2236eafef8351d87bda80d164cee9acb91ab6",
+      "bytes": 4699,
+      "executable": false
+    },
+    "scripts/check_paired_late_entropy.py": {
+      "sha256": "f8ed8ea98105e907d4060d1fdf3f9abd07051b506def1fb0692521bf5df8e2bc",
+      "bytes": 1751,
+      "executable": false
+    },
+    "scripts/check_paired_rollout12.py": {
+      "sha256": "1778df1c7d67fbf111b7ccfae01f882b83e00cca1edf7e9d70a5590675554c0b",
+      "bytes": 3209,
+      "executable": false
+    },
+    "scripts/check_short_catch.py": {
+      "sha256": "38cae5d76598799c0bf2803dc777154c1a3cce93927377c53998c9598ecf0396",
+      "bytes": 3735,
+      "executable": false
+    },
+    "scripts/check_standing20_config.py": {
+      "sha256": "7e9c28f85d9f5b4c129e0ebec91349854c83aa485374b5b2369e7e335f6c9ed0",
+      "bytes": 1500,
+      "executable": false
+    },
+    "scripts/crouch_pose_editor.py": {
+      "sha256": "0268aacd7bdc0d3ecca8cbd40b70e2f65d25ed52d83b8b50327e306a478cac41",
+      "bytes": 3490,
+      "executable": false
+    },
+    "scripts/diagnose_paired_normalizer_four_arms.py": {
+      "sha256": "ab027897e2239d048eac549cc1aa0b2f8868e34cd39b52871890cbe82d466c95",
+      "bytes": 2698,
+      "executable": false
+    },
+    "scripts/diagnose_v2_reward_ordering.py": {
+      "sha256": "ad231e2728a3a56d2bbee0a8b6144bd5eeb9e1fba014b41ff4ec6d3b36a772a6",
+      "bytes": 10323,
+      "executable": false
+    },
+    "scripts/evaluate_frozen_p04_1472.sh": {
+      "sha256": "65872a830d4b337e7f37b9d2fb55cda186e2bd418daa6eb512ce80ee2092abd0",
+      "bytes": 1760,
+      "executable": false
+    },
+    "scripts/evaluate_v2_fresh_sweep.py": {
+      "sha256": "4b48a14fd8960e5ae44f97f26a1dc28c96bc000411c4308d95539cd0d13e91cf",
+      "bytes": 4289,
+      "executable": false
+    },
+    "scripts/evaluate_v2_head.py": {
+      "sha256": "d8e13eb951bf1609a7b2870fcd74e8c56746278e6ffb4cffb5bb480ef98a4065",
+      "bytes": 17695,
+      "executable": false
+    },
+    "scripts/evaluate_v2_head_frozen_splice.py": {
+      "sha256": "18c80a06ff717503460fca67cabba852a0b1c6961cef39ea70ec138e02921599",
+      "bytes": 22208,
+      "executable": false
+    },
+    "scripts/evaluate_v2_head_normalizer.py": {
+      "sha256": "74070602358a2e6adadb2f70de3ef818285929b81ca18c577f42a4fcb73782fb",
+      "bytes": 19912,
+      "executable": false
+    },
+    "scripts/evaluate_v2_walking.py": {
+      "sha256": "f43eb5d57465bad8c72eb0462b2d1f8b58e436e19fa99e83adae1fb63fef9d6e",
+      "bytes": 12847,
+      "executable": false
+    },
+    "scripts/export.py": {
+      "sha256": "435d576ebd20fb34727bb1bc1438ac6521ab76654225d789d3d90cebce47de25",
+      "bytes": 361,
+      "executable": false
+    },
+    "scripts/finish_paired_p04_diagnostics.sh": {
+      "sha256": "35ee5f97d01cd28406c60ab237b71faf3141f3ff43c51b049d1ea3f5a0b1dcc2",
+      "bytes": 1836,
+      "executable": false
+    },
+    "scripts/hf/README.md": {
+      "sha256": "10fffdc425e2cb8602ee17389187d69f508faf101342d7575f108979d9d78cc0",
+      "bytes": 3213,
+      "executable": false
+    },
+    "scripts/hf/train_hf.py": {
+      "sha256": "0db74a6edd3cc157a5596ac6f019496e8fdde936d9edcc3f260052297d7f1ae9",
+      "bytes": 426,
+      "executable": false
+    },
+    "scripts/hf/uploader.py": {
+      "sha256": "0b9610e26cfc02082b361d2198768d260846cd8354a2824251e31718935512a1",
+      "bytes": 2491,
+      "executable": false
+    },
+    "scripts/infer_policy.py": {
+      "sha256": "03bfd0642a880cd379e057536ee819bd1377d4af7b5206a57907d10afd1d4270",
+      "bytes": 92012,
+      "executable": true
+    },
+    "scripts/odom_anchor_points.py": {
+      "sha256": "a004cfa4859635bccf4f681b950a3a24f5abe00555413aba114ab004b52f9b24",
+      "bytes": 11878,
+      "executable": true
+    },
+    "scripts/odom_anchor_sets.json": {
+      "sha256": "7f3e37c975ba16a1fbe4490249ee59a4ea42c4f8adbe8761cacd8d5d58bc5f37",
+      "bytes": 4548,
+      "executable": false
+    },
+    "scripts/pickup_battery.py": {
+      "sha256": "7f33b2b05ef5cd0ba5f13e2e450b2c76852a86825ce60bcafc5e4c00ddf0a886",
+      "bytes": 4239,
+      "executable": false
+    },
+    "scripts/pickup_datagen.py": {
+      "sha256": "ecdd7ff73582acbe237ab4124d4b3de8d2c05bdac46564a0d1005bdd0f1b7f66",
+      "bytes": 13888,
+      "executable": false
+    },
+    "scripts/pickup_demo.py": {
+      "sha256": "885ca692f74675d928d10f2091419574be0ad1c823c19e577d9c3c082d7ee5e2",
+      "bytes": 18087,
+      "executable": false
+    },
+    "scripts/pickup_e2e_robotd.py": {
+      "sha256": "de7240bffd6b0c5535e66e1335e8fa2cf4a51a1258ed72e1c296290d39b2d05c",
+      "bytes": 11910,
+      "executable": false
+    },
+    "scripts/pickup_eval.py": {
+      "sha256": "c08d95aa941a333f8e19932f8e8eaf49bdf5ab19a4a16ec978cecaf44d89d537",
+      "bytes": 5788,
+      "executable": false
+    },
+    "scripts/pickup_train.py": {
+      "sha256": "44f51b9901e7362c2345ee8c7a62f56d463c2de65917c259e67722714786ec2e",
+      "bytes": 6915,
+      "executable": false
+    },
+    "scripts/play_latest.py": {
+      "sha256": "1e898b201992a111dbc220832f63d32dc9fcc79f0f5658a0075d854fd4c99adc",
+      "bytes": 2006,
+      "executable": false
+    },
+    "scripts/plot_observations_comparison_plotly.py": {
+      "sha256": "f5e9af3bdc1e81822980e81475c307a8925797ac87fdd100b0a5fe0898ce54d5",
+      "bytes": 10517,
+      "executable": true
+    },
+    "scripts/prepare_v2_covered_polish.py": {
+      "sha256": "c6e38bafe643c4e73dba544f486ba8d57f46fd5bfc2f2a9215c8c16fc5f4a3b6",
+      "bytes": 7016,
+      "executable": false
+    },
+    "scripts/run_catch_pitch10.sh": {
+      "sha256": "51b282ed331003d126528f708a615b8c5cb193a5d0eaaa94e477db9c8f5e969c",
+      "bytes": 3529,
+      "executable": false
+    },
+    "scripts/run_p04_m4_allocation.sh": {
+      "sha256": "7e25e842cb3377e3254ef2ad78ee0c1043bf362c7b4ada13b3a0b739d0bdaae2",
+      "bytes": 1709,
+      "executable": false
+    },
+    "scripts/run_paired_catch.sh": {
+      "sha256": "b7fde16a86cecbae997844a63c6029937285a32007718fb063ad13a29885d7c9",
+      "bytes": 2685,
+      "executable": false
+    },
+    "scripts/run_paired_frozen20.sh": {
+      "sha256": "a573e44c37442dfe084d3563655833c5d5489d45664586b8c7347ceded8193bc",
+      "bytes": 3318,
+      "executable": false
+    },
+    "scripts/run_paired_head_balance.sh": {
+      "sha256": "99f9eb387bf2508ea801b4b6fb0e11d66857d8dda384846b4dd5d5aa259226ac",
+      "bytes": 2847,
+      "executable": false
+    },
+    "scripts/run_paired_late_entropy.sh": {
+      "sha256": "992123d67363768788083c7711c26b033a14606090d8894168bf3b01b7c4edf1",
+      "bytes": 4621,
+      "executable": false
+    },
+    "scripts/run_paired_late_entropy_formal.sh": {
+      "sha256": "0f041479de284b6b824927241f171f0ef3e84d41cbff230674332d5a2c64d2eb",
+      "bytes": 2775,
+      "executable": false
+    },
+    "scripts/run_paired_p04_adaptation.sh": {
+      "sha256": "b4c225f687f1a11109b2b8ec1a13ed40de0db8392c84006c9399d0ad495681a3",
+      "bytes": 1833,
+      "executable": false
+    },
+    "scripts/run_paired_short_catch.sh": {
+      "sha256": "c9f41ae7531732bb215436f7654ca8cb520b39e21557b0481fab46164cb9561b",
+      "bytes": 3042,
+      "executable": false
+    },
+    "scripts/run_paired_standing20.sh": {
+      "sha256": "30d36e767519dbc6a64e48673604c8142c0607af42dd97845e7cb520fa8f61e1",
+      "bytes": 2157,
+      "executable": false
+    },
+    "scripts/run_paired_standing20_from_best.sh": {
+      "sha256": "384c52bc8ffcda8093497fcb8a85989597012128487782a392077bcc95f80be0",
+      "bytes": 3562,
+      "executable": false
+    },
+    "scripts/run_paired_standing20_native_counts.sh": {
+      "sha256": "5961f3fb86097a9db96968de6e230bf6c13dbc8460d206f53ba7de5eb8cc5dcc",
+      "bytes": 3666,
+      "executable": false
+    },
+    "scripts/run_paired_standing20_repaired.sh": {
+      "sha256": "2c51ecb7b638e4153b77e4293c26b17b00c4999c24ece216e22f46dbaf22aacb",
+      "bytes": 3666,
+      "executable": false
+    },
+    "scripts/run_paired_stdcap.sh": {
+      "sha256": "aef8455274917af7c06c52bf413fb5f4dc91216e1b9398d5d1f988f12483647a",
+      "bytes": 5320,
+      "executable": false
+    },
+    "scripts/run_short_catch_continuation.sh": {
+      "sha256": "e325abfca2f3e029a2217cc56baf089a724a5b56f073441ebeda366a61c465bf",
+      "bytes": 1637,
+      "executable": false
+    },
+    "scripts/smoke_v2_ppo.py": {
+      "sha256": "c51f518b5d37dd8763654c6876772c5b5ab12b272b0d1a794f64d6a32ab4af69",
+      "bytes": 22753,
+      "executable": false
+    },
+    "scripts/testbench_sim2real.py": {
+      "sha256": "ebdb1007bb56cb2ab7c700d205d7815bad1afab0853508e38916e25244fd347f",
+      "bytes": 24394,
+      "executable": false
+    },
+    "scripts/train_v2_standup.py": {
+      "sha256": "5d41de9395d4f56b44a9ddb89edbecda48870ef768b0a56ede93f7b661a4118b",
+      "bytes": 32907,
+      "executable": false
+    },
+    "scripts/train_v2_velstand.py": {
+      "sha256": "3152898fd645abeaf3afbf98627837035b58ac6b2397961777756d58cb7579cc",
+      "bytes": 14783,
+      "executable": false
+    },
+    "scripts/train_v2_walking.py": {
+      "sha256": "405de3b9704d1a4a3530f311472c5a9e665b079d2b633e42ba1aaf335fa03d7e",
+      "bytes": 12226,
+      "executable": false
+    },
+    "scripts/v2_python.sh": {
+      "sha256": "a51513a2ec91e2664b757db012c1b8d955dfd79642389e59f7976a6dd8549ae5",
+      "bytes": 1399,
+      "executable": true
+    },
+    "scripts/validate_bam_testbench.py": {
+      "sha256": "3be5028f89f65ad960fd19e1a56fc20875a43c7b1f9cc75d5cc3ef56ae91efbe",
+      "bytes": 9066,
+      "executable": false
+    },
+    "scripts/validate_v2_firmware.py": {
+      "sha256": "cc5c10de1871de37140cd7157c70b734eccbfaff8cfcec41271ab7502c635c1a",
+      "bytes": 5707,
+      "executable": false
+    },
+    "scripts/validate_v2_hold.py": {
+      "sha256": "ea2e3f93d2cb106e00721378324ed6aa38bd9cbb82ce811f5a2ee02f46f0282e",
+      "bytes": 3066,
+      "executable": false
+    },
+    "scripts/validate_v2_velstand_cpu.py": {
+      "sha256": "cb6dcc167f0e85e4f43b80005892f59592594f6b534fedea46452e8440d19805",
+      "bytes": 6289,
+      "executable": false
+    },
+    "scripts/validate_v2_velstand_cpu_before_keys_fix.py": {
+      "sha256": "695d5be029a23ca61e1e1c756fe0761ef8001e9847e9ad36a84cc2277497bfb1",
+      "bytes": 6282,
+      "executable": false
+    },
+    "scripts/validate_v2_velstand_diagnostics.py": {
+      "sha256": "c95adc04190f1ef14da0dcdcfe340f1b31c44e44eb6b4782ce02f0ee53865f27",
+      "bytes": 7838,
+      "executable": false
+    },
+    "scripts/view_slope_terrain.py": {
+      "sha256": "252467c923df9641edfa064b028acd48024cc57a67b2cbb3db3dfdb31870aaa5",
+      "bytes": 4122,
+      "executable": false
+    },
+    "scripts/wandb_utils.py": {
+      "sha256": "a4682def0e329c16f287dc881ab629e1b7918ff0d18de4c38c366ff2e3839250",
+      "bytes": 5070,
+      "executable": false
+    },
+    "scripts/watch_catch_first_head.sh": {
+      "sha256": "5ad28ed62e4f41f5b2723b4820428cb5d0052ea6d4bc6c63638848402324561b",
+      "bytes": 1339,
+      "executable": false
+    },
+    "scripts/watch_frozen20_first_head.sh": {
+      "sha256": "5e9bb6fdeff0943f3da16d8a3e6a19b204d095e5d9ddb3d2037397bdae0572e9",
+      "bytes": 1110,
+      "executable": false
+    },
+    "scripts/watch_head_balance_first_head.sh": {
+      "sha256": "2c0badb1de9205e6f3371850354a6a599af87c283fc666e16826719f72303355",
+      "bytes": 1393,
+      "executable": false
+    },
+    "scripts/watch_paired_late_entropy_first_head.sh": {
+      "sha256": "e1c133af5a61096cfb01876f6cc2e66ef9fa1ed07f7ff934df9af67d53f8958d",
+      "bytes": 1409,
+      "executable": false
+    },
+    "scripts/watch_paired_stdcap_first_head.sh": {
+      "sha256": "c6990c53248bd177c319388ce18f459a102c36cfc6866e0437b7eeb6a2f53dc8",
+      "bytes": 1374,
+      "executable": false
+    },
+    "scripts/watch_pitch10_first_head.sh": {
+      "sha256": "002f07048824290289791f8e4523ebc21d1095dfbdd491a71ce7d4b6d59ac299",
+      "bytes": 1403,
+      "executable": false
+    },
+    "scripts/watch_short_catch_first_head.sh": {
+      "sha256": "68add47628e329338cf413b3824a328459a72840e8828fc3860745a3a0c36203",
+      "bytes": 1378,
+      "executable": false
+    },
+    "scripts/watch_standing20_first_head.sh": {
+      "sha256": "7a93ae9797c72d3e8df1ffb886331eba4c8526fd3225d58efe49a273a5c852b7",
+      "bytes": 1137,
+      "executable": false
+    },
+    "src/mjlab_microduck/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "executable": false
+    },
+    "src/mjlab_microduck/actuator/__init__.py": {
+      "sha256": "181bfbec32115818720695915322f6e2c860fe87767570662a029f8e2d01f12d",
+      "bytes": 328,
+      "executable": false
+    },
+    "src/mjlab_microduck/actuator/friction_dr_bam.py": {
+      "sha256": "20d25ce2fd06a94bc4fd5356a657710a0959a352bad3dfcc670122f0f0bcd4d4",
+      "bytes": 5060,
+      "executable": false
+    },
+    "src/mjlab_microduck/actuator/friction_force.py": {
+      "sha256": "c84648a4c15a7173a9580d72deff2a9356b8c3aa2fd086413a795924d438a7f6",
+      "bytes": 1986,
+      "executable": false
+    },
+    "src/mjlab_microduck/actuator/params/sc0090_v5_m6.json": {
+      "sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+      "bytes": 8171,
+      "executable": false
+    },
+    "src/mjlab_microduck/actuator/sc0090_v5.py": {
+      "sha256": "c42a7e54aac610c9ef1f142b32706821e54ea42163480393842632f35924e451",
+      "bytes": 10993,
+      "executable": false
+    },
+    "src/mjlab_microduck/actuator/v5_graph.py": {
+      "sha256": "9cc192dfb180f67922565742398311c5d007c1aa3946ac5788722f31b2d71796",
+      "bytes": 3167,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assembly-install.json": {
+      "sha256": "a57adcfbbdc45e28c4819d3ce204e2efe78d1a01de885fa53142a5d9a9889a67",
+      "bytes": 16572,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_10_71.stl": {
+      "sha256": "1e8d8ec9a1693019a9a7265e621288bba18205b7c85b8aa133a72c7b1af31c58",
+      "bytes": 1338184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_11_72.stl": {
+      "sha256": "789f96edf3bdbe1deb7de302c406e06873c2ea9978c71983155e3d671fd337ae",
+      "bytes": 1338184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_12_106.stl": {
+      "sha256": "812218168257c3cda473c596dadf096dfef5a371f17da9adbb291f11cb723d7e",
+      "bytes": 1338184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_13_99.stl": {
+      "sha256": "0b481b4411f5a46c805a1803083f87d77180df4f5e103f822a917bc70cdc8d56",
+      "bytes": 1338184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_14_100.stl": {
+      "sha256": "b5ed93b9228485489819c3f9512902e840e89a3cca7158ba91a1d26bd8091fd5",
+      "bytes": 1338184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_15_88.stl": {
+      "sha256": "88038b37fe61c5b7fac6b4d81aa0d91640e9ab62b6ff66d6e0eeabbf3b14f448",
+      "bytes": 1338184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_2_37.stl": {
+      "sha256": "a02b572d43b109e8474cf4c7fefb1d8b6bf6f49e3c75e32713aba5b95a76e5d8",
+      "bytes": 1338184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_3_38.stl": {
+      "sha256": "1eb7000ea703d2bcf2a5a0fa2e06ca0c7210ebb648314431b71dbf0a59df48e0",
+      "bytes": 1338184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_44.stl": {
+      "sha256": "7a3dbeba52aa902d802a3ca4a5e3b1f79c7cdfefa614930208aaffb77ee34ea9",
+      "bytes": 1338184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_4_26.stl": {
+      "sha256": "fb568aa17eccf724e464fe6c62483786a6e028ee4507970bacdddbee1eb02181",
+      "bytes": 1338184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_5_1.stl": {
+      "sha256": "71e832b59589fc1834c2d9a3de8f3bc1380552f6d4522a60a35d0910706d68d0",
+      "bytes": 1338184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_6_3.stl": {
+      "sha256": "4e8ec5f62d20378ce74e58b860d92c14b55d13e18cd155fb10987e234bb89b59",
+      "bytes": 1338184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_7_53.stl": {
+      "sha256": "68628c9581758d1906f4281d8c7224db7b2ced8f73677a5d82493b5008ae7c76",
+      "bytes": 1338184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_8_54.stl": {
+      "sha256": "2178de246a2ae7a0860b7f128534601197e3eed5d3c10f01f87214e665aed2bb",
+      "bytes": 1338184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_9_65.stl": {
+      "sha256": "ff2c03a4c82bd80a022ccd9a888b5160d2ca21bc8dcc05cebeed8b17a46ffdde",
+      "bytes": 1338184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_collision_hull_102.stl": {
+      "sha256": "6ef0f5137bfe81d12d212fde557b5bde2017584bef791f4f0961e0f26c626f72",
+      "bytes": 80684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_collision_hull_103.stl": {
+      "sha256": "6ef0f5137bfe81d12d212fde557b5bde2017584bef791f4f0961e0f26c626f72",
+      "bytes": 80684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_collision_hull_109.stl": {
+      "sha256": "6ef0f5137bfe81d12d212fde557b5bde2017584bef791f4f0961e0f26c626f72",
+      "bytes": 80684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_collision_hull_17.stl": {
+      "sha256": "6ef0f5137bfe81d12d212fde557b5bde2017584bef791f4f0961e0f26c626f72",
+      "bytes": 80684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_collision_hull_19.stl": {
+      "sha256": "6ef0f5137bfe81d12d212fde557b5bde2017584bef791f4f0961e0f26c626f72",
+      "bytes": 80684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_collision_hull_29.stl": {
+      "sha256": "6ef0f5137bfe81d12d212fde557b5bde2017584bef791f4f0961e0f26c626f72",
+      "bytes": 80684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_collision_hull_40.stl": {
+      "sha256": "6ef0f5137bfe81d12d212fde557b5bde2017584bef791f4f0961e0f26c626f72",
+      "bytes": 80684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_collision_hull_41.stl": {
+      "sha256": "6ef0f5137bfe81d12d212fde557b5bde2017584bef791f4f0961e0f26c626f72",
+      "bytes": 80684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_collision_hull_47.stl": {
+      "sha256": "6ef0f5137bfe81d12d212fde557b5bde2017584bef791f4f0961e0f26c626f72",
+      "bytes": 80684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_collision_hull_56.stl": {
+      "sha256": "6ef0f5137bfe81d12d212fde557b5bde2017584bef791f4f0961e0f26c626f72",
+      "bytes": 80684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_collision_hull_57.stl": {
+      "sha256": "6ef0f5137bfe81d12d212fde557b5bde2017584bef791f4f0961e0f26c626f72",
+      "bytes": 80684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_collision_hull_68.stl": {
+      "sha256": "6ef0f5137bfe81d12d212fde557b5bde2017584bef791f4f0961e0f26c626f72",
+      "bytes": 80684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_collision_hull_76.stl": {
+      "sha256": "6ef0f5137bfe81d12d212fde557b5bde2017584bef791f4f0961e0f26c626f72",
+      "bytes": 80684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_collision_hull_77.stl": {
+      "sha256": "6ef0f5137bfe81d12d212fde557b5bde2017584bef791f4f0961e0f26c626f72",
+      "bytes": 80684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__SCS009_20201118_D_1_collision_hull_91.stl": {
+      "sha256": "6ef0f5137bfe81d12d212fde557b5bde2017584bef791f4f0961e0f26c626f72",
+      "bytes": 80684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_10_81.stl": {
+      "sha256": "e871788eea320be46b986702d91d78c363305f451fc59248c458479610285a53",
+      "bytes": 245284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_11_111.stl": {
+      "sha256": "eb5a5cb7901eaebe5eb188519a9f7e0bafe374c03a733910c623826f8fde057a",
+      "bytes": 245284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_12_105.stl": {
+      "sha256": "b8bd341857bb3a145ee9946d43c9400b75f5d3b84581b654117e382e4f4858d5",
+      "bytes": 245284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_13_93.stl": {
+      "sha256": "31b1770cb109f6817126ffd4a4edf560b9bdcc9d672fbfe544d7edb4deecafc9",
+      "bytes": 245284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_14_94.stl": {
+      "sha256": "7aee158e5640aaef947edb31685b001b3114b2d4bbe5781d661f1015753340d5",
+      "bytes": 245284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_15_87.stl": {
+      "sha256": "afcbb0549f294b831089d4bde072460bd1fe1f3d3ba213e01e263422779db9d7",
+      "bytes": 245284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_2_43.stl": {
+      "sha256": "4ae7fc2e80a627347274ddfcaebf1ea6040185ed139fd30dc29c14e822516e5a",
+      "bytes": 245284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_3_31.stl": {
+      "sha256": "4d5346525dec14856a336606f8dd87878bb7df57e746792e52c9b7d10b5f2f7a",
+      "bytes": 245284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_49.stl": {
+      "sha256": "191c8904a53271cb1b4a0e99eb88edf5679c090dbf99d8ffc1d872121aae4e22",
+      "bytes": 245284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_4_32.stl": {
+      "sha256": "a487cfd4ca46c44a8224ede116a0f94ff2b44f8c203ec1b7d06bb415f4be16ca",
+      "bytes": 245284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_5_25.stl": {
+      "sha256": "13a35c011b2af754f69b6d797be8e6c1a8bd4d5bfad1993fc9df8821592bc40f",
+      "bytes": 245284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_6_2.stl": {
+      "sha256": "d00086ccce0d0f4e1666d0fb1bd39aa1f00c8dcc22628400f8c62f22dd402752",
+      "bytes": 245284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_7_59.stl": {
+      "sha256": "7899df6d0c337045cbae21c36c46ee6fc7660252944352cd4e7b5f19cd568b7c",
+      "bytes": 245284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_8_60.stl": {
+      "sha256": "5b7ad474126fa0de89f76fd70ea3dd645563859944fc29cd7149e7a07650c8e2",
+      "bytes": 245284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_9_66.stl": {
+      "sha256": "cc0182271ecb9e803103f68b829d314ab70835dd3a399fc470a33fd27483af64",
+      "bytes": 245284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_collision_hull_108.stl": {
+      "sha256": "f8c2876e56f0c79aceb8fb17284cb277052761ce70af82d4664c4dd881783493",
+      "bytes": 28684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_collision_hull_113.stl": {
+      "sha256": "f8c2876e56f0c79aceb8fb17284cb277052761ce70af82d4664c4dd881783493",
+      "bytes": 28684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_collision_hull_18.stl": {
+      "sha256": "f8c2876e56f0c79aceb8fb17284cb277052761ce70af82d4664c4dd881783493",
+      "bytes": 28684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_collision_hull_28.stl": {
+      "sha256": "f8c2876e56f0c79aceb8fb17284cb277052761ce70af82d4664c4dd881783493",
+      "bytes": 28684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_collision_hull_34.stl": {
+      "sha256": "f8c2876e56f0c79aceb8fb17284cb277052761ce70af82d4664c4dd881783493",
+      "bytes": 28684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_collision_hull_35.stl": {
+      "sha256": "f8c2876e56f0c79aceb8fb17284cb277052761ce70af82d4664c4dd881783493",
+      "bytes": 28684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_collision_hull_46.stl": {
+      "sha256": "f8c2876e56f0c79aceb8fb17284cb277052761ce70af82d4664c4dd881783493",
+      "bytes": 28684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_collision_hull_51.stl": {
+      "sha256": "f8c2876e56f0c79aceb8fb17284cb277052761ce70af82d4664c4dd881783493",
+      "bytes": 28684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_collision_hull_62.stl": {
+      "sha256": "f8c2876e56f0c79aceb8fb17284cb277052761ce70af82d4664c4dd881783493",
+      "bytes": 28684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_collision_hull_63.stl": {
+      "sha256": "f8c2876e56f0c79aceb8fb17284cb277052761ce70af82d4664c4dd881783493",
+      "bytes": 28684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_collision_hull_69.stl": {
+      "sha256": "f8c2876e56f0c79aceb8fb17284cb277052761ce70af82d4664c4dd881783493",
+      "bytes": 28684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_collision_hull_84.stl": {
+      "sha256": "f8c2876e56f0c79aceb8fb17284cb277052761ce70af82d4664c4dd881783493",
+      "bytes": 28684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_collision_hull_90.stl": {
+      "sha256": "f8c2876e56f0c79aceb8fb17284cb277052761ce70af82d4664c4dd881783493",
+      "bytes": 28684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_collision_hull_96.stl": {
+      "sha256": "f8c2876e56f0c79aceb8fb17284cb277052761ce70af82d4664c4dd881783493",
+      "bytes": 28684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/SC_0090__cycle_1_collision_hull_97.stl": {
+      "sha256": "f8c2876e56f0c79aceb8fb17284cb277052761ce70af82d4664c4dd881783493",
+      "bytes": 28684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_01_1_48.stl": {
+      "sha256": "cb3d2f2fb1902bddfe6946cb826b03dd13a40297846274780ea9df844dd293cb",
+      "bytes": 352084,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_01_1_collision_hull_50.stl": {
+      "sha256": "22c56f2d7118aa47ed5eaace5e6f83af48e7652e1491b976fc96373c4c714c16",
+      "bytes": 112084,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_02_1_42.stl": {
+      "sha256": "bede611d96fa0253cadcffd5aad0ebecf81663d871d266ae94f0b7399926af06",
+      "bytes": 226384,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_02_1_collision_hull_45.stl": {
+      "sha256": "ebde38d920521c881ce579648874472055e06246f708734662709f3bffcbbd9d",
+      "bytes": 39284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_03_1_36.stl": {
+      "sha256": "db12d4bae23fe0794f815004fb0d76f8a7160723e32aec57eb7fc2cf40ed744d",
+      "bytes": 243084,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_03_1_collision_hull_39.stl": {
+      "sha256": "9f180cef5f9fd37281495c62a65cdf96dac7a6fe6c7c7b3b12e9c1aeaa35cfbd",
+      "bytes": 67984,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_04_1_30.stl": {
+      "sha256": "b481d88f1ff3cd8c7d1a646b80ec28c2b625a00afbce2f92214ee04f670d1d6a",
+      "bytes": 326484,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_04_1_collision_hull_33.stl": {
+      "sha256": "786fa60961c65bed0cbe11a603cf87697ddc790542538ef4a50dbf5cb3867d4d",
+      "bytes": 35284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_05_1_24.stl": {
+      "sha256": "d67a9c679bdad201a7b0c92d88403a92d2290c7180b98c8aa55153b235591a7e",
+      "bytes": 75384,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_05_1_collision_hull_27.stl": {
+      "sha256": "31a3ed4c8950c7ade12caf3e713974c957966984ca048a98620d84e889e8b11f",
+      "bytes": 12384,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_06_1_0.stl": {
+      "sha256": "1e57a385421cfe6bb74f7fed405a4825bad03ae15bac9655c35a613c020d513c",
+      "bytes": 256384,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_06_1_collision_hull_16.stl": {
+      "sha256": "ab4c9c7e33e88aaca9e232f005dc07fe108e6b868165352f885fe47ec00fbc7e",
+      "bytes": 14384,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_09_1_52.stl": {
+      "sha256": "0d70858c60a0f9b1fef3025c5ab376b5dc0f94eebdd17dd947d723e85eada664",
+      "bytes": 168684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_09_1_collision_hull_55.stl": {
+      "sha256": "b0efd8dcc78067662dc8b367f9bc00ec878c740b0be14c4ac8d42c990a1a4e53",
+      "bytes": 96884,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_10_1_58.stl": {
+      "sha256": "f3ca4a3ebfc629b1158a7ee5c74ca4baeb9f43bf1e2bedc6882a7afbe013abee",
+      "bytes": 152484,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_10_1_collision_hull_61.stl": {
+      "sha256": "2c635905e8bc49692e39457215f527898d73bdd5d013258efbf54efe52f310e6",
+      "bytes": 15884,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_11_1_64.stl": {
+      "sha256": "e934c0d40ba47d2605964abbfff822e19ef2bc45f427614b4f5b6523e3a115ca",
+      "bytes": 82984,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_11_1_collision_hull_67.stl": {
+      "sha256": "a550f7017854c56763f744dd3479f2b684a93378ced6c9cc3d209a60b76253ae",
+      "bytes": 17784,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_12_1_70.stl": {
+      "sha256": "f262543b614eb88b32b4c1f6a09f6f4519d11863f2a29454f1a7dbefa494daf8",
+      "bytes": 520984,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_12_1_collision_hull_75.stl": {
+      "sha256": "ca83b59ab9da139bb0fe558178e0499009bd5db966c9b85f0991cfa5e812e3f2",
+      "bytes": 103884,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_13_2_80.stl": {
+      "sha256": "fd30eb32ca276eea64d2603098d8396da99b5a97e8773a5ca4db7189b54448a6",
+      "bytes": 123884,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_13_2_collision_hull_83.stl": {
+      "sha256": "e91b0a903fdcfdc470de6695f4c286354a6a4467879292fa540aeb7f10e7983a",
+      "bytes": 10784,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_14_2_82.stl": {
+      "sha256": "48b2943314f618f1e508d8c0e6dd46976da3a567aaa0c7248254cb649cc6dc95",
+      "bytes": 14284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_14_2_collision_hull_85.stl": {
+      "sha256": "a8da115b7effb0931da509afa4295ab5f3e4a4b1f18fb154da4931f3d757a8c6",
+      "bytes": 13484,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_15_1_73.stl": {
+      "sha256": "a04a07832858259c10dd45f150cdd8a2067afaad19312c94f4342995741ccfaa",
+      "bytes": 178984,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_15_1_collision_hull_78.stl": {
+      "sha256": "28e11ef6c3e7c9d34d6305c0cbb28f6c02d5457f62434ccd7837743da522b71a",
+      "bytes": 24284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_17_2_110.stl": {
+      "sha256": "c7d3fcb2953e625310a2aa18a00fc61e1b78d28d799a1b4ce7ba2aa0ce743af6",
+      "bytes": 351884,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_17_2_collision_hull_112.stl": {
+      "sha256": "b4a60a77aa9e2cb449f70d688a5c84f358a6af775b8812ae74166cb41548401c",
+      "bytes": 112184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_18_1_104.stl": {
+      "sha256": "3a66e37c8473bc316f24146f0a121040b9befcab7adf4e82c793a51e40c5c712",
+      "bytes": 225384,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_18_1_collision_hull_107.stl": {
+      "sha256": "473a209c42b14e9efd3897d29670f9a7a6b3e8ce4d654c4a60d60df30ae593ee",
+      "bytes": 40284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_19_1_98.stl": {
+      "sha256": "b613fe316f0d29cff64ef962d2ada2f7f19ae2eb63d75d66839ecde365861eff",
+      "bytes": 243084,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_19_1_collision_hull_101.stl": {
+      "sha256": "34088ae240f53b409f6a443835afc880389c54a285624ab2b8064a7a324a8e4e",
+      "bytes": 67984,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_1_10.stl": {
+      "sha256": "eb4cea23383dec1dab997d3176526b65618d0c3fe0efcfacf5617b15549f3af8",
+      "bytes": 4184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_1_11.stl": {
+      "sha256": "a9d9c78e10106a40a872f791830ac8adc2745844e4cc2fffab5b6efee5914386",
+      "bytes": 23884,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_1_2_74.stl": {
+      "sha256": "a615ac086913b011375b7454b730c06e4038d4f4f56a709a5fbe41cf7f4ce7f4",
+      "bytes": 684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_1_2_collision_hull_79.stl": {
+      "sha256": "eaa69ed0beb87780fd570bcc307eb2e06ad8951c62e3d816b656e22c5b7fac65",
+      "bytes": 684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_1_6.stl": {
+      "sha256": "ae63a907f9d257bea435591aa1f1f6da1ed46061835fdc4e548b45c41f8628be",
+      "bytes": 221084,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_1_7.stl": {
+      "sha256": "d2db2ae9e6b8218a242ec587140eeb4abf8942ddb9804ab7138094a530cc51e0",
+      "bytes": 383784,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_1_8.stl": {
+      "sha256": "8549dcebe0a1f401170b327230bfb0b65d0d88ffb55fd1798974dd1d724d3518",
+      "bytes": 5484,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_1_9.stl": {
+      "sha256": "35b9cd5fde136f5d49a5deb587d7114ed6cd821ef8e3d9abd134cca612d402c4",
+      "bytes": 1684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_1_collision_hull_22.stl": {
+      "sha256": "330c7e2fc64f1d93bf58bee6e983722db80e58d58b95385f75f24259f238a93c",
+      "bytes": 28584,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_20_1_92.stl": {
+      "sha256": "824ce4bbcbf9ae07a59dfc1c18c250e002f7f7db505f7372b5604fb8c1c1650f",
+      "bytes": 326484,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_20_1_collision_hull_95.stl": {
+      "sha256": "bab538df44538827e2b486365687a0308a6db862caf7fe8b1de0741ecd69ad31",
+      "bytes": 35284,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_21_1_86.stl": {
+      "sha256": "41d6f21aa17413fb31e08fdf8370a3e4060918ed541d81a2eb0127d388681039",
+      "bytes": 75384,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_21_1_collision_hull_89.stl": {
+      "sha256": "c6bef3d0df50f62a24f98d78ea813986af6a6c7b0d3c591d6372edd039d690dd",
+      "bytes": 12384,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_2_12.stl": {
+      "sha256": "393a130ce0c9763827abadd1b53691d2145780c583003a02ba895471ed6472e0",
+      "bytes": 39484,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_2_13.stl": {
+      "sha256": "d73662a80830c71bac8cf69f3d2870681fe6ff18e82f985a82afabd8300cafda",
+      "bytes": 108184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_2_14.stl": {
+      "sha256": "c92b8cacd897b26453164bfe0fbfd98698d4f2e9944d31f27393f4021b6bb98d",
+      "bytes": 42184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_2_15.stl": {
+      "sha256": "0d266aa12470f5963ffde958a0d20886deba417a2d58044ea9e587f8e23c134e",
+      "bytes": 21484,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/c_2_collision_hull_23.stl": {
+      "sha256": "40204f476fa82ddc3ced6c286fbf5fa9abf9445f75f009b23534d833db223fb6",
+      "bytes": 8084,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/cad_full_mainboard_0.stl": {
+      "sha256": "49ebb5e90042e05935c2c4680c287eb5fa702413c35cf22a90996e4c21bf8613",
+      "bytes": 221084,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/cad_full_mainboard_1.stl": {
+      "sha256": "eef4586febb81dad2f1681f46130b4d6ea1da31a7ddff458e687d59e835cf64d",
+      "bytes": 383784,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/cad_full_mainboard_2.stl": {
+      "sha256": "8a646988099108b94423215df9565a317fe8c10945073de17fe15fb8ef77acfe",
+      "bytes": 5484,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/cad_full_mainboard_3.stl": {
+      "sha256": "588a3d9683dbbc76f1e3836da340a77e583e77d1fdb248411c70199e77c4cf64",
+      "bytes": 1684,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/cad_full_mainboard_4.stl": {
+      "sha256": "6c2c3386aee4d897bc724a9b4eb8e86889ff12ea84f13db1439a85db8708d340",
+      "bytes": 4184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/cad_full_mainboard_5.stl": {
+      "sha256": "8249b1c2fb8a7b6fe35c74a5bd5fcd123416b7a1f9c5788f6141fd392240d753",
+      "bytes": 7500084,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/cad_full_mainboard_6.stl": {
+      "sha256": "c647e254588a13dd0a6e39415d2ce2f504eb814cd6020b5f40634dcaca6fdbc3",
+      "bytes": 7500084,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/cad_full_mainboard_7.stl": {
+      "sha256": "8e7ec168c4bc33dc0499aada38ab3f8a15a788b5b7f60bc517a79934280a3546",
+      "bytes": 7500084,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/cad_full_mainboard_8.stl": {
+      "sha256": "543356070946cc1137dc15c4323ff569cd02030373acfd51b79d43b037a575b1",
+      "bytes": 7500084,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/cad_full_mainboard_9.stl": {
+      "sha256": "3b2486a674e0d61340c9d0858d36980b513721c246b4c9992ec2760be8d3fcbf",
+      "bytes": 533984,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/left_shell_saved_4.stl": {
+      "sha256": "2c0948fc7525a27a5d96c2fd67cacad0d179e7d35005c4892999b559bcc9de82",
+      "bytes": 426784,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/left_shell_saved_collision_hull_20.stl": {
+      "sha256": "29e55cfa9b769175da1361324941acd37bf796ae80495ecceed7468d8b67e237",
+      "bytes": 138484,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/right_shell_saved_5.stl": {
+      "sha256": "98115fa46811949e571b8c98773a53d18faaac9379bc7dcc0345f14e1580b17d",
+      "bytes": 165184,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/assets/right_shell_saved_collision_hull_21.stl": {
+      "sha256": "9d2fe32c243c2b58c5477fae66b82f97e7f9877c9f2e9c9fd1ba1d4c5dc0dcc0",
+      "bytes": 59384,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/model_metadata.json": {
+      "sha256": "063a619615c499cf592d7f5ca85497d12fd06a81a2990ce6f0086e20e2269102",
+      "bytes": 3499,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/robot.xml": {
+      "sha256": "d52e06595e737ebe0b96529bfa6410b26b5f0e2d221e03ee2c28c4c9fcf0ed69",
+      "bytes": 31717,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/robot_walk.xml": {
+      "sha256": "671362042e9ef3cfd53313b0264dfc095af46cdaed68fe637130354471e0e7dd",
+      "bytes": 29768,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/scene.xml": {
+      "sha256": "3781f11824c909851a2aaca54baddf2dc82b7ec086b5383fbc5af34a080a7a44",
+      "bytes": 784,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/scene_walk.xml": {
+      "sha256": "6741580f429221e64407f2dcb42364f2b38633043a167512fe60a29ec037fba4",
+      "bytes": 789,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/training.json": {
+      "sha256": "cdc62776cda441bb8e5c8b0fc5f8236f5cbef8ef8443979cc3bf80b8cf2850d4",
+      "bytes": 2480,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/assets/training.yaml": {
+      "sha256": "f8a5dbd0970389454208d30f39c26da4498c34d58502d253a5be2d1b0e435941",
+      "bytes": 2460,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/commands.py": {
+      "sha256": "5dc0c05ffe76bbdb2cb2b492b55e201d6993253521417fc56fd64b67b028fd9c",
+      "bytes": 2272,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/error_proxy.py": {
+      "sha256": "5b1449037b5ee33d74e350cd5e44f02592618152f24166ce054f1e44d2670874",
+      "bytes": 3471,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/exposure.py": {
+      "sha256": "25df3d2d91c517976a43c91dc8051b971b6e056c43ce596d1d54ab43cc8babb4",
+      "bytes": 2641,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/fast_native.py": {
+      "sha256": "f841badf9793af5085b75c93e8c5078c67aebd6c701a9f9aa917a93fa444af9e",
+      "bytes": 7127,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/feedback_diagnostics.py": {
+      "sha256": "50c7f2697bde7821ba5777ee3199ab10cab578dda6e3f465d22c888c52933439",
+      "bytes": 4150,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/feedback_repair.py": {
+      "sha256": "52da329408923297f52d98585714f554e472100334b1f57d43204da3c5fffa55",
+      "bytes": 6781,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/firmware_ls3.py": {
+      "sha256": "b39086c7a288a06bb606bb9c1a57be1a12cb56b28b6c7f24d9591a4fbbd1bdab",
+      "bytes": 5220,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/fresh_p04.py": {
+      "sha256": "57dd70686b3874b6e8ae7b97d9378df8eab7dfb9890936563bccb96941aa079d",
+      "bytes": 3936,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/frozen_normalization.py": {
+      "sha256": "e75be9b1214c4bd8a0fabd79987284849c866ebb73914786dce61bda48f37a02",
+      "bytes": 1491,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/head_accuracy.py": {
+      "sha256": "746d6b3d7a3e40deaf5a88f9a904604e754db399e6b185d89e324dbb3a0ba29e",
+      "bytes": 3912,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/head_exploration.py": {
+      "sha256": "e47e8a240c912e45b0f08ce7d5469e2f91f030ce839065fe9a5098cc05612b14",
+      "bytes": 3071,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/head_metrics.py": {
+      "sha256": "5641c7679671f9fe124af5968a585df9e1425b9d3fa4462992f0c3d35f503599",
+      "bytes": 4265,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/microduck_v2.py": {
+      "sha256": "c59ea7d490fb2030fb335588734e921d0104d03a718569bff83d5f0fd1952213",
+      "bytes": 19890,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/ppo.py": {
+      "sha256": "a2574a090d59a257217a7ce97bc762b3220a974c1f5aaafa59dbaa99c3a4532a",
+      "bytes": 5703,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/recovery.py": {
+      "sha256": "f4e14fe56c4b44b7004ca16d8d38b8b7d51fa5e2f597a55e4d17b53adc94172e",
+      "bytes": 17157,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/runtime.py": {
+      "sha256": "66786dc0f292f161343e03ddf8ed55e885bc119c554aa6279e3e8cd8c14a918e",
+      "bytes": 5971,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/terminal.py": {
+      "sha256": "a731cddfe577e28d5e13507966e773b766a80f08d28dbfce6200dc38b3365ffa",
+      "bytes": 8196,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/training-assets/measurement/R1-frozen-v1/manifest.json": {
+      "sha256": "9924f41b31da05a337030b37d7e9dc3aeaca4b688c62c6525bf04b153f334f3b",
+      "bytes": 643,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/training-assets/measurement/R1-frozen-v1/model.json": {
+      "sha256": "0bee6ab37fbf9b7b6b26fe1149508e3f76034f0afbfec229d5c8e99fe24d3eda",
+      "bytes": 152485,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/training-assets/measurement/fit-joint-residual/manifest.json": {
+      "sha256": "e8f78e9f289ea69cb2a21d94093977c419498f128f70f7190453af41fb7b0cb5",
+      "bytes": 958872,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/training-assets/measurement/fit-joint-residual/model.json": {
+      "sha256": "ac648d005c1f51619bcc4774e7aab3a88038e1f7cbb86f8b8cb8824600b3b598",
+      "bytes": 42662,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/training-assets/measurement/fit-joint-residual/residual-library.npz": {
+      "sha256": "821e0b927ed6a09854ec4b62c78b0ecf021df706125bd2f376fbc545e38c50cb",
+      "bytes": 12968139,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/training-assets/observer/qualification/O1-native100-seed42.npz": {
+      "sha256": "312b877d33dbc643036aa99970ebfc491e1659bf1c45cc65dfa06da212260629",
+      "bytes": 32581,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/training.py": {
+      "sha256": "5a27543094e9ca522f922f8b0546acd17aa51701970a163659aca2c1c75656da",
+      "bytes": 11626,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/velstand.py": {
+      "sha256": "69b6c3c8563b4aa24c9cc1d24e9beb25e93a0506088e7f4e01a416f123ad9ee5",
+      "bytes": 12637,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/velstand_ppo.py": {
+      "sha256": "0ddbddd09a11758dbca4bf067734f85358ed74d9ad0b966a8aeebd1e92651781",
+      "bytes": 9918,
+      "executable": false
+    },
+    "src/mjlab_microduck/custom_v2/walking_metrics.py": {
+      "sha256": "5c7f0b802a526ef863c2bba2ad79097ee07058f492af4ee54c11071bb02deb65",
+      "bytes": 7614,
+      "executable": false
+    },
+    "src/mjlab_microduck/export.py": {
+      "sha256": "ef4d851eee70ce0d1c896a0be14fd4a936a0d17e83649dfd572a5282ffcdf5b9",
+      "bytes": 12340,
+      "executable": false
+    },
+    "src/mjlab_microduck/hf_jobs.py": {
+      "sha256": "d447a20e1feed595ef29a1a19e6a51630327341eb270f0acf4fcb314f69fd285",
+      "bytes": 20516,
+      "executable": false
+    },
+    "src/mjlab_microduck/physics/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "executable": false
+    },
+    "src/mjlab_microduck/physics/_cpu_warp_contacts.cpp": {
+      "sha256": "9c3f41f8eb31e10f691423ea4694deb4ae13619128429dadb558776191388346",
+      "bytes": 6868,
+      "executable": false
+    },
+    "src/mjlab_microduck/physics/cpu_warp_contacts.py": {
+      "sha256": "84ad6f3a96c06bc5552ca63fbd9f396d255545c54b956f8bd9bdba0abaa827dc",
+      "bytes": 5655,
+      "executable": false
+    },
+    "src/mjlab_microduck/pickup/__init__.py": {
+      "sha256": "7f9ef6fbcbd8b157b71f978092f41cdf8505992a6ecd91b59fc2b0fdef8cad2f",
+      "bytes": 453,
+      "executable": false
+    },
+    "src/mjlab_microduck/pickup/features.py": {
+      "sha256": "e1f49f64ce597215bca8d2734476fe5aa615a46a6bb6387c57fdd9a4b35f5015",
+      "bytes": 4030,
+      "executable": false
+    },
+    "src/mjlab_microduck/pickup/hand.py": {
+      "sha256": "6b3229a8784e685b2837d44aa11d2c5cdb46e8337de62db8591572ba17537c3a",
+      "bytes": 16876,
+      "executable": false
+    },
+    "src/mjlab_microduck/pickup/model.py": {
+      "sha256": "d738f60870bfa44be8d14afca4ec05d2c1920968202419bd814949b25d94813e",
+      "bytes": 4909,
+      "executable": false
+    },
+    "src/mjlab_microduck/ppo_diagnostics.py": {
+      "sha256": "ba7b23147263c5b9a54e9475f6996d2e77d189d177c6eb8952ece74667452a8f",
+      "bytes": 16635,
+      "executable": false
+    },
+    "src/mjlab_microduck/publish/__init__.py": {
+      "sha256": "7768b41714b565cc97b5553a170b5d95cf17abafe6baa0f9a4be0b7e8cfec7bf",
+      "bytes": 329,
+      "executable": false
+    },
+    "src/mjlab_microduck/publish/cli.py": {
+      "sha256": "adb198a8b2c0aa10069cbcc3fe2c32b5540533cf04b410caa190b3bdcc24058b",
+      "bytes": 10312,
+      "executable": false
+    },
+    "src/mjlab_microduck/publish/manifest.py": {
+      "sha256": "d66bae7920c2a86fef56877d8ced25c4b1fee67d5637da56d284056722dc7866",
+      "bytes": 17324,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/__init__.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/add_backlash.py": {
+      "sha256": "805a17ba4ad60f7a2ba20ff90879ad93a6db66013150c5ad9be3d31bc7b4252c",
+      "bytes": 5867,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/additional.xml": {
+      "sha256": "958010af8e09a2ac7a79797d1aead327435e5201b3c4df0f2f7220f3c2c42941",
+      "bytes": 611,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/allcollisions_contacts.xml": {
+      "sha256": "8a5bd59e09c6469fa99036bb6cfa6e31972c363bb4ed065bec22f0eb465d6f16",
+      "bytes": 576,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/apartment.xml": {
+      "sha256": "4e6a6f5baf07ab842d9860a2e5baa72f516b864213cecb8184123d17ab23d7de",
+      "bytes": 26086,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/ankle_l_v1.part": {
+      "sha256": "f074c5b5cc3273d46142f382820b4446206c0c08e81a13104b61d8c07f4be75c",
+      "bytes": 377,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/ankle_l_v1.stl": {
+      "sha256": "cf4407956caf05b2e9bb2c75764fa365d217f44efb5d365ed18ccfa62db3436f",
+      "bytes": 235984,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/ankle_left.part": {
+      "sha256": "29dfeff917970b424cdb166b388be6f9ef03cd78e07d80f757a807abf9878866",
+      "bytes": 377,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/ankle_left.stl": {
+      "sha256": "2ec1bd89205b407efebaa9a8898ad9fea741389d87b80ecc5c96b21d1668119e",
+      "bytes": 248984,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/ankle_r_v1.part": {
+      "sha256": "a64063150d4f0c99eb124c2e7c091d2f78565a9db2467d506d5d81fde6d512cf",
+      "bytes": 377,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/ankle_r_v1.stl": {
+      "sha256": "0ddd5d3135cde74bddbfbaf6469f50ac02ba44681b796853a052bf0d23751d1d",
+      "bytes": 235784,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/ankle_right.part": {
+      "sha256": "8591240d8c0329cad47b5eedc5efa5e8782fee250e41caa484308a1e776734f1",
+      "bytes": 378,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/ankle_right.stl": {
+      "sha256": "f83f388ae00787415e76b8ecaab769f08f25b8c4e90c1937ff0fc4d68d81722e",
+      "bytes": 248884,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/banana_pcb_locker.part": {
+      "sha256": "88c2298109f8a3539a6814c50a68289332b389c0a98cb63129f3dfba3b72e0d0",
+      "bytes": 384,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/banana_pcb_locker.stl": {
+      "sha256": "42ddde9d01bf5d91f88b99847017f14d97d2537ee27383c6d41dd8bf30a51134",
+      "bytes": 69484,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/bearing_roll.part": {
+      "sha256": "fd7c1e7a77a318e8c4dd4b342228a3aff35857f010ada545105040ff64a97de7",
+      "bytes": 379,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/bearing_roll.stl": {
+      "sha256": "b5603a64b2d965ad75ea847767b5798130852e12a658fde7b5068fc457e2adcc",
+      "bytes": 121084,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/bottom_head_shell.part": {
+      "sha256": "a0dd8d96c6c0d19153dfd01709b642c929457affc8420bfa4248cc57b1bbae47",
+      "bytes": 383,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/bottom_head_shell.stl": {
+      "sha256": "1820f7cf96646b0fc0c431f07da87b91b13111bfa9857ab1bf2b1fc3388f8da2",
+      "bytes": 1048584,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/elec_rpi_robot_hat_pcb.part": {
+      "sha256": "1ef13cd35c7eae75e5609f2d0773c698bedefa566d0e7de915f9b61d599d974f",
+      "bytes": 388,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/elec_rpi_robot_hat_pcb.stl": {
+      "sha256": "1a61582759d82b5b4df9b7d11099bf1bb3944fc77e6b74d3237adf24dd5d03d7",
+      "bytes": 942884,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/face_part.part": {
+      "sha256": "11c225acb4aae06b51850ade1f542a0c8fc2f3916cab592b78735eea2a72f11c",
+      "bytes": 376,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/face_part.stl": {
+      "sha256": "d0e89a173e7bdc8038c4d413f458140d8f42f1a2f098f67a887c2388eff31718",
+      "bytes": 570684,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/foot_left.part": {
+      "sha256": "b5248b01d15c33316545773b4f2e892bb1a19625db67049ef6c1078e20096703",
+      "bytes": 376,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/foot_left.stl": {
+      "sha256": "a1f5d43456d0f522bd60870153795f1e8112c1adf9b8b4373b59608d9545c044",
+      "bytes": 996184,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/foot_right.part": {
+      "sha256": "315d6ce39a4061f8c163e805d1555f4b140800f27f4a2394095571f43ffc9a08",
+      "bytes": 377,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/foot_right.stl": {
+      "sha256": "54f97fa1f0e0e611d31329df9f3c3b17ffcca2d695c579d1d32cbe99e8a6c7ef",
+      "bytes": 997684,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/hip_l.part": {
+      "sha256": "0d07654fd3ef9a3ddb7b071362379fab813e87acb814843ebc90b9df3f3933cd",
+      "bytes": 372,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/hip_l.stl": {
+      "sha256": "e175896932d76dc7648cf939aa39cb7b1d188b783d91745adb9a4cec65e9052c",
+      "bytes": 1048584,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/jaw.part": {
+      "sha256": "257d1617ee2211e2724c3716523af391650711a1cc982209397b893aed9029ee",
+      "bytes": 369,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/jaw.stl": {
+      "sha256": "45cdbd319a4583095d8daa0db07dee726522a743d59acb82d27d82ded500a1cf",
+      "bytes": 495984,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/jaw_soft.part": {
+      "sha256": "faa573ca64c9a98c65bd6288db990a0fa4d87ec2c8b52322dece28cd8f901faf",
+      "bytes": 426,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/jaw_soft.stl": {
+      "sha256": "2d2ade4e86df4b37ce313bb9b96023109dd04bab39dba08b154e76d332fbce2e",
+      "bytes": 336384,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/left_shell.part": {
+      "sha256": "5f54088d4a0405eb667330f7ff0cdb0010ae48eaec47849b93cb31e0ec60234f",
+      "bytes": 377,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/left_shell.stl": {
+      "sha256": "2abde8e2b79c9b011cdb11957c67ab4287b45d7301affd4235ab81141118e331",
+      "bytes": 1048584,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/leg.part": {
+      "sha256": "a4cea64f7e43c6a3de2e0150b192d5177b1c96ed578560717a85420db483130b",
+      "bytes": 370,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/leg.stl": {
+      "sha256": "9a91cc1ae31ecd9e0c1ba93f3bb2ad8a12e29bff24ec27d1ac66c0c3037d9fcf",
+      "bytes": 738884,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/lens.part": {
+      "sha256": "bd62583c7184c9d0cdadc25664b5d827dbde821b4695c58e8279517b40866854",
+      "bytes": 370,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/lens.stl": {
+      "sha256": "b1c717432ff7666398de58adec6a1b7e03a7e45aa155dbfe27a6152ef19663e5",
+      "bytes": 93684,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/m12_lens_holder.part": {
+      "sha256": "a0a87aeb786c48c33a518b4dd7fed0b89def972dd049c14e61ea79efc4e76b11",
+      "bytes": 381,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/m12_lens_holder.stl": {
+      "sha256": "031d5ffaf6247328cf6d020f6b6695ffb3f8d3f22cf923b85811351d89ecfd7c",
+      "bytes": 549684,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/motor_support.part": {
+      "sha256": "36335b45277d021772415ef85398cb3636699b2d462c452dfb480b28bb68b516",
+      "bytes": 380,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/motor_support.stl": {
+      "sha256": "ce0aa5bef82c7474512d302568c341b9769b3005e0bdb91a19c2eaaba6dad480",
+      "bytes": 180884,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/neck.part": {
+      "sha256": "d80b9eb1be66d63a80e6d970f8c3ce1b9ff202590e8b52d421ba3d0402c39fda",
+      "bytes": 371,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/neck.stl": {
+      "sha256": "b6e86b886153be8a8a776c1cb219c074ee9e89c8bd431117662a2d9e504d7cb5",
+      "bytes": 73484,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/neck_pitch.part": {
+      "sha256": "2eacfc6f3cd00271117bf60e2c804d36199514fceefcbf779d5a69e3fa9d9fb0",
+      "bytes": 428,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/neck_pitch.stl": {
+      "sha256": "a685ce65348ae4d0d49417c69a7a8871f8bbd54a6e3419362be9c334abd5d2ae",
+      "bytes": 356084,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/noenoeil.part": {
+      "sha256": "a3efe21844d8356f9830e4208157d4708694596065e407feb74ed655fd80789a",
+      "bytes": 375,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/noenoeil.stl": {
+      "sha256": "e1167b3d5ad7fbbe6e63296bcd0c6b61556611e6bc1367b15ecfd27e3abb72f5",
+      "bytes": 49284,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/np_f970.part": {
+      "sha256": "ef948d20413ed2e3e463041583755360f37dfb9189d1e13cf84048ff39a35c67",
+      "bytes": 373,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/np_f970.stl": {
+      "sha256": "0e55a48281331b3b7b1a363d2e93b6012f37c52045b6dc922a149ca7c1b38388",
+      "bytes": 1048584,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/pcb__raspberry_pi_zero_2_w.part": {
+      "sha256": "d940276bbba2831fa6ce6f512e090456b1247efbe87e882f26719075dd87aa1b",
+      "bytes": 393,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/pcb__raspberry_pi_zero_2_w.stl": {
+      "sha256": "802cc66fc5447c67fc642d1339e55160df10f2ad04a65efd130e35fb7b2d3c90",
+      "bytes": 1048584,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/power_support.part": {
+      "sha256": "9a82260d06d2e00976f2e4e916c4d4782b0a23679d07ee759ae8f9f182e3540b",
+      "bytes": 380,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/power_support.stl": {
+      "sha256": "ee45e397d3f3422f34940a4b61156c3c11c7e8c2b240451ce5f9ddd1622a130e",
+      "bytes": 641684,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/right_shell.part": {
+      "sha256": "cbc6cb2889db13fa9a283fc29d275c47e50207ffa0616c8498a6addc38621fd1",
+      "bytes": 378,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/right_shell.stl": {
+      "sha256": "3efba3e193cc6aa49d49a9c92cdded0504917397c9e2c5b8fe002a958e2f2d2b",
+      "bytes": 1048584,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/rim.part": {
+      "sha256": "96648c282219239d1c1bba14c3d81949618759983674c15449776cb40d41c177",
+      "bytes": 421,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/rim.stl": {
+      "sha256": "b3c9cc8ea50a1406d289060dc007894e009471f15b59baf443a5545bfc242c6f",
+      "bytes": 115284,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/roller_blade.part": {
+      "sha256": "add40a287e5f06d0fa704fc74795b7221940519653002aafa01e5e69accc9238",
+      "bytes": 430,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/roller_blade.stl": {
+      "sha256": "cbdc755394d5046640db6045dd241921654ec17a313db9de8e851c14b918472f",
+      "bytes": 1048484,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/seeed_bearing__configuration__22x16x4.part": {
+      "sha256": "5104963cc7ca63d44762ca762227f0528217d02d692a0ae9b1f397ba8c33a257",
+      "bytes": 421,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/seeed_bearing__configuration__22x16x4.stl": {
+      "sha256": "295ee68ed9766c91fe06d3a2a49d39f7c2f56cc943395d293afdeb013123435e",
+      "bytes": 1048584,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/seeed_bearing__configuration_default.part": {
+      "sha256": "7bcd749ad222a1f10049e2511cc083766747b23aa9dd4746c8311c4cfcc84dd9",
+      "bytes": 420,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/seeed_bearing__configuration_default.stl": {
+      "sha256": "e815f3483a2e7b80844f3c0938a47e53db38b12faed9b2d364414c19e4322da4",
+      "bytes": 1048584,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/soft_mouth_top.part": {
+      "sha256": "4bfa1f8ace9b9000ff76f2fd34e9cef278e6635b871c3291cb45e2e02e5fac4a",
+      "bytes": 432,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/soft_mouth_top.stl": {
+      "sha256": "3c2b52b0b6e2ce944a1e1b5a0838e1216be1ad3a34c8cdf91be186e634aec57b",
+      "bytes": 393584,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/sole_left.part": {
+      "sha256": "b8ff505c92bfa8e89a9eb6db750dfe139fe8bb6606c532bc01d89f6088f619dc",
+      "bytes": 376,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/sole_left.stl": {
+      "sha256": "e028c8b09fecd4cb354d042bf7fd95a1a1bc2d524d760d62137fa8d74093fc23",
+      "bytes": 789484,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/sole_right.part": {
+      "sha256": "62a129727a8d780a14099817444e62ad6b536ac2c8239774dab9dabaf50a3f05",
+      "bytes": 377,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/sole_right.stl": {
+      "sha256": "3f5068872f3add10eb967327651445bdfca635f5a8a01befa0ef05e462b72b4c",
+      "bytes": 795184,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/speaker.part": {
+      "sha256": "9850f9fcdb8f3138f976ac822a0e2774439623345f131056c7d7ec98d3078592",
+      "bytes": 373,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/speaker.stl": {
+      "sha256": "75a35f9bcf94cd8e52f99b3fd6ae667b48f52503f9075ee2f699eebe8e7b3ddf",
+      "bytes": 684,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/tire.part": {
+      "sha256": "4efa94edfa0848c7eaada2624404f9b202467b6c646d1d8688fb511a4d8f878e",
+      "bytes": 422,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/tire.stl": {
+      "sha256": "8aa460566e99afcccccd5c0507c883d3f6d1901e28ddd492cf0c7edc41067b54",
+      "bytes": 352884,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/top_head_shell.part": {
+      "sha256": "47b4394f5cc1fdc36861fe916be8a11aa3049760d4e563120588cc6cf3ab6cd6",
+      "bytes": 380,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/top_head_shell.stl": {
+      "sha256": "6d01f396f514c9d2185cf6b8250b1d8382ac3fa0702eb525bcb284f706196291",
+      "bytes": 806084,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/trunk_base.part": {
+      "sha256": "3b459735741f8e0a9fab171ecd744c607999322228d045e6623282aa9eed3e9f",
+      "bytes": 377,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/trunk_base.stl": {
+      "sha256": "aa4f853ae555a8b765e585ce4519c0bbff325ce298ec15a1437792c52a0beac1",
+      "bytes": 184984,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/upper_leg_left.part": {
+      "sha256": "61414442f6766fd7aaadd64d29e37c74d4f19de6d7e93153c43559382d24f497",
+      "bytes": 381,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/upper_leg_left.stl": {
+      "sha256": "8cb1c12dfa6d366a318bb1ec16f585427b9a185afeb7738d0a6f41f5db46a07d",
+      "bytes": 612584,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/upper_leg_right.part": {
+      "sha256": "33ae62db8087c1c15213fcde56329240d0bd9b70c9919a085ba8705815037383",
+      "bytes": 382,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/upper_leg_right.stl": {
+      "sha256": "5caf996cc3e151b01f393cdc6a6a6a940c1d86179d8b7c7f5f85cf1f1ac2fb63",
+      "bytes": 612584,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/upper_leg_rigidity_plate.part": {
+      "sha256": "9abdfc1874da369ed5953a32e8481242929da69b96461e6f42242288a5baa2e8",
+      "bytes": 391,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/upper_leg_rigidity_plate.stl": {
+      "sha256": "231b3e5f1e24d146d735dc158cbcfec0c95a0d0ca8c500f61f04d15d0b665652",
+      "bytes": 180084,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/xl330.part": {
+      "sha256": "e611f8ad4068acadd8ef0ababd355bb8597becb7eddd1ba206df6bbd539624fd",
+      "bytes": 372,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/xl330.stl": {
+      "sha256": "96238ed0d020ce0009cf1a5aa4b6926176c800840318ee65e4375be2298d2744",
+      "bytes": 206384,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/yaw2roll.part": {
+      "sha256": "bc0bd3f0c6551bf5eb35acc14b69fce0bbc0d335bf83026b18609f2c0c570d1b",
+      "bytes": 374,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/yaw2roll.stl": {
+      "sha256": "6c8f193ec7cb40be0f48eeb5fba81bce2c87f12e1aab3f77f1bc4981386e1495",
+      "bytes": 620284,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/yaw_roll_motion.part": {
+      "sha256": "4189857fe1b3b8565b2654c3f7294f642ddf20732aad0f25dd93977ab7ffe277",
+      "bytes": 382,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/assets/yaw_roll_motion.stl": {
+      "sha256": "b0c9902dee19f06cdb7fa930292e0e1c91e2dc59baa971211495b58ff76c3c60",
+      "bytes": 290784,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/ball.xml": {
+      "sha256": "54a455bf454a9b6167655381df91593bbca86695d8d71e29fb6af69454c7c865",
+      "bytes": 706,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/config_mjcf_allcollisions.json": {
+      "sha256": "a557bb21f6e38389450d448a02eb1b13ab7a679179e17e283d1fe79988ac9d9b",
+      "bytes": 1496,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/config_mjcf_groundcontact.json": {
+      "sha256": "6e9d1efffa574f2f09ba40ae63e236d7bd8b7900b9d65c78231751d72b22f962",
+      "bytes": 2006,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/config_mjcf_groundcontact_backlash.json": {
+      "sha256": "fd6e89d562d0ca92cb1e789ed273d14ceecbd95198c79da3ca2690e8e62ab204",
+      "bytes": 2141,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/config_mjcf_groundcontact_rollers.json": {
+      "sha256": "7b3d837a2b15b92ff02a53cce3936f6b6871ef4cbf823c2b386be8cad4eae7af",
+      "bytes": 2092,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/config_mjcf_groundcontact_rollers_backlash.json": {
+      "sha256": "9af2931a67955be82e76a2ee2fb9ca554c3e8cf87f964b2b770e1389c10382ff",
+      "bytes": 2235,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/config_mjcf_walk.json": {
+      "sha256": "31fdf5bd061170fb41729b3a82a7780e772121ec566625c5a6bf849b890b31f9",
+      "bytes": 1814,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/config_mjcf_walk_backlash.json": {
+      "sha256": "1f662b54138c30b135a451e1765da34045b6330bcb7c573d2719c51ef5f564a0",
+      "bytes": 1974,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/joints_properties.xml": {
+      "sha256": "6a4481a9279ffd92139479e67515df7b3510799ceb648c18fde0d58c300eae86",
+      "bytes": 1780,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/robot_allcollisions.xml": {
+      "sha256": "ec9d2f731596cfc847a7fc3898ef8b5e67a548928abc23216537f1da8af2729c",
+      "bytes": 43020,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/robot_allcollisions_backlash.xml": {
+      "sha256": "ccee92e435e39eefc64ee99745823751492ae7f948d835c89701710717e71de8",
+      "bytes": 45107,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/robot_groundcontact.xml": {
+      "sha256": "99d23867e46e9d4748ff1398016b850f09fb6cf02a558c0272743b39ce3acf15",
+      "bytes": 32904,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/robot_groundcontact_backlash.xml": {
+      "sha256": "8ddae05f00d321945220c632cca13445287c94fdbc1654573142347a5ac87d59",
+      "bytes": 34991,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/robot_groundcontact_rollers.xml": {
+      "sha256": "e410e74978511fa2efdc9dcbe1488964c0c149ecca568a59dc73ef7f8844bf8b",
+      "bytes": 35693,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/robot_groundcontact_rollers_backlash.xml": {
+      "sha256": "400fe547140354899774f72634a66fc446a96ab317e894c2a6fac5aa706a9967",
+      "bytes": 37780,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/robot_walk.xml": {
+      "sha256": "80fc4424ed71e430ec4919110dfdb5c714dc1c4e1138e1832a16865cf31eb8c8",
+      "bytes": 32023,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/robot_walk_backlash.xml": {
+      "sha256": "8c2f271948cf06a3c5720c48abaac35b909c53fcfc6f5c3d2cef15f732da74e9",
+      "bytes": 34110,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/scene.xml": {
+      "sha256": "9a85461121ba8273083c482c166f27e143ca386993b3ec8f8d97eb09aa257d31",
+      "bytes": 2350,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/scene_allcollisions.xml": {
+      "sha256": "0d2f58227a3e1c4caae4e847a368ae83516d0f398f428c4e96737b67dd894ef1",
+      "bytes": 2350,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/scene_apartment.xml": {
+      "sha256": "f89da842d8972db257cb9a1a7c1804e21e1d0c01cc3388d6de6ac6fa1060f6e2",
+      "bytes": 2457,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/scene_backlash.xml": {
+      "sha256": "2e8abed8258c0299859ca5403e44013da241f494065ed5bf184302923bd03c7d",
+      "bytes": 2570,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/scene_ball.xml": {
+      "sha256": "3a6e69457fe68af692823c46da9e081021e3bf4be6c5381018446762acd20265",
+      "bytes": 1238,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/scene_rollers.xml": {
+      "sha256": "9029044d5b605882c7f10b52b9bf90c9d5572fb25d79033d0d04026a269375ac",
+      "bytes": 2439,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/scene_vslam.xml": {
+      "sha256": "61135069f454d36bf10761a5cb864904c8ad88c68a16965da70d362716aefa93",
+      "bytes": 2458,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/scene_walk.xml": {
+      "sha256": "6e23146c1a5025473b55ec94cbe37b08104ca388b7eb005ea277f8230736c8be",
+      "bytes": 2341,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/scene_walk_backlash.xml": {
+      "sha256": "bf71c93e90f5a70890f6f76f79f8ba25191cf7ef0a8de47b1dd24f629449150b",
+      "bytes": 2562,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/sensors.xml": {
+      "sha256": "47854a0ab18261f069553e1572e0c329c4f39e4557dbdada71e0dc62af14ee20",
+      "bytes": 357,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck/vslam_room.xml": {
+      "sha256": "f0956410dbfc4d966688c663bf60758a61c1af179f5421886ebf88e0ac30658a",
+      "bytes": 4181,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/microduck_constants.py": {
+      "sha256": "0e7097afe833ac1259b197f9854d01c1666be03ac0c9b090233b4fbc7619eb94",
+      "bytes": 13451,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/testbench_constants.py": {
+      "sha256": "bf5e95376131471443e1daddf5abb0bc6326bc6b5c49bfb352774bcc6b011b9f",
+      "bytes": 1777,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/arm.part": {
+      "sha256": "081b71065888ab6ccb90b601e21438a115d748a19164d0d1d0ac19fffbb3bbef",
+      "bytes": 369,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/arm.stl": {
+      "sha256": "2b5adeff9acddca7ca3f14ca502687bdccb0d5718ca5eee5ea8e0b7b92fe460e",
+      "bytes": 151284,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/axis.part": {
+      "sha256": "e50bc0c3d0d0efc2c0389db3da6614b38d1ac3d63b586bd0c419c097be35a6d3",
+      "bytes": 370,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/axis.stl": {
+      "sha256": "435cdf37cd5cfd9cc7ce1202fcf075aebabffbf6cf1249a8e8d3a93d6350b244",
+      "bytes": 14484,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/bench_holder.part": {
+      "sha256": "e54085f77346853620ce55bf8bac6c6ba1e5569bda857edf851890605ec96327",
+      "bytes": 378,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/bench_holder.stl": {
+      "sha256": "3a46df8b07b5b7eda4a0f68642cc90e4a557cb3f8678e49a2508b9225a26cba1",
+      "bytes": 60284,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/part_1.part": {
+      "sha256": "e49e473f52d3f72fd8dcdffa16bece1dd019ecba220721a5c03fd42986901367",
+      "bytes": 372,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/part_1.stl": {
+      "sha256": "2b5adeff9acddca7ca3f14ca502687bdccb0d5718ca5eee5ea8e0b7b92fe460e",
+      "bytes": 151284,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/part_2.part": {
+      "sha256": "b0c87058dda6e65b78ce252b0da49cc77f4e7101d6d9a1be1cfcff4ff8293208",
+      "bytes": 372,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/part_2.stl": {
+      "sha256": "6f57229eb624849885294536527402ebd6a2e4933e086ad80eda1604d3fbec0c",
+      "bytes": 28884,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/part_3.part": {
+      "sha256": "f8021a43202b3a5b3af40455f4790a1fa85695ddec8dd38fb1ea8d6970a9bb30",
+      "bytes": 372,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/part_3.stl": {
+      "sha256": "3a46df8b07b5b7eda4a0f68642cc90e4a557cb3f8678e49a2508b9225a26cba1",
+      "bytes": 60284,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/part_4.part": {
+      "sha256": "7bc00fb470725890737598e59ee990a2bb82c242994f671d92b3fa597e4234d5",
+      "bytes": 372,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/part_4.stl": {
+      "sha256": "4e5b08e92d99bb9fa2d0f4b00f9c1f25b98092f1594e9735c38caef76a4475a7",
+      "bytes": 28884,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/part_5.part": {
+      "sha256": "e650c96517ea0fc724fc6042043a7fa9bcba94faa26f9d5cdfcc0fc4b519e930",
+      "bytes": 372,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/part_5.stl": {
+      "sha256": "435cdf37cd5cfd9cc7ce1202fcf075aebabffbf6cf1249a8e8d3a93d6350b244",
+      "bytes": 14484,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/spacer.part": {
+      "sha256": "55d9bfc8ab9583b8f9967762d2e79821f27bdfe539790ac69968058b25fd4bbc",
+      "bytes": 372,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/spacer.stl": {
+      "sha256": "6f57229eb624849885294536527402ebd6a2e4933e086ad80eda1604d3fbec0c",
+      "bytes": 28884,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/weight.part": {
+      "sha256": "612e03a44dc3d61747e6504a9df7b927117503dfeeba38fe132ca697870c2164",
+      "bytes": 372,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/weight.stl": {
+      "sha256": "4e5b08e92d99bb9fa2d0f4b00f9c1f25b98092f1594e9735c38caef76a4475a7",
+      "bytes": 28884,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/xl330.part": {
+      "sha256": "e1e95b797098ec0e855db86c7d316b689dd04445d838c92a2bfc8d6a624efa50",
+      "bytes": 371,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/assets/xl330.stl": {
+      "sha256": "c9f6bf7dd9d8b307a4174b40ff12517b3ea470e5535319a5b7dcce4ba52cdfe1",
+      "bytes": 206384,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/config.json": {
+      "sha256": "c66518cd6fade3bbe881be0ab9b6e1ac395ddfb41a9b3ce5b39dfdf58e3a0210",
+      "bytes": 508,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/joints_properties.xml": {
+      "sha256": "5204d854ca41a08b752be733acc7abe238c279f6525cbf2c532792446b187458",
+      "bytes": 909,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/scene.xml": {
+      "sha256": "711f1503b4cee29270f206bd538de38fbd9df18cb2c12ff6a012061fadce247c",
+      "bytes": 932,
+      "executable": false
+    },
+    "src/mjlab_microduck/robot/xl330_test_bench/xl330_test_bench.xml": {
+      "sha256": "b189f8c9d97b1e8fd11a67e8270f379042f863bca24d3af03970194c5e3451f2",
+      "bytes": 4598,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090/__init__.py": {
+      "sha256": "2ca18a32cf435624efd6bc3113c498d189da24dc0f8ea728a120172c3f71c9e5",
+      "bytes": 77,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090/observer.py": {
+      "sha256": "7b9da38512efda458621b63387bc317ed1b676e5d4a3e8b98a506a95cd5c06c7",
+      "bytes": 3232,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090/registers.py": {
+      "sha256": "5dc1b99ee04d38bcf08d792caa9bf4798212c665286858c5447c9d0b83faf2e2",
+      "bytes": 17462,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090/source-identity.json": {
+      "sha256": "4e0ad3dea0f389ddc2b3a70539dbaeb971047b433536668474fc0ed44a83ff7a",
+      "bytes": 608,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090/stream.py": {
+      "sha256": "f4d4a48af4d2d03b24aa45233b7660de21925dcb5a1cee8c1f26c42a0cc1c6f6",
+      "bytes": 17131,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090_v2/__init__.py": {
+      "sha256": "3cb742a139209151b93552e2e5f28d289faf8e35a25ee3f23e968da544cd5e0a",
+      "bytes": 64,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090_v2/action.py": {
+      "sha256": "9ceaa9a68bb22e35a827e014600cc59fdbec1efb4adb9f45b35a9f0a8a482e3e",
+      "bytes": 5111,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090_v2/artifacts.py": {
+      "sha256": "30fb7e7f46a31946b5c0be4b1144770a8ad6d1613db7aead770365734cf549f3",
+      "bytes": 4643,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090_v2/contract.py": {
+      "sha256": "3de49158641ebfdc92f22ab5a7a086fb49f01457d1414ce752ce45f7e609c0bf",
+      "bytes": 6985,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090_v2/feedback.py": {
+      "sha256": "dc5ef0c04cc9a7e84bbe12a3a8319a22e102eb69c66f993a38b8587fc97e4740",
+      "bytes": 11212,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090_v2/graph.py": {
+      "sha256": "a49eff096fe2246dce595ea03af8bd84261636cde58598a1a3a1e4ce5f5e7222",
+      "bytes": 1563,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090_v2/measurement/__init__.py": {
+      "sha256": "96d1f26fe354f1a6f9a74a4c7cc89ff76a2069851d8b4afbf734785d9205dfcd",
+      "bytes": 96,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090_v2/measurement/compact.py": {
+      "sha256": "cc1b50271c30d1ebb0f9995f5b48a87f24af663cd1b59b0c526248a2895a8b4d",
+      "bytes": 2249,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090_v2/measurement/compiled_registers.py": {
+      "sha256": "0f9671f5a31ddcf232b389d8fcf5b3b736953d00290f470574e0f0882819e4f1",
+      "bytes": 2080,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090_v2/measurement/compiled_stream.py": {
+      "sha256": "da609f2b075e45bd19be091cb89467fe26e5ef6a1bc9c9b56a3b2a58a33d0aa3",
+      "bytes": 2166,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090_v2/measurement/firmware_stream.py": {
+      "sha256": "fba17e7e10b4aa37945ccda08f72a3d874281984ba90f1fff8ed1291760ec77f",
+      "bytes": 3862,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090_v2/measurement/gpu_donors.py": {
+      "sha256": "8eefaa07664482f194df1abec679d95d092ae7da293b91c63944bf337e1b686d",
+      "bytes": 4071,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090_v2/measurement/precision.py": {
+      "sha256": "792d990f742cec691fee4c1247e11b385520693e206f70faff2aa47536751717",
+      "bytes": 399,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090_v2/measurement/prehistory.py": {
+      "sha256": "9f37748c6fd25d8b7a1743ef4681f2ca88e15454fc927e0ac3456fb4374bc4e0",
+      "bytes": 2651,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090_v2/measurement/registers.py": {
+      "sha256": "089e44fd3eb15eabe0ad1f9d335ae77e7721346db129fef6df4cc613895c3134",
+      "bytes": 18676,
+      "executable": false
+    },
+    "src/mjlab_microduck/sc0090_v2/measurement/stream.py": {
+      "sha256": "2ffcf8729f6482c67f5622cc3a0ca5165f5b6f2e5ae6e992941f36c5a569e5d0",
+      "bytes": 18836,
+      "executable": false
+    },
+    "src/mjlab_microduck/sim/__init__.py": {
+      "sha256": "f13d4940266b9579529074bc60426353ed8fc6f49bf8f480691d30e8e4276e22",
+      "bytes": 336,
+      "executable": false
+    },
+    "src/mjlab_microduck/sim/body_server.py": {
+      "sha256": "2040c827628c33fee998944bce1fcd456c4b993802bb473f016681688bff7b08",
+      "bytes": 27370,
+      "executable": false
+    },
+    "src/mjlab_microduck/sim/camera.py": {
+      "sha256": "5f2e6c83b33e594583cbd5f3e003c3b8bb77f7a0e7b734d86ba0b2c821eaed71",
+      "bytes": 7045,
+      "executable": false
+    },
+    "src/mjlab_microduck/sim/recompute.py": {
+      "sha256": "a5281fe33ab2c83cc4a1aafe127aee3b657b72d14663fbfd95962770e715b35c",
+      "bytes": 3210,
+      "executable": false
+    },
+    "src/mjlab_microduck/sim/terminal.py": {
+      "sha256": "970b529849b5ee63474c7b5981f308b02bdf77a005dcbed106bbe906c9cd797f",
+      "bytes": 8644,
+      "executable": false
+    },
+    "src/mjlab_microduck/sim/tof.py": {
+      "sha256": "256c06bac5ac64a02f3e065785bd70314b616c58da3cb94f93484c9e00d42663",
+      "bytes": 4530,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/__init__.py": {
+      "sha256": "eebada7e343613f310c88a550d49e755064de0595e4645225be8dfe64afdc55d",
+      "bytes": 12657,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/backlash.py": {
+      "sha256": "35598c2a3db496527fb8835269b4e0ac0eddcc86e683a7af447933c7281d0e22",
+      "bytes": 4344,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/distill.py": {
+      "sha256": "d7a2326d3a3b85ba0acb8910dde2701208e61e5bfce0f246eace3d11f51a6026",
+      "bytes": 18621,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/mdp.py": {
+      "sha256": "34dcadb99efba9b46b37e71c5f6ffa66fb57235a246b78fa8ff08e37b4bc4fd7",
+      "bytes": 334456,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/microduck_ball_kick_env_cfg.py": {
+      "sha256": "313180628c0d0364ea6d0f1843e7e3e10b76585491b90b0c1f0e301d9e5fd30c",
+      "bytes": 29653,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/microduck_ground_pick_env_cfg.py": {
+      "sha256": "9b68951e2c84fdccb5894701efa97e060438eb56c956a34c65e844ba3fa6185e",
+      "bytes": 32917,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/microduck_roller_crouch_env_cfg.py": {
+      "sha256": "745142fab9ffc4c43a6b7d367d6be37f5675f5fbf255ac4341a9e2a21a4062ee",
+      "bytes": 19507,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/microduck_roller_slope_env_cfg.py": {
+      "sha256": "92738df650e3527c8cbe194169f60fb2a232933b1eabbbaf7d4b7d2aa67e2b42",
+      "bytes": 12134,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/microduck_roller_standup_env_cfg.py": {
+      "sha256": "146e417c082823039b87d2ff350e96e84007df80c268d53984d7c160f25cdeee",
+      "bytes": 27733,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/microduck_roulade_env_cfg.py": {
+      "sha256": "5e923d9ba69946228062c72102fe2b97bce02b9fd6f52c2418a42bbd4f919b42",
+      "bytes": 35052,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/microduck_sitstand_env_cfg.py": {
+      "sha256": "65b1961566b0772852ba36af8e92c02a13a53de9b9a98f91e2dce1f4d8d627b1",
+      "bytes": 48180,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/microduck_spin_env_cfg.py": {
+      "sha256": "ba85e26407a29a208f871aa229bb2c7971eca6087f0740e7de6f898adbc5b395",
+      "bytes": 19856,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/microduck_standup_env_cfg.py": {
+      "sha256": "b20b8f3fac5a374dd602f371f0b500955b4dbcb4d3f7330bddfa15b327826873",
+      "bytes": 58592,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/microduck_velocity_env_cfg.py": {
+      "sha256": "75a0430b814ac7495eb237ab806fbd4dd10309b9fd3027ac3eee3c2e3c5a944a",
+      "bytes": 44971,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/microduck_velocity_rollers_env_cfg.py": {
+      "sha256": "53567a5ed91b4c70166b57c79fc31917fdcf41287128aff12d3b9ff678f4c38c",
+      "bytes": 30194,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/microduck_velocity_swizzle_env_cfg.py": {
+      "sha256": "75197c956afd77586f60e4b773033ace15e088179bb5912a88328862b0a10f49",
+      "bytes": 9544,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/microduck_velstand_env_cfg.py": {
+      "sha256": "4b0aebefcc33ad43c2741bf09d8516be82c3ec859bcac54d4ef6531c2759898d",
+      "bytes": 55851,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/slope_terrain.py": {
+      "sha256": "1ce48eef8b4bd82cde94d7c9f50f19d2992f4dc8d3b5b5d314b7381bc572b8a0",
+      "bytes": 5004,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/symmetry.py": {
+      "sha256": "e37980389773f2f87b8f376df449af4d70e0c983744459f9a35a3ee7b686186b",
+      "bytes": 7348,
+      "executable": false
+    },
+    "src/mjlab_microduck/tasks/testbench_env_cfg.py": {
+      "sha256": "d254218ca3f491e52d471ad033ebd1cb39a339f1f21394ea55e2bec4f3dc2776",
+      "bytes": 9481,
+      "executable": false
+    },
+    "src/mjlab_microduck/train_cli.py": {
+      "sha256": "6c1e118d2bf65f86f6b932dd41b4ddff2a20a0633194a03072f700c7bfa8e372",
+      "bytes": 1456,
+      "executable": false
+    },
+    "src/mjlab_microduck/train_hook.py": {
+      "sha256": "db1bcbceadd41d65077983eaadcb89dee146dc14ea9c9cc3df9d29c1cba20db5",
+      "bytes": 2507,
+      "executable": false
+    },
+    "tests/fixtures/legacy_head_bias_function.py.txt": {
+      "sha256": "085bbd0da475e4c61bf0dcceabb3b9ddfbfe981aa94962d278cdf591cc00016d",
+      "bytes": 4046,
+      "executable": false
+    },
+    "tests/test_aarch64_cuda_torch.py": {
+      "sha256": "a709e75b92398465c28244b5282f67fa0c762f83bf63f331dd7cc895ca203e02",
+      "bytes": 5291,
+      "executable": false
+    },
+    "tests/test_crouch_glide.py": {
+      "sha256": "a98d7a4cfea4d0995b685ab261b35de6173dc89b7024bd2fd7c80f840beda25c",
+      "bytes": 3853,
+      "executable": false
+    },
+    "tests/test_descent_speed.py": {
+      "sha256": "3e4d7bca6881a3055b487507301801c6d6de1e880f7bfa9bec3d9ad978cbf69c",
+      "bytes": 1261,
+      "executable": false
+    },
+    "tests/test_ground_pick_cfg.py": {
+      "sha256": "0d1556219800df3b7c7d6c7c53f1ae304d0072ebaf8dbe57e5937f11bdf05708",
+      "bytes": 2434,
+      "executable": false
+    },
+    "tests/test_ground_pick_pose.py": {
+      "sha256": "dc2156a7d1f730f09c6ff139e07574f5255c7c6fc17900b190905dee00046855",
+      "bytes": 4628,
+      "executable": false
+    },
+    "tests/test_head_pose_bias.py": {
+      "sha256": "21c94e089004de584e7d0422f94dabb3b566bb182b000f01031c8badf84ed9ee",
+      "bytes": 6159,
+      "executable": false
+    },
+    "tests/test_hf_jobs_flag.py": {
+      "sha256": "ba54819eab252b3352b03dc176d6cc9ec9ef10f0bfc1fac4ec5c08adeb6de1f2",
+      "bytes": 7723,
+      "executable": false
+    },
+    "tests/test_infer_policy_bam.py": {
+      "sha256": "5eccd3370bcb3b12ac3dc4177259f98981fe2f8fba9b99d083ba5d7f1c673e3d",
+      "bytes": 4207,
+      "executable": false
+    },
+    "tests/test_nan_guard.py": {
+      "sha256": "b80c338ce6949ab754806615bce2b8b8e47b43391f0290f07afbb1cd43e7facf",
+      "bytes": 1888,
+      "executable": false
+    },
+    "tests/test_obs_nan_guard.py": {
+      "sha256": "d521a3ddf30f9be8fee54dd2dce68a662952e9acc05223457bf68a24af8aa731",
+      "bytes": 4527,
+      "executable": false
+    },
+    "tests/test_pickup_detector.py": {
+      "sha256": "4d98da833906086666cc37fd278df70abe4536304646e86744660006f413a886",
+      "bytes": 6138,
+      "executable": false
+    },
+    "tests/test_publish_manifest.py": {
+      "sha256": "35957101ef182083677ec8a1548869bb281030ab83155b0b95b24c7f54676bb6",
+      "bytes": 13825,
+      "executable": false
+    },
+    "tests/test_repaired_walking_prep.py": {
+      "sha256": "9e13eef58d5e7130cec6ed60497332848f407580ba4bef23084767880510474c",
+      "bytes": 6417,
+      "executable": false
+    },
+    "tests/test_roller_crouch_cfg.py": {
+      "sha256": "99598c25cbb265e12ea3eca0cbbe30616183e0e28f75cfa3f82fb5e600ecfa9d",
+      "bytes": 2300,
+      "executable": false
+    },
+    "tests/test_roller_slope_cfg.py": {
+      "sha256": "62fe70c4cc69b42294f43db2480a53b3048569118344d691b8c654947c724122",
+      "bytes": 4459,
+      "executable": false
+    },
+    "tests/test_roller_standup_cfg.py": {
+      "sha256": "7067c4375d8b43471bcd94a6c9b1a8c1c17b6bac64099588cc13356009aebba7",
+      "bytes": 25009,
+      "executable": false
+    },
+    "tests/test_sc0090_archive.py": {
+      "sha256": "1f1db989fc9d2125b5752542b76280285e147ec335092c5775a73ae22cff859a",
+      "bytes": 779,
+      "executable": false
+    },
+    "tests/test_sc0090_v2_cfg.py": {
+      "sha256": "4fce4a921fea9639730dc1dc16027039a4b4df531286b9c91e3f723ac31ce718",
+      "bytes": 2050,
+      "executable": false
+    },
+    "tests/test_sc0090_v2_feedback.py": {
+      "sha256": "1a1591ef8f994c7c41a59c15642a718a57f6211dcacccc50117fa5b94441ad50",
+      "bytes": 4943,
+      "executable": false
+    },
+    "tests/test_sc0090_v5.py": {
+      "sha256": "a55b1092b040dee059f978f5836f5bc10dc4c088a870bc9e6db2ccd516fc5e8a",
+      "bytes": 3899,
+      "executable": false
+    },
+    "tests/test_sitstand_fallback.py": {
+      "sha256": "1df0ce939bac1841dff589469e6161ad0ad34dd419f8a01c4fb203f92ea4dab2",
+      "bytes": 6997,
+      "executable": false
+    },
+    "tests/test_slope_curriculum.py": {
+      "sha256": "efd0e6f4e3ece42bdfdca011815a5506af74a5f094fbd265e5644f964678e6a0",
+      "bytes": 1365,
+      "executable": false
+    },
+    "tests/test_slope_terrain.py": {
+      "sha256": "a48713d10b1ee4faddef6e96c54d1f3ff09f71ea73c787714babd1d3af6afbfc",
+      "bytes": 4034,
+      "executable": false
+    },
+    "tests/test_spin.py": {
+      "sha256": "0f27f1a1afee0c2c7c15e73fdad4c2649b4f396670206dbb57aa1743f71b4b95",
+      "bytes": 15896,
+      "executable": false
+    },
+    "tests/test_spin_cfg.py": {
+      "sha256": "62dfeac34c863e755650790f62af19b8e4584f829c640f455d71c08ec5fec065",
+      "bytes": 4457,
+      "executable": false
+    },
+    "tests/test_swizzle_head_cfg.py": {
+      "sha256": "d053d11281576687230fe60234ec0fb545ee1c2974486df8ac5996628e346cb7",
+      "bytes": 1750,
+      "executable": false
+    },
+    "tests/test_velstand_cfg.py": {
+      "sha256": "b12b3265f0770da0012367e96b28192d86ea437f1964ecf51d02a6d61271f2e6",
+      "bytes": 29683,
+      "executable": false
+    },
+    "tests/test_walking_measurements.py": {
+      "sha256": "ad0d3b3008691ab89a7df2430d5e66231e5cf0e4587b3df0740b547160532a75",
+      "bytes": 1982,
+      "executable": false
+    },
+    "tests/test_walking_yaw_fine.py": {
+      "sha256": "8095323cf0c0f9ee1bf121a9bb48f2d6ee09c12caeda41bd68a640d1fbbb9a66",
+      "bytes": 1805,
+      "executable": false
+    },
+    "tests/test_wheel_glide.py": {
+      "sha256": "5e9796ed46f9a1b09a160c9b868c3d525ca2f6bece3ca202b369409e99c537bb",
+      "bytes": 1990,
+      "executable": false
+    },
+    "uv.lock": {
+      "sha256": "2eeeb680025baa737e7ccf3a87da3695a9d49b228de0bb60d8af0c022ab5f1aa",
+      "bytes": 241445,
+      "executable": false
+    }
+  },
+  "scope": "Exact source, scripts, tests, dependencies and robot/measurement assets. No trained weights."
+}

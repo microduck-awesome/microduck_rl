@@ -1,0 +1,28 @@
+{
+  "status": "PROCESS_EXITED",
+  "start_unix": 1792099361.944987,
+  "arguments": [
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-repaired-prep-worktree/scripts/v2_python.sh",
+    "scripts/train_v2_walking.py",
+    "--device",
+    "cuda:1",
+    "--num-envs",
+    "32768",
+    "--iterations",
+    "256",
+    "--qualification",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-final-qualification.json",
+    "--output",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-discovery-allocation-001"
+  ],
+  "qualification_sha256": "98ac293fbe48b070ab3e840221cc9c62263914e188db5106eea2ebf6e6450005",
+  "planned_updates": 256,
+  "planned_controls": 201326592,
+  "pid": 3625334,
+  "returncode": 0,
+  "finish_unix": 1792101446.5939188,
+  "wall_seconds": 2084.648941040039,
+  "training_status": "ALLOCATION_COMPLETE",
+  "actual_controls": 201326592,
+  "full_process_control_per_second": 96575.77735825267
+}

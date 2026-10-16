@@ -1,0 +1,37 @@
+"""CPU exact configuration delta for the qualified physical SIT replacement."""
+import dataclasses,json
+from pathlib import Path
+from mjlab.tasks.registry import load_env_cfg,load_rl_cfg
+from mjlab_microduck.custom_v2.sitstand_lesson import LESSON_TASK
+from mjlab_microduck.custom_v2.sitstand_clear import CLEAR_TASK,SIT_POSE,SIT_HEIGHT
+
+def canon(x):
+ if dataclasses.is_dataclass(x):return {f.name:canon(getattr(x,f.name)) for f in dataclasses.fields(x)}
+ if isinstance(x,dict):return {str(k):canon(v) for k,v in x.items()}
+ if isinstance(x,(tuple,list)):return [canon(v) for v in x]
+ if callable(x):return x.__module__+'.'+x.__qualname__
+ return x
+
+def diff(a,b,path=''):
+ if type(a)!=type(b):return [path]
+ if isinstance(a,dict):
+  if a.keys()!=b.keys():return [path+'.KEYS']
+  return sum([diff(a[k],b[k],path+'.'+k) for k in a],[])
+ if isinstance(a,list):
+  if len(a)!=len(b):return [path+'.LENGTH']
+  return sum([diff(v,b[i],path+'.'+str(i)) for i,v in enumerate(a)],[])
+ return [] if a==b else [path]
+
+changes={}
+for play in (False,True):
+ a,b=load_env_cfg(CLEAR_TASK,play=play),load_env_cfg(LESSON_TASK,play=play)
+ changes[str(play)]=diff(canon(a),canon(b))
+ assert changes[str(play)]==([] if play else ['.episode_length_s']),changes
+ assert a.episode_length_s==12. and b.episode_length_s==(12. if play else 4.)
+ assert type(a.commands['twist']) is type(b.commands['twist'])
+ assert canon(a.commands)==canon(b.commands) and canon(a.rewards)==canon(b.rewards)
+ assert canon(a.terminations)==canon(b.terminations) and canon(a.events)==canon(b.events)
+ assert canon(a.observations)==canon(b.observations) and canon(a.actions)==canon(b.actions)
+agent_diff=diff(canon(load_rl_cfg(CLEAR_TASK)),canon(load_rl_cfg(LESSON_TASK)));assert agent_diff==['.run_name'],agent_diff
+r=dict(status='PASS',environment_changes=changes,agent_changes=agent_diff,old_task=CLEAR_TASK,new_task=LESSON_TASK,old_episode_s=12,new_train_episode_s=4,full_evaluation_episode_s=12,terminal_command_class_unchanged=True)
+Path('runs-v2/sitstand-lesson4-cfg-check.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r),flush=True)

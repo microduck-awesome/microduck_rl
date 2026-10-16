@@ -1,0 +1,536 @@
+{
+  "status": "ALLOCATION_COMPLETE",
+  "pid": 4030019,
+  "updated_unix": 1792111908.5941455,
+  "completed_updates": 144,
+  "allocation_end": 144,
+  "inherited_controls": 478150656,
+  "controls": 487587840,
+  "allocation_controls": 9437184,
+  "common_step_counter": 3456,
+  "stop_reason": null,
+  "training_metrics": {
+    "boundary": "after_reward_before_reset_forward_and_command; derived geometry lags 5ms",
+    "control_samples": 9437184,
+    "metrics": {
+      "xy_velocity_mse": 0.06880309139395438,
+      "yaw_velocity_mse": 3.8013264749359177,
+      "head_mae_rad": 0.17715815562549903,
+      "height_mean_m": 0.11531567606365516,
+      "tilt_mean_rad": 0.18244974844482337,
+      "double_support_fraction": 0.02783489227294922,
+      "any_support_fraction": 0.8812295065985785,
+      "contact_weighted_foot_speed_mean_mps": 0.038508477720109846,
+      "failure_sample_fraction": 0.061784320407443576,
+      "feedback_not_ready_fraction": 1.0596381293402777e-07,
+      "terminated_sample_fraction": 1.0596381293402777e-07,
+      "timeout_sample_fraction": 0.0013020833333333333
+    },
+    "exposure_control_samples": {
+      "idle": 1918768,
+      "turn_only": 1856189,
+      "translate_only": 1144110,
+      "curve": 4518117,
+      "forward": 3414352,
+      "backward": 2247875,
+      "left": 2291844,
+      "right": 2226273,
+      "yaw_positive": 3170218,
+      "yaw_negative": 3204088,
+      "head_zero": 4716579,
+      "head_one": 2335182,
+      "head_two": 1200138,
+      "head_four": 1185285
+    },
+    "oracle_calls": 384,
+    "oracle_max_abs": [
+      0.0,
+      0.0,
+      0.0,
+      1.4901161193847656e-07
+    ],
+    "scope": "Training sample statistics, not independent trial success rates"
+  },
+  "goal_complete": false,
+  "resume_checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/velstand-v8-mature24576-001/checkpoint_000144.pt",
+  "wall_seconds": 173.21594706806354,
+  "full_process_control_per_second": 54482.189196423984,
+  "throughput": {
+    "median_control_per_second": 100839.07517214537,
+    "aggregate_control_per_second": 101066.3386971027
+  },
+  "terminal_bootstrap_samples": 12288,
+  "contact_peak": 125134,
+  "contact_capacity": 1572864,
+  "lineage": {
+    "checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/velstand-v8-allocation-001/checkpoint_000128.pt",
+    "checkpoint_sha256": "fa23c252cdd6eef41b0c7b8d4036dde2b5a296948ceba99eb7764cc712d9d66a",
+    "actor_critic_normalizer_adam_exact": true,
+    "learning_rate": 0.0006666666666666669,
+    "warm_start": false,
+    "new_skill_clock": 3072,
+    "bc_adam_fresh": false,
+    "teachers": {
+      "schema": 1,
+      "files": {
+        "checkpoint_path": {
+          "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+          "sha256": "e4772c33149410d62446180a9214b26695cb51ba1d5b7b26fac31d3ea273122b",
+          "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-M4-HeadStdCap001-MicroExposure025-Repaired-S0-O0-R1"
+        },
+        "anchor_checkpoint_path": {
+          "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+          "sha256": "480dbcaee8666e79e541d61719cf9bcfe746444b936661784272347d603e5395",
+          "task": "Mjlab-Velocity-Flat-MicroDuck-V2-YawFine-Repaired-S0-O0-R1"
+        }
+      },
+      "routing": "v2-upright-zero-twist-to-standing-v1",
+      "parameters": {
+        "coef": 1.0,
+        "learning_rate": 3e-05,
+        "gate_tilt_deg": 35.0,
+        "epochs": 5,
+        "mini_batches": 4,
+        "min_mini_batch": 512,
+        "min_samples": 64,
+        "gravity_slice": [
+          3,
+          6
+        ],
+        "twist_slice": [
+          48,
+          51
+        ],
+        "anchor_coef": 1.0,
+        "anchor_tilt_deg": 25.0,
+        "body_slice": [
+          55,
+          61
+        ],
+        "unanchor_turn_in_place": false,
+        "anchor_yaw_remap": null,
+        "body_active_axes": [
+          2,
+          3,
+          4
+        ],
+        "body_no_teacher_axes": [
+          2,
+          3,
+          4
+        ],
+        "expert_mask_cols": [],
+        "expert_mask_tilt_deg": 75.0,
+        "standing_teacher": true
+      }
+    }
+  },
+  "bc_diagnostics": [
+    {
+      "completed_updates": 129,
+      "expert_bc_stand_fraction": 0.2979854941368103,
+      "expert_bc_walk_fraction": 0.5830417275428772,
+      "expert_bc_zero_command_fraction": 0.0433739572763443,
+      "expert_bc_body_ppo_fraction": 0.1057451069355011,
+      "expert_bc": 0.07362773269414902,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.26642754673957825,
+      "expert_bc_kl_max": 9.528329849243164
+    },
+    {
+      "completed_updates": 130,
+      "expert_bc_stand_fraction": 0.2527364194393158,
+      "expert_bc_walk_fraction": 0.621337890625,
+      "expert_bc_zero_command_fraction": 0.046356201171875,
+      "expert_bc_body_ppo_fraction": 0.1123012974858284,
+      "expert_bc": 0.0401417501270771,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.13828441500663757,
+      "expert_bc_kl_max": 1.5305660963058472
+    },
+    {
+      "completed_updates": 131,
+      "expert_bc_stand_fraction": 0.1508416086435318,
+      "expert_bc_walk_fraction": 0.6943579912185669,
+      "expert_bc_zero_command_fraction": 0.0517696812748909,
+      "expert_bc_body_ppo_fraction": 0.1280398964881897,
+      "expert_bc": 0.040595900267362595,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.030545122921466827,
+      "expert_bc_kl_max": 0.4918731153011322
+    },
+    {
+      "completed_updates": 132,
+      "expert_bc_stand_fraction": 0.1048702672123909,
+      "expert_bc_walk_fraction": 0.7479282021522522,
+      "expert_bc_zero_command_fraction": 0.0562981516122818,
+      "expert_bc_body_ppo_fraction": 0.1355217844247818,
+      "expert_bc": 0.037541020661592484,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.020141342654824257,
+      "expert_bc_kl_max": 0.734139084815979
+    },
+    {
+      "completed_updates": 133,
+      "expert_bc_stand_fraction": 0.1023067906498909,
+      "expert_bc_walk_fraction": 0.7570088505744934,
+      "expert_bc_zero_command_fraction": 0.0570170097053051,
+      "expert_bc_body_ppo_fraction": 0.1356743723154068,
+      "expert_bc": 0.03041725791990757,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.011381881311535835,
+      "expert_bc_kl_max": 0.1600016951560974
+    },
+    {
+      "completed_updates": 134,
+      "expert_bc_stand_fraction": 0.0894368514418602,
+      "expert_bc_walk_fraction": 0.7684715986251831,
+      "expert_bc_zero_command_fraction": 0.0582343228161335,
+      "expert_bc_body_ppo_fraction": 0.1373528391122818,
+      "expert_bc": 0.028763631358742714,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.007573956623673439,
+      "expert_bc_kl_max": 0.12049183249473572
+    },
+    {
+      "completed_updates": 135,
+      "expert_bc_stand_fraction": 0.0766669362783432,
+      "expert_bc_walk_fraction": 0.7804582715034485,
+      "expert_bc_zero_command_fraction": 0.0587395578622818,
+      "expert_bc_body_ppo_fraction": 0.1397942453622818,
+      "expert_bc": 0.027844801545143127,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.006102649495005608,
+      "expert_bc_kl_max": 0.07625007629394531
+    },
+    {
+      "completed_updates": 136,
+      "expert_bc_stand_fraction": 0.0720723494887352,
+      "expert_bc_walk_fraction": 0.7849934697151184,
+      "expert_bc_zero_command_fraction": 0.0586090087890625,
+      "expert_bc_body_ppo_fraction": 0.1408250629901886,
+      "expert_bc": 0.027403533458709717,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.006994192022830248,
+      "expert_bc_kl_max": 0.05312472954392433
+    },
+    {
+      "completed_updates": 137,
+      "expert_bc_stand_fraction": 0.0710788294672966,
+      "expert_bc_walk_fraction": 0.7851986289024353,
+      "expert_bc_zero_command_fraction": 0.0588277168571949,
+      "expert_bc_body_ppo_fraction": 0.1417982280254364,
+      "expert_bc": 0.027621475979685783,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.006141078658401966,
+      "expert_bc_kl_max": 0.09255234152078629
+    },
+    {
+      "completed_updates": 138,
+      "expert_bc_stand_fraction": 0.078870989382267,
+      "expert_bc_walk_fraction": 0.777147114276886,
+      "expert_bc_zero_command_fraction": 0.0595703125,
+      "expert_bc_body_ppo_fraction": 0.1395009309053421,
+      "expert_bc": 0.03254109248518944,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.009466602467000484,
+      "expert_bc_kl_max": 0.30552321672439575
+    },
+    {
+      "completed_updates": 139,
+      "expert_bc_stand_fraction": 0.0979529470205307,
+      "expert_bc_walk_fraction": 0.7571766972541809,
+      "expert_bc_zero_command_fraction": 0.0580478236079216,
+      "expert_bc_body_ppo_fraction": 0.1389533132314682,
+      "expert_bc": 0.035317715257406235,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.009435470215976238,
+      "expert_bc_kl_max": 0.21028009057044983
+    },
+    {
+      "completed_updates": 140,
+      "expert_bc_stand_fraction": 0.1130794957280159,
+      "expert_bc_walk_fraction": 0.7422739863395691,
+      "expert_bc_zero_command_fraction": 0.0564032681286335,
+      "expert_bc_body_ppo_fraction": 0.1375918984413147,
+      "expert_bc": 0.0365208238363266,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.009418237954378128,
+      "expert_bc_kl_max": 0.4981127977371216
+    },
+    {
+      "completed_updates": 141,
+      "expert_bc_stand_fraction": 0.1195746511220932,
+      "expert_bc_walk_fraction": 0.7350616455078125,
+      "expert_bc_zero_command_fraction": 0.0551554374396801,
+      "expert_bc_body_ppo_fraction": 0.1368916779756546,
+      "expert_bc": 0.03736300766468048,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.013102595694363117,
+      "expert_bc_kl_max": 0.4853377342224121
+    },
+    {
+      "completed_updates": 142,
+      "expert_bc_stand_fraction": 0.1231502965092659,
+      "expert_bc_walk_fraction": 0.7324320673942566,
+      "expert_bc_zero_command_fraction": 0.0561353899538517,
+      "expert_bc_body_ppo_fraction": 0.1353539377450943,
+      "expert_bc": 0.03711067512631416,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.012608055956661701,
+      "expert_bc_kl_max": 0.26294970512390137
+    },
+    {
+      "completed_updates": 143,
+      "expert_bc_stand_fraction": 0.1243625208735466,
+      "expert_bc_walk_fraction": 0.7311519980430603,
+      "expert_bc_zero_command_fraction": 0.0565287284553051,
+      "expert_bc_body_ppo_fraction": 0.1345960795879364,
+      "expert_bc": 0.038197990506887436,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.006826984230428934,
+      "expert_bc_kl_max": 0.1710461974143982
+    },
+    {
+      "completed_updates": 144,
+      "expert_bc_stand_fraction": 0.1235928013920784,
+      "expert_bc_walk_fraction": 0.7329237461090088,
+      "expert_bc_zero_command_fraction": 0.0563795305788517,
+      "expert_bc_body_ppo_fraction": 0.1338568776845932,
+      "expert_bc": 0.03776828199625015,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.009423511102795601,
+      "expert_bc_kl_max": 0.3183561861515045
+    }
+  ],
+  "last_ppo_diagnostics": {
+    "PPO/kl_mean": 0.015475282452734817,
+    "PPO/kl_p95": 0.03796171396970749,
+    "PPO/kl_max": 0.6214977502822876,
+    "PPO/kl_minibatch_mean_max": 0.02045551307054754,
+    "PPO/clip_fraction": 0.21110466851128473,
+    "PPO/sample_visits": 2949120.0,
+    "PPO/kl_first_minibatch_mean": 1.2699674698524177e-05,
+    "PPO/kl_first_minibatch_max": 0.001982390880584717,
+    "PPO/mean_first_minibatch_max_abs_recompute_delta": 0.013122081756591797,
+    "PPO/std_first_minibatch_max_abs_recompute_delta": 0.0,
+    "PPO/ratio_first_minibatch_max_abs_error_from_one": 0.10557663440704346,
+    "PPO/learning_rate_after_update": 0.0006666666666666669,
+    "Grad/actor_norm_pre_mean": 1.2063279628753663,
+    "Grad/actor_norm_pre_max": 1.5079842805862427,
+    "Grad/actor_norm_post_mean": 0.9780021458864212,
+    "Grad/actor_norm_post_max": 0.9999994039535522,
+    "Grad/actor_clip_fraction": 0.9500000000000001,
+    "Grad/critic_norm_pre_mean": 0.4926864214241505,
+    "Grad/critic_norm_pre_max": 1.55325186252594,
+    "Grad/critic_norm_post_mean": 0.4496608130633831,
+    "Grad/critic_norm_post_max": 0.9999994039535522,
+    "Grad/critic_clip_fraction": 0.1,
+    "Grad/max_norm_limit": 1.0,
+    "Critic/return_variance": 2.188070595604927,
+    "Critic/explained_variance_valid": 1.0,
+    "Critic/explained_variance_rollout": 0.8575934779004248,
+    "Critic/mse_rollout": 0.31333452972538944,
+    "Critic/explained_variance_before": 0.8575832141231985,
+    "Critic/mse_before": 0.3133635345213613,
+    "Critic/explained_variance_after": 0.8625969124534969,
+    "Critic/mse_after": 0.3006634969636331,
+    "PPO/minibatches": 20.0
+  },
+  "cuda_peak_allocated_bytes": 6084648448,
+  "timing": [
+    {
+      "completed_updates": 129,
+      "wall_s": 34.73150691110641,
+      "collection_s": 33.54919075965881,
+      "learning_s": 0.9174480438232422
+    },
+    {
+      "completed_updates": 130,
+      "wall_s": 6.067616472952068,
+      "collection_s": 4.988632440567017,
+      "learning_s": 0.8287286758422852
+    },
+    {
+      "completed_updates": 131,
+      "wall_s": 5.962949832901359,
+      "collection_s": 5.029240131378174,
+      "learning_s": 0.8114211559295654
+    },
+    {
+      "completed_updates": 132,
+      "wall_s": 5.776029281085357,
+      "collection_s": 4.8177809715271,
+      "learning_s": 0.8194725513458252
+    },
+    {
+      "completed_updates": 133,
+      "wall_s": 5.791133252903819,
+      "collection_s": 4.838597774505615,
+      "learning_s": 0.8156716823577881
+    },
+    {
+      "completed_updates": 134,
+      "wall_s": 5.729350471170619,
+      "collection_s": 4.796484470367432,
+      "learning_s": 0.805788516998291
+    },
+    {
+      "completed_updates": 135,
+      "wall_s": 5.867459282046184,
+      "collection_s": 4.9262425899505615,
+      "learning_s": 0.8173425197601318
+    },
+    {
+      "completed_updates": 136,
+      "wall_s": 5.759048570878804,
+      "collection_s": 4.8058178424835205,
+      "learning_s": 0.8173720836639404
+    },
+    {
+      "completed_updates": 137,
+      "wall_s": 5.798151643946767,
+      "collection_s": 4.8515625,
+      "learning_s": 0.811063289642334
+    },
+    {
+      "completed_updates": 138,
+      "wall_s": 5.78788678208366,
+      "collection_s": 4.839872360229492,
+      "learning_s": 0.8144750595092773
+    },
+    {
+      "completed_updates": 139,
+      "wall_s": 5.851349063916132,
+      "collection_s": 4.9054460525512695,
+      "learning_s": 0.8137974739074707
+    },
+    {
+      "completed_updates": 140,
+      "wall_s": 5.975576531141996,
+      "collection_s": 4.918755054473877,
+      "learning_s": 0.9263551235198975
+    },
+    {
+      "completed_updates": 141,
+      "wall_s": 5.899019254837185,
+      "collection_s": 4.942523241043091,
+      "learning_s": 0.8224294185638428
+    },
+    {
+      "completed_updates": 142,
+      "wall_s": 5.84916114108637,
+      "collection_s": 4.885067462921143,
+      "learning_s": 0.823458194732666
+    },
+    {
+      "completed_updates": 143,
+      "wall_s": 5.909278311999515,
+      "collection_s": 4.953182935714722,
+      "learning_s": 0.8239455223083496
+    },
+    {
+      "completed_updates": 144,
+      "wall_s": 5.8746654079295695,
+      "collection_s": 4.912163496017456,
+      "learning_s": 0.8258016109466553
+    }
+  ],
+  "source_sha256": {
+    "scripts/train_v2_velstand.py": "3152898fd645abeaf3afbf98627837035b58ac6b2397961777756d58cb7579cc",
+    "scripts/v2_python.sh": "a51513a2ec91e2664b757db012c1b8d955dfd79642389e59f7976a6dd8549ae5",
+    "src/mjlab_microduck/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/actuator/__init__.py": "181bfbec32115818720695915322f6e2c860fe87767570662a029f8e2d01f12d",
+    "src/mjlab_microduck/actuator/friction_dr_bam.py": "20d25ce2fd06a94bc4fd5356a657710a0959a352bad3dfcc670122f0f0bcd4d4",
+    "src/mjlab_microduck/actuator/friction_force.py": "c84648a4c15a7173a9580d72deff2a9356b8c3aa2fd086413a795924d438a7f6",
+    "src/mjlab_microduck/actuator/sc0090_v5.py": "c42a7e54aac610c9ef1f142b32706821e54ea42163480393842632f35924e451",
+    "src/mjlab_microduck/actuator/v5_graph.py": "9cc192dfb180f67922565742398311c5d007c1aa3946ac5788722f31b2d71796",
+    "src/mjlab_microduck/custom_v2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/custom_v2/commands.py": "5dc0c05ffe76bbdb2cb2b492b55e201d6993253521417fc56fd64b67b028fd9c",
+    "src/mjlab_microduck/custom_v2/error_proxy.py": "5b1449037b5ee33d74e350cd5e44f02592618152f24166ce054f1e44d2670874",
+    "src/mjlab_microduck/custom_v2/exposure.py": "25df3d2d91c517976a43c91dc8051b971b6e056c43ce596d1d54ab43cc8babb4",
+    "src/mjlab_microduck/custom_v2/fast_native.py": "f841badf9793af5085b75c93e8c5078c67aebd6c701a9f9aa917a93fa444af9e",
+    "src/mjlab_microduck/custom_v2/feedback_diagnostics.py": "50c7f2697bde7821ba5777ee3199ab10cab578dda6e3f465d22c888c52933439",
+    "src/mjlab_microduck/custom_v2/feedback_repair.py": "52da329408923297f52d98585714f554e472100334b1f57d43204da3c5fffa55",
+    "src/mjlab_microduck/custom_v2/firmware_ls3.py": "b39086c7a288a06bb606bb9c1a57be1a12cb56b28b6c7f24d9591a4fbbd1bdab",
+    "src/mjlab_microduck/custom_v2/fresh_p04.py": "57dd70686b3874b6e8ae7b97d9378df8eab7dfb9890936563bccb96941aa079d",
+    "src/mjlab_microduck/custom_v2/frozen_normalization.py": "e75be9b1214c4bd8a0fabd79987284849c866ebb73914786dce61bda48f37a02",
+    "src/mjlab_microduck/custom_v2/head_accuracy.py": "746d6b3d7a3e40deaf5a88f9a904604e754db399e6b185d89e324dbb3a0ba29e",
+    "src/mjlab_microduck/custom_v2/head_exploration.py": "e47e8a240c912e45b0f08ce7d5469e2f91f030ce839065fe9a5098cc05612b14",
+    "src/mjlab_microduck/custom_v2/head_metrics.py": "5641c7679671f9fe124af5968a585df9e1425b9d3fa4462992f0c3d35f503599",
+    "src/mjlab_microduck/custom_v2/microduck_v2.py": "c59ea7d490fb2030fb335588734e921d0104d03a718569bff83d5f0fd1952213",
+    "src/mjlab_microduck/custom_v2/ppo.py": "a2574a090d59a257217a7ce97bc762b3220a974c1f5aaafa59dbaa99c3a4532a",
+    "src/mjlab_microduck/custom_v2/recovery.py": "f4e14fe56c4b44b7004ca16d8d38b8b7d51fa5e2f597a55e4d17b53adc94172e",
+    "src/mjlab_microduck/custom_v2/runtime.py": "66786dc0f292f161343e03ddf8ed55e885bc119c554aa6279e3e8cd8c14a918e",
+    "src/mjlab_microduck/custom_v2/terminal.py": "a731cddfe577e28d5e13507966e773b766a80f08d28dbfce6200dc38b3365ffa",
+    "src/mjlab_microduck/custom_v2/training.py": "5a27543094e9ca522f922f8b0546acd17aa51701970a163659aca2c1c75656da",
+    "src/mjlab_microduck/custom_v2/velstand.py": "69b6c3c8563b4aa24c9cc1d24e9beb25e93a0506088e7f4e01a416f123ad9ee5",
+    "src/mjlab_microduck/custom_v2/velstand_ppo.py": "0ddbddd09a11758dbca4bf067734f85358ed74d9ad0b966a8aeebd1e92651781",
+    "src/mjlab_microduck/custom_v2/walking_metrics.py": "5c7f0b802a526ef863c2bba2ad79097ee07058f492af4ee54c11071bb02deb65",
+    "src/mjlab_microduck/export.py": "ef4d851eee70ce0d1c896a0be14fd4a936a0d17e83649dfd572a5282ffcdf5b9",
+    "src/mjlab_microduck/hf_jobs.py": "d447a20e1feed595ef29a1a19e6a51630327341eb270f0acf4fcb314f69fd285",
+    "src/mjlab_microduck/physics/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/physics/_cpu_warp_contacts.cpp": "9c3f41f8eb31e10f691423ea4694deb4ae13619128429dadb558776191388346",
+    "src/mjlab_microduck/physics/cpu_warp_contacts.py": "84ad6f3a96c06bc5552ca63fbd9f396d255545c54b956f8bd9bdba0abaa827dc",
+    "src/mjlab_microduck/pickup/__init__.py": "7f9ef6fbcbd8b157b71f978092f41cdf8505992a6ecd91b59fc2b0fdef8cad2f",
+    "src/mjlab_microduck/pickup/features.py": "e1f49f64ce597215bca8d2734476fe5aa615a46a6bb6387c57fdd9a4b35f5015",
+    "src/mjlab_microduck/pickup/hand.py": "6b3229a8784e685b2837d44aa11d2c5cdb46e8337de62db8591572ba17537c3a",
+    "src/mjlab_microduck/pickup/model.py": "d738f60870bfa44be8d14afca4ec05d2c1920968202419bd814949b25d94813e",
+    "src/mjlab_microduck/ppo_diagnostics.py": "ba7b23147263c5b9a54e9475f6996d2e77d189d177c6eb8952ece74667452a8f",
+    "src/mjlab_microduck/publish/__init__.py": "7768b41714b565cc97b5553a170b5d95cf17abafe6baa0f9a4be0b7e8cfec7bf",
+    "src/mjlab_microduck/publish/cli.py": "adb198a8b2c0aa10069cbcc3fe2c32b5540533cf04b410caa190b3bdcc24058b",
+    "src/mjlab_microduck/publish/manifest.py": "d66bae7920c2a86fef56877d8ced25c4b1fee67d5637da56d284056722dc7866",
+    "src/mjlab_microduck/robot/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/robot/microduck/add_backlash.py": "805a17ba4ad60f7a2ba20ff90879ad93a6db66013150c5ad9be3d31bc7b4252c",
+    "src/mjlab_microduck/robot/microduck_constants.py": "0e7097afe833ac1259b197f9854d01c1666be03ac0c9b090233b4fbc7619eb94",
+    "src/mjlab_microduck/robot/testbench_constants.py": "bf5e95376131471443e1daddf5abb0bc6326bc6b5c49bfb352774bcc6b011b9f",
+    "src/mjlab_microduck/sc0090/__init__.py": "2ca18a32cf435624efd6bc3113c498d189da24dc0f8ea728a120172c3f71c9e5",
+    "src/mjlab_microduck/sc0090/observer.py": "7b9da38512efda458621b63387bc317ed1b676e5d4a3e8b98a506a95cd5c06c7",
+    "src/mjlab_microduck/sc0090/registers.py": "5dc1b99ee04d38bcf08d792caa9bf4798212c665286858c5447c9d0b83faf2e2",
+    "src/mjlab_microduck/sc0090/stream.py": "f4d4a48af4d2d03b24aa45233b7660de21925dcb5a1cee8c1f26c42a0cc1c6f6",
+    "src/mjlab_microduck/sc0090_v2/__init__.py": "3cb742a139209151b93552e2e5f28d289faf8e35a25ee3f23e968da544cd5e0a",
+    "src/mjlab_microduck/sc0090_v2/action.py": "9ceaa9a68bb22e35a827e014600cc59fdbec1efb4adb9f45b35a9f0a8a482e3e",
+    "src/mjlab_microduck/sc0090_v2/artifacts.py": "30fb7e7f46a31946b5c0be4b1144770a8ad6d1613db7aead770365734cf549f3",
+    "src/mjlab_microduck/sc0090_v2/contract.py": "3de49158641ebfdc92f22ab5a7a086fb49f01457d1414ce752ce45f7e609c0bf",
+    "src/mjlab_microduck/sc0090_v2/feedback.py": "dc5ef0c04cc9a7e84bbe12a3a8319a22e102eb69c66f993a38b8587fc97e4740",
+    "src/mjlab_microduck/sc0090_v2/graph.py": "a49eff096fe2246dce595ea03af8bd84261636cde58598a1a3a1e4ce5f5e7222",
+    "src/mjlab_microduck/sc0090_v2/measurement/__init__.py": "96d1f26fe354f1a6f9a74a4c7cc89ff76a2069851d8b4afbf734785d9205dfcd",
+    "src/mjlab_microduck/sc0090_v2/measurement/compact.py": "cc1b50271c30d1ebb0f9995f5b48a87f24af663cd1b59b0c526248a2895a8b4d",
+    "src/mjlab_microduck/sc0090_v2/measurement/compiled_registers.py": "0f9671f5a31ddcf232b389d8fcf5b3b736953d00290f470574e0f0882819e4f1",
+    "src/mjlab_microduck/sc0090_v2/measurement/compiled_stream.py": "da609f2b075e45bd19be091cb89467fe26e5ef6a1bc9c9b56a3b2a58a33d0aa3",
+    "src/mjlab_microduck/sc0090_v2/measurement/firmware_stream.py": "fba17e7e10b4aa37945ccda08f72a3d874281984ba90f1fff8ed1291760ec77f",
+    "src/mjlab_microduck/sc0090_v2/measurement/gpu_donors.py": "8eefaa07664482f194df1abec679d95d092ae7da293b91c63944bf337e1b686d",
+    "src/mjlab_microduck/sc0090_v2/measurement/precision.py": "792d990f742cec691fee4c1247e11b385520693e206f70faff2aa47536751717",
+    "src/mjlab_microduck/sc0090_v2/measurement/prehistory.py": "9f37748c6fd25d8b7a1743ef4681f2ca88e15454fc927e0ac3456fb4374bc4e0",
+    "src/mjlab_microduck/sc0090_v2/measurement/registers.py": "089e44fd3eb15eabe0ad1f9d335ae77e7721346db129fef6df4cc613895c3134",
+    "src/mjlab_microduck/sc0090_v2/measurement/stream.py": "2ffcf8729f6482c67f5622cc3a0ca5165f5b6f2e5ae6e992941f36c5a569e5d0",
+    "src/mjlab_microduck/sim/__init__.py": "f13d4940266b9579529074bc60426353ed8fc6f49bf8f480691d30e8e4276e22",
+    "src/mjlab_microduck/sim/body_server.py": "2040c827628c33fee998944bce1fcd456c4b993802bb473f016681688bff7b08",
+    "src/mjlab_microduck/sim/camera.py": "5f2e6c83b33e594583cbd5f3e003c3b8bb77f7a0e7b734d86ba0b2c821eaed71",
+    "src/mjlab_microduck/sim/recompute.py": "a5281fe33ab2c83cc4a1aafe127aee3b657b72d14663fbfd95962770e715b35c",
+    "src/mjlab_microduck/sim/terminal.py": "970b529849b5ee63474c7b5981f308b02bdf77a005dcbed106bbe906c9cd797f",
+    "src/mjlab_microduck/sim/tof.py": "256c06bac5ac64a02f3e065785bd70314b616c58da3cb94f93484c9e00d42663",
+    "src/mjlab_microduck/tasks/__init__.py": "eebada7e343613f310c88a550d49e755064de0595e4645225be8dfe64afdc55d",
+    "src/mjlab_microduck/tasks/backlash.py": "35598c2a3db496527fb8835269b4e0ac0eddcc86e683a7af447933c7281d0e22",
+    "src/mjlab_microduck/tasks/distill.py": "d7a2326d3a3b85ba0acb8910dde2701208e61e5bfce0f246eace3d11f51a6026",
+    "src/mjlab_microduck/tasks/mdp.py": "34dcadb99efba9b46b37e71c5f6ffa66fb57235a246b78fa8ff08e37b4bc4fd7",
+    "src/mjlab_microduck/tasks/microduck_ball_kick_env_cfg.py": "313180628c0d0364ea6d0f1843e7e3e10b76585491b90b0c1f0e301d9e5fd30c",
+    "src/mjlab_microduck/tasks/microduck_ground_pick_env_cfg.py": "9b68951e2c84fdccb5894701efa97e060438eb56c956a34c65e844ba3fa6185e",
+    "src/mjlab_microduck/tasks/microduck_roller_crouch_env_cfg.py": "745142fab9ffc4c43a6b7d367d6be37f5675f5fbf255ac4341a9e2a21a4062ee",
+    "src/mjlab_microduck/tasks/microduck_roller_slope_env_cfg.py": "92738df650e3527c8cbe194169f60fb2a232933b1eabbbaf7d4b7d2aa67e2b42",
+    "src/mjlab_microduck/tasks/microduck_roller_standup_env_cfg.py": "146e417c082823039b87d2ff350e96e84007df80c268d53984d7c160f25cdeee",
+    "src/mjlab_microduck/tasks/microduck_roulade_env_cfg.py": "5e923d9ba69946228062c72102fe2b97bce02b9fd6f52c2418a42bbd4f919b42",
+    "src/mjlab_microduck/tasks/microduck_sitstand_env_cfg.py": "65b1961566b0772852ba36af8e92c02a13a53de9b9a98f91e2dce1f4d8d627b1",
+    "src/mjlab_microduck/tasks/microduck_spin_env_cfg.py": "ba85e26407a29a208f871aa229bb2c7971eca6087f0740e7de6f898adbc5b395",
+    "src/mjlab_microduck/tasks/microduck_standup_env_cfg.py": "b20b8f3fac5a374dd602f371f0b500955b4dbcb4d3f7330bddfa15b327826873",
+    "src/mjlab_microduck/tasks/microduck_velocity_env_cfg.py": "75a0430b814ac7495eb237ab806fbd4dd10309b9fd3027ac3eee3c2e3c5a944a",
+    "src/mjlab_microduck/tasks/microduck_velocity_rollers_env_cfg.py": "53567a5ed91b4c70166b57c79fc31917fdcf41287128aff12d3b9ff678f4c38c",
+    "src/mjlab_microduck/tasks/microduck_velocity_swizzle_env_cfg.py": "75197c956afd77586f60e4b773033ace15e088179bb5912a88328862b0a10f49",
+    "src/mjlab_microduck/tasks/microduck_velstand_env_cfg.py": "4b0aebefcc33ad43c2741bf09d8516be82c3ec859bcac54d4ef6531c2759898d",
+    "src/mjlab_microduck/tasks/slope_terrain.py": "1ce48eef8b4bd82cde94d7c9f50f19d2992f4dc8d3b5b5d314b7381bc572b8a0",
+    "src/mjlab_microduck/tasks/symmetry.py": "e37980389773f2f87b8f376df449af4d70e0c983744459f9a35a3ee7b686186b",
+    "src/mjlab_microduck/tasks/testbench_env_cfg.py": "d254218ca3f491e52d471ad033ebd1cb39a339f1f21394ea55e2bec4f3dc2776",
+    "src/mjlab_microduck/train_cli.py": "6c1e118d2bf65f86f6b932dd41b4ddff2a20a0633194a03072f700c7bfa8e372",
+    "src/mjlab_microduck/train_hook.py": "db1bcbceadd41d65077983eaadcb89dee146dc14ea9c9cc3df9d29c1cba20db5"
+  }
+}

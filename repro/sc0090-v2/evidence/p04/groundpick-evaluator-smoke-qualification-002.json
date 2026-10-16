@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "reports": [
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-evaluator-smoke-002-nominal/report.json",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-evaluator-smoke-002-measured/report.json"
+  ],
+  "scope": "Software/oracle/source/frozen actor/camera validation, random5-update behavior not skill acceptance"
+}

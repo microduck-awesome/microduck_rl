@@ -1,0 +1,66 @@
+"""Actual GPU no-reset successor oracle and live-state isolation for SitStand."""
+import argparse,hashlib,json
+from pathlib import Path
+import torch
+from mjlab.envs import ManagerBasedRlEnv
+from mjlab_microduck.custom_v2.sitstand import make_sitstand_env_cfg
+from mjlab_microduck.custom_v2.terminal import SC0090TerminalCriticObserver
+from mjlab_microduck.tasks import mdp
+
+def states(env):
+    out={'qpos':env.sim.data.qpos.clone(),'qvel':env.sim.data.qvel.clone(),
+         'age':env.episode_length_buf.clone(),'rng':torch.cuda.get_rng_state(env.device).clone()}
+    for name,term in env.command_manager._terms.items():
+        for key,v in vars(term).items():
+            if isinstance(v,torch.Tensor):out['command/'+name+'/'+key]=v.clone()
+    for i,v in enumerate(env.event_manager._interval_term_time_left):out['timer/'+str(i)]=v.clone()
+    return out
+
+def main():
+    p=argparse.ArgumentParser();p.add_argument('--device',default='cuda:0');p.add_argument('--output',type=Path,required=True);a=p.parse_args()
+    torch.set_num_threads(2);torch.cuda.set_device(a.device)
+    cfg=make_sitstand_env_cfg();cfg.scene.num_envs=32;cfg.seed=616;cfg.curriculum={}
+    for term in cfg.events.values():
+        if term.func is mdp.seated_head_command_jerk:term.params.update(prob=1.,flip_frac=.5)
+        if term.func is mdp.seated_backward_tip:term.params.update(prob=1.,ang_vel_range=(.5,1.))
+    env=ManagerBasedRlEnv(cfg,device=a.device);results=[]
+    try:
+        env.reset();observer=SC0090TerminalCriticObserver(env)
+        assert observer._kinematics_allowed
+        for name,age,alpha,flag,expire in [('seated_active_events',100,1.,1.,False),('ramp_boundary',100,.975,1.,False),('expired_command',100,.4,0.,True),('fresh_height',1,.1,1.,False),('reverse',100,.8,0.,False)]:
+            env.episode_length_buf.fill_(age);term=env.command_manager.get_term('twist')
+            term._alpha.fill_(alpha);term.vel_command_b[:,0]=flag
+            term.time_left.fill_(0. if expire else 10.)
+            for timer in env.event_manager._interval_term_time_left:timer.fill_(0.)
+            before=states(env)
+            actual=observer.capture(env).clone()
+            after=states(env)
+            assert before.keys()==after.keys()
+            for k in before:assert torch.equal(before[k],after[k]),(name,'live mutated',k)
+            shadow=observer.shadow;shadow_term=shadow.command_manager.get_term('twist')
+            assert shadow_term._env_ref is shadow and shadow_term._alpha.data_ptr()!=term._alpha.data_ptr()
+            # Exact native post-integration order, with no reset or extra physics.
+            env.sim.forward();env.command_manager.compute(dt=env.step_dt)
+            for mode in ('step','interval'):
+                if mode in env.event_manager.available_modes:env.event_manager.apply(mode=mode,dt=env.step_dt)
+            env.sim.sense();expected=env.observation_manager.compute_group('critic',update_history=True)
+            torch.testing.assert_close(actual,expected,rtol=0,atol=2e-6)
+            for command in env.command_manager._terms:
+                left,right=env.command_manager.get_term(command),shadow.command_manager.get_term(command)
+                for key,v in vars(left).items():
+                    if isinstance(v,torch.Tensor):assert torch.equal(v,getattr(right,key)),(name,command,key)
+            assert torch.equal(env.sim.data.qvel,shadow.sim.data.qvel),(name,'tip velocity')
+            results.append({'case':name,'critic_max_error':float((actual-expected).abs().max()),'live_tensors_unchanged':len(before)})
+        # Partial reset alpha must follow the teleported pose, not a stale ramp.
+        term=env.command_manager.get_term('twist');term._alpha.fill_(.37)
+        before=term._alpha.clone();ids=torch.tensor([1,3,9],device=a.device)
+        env.reset(env_ids=ids)
+        others=torch.ones(env.num_envs,dtype=torch.bool,device=a.device);others[ids]=False
+        assert torch.equal(term._alpha[others],before[others])
+        torch.testing.assert_close(term._alpha[ids],term._alpha_from_height()[ids],rtol=0,atol=1e-6)
+        report={'status':'PASS','cases':results,'actor_width':env.observation_manager.group_obs_dim['actor'][0],
+          'critic_width':env.observation_manager.group_obs_dim['critic'][0],'partial_reset_alpha':'PASS',
+          'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
+        a.output.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report),flush=True)
+    finally:env.close()
+if __name__=='__main__':main()

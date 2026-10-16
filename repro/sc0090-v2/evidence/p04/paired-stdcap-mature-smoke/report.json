@@ -1,0 +1,478 @@
+{
+  "status": "PASS",
+  "head_precision_recipe": {
+    "id": "v2-head-precision-5",
+    "stage": 5,
+    "ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ],
+    "final_ranges": [
+      [
+        -0.48577760000000003,
+        1.1
+      ],
+      [
+        -1.1,
+        0.904656
+      ],
+      [
+        -1.4,
+        1.4
+      ],
+      [
+        -0.31,
+        0.31
+      ]
+    ],
+    "reward_weight": 3.0,
+    "std": 0.5,
+    "fine_std": 0.04,
+    "fine_weight": 0.5,
+    "precision_scale": 0.003,
+    "command_sampling": {
+      "zero_probability": 0.4,
+      "precision_probability": 0.5,
+      "precision_amplitude_rad": [
+        0.005,
+        0.04
+      ],
+      "active_axis_count_probabilities": {
+        "1": 0.5,
+        "2": 0.25,
+        "4": 0.25
+      }
+    },
+    "balance_active_axes": true,
+    "reason": "Equal active/idle group reward mass after paired trajectory reward/response ordering counterexample"
+  },
+  "normalization_recipe": {
+    "id": "mature-parent-normalizer-freeze-v1",
+    "targets": [
+      "actor",
+      "critic"
+    ],
+    "semantics": "retain parent mean/variance/std/count exactly; stop future statistic updates",
+    "until_counts": {
+      "actor": 739639296,
+      "critic": 739639296
+    }
+  },
+  "initialization": {
+    "kind": "validation_exact_mature_resume",
+    "checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-short-catch-allocation-002/resume_003954.pt",
+    "sha256": "64ea8ecc109c2715449568cc99469ce672b33519991dff2f86351fac42673dcf",
+    "inherited_completed_updates": 3954,
+    "actor_critic_normalizers_optimizer_exact": true,
+    "learning_rate": 0.00011390625000000006,
+    "curriculum_clock": 94896,
+    "recovery_stage": 5,
+    "polish": true,
+    "limitation": "Validation segment only; not counted as formal learned-policy progress"
+  },
+  "task": "Mjlab-StandUp-Flat-MicroDuck-V2-PairedAdapt-Catch2sPitch10-LateEntropy005-HeadStdCap001-Repaired-S0-O0-R1",
+  "device": "cuda:1",
+  "envs": 64,
+  "iterations": 5,
+  "steps_per_env": 24,
+  "learning_epochs": 5,
+  "minibatches": 4,
+  "entropy_coef": 0.005,
+  "distribution_cfg": {
+    "class_name": "mjlab_microduck.custom_v2.head_exploration:HeadCappedGaussianDistribution",
+    "init_std": 1.0,
+    "std_type": "scalar",
+    "head_std_cap": 0.01
+  },
+  "first_minibatch_tolerances": {
+    "std_max_delta": 0.0,
+    "kl_max": 1e-06,
+    "ratio_max_abs_error": 0.002,
+    "reason": "FP32 actor recomputation across batch sizes; effective std remains bitwise identical"
+  },
+  "exploration_before": {
+    "id": "v2-head-effective-std-cap-v1",
+    "head_std_cap_rad": 0.01,
+    "policy_joint_order": [
+      "left_hip_yaw",
+      "left_hip_roll",
+      "left_hip_pitch",
+      "left_knee",
+      "left_ankle",
+      "neck_pitch",
+      "head_pitch",
+      "head_yaw",
+      "head_roll",
+      "right_hip_yaw",
+      "right_hip_roll",
+      "right_hip_pitch",
+      "right_knee",
+      "right_ankle"
+    ],
+    "head_joint_names": [
+      "neck_pitch",
+      "head_pitch",
+      "head_yaw",
+      "head_roll"
+    ],
+    "raw_std_parameter_rad": [
+      0.09343698620796204,
+      0.11609549820423126,
+      0.08307883143424988,
+      0.08600996434688568,
+      0.08038672804832458,
+      0.06639643758535385,
+      0.06819455325603485,
+      0.06653409451246262,
+      0.07323109358549118,
+      0.09811122715473175,
+      0.1123652532696724,
+      0.08689431101083755,
+      0.08972831070423126,
+      0.08001086860895157
+    ],
+    "effective_std_rad": [
+      0.09343698620796204,
+      0.11609549820423126,
+      0.08307883143424988,
+      0.08600996434688568,
+      0.08038672804832458,
+      0.009999999776482582,
+      0.009999999776482582,
+      0.009999999776482582,
+      0.009999999776482582,
+      0.09811122715473175,
+      0.1123652532696724,
+      0.08689431101083755,
+      0.08972831070423126,
+      0.08001086860895157
+    ],
+    "leg_std_unchanged": true,
+    "raw_parameter_and_optimizer_preserved": true,
+    "state_dict_keys": [
+      "std_param"
+    ],
+    "source_sha256": "e47e8a240c912e45b0f08ce7d5469e2f91f030ce839065fe9a5098cc05612b14",
+    "semantics": "cap actual Normal before sampling, log_prob, entropy, params and KL; deterministic identity"
+  },
+  "exploration_after": {
+    "id": "v2-head-effective-std-cap-v1",
+    "head_std_cap_rad": 0.01,
+    "policy_joint_order": [
+      "left_hip_yaw",
+      "left_hip_roll",
+      "left_hip_pitch",
+      "left_knee",
+      "left_ankle",
+      "neck_pitch",
+      "head_pitch",
+      "head_yaw",
+      "head_roll",
+      "right_hip_yaw",
+      "right_hip_roll",
+      "right_hip_pitch",
+      "right_knee",
+      "right_ankle"
+    ],
+    "head_joint_names": [
+      "neck_pitch",
+      "head_pitch",
+      "head_yaw",
+      "head_roll"
+    ],
+    "raw_std_parameter_rad": [
+      0.09345937520265579,
+      0.11616304516792297,
+      0.08321405947208405,
+      0.08597041666507721,
+      0.08046477288007736,
+      0.06640501320362091,
+      0.06817786395549774,
+      0.06650825589895248,
+      0.0732087641954422,
+      0.09801739454269409,
+      0.11238249391317368,
+      0.08692353218793869,
+      0.0897706001996994,
+      0.08006219565868378
+    ],
+    "effective_std_rad": [
+      0.09345937520265579,
+      0.11616304516792297,
+      0.08321405947208405,
+      0.08597041666507721,
+      0.08046477288007736,
+      0.009999999776482582,
+      0.009999999776482582,
+      0.009999999776482582,
+      0.009999999776482582,
+      0.09801739454269409,
+      0.11238249391317368,
+      0.08692353218793869,
+      0.0897706001996994,
+      0.08006219565868378
+    ],
+    "leg_std_unchanged": true,
+    "raw_parameter_and_optimizer_preserved": true,
+    "state_dict_keys": [
+      "std_param"
+    ],
+    "source_sha256": "e47e8a240c912e45b0f08ce7d5469e2f91f030ce839065fe9a5098cc05612b14",
+    "semantics": "cap actual Normal before sampling, log_prob, entropy, params and KL; deterministic identity"
+  },
+  "first_minibatch_distribution_consistent_all_updates": true,
+  "losses": [
+    {
+      "value": 0.45696077644824984,
+      "surrogate": -0.012801952078007162,
+      "entropy": -22.428527641296387
+    },
+    {
+      "value": 0.01224861927330494,
+      "surrogate": -0.017695942425052635,
+      "entropy": -22.42624673843384
+    },
+    {
+      "value": 0.09963430357165634,
+      "surrogate": -0.016052463185042144,
+      "entropy": -22.426157569885255
+    },
+    {
+      "value": 0.027871995139867066,
+      "surrogate": -0.009592418931424618,
+      "entropy": -22.42606363296509
+    },
+    {
+      "value": 0.22456715032458305,
+      "surrogate": -0.02018377309432253,
+      "entropy": -22.425894355773927
+    }
+  ],
+  "policy_parameter_max_change": 0.00143510103225708,
+  "finite_policy_parameters": true,
+  "terminal_bootstrap_samples": 72,
+  "actual_pose_exposure": {
+    "environment_control_steps": 7680,
+    "combinations": [
+      2308,
+      2286,
+      1426,
+      1660
+    ],
+    "recovery_pose_control_steps": [
+      4307,
+      657,
+      142,
+      1379,
+      577,
+      279,
+      339
+    ],
+    "standing_first_half_second_control_steps": 1292,
+    "combination_axes": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "positive": [
+      1077,
+      1475,
+      1641,
+      1440
+    ],
+    "negative": [
+      1701,
+      1748,
+      1236,
+      1460
+    ],
+    "range_quarters": [
+      [
+        1920,
+        201,
+        338,
+        319
+      ],
+      [
+        2088,
+        461,
+        396,
+        278
+      ],
+      [
+        1957,
+        458,
+        260,
+        202
+      ],
+      [
+        1245,
+        918,
+        158,
+        579
+      ]
+    ],
+    "current_ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ]
+  },
+  "elapsed_seconds": 31.917764147976413,
+  "robot_xml": "robot.xml",
+  "robot_xml_sha256": "d52e06595e737ebe0b96529bfa6410b26b5f0e2d221e03ee2c28c4c9fcf0ed69",
+  "action_scale": 1.0,
+  "peak_contacts_across_worlds": 512,
+  "physics_cuda_graph": true,
+  "motor_graph_replays": [
+    478,
+    478
+  ],
+  "contact_capacity_across_worlds": 2240,
+  "contact_capacity_checked_each_physics_step": true,
+  "logging": "local TensorBoard",
+  "upload_model": false,
+  "limitation": "A short PPO smoke validates the training path; it does not demonstrate learned walking or SC0090 sim2real.",
+  "normalization_source_sha256": "e75be9b1214c4bd8a0fabd79987284849c866ebb73914786dce61bda48f37a02",
+  "normalization_unchanged_all_updates": true,
+  "iteration_timing": [
+    {
+      "iteration": 3954,
+      "collection_s": 25.91218876838684,
+      "learning_s": 0.26151037216186523,
+      "wall_s": 26.79291782900691
+    },
+    {
+      "iteration": 3955,
+      "collection_s": 0.6211199760437012,
+      "learning_s": 0.15926003456115723,
+      "wall_s": 0.8679546290077269
+    },
+    {
+      "iteration": 3956,
+      "collection_s": 0.6204147338867188,
+      "learning_s": 0.1622762680053711,
+      "wall_s": 0.8732415880076587
+    },
+    {
+      "iteration": 3957,
+      "collection_s": 0.6087253093719482,
+      "learning_s": 0.16492390632629395,
+      "wall_s": 0.8591865540947765
+    },
+    {
+      "iteration": 3958,
+      "collection_s": 1.787668228149414,
+      "learning_s": 0.16817545890808105,
+      "wall_s": 2.0388127949554473
+    }
+  ],
+  "throughput": {
+    "warmup_updates": 3,
+    "measured_updates": 2,
+    "median_wall_s": 1.448999674525112,
+    "median_end_to_end_steps_per_s": 1270.558544913925,
+    "median_collection_steps_per_s": 1691.2627322779479,
+    "aggregate_wall_steps_per_s": 1060.041645974421
+  },
+  "measurement_graph": {
+    "captures": 1,
+    "replays": 478
+  },
+  "measurement_backend": {
+    "pipeline": "CompiledRegisterPipeline",
+    "frontend": "CompiledCausalStream"
+  },
+  "reset_graphs": {
+    "('full', 960)": {
+      "captures": 1,
+      "replays": 169,
+      "tick_replays": 169,
+      "chunk_ticks": 1
+    },
+    "('partial', 480)": {
+      "captures": 1,
+      "replays": 169,
+      "tick_replays": 169,
+      "chunk_ticks": 1
+    }
+  },
+  "onnx_exported": true,
+  "measurement_execution": {
+    "candidate_count": 1024,
+    "command_count_limits": [
+      20,
+      1001
+    ],
+    "compact_reset": true,
+    "donor_sampler": "v2-device-donor-1024-v1",
+    "frontend": "CompiledCausalStream",
+    "native_feedback_count_limits": [
+      0,
+      1023
+    ],
+    "o0_local_history": true,
+    "pipeline": "CompiledRegisterPipeline",
+    "reset_graph": true,
+    "reset_graph_chunk": 1,
+    "rollout_graph": true,
+    "schema": 1,
+    "source_sha256": {
+      "feedback.py": "dc5ef0c04cc9a7e84bbe12a3a8319a22e102eb69c66f993a38b8587fc97e4740",
+      "graph.py": "a49eff096fe2246dce595ea03af8bd84261636cde58598a1a3a1e4ce5f5e7222",
+      "measurement/__init__.py": "96d1f26fe354f1a6f9a74a4c7cc89ff76a2069851d8b4afbf734785d9205dfcd",
+      "measurement/compact.py": "cc1b50271c30d1ebb0f9995f5b48a87f24af663cd1b59b0c526248a2895a8b4d",
+      "measurement/compiled_registers.py": "0f9671f5a31ddcf232b389d8fcf5b3b736953d00290f470574e0f0882819e4f1",
+      "measurement/compiled_stream.py": "da609f2b075e45bd19be091cb89467fe26e5ef6a1bc9c9b56a3b2a58a33d0aa3",
+      "measurement/firmware_stream.py": "fba17e7e10b4aa37945ccda08f72a3d874281984ba90f1fff8ed1291760ec77f",
+      "measurement/gpu_donors.py": "8eefaa07664482f194df1abec679d95d092ae7da293b91c63944bf337e1b686d",
+      "measurement/precision.py": "792d990f742cec691fee4c1247e11b385520693e206f70faff2aa47536751717",
+      "measurement/prehistory.py": "9f37748c6fd25d8b7a1743ef4681f2ca88e15454fc927e0ac3456fb4374bc4e0",
+      "measurement/registers.py": "089e44fd3eb15eabe0ad1f9d335ae77e7721346db129fef6df4cc613895c3134",
+      "measurement/stream.py": "2ffcf8729f6482c67f5622cc3a0ca5165f5b6f2e5ae6e992941f36c5a569e5d0"
+    },
+    "spike_rejection": false
+  },
+  "training_contract_sha256": "1a12ef15ee8d9208ad29eab25342fc5a37cf3c1f5b02e85a5a19ceab953680af",
+  "randomization_stage": "nominal",
+  "onnx_cpu_inference": {
+    "input": [
+      1,
+      61
+    ],
+    "output": [
+      1,
+      14
+    ],
+    "metadata_joint_count": 14,
+    "normalizer_parity_max_error": 3.5762786865234375e-07
+  }
+}

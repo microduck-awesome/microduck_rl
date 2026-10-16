@@ -1,0 +1,21 @@
+{
+  "status": "OPTIMIZER_AND_CAPACITY_PASS_FEEDBACK_ATTRIBUTION_REQUIRED",
+  "actual_N": 24576,
+  "validation_controls": 9437184,
+  "throughput": {
+    "median_control_per_second": 100839.07517214537,
+    "aggregate_control_per_second": 101066.3386971027
+  },
+  "max_post_bc_mean_kl": 0.26642754673957825,
+  "feedback_invalid_samples": 1,
+  "first_formal_invalid_samples": 2,
+  "terminal_samples": 12288,
+  "oracle_max_abs": [
+    0.0,
+    0.0,
+    0.0,
+    1.4901161193847656e-07
+  ],
+  "formal_second_allocation_started": false,
+  "scope": "Mature actualN completed but strict zero-invalid qualification stopped the queue. WalkingTrainingSummary has no nonfinite_fraction key; do not invent one from another skill schema. Read-only diagnostic now adds explicit nonfinite counter and first-fault raw capture."
+}

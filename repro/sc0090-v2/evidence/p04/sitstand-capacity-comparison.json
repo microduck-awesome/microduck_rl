@@ -1,0 +1,32 @@
+{
+  "status": "PASS_STATIC_FEASIBILITY_AND_CAPACITY",
+  "configuration_change": "nconmax 200 to 64 only; solver30/50 and collision masks unchanged",
+  "initial_hold_max_abs_diff_per_column": [
+    0.00026492029428482056,
+    0.013430451974272728,
+    0.002174392808228731,
+    0.06560056656599045,
+    0.0633082389831543,
+    0.0
+  ],
+  "whole_trajectory_max_abs_diff_per_column": [
+    0.012373358011245728,
+    0.2748556137084961,
+    0.511154294013977,
+    8.755712509155273,
+    3.1349191665649414,
+    0.0
+  ],
+  "pairing": "same seed and exact scripted commands; original full initial state was not saved, so no full-state bitwise pairing claim",
+  "columns": [
+    "height",
+    "tilt_rad",
+    "vz",
+    "omega",
+    "max_joint_speed",
+    "fault"
+  ],
+  "contact_peak_sampled": 1778,
+  "contact_capacity": 8192,
+  "unchanged_failed_open_loop_transition": "all 128 exceed 15deg in both capacities; not an accepted control template"
+}

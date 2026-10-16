@@ -1,0 +1,48 @@
+"""Prove collection horizon is the only behavioral configuration change."""
+from dataclasses import asdict
+import hashlib
+import json
+from pathlib import Path
+import mjlab.tasks
+from mjlab.tasks.registry import load_env_cfg, load_rl_cfg
+from mjlab_microduck.custom_v2.feedback_repair import PITCH10_HEAD_STD_CAP_TASK, PITCH10_ROLLOUT12_TASK
+from mjlab_microduck.custom_v2.training import configure_head_precision_learning
+
+def canonical(value):
+    return json.dumps(value, sort_keys=True, default=lambda x: getattr(x, '__qualname__', str(x)))
+
+for play in [False, True]:
+    old_env = load_env_cfg(PITCH10_HEAD_STD_CAP_TASK, play=play)
+    new_env = load_env_cfg(PITCH10_ROLLOUT12_TASK, play=play)
+    assert canonical(asdict(old_env)) == canonical(asdict(new_env))
+    assert configure_head_precision_learning(old_env, 5) == configure_head_precision_learning(new_env, 5)
+    assert canonical(asdict(old_env)) == canonical(asdict(new_env))
+    assert new_env.terminations['standing_catch_timeout'].params['seconds'] == 2.
+    assert new_env.terminations['standing_catch_timeout'].time_out
+    assert new_env.actions['joint_pos'].spike_rejection is False
+    assert new_env.events['set_ground_state'].params['standing_pitch_frontier'] == (.75,-10.,-7.)
+old = asdict(load_rl_cfg(PITCH10_HEAD_STD_CAP_TASK))
+new = asdict(load_rl_cfg(PITCH10_ROLLOUT12_TASK))
+assert old['num_steps_per_env'] == 24 and new['num_steps_per_env'] == 12
+same = dict(new, num_steps_per_env=24)
+assert canonical(same) == canonical(old)
+algorithm = new['algorithm']
+assert algorithm['num_learning_epochs'] == 5 and algorithm['num_mini_batches'] == 4
+gamma_lambda = algorithm['gamma'] * algorithm['lam']
+report = dict(status='PASS', task=PITCH10_ROLLOUT12_TASK,
+    only_behavioral_difference='num_steps_per_env 24 to 12',
+    train_play_and_head5_environment_identical=True, all_other_agent_configuration_identical=True,
+    num_envs=32768, control_dt_s=.02,
+    old=dict(rollout=24, rollout_seconds=.48, collected_batch=786432, minibatch=196608,
+             updates_for_equal_control_budget=128, optimizer_steps_for_equal_control_budget=2560,
+             gamma_lambda_tail_factor=gamma_lambda**24),
+    new=dict(rollout=12, rollout_seconds=.24, collected_batch=393216, minibatch=98304,
+             updates_for_equal_control_budget=256, optimizer_steps_for_equal_control_budget=5120,
+             gamma_lambda_tail_factor=gamma_lambda**12),
+    equal_control_budget=100663296, algorithm=algorithm,
+    clock_rule='Restore actual parent common_step_counter, then advance 12 controls/update; never rebase inherited clock to iteration*12.',
+    rationale='Mature head hold gains plateaued after another 100M controls; test higher update frequency at fixed environment count, reward, initial optimizer state and total sampled controls.',
+    limitations='Shorter GAE fragment relies more on the value bootstrap and changes minibatch size; this is a mature-phase experiment, not a demonstrated fresh-skill improvement.',
+    script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+Path('runs-v2/paired-rollout12-config.json').write_text(json.dumps(report, indent=2, default=str)+'\n')
+print(json.dumps(report, default=str))

@@ -1,0 +1,48 @@
+"""Actual applied head-command exposure, accumulated on the training GPU."""
+import torch
+
+
+class CommandExposure:
+    def __init__(self, env):
+        self.env = env
+        self.classes = torch.tensor([0,1,2,4], device=env.device)
+        self.combinations = torch.zeros(4, device=env.device, dtype=torch.int64)
+        self.positive = torch.zeros(4, device=env.device, dtype=torch.int64)
+        self.negative = torch.zeros(4, device=env.device, dtype=torch.int64)
+        self.range_quarters = torch.zeros(4,4, device=env.device, dtype=torch.int64)
+        self.steps = 0
+        self.ranges = None
+        self.pose_classes = torch.arange(7, device=env.device)
+        self.pose_steps = torch.zeros(7, device=env.device, dtype=torch.int64)
+        self.standing_first_half_second_steps = torch.zeros((), device=env.device, dtype=torch.int64)
+
+    def record(self):
+        # Called before env.step, so count the episode that supplies this action,
+        # rather than an auto-reset successor. No host reads in the hot loop.
+        pose = self.env._sc0090_recovery.bucket
+        self.pose_steps += (pose[:,None] == self.pose_classes).sum(0)
+        self.standing_first_half_second_steps += ((pose == 0) & (self.env.episode_length_buf < 25)).sum()
+        term = self.env.command_manager.get_term('head_pose')
+        command = term.command
+        ranges = tuple(term.cfg.ranges)
+        if ranges != self.ranges:
+            self.ranges = ranges
+            self.scale = torch.tensor([max(abs(a),abs(b)) for a,b in ranges],device=self.env.device).clamp_min(1e-9)
+        active = command != 0
+        count = active.sum(-1)
+        self.combinations += (count[:,None] == self.classes).sum(0)
+        self.positive += (command > 0).sum(0)
+        self.negative += (command < 0).sum(0)
+        bucket = (command.abs()/self.scale*4).long().clamp_max(3)
+        self.range_quarters += ((bucket[:,:,None] == torch.arange(4,device=self.env.device))
+                               & active[:,:,None]).sum(0)
+        self.steps += self.env.num_envs
+
+    def report(self):
+        poses = self.pose_steps.tolist()
+        assert sum(poses) == self.steps, "Pose exposure must account for every applied control"
+        return dict(environment_control_steps=self.steps, combinations=self.combinations.tolist(),
+            recovery_pose_control_steps=poses,
+            standing_first_half_second_control_steps=int(self.standing_first_half_second_steps),
+            combination_axes=[0,1,2,4], positive=self.positive.tolist(),negative=self.negative.tolist(),
+            range_quarters=self.range_quarters.tolist(),current_ranges=self.ranges)

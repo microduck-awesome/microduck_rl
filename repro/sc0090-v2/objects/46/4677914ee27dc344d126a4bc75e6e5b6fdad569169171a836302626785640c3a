@@ -1,0 +1,29 @@
+"""Mature healthy kick: replace only capped forward reward with target precision."""
+from copy import deepcopy
+import torch
+from .ball_kick_health import HEALTH_TASK,make_health_ball_kick_env_cfg
+PRECISION_TASK='Mjlab-BallKick-Right-Flat-MicroDuck-V2-TargetPrecision-Repaired-S0-O0-R1'
+
+def target_precision_value(forward,lateral,valid):
+    return torch.exp(-((forward-1.)/.2).square()-(lateral/.2).square())*valid
+
+def ball_target_precision(env):
+    velocity=env.scene['ball'].data.root_link_lin_vel_w[:,:2];direction=env._ball_kick_dir_w
+    forward=(velocity*direction).sum(-1)
+    lateral=velocity[:,1]*direction[:,0]-velocity[:,0]*direction[:,1]
+    return target_precision_value(forward,lateral,env._v2_ball_valid_kick)
+
+def make_precision_ball_kick_env_cfg(play=False,stage='nominal',kick_foot='right'):
+    cfg=make_health_ball_kick_env_cfg(play=play,stage=stage,kick_foot=kick_foot)
+    cfg.rewards['ball_forward_velocity'].func=ball_target_precision
+    cfg.rewards['ball_forward_velocity'].params={}
+    assert cfg.rewards['ball_forward_velocity'].weight==12.
+    return cfg
+
+def register_precision_ball_kick_tasks():
+    from mjlab.tasks.registry import register_mjlab_task,load_rl_cfg
+    from mjlab_microduck.tasks import MicroduckOnPolicyRunner
+    for stage in ('nominal','measured'):
+        task=PRECISION_TASK+('-Measured'if stage=='measured'else'')
+        agent=deepcopy(load_rl_cfg(HEALTH_TASK+('-Measured'if stage=='measured'else'')))
+        register_mjlab_task(task_id=task,env_cfg=make_precision_ball_kick_env_cfg(stage=stage),play_env_cfg=make_precision_ball_kick_env_cfg(play=True,stage=stage),rl_cfg=agent,runner_cls=MicroduckOnPolicyRunner)

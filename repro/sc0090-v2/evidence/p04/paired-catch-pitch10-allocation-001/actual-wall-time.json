@@ -1,0 +1,8 @@
+{
+  "controls": 50331648,
+  "formal_process_wall_seconds": 587.0491223335266,
+  "formal_process_control_interactions_per_second": 85736.68895020429,
+  "run_record_wall_seconds": 538.2413341999054,
+  "run_record_control_interactions_per_second": 93511.30209057224,
+  "scope": "Process clock includes Python imports, initialization, learning and embedded recovery; run.json clock excludes preceding imports. Both include overlapping first head evaluation and exclude preceding preflight and later final head/common diagnostics."
+}

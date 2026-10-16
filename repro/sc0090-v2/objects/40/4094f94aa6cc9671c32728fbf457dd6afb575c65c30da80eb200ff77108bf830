@@ -1,0 +1,76 @@
+"""Frozen5s roll battery; standing-origin full roll distinguished from midroll recovery."""
+import argparse,hashlib,json,math
+from dataclasses import asdict
+from pathlib import Path
+import torch
+from tensordict import TensorDict
+from mjlab.envs import ManagerBasedRlEnv
+from mjlab.tasks.registry import load_env_cfg,load_rl_cfg
+from rsl_rl.utils import resolve_callable,resolve_obs_groups
+from mjlab_microduck.custom_v2.roulade import reset_roulade_v2
+from mjlab_microduck.custom_v2.roulade_history import HISTORY_TASK as ROULADE_TASK
+from mjlab_microduck.custom_v2.roulade_metrics import RouladeMeasurements,BOUNDARY,LEGS
+from mjlab_microduck.custom_v2.head_metrics import camera_metrics
+from train_v2_roulade import source_hashes
+ANGLES=(None,None,None,None,90.,180.,270.,330.)
+def reset_groups(env,env_ids,**kwargs):
+ for group,angle in enumerate(ANGLES):
+  ids=env_ids[env_ids%8==group]
+  if not len(ids):continue
+  params=dict(kwargs)
+  if angle is None:params.update(standing_prob=1.,midroll_prob=0.,standing_tilt_max=math.radians(5.))
+  else:params.update(standing_prob=0.,midroll_prob=1.,midroll_pitch_min=math.radians(angle-5),midroll_pitch_max=math.radians(angle+5))
+  reset_roulade_v2(env,ids,**params)
+def xaxis(q):
+ w,x,y,z=q.unbind(-1);return torch.stack((1-2*(y*y+z*z),2*(x*y+w*z),2*(x*z-w*y)),-1)
+def main():
+ p=argparse.ArgumentParser();p.add_argument('--checkpoint',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--device',default='cuda:0');p.add_argument('--stage',choices=('nominal','measured'),default='nominal');p.add_argument('--seed',type=int,default=2612);p.add_argument('--num-envs',type=int,default=256);a=p.parse_args();assert a.num_envs%8==0
+ a.output.mkdir(parents=True,exist_ok=False);torch.set_num_threads(2);torch.cuda.set_device(a.device);checkpoint=torch.load(a.checkpoint,map_location=a.device,weights_only=False);meta=checkpoint['infos']['v2'];assert meta['task']==ROULADE_TASK
+ hashes=source_hashes(Path(__file__).resolve().parents[1]);assert hashes==meta['source_sha256']
+ cfg=load_env_cfg(ROULADE_TASK,play=True);cfg.seed=a.seed;cfg.scene.num_envs=a.num_envs;cfg.actions['joint_pos'].randomization_stage=a.stage;cfg.curriculum={};cfg.terminations={};cfg.auto_reset=False;cfg.observations['actor'].enable_corruption=False
+ cfg.events['set_roulade_state'].func=reset_groups
+ assert cfg.commands['twist'].rel_forward_envs==0.
+ for name in ('lin_vel_x','lin_vel_y','ang_vel_z'):setattr(cfg.commands['twist'].ranges,name,(0.,0.))
+ for sensor in cfg.scene.sensors:
+  if sensor.name in ('head_ground_contact','robot_ground_contact'):sensor.fields=('found','force')
+ (a.output/'executed-script.py').write_bytes(Path(__file__).read_bytes());(a.output/'config.json').write_text(json.dumps(asdict(cfg),indent=2,default=str)+'\n')
+ env=ManagerBasedRlEnv(cfg,device=a.device)
+ try:
+  obs,_=env.reset();robot=env.scene['robot'];reader=RouladeMeasurements(env);initial={k:getattr(env.sim.data,k).clone().cpu() for k in ('qpos','qvel')};initial.update(actor_obs=obs['actor'].clone().cpu(),origins=env.scene.env_origins.clone().cpu(),spawn_mid=env._v2_roulade_spawn_mid.clone().cpu(),spawn_angle=env._v2_roulade_spawn_angle.clone().cpu())
+  initial['feedback_voltage']=env._v2_joint_feedback.voltage.detach().cpu().clone()
+  for actuator in robot.actuators:torch._assert_async((actuator.vin_tensor[:,0]==env._v2_joint_feedback.voltage).all(),'Measured feedback voltage must match actual BAM supply')
+  agent=asdict(load_rl_cfg(ROULADE_TASK));td=TensorDict(obs,batch_size=[env.num_envs]);groups=resolve_obs_groups(td,agent['obs_groups'],['actor','critic']);ac=agent['actor']
+  for key in ('cnn_cfg','distribution_cfg'):
+   if ac.get(key) is None:ac.pop(key,None)
+  if ac.get('rnn_type') is None:
+   for key in ('rnn_type','rnn_hidden_dim','rnn_num_layers'):ac.pop(key,None)
+  actor=resolve_callable(ac.pop('class_name'))(td,groups,'actor',14,**ac).to(a.device);actor.load_state_dict(checkpoint['actor_state_dict'],strict=True);actor.eval();frozen={k:v.clone() for k,v in actor.state_dict().items()}
+  data={};control=[0];native=env.reward_manager.compute
+  def record(dt):
+   reward=native(dt);x=reader.read();x['root_quat']=robot.data.root_link_quat_w;x['head_torque']=robot.data.qfrc_actuator[:,reader.ids[5:9]];x['head_force']=env.scene['head_ground_contact'].data.force.sum(1).norm(dim=-1)
+   if not data:data.update({k:torch.empty((250,*v.shape),device=v.device,dtype=v.dtype) for k,v in x.items()})
+   for k,v in x.items():data[k][control[0]].copy_(v)
+   return reward
+  env.reward_manager.compute=record;sid=robot.find_sites('head_camera')[0][0];camera=torch.empty(1001,env.num_envs,4,device=a.device);sub=[0];native_sub=env.metrics_manager.compute_substep
+  def capture():native_sub();camera[sub[0]].copy_(robot.data.site_quat_w[:,sid]);sub[0]+=1
+  env.metrics_manager.compute_substep=capture
+  with torch.inference_mode():
+   for k in range(250):
+    control[0]=k;torch._assert_async((obs['actor'][:,48:]==0).all(),'Episodic Roulade evaluation command slots must be zero');obs,_,_,_,_=env.step(actor(TensorDict(obs,batch_size=[env.num_envs]),stochastic_output=False))
+   camera[-1].copy_(robot.data.site_quat_w[:,sid])
+  assert sub[0]==1000;assert bool(torch.isfinite(camera).all())
+  for k,v in frozen.items():assert torch.equal(actor.state_dict()[k],v)
+  q0=initial['qpos'][:,3:7].to(a.device);forward0=xaxis(q0);w,x,y,z=q0.unbind(-1);lateral0=torch.stack((2*(x*y-w*z),1-2*(x*x+z*z),2*(y*z+w*x)),-1);heading=torch.stack((lateral0[:,1],-lateral0[:,0],torch.zeros_like(w)),-1);heading=torch.nn.functional.normalize(heading,dim=-1)
+  forward=xaxis(data['root_quat']);angle=torch.atan2(-forward[...,2],(forward*heading).sum(-1));a0=torch.atan2(-forward0[:,2],(forward0*heading).sum(-1));delta=torch.diff(torch.cat((a0[None],angle),0),dim=0);unwrapped=torch.atan2(torch.sin(delta),torch.cos(delta)).cumsum(0)
+  finite=data['finite'].all(0);feedback=data['feedback_ready'].all(0);feet=data['feet'].all(-1);body=feet&(~data['head_contact'])&(~data['self_contact'])&((data['height']-.112).abs()<.012)&(data['tilt']<math.radians(15))&(data['linear'].norm(dim=-1)<.05)&(data['omega'].norm(dim=-1)<.5)&(data['physical_q'][:,:,LEGS].abs().mean(-1)<.2)&data['feedback_ready']&data['finite'];land=body[-25:].all(0);neutral=data['stable'][-25:].all(0)
+  first_support=data['support'].int().cumsum(0)>0;moving=(data['omega'][:,:,1].abs()>.5)&first_support;support_fraction=(data['support']&moving).sum(0)/moving.sum(0).clamp_min(1);flat=torch.where(moving,data['lateral_axis_z'].abs(),0).amax(0);geometric=(unwrapped[-1]+initial['spawn_angle'].to(a.device))>=math.radians(345)
+  eligible=data['head_latch'][-1]&(data['frontier'][-1]>=math.radians(330));core=land&eligible&geometric&finite&feedback&(support_fraction>=.95)&(flat<math.sin(math.pi/4));tailcamera=camera_metrics(camera[-101:]);rows=[]
+  idx=torch.arange(env.num_envs,device=a.device)
+  for group in range(5):
+   select=idx%8<4 if group==0 else idx%8==group+3;healthy=select&land;headneutral=select&neutral
+   rows.append(dict(origin='standing' if group==0 else 'midroll',spawn_pitch_deg=None if group==0 else ANGLES[group+3],trials=int(select.sum()),core_completion=int(core[select].sum()),strict_neutral_head_completion=int((core&neutral)[select].sum()),body_landing_tail500ms=int(land[select].sum()),neutral_head_landing_tail500ms=int(neutral[select].sum()),full_feedback_fault_trials=int((~feedback[select]).sum()),full_nonfinite_trials=int((~finite[select]).sum()),head_latch_end=int(data['head_latch'][-1,select].sum()),body_plane_net_angle_deg_mean=float(torch.rad2deg(unwrapped[-1,select]).mean()),supported_frontier_deg_mean=float(torch.rad2deg(data['frontier'][-1,select]).mean()),support_fraction_while_rotating_mean=float(support_fraction[select].mean()),lateral_axis_abs_max=float(flat[select].max()),self_contact_any_trials=int(data['self_contact'][:,select].any(0).sum()),head_force_peak_N=float(data['head_force'][:,select].max()),head_torque_abs_peak_Nm=float(data['head_torque'][:,select].abs().max()),head_home_tail_mae_deg=torch.rad2deg(data['physical_q'][-25:,select,5:9].abs().mean((0,1))).tolist(),camera_tail_body_healthy_trials=int(healthy.sum()),camera_tail_body_healthy=None if not bool(healthy.any()) else {k:{'mean_over_trials':float(v[healthy].mean()),'p95_over_trials':float(torch.quantile(v[healthy],.95))} for k,v in tailcamera.items()},camera_tail_neutral_healthy_trials=int(headneutral.sum()),camera_tail_neutral_healthy=None if not bool(headneutral.any()) else {k:float(v[headneutral].mean()) for k,v in tailcamera.items()}))
+  torch.save(dict(measurements={k:v.cpu() for k,v in data.items()},camera_quat_w=camera.cpu(),initial=initial,geometric_unwrapped_rad=unwrapped.cpu()),a.output/'traces.pt')
+  report=dict(status='EVALUATED_NOT_HARDWARE_ACCEPTANCE',task=ROULADE_TASK,checkpoint=str(a.checkpoint.resolve()),checkpoint_sha256=hashlib.sha256(a.checkpoint.read_bytes()).hexdigest(),stage=a.stage,seed=a.seed,num_envs=env.num_envs,seconds=5,actor_normalizer_unchanged=True,source_sha256=hashes,boundary=BOUNDARY,results=rows,development_gates={'core':'supported-frontier>=330deg + actual initial-heading-plane forward angle reaches345deg + head-top latch + last500ms body landing; support>=.95 during |body omega_y|>.5 after initial groundcontact; lateral axis<sin45deg; no feedback/nonfinite','strict_head':'core plus original measured stable gate head HOME max<.1rad throughout tail500ms','midroll':'precredited spawn angle/latch explicit; never count midroll recovery as standing-origin full-roll success'},voltage_contract={'sampled':sorted(set(initial['feedback_voltage'].tolist())),'actual_BAM_matches_feedback_at_reset':True},camera_scope='Actual head_camera quaternion200Hz/20ms maximum within-exposure turn. Active roll motion is intentional; quiet landing subsets counted explicitly. CAD placeholder, no calibrated pixels or hardware.',script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
+  (a.output/'report.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps({k:v for k,v in report.items() if k!='source_sha256'}),flush=True)
+ finally:env.close()
+if __name__=='__main__':main()

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "checks": {
+    "paired-catch-pitch10-check-cpu.json": "8becae90696a055806d236efbd7b4693441740f83fabc99c46293c90dab9f82c",
+    "paired-catch-pitch10-check-cuda1.json": "b4f84cba2ac4d9ff919278cd2e3f0501e6a2e5b84874cab16e91c6c02e09a83a",
+    "paired-catch-pitch10-mature-smoke/report.json": "ddf7a84b8a4dc9f8ed470699b78c07817ea1b25f75b7b245b909b847d6594bcc",
+    "paired-catch-pitch10-throughput-32768/report.json": "c6d3152e5518b0c409c3a39c20010c459c53137f329310a8093b7874c99350cd"
+  },
+  "source_archive": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-catch-pitch10-allocation-001/source.tar.gz",
+  "source_archive_sha256": "87d623e251621a48348af106058f87ab2d28f9ea2439550bcd3b9381b288e3a3",
+  "note": "All component checks preceded formal startup; this manifest collects them after first updates."
+}

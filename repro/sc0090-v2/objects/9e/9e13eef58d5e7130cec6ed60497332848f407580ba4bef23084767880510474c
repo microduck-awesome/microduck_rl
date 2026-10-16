@@ -1,0 +1,114 @@
+"""CPU preparation contracts; these do not qualify a walking policy."""
+import ast
+from dataclasses import asdict
+import json
+from pathlib import Path
+import re
+from types import SimpleNamespace
+
+import pytest
+import torch
+import mjlab.tasks
+from mjlab.tasks.registry import load_env_cfg, load_rl_cfg
+from mjlab_microduck.custom_v2 import microduck_v2 as v2
+from mjlab_microduck.custom_v2.commands import BalancedHeadCommandCfg
+from mjlab_microduck.custom_v2.feedback_repair import PITCH_BUCKET_HEAD_ACCURACY_TASK
+from mjlab_microduck.tasks import mdp
+
+
+def canonical(value):
+    return re.sub(r'0x[0-9a-fA-F]+', '0xADDRESS', json.dumps(asdict(value), sort_keys=True, default=str))
+
+
+@pytest.mark.parametrize('play', [False, True])
+@pytest.mark.parametrize('stage', ['nominal', 'measured'])
+def test_explicit_repaired_walking_changes_and_preserves_gait_recipe(play, stage):
+    old = v2.make_v2_sensor_env_cfg(play=play, stage=stage)
+    task = v2.REPAIRED_WALK_TASK_ID + ('-Measured' if stage == 'measured' else '')
+    new = load_env_cfg(task, play=play)
+    assert new.actions['joint_pos'].spike_rejection is False
+    assert new.actions['joint_pos'].o0_local_history is True
+    assert new.actions['joint_pos'].compile_measurement is True
+    assert new.actions['joint_pos'].fuse_registers is True
+    assert new.actions['joint_pos'].actuator_names == v2.POLICY_JOINTS
+    assert isinstance(new.commands['head_pose'], BalancedHeadCommandCfg)
+    assert new.commands['head_pose'].zero_command_prob == .5
+    assert new.rewards['head_pose_bias'].params['rebase_command'] is True
+    assert new.rewards['head_pose_bias'].params.get('gate_height_low') is None
+    assert new.rewards['body_pose_tracking'].params['nominal_height'] == .112
+    assert new.rewards['air_time'].weight == 3.
+    assert new.rewards['air_time'].params['threshold_min'] == .125
+    assert new.rewards['air_time'].params['threshold_max'] == .3
+    assert new.rewards['head_pose_tracking'].params.get('fine_std') is None
+    assert new.decimation * new.sim.mujoco.timestep == pytest.approx(.02)
+    assert new.sim.mujoco.timestep == pytest.approx(.005)
+    assert new.scene.entities['robot'].init_state.joint_pos == {'.*': 0.}
+    assert new.events['reset_base'].params['pose_range']['z'][0] == 0.
+    assert new.observations['actor'].terms['joint_pos'].func is mdp.v2_observed_joint_pos
+    assert new.observations['actor'].terms['joint_vel'].func is mdp.v2_observed_joint_vel
+    assert 'encoder_bias' not in new.events
+    for group in new.observations.values():
+        for name in ['joint_pos', 'joint_vel']:
+            assert group.terms[name].noise is None
+            assert group.terms[name].delay_min_lag == group.terms[name].delay_max_lag == 0
+    # Restore only the declared differences; all remaining upstream recipe
+    # fields, including curricula and randomization, must be unchanged.
+    for name in ['spike_rejection', 'o0_local_history', 'compile_measurement', 'fuse_registers']:
+        setattr(new.actions['joint_pos'], name, getattr(old.actions['joint_pos'], name))
+    new.commands['head_pose'] = old.commands['head_pose']
+    new.rewards['head_pose_bias'].params.pop('rebase_command')
+    new.rewards['body_pose_tracking'].params['nominal_height'] = old.rewards['body_pose_tracking'].params['nominal_height']
+    assert canonical(new) == canonical(old)
+
+
+def test_successor_critic_is_the_only_ppo_change_and_recovery_stays_gated():
+    old = load_rl_cfg(v2.SENSOR_TASK_ID)
+    for suffix in ['', '-Measured']:
+        new = load_rl_cfg(v2.REPAIRED_WALK_TASK_ID+suffix)
+        assert new.algorithm.class_name == 'mjlab_microduck.custom_v2.ppo:TerminalCriticPPO'
+        new.algorithm.class_name = old.algorithm.class_name
+        new.experiment_name, new.run_name = old.experiment_name, old.run_name
+        assert canonical(new) == canonical(old)
+    rise = load_env_cfg(PITCH_BUCKET_HEAD_ACCURACY_TASK)
+    assert not rise.rewards['head_pose_bias'].params.get('rebase_command', False)
+    assert rise.rewards['head_pose_bias'].params.get('gate_height_low') is not None
+    assert rise.events['set_ground_state'].params['standing_pitch_frontier'] == (.75,-10.,-5.)
+
+
+def make_head_env():
+    command = torch.zeros(3,4)
+    data = SimpleNamespace(joint_pos=torch.zeros(3,14), default_joint_pos=torch.zeros(3,14))
+    env = SimpleNamespace(scene={'robot':SimpleNamespace(data=data)}, step_dt=.02,
+        command_manager=SimpleNamespace(get_command=lambda _:command),
+        episode_length_buf=torch.zeros(3,dtype=torch.long),
+        _head_pose_neck_ids=[5,6,7,8], _head_pose_bl_ids=[0,0,0,0], _head_pose_bl_mask=torch.zeros(4))
+    return env, command, data
+
+
+def test_default_head_bias_remains_bitwise_equal_to_validated_rise_function():
+    text=(Path(__file__).parent/'fixtures/legacy_head_bias_function.py.txt').read_text()
+    tree=ast.parse(text);tree.body[0].name='legacy_bias'
+    namespace=dict(mdp.__dict__);exec(compile(tree,'legacy_bias','exec'),namespace)
+    old, old_cmd, old_data=make_head_env();new, new_cmd, new_data=make_head_env()
+    rng=torch.Generator().manual_seed(4901)
+    for step in range(30):
+        q=torch.randn((3,14),generator=rng)*.2
+        command=torch.randn((3,4),generator=rng)*.3
+        old_data.joint_pos.copy_(q);new_data.joint_pos.copy_(q)
+        old_cmd.copy_(command);new_cmd.copy_(command)
+        age=torch.tensor([step,step%7,step%11])
+        old.episode_length_buf.copy_(age);new.episode_length_buf.copy_(age)
+        torch.testing.assert_close(namespace['legacy_bias'](old),mdp.head_pose_bias_penalty(new),rtol=0,atol=0)
+        torch.testing.assert_close(old._head_bias_ema,new._head_bias_ema,rtol=0,atol=0)
+
+
+def test_rebased_angle_history_uses_current_command_and_resets_true_age():
+    env, command, data=make_head_env();env.step_dt=.1;env.episode_length_buf.fill_(10)
+    data.joint_pos.fill_(.3);mdp.head_pose_bias_penalty(env,rebase_command=True)
+    data.joint_pos.fill_(.4);command.fill_(.2);env.episode_length_buf[1]=1
+    cost=mdp.head_pose_bias_penalty(env,rebase_command=True)
+    torch.testing.assert_close(env._head_bias_ema[0],torch.full((4,),.9*.03+.1*.4-.2))
+    torch.testing.assert_close(env._head_bias_ema[1],torch.full((4,),.02))
+    torch.testing.assert_close(cost,torch.tensor([-.133,-.02,-.133]))
+    with pytest.raises(ValueError,match='ungated walking'):
+        mdp.head_pose_bias_penalty(env,rebase_command=True,gate_height_low=.09)

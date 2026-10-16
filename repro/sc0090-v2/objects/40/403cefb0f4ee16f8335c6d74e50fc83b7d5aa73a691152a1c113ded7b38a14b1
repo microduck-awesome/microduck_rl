@@ -1,0 +1,49 @@
+"""Fixed c832147 SitStand base recipe, qualified V2 geometry, exposure-scaled curriculum.
+
+Only historical step boundaries scale: N4096->16384 and M4->16. Physical
+seconds and native common_step_counter remain unchanged. This is not a claim
+of equal rollout refresh frequency or hardware equivalence.
+"""
+from copy import deepcopy
+from .sitstand_clear import make_clear_sitstand_env_cfg
+HISTORY_TASK='Mjlab-SitStand-Flat-MicroDuck-V2-ClearSeat-HistoryBase-Repaired-S0-O0-R1'
+HISTORICAL_EXPOSURE_FACTOR=4
+
+def curriculum_mapping(cfg):
+    rows=[]
+    for name,term in cfg.curriculum.items():
+        for key,stages in term.params.items():
+            if isinstance(stages,list):
+                for stage in stages:
+                    if isinstance(stage,dict) and 'step' in stage:
+                        rows.append(dict(term=name,field=key,native_step=stage['step'],historical_step=stage['step']*HISTORICAL_EXPOSURE_FACTOR,stage=deepcopy(stage)))
+    return rows
+
+def make_history_sitstand_env_cfg(play=False,stage='nominal'):
+    from mjlab_microduck.tasks import mdp
+    cfg=make_clear_sitstand_env_cfg(play=play,stage=stage)
+    cfg.episode_length_s=12.
+    old=cfg.commands['head_pose']
+    cfg.commands['head_pose']=mdp.UniformPoseCommandCfg(resampling_time_range=old.resampling_time_range,ranges=deepcopy(old.ranges),zero_command_prob=0.)
+    cfg.rewards.pop('neck_strain_leaned')
+    for name in ('seated_head_jerk','seated_tip'):cfg.events.pop(name)
+    for name in ('seated_head_jerk_prob','seated_tip_range'):cfg.curriculum.pop(name)
+    for term in cfg.curriculum.values():
+        for stages in term.params.values():
+            if isinstance(stages,list):
+                for stage_cfg in stages:
+                    if isinstance(stage_cfg,dict) and 'step' in stage_cfg:
+                        assert isinstance(stage_cfg['step'],int) and stage_cfg['step']%HISTORICAL_EXPOSURE_FACTOR==0
+                        stage_cfg['step']//=HISTORICAL_EXPOSURE_FACTOR
+    return cfg
+
+def register_history_sitstand_task():
+    from mjlab.tasks.registry import register_mjlab_task
+    from mjlab_microduck.tasks import MicroduckOnPolicyRunner
+    from mjlab_microduck.tasks.microduck_sitstand_env_cfg import MicroduckSitStandRlCfg
+    for task,stage in ((HISTORY_TASK,'nominal'),(HISTORY_TASK+'-Measured','measured')):
+        agent=deepcopy(MicroduckSitStandRlCfg)
+        agent.algorithm.class_name='mjlab_microduck.custom_v2.ppo:TerminalCriticPPO'
+        agent.algorithm.num_mini_batches=16
+        agent.experiment_name='microduck_v2_p04_sitstand';agent.run_name='history_base_'+stage
+        register_mjlab_task(task_id=task,env_cfg=make_history_sitstand_env_cfg(stage=stage),play_env_cfg=make_history_sitstand_env_cfg(play=True,stage=stage),rl_cfg=agent,runner_cls=MicroduckOnPolicyRunner)

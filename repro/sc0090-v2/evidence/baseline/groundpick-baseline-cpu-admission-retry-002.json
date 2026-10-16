@@ -1,0 +1,9 @@
+{
+  "status": "CPU_METADATA_SEMANTICS_REVIEWED_RETRY",
+  "unix": 1792146476.575041,
+  "prior_pid": 604659,
+  "prior_formal_controls": 0,
+  "prior_validation_controls": 0,
+  "reason": "Group enable_corruption=False clears configuredcriticnoise before computation; retain hard criticdelay0 and actualsuccessor validation. NoPPO guard loosened.",
+  "worker": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/run-groundpick-baseline-discovery-002.py"
+}

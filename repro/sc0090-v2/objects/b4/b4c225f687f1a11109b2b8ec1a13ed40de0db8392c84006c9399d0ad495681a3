@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+export SC0090_CUDA_COMPAT_DIR=/home/l40-vm01/Documents/ai-research/microduck/microduck_rl/artifacts/cuda-compat-12.9/usr/local/cuda-12.9/compat
+cd /home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/paired-adapt-worktree
+task=Mjlab-StandUp-Flat-MicroDuck-V2-Repaired-S0-O0-R1
+parent=/home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/paired-feedback-allocation-001/resume_003762.pt
+scripts/v2_python.sh scripts/smoke_v2_ppo.py --task "$task" --device cuda:1 --num-envs 64 --iterations 5 --force-timeouts --head-precision --head-precision-stage 4 --compiled-measurement --fused-registers --output-dir runs-v2/paired-p04-head4-smoke --report runs-v2/paired-p04-head4-smoke/report.json > runs-v2/paired-p04-head4-smoke.log 2>&1
+scripts/v2_python.sh scripts/smoke_v2_ppo.py --task "$task" --device cuda:1 --num-envs 32768 --iterations 16 --head-precision --head-precision-stage 4 --compiled-measurement --fused-registers --output-dir runs-v2/paired-p04-head4-throughput-32768 --report runs-v2/paired-p04-head4-throughput-32768/report.json > runs-v2/paired-p04-head4-throughput-32768.log 2>&1
+scripts/v2_python.sh scripts/train_v2_standup.py --task "$task" --device cuda:1 --num-envs 32768 --iterations 64 --eval-interval 32 --eval-samples 128 --preflight runs-v2/paired-p04-head4-throughput-32768/report.json --adapt-from "$parent" --head-precision --head-precision-stage 4 --output runs-v2/paired-p04-adapt-allocation-001 > runs-v2/paired-p04-adapt-allocation-001.log 2>&1
+scripts/v2_python.sh scripts/evaluate_v2_head.py --task "$task" --checkpoint runs-v2/paired-p04-adapt-allocation-001/checkpoint_003826.pt --output runs-v2/paired-p04-adapt-3826-head-measured --device cuda:1 --repeats 8 --randomization-stage measured > runs-v2/paired-p04-adapt-3826-head-measured.log 2>&1

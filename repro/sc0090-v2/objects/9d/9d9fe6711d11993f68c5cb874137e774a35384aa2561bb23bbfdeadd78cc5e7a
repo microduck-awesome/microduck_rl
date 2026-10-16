@@ -1,0 +1,96 @@
+"""Shared physical measurements at reward boundary; no actor truth injection."""
+import math
+import torch
+from .microduck_v2 import POLICY_JOINTS
+
+BOUNDARY = 'after reward before reset/forward/next commands; derived geometry retains native 5ms lag'
+
+
+class BallKickMeasurements:
+    def __init__(self, env, oracle=False):
+        self.env, self.oracle = env, oracle
+        self.robot, self.ball = env.scene['robot'], env.scene['ball']
+        self.ids, names = self.robot.find_joints(POLICY_JOINTS, preserve_order=True)
+        assert tuple(names) == POLICY_JOINTS
+        self.oracle_max = torch.zeros(5, device=env.device)
+
+    def read(self):
+        env, robot, ball = self.env, self.robot, self.ball
+        quat = robot.data.root_link_quat_w
+        tilt = torch.acos((1-2*(quat[:,1].square()+quat[:,2].square())).clamp(-1,1))
+        height = robot.data.root_link_pos_w[:,2]-env.scene.env_origins[:,2]
+        linear, angular = robot.data.root_link_lin_vel_w, robot.data.root_link_ang_vel_b
+        feet = env.scene['feet_ground_contact'].data.found.reshape(env.num_envs,2,-1).sum(-1)>0
+        ready = env._v2_joint_feedback.ready
+        finite = torch.isfinite(env.sim.data.qpos).all(-1)&torch.isfinite(env.sim.data.qvel).all(-1)
+        velocity = ball.data.root_link_lin_vel_w
+        forward = (velocity[:,:2]*env._ball_kick_dir_w).sum(-1)
+        lateral = velocity[:,1]*env._ball_kick_dir_w[:,0]-velocity[:,0]*env._ball_kick_dir_w[:,1]
+        q = robot.data.joint_pos[:,self.ids]-robot.data.default_joint_pos[:,self.ids]
+        head = env.scene['v2_head_ground_contact'].data.found.reshape(env.num_envs,-1).any(-1)
+        self_contact = env.scene['self_collision'].data.found.reshape(env.num_envs,-1).any(-1)
+        standing = (height>=.102)&(tilt<=math.radians(20))&(linear.norm(dim=-1)<.15)&(angular.norm(dim=-1)<1.5)&feet.all(-1)&ready&finite&~head&~self_contact
+        valid, bad = env._v2_ball_valid_kick, env._v2_ball_bad_contact
+        x = dict(height=height, tilt=tilt, linear=linear, angular=angular,
+            physical_q=q, feet=feet, head_contact=head, self_contact=self_contact,
+            feedback_ready=ready, finite=finite, standing=standing,
+            ball_position=ball.data.root_link_pos_w-env.scene.env_origins,
+            ball_velocity=velocity, ball_angular=ball.data.root_link_ang_vel_w,
+            ball_forward=forward, ball_lateral=lateral, valid_kick=valid, bad_contact=bad,
+            rolling_target=valid&~bad&(forward>=.8)&(forward<=1.2)&(lateral.abs()<=.2),
+            positive_ball_reward=env.reward_manager._step_reward[:,env.reward_manager.active_terms.index('ball_forward_velocity')])
+        if self.oracle:
+            support = env.scene['support_foot_ground_contact'].data.found.reshape(env.num_envs,-1).sum(-1).clamp(0,1)
+            # Independently reconstructed physical costs: do not call the production reward twice.
+            v2=linear.square().sum(-1);w2=angular.square().sum(-1)
+            lateral_cost=-4*lateral.abs().clamp(max=1.)*valid
+            return_cost=-2*(v2/(v2+.15**2)+w2/(w2+1.5**2)+(~feet.all(-1)).float())*valid
+            from .ball_kick_precision import ball_target_precision
+            positive=12*forward.clamp(0,1)*valid
+            if env.reward_manager.get_term_cfg('ball_forward_velocity').func is ball_target_precision:
+                # Independent same-reference-frame physical Gaussian oracle.
+                error=((forward-1.)/.2)**2+(lateral/.2)**2
+                positive=12*torch.exp(-error)*valid
+            for i,(name,want) in enumerate((('ball_forward_velocity',positive),('ball_speed_overshoot',-4*(forward-1).clamp(0,5)),('support_foot_grounded',2*support),('ball_direction_cost',lateral_cost),('postkick_quiet_return_cost',return_cost))):
+                actual = env.reward_manager._step_reward[:,env.reward_manager.active_terms.index(name)]
+                self.oracle_max[i] = torch.maximum(self.oracle_max[i],(actual-want).abs().max())
+                torch._assert_async(torch.isclose(actual,want,atol=2e-6,rtol=1e-6).all(),'BallKick physical reward oracle mismatch')
+        return x
+
+
+class BallKickTrainingSummary:
+    def __init__(self, env, oracle=False):
+        self.env, self.reader, self.latest = env, BallKickMeasurements(env,oracle), None
+        self.samples = 0
+        self.sums = torch.zeros(16,device=env.device,dtype=torch.float64)
+        self.episodes = torch.zeros(4,device=env.device,dtype=torch.int64)
+        self.ever_valid = torch.zeros(env.num_envs,device=env.device,dtype=torch.bool)
+        self.ever_target = torch.zeros_like(self.ever_valid)
+        native = env.reward_manager.compute
+        def record(dt):
+            reward = native(dt)
+            x = self.reader.read()
+            self.latest = x
+            self.ever_valid |= x['valid_kick']
+            self.ever_target |= x['rolling_target']
+            done = env.reset_buf.bool()
+            self.episodes += torch.stack((done,done&self.ever_valid,done&self.ever_target,done&x['standing'])).sum(1)
+            self.ever_valid &= ~done
+            self.ever_target &= ~done
+            vals = (x['ball_forward'],x['ball_lateral'].abs(),x['valid_kick'],x['bad_contact'],x['rolling_target'],x['standing'],x['physical_q'][:,5:9].abs().mean(-1),x['head_contact'],x['self_contact'],~x['feedback_ready'],~x['finite'],env.reset_time_outs,
+                x['positive_ball_reward'],
+                -4*x['ball_lateral'].abs().clamp(max=1)*x['valid_kick'],
+                -2*((1-.15**2/(x['linear'].square().sum(-1)+.15**2))+(1-1.5**2/(x['angular'].square().sum(-1)+1.5**2))+(~x['feet'].all(-1)).float())*x['valid_kick'],
+                -4*(x['ball_forward']-1).clamp(0,5))
+            self.sums += torch.stack([v.double().sum() for v in vals])
+            self.samples += env.num_envs
+            return reward
+        env.reward_manager.compute = record
+
+    def report(self):
+        names = ('ball_forward_mean_mps','ball_lateral_abs_mean_mps','valid_contact_fraction','bad_contact_fraction','rolling_target_fraction','body_standing_fraction','head_home_mae_rad','head_contact_fraction','self_contact_fraction','feedback_not_ready_fraction','nonfinite_fraction','timeout_sample_fraction','positive_ball_reward_before_dt_mean','ball_direction_cost_before_dt_mean','quiet_return_cost_before_dt_mean','ball_overshoot_cost_before_dt_mean')
+        return dict(boundary=BOUNDARY,control_samples=self.samples,
+            metrics=dict(zip(names,(self.sums/max(1,self.samples)).cpu().tolist())),
+            completed_episodes=dict(zip(('total','ever_valid_contact','ever_rolling_target','body_standing_at_end'),self.episodes.cpu().tolist())),
+            oracle_max_abs=self.reader.oracle_max.cpu().tolist(),
+            scope='Sample statistics and contact attribution; not completed kick/settle acceptance or camera stability. Independent 200Hz camera evaluation required.')

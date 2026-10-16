@@ -1,0 +1,223 @@
+"""V2 VelStand preparation from the pinned official v8 task.
+
+This entry is not qualified for training until its own physical, teacher,
+timeout and actual-N checks pass. No XL330 teacher or yaw table is imported.
+"""
+from copy import deepcopy
+import math
+
+from . import microduck_v2 as v2
+from .training import _full_contact_robot, guard_reset_joints
+
+TASK = 'Mjlab-VelStand-Flat-MicroDuck-V2-V8-Repaired-S0-O0-R1'
+WALK_PARENT_UPDATE = 512
+STAND_HEIGHT = .112
+# Unique candidate that passed the recorded32-world SC0090/P04 hold survey.
+SIT_HEIGHT = .0759992003440857
+SIT_POSE = {1: .0873, 2: -.7, 3: -.8, 4: -.15,
+            10: -.0873, 11: -.7, 12: -.8, 13: -.15}
+
+
+def servo_stall_v2(env, torque_thresh=.4, vel_thresh=.5, asset_cfg=None):
+    """Pair named policy actuators with their physical joint velocities.
+
+    V2 has an independent15th mouth actuator. The policy's14 joint velocities
+    must not be zipped with the unfiltered actuator array.
+    """
+    import torch
+    robot = env.scene[asset_cfg.name if asset_cfg is not None else 'robot']
+    names = tuple(env.cfg.actions['joint_pos'].actuator_names)
+    if not hasattr(env, '_v2_velstand_stall_ids'):
+        actuators, actual_a = robot.find_actuators(names, preserve_order=True)
+        joints, actual_j = robot.find_joints(names, preserve_order=True)
+        assert tuple(actual_a) == tuple(actual_j) == names and len(names) == 14
+        env._v2_velstand_stall_ids = (actuators, joints)
+    actuators, joints = env._v2_velstand_stall_ids
+    torque = torch.nan_to_num(robot.data.actuator_force[:,actuators],nan=0.)
+    velocity = torch.nan_to_num(robot.data.joint_vel[:,joints],nan=0.)
+    return ((torque.abs()>torque_thresh)&(velocity.abs()<vel_thresh)).float().sum(-1)
+
+
+def reset_velstand_states(env, env_ids, prone_prob=0., face_down_prob=.5,
+                          side_prob=.5, crouch_prob=0., sit_prob=.05,
+                          joint_random_prob=.5, joint_range_frac=.9,
+                          so3_prob=.25, prone_z_min=.05, prone_z_max=.09,
+                          joint_random_extra_z=.06, so3_extra_z=.04,
+                          asset_cfg=None):
+    """Official exclusive reset slices with V2-specific near-rise and sit poses.
+
+    The stock crouch anchor uses the old robot's opposite knee/ankle axes.
+    Keep its reverse-curriculum purpose without mutating stock global helpers.
+    """
+    import torch
+    from mjlab.managers import SceneEntityCfg
+    from mjlab_microduck.tasks import mdp
+    asset_cfg = asset_cfg or SceneEntityCfg('robot')
+    if env_ids is None:
+        env_ids = torch.arange(env.num_envs, device=env.device)
+    ids = torch.as_tensor(env_ids, device=env.device, dtype=torch.long)
+    if not len(ids):
+        return
+    u = torch.rand(len(ids), device=env.device)
+    prone = ids[u < prone_prob]
+    crouch = ids[(u >= prone_prob) & (u < prone_prob + crouch_prob)]
+    seated = ids[(u >= prone_prob + crouch_prob) & (u < prone_prob + crouch_prob + sit_prob)]
+    if len(prone):
+        mdp.set_random_prone_orientation(env, prone, asset_cfg=asset_cfg,
+                                        face_down_prob=face_down_prob, side_prob=side_prob)
+        env.sim.data.qpos[prone, 2] = (torch.rand(len(prone), device=env.device)
+            * (prone_z_max-prone_z_min) + prone_z_min + mdp._env_origin_z(env, prone))
+        random_orientation = torch.rand(len(prone), device=env.device) < so3_prob
+        orient_ids = prone[random_orientation]
+        if len(orient_ids):
+            env.sim.data.qpos[orient_ids, 3:7] = mdp._uniform_random_quat(len(orient_ids), env.device)
+            env.sim.data.qpos[orient_ids, 2] += so3_extra_z
+        random_joint = (torch.rand(len(prone), device=env.device) < joint_random_prob) | random_orientation
+        random_ids = prone[random_joint]
+        if len(random_ids):
+            mdp.randomize_servo_joints_uniform(env, random_ids, asset_cfg=asset_cfg, range_frac=joint_range_frac)
+            env.sim.data.qpos[random_ids, 2] += joint_random_extra_z
+    if len(crouch):
+        robot = env.scene[asset_cfg.name]
+        joints = robot.data.default_joint_pos[crouch].clone()
+        depth = torch.rand(len(crouch), device=env.device)*.65+.35
+        servo_ids = mdp._servo_joint_ids(env, robot)
+        for column, angle in SIT_POSE.items():
+            joints[:, servo_ids[column]] += depth*angle
+        noise = torch.zeros_like(joints)
+        noise[:, servo_ids] = (torch.rand(len(crouch), len(servo_ids), device=env.device)*2-1)*.12
+        robot.write_joint_position_to_sim(joints+noise, env_ids=crouch)
+        robot.write_joint_velocity_to_sim(torch.zeros_like(joints), env_ids=crouch)
+        pitch = (depth*math.radians(35) + (torch.rand(len(crouch),device=env.device)*2-1)*math.radians(10)).clamp_min(math.radians(5))
+        roll = (torch.rand(len(crouch),device=env.device)*2-1)*math.radians(8)
+        yaw = (torch.rand(len(crouch),device=env.device)*2-1)*math.pi
+        cr,sr = torch.cos(roll/2),torch.sin(roll/2)
+        cp,sp = torch.cos(pitch/2),torch.sin(pitch/2)
+        cy,sy = torch.cos(yaw/2),torch.sin(yaw/2)
+        env.sim.data.qpos[crouch,3:7] = torch.stack((cr*cp*cy+sr*sp*sy,sr*cp*cy-cr*sp*sy,
+                                                  cr*sp*cy+sr*cp*sy,cr*cp*sy-sr*sp*cy),1)
+        env.sim.data.qpos[crouch,2] = (STAND_HEIGHT + depth*(SIT_HEIGHT-STAND_HEIGHT)
+                                      + torch.rand(len(crouch),device=env.device)*.01 + mdp._env_origin_z(env,crouch))
+        env.sim.data.qvel[crouch] = 0
+    if len(seated):
+        mdp.set_random_ground_state(env, seated, asset_cfg=asset_cfg, face_down_prob=0.,
+            face_up_prob=0., sitting_prob=1., standing_prob=0., sitting_joint_overrides=SIT_POSE,
+            sitting_joint_noise_std=.15, sitting_tilt_max=math.radians(20),
+            sitting_z_min=SIT_HEIGHT, sitting_z_max=SIT_HEIGHT+.015)
+
+
+def _parent_stage(term, step):
+    term = deepcopy(term)
+    for key, stages in term.params.items():
+        if isinstance(stages,list) and stages and all(isinstance(x,dict) and 'step' in x for x in stages):
+            eligible = [x for x in stages if x['step'] <= step]
+            assert eligible, key
+            term.params[key] = [{**deepcopy(eligible[-1]),'step':0}]
+    return term
+
+
+def make_velstand_env_cfg(play=False, stage='nominal'):
+    from mjlab.managers import EventTermCfg, TerminationTermCfg
+    from mjlab.sensor import ContactMatch
+    from mjlab_microduck.tasks import mdp
+    from mjlab_microduck.tasks.microduck_velstand_env_cfg import make_microduck_velstand_env_cfg
+    from .runtime import configure_origin_markers
+    base = v2.make_v2_yaw_fine_walking_env_cfg(play=False, stage=stage)
+    cfg = deepcopy(make_microduck_velstand_env_cfg(play=False, rough=False))
+    cfg.scene.entities['robot'] = _full_contact_robot(base.scene.entities['robot'])
+    cfg.scene.spec_fn = base.scene.spec_fn
+    cfg.actions = deepcopy(base.actions)
+    cfg.observations = deepcopy(base.observations)
+    v2._policy_selectors(cfg)
+    for name in ('randomize_joint_friction','randomize_joint_damping','randomize_armature','randomize_motor_gains','encoder_bias'):
+        cfg.events.pop(name,None)
+    for name in ('expand_bam_friction_fields','v2_runtime','mouth_reset','mouth_hold'):
+        if name in base.events: cfg.events[name] = deepcopy(base.events[name])
+        else: cfg.events.pop(name,None)
+    cfg.events['reset_base'] = deepcopy(base.events['reset_base'])
+    cfg.events['random_prone_init'] = EventTermCfg(func=reset_velstand_states,mode='reset')
+    cfg.events['v2_reset_joint_guards'] = EventTermCfg(func=guard_reset_joints,mode='reset')
+    cfg.terminations['sc0090_feedback_fault'] = TerminationTermCfg(func=mdp.v2_feedback_fault,time_out=False)
+
+    # Preserve the actual walk parent's conditions, not the XL330 teacher's
+    # fully trained1500/2000-update settings. VelStand has its own new clock.
+    cfg.commands['head_pose'] = deepcopy(base.commands['head_pose'])
+    for name, term in base.curriculum.items():
+        if name == 'body_pose_range': continue  # the new standing-only body layer owns it
+        pinned = _parent_stage(term, WALK_PARENT_UPDATE*24)
+        cfg.curriculum[name] = pinned
+        params = pinned.params
+        if 'weight_stages' in params:
+            cfg.rewards[params['reward_name']].weight = params['weight_stages'][0]['weight']
+        elif 'standing_stages' in params:
+            cfg.commands['twist'].rel_standing_envs = params['standing_stages'][0]['rel_standing_envs']
+        elif name == 'head_pose_range':
+            cfg.commands['head_pose'].ranges = params['range_stages'][0]['ranges']
+        elif name in ('com_range','head_com_range'):
+            event = cfg.events[params['event_name']]
+            assert event.params['operation'] == 'add' and 'ranges' in event.params
+            extent = params['range_stages'][0]['range']
+            event.params['ranges'] = (-extent,extent)
+    # Zero commands need enough on-policy data to learn the standing teacher.
+    cfg.commands['twist'].rel_standing_envs = .25
+    cfg.curriculum['standing_envs'].params['standing_stages'] = [{'step':0,'rel_standing_envs':.25}]
+    cfg.commands['twist'].rel_turn_in_place_envs = .20
+    cfg.commands['twist'].turn_in_place_min_frac = .20
+    cfg.rewards['body_pose_tracking'].params['nominal_height'] = STAND_HEIGHT
+    cfg.rewards['height_progress'].params['ceiling'] = STAND_HEIGHT
+    cfg.rewards['servo_stall'].func = servo_stall_v2
+    cfg.rewards['head_pose_bias'].params['rebase_command'] = True
+
+    # V2 has curated shell/leg contact meshes, not the named XL330 motor-case
+    # mesh set. Keep the physical contact geometry intact and label its scope.
+    sensors = list(cfg.scene.sensors)
+    for sensor in sensors:
+        if sensor.name == 'servo_ground_contact':
+            sensor.name = 'leg_ground_contact'
+            sensor.primary = ContactMatch(mode='geom', entity='robot',
+                pattern=r'^(ground_(left|right)_hip_collision|self_(left|right)_shin_structure_00_collision)$')
+    cfg.scene.sensors = tuple(sensors)
+    leg = cfg.rewards.pop('servo_impact')
+    leg.params['sensor_name'] = 'leg_ground_contact'
+    cfg.rewards['leg_impact'] = leg
+    cfg.curriculum['leg_impact_weight'] = cfg.curriculum.pop('servo_impact_weight')
+    cfg.curriculum['leg_impact_weight'].params['reward_name'] = 'leg_impact'
+
+    # These are an initial published-style shaping recipe, not certified
+    # SC0090 force/thermal limits. Preflight must measure teacher cost margins.
+    cfg.sim.nconmax = 64
+    cfg.sim.mujoco.timestep = .005
+    cfg.sim.mujoco.iterations = 30
+    cfg.sim.mujoco.ls_iterations = 50
+    cfg.decimation = 4
+    # A bounded integration curriculum: first preserve walking/stand, then
+    # introduce complete falls with the already-trained V2 recovery teacher.
+    cfg.curriculum['fell_over_disable'].params['param_stages'] = [
+        {'step':0,'params':{'limit_angle':math.radians(70)}},
+        {'step':32*24,'params':{'limit_angle':math.pi}}]
+    cfg.curriculum['prone_init_prob'].params['param_stages'] = [
+        {'step':0,'params':{'prone_prob':0.,'crouch_prob':0.,'sit_prob':.05}},
+        {'step':64*24,'params':{'prone_prob':.10,'face_down_prob':.5,'side_prob':.5,'crouch_prob':.10,'sit_prob':.05}},
+        {'step':128*24,'params':{'prone_prob':.25,'face_down_prob':.5,'side_prob':.5,'crouch_prob':.10,'sit_prob':.05}}]
+    if play:
+        cfg.terminations.pop('fell_over',None)
+        cfg.curriculum.pop('fell_over_disable',None)
+    configure_origin_markers(cfg)
+    return cfg
+
+
+def register_velstand_tasks():
+    from mjlab.tasks.registry import register_mjlab_task
+    from mjlab_microduck.tasks import MicroduckOnPolicyRunner
+    from mjlab_microduck.tasks.microduck_velstand_env_cfg import MicroduckVelStandRlCfg
+    for task,stage in ((TASK,'nominal'),(TASK+'-Measured','measured')):
+        agent = deepcopy(MicroduckVelStandRlCfg)
+        agent.algorithm.class_name = 'mjlab_microduck.custom_v2.velstand_ppo:VelStandPPO'
+        bc = agent.algorithm.bc_cfg
+        bc.update(wandb_run_path=None,anchor_wandb_run_path=None,checkpoint_path=None,
+                  anchor_checkpoint_path=None,anchor_yaw_remap=None,expert_mask_cols=(),
+                  body_no_teacher_axes=(2,3,4),standing_teacher=True,learning_rate=3e-5)
+        agent.experiment_name = 'microduck_v2_velstand_v8'
+        agent.run_name = 'velstand_v8_'+stage
+        register_mjlab_task(task_id=task,env_cfg=make_velstand_env_cfg(stage=stage),
+            play_env_cfg=make_velstand_env_cfg(play=True,stage=stage),rl_cfg=agent,runner_cls=MicroduckOnPolicyRunner)

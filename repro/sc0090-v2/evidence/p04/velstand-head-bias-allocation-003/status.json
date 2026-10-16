@@ -1,0 +1,1378 @@
+{
+  "status": "ALLOCATION_COMPLETE",
+  "pid": 305339,
+  "updated_unix": 1792131091.3099725,
+  "completed_updates": 512,
+  "allocation_end": 512,
+  "inherited_controls": 666894336,
+  "controls": 704643072,
+  "allocation_controls": 37748736,
+  "common_step_counter": 12288,
+  "stop_reason": null,
+  "training_metrics": {
+    "boundary": "after_reward_before_reset_forward_and_command; derived geometry lags 5ms",
+    "control_samples": 37748736,
+    "metrics": {
+      "xy_velocity_mse": 0.08283005214620606,
+      "yaw_velocity_mse": 4.442023945447659,
+      "head_mae_rad": 0.2379530927136002,
+      "height_mean_m": 0.11290412215274534,
+      "tilt_mean_rad": 0.25238091391003536,
+      "double_support_fraction": 0.063760068681505,
+      "any_support_fraction": 0.8702981472015381,
+      "contact_weighted_foot_speed_mean_mps": 0.04650405174552995,
+      "failure_sample_fraction": 0.09441786342196994,
+      "feedback_not_ready_fraction": 2.6490953233506943e-08,
+      "terminated_sample_fraction": 2.6490953233506943e-08,
+      "timeout_sample_fraction": 0.0006510416666666666
+    },
+    "exposure_control_samples": {
+      "idle": 7600277,
+      "turn_only": 7551691,
+      "translate_only": 4520888,
+      "curve": 18075880,
+      "forward": 13546693,
+      "backward": 9050075,
+      "left": 9013844,
+      "right": 9062036,
+      "yaw_positive": 12779620,
+      "yaw_negative": 12847951,
+      "head_zero": 18839541,
+      "head_one": 9455158,
+      "head_two": 4714103,
+      "head_four": 4739934
+    },
+    "oracle_calls": 0,
+    "oracle_max_abs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "scope": "Training sample statistics, not independent trial success rates"
+  },
+  "feedback_audit": {
+    "invalid_controls": 1,
+    "unexplained_invalid_lanes": 0,
+    "scope": "Raw count outside0..1023 with valid transaction, reason13/status-1 only. Native episode termination retained; no valid-spike rejection or fabricated replacement.",
+    "budget": 16
+  },
+  "camera_audit": {
+    "control_samples": 37748736,
+    "raw_gated_fault_nonfinite_totals": [
+      1470586696.6555598,
+      1134799622.5988069,
+      1.0,
+      0.0
+    ],
+    "weight": -0.01
+  },
+  "goal_complete": false,
+  "resume_checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/velstand-head-bias-allocation-003/checkpoint_000512.pt",
+  "wall_seconds": 407.8002878909465,
+  "full_process_control_per_second": 92566.72229249314,
+  "throughput": {
+    "median_control_per_second": 97376.50315506638,
+    "aggregate_control_per_second": 97234.34821785771
+  },
+  "terminal_bootstrap_samples": 24576,
+  "contact_peak": 131048,
+  "contact_capacity": 1572864,
+  "lineage": {
+    "checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/velstand-head-bias-allocation-002/checkpoint_000448.pt",
+    "checkpoint_sha256": "59faeaf98b11b0361d01a796b73d044f0daafff1561ecdd0fa00c2262e533bb5",
+    "actor_critic_normalizer_adam_exact": true,
+    "learning_rate": 0.0010000000000000002,
+    "warm_start": false,
+    "new_skill_clock": 10752,
+    "bc_adam_fresh": false,
+    "teachers": {
+      "schema": 1,
+      "files": {
+        "checkpoint_path": {
+          "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/head2-micro-exposure-allocation-001/checkpoint_001856.pt",
+          "sha256": "e4772c33149410d62446180a9214b26695cb51ba1d5b7b26fac31d3ea273122b",
+          "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Fresh-M4-HeadStdCap001-MicroExposure025-Repaired-S0-O0-R1"
+        },
+        "anchor_checkpoint_path": {
+          "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/walking-yaw-fine-allocation-002/checkpoint_000512.pt",
+          "sha256": "480dbcaee8666e79e541d61719cf9bcfe746444b936661784272347d603e5395",
+          "task": "Mjlab-Velocity-Flat-MicroDuck-V2-YawFine-Repaired-S0-O0-R1"
+        }
+      },
+      "routing": "v2-upright-zero-twist-to-standing-v1",
+      "parameters": {
+        "coef": 1.0,
+        "learning_rate": 3e-05,
+        "gate_tilt_deg": 35.0,
+        "epochs": 5,
+        "mini_batches": 4,
+        "min_mini_batch": 512,
+        "min_samples": 64,
+        "gravity_slice": [
+          3,
+          6
+        ],
+        "twist_slice": [
+          48,
+          51
+        ],
+        "anchor_coef": 1.0,
+        "anchor_tilt_deg": 25.0,
+        "body_slice": [
+          55,
+          61
+        ],
+        "unanchor_turn_in_place": false,
+        "anchor_yaw_remap": null,
+        "body_active_axes": [
+          2,
+          3,
+          4
+        ],
+        "body_no_teacher_axes": [
+          2,
+          3,
+          4
+        ],
+        "expert_mask_cols": [],
+        "expert_mask_tilt_deg": 75.0,
+        "standing_teacher": true
+      }
+    },
+    "source_transition": null,
+    "camera_weight": -0.01,
+    "bc_axis_scope": "standing-all14-walking-legs10-divide14-v1",
+    "cuda_rng_mapping": {
+      "source": "cuda:0",
+      "target": "cuda:0"
+    }
+  },
+  "bc_diagnostics": [
+    {
+      "completed_updates": 449,
+      "expert_bc_stand_fraction": 0.3055013120174408,
+      "expert_bc_walk_fraction": 0.5764414668083191,
+      "expert_bc_zero_command_fraction": 0.0421227365732193,
+      "expert_bc_body_ppo_fraction": 0.1050025075674057,
+      "expert_bc": 0.04376636818051338,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.173969566822052,
+      "expert_bc_kl_max": 12.431329727172852
+    },
+    {
+      "completed_updates": 450,
+      "expert_bc_stand_fraction": 0.2427995502948761,
+      "expert_bc_walk_fraction": 0.6270836591720581,
+      "expert_bc_zero_command_fraction": 0.0459255650639534,
+      "expert_bc_body_ppo_fraction": 0.1146477609872818,
+      "expert_bc": 0.022132892161607742,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.06599012017250061,
+      "expert_bc_kl_max": 0.7381800413131714
+    },
+    {
+      "completed_updates": 451,
+      "expert_bc_stand_fraction": 0.1232842355966568,
+      "expert_bc_walk_fraction": 0.7192433476448059,
+      "expert_bc_zero_command_fraction": 0.053070068359375,
+      "expert_bc_body_ppo_fraction": 0.1318698525428772,
+      "expert_bc": 0.022256899625062943,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.024935917928814888,
+      "expert_bc_kl_max": 0.798551082611084
+    },
+    {
+      "completed_updates": 452,
+      "expert_bc_stand_fraction": 0.0910186767578125,
+      "expert_bc_walk_fraction": 0.7629326581954956,
+      "expert_bc_zero_command_fraction": 0.0560879185795784,
+      "expert_bc_body_ppo_fraction": 0.1372799426317215,
+      "expert_bc": 0.018252944573760033,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.009672841057181358,
+      "expert_bc_kl_max": 0.23581421375274658
+    },
+    {
+      "completed_updates": 453,
+      "expert_bc_stand_fraction": 0.0885433629155159,
+      "expert_bc_walk_fraction": 0.7691379189491272,
+      "expert_bc_zero_command_fraction": 0.0564151331782341,
+      "expert_bc_body_ppo_fraction": 0.1381649523973465,
+      "expert_bc": 0.01545396912842989,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.00706013198941946,
+      "expert_bc_kl_max": 0.048594485968351364
+    },
+    {
+      "completed_updates": 454,
+      "expert_bc_stand_fraction": 0.0770585834980011,
+      "expert_bc_walk_fraction": 0.7792612910270691,
+      "expert_bc_zero_command_fraction": 0.0563591867685318,
+      "expert_bc_body_ppo_fraction": 0.1398366242647171,
+      "expert_bc": 0.01438880618661642,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.0055798813700675964,
+      "expert_bc_kl_max": 0.06031758710741997
+    },
+    {
+      "completed_updates": 455,
+      "expert_bc_stand_fraction": 0.068359375,
+      "expert_bc_walk_fraction": 0.7888234257698059,
+      "expert_bc_zero_command_fraction": 0.0573832206428051,
+      "expert_bc_body_ppo_fraction": 0.1403927356004715,
+      "expert_bc": 0.014122108928859234,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.005282838363200426,
+      "expert_bc_kl_max": 0.0345345176756382
+    },
+    {
+      "completed_updates": 456,
+      "expert_bc_stand_fraction": 0.0679694265127182,
+      "expert_bc_walk_fraction": 0.7891625165939331,
+      "expert_bc_zero_command_fraction": 0.0580885149538517,
+      "expert_bc_body_ppo_fraction": 0.140926793217659,
+      "expert_bc": 0.014573471620678902,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.006880064494907856,
+      "expert_bc_kl_max": 0.06037139147520065
+    },
+    {
+      "completed_updates": 457,
+      "expert_bc_stand_fraction": 0.0699276402592659,
+      "expert_bc_walk_fraction": 0.7876739501953125,
+      "expert_bc_zero_command_fraction": 0.05889892578125,
+      "expert_bc_body_ppo_fraction": 0.1396721750497818,
+      "expert_bc": 0.015368551015853882,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.010249326936900616,
+      "expert_bc_kl_max": 0.12055757641792297
+    },
+    {
+      "completed_updates": 458,
+      "expert_bc_stand_fraction": 0.100250244140625,
+      "expert_bc_walk_fraction": 0.7546064853668213,
+      "expert_bc_zero_command_fraction": 0.0556572824716568,
+      "expert_bc_body_ppo_fraction": 0.1354115754365921,
+      "expert_bc": 0.020178088918328285,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.012001615017652512,
+      "expert_bc_kl_max": 0.764899730682373
+    },
+    {
+      "completed_updates": 459,
+      "expert_bc_stand_fraction": 0.1495191752910614,
+      "expert_bc_walk_fraction": 0.7088504433631897,
+      "expert_bc_zero_command_fraction": 0.0530751533806324,
+      "expert_bc_body_ppo_fraction": 0.1288604736328125,
+      "expert_bc": 0.02263703942298889,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.01006555836647749,
+      "expert_bc_kl_max": 0.3118148148059845
+    },
+    {
+      "completed_updates": 460,
+      "expert_bc_stand_fraction": 0.1799231618642807,
+      "expert_bc_walk_fraction": 0.6778208613395691,
+      "expert_bc_zero_command_fraction": 0.0509219691157341,
+      "expert_bc_body_ppo_fraction": 0.125179722905159,
+      "expert_bc": 0.02456049993634224,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.012695061042904854,
+      "expert_bc_kl_max": 0.22740915417671204
+    },
+    {
+      "completed_updates": 461,
+      "expert_bc_stand_fraction": 0.1952616423368454,
+      "expert_bc_walk_fraction": 0.6631554365158081,
+      "expert_bc_zero_command_fraction": 0.0514916330575943,
+      "expert_bc_body_ppo_fraction": 0.1213751882314682,
+      "expert_bc": 0.025904415175318718,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.010804219171404839,
+      "expert_bc_kl_max": 0.18525570631027222
+    },
+    {
+      "completed_updates": 462,
+      "expert_bc_stand_fraction": 0.2054545134305954,
+      "expert_bc_walk_fraction": 0.654374897480011,
+      "expert_bc_zero_command_fraction": 0.0527072474360466,
+      "expert_bc_body_ppo_fraction": 0.119232177734375,
+      "expert_bc": 0.026274824514985085,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.007988408207893372,
+      "expert_bc_kl_max": 0.19037723541259766
+    },
+    {
+      "completed_updates": 463,
+      "expert_bc_stand_fraction": 0.2048255056142807,
+      "expert_bc_walk_fraction": 0.6528591513633728,
+      "expert_bc_zero_command_fraction": 0.0522359199821949,
+      "expert_bc_body_ppo_fraction": 0.1197391077876091,
+      "expert_bc": 0.026518750935792923,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.00974250677973032,
+      "expert_bc_kl_max": 0.14621293544769287
+    },
+    {
+      "completed_updates": 464,
+      "expert_bc_stand_fraction": 0.2047610878944397,
+      "expert_bc_walk_fraction": 0.6520317792892456,
+      "expert_bc_zero_command_fraction": 0.0525970458984375,
+      "expert_bc_body_ppo_fraction": 0.1201561838388443,
+      "expert_bc": 0.02712297812104225,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.010624696500599384,
+      "expert_bc_kl_max": 0.16316188871860504
+    },
+    {
+      "completed_updates": 465,
+      "expert_bc_stand_fraction": 0.2070804238319397,
+      "expert_bc_walk_fraction": 0.6477339267730713,
+      "expert_bc_zero_command_fraction": 0.0510389544069767,
+      "expert_bc_body_ppo_fraction": 0.1218193918466568,
+      "expert_bc": 0.026944557204842567,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.007790310308337212,
+      "expert_bc_kl_max": 0.12617705762386322
+    },
+    {
+      "completed_updates": 466,
+      "expert_bc_stand_fraction": 0.1920911967754364,
+      "expert_bc_walk_fraction": 0.6648932695388794,
+      "expert_bc_zero_command_fraction": 0.0515119768679142,
+      "expert_bc_body_ppo_fraction": 0.123870849609375,
+      "expert_bc": 0.023449858650565147,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.008858638815581799,
+      "expert_bc_kl_max": 0.1552838236093521
+    },
+    {
+      "completed_updates": 467,
+      "expert_bc_stand_fraction": 0.1491326242685318,
+      "expert_bc_walk_fraction": 0.7043202519416809,
+      "expert_bc_zero_command_fraction": 0.0535532645881176,
+      "expert_bc_body_ppo_fraction": 0.1304440051317215,
+      "expert_bc": 0.021087108179926872,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.007611681241542101,
+      "expert_bc_kl_max": 0.14871010184288025
+    },
+    {
+      "completed_updates": 468,
+      "expert_bc_stand_fraction": 0.1236046701669693,
+      "expert_bc_walk_fraction": 0.7295176386833191,
+      "expert_bc_zero_command_fraction": 0.056021798402071,
+      "expert_bc_body_ppo_fraction": 0.1332024484872818,
+      "expert_bc": 0.021194858476519585,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.00879915151745081,
+      "expert_bc_kl_max": 0.17531487345695496
+    },
+    {
+      "completed_updates": 469,
+      "expert_bc_stand_fraction": 0.1230078786611557,
+      "expert_bc_walk_fraction": 0.7324608564376831,
+      "expert_bc_zero_command_fraction": 0.0562794990837574,
+      "expert_bc_body_ppo_fraction": 0.1330210417509079,
+      "expert_bc": 0.020864715799689293,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.007821275852620602,
+      "expert_bc_kl_max": 0.21456460654735565
+    },
+    {
+      "completed_updates": 470,
+      "expert_bc_stand_fraction": 0.1294284462928772,
+      "expert_bc_walk_fraction": 0.7264794111251831,
+      "expert_bc_zero_command_fraction": 0.0544586181640625,
+      "expert_bc_body_ppo_fraction": 0.1325480192899704,
+      "expert_bc": 0.020725926384329796,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.006011668127030134,
+      "expert_bc_kl_max": 0.12072529643774033
+    },
+    {
+      "completed_updates": 471,
+      "expert_bc_stand_fraction": 0.1386803537607193,
+      "expert_bc_walk_fraction": 0.7177785038948059,
+      "expert_bc_zero_command_fraction": 0.0538448765873909,
+      "expert_bc_body_ppo_fraction": 0.1305525004863739,
+      "expert_bc": 0.0217667855322361,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.004862566012889147,
+      "expert_bc_kl_max": 0.11282136291265488
+    },
+    {
+      "completed_updates": 472,
+      "expert_bc_stand_fraction": 0.1514095813035965,
+      "expert_bc_walk_fraction": 0.7048984169960022,
+      "expert_bc_zero_command_fraction": 0.0539822056889534,
+      "expert_bc_body_ppo_fraction": 0.12811279296875,
+      "expert_bc": 0.023048236966133118,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.008759909309446812,
+      "expert_bc_kl_max": 0.15301331877708435
+    },
+    {
+      "completed_updates": 473,
+      "expert_bc_stand_fraction": 0.1664106547832489,
+      "expert_bc_walk_fraction": 0.6918284296989441,
+      "expert_bc_zero_command_fraction": 0.0526767298579216,
+      "expert_bc_body_ppo_fraction": 0.1238420307636261,
+      "expert_bc": 0.02394746243953705,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.0047735911794006824,
+      "expert_bc_kl_max": 0.14065511524677277
+    },
+    {
+      "completed_updates": 474,
+      "expert_bc_stand_fraction": 0.1837310791015625,
+      "expert_bc_walk_fraction": 0.67596435546875,
+      "expert_bc_zero_command_fraction": 0.0519849993288517,
+      "expert_bc_body_ppo_fraction": 0.1213480606675148,
+      "expert_bc": 0.025276487693190575,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.00888608768582344,
+      "expert_bc_kl_max": 0.1254381537437439
+    },
+    {
+      "completed_updates": 475,
+      "expert_bc_stand_fraction": 0.1937493234872818,
+      "expert_bc_walk_fraction": 0.6661919355392456,
+      "expert_bc_zero_command_fraction": 0.0512440986931324,
+      "expert_bc_body_ppo_fraction": 0.1198408380150795,
+      "expert_bc": 0.025700127705931664,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.007535647600889206,
+      "expert_bc_kl_max": 0.1607425957918167
+    },
+    {
+      "completed_updates": 476,
+      "expert_bc_stand_fraction": 0.192318394780159,
+      "expert_bc_walk_fraction": 0.665117084980011,
+      "expert_bc_zero_command_fraction": 0.05096435546875,
+      "expert_bc_body_ppo_fraction": 0.1212565079331398,
+      "expert_bc": 0.02558532916009426,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.006826913915574551,
+      "expert_bc_kl_max": 0.14030694961547852
+    },
+    {
+      "completed_updates": 477,
+      "expert_bc_stand_fraction": 0.1886494904756546,
+      "expert_bc_walk_fraction": 0.6697150468826294,
+      "expert_bc_zero_command_fraction": 0.0511762835085392,
+      "expert_bc_body_ppo_fraction": 0.1206580251455307,
+      "expert_bc": 0.02559703029692173,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.011026525869965553,
+      "expert_bc_kl_max": 0.18474632501602173
+    },
+    {
+      "completed_updates": 478,
+      "expert_bc_stand_fraction": 0.1828070729970932,
+      "expert_bc_walk_fraction": 0.6747453808784485,
+      "expert_bc_zero_command_fraction": 0.051138985902071,
+      "expert_bc_body_ppo_fraction": 0.1223127618432045,
+      "expert_bc": 0.02512258291244507,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.0077232299372553825,
+      "expert_bc_kl_max": 0.15273258090019226
+    },
+    {
+      "completed_updates": 479,
+      "expert_bc_stand_fraction": 0.1753624826669693,
+      "expert_bc_walk_fraction": 0.6826087236404419,
+      "expert_bc_zero_command_fraction": 0.0525275357067585,
+      "expert_bc_body_ppo_fraction": 0.1223805770277977,
+      "expert_bc": 0.02471853420138359,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.008944697678089142,
+      "expert_bc_kl_max": 0.1130451112985611
+    },
+    {
+      "completed_updates": 480,
+      "expert_bc_stand_fraction": 0.1671210378408432,
+      "expert_bc_walk_fraction": 0.6898956298828125,
+      "expert_bc_zero_command_fraction": 0.0512254498898983,
+      "expert_bc_body_ppo_fraction": 0.1250932514667511,
+      "expert_bc": 0.02394835278391838,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.007898655720055103,
+      "expert_bc_kl_max": 0.30171018838882446
+    },
+    {
+      "completed_updates": 481,
+      "expert_bc_stand_fraction": 0.159237340092659,
+      "expert_bc_walk_fraction": 0.696916401386261,
+      "expert_bc_zero_command_fraction": 0.0510236956179142,
+      "expert_bc_body_ppo_fraction": 0.1268429309129715,
+      "expert_bc": 0.023068923503160477,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.010320274159312248,
+      "expert_bc_kl_max": 0.13837163150310516
+    },
+    {
+      "completed_updates": 482,
+      "expert_bc_stand_fraction": 0.1551055908203125,
+      "expert_bc_walk_fraction": 0.7025774121284485,
+      "expert_bc_zero_command_fraction": 0.0532938651740551,
+      "expert_bc_body_ppo_fraction": 0.1269887238740921,
+      "expert_bc": 0.022915689274668694,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.0066300868056714535,
+      "expert_bc_kl_max": 0.13922888040542603
+    },
+    {
+      "completed_updates": 483,
+      "expert_bc_stand_fraction": 0.1542188823223114,
+      "expert_bc_walk_fraction": 0.7041558027267456,
+      "expert_bc_zero_command_fraction": 0.0531887486577034,
+      "expert_bc_body_ppo_fraction": 0.1258917897939682,
+      "expert_bc": 0.023205218836665154,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.008625681512057781,
+      "expert_bc_kl_max": 0.18639524281024933
+    },
+    {
+      "completed_updates": 484,
+      "expert_bc_stand_fraction": 0.1594916433095932,
+      "expert_bc_walk_fraction": 0.7007904052734375,
+      "expert_bc_zero_command_fraction": 0.0542941614985466,
+      "expert_bc_body_ppo_fraction": 0.1237114816904068,
+      "expert_bc": 0.023798486217856407,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.009769671596586704,
+      "expert_bc_kl_max": 0.26307323575019836
+    },
+    {
+      "completed_updates": 485,
+      "expert_bc_stand_fraction": 0.1697845458984375,
+      "expert_bc_walk_fraction": 0.6913418173789978,
+      "expert_bc_zero_command_fraction": 0.0548451729118824,
+      "expert_bc_body_ppo_fraction": 0.1224026158452034,
+      "expert_bc": 0.024374572560191154,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.00949760153889656,
+      "expert_bc_kl_max": 0.11963028460741043
+    },
+    {
+      "completed_updates": 486,
+      "expert_bc_stand_fraction": 0.1779988557100296,
+      "expert_bc_walk_fraction": 0.6834021806716919,
+      "expert_bc_zero_command_fraction": 0.0539974644780159,
+      "expert_bc_body_ppo_fraction": 0.1209259033203125,
+      "expert_bc": 0.025101060047745705,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.00921670999377966,
+      "expert_bc_kl_max": 0.11441446840763092
+    },
+    {
+      "completed_updates": 487,
+      "expert_bc_stand_fraction": 0.1814676970243454,
+      "expert_bc_walk_fraction": 0.6788652539253235,
+      "expert_bc_zero_command_fraction": 0.0532514788210392,
+      "expert_bc_body_ppo_fraction": 0.1203291192650795,
+      "expert_bc": 0.025390753522515297,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.009123545140028,
+      "expert_bc_kl_max": 0.20052805542945862
+    },
+    {
+      "completed_updates": 488,
+      "expert_bc_stand_fraction": 0.1860521137714386,
+      "expert_bc_walk_fraction": 0.6742909550666809,
+      "expert_bc_zero_command_fraction": 0.0537736676633358,
+      "expert_bc_body_ppo_fraction": 0.1202121302485466,
+      "expert_bc": 0.025785818696022034,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.007173566613346338,
+      "expert_bc_kl_max": 0.1177968829870224
+    },
+    {
+      "completed_updates": 489,
+      "expert_bc_stand_fraction": 0.189419224858284,
+      "expert_bc_walk_fraction": 0.6699676513671875,
+      "expert_bc_zero_command_fraction": 0.0531446672976017,
+      "expert_bc_body_ppo_fraction": 0.1195068359375,
+      "expert_bc": 0.02602260746061802,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.00679386779665947,
+      "expert_bc_kl_max": 0.10108651965856552
+    },
+    {
+      "completed_updates": 490,
+      "expert_bc_stand_fraction": 0.2248670756816864,
+      "expert_bc_walk_fraction": 0.6412489414215088,
+      "expert_bc_zero_command_fraction": 0.0502488873898983,
+      "expert_bc_body_ppo_fraction": 0.1144460067152977,
+      "expert_bc": 0.0423828586935997,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.12270177155733109,
+      "expert_bc_kl_max": 8.848213195800781
+    },
+    {
+      "completed_updates": 491,
+      "expert_bc_stand_fraction": 0.2959933876991272,
+      "expert_bc_walk_fraction": 0.5861613154411316,
+      "expert_bc_zero_command_fraction": 0.044952392578125,
+      "expert_bc_body_ppo_fraction": 0.1057722344994545,
+      "expert_bc": 0.026202980428934097,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.0418841652572155,
+      "expert_bc_kl_max": 0.813430666923523
+    },
+    {
+      "completed_updates": 492,
+      "expert_bc_stand_fraction": 0.2202182412147522,
+      "expert_bc_walk_fraction": 0.6448940634727478,
+      "expert_bc_zero_command_fraction": 0.0502573661506176,
+      "expert_bc_body_ppo_fraction": 0.1160617396235466,
+      "expert_bc": 0.021772807464003563,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.02145819365978241,
+      "expert_bc_kl_max": 0.40305110812187195
+    },
+    {
+      "completed_updates": 493,
+      "expert_bc_stand_fraction": 0.1128573939204216,
+      "expert_bc_walk_fraction": 0.7348616123199463,
+      "expert_bc_zero_command_fraction": 0.0576900914311409,
+      "expert_bc_body_ppo_fraction": 0.1322462260723114,
+      "expert_bc": 0.021479804068803787,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.010924926027655602,
+      "expert_bc_kl_max": 0.17488384246826172
+    },
+    {
+      "completed_updates": 494,
+      "expert_bc_stand_fraction": 0.0983378067612648,
+      "expert_bc_walk_fraction": 0.7598605751991272,
+      "expert_bc_zero_command_fraction": 0.0591600202023983,
+      "expert_bc_body_ppo_fraction": 0.1346435546875,
+      "expert_bc": 0.018170151859521866,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.007365967147052288,
+      "expert_bc_kl_max": 0.08199954777956009
+    },
+    {
+      "completed_updates": 495,
+      "expert_bc_stand_fraction": 0.0949927419424057,
+      "expert_bc_walk_fraction": 0.7660963535308838,
+      "expert_bc_zero_command_fraction": 0.0590074323117733,
+      "expert_bc_body_ppo_fraction": 0.1347673237323761,
+      "expert_bc": 0.015975017100572586,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.00571219390258193,
+      "expert_bc_kl_max": 0.08482493460178375
+    },
+    {
+      "completed_updates": 496,
+      "expert_bc_stand_fraction": 0.0836452916264534,
+      "expert_bc_walk_fraction": 0.7766960859298706,
+      "expert_bc_zero_command_fraction": 0.0601738840341568,
+      "expert_bc_body_ppo_fraction": 0.1354810893535614,
+      "expert_bc": 0.015481648035347462,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.005643824581056833,
+      "expert_bc_kl_max": 0.08101323992013931
+    },
+    {
+      "completed_updates": 497,
+      "expert_bc_stand_fraction": 0.0736151784658432,
+      "expert_bc_walk_fraction": 0.7859870195388794,
+      "expert_bc_zero_command_fraction": 0.0595177561044693,
+      "expert_bc_body_ppo_fraction": 0.1371137797832489,
+      "expert_bc": 0.01548334863036871,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.005215732846409082,
+      "expert_bc_kl_max": 0.05950169637799263
+    },
+    {
+      "completed_updates": 498,
+      "expert_bc_stand_fraction": 0.0747104212641716,
+      "expert_bc_walk_fraction": 0.7858513593673706,
+      "expert_bc_zero_command_fraction": 0.0609792061150074,
+      "expert_bc_body_ppo_fraction": 0.1370764821767807,
+      "expert_bc": 0.015856871381402016,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.004876833874732256,
+      "expert_bc_kl_max": 0.059366364032030106
+    },
+    {
+      "completed_updates": 499,
+      "expert_bc_stand_fraction": 0.081329345703125,
+      "expert_bc_walk_fraction": 0.7762993574142456,
+      "expert_bc_zero_command_fraction": 0.0592719204723835,
+      "expert_bc_body_ppo_fraction": 0.1361253559589386,
+      "expert_bc": 0.01770852506160736,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.006442358251661062,
+      "expert_bc_kl_max": 0.2621455788612366
+    },
+    {
+      "completed_updates": 500,
+      "expert_bc_stand_fraction": 0.1253306120634079,
+      "expert_bc_walk_fraction": 0.7322065830230713,
+      "expert_bc_zero_command_fraction": 0.0559861920773983,
+      "expert_bc_body_ppo_fraction": 0.1306813508272171,
+      "expert_bc": 0.02150048315525055,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.013747542165219784,
+      "expert_bc_kl_max": 0.2923930883407593
+    },
+    {
+      "completed_updates": 501,
+      "expert_bc_stand_fraction": 0.1712646484375,
+      "expert_bc_walk_fraction": 0.6901347041130066,
+      "expert_bc_zero_command_fraction": 0.053397286683321,
+      "expert_bc_body_ppo_fraction": 0.1237996444106102,
+      "expert_bc": 0.023410772904753685,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.008285691030323505,
+      "expert_bc_kl_max": 0.15518975257873535
+    },
+    {
+      "completed_updates": 502,
+      "expert_bc_stand_fraction": 0.1951904296875,
+      "expert_bc_walk_fraction": 0.6655951738357544,
+      "expert_bc_zero_command_fraction": 0.051605224609375,
+      "expert_bc_body_ppo_fraction": 0.1204562708735466,
+      "expert_bc": 0.02485102228820324,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.01093935314565897,
+      "expert_bc_kl_max": 0.23631511628627777
+    },
+    {
+      "completed_updates": 503,
+      "expert_bc_stand_fraction": 0.2009192556142807,
+      "expert_bc_walk_fraction": 0.6571452021598816,
+      "expert_bc_zero_command_fraction": 0.0520341657102108,
+      "expert_bc_body_ppo_fraction": 0.1200273334980011,
+      "expert_bc": 0.025865618139505386,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.007265562191605568,
+      "expert_bc_kl_max": 0.16856059432029724
+    },
+    {
+      "completed_updates": 504,
+      "expert_bc_stand_fraction": 0.2014482319355011,
+      "expert_bc_walk_fraction": 0.6546410322189331,
+      "expert_bc_zero_command_fraction": 0.0517934150993824,
+      "expert_bc_body_ppo_fraction": 0.1212649866938591,
+      "expert_bc": 0.02600744180381298,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.009793013334274292,
+      "expert_bc_kl_max": 0.20063190162181854
+    },
+    {
+      "completed_updates": 505,
+      "expert_bc_stand_fraction": 0.204342320561409,
+      "expert_bc_walk_fraction": 0.65264892578125,
+      "expert_bc_zero_command_fraction": 0.0507405586540699,
+      "expert_bc_body_ppo_fraction": 0.119642473757267,
+      "expert_bc": 0.026164570823311806,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.00776290986686945,
+      "expert_bc_kl_max": 0.12932737171649933
+    },
+    {
+      "completed_updates": 506,
+      "expert_bc_stand_fraction": 0.2077568918466568,
+      "expert_bc_walk_fraction": 0.6515452265739441,
+      "expert_bc_zero_command_fraction": 0.0502302385866642,
+      "expert_bc_body_ppo_fraction": 0.1167517751455307,
+      "expert_bc": 0.02675296925008297,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.007785406894981861,
+      "expert_bc_kl_max": 0.1411886215209961
+    },
+    {
+      "completed_updates": 507,
+      "expert_bc_stand_fraction": 0.210659459233284,
+      "expert_bc_walk_fraction": 0.6477339267730713,
+      "expert_bc_zero_command_fraction": 0.0488416887819767,
+      "expert_bc_body_ppo_fraction": 0.118055559694767,
+      "expert_bc": 0.026149669662117958,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.008922050707042217,
+      "expert_bc_kl_max": 0.15325301885604858
+    },
+    {
+      "completed_updates": 508,
+      "expert_bc_stand_fraction": 0.1826070100069046,
+      "expert_bc_walk_fraction": 0.6757693886756897,
+      "expert_bc_zero_command_fraction": 0.05047607421875,
+      "expert_bc_body_ppo_fraction": 0.1230265274643898,
+      "expert_bc": 0.02247803471982479,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.008841849863529205,
+      "expert_bc_kl_max": 0.10945455729961395
+    },
+    {
+      "completed_updates": 509,
+      "expert_bc_stand_fraction": 0.1410132497549057,
+      "expert_bc_walk_fraction": 0.7132500410079956,
+      "expert_bc_zero_command_fraction": 0.0527988001704216,
+      "expert_bc_body_ppo_fraction": 0.1290757954120636,
+      "expert_bc": 0.021200943738222122,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.007421761751174927,
+      "expert_bc_kl_max": 0.263477623462677
+    },
+    {
+      "completed_updates": 510,
+      "expert_bc_stand_fraction": 0.1260257363319397,
+      "expert_bc_walk_fraction": 0.7298329472541809,
+      "expert_bc_zero_command_fraction": 0.0539940744638443,
+      "expert_bc_body_ppo_fraction": 0.1310984343290329,
+      "expert_bc": 0.021015403792262077,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.0074210399761796,
+      "expert_bc_kl_max": 0.10554651916027069
+    },
+    {
+      "completed_updates": 511,
+      "expert_bc_stand_fraction": 0.1291656494140625,
+      "expert_bc_walk_fraction": 0.7276950478553772,
+      "expert_bc_zero_command_fraction": 0.0524580217897892,
+      "expert_bc_body_ppo_fraction": 0.1310679167509079,
+      "expert_bc": 0.02074185013771057,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.008392347022891045,
+      "expert_bc_kl_max": 0.07005320489406586
+    },
+    {
+      "completed_updates": 512,
+      "expert_bc_stand_fraction": 0.1356116384267807,
+      "expert_bc_walk_fraction": 0.7216796875,
+      "expert_bc_zero_command_fraction": 0.0511627197265625,
+      "expert_bc_body_ppo_fraction": 0.1297183632850647,
+      "expert_bc": 0.021100541576743126,
+      "expert_bc_steps": 20.0,
+      "expert_bc_kl_mean": 0.005437730345875025,
+      "expert_bc_kl_max": 0.08349791169166565
+    }
+  ],
+  "last_ppo_diagnostics": {
+    "PPO/kl_mean": 0.013479623958952826,
+    "PPO/kl_p95": 0.032747142016887665,
+    "PPO/kl_max": 0.5457636713981628,
+    "PPO/kl_minibatch_mean_max": 0.028213427988753318,
+    "PPO/clip_fraction": 0.17954610188802084,
+    "PPO/sample_visits": 2949120.0,
+    "PPO/kl_first_minibatch_mean": 1.3459405939405162e-06,
+    "PPO/kl_first_minibatch_max": 6.03795051574707e-05,
+    "PPO/mean_first_minibatch_max_abs_recompute_delta": 0.002585887908935547,
+    "PPO/std_first_minibatch_max_abs_recompute_delta": 0.0,
+    "PPO/ratio_first_minibatch_max_abs_error_from_one": 0.02144843339920044,
+    "PPO/learning_rate_after_update": 0.0006666666666666669,
+    "Grad/actor_norm_pre_mean": 1.0565096020698548,
+    "Grad/actor_norm_pre_max": 1.7123686075210571,
+    "Grad/actor_norm_post_mean": 0.9175809919834137,
+    "Grad/actor_norm_post_max": 0.999999463558197,
+    "Grad/actor_clip_fraction": 0.45,
+    "Grad/critic_norm_pre_mean": 0.2916051890701056,
+    "Grad/critic_norm_pre_max": 0.8625197410583496,
+    "Grad/critic_norm_post_mean": 0.2916051872074604,
+    "Grad/critic_norm_post_max": 0.8625197410583496,
+    "Grad/critic_clip_fraction": 0.0,
+    "Grad/max_norm_limit": 1.0,
+    "Critic/return_variance": 1.8422236380707393,
+    "Critic/explained_variance_valid": 1.0,
+    "Critic/explained_variance_rollout": 0.8552153089694863,
+    "Critic/mse_rollout": 0.26679515151855154,
+    "Critic/explained_variance_before": 0.8552154192255765,
+    "Critic/mse_before": 0.26679646181029554,
+    "Critic/explained_variance_after": 0.8586133675802243,
+    "Critic/mse_after": 0.26049097005309924,
+    "PPO/minibatches": 20.0
+  },
+  "cuda_peak_allocated_bytes": 6675600896,
+  "timing": [
+    {
+      "completed_updates": 449,
+      "wall_s": 6.936523973941803,
+      "collection_s": 6.101396322250366,
+      "learning_s": 0.8273448944091797
+    },
+    {
+      "completed_updates": 450,
+      "wall_s": 6.081151905003935,
+      "collection_s": 5.049826622009277,
+      "learning_s": 0.8159270286560059
+    },
+    {
+      "completed_updates": 451,
+      "wall_s": 6.124474392039701,
+      "collection_s": 5.166080951690674,
+      "learning_s": 0.8096001148223877
+    },
+    {
+      "completed_updates": 452,
+      "wall_s": 5.830825295066461,
+      "collection_s": 4.887442111968994,
+      "learning_s": 0.8139004707336426
+    },
+    {
+      "completed_updates": 453,
+      "wall_s": 5.9076151358895,
+      "collection_s": 4.938337802886963,
+      "learning_s": 0.8315846920013428
+    },
+    {
+      "completed_updates": 454,
+      "wall_s": 5.88062832201831,
+      "collection_s": 4.92176079750061,
+      "learning_s": 0.8158929347991943
+    },
+    {
+      "completed_updates": 455,
+      "wall_s": 5.92510577198118,
+      "collection_s": 4.974496126174927,
+      "learning_s": 0.8146984577178955
+    },
+    {
+      "completed_updates": 456,
+      "wall_s": 5.891487017972395,
+      "collection_s": 4.931453227996826,
+      "learning_s": 0.8251562118530273
+    },
+    {
+      "completed_updates": 457,
+      "wall_s": 5.912382693961263,
+      "collection_s": 4.960752487182617,
+      "learning_s": 0.8217072486877441
+    },
+    {
+      "completed_updates": 458,
+      "wall_s": 5.944879990071058,
+      "collection_s": 4.980676174163818,
+      "learning_s": 0.8286008834838867
+    },
+    {
+      "completed_updates": 459,
+      "wall_s": 6.037204874912277,
+      "collection_s": 5.078845262527466,
+      "learning_s": 0.8218128681182861
+    },
+    {
+      "completed_updates": 460,
+      "wall_s": 6.02079044515267,
+      "collection_s": 5.0558249950408936,
+      "learning_s": 0.8359427452087402
+    },
+    {
+      "completed_updates": 461,
+      "wall_s": 6.088810900924727,
+      "collection_s": 5.135307788848877,
+      "learning_s": 0.8292608261108398
+    },
+    {
+      "completed_updates": 462,
+      "wall_s": 6.066213471116498,
+      "collection_s": 5.09357762336731,
+      "learning_s": 0.8317861557006836
+    },
+    {
+      "completed_updates": 463,
+      "wall_s": 6.097956823883578,
+      "collection_s": 5.139999151229858,
+      "learning_s": 0.8259174823760986
+    },
+    {
+      "completed_updates": 464,
+      "wall_s": 6.038837768137455,
+      "collection_s": 5.064991474151611,
+      "learning_s": 0.8270139694213867
+    },
+    {
+      "completed_updates": 465,
+      "wall_s": 6.13658895296976,
+      "collection_s": 5.180228233337402,
+      "learning_s": 0.8272285461425781
+    },
+    {
+      "completed_updates": 466,
+      "wall_s": 6.080298878950998,
+      "collection_s": 5.0987584590911865,
+      "learning_s": 0.8375108242034912
+    },
+    {
+      "completed_updates": 467,
+      "wall_s": 6.108290439937264,
+      "collection_s": 5.13486385345459,
+      "learning_s": 0.8326115608215332
+    },
+    {
+      "completed_updates": 468,
+      "wall_s": 6.187558096135035,
+      "collection_s": 5.052119016647339,
+      "learning_s": 0.8327457904815674
+    },
+    {
+      "completed_updates": 469,
+      "wall_s": 6.160969085991383,
+      "collection_s": 5.084238529205322,
+      "learning_s": 0.938368558883667
+    },
+    {
+      "completed_updates": 470,
+      "wall_s": 5.994708335958421,
+      "collection_s": 5.0249621868133545,
+      "learning_s": 0.8380544185638428
+    },
+    {
+      "completed_updates": 471,
+      "wall_s": 6.020403209840879,
+      "collection_s": 5.0482096672058105,
+      "learning_s": 0.8328297138214111
+    },
+    {
+      "completed_updates": 472,
+      "wall_s": 6.054448329145089,
+      "collection_s": 5.071000814437866,
+      "learning_s": 0.8396584987640381
+    },
+    {
+      "completed_updates": 473,
+      "wall_s": 6.079469682881609,
+      "collection_s": 5.097331523895264,
+      "learning_s": 0.8415908813476562
+    },
+    {
+      "completed_updates": 474,
+      "wall_s": 6.0520602860488,
+      "collection_s": 5.081498861312866,
+      "learning_s": 0.8350443840026855
+    },
+    {
+      "completed_updates": 475,
+      "wall_s": 6.062876330921426,
+      "collection_s": 5.086148500442505,
+      "learning_s": 0.8417093753814697
+    },
+    {
+      "completed_updates": 476,
+      "wall_s": 6.049647016217932,
+      "collection_s": 5.06748366355896,
+      "learning_s": 0.8402395248413086
+    },
+    {
+      "completed_updates": 477,
+      "wall_s": 6.265801695873961,
+      "collection_s": 5.271167278289795,
+      "learning_s": 0.8563058376312256
+    },
+    {
+      "completed_updates": 478,
+      "wall_s": 6.0460671270266175,
+      "collection_s": 5.069693088531494,
+      "learning_s": 0.836021900177002
+    },
+    {
+      "completed_updates": 479,
+      "wall_s": 6.1017578789033,
+      "collection_s": 5.113457679748535,
+      "learning_s": 0.8477673530578613
+    },
+    {
+      "completed_updates": 480,
+      "wall_s": 6.196075069019571,
+      "collection_s": 5.130768537521362,
+      "learning_s": 0.8393533229827881
+    },
+    {
+      "completed_updates": 481,
+      "wall_s": 6.0504846691619605,
+      "collection_s": 5.074163198471069,
+      "learning_s": 0.8440241813659668
+    },
+    {
+      "completed_updates": 482,
+      "wall_s": 5.998203890863806,
+      "collection_s": 5.026373863220215,
+      "learning_s": 0.8377707004547119
+    },
+    {
+      "completed_updates": 483,
+      "wall_s": 6.057149115949869,
+      "collection_s": 5.082438707351685,
+      "learning_s": 0.8409607410430908
+    },
+    {
+      "completed_updates": 484,
+      "wall_s": 6.045585438143462,
+      "collection_s": 5.080890655517578,
+      "learning_s": 0.8379716873168945
+    },
+    {
+      "completed_updates": 485,
+      "wall_s": 6.053157708840445,
+      "collection_s": 5.085737705230713,
+      "learning_s": 0.8343205451965332
+    },
+    {
+      "completed_updates": 486,
+      "wall_s": 5.997964515117928,
+      "collection_s": 5.028163194656372,
+      "learning_s": 0.8395853042602539
+    },
+    {
+      "completed_updates": 487,
+      "wall_s": 6.0490553139243275,
+      "collection_s": 5.078061819076538,
+      "learning_s": 0.8418159484863281
+    },
+    {
+      "completed_updates": 488,
+      "wall_s": 6.075937572168186,
+      "collection_s": 5.1003029346466064,
+      "learning_s": 0.8426949977874756
+    },
+    {
+      "completed_updates": 489,
+      "wall_s": 6.091684359824285,
+      "collection_s": 5.111731290817261,
+      "learning_s": 0.8410096168518066
+    },
+    {
+      "completed_updates": 490,
+      "wall_s": 6.985219712136313,
+      "collection_s": 5.990262746810913,
+      "learning_s": 0.8639719486236572
+    },
+    {
+      "completed_updates": 491,
+      "wall_s": 6.074213413055986,
+      "collection_s": 5.0792505741119385,
+      "learning_s": 0.85955810546875
+    },
+    {
+      "completed_updates": 492,
+      "wall_s": 6.130289918975905,
+      "collection_s": 5.152132987976074,
+      "learning_s": 0.8461689949035645
+    },
+    {
+      "completed_updates": 493,
+      "wall_s": 5.924943976802751,
+      "collection_s": 4.9456586837768555,
+      "learning_s": 0.8372693061828613
+    },
+    {
+      "completed_updates": 494,
+      "wall_s": 5.912585562095046,
+      "collection_s": 4.940333604812622,
+      "learning_s": 0.8331842422485352
+    },
+    {
+      "completed_updates": 495,
+      "wall_s": 5.888426768127829,
+      "collection_s": 4.910210609436035,
+      "learning_s": 0.8404676914215088
+    },
+    {
+      "completed_updates": 496,
+      "wall_s": 5.947084173792973,
+      "collection_s": 4.961869239807129,
+      "learning_s": 0.845149040222168
+    },
+    {
+      "completed_updates": 497,
+      "wall_s": 5.937684680102393,
+      "collection_s": 4.955240964889526,
+      "learning_s": 0.8469290733337402
+    },
+    {
+      "completed_updates": 498,
+      "wall_s": 5.927747679874301,
+      "collection_s": 4.95032000541687,
+      "learning_s": 0.8398833274841309
+    },
+    {
+      "completed_updates": 499,
+      "wall_s": 5.947896696161479,
+      "collection_s": 4.958997488021851,
+      "learning_s": 0.8465249538421631
+    },
+    {
+      "completed_updates": 500,
+      "wall_s": 6.060728095006198,
+      "collection_s": 5.076082229614258,
+      "learning_s": 0.8528497219085693
+    },
+    {
+      "completed_updates": 501,
+      "wall_s": 6.058835218893364,
+      "collection_s": 5.085054397583008,
+      "learning_s": 0.846158504486084
+    },
+    {
+      "completed_updates": 502,
+      "wall_s": 6.117507764138281,
+      "collection_s": 5.131933689117432,
+      "learning_s": 0.8424427509307861
+    },
+    {
+      "completed_updates": 503,
+      "wall_s": 6.101932466030121,
+      "collection_s": 5.113773345947266,
+      "learning_s": 0.8484444618225098
+    },
+    {
+      "completed_updates": 504,
+      "wall_s": 6.174619871890172,
+      "collection_s": 5.190580606460571,
+      "learning_s": 0.8511703014373779
+    },
+    {
+      "completed_updates": 505,
+      "wall_s": 6.3761125090532005,
+      "collection_s": 5.382156610488892,
+      "learning_s": 0.8498134613037109
+    },
+    {
+      "completed_updates": 506,
+      "wall_s": 6.165655368939042,
+      "collection_s": 5.1707963943481445,
+      "learning_s": 0.8478548526763916
+    },
+    {
+      "completed_updates": 507,
+      "wall_s": 6.152282485039905,
+      "collection_s": 5.167685508728027,
+      "learning_s": 0.853238582611084
+    },
+    {
+      "completed_updates": 508,
+      "wall_s": 6.147339225979522,
+      "collection_s": 5.154429197311401,
+      "learning_s": 0.8548076152801514
+    },
+    {
+      "completed_updates": 509,
+      "wall_s": 6.087237423053011,
+      "collection_s": 5.106339454650879,
+      "learning_s": 0.8458943367004395
+    },
+    {
+      "completed_updates": 510,
+      "wall_s": 6.108719771029428,
+      "collection_s": 5.124826669692993,
+      "learning_s": 0.8463013172149658
+    },
+    {
+      "completed_updates": 511,
+      "wall_s": 6.051393896806985,
+      "collection_s": 5.0687103271484375,
+      "learning_s": 0.844646692276001
+    },
+    {
+      "completed_updates": 512,
+      "wall_s": 6.088840174023062,
+      "collection_s": 5.103556156158447,
+      "learning_s": 0.8513092994689941
+    }
+  ],
+  "source_sha256": {
+    "scripts/train_v2_velstand.py": "f9e84c4dd17a835ce2abb0ea5a3e867cbfc858cdf505d13e620fed604a7a564c",
+    "scripts/v2_python.sh": "a51513a2ec91e2664b757db012c1b8d955dfd79642389e59f7976a6dd8549ae5",
+    "src/mjlab_microduck/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/actuator/__init__.py": "181bfbec32115818720695915322f6e2c860fe87767570662a029f8e2d01f12d",
+    "src/mjlab_microduck/actuator/friction_dr_bam.py": "20d25ce2fd06a94bc4fd5356a657710a0959a352bad3dfcc670122f0f0bcd4d4",
+    "src/mjlab_microduck/actuator/friction_force.py": "c84648a4c15a7173a9580d72deff2a9356b8c3aa2fd086413a795924d438a7f6",
+    "src/mjlab_microduck/actuator/sc0090_v5.py": "c42a7e54aac610c9ef1f142b32706821e54ea42163480393842632f35924e451",
+    "src/mjlab_microduck/actuator/v5_graph.py": "9cc192dfb180f67922565742398311c5d007c1aa3946ac5788722f31b2d71796",
+    "src/mjlab_microduck/custom_v2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/custom_v2/camera_feedback.py": "c66f411faa780798c852a2c8beadbabd4cea4e7330c68762acc5c8e36b01a3c3",
+    "src/mjlab_microduck/custom_v2/camera_stability.py": "604dad42b9f31c4fc15c34f030a41afb6070f4734aa03b14926773e2ee37af02",
+    "src/mjlab_microduck/custom_v2/commands.py": "5dc0c05ffe76bbdb2cb2b492b55e201d6993253521417fc56fd64b67b028fd9c",
+    "src/mjlab_microduck/custom_v2/error_proxy.py": "5b1449037b5ee33d74e350cd5e44f02592618152f24166ce054f1e44d2670874",
+    "src/mjlab_microduck/custom_v2/exposure.py": "25df3d2d91c517976a43c91dc8051b971b6e056c43ce596d1d54ab43cc8babb4",
+    "src/mjlab_microduck/custom_v2/fast_native.py": "f841badf9793af5085b75c93e8c5078c67aebd6c701a9f9aa917a93fa444af9e",
+    "src/mjlab_microduck/custom_v2/feedback_diagnostics.py": "50c7f2697bde7821ba5777ee3199ab10cab578dda6e3f465d22c888c52933439",
+    "src/mjlab_microduck/custom_v2/feedback_repair.py": "52da329408923297f52d98585714f554e472100334b1f57d43204da3c5fffa55",
+    "src/mjlab_microduck/custom_v2/firmware_ls3.py": "b39086c7a288a06bb606bb9c1a57be1a12cb56b28b6c7f24d9591a4fbbd1bdab",
+    "src/mjlab_microduck/custom_v2/fresh_p04.py": "57dd70686b3874b6e8ae7b97d9378df8eab7dfb9890936563bccb96941aa079d",
+    "src/mjlab_microduck/custom_v2/frozen_normalization.py": "e75be9b1214c4bd8a0fabd79987284849c866ebb73914786dce61bda48f37a02",
+    "src/mjlab_microduck/custom_v2/head_accuracy.py": "746d6b3d7a3e40deaf5a88f9a904604e754db399e6b185d89e324dbb3a0ba29e",
+    "src/mjlab_microduck/custom_v2/head_bias.py": "98c326183917ffdaf8258dc0cbb3e470e90c46805bc93a442c9e4c28d1725660",
+    "src/mjlab_microduck/custom_v2/head_exploration.py": "e47e8a240c912e45b0f08ce7d5469e2f91f030ce839065fe9a5098cc05612b14",
+    "src/mjlab_microduck/custom_v2/head_metrics.py": "5641c7679671f9fe124af5968a585df9e1425b9d3fa4462992f0c3d35f503599",
+    "src/mjlab_microduck/custom_v2/microduck_v2.py": "c59ea7d490fb2030fb335588734e921d0104d03a718569bff83d5f0fd1952213",
+    "src/mjlab_microduck/custom_v2/ppo.py": "a2574a090d59a257217a7ce97bc762b3220a974c1f5aaafa59dbaa99c3a4532a",
+    "src/mjlab_microduck/custom_v2/recovery.py": "f4e14fe56c4b44b7004ca16d8d38b8b7d51fa5e2f597a55e4d17b53adc94172e",
+    "src/mjlab_microduck/custom_v2/runtime.py": "66786dc0f292f161343e03ddf8ed55e885bc119c554aa6279e3e8cd8c14a918e",
+    "src/mjlab_microduck/custom_v2/terminal.py": "a731cddfe577e28d5e13507966e773b766a80f08d28dbfce6200dc38b3365ffa",
+    "src/mjlab_microduck/custom_v2/training.py": "5a27543094e9ca522f922f8b0546acd17aa51701970a163659aca2c1c75656da",
+    "src/mjlab_microduck/custom_v2/velstand.py": "69b6c3c8563b4aa24c9cc1d24e9beb25e93a0506088e7f4e01a416f123ad9ee5",
+    "src/mjlab_microduck/custom_v2/velstand_ppo.py": "bc613358ee5353cee0a1036ca4790bfd82339d662730de82831f58d48f39645a",
+    "src/mjlab_microduck/custom_v2/walking_metrics.py": "5c7f0b802a526ef863c2bba2ad79097ee07058f492af4ee54c11071bb02deb65",
+    "src/mjlab_microduck/export.py": "ef4d851eee70ce0d1c896a0be14fd4a936a0d17e83649dfd572a5282ffcdf5b9",
+    "src/mjlab_microduck/hf_jobs.py": "d447a20e1feed595ef29a1a19e6a51630327341eb270f0acf4fcb314f69fd285",
+    "src/mjlab_microduck/physics/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/physics/_cpu_warp_contacts.cpp": "9c3f41f8eb31e10f691423ea4694deb4ae13619128429dadb558776191388346",
+    "src/mjlab_microduck/physics/cpu_warp_contacts.py": "84ad6f3a96c06bc5552ca63fbd9f396d255545c54b956f8bd9bdba0abaa827dc",
+    "src/mjlab_microduck/pickup/__init__.py": "7f9ef6fbcbd8b157b71f978092f41cdf8505992a6ecd91b59fc2b0fdef8cad2f",
+    "src/mjlab_microduck/pickup/features.py": "e1f49f64ce597215bca8d2734476fe5aa615a46a6bb6387c57fdd9a4b35f5015",
+    "src/mjlab_microduck/pickup/hand.py": "6b3229a8784e685b2837d44aa11d2c5cdb46e8337de62db8591572ba17537c3a",
+    "src/mjlab_microduck/pickup/model.py": "d738f60870bfa44be8d14afca4ec05d2c1920968202419bd814949b25d94813e",
+    "src/mjlab_microduck/ppo_diagnostics.py": "ba7b23147263c5b9a54e9475f6996d2e77d189d177c6eb8952ece74667452a8f",
+    "src/mjlab_microduck/publish/__init__.py": "7768b41714b565cc97b5553a170b5d95cf17abafe6baa0f9a4be0b7e8cfec7bf",
+    "src/mjlab_microduck/publish/cli.py": "adb198a8b2c0aa10069cbcc3fe2c32b5540533cf04b410caa190b3bdcc24058b",
+    "src/mjlab_microduck/publish/manifest.py": "d66bae7920c2a86fef56877d8ced25c4b1fee67d5637da56d284056722dc7866",
+    "src/mjlab_microduck/robot/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/robot/microduck/add_backlash.py": "805a17ba4ad60f7a2ba20ff90879ad93a6db66013150c5ad9be3d31bc7b4252c",
+    "src/mjlab_microduck/robot/microduck_constants.py": "0e7097afe833ac1259b197f9854d01c1666be03ac0c9b090233b4fbc7619eb94",
+    "src/mjlab_microduck/robot/testbench_constants.py": "bf5e95376131471443e1daddf5abb0bc6326bc6b5c49bfb352774bcc6b011b9f",
+    "src/mjlab_microduck/sc0090/__init__.py": "2ca18a32cf435624efd6bc3113c498d189da24dc0f8ea728a120172c3f71c9e5",
+    "src/mjlab_microduck/sc0090/observer.py": "7b9da38512efda458621b63387bc317ed1b676e5d4a3e8b98a506a95cd5c06c7",
+    "src/mjlab_microduck/sc0090/registers.py": "5dc1b99ee04d38bcf08d792caa9bf4798212c665286858c5447c9d0b83faf2e2",
+    "src/mjlab_microduck/sc0090/stream.py": "f4d4a48af4d2d03b24aa45233b7660de21925dcb5a1cee8c1f26c42a0cc1c6f6",
+    "src/mjlab_microduck/sc0090_v2/__init__.py": "3cb742a139209151b93552e2e5f28d289faf8e35a25ee3f23e968da544cd5e0a",
+    "src/mjlab_microduck/sc0090_v2/action.py": "9ceaa9a68bb22e35a827e014600cc59fdbec1efb4adb9f45b35a9f0a8a482e3e",
+    "src/mjlab_microduck/sc0090_v2/artifacts.py": "30fb7e7f46a31946b5c0be4b1144770a8ad6d1613db7aead770365734cf549f3",
+    "src/mjlab_microduck/sc0090_v2/contract.py": "3de49158641ebfdc92f22ab5a7a086fb49f01457d1414ce752ce45f7e609c0bf",
+    "src/mjlab_microduck/sc0090_v2/feedback.py": "dc5ef0c04cc9a7e84bbe12a3a8319a22e102eb69c66f993a38b8587fc97e4740",
+    "src/mjlab_microduck/sc0090_v2/graph.py": "a49eff096fe2246dce595ea03af8bd84261636cde58598a1a3a1e4ce5f5e7222",
+    "src/mjlab_microduck/sc0090_v2/measurement/__init__.py": "96d1f26fe354f1a6f9a74a4c7cc89ff76a2069851d8b4afbf734785d9205dfcd",
+    "src/mjlab_microduck/sc0090_v2/measurement/compact.py": "cc1b50271c30d1ebb0f9995f5b48a87f24af663cd1b59b0c526248a2895a8b4d",
+    "src/mjlab_microduck/sc0090_v2/measurement/compiled_registers.py": "0f9671f5a31ddcf232b389d8fcf5b3b736953d00290f470574e0f0882819e4f1",
+    "src/mjlab_microduck/sc0090_v2/measurement/compiled_stream.py": "da609f2b075e45bd19be091cb89467fe26e5ef6a1bc9c9b56a3b2a58a33d0aa3",
+    "src/mjlab_microduck/sc0090_v2/measurement/firmware_stream.py": "fba17e7e10b4aa37945ccda08f72a3d874281984ba90f1fff8ed1291760ec77f",
+    "src/mjlab_microduck/sc0090_v2/measurement/gpu_donors.py": "8eefaa07664482f194df1abec679d95d092ae7da293b91c63944bf337e1b686d",
+    "src/mjlab_microduck/sc0090_v2/measurement/precision.py": "792d990f742cec691fee4c1247e11b385520693e206f70faff2aa47536751717",
+    "src/mjlab_microduck/sc0090_v2/measurement/prehistory.py": "9f37748c6fd25d8b7a1743ef4681f2ca88e15454fc927e0ac3456fb4374bc4e0",
+    "src/mjlab_microduck/sc0090_v2/measurement/registers.py": "089e44fd3eb15eabe0ad1f9d335ae77e7721346db129fef6df4cc613895c3134",
+    "src/mjlab_microduck/sc0090_v2/measurement/stream.py": "2ffcf8729f6482c67f5622cc3a0ca5165f5b6f2e5ae6e992941f36c5a569e5d0",
+    "src/mjlab_microduck/sim/__init__.py": "f13d4940266b9579529074bc60426353ed8fc6f49bf8f480691d30e8e4276e22",
+    "src/mjlab_microduck/sim/body_server.py": "2040c827628c33fee998944bce1fcd456c4b993802bb473f016681688bff7b08",
+    "src/mjlab_microduck/sim/camera.py": "5f2e6c83b33e594583cbd5f3e003c3b8bb77f7a0e7b734d86ba0b2c821eaed71",
+    "src/mjlab_microduck/sim/recompute.py": "a5281fe33ab2c83cc4a1aafe127aee3b657b72d14663fbfd95962770e715b35c",
+    "src/mjlab_microduck/sim/terminal.py": "970b529849b5ee63474c7b5981f308b02bdf77a005dcbed106bbe906c9cd797f",
+    "src/mjlab_microduck/sim/tof.py": "256c06bac5ac64a02f3e065785bd70314b616c58da3cb94f93484c9e00d42663",
+    "src/mjlab_microduck/tasks/__init__.py": "eebada7e343613f310c88a550d49e755064de0595e4645225be8dfe64afdc55d",
+    "src/mjlab_microduck/tasks/backlash.py": "35598c2a3db496527fb8835269b4e0ac0eddcc86e683a7af447933c7281d0e22",
+    "src/mjlab_microduck/tasks/distill.py": "d7a2326d3a3b85ba0acb8910dde2701208e61e5bfce0f246eace3d11f51a6026",
+    "src/mjlab_microduck/tasks/mdp.py": "34dcadb99efba9b46b37e71c5f6ffa66fb57235a246b78fa8ff08e37b4bc4fd7",
+    "src/mjlab_microduck/tasks/microduck_ball_kick_env_cfg.py": "313180628c0d0364ea6d0f1843e7e3e10b76585491b90b0c1f0e301d9e5fd30c",
+    "src/mjlab_microduck/tasks/microduck_ground_pick_env_cfg.py": "9b68951e2c84fdccb5894701efa97e060438eb56c956a34c65e844ba3fa6185e",
+    "src/mjlab_microduck/tasks/microduck_roller_crouch_env_cfg.py": "745142fab9ffc4c43a6b7d367d6be37f5675f5fbf255ac4341a9e2a21a4062ee",
+    "src/mjlab_microduck/tasks/microduck_roller_slope_env_cfg.py": "92738df650e3527c8cbe194169f60fb2a232933b1eabbbaf7d4b7d2aa67e2b42",
+    "src/mjlab_microduck/tasks/microduck_roller_standup_env_cfg.py": "146e417c082823039b87d2ff350e96e84007df80c268d53984d7c160f25cdeee",
+    "src/mjlab_microduck/tasks/microduck_roulade_env_cfg.py": "5e923d9ba69946228062c72102fe2b97bce02b9fd6f52c2418a42bbd4f919b42",
+    "src/mjlab_microduck/tasks/microduck_sitstand_env_cfg.py": "65b1961566b0772852ba36af8e92c02a13a53de9b9a98f91e2dce1f4d8d627b1",
+    "src/mjlab_microduck/tasks/microduck_spin_env_cfg.py": "ba85e26407a29a208f871aa229bb2c7971eca6087f0740e7de6f898adbc5b395",
+    "src/mjlab_microduck/tasks/microduck_standup_env_cfg.py": "b20b8f3fac5a374dd602f371f0b500955b4dbcb4d3f7330bddfa15b327826873",
+    "src/mjlab_microduck/tasks/microduck_velocity_env_cfg.py": "75a0430b814ac7495eb237ab806fbd4dd10309b9fd3027ac3eee3c2e3c5a944a",
+    "src/mjlab_microduck/tasks/microduck_velocity_rollers_env_cfg.py": "53567a5ed91b4c70166b57c79fc31917fdcf41287128aff12d3b9ff678f4c38c",
+    "src/mjlab_microduck/tasks/microduck_velocity_swizzle_env_cfg.py": "75197c956afd77586f60e4b773033ace15e088179bb5912a88328862b0a10f49",
+    "src/mjlab_microduck/tasks/microduck_velstand_env_cfg.py": "4b0aebefcc33ad43c2741bf09d8516be82c3ec859bcac54d4ef6531c2759898d",
+    "src/mjlab_microduck/tasks/slope_terrain.py": "1ce48eef8b4bd82cde94d7c9f50f19d2992f4dc8d3b5b5d314b7381bc572b8a0",
+    "src/mjlab_microduck/tasks/symmetry.py": "e37980389773f2f87b8f376df449af4d70e0c983744459f9a35a3ee7b686186b",
+    "src/mjlab_microduck/tasks/testbench_env_cfg.py": "d254218ca3f491e52d471ad033ebd1cb39a339f1f21394ea55e2bec4f3dc2776",
+    "src/mjlab_microduck/train_cli.py": "6c1e118d2bf65f86f6b932dd41b4ddff2a20a0633194a03072f700c7bfa8e372",
+    "src/mjlab_microduck/train_hook.py": "db1bcbceadd41d65077983eaadcb89dee146dc14ea9c9cc3df9d29c1cba20db5"
+  }
+}

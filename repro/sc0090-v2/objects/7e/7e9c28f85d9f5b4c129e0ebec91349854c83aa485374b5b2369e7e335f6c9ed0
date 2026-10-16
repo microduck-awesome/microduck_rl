@@ -1,0 +1,26 @@
+"""Verify the catch curriculum changes only training pose exposure."""
+from dataclasses import asdict
+from pathlib import Path
+import json
+import mjlab.tasks
+from mjlab.tasks.registry import load_env_cfg, load_rl_cfg
+from mjlab_microduck.custom_v2.feedback_repair import TASK, STANDING20_TASK
+from mjlab_microduck.custom_v2.training import configure_head_precision_learning
+
+def canonical(x):
+    return json.dumps(x, sort_keys=True, default=lambda v: getattr(v, '__qualname__', str(v)))
+
+for play in (False, True):
+    old, new = load_env_cfg(TASK, play=play), load_env_cfg(STANDING20_TASK, play=play)
+    assert configure_head_precision_learning(old, 4) == configure_head_precision_learning(new, 4)
+    a, b = asdict(old), asdict(new)
+    probabilities = b['events']['set_ground_state']['params'].pop('training_bucket_probabilities')
+    assert tuple(probabilities) == (.20,.10,.10,.30,.10,.10,.10)
+    assert canonical(a) == canonical(b), 'Unexpected environment, reward, sensor or head change'
+assert canonical(asdict(load_rl_cfg(TASK))) == canonical(asdict(load_rl_cfg(STANDING20_TASK)))
+Path('runs-v2/paired-p04-standing20-config-check.json').write_text(json.dumps(dict(
+    status='PASS', only_environment_change='training pose bucket probabilities',
+    before=[.05,.10,.10,.40,.10,.10,.15], after=list(probabilities),
+    rewards_commands_physics_observation_and_ppo_unchanged=True,
+    explicit_eval_buckets_remain_equal=True), indent=2))
+print('PASS: only training pose exposure changed')

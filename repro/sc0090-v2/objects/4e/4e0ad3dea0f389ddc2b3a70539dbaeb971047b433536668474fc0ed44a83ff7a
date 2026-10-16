@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/microduck-awesome/microduck_rl",
+  "revision": "211a63f0f727796f9a0b0a1865c5adc970f198bd",
+  "files": {
+    "__init__.py": "2ca18a32cf435624efd6bc3113c498d189da24dc0f8ea728a120172c3f71c9e5",
+    "registers.py": "5dc1b99ee04d38bcf08d792caa9bf4798212c665286858c5447c9d0b83faf2e2",
+    "stream.py": "f4d4a48af4d2d03b24aa45233b7660de21925dcb5a1cee8c1f26c42a0cc1c6f6",
+    "observer.py": "7b9da38512efda458621b63387bc317ed1b676e5d4a3e8b98a506a95cd5c06c7"
+  },
+  "scope": "Unmodified S0/S1 register generator and O0/O1 causal observer; whole-robot adapter is in sc0090_v2."
+}

@@ -1,0 +1,265 @@
+"""Bounded fresh/resumed V2 GroundPick allocation with explicit payload state."""
+import argparse
+from dataclasses import asdict
+from functools import wraps
+import hashlib
+import json
+import math
+import os
+from pathlib import Path
+import signal
+import statistics
+import tarfile
+import time
+
+os.environ['WANDB_MODE'] = 'disabled'
+import torch
+import warp as wp
+from mjlab.envs import ManagerBasedRlEnv
+from mjlab.rl import RslRlVecEnvWrapper
+from mjlab.tasks.registry import load_env_cfg, load_rl_cfg, load_runner_cls
+from mjlab_microduck.custom_v2.ground_pick import GROUND_PICK_TASK as TASK,initialize_ground_pick_payload
+from mjlab_microduck.custom_v2.ground_pick_metrics import GroundPickTrainingSummary
+from mjlab_microduck.custom_v2.ground_pick_history import HISTORY_TASK
+from mjlab_microduck.custom_v2.ground_pick_precision import PRECISION_TASK
+from mjlab_microduck.ppo_diagnostics import attach_ppo_diagnostics
+
+
+def write_json(path, value):
+    temp = path.with_suffix(path.suffix+'.tmp')
+    temp.write_text(json.dumps(value, indent=2, default=str, allow_nan=False)+'\n')
+    temp.replace(path)
+
+
+def source_hashes(root):
+    paths = sorted([*root.glob('src/**/*.py'), *root.glob('src/**/*.cpp'),
+                    root/'scripts/train_v2_ground_pick.py', root/'scripts/v2_python.sh'])
+    return {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
+
+
+def exact(actual, expected):
+    if isinstance(expected, torch.Tensor):
+        assert torch.equal(actual.detach().cpu(), expected.detach().cpu())
+    elif isinstance(expected, dict):
+        assert actual.keys() == expected.keys()
+        for k in expected: exact(actual[k], expected[k])
+    elif isinstance(expected, (list, tuple)):
+        assert len(actual) == len(expected)
+        for a, b in zip(actual, expected): exact(a, b)
+    else:
+        assert actual == expected
+
+
+def validate_source_transition(parent_meta,hashes,checkpoint,manifest_path,task):
+    if parent_meta['source_sha256']==hashes:
+        assert parent_meta['task']==task and manifest_path is None
+        return None
+    assert task in (PRECISION_TASK,PRECISION_TASK+'-Measured') and manifest_path is not None
+    m=json.loads(manifest_path.read_text())
+    allowed={'scripts/train_v2_ground_pick.py','src/mjlab_microduck/custom_v2/ground_pick_precision.py','src/mjlab_microduck/custom_v2/ground_pick_metrics.py','src/mjlab_microduck/tasks/__init__.py'}
+    changed={k for k in set(hashes)|set(parent_meta['source_sha256']) if hashes.get(k)!=parent_meta['source_sha256'].get(k)}
+    assert m['status']=='PASS_CONFIG_REVIEW' and m['recipe']=='mature-groundpick-height-precision-v1'
+    assert m['task']==task and m['parent_task']==parent_meta['task'] and parent_meta['task'] in (HISTORY_TASK,HISTORY_TASK+'-Measured')
+    assert m['parent_checkpoint']==str(checkpoint.resolve()) and m['parent_checkpoint_sha256']==hashlib.sha256(checkpoint.read_bytes()).hexdigest()
+    assert m['from_source_sha256']==parent_meta['source_sha256'] and m['to_source_sha256']==hashes
+    assert changed==set(m['changed_files'])==allowed
+    return {'manifest':str(manifest_path.resolve()),'sha256':hashlib.sha256(manifest_path.read_bytes()).hexdigest(),'recipe':m['recipe'],'changed_files':sorted(changed)}
+
+
+class AllocationStop(Exception):
+    pass
+
+
+def main():
+    p = argparse.ArgumentParser()
+    p.add_argument('--output', type=Path, required=True)
+    p.add_argument('--task', default=TASK)
+    p.add_argument('--device', default='cuda:0')
+    p.add_argument('--num-envs', type=int, default=32768)
+    p.add_argument('--iterations', type=int, required=True)
+    p.add_argument('--seed', type=int, default=2026101611)
+    p.add_argument('--resume', type=Path)
+    p.add_argument('--source-transition',type=Path)
+    p.add_argument('--qualification', type=Path)
+    p.add_argument('--validation-only', action='store_true')
+    p.add_argument('--force-timeouts', action='store_true')
+    args = p.parse_args()
+    assert args.task in tuple(t+s for t in (TASK,HISTORY_TASK,PRECISION_TASK) for s in ('','-Measured'))
+    if args.task.startswith(PRECISION_TASK):assert args.resume is not None
+    assert 0 < args.iterations <= (512 if args.task.startswith(HISTORY_TASK) else 256) and args.num_envs > 0
+    assert args.validation_only or not args.force_timeouts
+    root, out = Path(__file__).resolve().parents[1], args.output.resolve()
+    args.output=out
+    if args.resume:args.resume=args.resume.resolve()
+    if args.qualification:args.qualification=args.qualification.resolve()
+    out.mkdir(parents=True, exist_ok=False)
+    hashes = source_hashes(root)
+    if not args.validation_only:
+        assert args.qualification is not None
+        qualification = json.loads(args.qualification.read_text())
+        assert qualification['status'] == 'PASS'
+        assert qualification['source_sha256'] == hashes
+        assert qualification['num_envs'] == args.num_envs
+    torch.set_num_threads(2)
+    cfg, agent = load_env_cfg(args.task), load_rl_cfg(args.task)
+    cfg.seed, cfg.scene.num_envs = args.seed, args.num_envs
+    agent.logger, agent.upload_model, agent.save_interval = 'tensorboard', False, 64
+    assert agent.num_steps_per_env == 24
+    assert args.source_transition is None or args.resume is not None
+    if args.source_transition:args.source_transition=args.source_transition.resolve()
+    assert cfg.actions['joint_pos'].spike_rejection is False
+    assert cfg.actions['joint_pos'].o0_local_history
+    assert cfg.actions['joint_pos'].compile_measurement and cfg.actions['joint_pos'].fuse_registers
+    write_json(out/'run.json', dict(task=args.task, arguments=vars(args),
+        source_sha256=hashes, environment=asdict(cfg), agent=asdict(agent),
+        allocation_kind='validation' if args.validation_only else 'formal',
+        physics_resume='native-new-episodes', scope='GroundPick phase-task; fresh skill budget; no deployment or skill acceptance'))
+    with tarfile.open(out/'source.tar.gz', 'w:gz') as tar:
+        for name in hashes: tar.add(root/name, arcname=name)
+    started = time.perf_counter()
+    env = ManagerBasedRlEnv(cfg, device=args.device)
+    try:
+        assert env.sim.use_cuda_graph and math.isclose(env.step_dt, .02)
+        assert math.isclose(env.physics_dt, .005)
+        summary = GroundPickTrainingSummary(env, oracle=args.validation_only)
+        contact_count=wp.to_torch(env.sim.wp_data.nacon)
+        contact_peak=torch.zeros_like(contact_count)
+        native_step=env.sim.step
+        def checked_step():
+            native_step()
+            contact_peak.copy_(torch.maximum(contact_peak,contact_count))
+            torch._assert_async((contact_count<=env.sim.wp_data.naconmax).all(),'GroundPick contact buffer overflow')
+        env.sim.step=checked_step
+        wrapped = RslRlVecEnvWrapper(env, clip_actions=agent.clip_actions)
+        initialize_ground_pick_payload(env)
+        runner = load_runner_cls(args.task)(wrapped, asdict(agent), str(out), args.device)
+        actor = runner.alg.get_policy()
+        start = inherited = 0
+        lineage = None
+        if args.resume:
+            parent = torch.load(args.resume, map_location='cpu', weights_only=False)
+            meta = parent['infos']['v2']
+            transition=validate_source_transition(meta,hashes,args.resume,args.source_transition,args.task)
+            assert meta['num_envs'] == args.num_envs or args.validation_only
+            infos = runner.load(str(args.resume), map_location=args.device)
+            actual = runner.alg.save()
+            for k in ('actor_state_dict', 'critic_state_dict', 'optimizer_state_dict'):
+                exact(actual[k], parent[k])
+            assert runner.alg.learning_rate == runner.alg.optimizer.param_groups[0]['lr']
+            start, inherited = meta['completed_updates'], meta['controls']
+            torch.set_rng_state(meta['torch_rng'].cpu())
+            assert meta['cuda_device'] == args.device
+            torch.cuda.set_rng_state(meta['cuda_rng'].cpu(), args.device)
+            env.reset()
+            initialize_ground_pick_payload(env)
+            assert env.common_step_counter == infos['env_state']['common_step_counter']
+            lineage = dict(checkpoint=str(args.resume), checkpoint_sha256=hashlib.sha256(args.resume.read_bytes()).hexdigest(),
+                           actor_critic_normalizer_adam_exact=True, learning_rate=runner.alg.learning_rate,source_transition=transition,common_step_counter=env.common_step_counter,completed_updates=start,inherited_controls=inherited)
+            write_json(out/'resume-verification.json',lineage)
+            del actual, parent
+        else:
+            assert len(runner.alg.optimizer.state) == 0
+        completed = start
+        start_clock = env.common_step_counter
+        assert start_clock == start * agent.num_steps_per_env
+        if args.force_timeouts:
+            env.episode_length_buf[:args.num_envs//2] = env.max_episode_length-1
+        diagnostics = attach_ppo_diagnostics(runner, out/'ppo-diagnostics.jsonl')
+        stop_reason = [None]
+        signal.signal(signal.SIGTERM, lambda *_: stop_reason.__setitem__(0, 'SIGTERM'))
+        signal.signal(signal.SIGINT, lambda *_: stop_reason.__setitem__(0, 'SIGINT'))
+        timing = []
+        native_log = runner.logger.log
+        previous_log = [time.perf_counter()]
+        @wraps(native_log)
+        def log(*a, **kw):
+            now = time.perf_counter()
+            timing.append(dict(completed_updates=completed, wall_s=now-previous_log[0],
+                               collection_s=kw['collect_time'], learning_s=kw['learn_time']))
+            previous_log[0] = now
+            return native_log(*a, **kw)
+        runner.logger.log = log
+        def status(state):
+            return dict(status=state, pid=os.getpid(), updated_unix=time.time(),
+                        completed_updates=completed, allocation_end=start+args.iterations,
+                        inherited_controls=inherited, controls=inherited+(completed-start)*args.num_envs*24,
+                        allocation_controls=(completed-start)*args.num_envs*24,
+                        common_step_counter=env.common_step_counter, stop_reason=stop_reason[0],
+                        training_metrics=summary.report(), goal_complete=False)
+        native_update = runner.alg.update
+        def update():
+            nonlocal completed
+            loss = native_update()
+            completed += 1
+            assert env.common_step_counter == start_clock+(completed-start)*24
+            if not all(math.isfinite(float(v)) for v in loss.values()):
+                stop_reason[0] = 'nonfinite_loss'
+            d = diagnostics.last
+            if d['PPO/kl_mean'] > .5 or d['PPO/clip_fraction'] > .8:
+                stop_reason[0] = 'optimizer_guard'
+            if completed % 10 == 0 or completed <= start+2:
+                write_json(out/'status.json', status('RUNNING'))
+            if stop_reason[0]: raise AllocationStop(stop_reason[0])
+            return loss
+        runner.alg.update = update
+        native_save = runner.save
+        def save(path, infos=None):
+            meta = dict(task=args.task, source_sha256=hashes, completed_updates=completed,
+                        num_envs=args.num_envs, steps_per_env=24, inherited_controls=inherited,
+                        controls=inherited+(completed-start)*args.num_envs*24, lineage=lineage,
+                        physics_resume='native-new-episodes', training_metrics=summary.report(),
+                        torch_rng=torch.get_rng_state(), cuda_device=args.device,
+                        cuda_rng=torch.cuda.get_rng_state(args.device))
+            native_save(path, {**(infos or {}), 'v2':meta})
+        runner.save = save
+        write_json(out/'status.json', status('RUNNING'))
+        runner.current_learning_iteration = completed
+        try:
+            runner.learn(args.iterations, init_at_random_ep_len=False)
+        except AllocationStop:
+            pass
+        runner.current_learning_iteration = completed
+        checkpoint = out/f'checkpoint_{completed:06d}.pt'
+        save(str(checkpoint))
+        state = status('STOPPED' if stop_reason[0] else 'ALLOCATION_COMPLETE')
+        state['resume_checkpoint'] = str(checkpoint)
+        state['wall_seconds'] = time.perf_counter()-started
+        state['full_process_control_per_second'] = state['allocation_controls']/state['wall_seconds']
+        measured = timing[3:]
+        state['throughput'] = dict(
+            median_control_per_second=args.num_envs*24/statistics.median(t['wall_s'] for t in measured),
+            aggregate_control_per_second=len(measured)*args.num_envs*24/sum(t['wall_s'] for t in measured)
+        ) if measured else None
+        state['terminal_bootstrap_samples'] = runner.alg.terminal_bootstrap_samples
+        state['timing'] = timing
+        state['source_sha256'] = hashes
+        state['contact_peak']=int(contact_peak.max())
+        state['contact_capacity']=env.sim.wp_data.naconmax
+        state['cuda_peak_allocated_bytes']=torch.cuda.max_memory_allocated(args.device)
+        state['fresh_initialization']=lineage is None
+        if args.validation_only and args.num_envs==64:
+            import numpy as np
+            import onnxruntime as ort
+            onnx_path=out/(out.name+'.onnx')
+            assert onnx_path.is_file(), 'Official runner ONNX export missing'
+            before={k:v.detach().clone() for k,v in actor.state_dict().items()}
+            inference=runner.get_inference_policy(device=args.device)
+            observations=wrapped.get_observations()
+            session=ort.InferenceSession(str(onnx_path),providers=['CPUExecutionProvider'])
+            expected=inference(observations).detach().cpu().numpy()
+            # Official ONNX has a fixed one-observation batch dimension.
+            samples=observations['actor'].detach().cpu().numpy()
+            actual=np.concatenate([session.run(None,{session.get_inputs()[0].name:x[None]})[0] for x in samples])
+            state['onnx_max_abs_error']=float(np.max(np.abs(actual-expected)))
+            assert state['onnx_max_abs_error']<2e-5
+            for key,value in before.items():assert torch.equal(actor.state_dict()[key],value)
+            state['onnx_actor_normalizer_unchanged']=True
+        write_json(out/'status.json', state)
+        write_json(out/'report.json', state)
+        assert completed == start+args.iterations and stop_reason[0] is None, state
+    finally:
+        env.close()
+
+
+if __name__ == '__main__':
+    main()

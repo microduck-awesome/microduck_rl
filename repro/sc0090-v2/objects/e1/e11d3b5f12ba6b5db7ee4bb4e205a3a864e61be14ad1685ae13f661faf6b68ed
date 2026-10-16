@@ -1,0 +1,39 @@
+"""CPU exact configuration delta for the qualified physical SIT replacement."""
+import dataclasses,json
+from pathlib import Path
+from mjlab.tasks.registry import load_env_cfg,load_rl_cfg
+from mjlab_microduck.custom_v2.sitstand import TASK
+from mjlab_microduck.custom_v2.sitstand_clear import CLEAR_TASK,SIT_POSE,SIT_HEIGHT
+
+def canon(x):
+ if dataclasses.is_dataclass(x):return {f.name:canon(getattr(x,f.name)) for f in dataclasses.fields(x)}
+ if isinstance(x,dict):return {str(k):canon(v) for k,v in x.items()}
+ if isinstance(x,(tuple,list)):return [canon(v) for v in x]
+ if callable(x):return x.__module__+'.'+x.__qualname__
+ return x
+
+def diff(a,b,path=''):
+ if type(a)!=type(b):return [path]
+ if isinstance(a,dict):
+  if a.keys()!=b.keys():return [path+'.KEYS']
+  return sum([diff(a[k],b[k],path+'.'+k) for k in a],[])
+ if isinstance(a,list):
+  if len(a)!=len(b):return [path+'.LENGTH']
+  return sum([diff(v,b[i],path+'.'+str(i)) for i,v in enumerate(a)],[])
+ return [] if a==b else [path]
+
+changes={}
+for play in (False,True):
+ a,b=load_env_cfg(TASK,play=play),load_env_cfg(CLEAR_TASK,play=play)
+ changed=diff(canon(a),canon(b));assert changed
+ for p in changed:
+  assert any(q in p for q in ('sitting_joint_overrides','sitting_z_min','sitting_z_max','sit_overrides','sit_z')),p
+ assert a.episode_length_s==b.episode_length_s==12
+ assert canon(a.observations)==canon(b.observations) and canon(a.actions)==canon(b.actions)
+ assert {n:t.weight for n,t in a.rewards.items()}=={n:t.weight for n,t in b.rewards.items()}
+ assert b.commands['twist'].sit_z==SIT_HEIGHT
+ assert b.events['set_ground_state'].params['sitting_joint_overrides']==SIT_POSE
+ changes[str(play)]=changed
+agent_diff=diff(canon(load_rl_cfg(TASK)),canon(load_rl_cfg(CLEAR_TASK)));assert agent_diff==['.run_name'],agent_diff
+r=dict(status='PASS',environment_changes=changes,agent_changes=agent_diff,old_task=TASK,new_task=CLEAR_TASK,sit_pose=SIT_POSE,sit_height=SIT_HEIGHT)
+Path('runs-v2/sitstand-clear-cfg-check.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r),flush=True)

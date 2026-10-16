@@ -1,0 +1,9 @@
+{
+  "returncode": 0,
+  "started_unix": 1792093949.21987,
+  "ended_unix": 1792094499.9884057,
+  "wall_s": 550.7685477733612,
+  "actual_formal_controls": 50331648,
+  "complete_process_control_steps_per_s": 91384.39041858877,
+  "scope": "Popen through exit including initialization/PPO/formal recovery, external head excluded"
+}

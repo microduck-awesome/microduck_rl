@@ -1,0 +1,3548 @@
+{
+  "status": "EVALUATED_NOT_SKILL_ACCEPTANCE",
+  "task": "Mjlab-GroundPick-Flat-MicroDuck-V2-Repaired-S0-O0-R1",
+  "checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/groundpick-smoke-002/checkpoint_000005.pt",
+  "checkpoint_sha256": "a14bf2362dd1e3edeee6058682e156d8355a1c8d5389d7fac3934c480ff3e137",
+  "stage": "nominal",
+  "seed": 2607,
+  "num_envs": 32,
+  "protocol": "3 native4s cycles from phase0 HOME; four payloads; unpushed and training3\u20136s interval-push subgroups; actor corruption off but real S0/O0 and startup DR retained",
+  "boundary": "after reward before reset/forward/next phase; derived geometry lags one 5ms substep",
+  "actor_normalizer_unchanged": true,
+  "source_sha256": {
+    "scripts/train_v2_ground_pick.py": "246a631aeca3343a692af2070b6634594d7b6f267efdc3856c6c2ba2e2d7266c",
+    "scripts/v2_python.sh": "a51513a2ec91e2664b757db012c1b8d955dfd79642389e59f7976a6dd8549ae5",
+    "src/mjlab_microduck/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/actuator/__init__.py": "181bfbec32115818720695915322f6e2c860fe87767570662a029f8e2d01f12d",
+    "src/mjlab_microduck/actuator/friction_dr_bam.py": "20d25ce2fd06a94bc4fd5356a657710a0959a352bad3dfcc670122f0f0bcd4d4",
+    "src/mjlab_microduck/actuator/friction_force.py": "c84648a4c15a7173a9580d72deff2a9356b8c3aa2fd086413a795924d438a7f6",
+    "src/mjlab_microduck/actuator/sc0090_v5.py": "c42a7e54aac610c9ef1f142b32706821e54ea42163480393842632f35924e451",
+    "src/mjlab_microduck/actuator/v5_graph.py": "9cc192dfb180f67922565742398311c5d007c1aa3946ac5788722f31b2d71796",
+    "src/mjlab_microduck/custom_v2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/custom_v2/commands.py": "44bc36a9f4b6211b83aca531c924b493316abe31a33936b8ea2ea93786efe9cd",
+    "src/mjlab_microduck/custom_v2/error_proxy.py": "5b1449037b5ee33d74e350cd5e44f02592618152f24166ce054f1e44d2670874",
+    "src/mjlab_microduck/custom_v2/exposure.py": "396ebb1165e66da1cc4e9734a6c4bf70ca4c2f6e8da70196fbf7c9e8a4026723",
+    "src/mjlab_microduck/custom_v2/fast_native.py": "f841badf9793af5085b75c93e8c5078c67aebd6c701a9f9aa917a93fa444af9e",
+    "src/mjlab_microduck/custom_v2/feedback_diagnostics.py": "50c7f2697bde7821ba5777ee3199ab10cab578dda6e3f465d22c888c52933439",
+    "src/mjlab_microduck/custom_v2/feedback_repair.py": "5d0519f2b5d54a97fcfc3a7a91269739553c75d98d3557927f777a9f24fbfb21",
+    "src/mjlab_microduck/custom_v2/firmware_ls3.py": "b39086c7a288a06bb606bb9c1a57be1a12cb56b28b6c7f24d9591a4fbbd1bdab",
+    "src/mjlab_microduck/custom_v2/fresh_p04.py": "5ab3a00b5a21de63e5b92915e5665a29b6190a9ac24107d68157a2f0e8a7ebb0",
+    "src/mjlab_microduck/custom_v2/frozen_normalization.py": "e75be9b1214c4bd8a0fabd79987284849c866ebb73914786dce61bda48f37a02",
+    "src/mjlab_microduck/custom_v2/ground_pick.py": "20ea572800b4e9770ce4d7cc1f966c18fc78673f3b668031fb20f5dd444487ec",
+    "src/mjlab_microduck/custom_v2/ground_pick_metrics.py": "43da1075f504bcf6c97d87dffb083bec884e73500abd6f145360d90ff3bb20a9",
+    "src/mjlab_microduck/custom_v2/head_accuracy.py": "746d6b3d7a3e40deaf5a88f9a904604e754db399e6b185d89e324dbb3a0ba29e",
+    "src/mjlab_microduck/custom_v2/head_exploration.py": "e47e8a240c912e45b0f08ce7d5469e2f91f030ce839065fe9a5098cc05612b14",
+    "src/mjlab_microduck/custom_v2/head_metrics.py": "5641c7679671f9fe124af5968a585df9e1425b9d3fa4462992f0c3d35f503599",
+    "src/mjlab_microduck/custom_v2/microduck_v2.py": "eecb4b8ec6a584ec4a218f46eaae354aeb35cc14452173d1d84c9f201afe504e",
+    "src/mjlab_microduck/custom_v2/optimizer_transition.py": "666a3b796a40c3a4a9bd281f021e0c2ea5b50272cc0a463be0d9f22675fb2e02",
+    "src/mjlab_microduck/custom_v2/ppo.py": "a2574a090d59a257217a7ce97bc762b3220a974c1f5aaafa59dbaa99c3a4532a",
+    "src/mjlab_microduck/custom_v2/recovery.py": "e0e8343c18aa860a228adbcb624efb79844fd20750e686f3c89465e4515dd7ba",
+    "src/mjlab_microduck/custom_v2/rng_resume.py": "eb196432cfe67bf2e048f6d5a03c117ccc0ccdf904cdf8379bd5a0c7d5236e53",
+    "src/mjlab_microduck/custom_v2/runtime.py": "66786dc0f292f161343e03ddf8ed55e885bc119c554aa6279e3e8cd8c14a918e",
+    "src/mjlab_microduck/custom_v2/sitstand.py": "cae634687f8e6810baa0eb2e7b089b1f958fbb426009cbed833a96fae7418f13",
+    "src/mjlab_microduck/custom_v2/sitstand_clear.py": "78d98b4b01925599541d4784c824574d5a670d84782813f778df8e6df8d71d60",
+    "src/mjlab_microduck/custom_v2/sitstand_lesson.py": "fb6a4ed47c8c8cac35d8e7ba70fc00ed4fde9d9c4754a9d0d81bdd8db3d18015",
+    "src/mjlab_microduck/custom_v2/sitstand_metrics.py": "7b8dfa948ad631df76bc67ec4f7d3b3f6d6f33eb7fc4f36f8cbb07bc8e1d3fc2",
+    "src/mjlab_microduck/custom_v2/terminal.py": "398c13daa970808e1e0a3fb671c75245f4482fb020dbf262286305a7855b4f41",
+    "src/mjlab_microduck/custom_v2/timeout_phase.py": "0a6b945b4e9bcc797b8ab073cb2bb208abcbfefca449d8d472dc87624c1830ec",
+    "src/mjlab_microduck/custom_v2/training.py": "63d5025304cee68adf03c48a287ae27a1f8c69a7c6ac475890a36c9cfabc477d",
+    "src/mjlab_microduck/export.py": "ef4d851eee70ce0d1c896a0be14fd4a936a0d17e83649dfd572a5282ffcdf5b9",
+    "src/mjlab_microduck/hf_jobs.py": "d447a20e1feed595ef29a1a19e6a51630327341eb270f0acf4fcb314f69fd285",
+    "src/mjlab_microduck/physics/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/physics/_cpu_warp_contacts.cpp": "9c3f41f8eb31e10f691423ea4694deb4ae13619128429dadb558776191388346",
+    "src/mjlab_microduck/physics/cpu_warp_contacts.py": "84ad6f3a96c06bc5552ca63fbd9f396d255545c54b956f8bd9bdba0abaa827dc",
+    "src/mjlab_microduck/pickup/__init__.py": "7f9ef6fbcbd8b157b71f978092f41cdf8505992a6ecd91b59fc2b0fdef8cad2f",
+    "src/mjlab_microduck/pickup/features.py": "e1f49f64ce597215bca8d2734476fe5aa615a46a6bb6387c57fdd9a4b35f5015",
+    "src/mjlab_microduck/pickup/hand.py": "6b3229a8784e685b2837d44aa11d2c5cdb46e8337de62db8591572ba17537c3a",
+    "src/mjlab_microduck/pickup/model.py": "d738f60870bfa44be8d14afca4ec05d2c1920968202419bd814949b25d94813e",
+    "src/mjlab_microduck/ppo_diagnostics.py": "ba7b23147263c5b9a54e9475f6996d2e77d189d177c6eb8952ece74667452a8f",
+    "src/mjlab_microduck/publish/__init__.py": "7768b41714b565cc97b5553a170b5d95cf17abafe6baa0f9a4be0b7e8cfec7bf",
+    "src/mjlab_microduck/publish/cli.py": "adb198a8b2c0aa10069cbcc3fe2c32b5540533cf04b410caa190b3bdcc24058b",
+    "src/mjlab_microduck/publish/manifest.py": "d66bae7920c2a86fef56877d8ced25c4b1fee67d5637da56d284056722dc7866",
+    "src/mjlab_microduck/robot/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/robot/microduck/add_backlash.py": "805a17ba4ad60f7a2ba20ff90879ad93a6db66013150c5ad9be3d31bc7b4252c",
+    "src/mjlab_microduck/robot/microduck_constants.py": "0e7097afe833ac1259b197f9854d01c1666be03ac0c9b090233b4fbc7619eb94",
+    "src/mjlab_microduck/robot/testbench_constants.py": "bf5e95376131471443e1daddf5abb0bc6326bc6b5c49bfb352774bcc6b011b9f",
+    "src/mjlab_microduck/sc0090/__init__.py": "2ca18a32cf435624efd6bc3113c498d189da24dc0f8ea728a120172c3f71c9e5",
+    "src/mjlab_microduck/sc0090/observer.py": "7b9da38512efda458621b63387bc317ed1b676e5d4a3e8b98a506a95cd5c06c7",
+    "src/mjlab_microduck/sc0090/registers.py": "5dc1b99ee04d38bcf08d792caa9bf4798212c665286858c5447c9d0b83faf2e2",
+    "src/mjlab_microduck/sc0090/stream.py": "f4d4a48af4d2d03b24aa45233b7660de21925dcb5a1cee8c1f26c42a0cc1c6f6",
+    "src/mjlab_microduck/sc0090_v2/__init__.py": "3cb742a139209151b93552e2e5f28d289faf8e35a25ee3f23e968da544cd5e0a",
+    "src/mjlab_microduck/sc0090_v2/action.py": "9ceaa9a68bb22e35a827e014600cc59fdbec1efb4adb9f45b35a9f0a8a482e3e",
+    "src/mjlab_microduck/sc0090_v2/artifacts.py": "30fb7e7f46a31946b5c0be4b1144770a8ad6d1613db7aead770365734cf549f3",
+    "src/mjlab_microduck/sc0090_v2/contract.py": "3de49158641ebfdc92f22ab5a7a086fb49f01457d1414ce752ce45f7e609c0bf",
+    "src/mjlab_microduck/sc0090_v2/feedback.py": "dc5ef0c04cc9a7e84bbe12a3a8319a22e102eb69c66f993a38b8587fc97e4740",
+    "src/mjlab_microduck/sc0090_v2/graph.py": "a49eff096fe2246dce595ea03af8bd84261636cde58598a1a3a1e4ce5f5e7222",
+    "src/mjlab_microduck/sc0090_v2/measurement/__init__.py": "96d1f26fe354f1a6f9a74a4c7cc89ff76a2069851d8b4afbf734785d9205dfcd",
+    "src/mjlab_microduck/sc0090_v2/measurement/compact.py": "cc1b50271c30d1ebb0f9995f5b48a87f24af663cd1b59b0c526248a2895a8b4d",
+    "src/mjlab_microduck/sc0090_v2/measurement/compiled_registers.py": "0f9671f5a31ddcf232b389d8fcf5b3b736953d00290f470574e0f0882819e4f1",
+    "src/mjlab_microduck/sc0090_v2/measurement/compiled_stream.py": "da609f2b075e45bd19be091cb89467fe26e5ef6a1bc9c9b56a3b2a58a33d0aa3",
+    "src/mjlab_microduck/sc0090_v2/measurement/firmware_stream.py": "fba17e7e10b4aa37945ccda08f72a3d874281984ba90f1fff8ed1291760ec77f",
+    "src/mjlab_microduck/sc0090_v2/measurement/gpu_donors.py": "8eefaa07664482f194df1abec679d95d092ae7da293b91c63944bf337e1b686d",
+    "src/mjlab_microduck/sc0090_v2/measurement/precision.py": "792d990f742cec691fee4c1247e11b385520693e206f70faff2aa47536751717",
+    "src/mjlab_microduck/sc0090_v2/measurement/prehistory.py": "9f37748c6fd25d8b7a1743ef4681f2ca88e15454fc927e0ac3456fb4374bc4e0",
+    "src/mjlab_microduck/sc0090_v2/measurement/registers.py": "089e44fd3eb15eabe0ad1f9d335ae77e7721346db129fef6df4cc613895c3134",
+    "src/mjlab_microduck/sc0090_v2/measurement/stream.py": "2ffcf8729f6482c67f5622cc3a0ca5165f5b6f2e5ae6e992941f36c5a569e5d0",
+    "src/mjlab_microduck/sim/__init__.py": "f13d4940266b9579529074bc60426353ed8fc6f49bf8f480691d30e8e4276e22",
+    "src/mjlab_microduck/sim/body_server.py": "2040c827628c33fee998944bce1fcd456c4b993802bb473f016681688bff7b08",
+    "src/mjlab_microduck/sim/camera.py": "5f2e6c83b33e594583cbd5f3e003c3b8bb77f7a0e7b734d86ba0b2c821eaed71",
+    "src/mjlab_microduck/sim/recompute.py": "a5281fe33ab2c83cc4a1aafe127aee3b657b72d14663fbfd95962770e715b35c",
+    "src/mjlab_microduck/sim/terminal.py": "970b529849b5ee63474c7b5981f308b02bdf77a005dcbed106bbe906c9cd797f",
+    "src/mjlab_microduck/sim/tof.py": "256c06bac5ac64a02f3e065785bd70314b616c58da3cb94f93484c9e00d42663",
+    "src/mjlab_microduck/tasks/__init__.py": "01f56d204b897418e6c75850ebfc870ac6de126569ddbd4ebf9e003b6ef7441c",
+    "src/mjlab_microduck/tasks/backlash.py": "35598c2a3db496527fb8835269b4e0ac0eddcc86e683a7af447933c7281d0e22",
+    "src/mjlab_microduck/tasks/distill.py": "d7a2326d3a3b85ba0acb8910dde2701208e61e5bfce0f246eace3d11f51a6026",
+    "src/mjlab_microduck/tasks/mdp.py": "28fab160ee3baa140d7b415f3db63e1cf11800a69c35ac95c8284f599d394544",
+    "src/mjlab_microduck/tasks/microduck_ball_kick_env_cfg.py": "313180628c0d0364ea6d0f1843e7e3e10b76585491b90b0c1f0e301d9e5fd30c",
+    "src/mjlab_microduck/tasks/microduck_ground_pick_env_cfg.py": "9b68951e2c84fdccb5894701efa97e060438eb56c956a34c65e844ba3fa6185e",
+    "src/mjlab_microduck/tasks/microduck_roller_crouch_env_cfg.py": "745142fab9ffc4c43a6b7d367d6be37f5675f5fbf255ac4341a9e2a21a4062ee",
+    "src/mjlab_microduck/tasks/microduck_roller_slope_env_cfg.py": "92738df650e3527c8cbe194169f60fb2a232933b1eabbbaf7d4b7d2aa67e2b42",
+    "src/mjlab_microduck/tasks/microduck_roller_standup_env_cfg.py": "146e417c082823039b87d2ff350e96e84007df80c268d53984d7c160f25cdeee",
+    "src/mjlab_microduck/tasks/microduck_roulade_env_cfg.py": "5e923d9ba69946228062c72102fe2b97bce02b9fd6f52c2418a42bbd4f919b42",
+    "src/mjlab_microduck/tasks/microduck_sitstand_env_cfg.py": "65b1961566b0772852ba36af8e92c02a13a53de9b9a98f91e2dce1f4d8d627b1",
+    "src/mjlab_microduck/tasks/microduck_spin_env_cfg.py": "ba85e26407a29a208f871aa229bb2c7971eca6087f0740e7de6f898adbc5b395",
+    "src/mjlab_microduck/tasks/microduck_standup_env_cfg.py": "b20b8f3fac5a374dd602f371f0b500955b4dbcb4d3f7330bddfa15b327826873",
+    "src/mjlab_microduck/tasks/microduck_velocity_env_cfg.py": "75a0430b814ac7495eb237ab806fbd4dd10309b9fd3027ac3eee3c2e3c5a944a",
+    "src/mjlab_microduck/tasks/microduck_velocity_rollers_env_cfg.py": "53567a5ed91b4c70166b57c79fc31917fdcf41287128aff12d3b9ff678f4c38c",
+    "src/mjlab_microduck/tasks/microduck_velocity_swizzle_env_cfg.py": "75197c956afd77586f60e4b773033ace15e088179bb5912a88328862b0a10f49",
+    "src/mjlab_microduck/tasks/microduck_velstand_env_cfg.py": "4b0aebefcc33ad43c2741bf09d8516be82c3ec859bcac54d4ef6531c2759898d",
+    "src/mjlab_microduck/tasks/slope_terrain.py": "1ce48eef8b4bd82cde94d7c9f50f19d2992f4dc8d3b5b5d314b7381bc572b8a0",
+    "src/mjlab_microduck/tasks/symmetry.py": "e37980389773f2f87b8f376df449af4d70e0c983744459f9a35a3ee7b686186b",
+    "src/mjlab_microduck/tasks/testbench_env_cfg.py": "d254218ca3f491e52d471ad033ebd1cb39a339f1f21394ea55e2bec4f3dc2776",
+    "src/mjlab_microduck/train_cli.py": "6c1e118d2bf65f86f6b932dd41b4ddff2a20a0633194a03072f700c7bfa8e372",
+    "src/mjlab_microduck/train_hook.py": "db1bcbceadd41d65077983eaadcb89dee146dc14ea9c9cc3df9d29c1cba20db5"
+  },
+  "oracle_max_abs": [
+    5.960464477539063e-08,
+    5.960464477539063e-08,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    2.9802322387695312e-08
+  ],
+  "head_semantics": "Head intentionally follows mouth task, not an independent head command. Report low/standing stabilization separately from descent/rise camera motion.",
+  "camera_protocol": {
+    "site": "head_camera CAD placeholder, angular motion only, not calibrated pixel blur",
+    "hz": 200,
+    "exposure_s": 0.02,
+    "health": "motion: ready finite no head/selfcontact bothfeet tilt<60deg; low: additionally linear<.05m/s and angular<.5rad/s; stand: additionally height.112\u00b1.012m and tilt<15deg",
+    "samples": 2401
+  },
+  "development_task_gates": {
+    "low": "mouth0\u201325mm/downcos>=.95, quiet healthy body, sustained100ms during native low phase",
+    "return": "HOME legsMAE<.2rad/headmax<.1rad; stable height/tilt/speed/bothfeet and no contacts for last500ms",
+    "complete": "low and return gates plus no head/selfcontact or feedback failure in entirecycle"
+  },
+  "results": [
+    {
+      "payload_kg": 0.0,
+      "training_interval_pushes": false,
+      "cycles": [
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": -0.006767471320927143,
+          "mouth_low_height_mean_m": 0.186390683054924,
+          "mouth_low_down_cos_mean": 0.019556082785129547,
+          "body_tilt_p95_deg": 87.81312561035156,
+          "head_return_mae_deg": [
+            13.464019775390625,
+            5.5968098640441895,
+            4.288640022277832,
+            5.529512882232666
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.16367952525615692,
+          "head_torque_abs_max_Nm": 0.22506995499134064,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.59858238697052,
+                  "p95_over_trials": 0.6639419794082642,
+                  "max_over_trials": 0.6659834980964661
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 1.2646095752716064,
+                  "p95_over_trials": 1.4250452518463135,
+                  "max_over_trials": 1.4437631368637085
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.025501519441604614,
+                  "p95_over_trials": 0.02742151729762554,
+                  "max_over_trials": 0.027421893551945686
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.05596192181110382,
+                  "p95_over_trials": 0.06483455747365952,
+                  "max_over_trials": 0.0659506693482399
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 4,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.3105900287628174,
+                  "p95_over_trials": 0.3818187713623047,
+                  "max_over_trials": 0.3947163224220276
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.5278974771499634,
+                  "p95_over_trials": 0.6495283842086792,
+                  "max_over_trials": 0.6538307666778564
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.009548425674438477,
+                  "p95_over_trials": 0.011899438686668873,
+                  "max_over_trials": 0.0120545020326972
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.010702107101678848,
+                  "p95_over_trials": 0.013156074099242687,
+                  "max_over_trials": 0.013264773413538933
+                }
+              },
+              "healthy_entire_window": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.3105900287628174,
+                  "p95_over_trials": 0.3818187713623047,
+                  "max_over_trials": 0.3947163224220276
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.5278974771499634,
+                  "p95_over_trials": 0.6495283842086792,
+                  "max_over_trials": 0.6538307666778564
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.009548425674438477,
+                  "p95_over_trials": 0.011899438686668873,
+                  "max_over_trials": 0.0120545020326972
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.010702107101678848,
+                  "p95_over_trials": 0.013156074099242687,
+                  "max_over_trials": 0.013264773413538933
+                }
+              }
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 1.7478219270706177,
+                  "p95_over_trials": 1.8620738983154297,
+                  "max_over_trials": 1.8825737237930298
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 4.640756130218506,
+                  "p95_over_trials": 5.257606029510498,
+                  "max_over_trials": 5.3572773933410645
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.08949818462133408,
+                  "p95_over_trials": 0.09660795331001282,
+                  "max_over_trials": 0.09749185293912888
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.12226134538650513,
+                  "p95_over_trials": 0.13040734827518463,
+                  "max_over_trials": 0.1312960386276245
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.03210585564374924,
+                  "p95_over_trials": 0.038938913494348526,
+                  "max_over_trials": 0.039437759667634964
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.062003545463085175,
+                  "p95_over_trials": 0.07215318828821182,
+                  "max_over_trials": 0.07311520725488663
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0011303103528916836,
+                  "p95_over_trials": 0.001370357582345605,
+                  "max_over_trials": 0.0014040827518329024
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0013788666110485792,
+                  "p95_over_trials": 0.0016338079003617167,
+                  "max_over_trials": 0.001652925624512136
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        },
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": 0.00112055242061615,
+          "mouth_low_height_mean_m": 0.0011220768792554736,
+          "mouth_low_down_cos_mean": 0.9361342787742615,
+          "body_tilt_p95_deg": 87.75167083740234,
+          "head_return_mae_deg": [
+            13.232783317565918,
+            5.086285591125488,
+            4.403538703918457,
+            6.189970016479492
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.22335979342460632,
+          "head_torque_abs_max_Nm": 0.2827800512313843,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.034642092883586884,
+                  "p95_over_trials": 0.04348812997341156,
+                  "max_over_trials": 0.04403982311487198
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.08138294517993927,
+                  "p95_over_trials": 0.10594078153371811,
+                  "max_over_trials": 0.11012686789035797
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.001520258141681552,
+                  "p95_over_trials": 0.0020568682812154293,
+                  "max_over_trials": 0.0021489218343049288
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0027549322694540024,
+                  "p95_over_trials": 0.0037209312431514263,
+                  "max_over_trials": 0.003805358661338687
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.010319387540221214,
+                  "p95_over_trials": 0.012690266594290733,
+                  "max_over_trials": 0.012740837410092354
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.018167804926633835,
+                  "p95_over_trials": 0.02934868074953556,
+                  "max_over_trials": 0.03127866983413696
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0003080422175116837,
+                  "p95_over_trials": 0.0004647353489417583,
+                  "max_over_trials": 0.0004847955715376884
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.00036872163764201105,
+                  "p95_over_trials": 0.0006153663853183389,
+                  "max_over_trials": 0.0006591652636416256
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.027319425716996193,
+                  "p95_over_trials": 0.054617904126644135,
+                  "max_over_trials": 0.05980145186185837
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.03174320608377457,
+                  "p95_over_trials": 0.04753457009792328,
+                  "max_over_trials": 0.05008045211434364
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0006011995137669146,
+                  "p95_over_trials": 0.0008987190667539835,
+                  "max_over_trials": 0.0009482683963142335
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0030304447282105684,
+                  "p95_over_trials": 0.007957535795867443,
+                  "max_over_trials": 0.009083360433578491
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.029530541971325874,
+                  "p95_over_trials": 0.043633025139570236,
+                  "max_over_trials": 0.04599462449550629
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.05978570878505707,
+                  "p95_over_trials": 0.0791860818862915,
+                  "max_over_trials": 0.08162423223257065
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0010725435568019748,
+                  "p95_over_trials": 0.0013790875673294067,
+                  "max_over_trials": 0.001416941056959331
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.004335547797381878,
+                  "p95_over_trials": 0.008291659876704216,
+                  "max_over_trials": 0.009083360433578491
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        },
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": 0.0011325851082801819,
+          "mouth_low_height_mean_m": 0.0011340813944116235,
+          "mouth_low_down_cos_mean": 0.9372653961181641,
+          "body_tilt_p95_deg": 87.21788787841797,
+          "head_return_mae_deg": [
+            12.917749404907227,
+            4.842434406280518,
+            4.5606369972229,
+            6.457714080810547
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.2075050175189972,
+          "head_torque_abs_max_Nm": 0.290693074464798,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.015046214684844017,
+                  "p95_over_trials": 0.018955308943986893,
+                  "max_over_trials": 0.01901666447520256
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.03307432681322098,
+                  "p95_over_trials": 0.043710857629776,
+                  "max_over_trials": 0.04532484710216522
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0006117045413702726,
+                  "p95_over_trials": 0.000807406788226217,
+                  "max_over_trials": 0.0008363239467144012
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0015045487089082599,
+                  "p95_over_trials": 0.002293077763170004,
+                  "max_over_trials": 0.00239706807769835
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.012996445409953594,
+                  "p95_over_trials": 0.02765415795147419,
+                  "max_over_trials": 0.03075975924730301
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.0314069464802742,
+                  "p95_over_trials": 0.0731230154633522,
+                  "max_over_trials": 0.08235543221235275
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0005055684014223516,
+                  "p95_over_trials": 0.0011201900197193027,
+                  "max_over_trials": 0.0012511125532910228
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0006806981982663274,
+                  "p95_over_trials": 0.0016383043257519603,
+                  "max_over_trials": 0.0018523514736443758
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.018422024324536324,
+                  "p95_over_trials": 0.03051099181175232,
+                  "max_over_trials": 0.033089958131313324
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.03919687867164612,
+                  "p95_over_trials": 0.07069354504346848,
+                  "max_over_trials": 0.07775910943746567
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0007012278656475246,
+                  "p95_over_trials": 0.0012770944740623236,
+                  "max_over_trials": 0.0014013635227456689
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0016457915771752596,
+                  "p95_over_trials": 0.0026624768506735563,
+                  "max_over_trials": 0.002867338480427861
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.018837440758943558,
+                  "p95_over_trials": 0.023263899609446526,
+                  "max_over_trials": 0.02353169396519661
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.03495831787586212,
+                  "p95_over_trials": 0.047000281512737274,
+                  "max_over_trials": 0.04814000800251961
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0006772381020709872,
+                  "p95_over_trials": 0.0009830876952037215,
+                  "max_over_trials": 0.00102366937790066
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0023662163875997066,
+                  "p95_over_trials": 0.0028487606905400753,
+                  "max_over_trials": 0.002867338480427861
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "payload_kg": 0.01,
+      "training_interval_pushes": false,
+      "cycles": [
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": -0.00618615560233593,
+          "mouth_low_height_mean_m": 0.1901649534702301,
+          "mouth_low_down_cos_mean": -0.03929005190730095,
+          "body_tilt_p95_deg": 87.70584869384766,
+          "head_return_mae_deg": [
+            14.6983060836792,
+            6.256832599639893,
+            3.8214285373687744,
+            6.093530178070068
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.15484878420829773,
+          "head_torque_abs_max_Nm": 0.1993986815214157,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.6398899555206299,
+                  "p95_over_trials": 0.7024862766265869,
+                  "max_over_trials": 0.7106118202209473
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 1.4994717836380005,
+                  "p95_over_trials": 1.673271656036377,
+                  "max_over_trials": 1.680045485496521
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.029821373522281647,
+                  "p95_over_trials": 0.03311832994222641,
+                  "max_over_trials": 0.033365897834300995
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.058679357171058655,
+                  "p95_over_trials": 0.0660761296749115,
+                  "max_over_trials": 0.06718922406435013
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 4,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.3308122158050537,
+                  "p95_over_trials": 0.490972638130188,
+                  "max_over_trials": 0.5064188241958618
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.6297857761383057,
+                  "p95_over_trials": 0.9538218379020691,
+                  "max_over_trials": 0.9965671896934509
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.012216233648359776,
+                  "p95_over_trials": 0.019010581076145172,
+                  "max_over_trials": 0.019877862185239792
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.013407295569777489,
+                  "p95_over_trials": 0.020680876448750496,
+                  "max_over_trials": 0.021641431376338005
+                }
+              },
+              "healthy_entire_window": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.3308122158050537,
+                  "p95_over_trials": 0.490972638130188,
+                  "max_over_trials": 0.5064188241958618
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.6297857761383057,
+                  "p95_over_trials": 0.9538218379020691,
+                  "max_over_trials": 0.9965671896934509
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.012216233648359776,
+                  "p95_over_trials": 0.019010581076145172,
+                  "max_over_trials": 0.019877862185239792
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.013407295569777489,
+                  "p95_over_trials": 0.020680876448750496,
+                  "max_over_trials": 0.021641431376338005
+                }
+              }
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 1.8459298610687256,
+                  "p95_over_trials": 1.9040225744247437,
+                  "max_over_trials": 1.9100443124771118
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 4.804692268371582,
+                  "p95_over_trials": 5.218569278717041,
+                  "max_over_trials": 5.292879104614258
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.09372389316558838,
+                  "p95_over_trials": 0.10162948071956635,
+                  "max_over_trials": 0.10298507660627365
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.133705735206604,
+                  "p95_over_trials": 0.13628490269184113,
+                  "max_over_trials": 0.13681623339653015
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.0313110277056694,
+                  "p95_over_trials": 0.03863545134663582,
+                  "max_over_trials": 0.03982449322938919
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.06039765849709511,
+                  "p95_over_trials": 0.0787036344408989,
+                  "max_over_trials": 0.08119897544384003
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0011069049360230565,
+                  "p95_over_trials": 0.0013699462870135903,
+                  "max_over_trials": 0.0014033775078132749
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.002238969085738063,
+                  "p95_over_trials": 0.0025471714325249195,
+                  "max_over_trials": 0.0025679355021566153
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        },
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": 0.0011092014610767365,
+          "mouth_low_height_mean_m": 0.001111276331357658,
+          "mouth_low_down_cos_mean": 0.9278647303581238,
+          "body_tilt_p95_deg": 87.70524597167969,
+          "head_return_mae_deg": [
+            14.274428367614746,
+            5.5741095542907715,
+            4.183920383453369,
+            6.568622589111328
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.20690259337425232,
+          "head_torque_abs_max_Nm": 0.2673530876636505,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.05643777921795845,
+                  "p95_over_trials": 0.06980212032794952,
+                  "max_over_trials": 0.07006818801164627
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.12704092264175415,
+                  "p95_over_trials": 0.14930875599384308,
+                  "max_over_trials": 0.1496286690235138
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0024586899671703577,
+                  "p95_over_trials": 0.0029175288509577513,
+                  "max_over_trials": 0.002926743123680353
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.004260367248207331,
+                  "p95_over_trials": 0.006067337933927774,
+                  "max_over_trials": 0.006307009607553482
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.021416515111923218,
+                  "p95_over_trials": 0.037150006741285324,
+                  "max_over_trials": 0.03786575794219971
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.05686173215508461,
+                  "p95_over_trials": 0.11163606494665146,
+                  "max_over_trials": 0.11596500873565674
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0007653816719539464,
+                  "p95_over_trials": 0.0013683992438018322,
+                  "max_over_trials": 0.0013890459667891264
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0011309862602502108,
+                  "p95_over_trials": 0.002250995486974716,
+                  "max_over_trials": 0.0023514912463724613
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.03518889471888542,
+                  "p95_over_trials": 0.04593656212091446,
+                  "max_over_trials": 0.04610744118690491
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.0630626380443573,
+                  "p95_over_trials": 0.1054786667227745,
+                  "max_over_trials": 0.11371531337499619
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0012150458060204983,
+                  "p95_over_trials": 0.0019799682777374983,
+                  "max_over_trials": 0.002124659949913621
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0038427540566772223,
+                  "p95_over_trials": 0.005773050710558891,
+                  "max_over_trials": 0.006210295017808676
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.04298777878284454,
+                  "p95_over_trials": 0.052275024354457855,
+                  "max_over_trials": 0.0532802939414978
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.09453470259904861,
+                  "p95_over_trials": 0.12702874839305878,
+                  "max_over_trials": 0.13326916098594666
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0017668830696493387,
+                  "p95_over_trials": 0.0023757286835461855,
+                  "max_over_trials": 0.0024827641900628805
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.004913351498544216,
+                  "p95_over_trials": 0.006292502395808697,
+                  "max_over_trials": 0.006307009607553482
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        },
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": 0.0011137276887893677,
+          "mouth_low_height_mean_m": 0.0011159107089042664,
+          "mouth_low_down_cos_mean": 0.92928546667099,
+          "body_tilt_p95_deg": 87.25978088378906,
+          "head_return_mae_deg": [
+            13.878334045410156,
+            5.336275100708008,
+            4.479567527770996,
+            6.628633499145508
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.19933371245861053,
+          "head_torque_abs_max_Nm": 0.2563953101634979,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.020091712474822998,
+                  "p95_over_trials": 0.02891426347196102,
+                  "max_over_trials": 0.029297109693288803
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.041350118815898895,
+                  "p95_over_trials": 0.06673451513051987,
+                  "max_over_trials": 0.0678667202591896
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0008081240230239928,
+                  "p95_over_trials": 0.0012871412327513099,
+                  "max_over_trials": 0.0013099428033456206
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0016896616434678435,
+                  "p95_over_trials": 0.0024054846726357937,
+                  "max_over_trials": 0.0025486068334430456
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.006573877297341824,
+                  "p95_over_trials": 0.008670805022120476,
+                  "max_over_trials": 0.00904172658920288
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.010751196183264256,
+                  "p95_over_trials": 0.016402240842580795,
+                  "max_over_trials": 0.01757626421749592
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.00020091467013116926,
+                  "p95_over_trials": 0.00032223688322119415,
+                  "max_over_trials": 0.00034717359812930226
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0002153179084416479,
+                  "p95_over_trials": 0.00033034023363143206,
+                  "max_over_trials": 0.00035340525209903717
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.009664774872362614,
+                  "p95_over_trials": 0.016278617084026337,
+                  "max_over_trials": 0.017664138227701187
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.01943362131714821,
+                  "p95_over_trials": 0.032680753618478775,
+                  "max_over_trials": 0.035521719604730606
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.00031890012905932963,
+                  "p95_over_trials": 0.0005019526579417288,
+                  "max_over_trials": 0.0005388162098824978
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.000718501687515527,
+                  "p95_over_trials": 0.0015366018051281571,
+                  "max_over_trials": 0.0017320659244433045
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.01617904007434845,
+                  "p95_over_trials": 0.02351035363972187,
+                  "max_over_trials": 0.024280773475766182
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.03161712735891342,
+                  "p95_over_trials": 0.05309818685054779,
+                  "max_over_trials": 0.056512296199798584
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0005963196745142341,
+                  "p95_over_trials": 0.0010214538779109716,
+                  "max_over_trials": 0.001093069207854569
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.001985942479223013,
+                  "p95_over_trials": 0.0026359660550951958,
+                  "max_over_trials": 0.0026513824705034494
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "payload_kg": 0.025,
+      "training_interval_pushes": false,
+      "cycles": [
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": -0.006471756845712662,
+          "mouth_low_height_mean_m": 0.1804845929145813,
+          "mouth_low_down_cos_mean": 0.09174754470586777,
+          "body_tilt_p95_deg": 88.81071472167969,
+          "head_return_mae_deg": [
+            12.811841011047363,
+            6.206587791442871,
+            4.585441589355469,
+            6.22959041595459
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.16523507237434387,
+          "head_torque_abs_max_Nm": 0.23014281690120697,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.6331906318664551,
+                  "p95_over_trials": 0.6932729482650757,
+                  "max_over_trials": 0.6970528364181519
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 1.4650980234146118,
+                  "p95_over_trials": 1.5728647708892822,
+                  "max_over_trials": 1.5869472026824951
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.02972835674881935,
+                  "p95_over_trials": 0.03273581713438034,
+                  "max_over_trials": 0.032853491604328156
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0537874773144722,
+                  "p95_over_trials": 0.060893453657627106,
+                  "max_over_trials": 0.06160213053226471
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 3,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.41986000537872314,
+                  "p95_over_trials": 0.5833620429039001,
+                  "max_over_trials": 0.5911059975624084
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.7765107154846191,
+                  "p95_over_trials": 0.9926878809928894,
+                  "max_over_trials": 1.0057817697525024
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.01478499174118042,
+                  "p95_over_trials": 0.01943931356072426,
+                  "max_over_trials": 0.019895631819963455
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.015568907372653484,
+                  "p95_over_trials": 0.019799983128905296,
+                  "max_over_trials": 0.020127084106206894
+                }
+              },
+              "healthy_entire_window": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.36277803778648376,
+                  "p95_over_trials": 0.516993522644043,
+                  "max_over_trials": 0.5394795536994934
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.7000870704650879,
+                  "p95_over_trials": 0.8970502614974976,
+                  "max_over_trials": 0.9184892773628235
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.013081444427371025,
+                  "p95_over_trials": 0.01651061326265335,
+                  "max_over_trials": 0.016853513196110725
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.014049515128135681,
+                  "p95_over_trials": 0.01757628656923771,
+                  "max_over_trials": 0.017946412786841393
+                }
+              }
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 1.8637477159500122,
+                  "p95_over_trials": 1.984657883644104,
+                  "max_over_trials": 2.0000662803649902
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 4.9177093505859375,
+                  "p95_over_trials": 5.149013519287109,
+                  "max_over_trials": 5.162875652313232
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.09640413522720337,
+                  "p95_over_trials": 0.10133332014083862,
+                  "max_over_trials": 0.1016496866941452
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.1374470293521881,
+                  "p95_over_trials": 0.14590699970722198,
+                  "max_over_trials": 0.1462961733341217
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.04316532611846924,
+                  "p95_over_trials": 0.06049118563532829,
+                  "max_over_trials": 0.06216361001133919
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.09197506308555603,
+                  "p95_over_trials": 0.1339874267578125,
+                  "max_over_trials": 0.13864104449748993
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0015781037509441376,
+                  "p95_over_trials": 0.0024594238493591547,
+                  "max_over_trials": 0.0026072137989103794
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0022205158602446318,
+                  "p95_over_trials": 0.003373189130797982,
+                  "max_over_trials": 0.0034955788869410753
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        },
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": 0.0011069569736719131,
+          "mouth_low_height_mean_m": 0.0011210388038307428,
+          "mouth_low_down_cos_mean": 0.9351785778999329,
+          "body_tilt_p95_deg": 87.73661804199219,
+          "head_return_mae_deg": [
+            12.696473121643066,
+            5.870219707489014,
+            4.601015090942383,
+            6.276736259460449
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.1986173391342163,
+          "head_torque_abs_max_Nm": 0.24847866594791412,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.053151994943618774,
+                  "p95_over_trials": 0.08962360769510269,
+                  "max_over_trials": 0.09730513393878937
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.1219073235988617,
+                  "p95_over_trials": 0.18657179176807404,
+                  "max_over_trials": 0.19540727138519287
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0023286070208996534,
+                  "p95_over_trials": 0.003769242437556386,
+                  "max_over_trials": 0.003981494810432196
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0051292781718075275,
+                  "p95_over_trials": 0.009578235447406769,
+                  "max_over_trials": 0.010540113784372807
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.010055089369416237,
+                  "p95_over_trials": 0.014970175921916962,
+                  "max_over_trials": 0.016014622524380684
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.017778713256120682,
+                  "p95_over_trials": 0.03266480565071106,
+                  "max_over_trials": 0.035837654024362564
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0002578478306531906,
+                  "p95_over_trials": 0.0004085578548256308,
+                  "max_over_trials": 0.0004426836676429957
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0003632805310189724,
+                  "p95_over_trials": 0.0006708982982672751,
+                  "max_over_trials": 0.0007318493444472551
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.015933997929096222,
+                  "p95_over_trials": 0.02079130709171295,
+                  "max_over_trials": 0.02126573584973812
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.03430052101612091,
+                  "p95_over_trials": 0.05239731818437576,
+                  "max_over_trials": 0.0547642856836319
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0005804295651614666,
+                  "p95_over_trials": 0.0008047414012253284,
+                  "max_over_trials": 0.000824991031549871
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0010762757156044245,
+                  "p95_over_trials": 0.0016985404072329402,
+                  "max_over_trials": 0.0017526750452816486
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.03590579330921173,
+                  "p95_over_trials": 0.058058805763721466,
+                  "max_over_trials": 0.0625680461525917
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.05914069339632988,
+                  "p95_over_trials": 0.09252054244279861,
+                  "max_over_trials": 0.09732402861118317
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0011054472997784615,
+                  "p95_over_trials": 0.0018050424987450242,
+                  "max_over_trials": 0.0019086560932919383
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0051292781718075275,
+                  "p95_over_trials": 0.009578235447406769,
+                  "max_over_trials": 0.010540113784372807
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        },
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": 0.0011143721640110016,
+          "mouth_low_height_mean_m": 0.0011287381639704108,
+          "mouth_low_down_cos_mean": 0.9351096153259277,
+          "body_tilt_p95_deg": 87.40250396728516,
+          "head_return_mae_deg": [
+            12.580768585205078,
+            5.540245532989502,
+            4.7057271003723145,
+            6.467344284057617
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.19246552884578705,
+          "head_torque_abs_max_Nm": 0.23161494731903076,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.022702960297465324,
+                  "p95_over_trials": 0.03845101594924927,
+                  "max_over_trials": 0.03966188803315163
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.04253475368022919,
+                  "p95_over_trials": 0.07876284420490265,
+                  "max_over_trials": 0.08473434299230576
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.000792938400991261,
+                  "p95_over_trials": 0.0014286511577665806,
+                  "max_over_trials": 0.001530704670585692
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.002559596672654152,
+                  "p95_over_trials": 0.004523364827036858,
+                  "max_over_trials": 0.004617820028215647
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.0063643851317465305,
+                  "p95_over_trials": 0.008756711147725582,
+                  "max_over_trials": 0.009250153787434101
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.011269515380263329,
+                  "p95_over_trials": 0.01808818243443966,
+                  "max_over_trials": 0.01947980374097824
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.000212070022826083,
+                  "p95_over_trials": 0.0003688243159558624,
+                  "max_over_trials": 0.0004034961457364261
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.00023835711181163788,
+                  "p95_over_trials": 0.00040447659557685256,
+                  "max_over_trials": 0.0004397518641781062
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.017458811402320862,
+                  "p95_over_trials": 0.028951939195394516,
+                  "max_over_trials": 0.031314898282289505
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.02875598520040512,
+                  "p95_over_trials": 0.038895830512046814,
+                  "max_over_trials": 0.04048999398946762
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0005337142501957715,
+                  "p95_over_trials": 0.0007840862381272018,
+                  "max_over_trials": 0.0008270799880847335
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0014802374644204974,
+                  "p95_over_trials": 0.0031097785104066133,
+                  "max_over_trials": 0.0034800288267433643
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.021844998002052307,
+                  "p95_over_trials": 0.02745947428047657,
+                  "max_over_trials": 0.027485499158501625
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.04244763404130936,
+                  "p95_over_trials": 0.059211064130067825,
+                  "max_over_trials": 0.06064203381538391
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.000788671663030982,
+                  "p95_over_trials": 0.0011331369169056416,
+                  "max_over_trials": 0.0011665697675198317
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.003144832793623209,
+                  "p95_over_trials": 0.004523364827036858,
+                  "max_over_trials": 0.004617820028215647
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "payload_kg": 0.04,
+      "training_interval_pushes": false,
+      "cycles": [
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": -0.007632925175130367,
+          "mouth_low_height_mean_m": 0.1815120279788971,
+          "mouth_low_down_cos_mean": 0.08819577842950821,
+          "body_tilt_p95_deg": 87.8226547241211,
+          "head_return_mae_deg": [
+            12.924383163452148,
+            6.6934285163879395,
+            4.500278949737549,
+            5.53423547744751
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.160410076379776,
+          "head_torque_abs_max_Nm": 0.22553801536560059,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.6351872682571411,
+                  "p95_over_trials": 0.730035126209259,
+                  "max_over_trials": 0.7491753697395325
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 1.3978582620620728,
+                  "p95_over_trials": 1.705248236656189,
+                  "max_over_trials": 1.7448352575302124
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.027661863714456558,
+                  "p95_over_trials": 0.03243384137749672,
+                  "max_over_trials": 0.03288556635379791
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0554063618183136,
+                  "p95_over_trials": 0.0583111047744751,
+                  "max_over_trials": 0.058855071663856506
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 3,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.4107075035572052,
+                  "p95_over_trials": 0.6584711074829102,
+                  "max_over_trials": 0.716929018497467
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.7011736631393433,
+                  "p95_over_trials": 0.9955295920372009,
+                  "max_over_trials": 1.0441645383834839
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.013384007848799229,
+                  "p95_over_trials": 0.018719138577580452,
+                  "max_over_trials": 0.019606102257966995
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.014480700716376305,
+                  "p95_over_trials": 0.0199563167989254,
+                  "max_over_trials": 0.020793169736862183
+                }
+              },
+              "healthy_entire_window": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.3086336851119995,
+                  "p95_over_trials": 0.32666704058647156,
+                  "max_over_trials": 0.32721003890037537
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.5868433713912964,
+                  "p95_over_trials": 0.7017813324928284,
+                  "max_over_trials": 0.719931960105896
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.011309976689517498,
+                  "p95_over_trials": 0.013410323299467564,
+                  "max_over_trials": 0.013693009503185749
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.012376544997096062,
+                  "p95_over_trials": 0.01485877763479948,
+                  "max_over_trials": 0.015214147977530956
+                }
+              }
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 1.8664309978485107,
+                  "p95_over_trials": 1.9253712892532349,
+                  "max_over_trials": 1.9356938600540161
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 4.900486469268799,
+                  "p95_over_trials": 5.342318058013916,
+                  "max_over_trials": 5.35474967956543
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0947035402059555,
+                  "p95_over_trials": 0.09955547749996185,
+                  "max_over_trials": 0.09959335625171661
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.13577643036842346,
+                  "p95_over_trials": 0.13859522342681885,
+                  "max_over_trials": 0.13870464265346527
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.03406559303402901,
+                  "p95_over_trials": 0.04901483654975891,
+                  "max_over_trials": 0.051984257996082306
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.07483050972223282,
+                  "p95_over_trials": 0.1173010915517807,
+                  "max_over_trials": 0.12685102224349976
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0014415367040783167,
+                  "p95_over_trials": 0.0022679350804537535,
+                  "max_over_trials": 0.0024613523855805397
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0020525020081549883,
+                  "p95_over_trials": 0.0031237199436873198,
+                  "max_over_trials": 0.0033463123254477978
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        },
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": 0.0011028014123439789,
+          "mouth_low_height_mean_m": 0.0011241225292906165,
+          "mouth_low_down_cos_mean": 0.9319211840629578,
+          "body_tilt_p95_deg": 87.02597045898438,
+          "head_return_mae_deg": [
+            12.781341552734375,
+            6.03854513168335,
+            4.525691032409668,
+            5.819828510284424
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.1740175485610962,
+          "head_torque_abs_max_Nm": 0.2317955493927002,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.03728281334042549,
+                  "p95_over_trials": 0.05247600004076958,
+                  "max_over_trials": 0.05500670522451401
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.07998921722173691,
+                  "p95_over_trials": 0.11140093207359314,
+                  "max_over_trials": 0.11711843311786652
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0015059406869113445,
+                  "p95_over_trials": 0.0020916920620948076,
+                  "max_over_trials": 0.002189182210713625
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0031939037144184113,
+                  "p95_over_trials": 0.004207198973745108,
+                  "max_over_trials": 0.0042300294153392315
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.01576545462012291,
+                  "p95_over_trials": 0.02976640686392784,
+                  "max_over_trials": 0.03299752250313759
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.03297547250986099,
+                  "p95_over_trials": 0.07102718949317932,
+                  "max_over_trials": 0.07898703962564468
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0006074788980185986,
+                  "p95_over_trials": 0.0013489598641172051,
+                  "max_over_trials": 0.0015204017981886864
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0007496349280700088,
+                  "p95_over_trials": 0.0016953513259068131,
+                  "max_over_trials": 0.001895673107355833
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.013518709689378738,
+                  "p95_over_trials": 0.014420989900827408,
+                  "max_over_trials": 0.014444960281252861
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.026063358411192894,
+                  "p95_over_trials": 0.028068313375115395,
+                  "max_over_trials": 0.02840082347393036
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0004643018473871052,
+                  "p95_over_trials": 0.0005078429821878672,
+                  "max_over_trials": 0.0005103459698148072
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0009381729178130627,
+                  "p95_over_trials": 0.0013846161309629679,
+                  "max_over_trials": 0.00147496466524899
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.025646239519119263,
+                  "p95_over_trials": 0.035246334969997406,
+                  "max_over_trials": 0.03695893660187721
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.0513906255364418,
+                  "p95_over_trials": 0.07986880838871002,
+                  "max_over_trials": 0.0866418108344078
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0009597814059816301,
+                  "p95_over_trials": 0.0015083823818713427,
+                  "max_over_trials": 0.0016371867386624217
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0031939037144184113,
+                  "p95_over_trials": 0.004207198973745108,
+                  "max_over_trials": 0.0042300294153392315
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        },
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": 0.0011048167943954468,
+          "mouth_low_height_mean_m": 0.0011267351219430566,
+          "mouth_low_down_cos_mean": 0.9328702092170715,
+          "body_tilt_p95_deg": 86.79361724853516,
+          "head_return_mae_deg": [
+            12.619287490844727,
+            5.599773406982422,
+            4.581196308135986,
+            6.079040050506592
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.1699800342321396,
+          "head_torque_abs_max_Nm": 0.2509972155094147,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.013058718293905258,
+                  "p95_over_trials": 0.015831558033823967,
+                  "max_over_trials": 0.016040703281760216
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.027639728039503098,
+                  "p95_over_trials": 0.03820201754570007,
+                  "max_over_trials": 0.040183406323194504
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0004878091567661613,
+                  "p95_over_trials": 0.0006628797273151577,
+                  "max_over_trials": 0.000695491733495146
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0011824284447357059,
+                  "p95_over_trials": 0.0016957683255895972,
+                  "max_over_trials": 0.0017844302346929908
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.014756830409169197,
+                  "p95_over_trials": 0.02324528992176056,
+                  "max_over_trials": 0.02399623580276966
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.03369747847318649,
+                  "p95_over_trials": 0.061660487204790115,
+                  "max_over_trials": 0.06594250351190567
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0005705319344997406,
+                  "p95_over_trials": 0.0009991034166887403,
+                  "max_over_trials": 0.0010584164410829544
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0006980536272749305,
+                  "p95_over_trials": 0.0013416572473943233,
+                  "max_over_trials": 0.0014535489026457071
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.014480951242148876,
+                  "p95_over_trials": 0.019176291301846504,
+                  "max_over_trials": 0.019895430654287338
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.024835798889398575,
+                  "p95_over_trials": 0.03786769136786461,
+                  "max_over_trials": 0.040555182844400406
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0004336755082476884,
+                  "p95_over_trials": 0.0006165733211673796,
+                  "max_over_trials": 0.0006523958290927112
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0013733517844229937,
+                  "p95_over_trials": 0.0018639356130734086,
+                  "max_over_trials": 0.001889686333015561
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.01416735164821148,
+                  "p95_over_trials": 0.0180833637714386,
+                  "max_over_trials": 0.0188324972987175
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.02670777589082718,
+                  "p95_over_trials": 0.03760247305035591,
+                  "max_over_trials": 0.0397384949028492
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0004698674601968378,
+                  "p95_over_trials": 0.0006286316202022135,
+                  "max_over_trials": 0.0006591429701074958
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.00195609824731946,
+                  "p95_over_trials": 0.002350875409319997,
+                  "max_over_trials": 0.0024322618264704943
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "payload_kg": 0.0,
+      "training_interval_pushes": true,
+      "cycles": [
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": -0.005505750887095928,
+          "mouth_low_height_mean_m": 0.1394316852092743,
+          "mouth_low_down_cos_mean": 0.24814262986183167,
+          "body_tilt_p95_deg": 87.36077117919922,
+          "head_return_mae_deg": [
+            13.36707592010498,
+            5.086150169372559,
+            3.5988261699676514,
+            5.131488800048828
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.14441335201263428,
+          "head_torque_abs_max_Nm": 0.2535805106163025,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.9356669783592224,
+                  "p95_over_trials": 1.722497820854187,
+                  "max_over_trials": 1.9109001159667969
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 2.373955249786377,
+                  "p95_over_trials": 4.645928382873535,
+                  "max_over_trials": 5.205462455749512
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.04739614576101303,
+                  "p95_over_trials": 0.09171295911073685,
+                  "max_over_trials": 0.10271792113780975
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.07601593434810638,
+                  "p95_over_trials": 0.12741613388061523,
+                  "max_over_trials": 0.13969194889068604
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 3,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.42725685238838196,
+                  "p95_over_trials": 0.8114749193191528,
+                  "max_over_trials": 0.8933334946632385
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.8542802333831787,
+                  "p95_over_trials": 1.7932558059692383,
+                  "max_over_trials": 1.988905906677246
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.01648605987429619,
+                  "p95_over_trials": 0.03425902500748634,
+                  "max_over_trials": 0.037884023040533066
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.01763347163796425,
+                  "p95_over_trials": 0.03593466058373451,
+                  "max_over_trials": 0.03959845378994942
+                }
+              },
+              "healthy_entire_window": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.27189797163009644,
+                  "p95_over_trials": 0.3388670086860657,
+                  "max_over_trials": 0.34760987758636475
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.47607165575027466,
+                  "p95_over_trials": 0.6618265509605408,
+                  "max_over_trials": 0.6845729351043701
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.009353404864668846,
+                  "p95_over_trials": 0.013211607001721859,
+                  "max_over_trials": 0.013717385940253735
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.010311812162399292,
+                  "p95_over_trials": 0.014626060612499714,
+                  "max_over_trials": 0.015173184685409069
+                }
+              }
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 1.3075953722000122,
+                  "p95_over_trials": 1.854400396347046,
+                  "max_over_trials": 1.8841758966445923
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 3.5260262489318848,
+                  "p95_over_trials": 5.086786270141602,
+                  "max_over_trials": 5.198676109313965
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.06858011335134506,
+                  "p95_over_trials": 0.09998719394207001,
+                  "max_over_trials": 0.10223455727100372
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.09383014589548111,
+                  "p95_over_trials": 0.13320986926555634,
+                  "max_over_trials": 0.13498935103416443
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.0860915333032608,
+                  "p95_over_trials": 0.18066608905792236,
+                  "max_over_trials": 0.19980977475643158
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.15998205542564392,
+                  "p95_over_trials": 0.330265074968338,
+                  "max_over_trials": 0.36282992362976074
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0030372929759323597,
+                  "p95_over_trials": 0.006153401453047991,
+                  "max_over_trials": 0.0067143733613193035
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.00795326940715313,
+                  "p95_over_trials": 0.01694776676595211,
+                  "max_over_trials": 0.018703598529100418
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        },
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": 0.0010967813432216644,
+          "mouth_low_height_mean_m": 0.001114665879867971,
+          "mouth_low_down_cos_mean": 0.9372289776802063,
+          "body_tilt_p95_deg": 87.29749298095703,
+          "head_return_mae_deg": [
+            13.186184883117676,
+            4.73555326461792,
+            3.936157464981079,
+            5.76336669921875
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.1927984356880188,
+          "head_torque_abs_max_Nm": 0.233924999833107,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.034836333245038986,
+                  "p95_over_trials": 0.0688847154378891,
+                  "max_over_trials": 0.07522651553153992
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.07662314921617508,
+                  "p95_over_trials": 0.15421418845653534,
+                  "max_over_trials": 0.16633754968643188
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0014749896945431828,
+                  "p95_over_trials": 0.0028872766997665167,
+                  "max_over_trials": 0.0030771256424486637
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0036188631784170866,
+                  "p95_over_trials": 0.008181225508451462,
+                  "max_over_trials": 0.00920350756496191
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.01181592047214508,
+                  "p95_over_trials": 0.017568258568644524,
+                  "max_over_trials": 0.01826685667037964
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.018295906484127045,
+                  "p95_over_trials": 0.025149492546916008,
+                  "max_over_trials": 0.025218883529305458
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0003291201137471944,
+                  "p95_over_trials": 0.000489960191771388,
+                  "max_over_trials": 0.0005022261175327003
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.00035359017783775926,
+                  "p95_over_trials": 0.0005006680148653686,
+                  "max_over_trials": 0.0005116515094414353
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.016857082024216652,
+                  "p95_over_trials": 0.02078358829021454,
+                  "max_over_trials": 0.021626994013786316
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.02855825424194336,
+                  "p95_over_trials": 0.03224700689315796,
+                  "max_over_trials": 0.032531801611185074
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0005663251504302025,
+                  "p95_over_trials": 0.0006640184437856078,
+                  "max_over_trials": 0.0006702415994368494
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0012237356277182698,
+                  "p95_over_trials": 0.001475903089158237,
+                  "max_over_trials": 0.0015019933925941586
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.02880929782986641,
+                  "p95_over_trials": 0.05572420731186867,
+                  "max_over_trials": 0.06154700741171837
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.0498431995511055,
+                  "p95_over_trials": 0.09434036910533905,
+                  "max_over_trials": 0.10338722169399261
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0009599810582585633,
+                  "p95_over_trials": 0.0018206941895186901,
+                  "max_over_trials": 0.0019971905276179314
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0037939762696623802,
+                  "p95_over_trials": 0.008181225508451462,
+                  "max_over_trials": 0.00920350756496191
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        },
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": 0.0011216942220926285,
+          "mouth_low_height_mean_m": 0.0011224307818338275,
+          "mouth_low_down_cos_mean": 0.9373998045921326,
+          "body_tilt_p95_deg": 86.79138946533203,
+          "head_return_mae_deg": [
+            12.967219352722168,
+            4.4617018699646,
+            4.314072132110596,
+            6.248889923095703
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.19245320558547974,
+          "head_torque_abs_max_Nm": 0.23845243453979492,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.02104870043694973,
+                  "p95_over_trials": 0.03889010474085808,
+                  "max_over_trials": 0.04288436099886894
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.03484996408224106,
+                  "p95_over_trials": 0.06677801162004471,
+                  "max_over_trials": 0.07373645156621933
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0006586979725398123,
+                  "p95_over_trials": 0.0013290701899677515,
+                  "max_over_trials": 0.001474022283218801
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.002737105358392,
+                  "p95_over_trials": 0.00530617218464613,
+                  "max_over_trials": 0.005888381507247686
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.007290893699973822,
+                  "p95_over_trials": 0.009330716915428638,
+                  "max_over_trials": 0.009676258079707623
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.015842603519558907,
+                  "p95_over_trials": 0.023775950074195862,
+                  "max_over_trials": 0.02507883869111538
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0002556020626798272,
+                  "p95_over_trials": 0.0003592708380892873,
+                  "max_over_trials": 0.0003726918948814273
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.00031024881172925234,
+                  "p95_over_trials": 0.0004661979037337005,
+                  "max_over_trials": 0.0004925676621496677
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.01952086016535759,
+                  "p95_over_trials": 0.03860468044877052,
+                  "max_over_trials": 0.04259336367249489
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.025725841522216797,
+                  "p95_over_trials": 0.036171428859233856,
+                  "max_over_trials": 0.03792224079370499
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.00046256641508080065,
+                  "p95_over_trials": 0.0006065290654078126,
+                  "max_over_trials": 0.0006260833470150828
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0020129296462982893,
+                  "p95_over_trials": 0.005277164746075869,
+                  "max_over_trials": 0.00604383135214448
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.023519769310951233,
+                  "p95_over_trials": 0.028475165367126465,
+                  "max_over_trials": 0.028498997911810875
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.02715446427464485,
+                  "p95_over_trials": 0.03697507828474045,
+                  "max_over_trials": 0.03867417201399803
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0004990121815353632,
+                  "p95_over_trials": 0.0007019775803200901,
+                  "max_over_trials": 0.0007386741344816983
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.004729444161057472,
+                  "p95_over_trials": 0.006020513828843832,
+                  "max_over_trials": 0.00604383135214448
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "payload_kg": 0.01,
+      "training_interval_pushes": true,
+      "cycles": [
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": -0.005746697075664997,
+          "mouth_low_height_mean_m": 0.14588841795921326,
+          "mouth_low_down_cos_mean": 0.2064104527235031,
+          "body_tilt_p95_deg": 87.79244232177734,
+          "head_return_mae_deg": [
+            14.019819259643555,
+            6.423511028289795,
+            3.5521934032440186,
+            5.497113227844238
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.14598625898361206,
+          "head_torque_abs_max_Nm": 0.23048323392868042,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.8099795579910278,
+                  "p95_over_trials": 1.2122310400009155,
+                  "max_over_trials": 1.304390549659729
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 1.7964422702789307,
+                  "p95_over_trials": 2.9222412109375,
+                  "max_over_trials": 3.163912057876587
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.03647468984127045,
+                  "p95_over_trials": 0.05793100595474243,
+                  "max_over_trials": 0.06233314052224159
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.06964927166700363,
+                  "p95_over_trials": 0.09151294082403183,
+                  "max_over_trials": 0.09615824371576309
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 3,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 1.2313601970672607,
+                  "p95_over_trials": 3.331847906112671,
+                  "max_over_trials": 3.8381574153900146
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 2.279794216156006,
+                  "p95_over_trials": 6.009232044219971,
+                  "max_over_trials": 6.87559175491333
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.043696917593479156,
+                  "p95_over_trials": 0.11575324088335037,
+                  "max_over_trials": 0.13256396353244781
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.04609815776348114,
+                  "p95_over_trials": 0.1210852563381195,
+                  "max_over_trials": 0.13844412565231323
+                }
+              },
+              "healthy_entire_window": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.3624277114868164,
+                  "p95_over_trials": 0.46022623777389526,
+                  "max_over_trials": 0.4627634286880493
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.7478617429733276,
+                  "p95_over_trials": 1.0772476196289062,
+                  "max_over_trials": 1.0998629331588745
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.014074571430683136,
+                  "p95_over_trials": 0.020154718309640884,
+                  "max_over_trials": 0.020492535084486008
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.015316168777644634,
+                  "p95_over_trials": 0.022176630795001984,
+                  "max_over_trials": 0.02271839790046215
+                }
+              }
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 1.3587640523910522,
+                  "p95_over_trials": 1.8518474102020264,
+                  "max_over_trials": 1.8543128967285156
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 3.4799675941467285,
+                  "p95_over_trials": 4.88547420501709,
+                  "max_over_trials": 4.9115166664123535
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.06759490817785263,
+                  "p95_over_trials": 0.09626299142837524,
+                  "max_over_trials": 0.0968390554189682
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.10142070055007935,
+                  "p95_over_trials": 0.14253070950508118,
+                  "max_over_trials": 0.1448497325181961
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.04846794158220291,
+                  "p95_over_trials": 0.07333695143461227,
+                  "max_over_trials": 0.0761118084192276
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.10648396611213684,
+                  "p95_over_trials": 0.16774004697799683,
+                  "max_over_trials": 0.17359554767608643
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0020678583532571793,
+                  "p95_over_trials": 0.0033339117653667927,
+                  "max_over_trials": 0.003487977897748351
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0032339096069335938,
+                  "p95_over_trials": 0.0043104225769639015,
+                  "max_over_trials": 0.004347602371126413
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        },
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": 0.0011006351560354233,
+          "mouth_low_height_mean_m": 0.0011036734795197845,
+          "mouth_low_down_cos_mean": 0.927337646484375,
+          "body_tilt_p95_deg": 87.38133239746094,
+          "head_return_mae_deg": [
+            13.715227127075195,
+            5.506957530975342,
+            3.9511826038360596,
+            6.1241230964660645
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.18570087850093842,
+          "head_torque_abs_max_Nm": 0.22855879366397858,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.06333965808153152,
+                  "p95_over_trials": 0.09582613408565521,
+                  "max_over_trials": 0.10113769769668579
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.10611698031425476,
+                  "p95_over_trials": 0.16371802985668182,
+                  "max_over_trials": 0.16704444587230682
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0021294564940035343,
+                  "p95_over_trials": 0.00358326593413949,
+                  "max_over_trials": 0.0037576688919216394
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.006379997357726097,
+                  "p95_over_trials": 0.009950864128768444,
+                  "max_over_trials": 0.010581254959106445
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.031816475093364716,
+                  "p95_over_trials": 0.06764204055070877,
+                  "max_over_trials": 0.07453880459070206
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.07981881499290466,
+                  "p95_over_trials": 0.18918640911579132,
+                  "max_over_trials": 0.21180503070354462
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0013004093198105693,
+                  "p95_over_trials": 0.0028033130802214146,
+                  "max_over_trials": 0.0030915644019842148
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0017404629616066813,
+                  "p95_over_trials": 0.00412955554202199,
+                  "max_over_trials": 0.004625754896551371
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.027126308530569077,
+                  "p95_over_trials": 0.0403217189013958,
+                  "max_over_trials": 0.04126092419028282
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.0348341166973114,
+                  "p95_over_trials": 0.0546337366104126,
+                  "max_over_trials": 0.05683394894003868
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0006487495265901089,
+                  "p95_over_trials": 0.0009646754479035735,
+                  "max_over_trials": 0.0010010706027969718
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0028468479868024588,
+                  "p95_over_trials": 0.005957908928394318,
+                  "max_over_trials": 0.006436425726860762
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.04581451416015625,
+                  "p95_over_trials": 0.06228024140000343,
+                  "max_over_trials": 0.06452592462301254
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.07893073558807373,
+                  "p95_over_trials": 0.11191090196371078,
+                  "max_over_trials": 0.11340086907148361
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0014796515461057425,
+                  "p95_over_trials": 0.002090610796585679,
+                  "max_over_trials": 0.00211932766251266
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.007033036556094885,
+                  "p95_over_trials": 0.009959530085325241,
+                  "max_over_trials": 0.010581254959106445
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        },
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": 0.0011078976094722748,
+          "mouth_low_height_mean_m": 0.001115483813919127,
+          "mouth_low_down_cos_mean": 0.9287027716636658,
+          "body_tilt_p95_deg": 86.94725799560547,
+          "head_return_mae_deg": [
+            13.420299530029297,
+            5.223270416259766,
+            4.286115646362305,
+            6.447921276092529
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.18149228394031525,
+          "head_torque_abs_max_Nm": 0.2429266721010208,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.02142934873700142,
+                  "p95_over_trials": 0.0356849804520607,
+                  "max_over_trials": 0.037768714129924774
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.04933420941233635,
+                  "p95_over_trials": 0.08677034825086594,
+                  "max_over_trials": 0.09133318066596985
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0009494930854998529,
+                  "p95_over_trials": 0.0016939776251092553,
+                  "max_over_trials": 0.0017927229637280107
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0020280713215470314,
+                  "p95_over_trials": 0.0031440432649105787,
+                  "max_over_trials": 0.003294721245765686
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.011941131204366684,
+                  "p95_over_trials": 0.019058912992477417,
+                  "max_over_trials": 0.020002488046884537
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.02912689745426178,
+                  "p95_over_trials": 0.05384866148233414,
+                  "max_over_trials": 0.057399000972509384
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0004667491011787206,
+                  "p95_over_trials": 0.0008513749926351011,
+                  "max_over_trials": 0.0009103919146582484
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0005979133420623839,
+                  "p95_over_trials": 0.0011334470473229885,
+                  "max_over_trials": 0.0012169968103989959
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.026185931637883186,
+                  "p95_over_trials": 0.0500156469643116,
+                  "max_over_trials": 0.054896388202905655
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.0329374223947525,
+                  "p95_over_trials": 0.042743880301713943,
+                  "max_over_trials": 0.0441560223698616
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0006556143052875996,
+                  "p95_over_trials": 0.0009253732278011739,
+                  "max_over_trials": 0.0009725210256874561
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0028370176441967487,
+                  "p95_over_trials": 0.005939588416367769,
+                  "max_over_trials": 0.006565318908542395
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.024967236444354057,
+                  "p95_over_trials": 0.033521346747875214,
+                  "max_over_trials": 0.03444492444396019
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.040990568697452545,
+                  "p95_over_trials": 0.058839350938797,
+                  "max_over_trials": 0.06050455570220947
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0007564717088826001,
+                  "p95_over_trials": 0.0011178720742464066,
+                  "max_over_trials": 0.001161924097687006
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.003765455447137356,
+                  "p95_over_trials": 0.006074728909879923,
+                  "max_over_trials": 0.006565318908542395
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "payload_kg": 0.025,
+      "training_interval_pushes": true,
+      "cycles": [
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": -0.007884043268859386,
+          "mouth_low_height_mean_m": 0.1860584020614624,
+          "mouth_low_down_cos_mean": 0.024967411532998085,
+          "body_tilt_p95_deg": 88.14618682861328,
+          "head_return_mae_deg": [
+            12.630053520202637,
+            7.428304672241211,
+            4.613729000091553,
+            5.680023193359375
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.15862765908241272,
+          "head_torque_abs_max_Nm": 0.22185853123664856,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.614147424697876,
+                  "p95_over_trials": 0.6421420574188232,
+                  "max_over_trials": 0.6468576788902283
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 1.4538164138793945,
+                  "p95_over_trials": 1.4887522459030151,
+                  "max_over_trials": 1.4889384508132935
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.028265008702874184,
+                  "p95_over_trials": 0.02968086302280426,
+                  "max_over_trials": 0.029904434457421303
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.056755729019641876,
+                  "p95_over_trials": 0.06062580272555351,
+                  "max_over_trials": 0.061275679618120193
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 4,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.26587367057800293,
+                  "p95_over_trials": 0.36877068877220154,
+                  "max_over_trials": 0.3869517743587494
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.42307859659194946,
+                  "p95_over_trials": 0.4928230941295624,
+                  "max_over_trials": 0.4931713938713074
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.00784396380186081,
+                  "p95_over_trials": 0.00924457423388958,
+                  "max_over_trials": 0.009279563091695309
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.008153417147696018,
+                  "p95_over_trials": 0.009618648327887058,
+                  "max_over_trials": 0.009650991298258305
+                }
+              },
+              "healthy_entire_window": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.26587367057800293,
+                  "p95_over_trials": 0.36877068877220154,
+                  "max_over_trials": 0.3869517743587494
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.42307859659194946,
+                  "p95_over_trials": 0.4928230941295624,
+                  "max_over_trials": 0.4931713938713074
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.00784396380186081,
+                  "p95_over_trials": 0.00924457423388958,
+                  "max_over_trials": 0.009279563091695309
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.008153417147696018,
+                  "p95_over_trials": 0.009618648327887058,
+                  "max_over_trials": 0.009650991298258305
+                }
+              }
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 1.8245031833648682,
+                  "p95_over_trials": 1.8551609516143799,
+                  "max_over_trials": 1.8552277088165283
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 4.642463207244873,
+                  "p95_over_trials": 5.253437042236328,
+                  "max_over_trials": 5.389507293701172
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.09108160436153412,
+                  "p95_over_trials": 0.10109421610832214,
+                  "max_over_trials": 0.10308807343244553
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.13526427745819092,
+                  "p95_over_trials": 0.14233268797397614,
+                  "max_over_trials": 0.14318659901618958
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.043465714901685715,
+                  "p95_over_trials": 0.062322624027729034,
+                  "max_over_trials": 0.0653984472155571
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.09466767311096191,
+                  "p95_over_trials": 0.1402222216129303,
+                  "max_over_trials": 0.14832374453544617
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0018173556309193373,
+                  "p95_over_trials": 0.0029496592469513416,
+                  "max_over_trials": 0.0031424439512193203
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.002896742196753621,
+                  "p95_over_trials": 0.004334186669439077,
+                  "max_over_trials": 0.004532335791736841
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        },
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": 0.0010937415063381195,
+          "mouth_low_height_mean_m": 0.0011034226045012474,
+          "mouth_low_down_cos_mean": 0.9280065894126892,
+          "body_tilt_p95_deg": 87.14723205566406,
+          "head_return_mae_deg": [
+            12.65515422821045,
+            6.730537414550781,
+            4.391351699829102,
+            5.947750568389893
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.1718093752861023,
+          "head_torque_abs_max_Nm": 0.22582519054412842,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.02396972104907036,
+                  "p95_over_trials": 0.02921266481280327,
+                  "max_over_trials": 0.02939268760383129
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.04778316617012024,
+                  "p95_over_trials": 0.06904278695583344,
+                  "max_over_trials": 0.07154685258865356
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0008984800660982728,
+                  "p95_over_trials": 0.0012229887070134282,
+                  "max_over_trials": 0.001238455530256033
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0018750495510175824,
+                  "p95_over_trials": 0.0027824612334370613,
+                  "max_over_trials": 0.0028746079187840223
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.008538095280528069,
+                  "p95_over_trials": 0.010652340948581696,
+                  "max_over_trials": 0.010953825898468494
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.01365264505147934,
+                  "p95_over_trials": 0.017578212544322014,
+                  "max_over_trials": 0.017852069810032845
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.00023298559244722128,
+                  "p95_over_trials": 0.0003025609767064452,
+                  "max_over_trials": 0.00031497658346779644
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0002744138764683157,
+                  "p95_over_trials": 0.0003507534565869719,
+                  "max_over_trials": 0.0003526185464579612
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.014961195178329945,
+                  "p95_over_trials": 0.019554702565073967,
+                  "max_over_trials": 0.020459745079278946
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.025335557758808136,
+                  "p95_over_trials": 0.030563602223992348,
+                  "max_over_trials": 0.031461574137210846
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.00048699573380872607,
+                  "p95_over_trials": 0.0005789886927232146,
+                  "max_over_trials": 0.0005880108219571412
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0012844239827245474,
+                  "p95_over_trials": 0.0019098159391433,
+                  "max_over_trials": 0.0020142451394349337
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.0185590498149395,
+                  "p95_over_trials": 0.020275838673114777,
+                  "max_over_trials": 0.020359382033348083
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.034436024725437164,
+                  "p95_over_trials": 0.043958939611911774,
+                  "max_over_trials": 0.04569889232516289
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0006539512542076409,
+                  "p95_over_trials": 0.0008244658238254488,
+                  "max_over_trials": 0.000849900592584163
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.002224929165095091,
+                  "p95_over_trials": 0.0027824612334370613,
+                  "max_over_trials": 0.0028746079187840223
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        },
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": 0.0010887347161769867,
+          "mouth_low_height_mean_m": 0.0011171272490173578,
+          "mouth_low_down_cos_mean": 0.9290031790733337,
+          "body_tilt_p95_deg": 86.79751586914062,
+          "head_return_mae_deg": [
+            12.614001274108887,
+            6.300069332122803,
+            4.482900619506836,
+            6.12446928024292
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.17534951865673065,
+          "head_torque_abs_max_Nm": 0.24002757668495178,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.021009359508752823,
+                  "p95_over_trials": 0.04037201777100563,
+                  "max_over_trials": 0.04306082800030708
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.031473468989133835,
+                  "p95_over_trials": 0.056023675948381424,
+                  "max_over_trials": 0.060715414583683014
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0005814348696731031,
+                  "p95_over_trials": 0.0010271838400512934,
+                  "max_over_trials": 0.0011083761928603053
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.002596827456727624,
+                  "p95_over_trials": 0.005565974861383438,
+                  "max_over_trials": 0.005966021213680506
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.023146089166402817,
+                  "p95_over_trials": 0.0621398389339447,
+                  "max_over_trials": 0.07120317220687866
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.0614447146654129,
+                  "p95_over_trials": 0.17541179060935974,
+                  "max_over_trials": 0.20132049918174744
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0009455485851503909,
+                  "p95_over_trials": 0.0026461214292794466,
+                  "max_over_trials": 0.003032046603038907
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0012469697976484895,
+                  "p95_over_trials": 0.0035615277010947466,
+                  "max_over_trials": 0.004085157997906208
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.015883594751358032,
+                  "p95_over_trials": 0.024225417524576187,
+                  "max_over_trials": 0.02602025493979454
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.02514728531241417,
+                  "p95_over_trials": 0.030977314338088036,
+                  "max_over_trials": 0.03139212355017662
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.00048480904661118984,
+                  "p95_over_trials": 0.0006426492473110557,
+                  "max_over_trials": 0.0006572159472852945
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0015449507627636194,
+                  "p95_over_trials": 0.002935761818662286,
+                  "max_over_trials": 0.003220411716029048
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.020748507231473923,
+                  "p95_over_trials": 0.027040891349315643,
+                  "max_over_trials": 0.02821345254778862
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.027032628655433655,
+                  "p95_over_trials": 0.03749017417430878,
+                  "max_over_trials": 0.0394866019487381
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.00048926001181826,
+                  "p95_over_trials": 0.0006855487590655684,
+                  "max_over_trials": 0.0007265485473908484
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.00414265925064683,
+                  "p95_over_trials": 0.005683891475200653,
+                  "max_over_trials": 0.005966021213680506
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        }
+      ]
+    },
+    {
+      "payload_kg": 0.04,
+      "training_interval_pushes": true,
+      "cycles": [
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": -0.008101195096969604,
+          "mouth_low_height_mean_m": 0.18535995483398438,
+          "mouth_low_down_cos_mean": 0.03934547305107117,
+          "body_tilt_p95_deg": 87.77711486816406,
+          "head_return_mae_deg": [
+            13.410158157348633,
+            7.007718086242676,
+            4.3651957511901855,
+            5.590291500091553
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.15843155980110168,
+          "head_torque_abs_max_Nm": 0.22837379574775696,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.6209006309509277,
+                  "p95_over_trials": 0.6708915829658508,
+                  "max_over_trials": 0.6775684356689453
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 1.3022123575210571,
+                  "p95_over_trials": 1.4796156883239746,
+                  "max_over_trials": 1.505333662033081
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.026918094605207443,
+                  "p95_over_trials": 0.031381674110889435,
+                  "max_over_trials": 0.03201625123620033
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.05668039247393608,
+                  "p95_over_trials": 0.06112077459692955,
+                  "max_over_trials": 0.06146131455898285
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 4,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.28255513310432434,
+                  "p95_over_trials": 0.45296889543533325,
+                  "max_over_trials": 0.49176347255706787
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.45693686604499817,
+                  "p95_over_trials": 0.7093623876571655,
+                  "max_over_trials": 0.7592110633850098
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.008392206393182278,
+                  "p95_over_trials": 0.012486950494349003,
+                  "max_over_trials": 0.013221952132880688
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.008962000720202923,
+                  "p95_over_trials": 0.01313814613968134,
+                  "max_over_trials": 0.013862574473023415
+                }
+              },
+              "healthy_entire_window": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.28255513310432434,
+                  "p95_over_trials": 0.45296889543533325,
+                  "max_over_trials": 0.49176347255706787
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.45693686604499817,
+                  "p95_over_trials": 0.7093623876571655,
+                  "max_over_trials": 0.7592110633850098
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.008392206393182278,
+                  "p95_over_trials": 0.012486950494349003,
+                  "max_over_trials": 0.013221952132880688
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.008962000720202923,
+                  "p95_over_trials": 0.01313814613968134,
+                  "max_over_trials": 0.013862574473023415
+                }
+              }
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 1.9298571348190308,
+                  "p95_over_trials": 2.0056798458099365,
+                  "max_over_trials": 2.0171573162078857
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 5.072978973388672,
+                  "p95_over_trials": 5.3382697105407715,
+                  "max_over_trials": 5.357870101928711
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0990627259016037,
+                  "p95_over_trials": 0.1026584804058075,
+                  "max_over_trials": 0.10286657512187958
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.1380309909582138,
+                  "p95_over_trials": 0.14314661920070648,
+                  "max_over_trials": 0.14381900429725647
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.0829400047659874,
+                  "p95_over_trials": 0.12084288150072098,
+                  "max_over_trials": 0.1285013109445572
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.22355899214744568,
+                  "p95_over_trials": 0.3214392066001892,
+                  "max_over_trials": 0.33448898792266846
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.004029606003314257,
+                  "p95_over_trials": 0.005793245043605566,
+                  "max_over_trials": 0.00606509717181325
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.006444853264838457,
+                  "p95_over_trials": 0.010174156166613102,
+                  "max_over_trials": 0.01085455808788538
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        },
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": 0.001090269535779953,
+          "mouth_low_height_mean_m": 0.0011102939024567604,
+          "mouth_low_down_cos_mean": 0.9264766573905945,
+          "body_tilt_p95_deg": 87.28490447998047,
+          "head_return_mae_deg": [
+            13.201333045959473,
+            6.321276664733887,
+            4.401987552642822,
+            5.8145270347595215
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.19394518435001373,
+          "head_torque_abs_max_Nm": 0.24657881259918213,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.03461265563964844,
+                  "p95_over_trials": 0.04450956732034683,
+                  "max_over_trials": 0.04534490406513214
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.0748814195394516,
+                  "p95_over_trials": 0.09771241247653961,
+                  "max_over_trials": 0.09918364137411118
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0014810056891292334,
+                  "p95_over_trials": 0.001981344074010849,
+                  "max_over_trials": 0.0020068122539669275
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0032151429913938046,
+                  "p95_over_trials": 0.004272386897355318,
+                  "max_over_trials": 0.004334719851613045
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.009484488517045975,
+                  "p95_over_trials": 0.012044301256537437,
+                  "max_over_trials": 0.012323090806603432
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.017531532794237137,
+                  "p95_over_trials": 0.02912244386970997,
+                  "max_over_trials": 0.031292591243982315
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0002877555089071393,
+                  "p95_over_trials": 0.0004061092040501535,
+                  "max_over_trials": 0.0004203862918075174
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0003641759103629738,
+                  "p95_over_trials": 0.0006378103862516582,
+                  "max_over_trials": 0.0006906087510287762
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.016197914257645607,
+                  "p95_over_trials": 0.021943463012576103,
+                  "max_over_trials": 0.022103000432252884
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.030257506296038628,
+                  "p95_over_trials": 0.04706414416432381,
+                  "max_over_trials": 0.049742065370082855
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0005824923282489181,
+                  "p95_over_trials": 0.0009374165674671531,
+                  "max_over_trials": 0.0009975298307836056
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0012918799184262753,
+                  "p95_over_trials": 0.0026833198498934507,
+                  "max_over_trials": 0.0029318358283489943
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.02427954040467739,
+                  "p95_over_trials": 0.031071104109287262,
+                  "max_over_trials": 0.03127876669168472
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.04355514049530029,
+                  "p95_over_trials": 0.06350476294755936,
+                  "max_over_trials": 0.06421446800231934
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0008081148844212294,
+                  "p95_over_trials": 0.0011615129187703133,
+                  "max_over_trials": 0.0011713034473359585
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0032151429913938046,
+                  "p95_over_trials": 0.004272386897355318,
+                  "max_over_trials": 0.004334719851613045
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        },
+        {
+          "trials": 4,
+          "low_goal_sustained_100ms": 0,
+          "return_stand_tail_500ms": 0,
+          "clean_cycle": 0,
+          "complete_cycle": 0,
+          "feedback_fault_trials": 0,
+          "head_contact_trials": 4,
+          "self_contact_trials": 0,
+          "mouth_min_height_mean_m": 0.0010813158005475998,
+          "mouth_low_height_mean_m": 0.0011186468182131648,
+          "mouth_low_down_cos_mean": 0.9299921989440918,
+          "body_tilt_p95_deg": 86.90058135986328,
+          "head_return_mae_deg": [
+            12.93531322479248,
+            5.581465244293213,
+            4.526980400085449,
+            5.982766628265381
+          ],
+          "head_return_all_axes_1deg_hold": 0,
+          "head_torque_abs_p95_Nm": 0.19049470126628876,
+          "head_torque_abs_max_Nm": 0.30238181352615356,
+          "camera": {
+            "descent": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.02773113176226616,
+                  "p95_over_trials": 0.06141358241438866,
+                  "max_over_trials": 0.06792222708463669
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.04762604832649231,
+                  "p95_over_trials": 0.09908659011125565,
+                  "max_over_trials": 0.10724207758903503
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0009841334540396929,
+                  "p95_over_trials": 0.0020939521491527557,
+                  "max_over_trials": 0.0022793118841946125
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0032123690471053123,
+                  "p95_over_trials": 0.00785468053072691,
+                  "max_over_trials": 0.008823306299746037
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "low_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.03484749794006348,
+                  "p95_over_trials": 0.09934666752815247,
+                  "max_over_trials": 0.11479701846837997
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.0828571766614914,
+                  "p95_over_trials": 0.24712826311588287,
+                  "max_over_trials": 0.28704434633255005
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0015820675762370229,
+                  "p95_over_trials": 0.004773817490786314,
+                  "max_over_trials": 0.005547733511775732
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.0018035888206213713,
+                  "p95_over_trials": 0.005426448304206133,
+                  "max_over_trials": 0.006311806384474039
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "rise": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.012900229543447495,
+                  "p95_over_trials": 0.016395429149270058,
+                  "max_over_trials": 0.01689041592180729
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.02254786714911461,
+                  "p95_over_trials": 0.02814318984746933,
+                  "max_over_trials": 0.028643488883972168
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.00042093198862858117,
+                  "p95_over_trials": 0.0005090521299280226,
+                  "max_over_trials": 0.0005155963008292019
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.001161433756351471,
+                  "p95_over_trials": 0.0017138113034889102,
+                  "max_over_trials": 0.0018033673986792564
+                }
+              },
+              "healthy_entire_window": null
+            },
+            "stand_hold": {
+              "trials": 4,
+              "healthy_entire_window_trials": 0,
+              "all_trials": {
+                "angular_speed_rms_rad_s": {
+                  "mean_over_trials": 0.024168696254491806,
+                  "p95_over_trials": 0.043973393738269806,
+                  "max_over_trials": 0.04610629007220268
+                },
+                "angular_speed_p95_rad_s": {
+                  "mean_over_trials": 0.03769455850124359,
+                  "p95_over_trials": 0.06839139759540558,
+                  "max_over_trials": 0.07276999205350876
+                },
+                "exposure_span_p95_rad": {
+                  "mean_over_trials": 0.0007170381722971797,
+                  "p95_over_trials": 0.001298384740948677,
+                  "max_over_trials": 0.0013793802354484797
+                },
+                "exposure_span_max_rad": {
+                  "mean_over_trials": 0.004232964012771845,
+                  "p95_over_trials": 0.008446580730378628,
+                  "max_over_trials": 0.008823306299746037
+                }
+              },
+              "healthy_entire_window": null
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "script_sha256": "d0b64092c2fb448fff76c113c8645827c9f5301f4df0ecb8f54639d3eb2e832c"
+}

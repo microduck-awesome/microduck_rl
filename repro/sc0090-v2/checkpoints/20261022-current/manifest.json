@@ -18,9 +18,34 @@
         "cpu_onnx_max_absolute_error": 7.62939453125e-06,
         "fp32_mdp_coefficients_exact": true,
         "fp32_mdp_crc_and_source_sha_verified": true,
-        "converter_source_sha256": "2cb14ad7ad86f80e365a33c881c854b40c94f37c16a404f2d02028ca615f094f",
+        "converter_source_sha256": "8b355e1589268f540c316efb62302f5272187c485d3b2ba3aff23ad89a5aa809",
         "gpu_simulation_performed": false,
-        "hardware_tested": false
+        "hardware_tested": false,
+        "v2_header": {
+          "model": "rise-4000",
+          "previous_header_version": 1,
+          "header_version": 2,
+          "policy_runtime_id_hex": "0x834335F5",
+          "old_mdp_sha256": "4de71604509127bbce8a03e86410712d44af00a32236bcb423f21a1868f7b345",
+          "new_mdp_sha256": "b356d196ca6222ab796853d9da72f9a5965d714128b3517d9fc72a94816da6ba",
+          "coefficient_payload_sha256": "0036f1299b7dddaa3f0546611378928e1c91d8c478fff51489bbfb427020c5cc",
+          "coefficient_payload_unchanged": true,
+          "onnx_sha256": "10ff80c41614aab1e255d10d06051ea8d4b1629d64c08388791f9fee656b268e",
+          "checkpoint_sha256": "ac2b71f9b97b377271359590b80a948e8c13aa7836b754026a1748c47fc4e511",
+          "weights_normalizer_and_onnx_unchanged": true,
+          "crc_verified": true,
+          "source_sha_verified": true,
+          "pinned_v2_decoder_passed": true,
+          "exact_candidate_guard_preserved": true,
+          "header_extension": {
+            "runtime": "microduck-v2-sc0090-native-o0-rise-v1",
+            "policy_runtime_id": 2202220021,
+            "action_scale": 1.0,
+            "command_rate_rad_s": null,
+            "action_ema": false,
+            "deployment_contract_sha256": "4bcab18ecd1fba9e36cc396477daf7a8d54df98631322671b0f2f4b6cd1545e4"
+          }
+        }
       },
       "evaluation": [
         {
@@ -67,9 +92,34 @@
         "cpu_onnx_max_absolute_error": 1.9073486328125e-06,
         "fp32_mdp_coefficients_exact": true,
         "fp32_mdp_crc_and_source_sha_verified": true,
-        "converter_source_sha256": "2cb14ad7ad86f80e365a33c881c854b40c94f37c16a404f2d02028ca615f094f",
+        "converter_source_sha256": "8b355e1589268f540c316efb62302f5272187c485d3b2ba3aff23ad89a5aa809",
         "gpu_simulation_performed": false,
-        "hardware_tested": false
+        "hardware_tested": false,
+        "v2_header": {
+          "model": "walk-4600",
+          "previous_header_version": 1,
+          "header_version": 2,
+          "policy_runtime_id_hex": "0x11D720E4",
+          "old_mdp_sha256": "86fb3cd59aec03501099d0354b7130985d21d28173c02096c101c757226005e0",
+          "new_mdp_sha256": "8f806e6d0c0a14ec919e5358f62ed914abd2eb8ed6da848a6f508a6159295d71",
+          "coefficient_payload_sha256": "61acf565af1560e6f018429382bdeba8f2202b8d3aa53886d0bd00d18ce60942",
+          "coefficient_payload_unchanged": true,
+          "onnx_sha256": "a9873fc0fb9da388849f6bcdce960778282bdda7bdf29c491545924362a204bc",
+          "checkpoint_sha256": "04defa317a6e194962460008ac3ca3bb0aae849ed621ea13873ab0941582cfc3",
+          "weights_normalizer_and_onnx_unchanged": true,
+          "crc_verified": true,
+          "source_sha_verified": true,
+          "pinned_v2_decoder_passed": true,
+          "exact_candidate_guard_preserved": true,
+          "header_extension": {
+            "runtime": "microduck-v2-sc0090-native-o0-walking-v1",
+            "policy_runtime_id": 299311332,
+            "action_scale": 1.0,
+            "command_rate_rad_s": null,
+            "action_ema": false,
+            "deployment_contract_sha256": "0af7932b3498758679cc0721fc4c5d3e904ed3abf309df20681056413da61956"
+          }
+        }
       },
       "evaluation": [
         {
@@ -105,8 +155,18 @@
   "files": [
     {
       "path": "README.md",
-      "bytes": 3645,
-      "sha256": "999cc960d2d3f8c5b4d47d8e92d4ca791f81887cfc86f10437a8263bbff4a9c0"
+      "bytes": 4752,
+      "sha256": "5438b5bcf61a9841e6fc7d1e5c9764ad55e5869f4d17f0898f0bd201d7c8bb80"
+    },
+    {
+      "path": "converter-provenance.json",
+      "bytes": 887,
+      "sha256": "bc0324569a438294299fe0d1b3a12438fede9bc51a4080c5d5f7b1f8f6788693"
+    },
+    {
+      "path": "fix_v2_header.py",
+      "bytes": 3550,
+      "sha256": "dec5d27fb37365364c180e78eacefa25c592a541242a831df7dc615606044fbe"
     },
     {
       "path": "rise-4000/checkpoint-info.json",
@@ -120,8 +180,8 @@
     },
     {
       "path": "rise-4000/converter-original.json",
-      "bytes": 900,
-      "sha256": "c5a4f2efbdd1eabe75f1975c8a360838462478880efdf9922f31741008b87958"
+      "bytes": 6926,
+      "sha256": "2ea8d1f65cc05392f2d47ef2c2ea1bb8eaa6d8757c12b670823d2fd3e2cf4530"
     },
     {
       "path": "rise-4000/evaluation/four_way_push.json",
@@ -144,6 +204,11 @@
       "sha256": "7dd69f3fc938b82a0ff42ef24d928c321c8f478857030340de51422314152b48"
     },
     {
+      "path": "rise-4000/legacy-version1-converter.json",
+      "bytes": 900,
+      "sha256": "c5a4f2efbdd1eabe75f1975c8a360838462478880efdf9922f31741008b87958"
+    },
+    {
       "path": "rise-4000/onnx-metadata.json",
       "bytes": 3931,
       "sha256": "104668dcfaabe7717cf15939fcf694a9aeeeee2cc6d120c441e14f71ac34667b"
@@ -155,18 +220,18 @@
     },
     {
       "path": "rise-4000/rise-4000.json",
-      "bytes": 1123,
-      "sha256": "03de9350692ced54c7660154f537aba40447266f2bb6a526d13545c91e169674"
+      "bytes": 7140,
+      "sha256": "d111c5a8506469e8dc31f3dc373da031c319acf28ccd73f897072490978d6327"
     },
     {
       "path": "rise-4000/rise-4000.mdp",
       "bytes": 791712,
-      "sha256": "4de71604509127bbce8a03e86410712d44af00a32236bcb423f21a1868f7b345"
+      "sha256": "b356d196ca6222ab796853d9da72f9a5965d714128b3517d9fc72a94816da6ba"
     },
     {
       "path": "rise-4000/runtime-contract.json",
-      "bytes": 2998,
-      "sha256": "ab554eaaded499c543bb7f14221a9128263e7b07a32b2f7118400262c7974d7c"
+      "bytes": 4905,
+      "sha256": "9916fbb0a2a8a335c0bdeba425dbb46882e8f1e712f12bd52038da120d9c205c"
     },
     {
       "path": "rise-4000/training-allocation.json",
@@ -180,13 +245,43 @@
     },
     {
       "path": "rise-4000/validation.json",
-      "bytes": 431,
-      "sha256": "d399202add8e010f8dd32d8d796b09065c047eba5e395a42abe4a50668e84216"
+      "bytes": 1599,
+      "sha256": "c9270f04ff812f01cbf509d2e10e3618c50b5809469b00cd01ce4d9ad5fc75cb"
+    },
+    {
+      "path": "test_v2_packaging.py",
+      "bytes": 2331,
+      "sha256": "71d59e43aafba4548ad02d4c4deb63ab783a04bbee10aab9da86f6902265269b"
+    },
+    {
+      "path": "tools/contracts/v2-rise-candidates.json",
+      "bytes": 19167,
+      "sha256": "dca2943677b678dac0108f3733eb177ba9f03180319a158ba89542c504bf6894"
+    },
+    {
+      "path": "tools/contracts/v2-walking-candidates.json",
+      "bytes": 12057,
+      "sha256": "110b36e231e8229fafdc417f5532ec10a982abef66eb07412ffe51f22e9838c2"
+    },
+    {
+      "path": "tools/convert_policy.py",
+      "bytes": 8426,
+      "sha256": "8b355e1589268f540c316efb62302f5272187c485d3b2ba3aff23ad89a5aa809"
+    },
+    {
+      "path": "tools/v2_contract.py",
+      "bytes": 5064,
+      "sha256": "f487f25796ce83758af405ec7fbc4aec09a612a37dd94bc8353d79c2276e277b"
+    },
+    {
+      "path": "v2-header-fix.json",
+      "bytes": 2625,
+      "sha256": "00d0342f9a6c94c94d104b3e6d68abbb2e5769650bdc2346b97a01f68ec333ac"
     },
     {
       "path": "verify_and_package.py",
-      "bytes": 9004,
-      "sha256": "d9db18a4e8010d78cfc130da0dc0f8921d75c0b7b70a0e989f7da0f2890d7246"
+      "bytes": 9529,
+      "sha256": "dfd778730230838cc99d181c4820a17ac872edb05cf202ffbb01d562c275014f"
     },
     {
       "path": "walk-4600/checkpoint-info.json",
@@ -200,8 +295,8 @@
     },
     {
       "path": "walk-4600/converter-original.json",
-      "bytes": 896,
-      "sha256": "ae555f1db362b35929a709c47b12d574544814cc41ed85a8de8e0ee05777ac33"
+      "bytes": 6770,
+      "sha256": "545a3c0558935df0e5e9ff75789bd38a9b197c2ff65052e8ef7dd1362b10cc1d"
     },
     {
       "path": "walk-4600/evaluation/four_way_push.json",
@@ -219,6 +314,11 @@
       "sha256": "467966b5e22ef0e0b102f71bddf460b123bd4ab46c3d6564df4e3b70f55d3597"
     },
     {
+      "path": "walk-4600/legacy-version1-converter.json",
+      "bytes": 896,
+      "sha256": "ae555f1db362b35929a709c47b12d574544814cc41ed85a8de8e0ee05777ac33"
+    },
+    {
       "path": "walk-4600/onnx-metadata.json",
       "bytes": 3931,
       "sha256": "7195986941b8a22555f48d22a7a7da2a183bc3470db15ed72ff41d064d93e544"
@@ -230,8 +330,8 @@
     },
     {
       "path": "walk-4600/runtime-contract.json",
-      "bytes": 2998,
-      "sha256": "574a89adaade46ee605eb00046d3ef51d0c5396b1f5e20f9ddf4d30cae9314c8"
+      "bytes": 4754,
+      "sha256": "be82c02669b6b248878c9e3c6774d0f1d717a05cf47c111081bc040a225c8419"
     },
     {
       "path": "walk-4600/training-allocation.json",
@@ -245,18 +345,21 @@
     },
     {
       "path": "walk-4600/validation.json",
-      "bytes": 433,
-      "sha256": "f1a7a1f005d8e0e2893cd83ba2cb85a443fd29355432eeb5f3264bb496d70c30"
+      "bytes": 1603,
+      "sha256": "c9c3a6a2e9a5e5dae87c0dc3dad8e0e2581f32c50d1f8236b8e4bf7a3f183e0d"
     },
     {
       "path": "walk-4600/walk-4600.json",
-      "bytes": 1119,
-      "sha256": "48c41f6a3c1ae1d1df35f9430036d785eec16a9f9a81cedbbf7a328baf062942"
+      "bytes": 6984,
+      "sha256": "c4a13514fb4459e53ad0088efd8e98211419aa6e2caaa55ed5a2979d96edd797"
     },
     {
       "path": "walk-4600/walk-4600.mdp",
       "bytes": 791712,
-      "sha256": "86fb3cd59aec03501099d0354b7130985d21d28173c02096c101c757226005e0"
+      "sha256": "8f806e6d0c0a14ec919e5358f62ed914abd2eb8ed6da848a6f508a6159295d71"
     }
-  ]
+  ],
+  "packaging_revision": 2,
+  "header_fix": "v2-header-fix.json",
+  "regression_checks": "test_v2_packaging.py: bundled and local firmware converters; both candidates exact, changed metadata and unknown candidate rejected without overwriting outputs"
 }

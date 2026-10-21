@@ -7,7 +7,7 @@
 | 起身4000 | [rise-4000.mdp](rise-4000/rise-4000.mdp) | [checkpoint.pt](rise-4000/checkpoint.pt) | [policy.onnx](rise-4000/policy.onnx) |
 | 行走4600 | [walk-4600.mdp](walk-4600/walk-4600.mdp) | [checkpoint.pt](walk-4600/checkpoint.pt) | [policy.onnx](walk-4600/policy.onnx) |
 
-MDP使用现有固件转换器生成，格式MDPOL001，含FP32网络与归一化。原checkpoint、ONNX不改权重；逐权重/归一化一致，771组CPU输入（含512条保存的实际观测）最大误差分别7.63e-6、1.91e-6。MDP系数逐位相同，CRC及源ONNX SHA通过。这里没有重新训练、跑GPU评测、刷写固件或操作实机。
+MDP使用本包固定的固件转换器生成，格式MDPOL001 version 2，含FP32网络与归一化。原checkpoint、ONNX不改权重；逐权重/归一化一致，771组CPU输入（含512条保存的实际观测）最大误差分别7.63e-6、1.91e-6。MDP系数逐位相同，CRC及源ONNX SHA通过。这里没有重新训练、跑GPU评测、刷写固件或操作实机。
 
 ## 使用与记录
 
@@ -24,6 +24,21 @@ MDP使用现有固件转换器生成，格式MDPOL001，含FP32网络与归一�
 
 各目录`evaluation/`为与该checkpoint SHA绑定的原报告，不混用旧模型成绩。`checkpoint-info.json`含课程和精确训练状态；`training-allocation.json`含启动配置；`training-code.tar.gz`包含配方哈希覆盖的代码、姿态bank和任务MJCF，**不包含所有外部网格、误差库和依赖**。它是代码快照，不是独立完整仿真安装包。
 
-`onnx-metadata.json`保留原导出元数据。旧简写压降字段仍写0..0.2V/Nm，实际配置为共享母线0.05..0.15Ω，准确值见checkpoint随机化契约；本包不改原ONNX字节。`converter-original.json`保留转换器原始输出，其中旧alpha观测标签不适用于V2；对应模型JSON已标明V2身份，以`runtime-contract.json`为准。
+`onnx-metadata.json`保留原导出元数据。旧简写压降字段仍写0..0.2V/Nm，实际配置为共享母线0.05..0.15Ω，准确值见checkpoint随机化契约；本包不改原ONNX字节。`converter-original.json`保留当前V2转换器原始输出；`legacy-version1-converter.json`保留首次交付的旧转换记录。训练身份与部署身份分别记录在`runtime-contract.json`。
 
 文件大小、SHA256、源提交、配方身份及验证结果见[manifest.json](manifest.json)。`verify_and_package.py`记录本机打包/验证过程，其中实验源路径用于追溯，不是任意机器的安装入口。
+
+## V2封装修正
+
+首次提交`387ac31b`的MDP缺少二进制V2标记，请重新下载本分支当前两份MDP；旧提交下载链接不会更新。此次只修改version字段和44字节契约扩展，权重、归一化、checkpoint及原ONNX均未改变。起身runtime ID为`0x834335F5`，行走为`0x11D720E4`。详见`v2-header-fix.json`。
+
+`tools/`固定来自固件提交`13eea5de53224b5cb6bd1bf0de91ff4f1f5692de`的转换器与契约校验，注册表增加本次两项模型的精确SHA及原始元数据。未知V2候选或元数据不符会报错，不会退回V1。新检查点须核对任务契约并登记原始身份后导出；不能只改旁边JSON标签。
+
+安装numpy、onnx、onnxruntime后，可单独复现封装（输出到新目录）：
+
+```bash
+python tools/convert_policy.py rise-4000/policy.onnx /tmp/rise-4000.mdp
+python tools/convert_policy.py walk-4600/policy.onnx /tmp/walk-4600.mdp
+```
+
+`verify_and_package.py`使用本包转换器并强制检查V2头和任务runtime。CPU封装检查不代表实机动作验收。

@@ -1,0 +1,23 @@
+{
+  "repository": "https://github.com/microduck-awesome/microduck-firmware",
+  "revision": "13eea5de53224b5cb6bd1bf0de91ff4f1f5692de",
+  "files": [
+    {
+      "path": "convert_policy.py",
+      "upstream_sha256": "8b355e1589268f540c316efb62302f5272187c485d3b2ba3aff23ad89a5aa809"
+    },
+    {
+      "path": "v2_contract.py",
+      "upstream_sha256": "f487f25796ce83758af405ec7fbc4aec09a612a37dd94bc8353d79c2276e277b"
+    },
+    {
+      "path": "contracts/v2-rise-candidates.json",
+      "upstream_sha256": "45f9dc6796397bac6eaa47bfb4677aefa093e45092dec8cd1d943b52306b57ad"
+    },
+    {
+      "path": "contracts/v2-walking-candidates.json",
+      "upstream_sha256": "d47e01edf1f4bb0167b9c8dc810a9b8ed6268bc1bc71172d8afcfd2af3d67894"
+    }
+  ],
+  "registry_change": "Append exact ONNX bytes/metadata for rise4000 and walk4600; preserve upstream deployment profiles and old candidates."
+}

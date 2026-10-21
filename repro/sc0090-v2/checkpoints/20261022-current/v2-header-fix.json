@@ -1,0 +1,56 @@
+{
+  "firmware_source_revision": "13eea5de53224b5cb6bd1bf0de91ff4f1f5692de",
+  "scope": "Only version field and44-byte contract extension changed in MDP binaries; no network or firmware change",
+  "models": [
+    {
+      "model": "rise-4000",
+      "previous_header_version": 1,
+      "header_version": 2,
+      "policy_runtime_id_hex": "0x834335F5",
+      "old_mdp_sha256": "4de71604509127bbce8a03e86410712d44af00a32236bcb423f21a1868f7b345",
+      "new_mdp_sha256": "b356d196ca6222ab796853d9da72f9a5965d714128b3517d9fc72a94816da6ba",
+      "coefficient_payload_sha256": "0036f1299b7dddaa3f0546611378928e1c91d8c478fff51489bbfb427020c5cc",
+      "coefficient_payload_unchanged": true,
+      "onnx_sha256": "10ff80c41614aab1e255d10d06051ea8d4b1629d64c08388791f9fee656b268e",
+      "checkpoint_sha256": "ac2b71f9b97b377271359590b80a948e8c13aa7836b754026a1748c47fc4e511",
+      "weights_normalizer_and_onnx_unchanged": true,
+      "crc_verified": true,
+      "source_sha_verified": true,
+      "pinned_v2_decoder_passed": true,
+      "exact_candidate_guard_preserved": true,
+      "header_extension": {
+        "runtime": "microduck-v2-sc0090-native-o0-rise-v1",
+        "policy_runtime_id": 2202220021,
+        "action_scale": 1.0,
+        "command_rate_rad_s": null,
+        "action_ema": false,
+        "deployment_contract_sha256": "4bcab18ecd1fba9e36cc396477daf7a8d54df98631322671b0f2f4b6cd1545e4"
+      }
+    },
+    {
+      "model": "walk-4600",
+      "previous_header_version": 1,
+      "header_version": 2,
+      "policy_runtime_id_hex": "0x11D720E4",
+      "old_mdp_sha256": "86fb3cd59aec03501099d0354b7130985d21d28173c02096c101c757226005e0",
+      "new_mdp_sha256": "8f806e6d0c0a14ec919e5358f62ed914abd2eb8ed6da848a6f508a6159295d71",
+      "coefficient_payload_sha256": "61acf565af1560e6f018429382bdeba8f2202b8d3aa53886d0bd00d18ce60942",
+      "coefficient_payload_unchanged": true,
+      "onnx_sha256": "a9873fc0fb9da388849f6bcdce960778282bdda7bdf29c491545924362a204bc",
+      "checkpoint_sha256": "04defa317a6e194962460008ac3ca3bb0aae849ed621ea13873ab0941582cfc3",
+      "weights_normalizer_and_onnx_unchanged": true,
+      "crc_verified": true,
+      "source_sha_verified": true,
+      "pinned_v2_decoder_passed": true,
+      "exact_candidate_guard_preserved": true,
+      "header_extension": {
+        "runtime": "microduck-v2-sc0090-native-o0-walking-v1",
+        "policy_runtime_id": 299311332,
+        "action_scale": 1.0,
+        "command_rate_rad_s": null,
+        "action_ema": false,
+        "deployment_contract_sha256": "0af7932b3498758679cc0721fc4c5d3e904ed3abf309df20681056413da61956"
+      }
+    }
+  ]
+}

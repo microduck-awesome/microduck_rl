@@ -1,6 +1,5 @@
 {
   "model_id": "v2_sim2real_walk_4600_20261022",
-  "runtime_family": "microduck-v2-sc0090-official-baseline-v1",
   "observation_dim": 61,
   "action_dim": 14,
   "policy_hz": 50,
@@ -126,5 +125,77 @@
       -2.9494250465086806,
       2.3509130994108327
     ]
-  }
+  },
+  "training_runtime_family": "microduck-v2-sc0090-official-baseline-v1",
+  "deployment_runtime_family": "microduck-v2-sc0090-native-o0-walking-v1",
+  "policy_runtime_id_hex": "0x11D720E4",
+  "mdp_header_version": 2,
+  "deployment_contract": {
+    "runtime": "microduck-v2-sc0090-native-o0-walking-v1",
+    "robot": "microduck-v2-sc0090",
+    "task": "velocity_walking",
+    "observer": "native-count-v2-O0",
+    "raw_count_limits": [
+      0,
+      1023
+    ],
+    "command_count_limits": [
+      20,
+      1001
+    ],
+    "sample_hz": 100,
+    "policy_hz": 50,
+    "query_delay_us": 20000,
+    "command_evidence_max_age_us": 25000,
+    "command_confirmation": "native changed-goal readback in the same UART round; shared original 9ms deadline; no inferred ACK",
+    "spike_rejection": false,
+    "o0_valid_samples": 5,
+    "refractory_us": 0,
+    "home": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "action_scale": 1.0,
+    "command_rate_rad_s": null,
+    "action_ema": false,
+    "body": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "head_limit_rad": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "hardware_validated": false,
+    "target_release": "eligible_on_publication_without_extra_policy_period; UART owner rechecks before TX",
+    "twist_limit": [
+      0.4,
+      0.3,
+      1.0
+    ],
+    "source_sha256": "a9873fc0fb9da388849f6bcdce960778282bdda7bdf29c491545924362a204bc",
+    "source_runtime": "microduck-v2-sc0090-official-baseline-v1",
+    "experiment": "baseline_transfer_walking",
+    "candidate_id": "v2_sim2real_walk_4600_20261022",
+    "original_training_contract_sha256": null
+  },
+  "deployment_contract_sha256": "0af7932b3498758679cc0721fc4c5d3e904ed3abf309df20681056413da61956"
 }

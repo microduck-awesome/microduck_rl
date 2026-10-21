@@ -5,7 +5,32 @@
   "cpu_onnx_max_absolute_error": 7.62939453125e-06,
   "fp32_mdp_coefficients_exact": true,
   "fp32_mdp_crc_and_source_sha_verified": true,
-  "converter_source_sha256": "2cb14ad7ad86f80e365a33c881c854b40c94f37c16a404f2d02028ca615f094f",
+  "converter_source_sha256": "8b355e1589268f540c316efb62302f5272187c485d3b2ba3aff23ad89a5aa809",
   "gpu_simulation_performed": false,
-  "hardware_tested": false
+  "hardware_tested": false,
+  "v2_header": {
+    "model": "rise-4000",
+    "previous_header_version": 1,
+    "header_version": 2,
+    "policy_runtime_id_hex": "0x834335F5",
+    "old_mdp_sha256": "4de71604509127bbce8a03e86410712d44af00a32236bcb423f21a1868f7b345",
+    "new_mdp_sha256": "b356d196ca6222ab796853d9da72f9a5965d714128b3517d9fc72a94816da6ba",
+    "coefficient_payload_sha256": "0036f1299b7dddaa3f0546611378928e1c91d8c478fff51489bbfb427020c5cc",
+    "coefficient_payload_unchanged": true,
+    "onnx_sha256": "10ff80c41614aab1e255d10d06051ea8d4b1629d64c08388791f9fee656b268e",
+    "checkpoint_sha256": "ac2b71f9b97b377271359590b80a948e8c13aa7836b754026a1748c47fc4e511",
+    "weights_normalizer_and_onnx_unchanged": true,
+    "crc_verified": true,
+    "source_sha_verified": true,
+    "pinned_v2_decoder_passed": true,
+    "exact_candidate_guard_preserved": true,
+    "header_extension": {
+      "runtime": "microduck-v2-sc0090-native-o0-rise-v1",
+      "policy_runtime_id": 2202220021,
+      "action_scale": 1.0,
+      "command_rate_rad_s": null,
+      "action_ema": false,
+      "deployment_contract_sha256": "4bcab18ecd1fba9e36cc396477daf7a8d54df98631322671b0f2f4b6cd1545e4"
+    }
+  }
 }

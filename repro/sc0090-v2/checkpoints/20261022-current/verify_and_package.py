@@ -1,6 +1,6 @@
 """Package saved training exports and verify checkpoint/ONNX/FP32-MDP parity on CPU."""
 from pathlib import Path
-import json,hashlib,importlib.util,subprocess,struct,zlib,tarfile
+import json,hashlib,importlib.util,subprocess,struct,zlib,tarfile,sys
 import numpy as np, torch, onnx, onnxruntime as ort
 from onnx import numpy_helper
 
@@ -16,7 +16,9 @@ def serial(x):
 def main():
  torch.set_num_threads(2);root=Path(__file__).resolve().parent
  experiment=Path('/home/l40-vm01/data2/experiments/microduck-v2-20261021/formal-four-way-20261021-001')
- converter=Path('/home/l40-vm01/Documents/ai-research/microduck/microduck-firmware/esp32p4/tools/convert_policy.py')
+ converter=root/'tools/convert_policy.py'
+ sys.path.insert(0,str(converter.parent))
+ from v2_contract import info, RUNTIME, WALKING_RUNTIME
  spec=importlib.util.spec_from_file_location('firmware_converter',converter);module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
  models=[]
  for skill,n,source in [('rise',4000,Path('/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-sim2real')),('walk',4600,experiment/'walk-smoothing-repair')]:
@@ -37,11 +39,12 @@ def main():
   session=ort.InferenceSession(str(d/'policy.onnx'),sess_options=options,providers=['CPUExecutionProvider']);actual=np.concatenate([session.run(None,{session.get_inputs()[0].name:row[None]})[0]for row in inputs])
   error=float(np.max(np.abs(actual-y.numpy())));assert np.isfinite(actual).all()and error<2e-5,error
   original=module.export(d/'policy.onnx',d/f'{skill}-{n}.mdp');(d/'converter-original.json').write_text(json.dumps(original,indent=2)+'\n')
-  binary=(d/f'{skill}-{n}.mdp').read_bytes();header=struct.unpack('<8s6I5I32s44x',binary[:128]);assert header[0]==b'MDPOL001'and header[6]==zlib.crc32(binary[128:]);assert header[-1]==hashlib.sha256((d/'policy.onnx').read_bytes()).digest()
+  binary=(d/f'{skill}-{n}.mdp').read_bytes();header=struct.unpack('<8s6I5I32s44x',binary[:128]);assert header[0]==b'MDPOL001'and header[1]==2 and header[6]==zlib.crc32(binary[128:]);assert header[-1]==hashlib.sha256((d/'policy.onnx').read_bytes()).digest()
+  decoded=info(binary);assert decoded['runtime']==(RUNTIME if skill=='rise'else WALKING_RUNTIME)
   expected=[arrays['obs_normalizer._mean'].ravel(),denominator.ravel()]
   for i in (0,2,4,6):expected += [state[f'mlp.{i}.bias'].numpy().ravel(),state[f'mlp.{i}.weight'].numpy().ravel()]
   np.testing.assert_array_equal(np.frombuffer(binary[128:],dtype='<f4'),np.concatenate(expected))
-  contract=dict(model_id=f'v2_sim2real_{skill}_{n}_20261022',runtime_family='microduck-v2-sc0090-official-baseline-v1',observation_dim=61,action_dim=14,policy_hz=50,normalizer_included=True,normalize_again=False,joint_names=metadata['joint_names'].split(','),home_rad=[0.]*14,action_scale=1.,action_semantics='continuous CAD-radian target; apply existing V2 per-joint device target bounds; no P04 native-count policy semantics',observation_layout=['gyro_body_xyz:0:3','projected_gravity:3:6','joint_position_HOME_relative:6:20','joint_velocity:20:34','previous_raw_policy_action:34:48','twist_vx_vy_yaw_rate:48:51','head_neckpitch_pitch_yaw_roll:51:55','body_pose:55:61'],mouth='excluded; independent hold',training_action_ema=False,operating_point='SC0090 P15/D30/I0; training v5 derivative_seconds=0',robot_mass_kg=.6246,hardware_tested=False,simulation_acceptance_passed=False,metadata_corrections={'microduck_motor_operating_point':'Legacy short ONNX metadata says0..0.2V/Nm; actual training uses shared bus resistance0.05..0.15ohm and PWM-weighted current. See checkpoint randomization_contract.'})
+  contract=dict(model_id=f'v2_sim2real_{skill}_{n}_20261022',training_runtime_family='microduck-v2-sc0090-official-baseline-v1',deployment_runtime_family=decoded['runtime'],policy_runtime_id_hex=hex(decoded['policy_runtime_id']),mdp_header_version=2,deployment_contract=original['deployment_contract'],deployment_contract_sha256=decoded['deployment_contract_sha256'],observation_dim=61,action_dim=14,policy_hz=50,normalizer_included=True,normalize_again=False,joint_names=metadata['joint_names'].split(','),home_rad=[0.]*14,action_scale=1.,action_semantics='continuous CAD-radian target; apply existing V2 per-joint device target bounds; no P04 native-count policy semantics',observation_layout=['gyro_body_xyz:0:3','projected_gravity:3:6','joint_position_HOME_relative:6:20','joint_velocity:20:34','previous_raw_policy_action:34:48','twist_vx_vy_yaw_rate:48:51','head_neckpitch_pitch_yaw_roll:51:55','body_pose:55:61'],mouth='excluded; independent hold',training_action_ema=False,operating_point='SC0090 P15/D30/I0; training v5 derivative_seconds=0',robot_mass_kg=.6246,hardware_tested=False,simulation_acceptance_passed=False,metadata_corrections={'microduck_motor_operating_point':'Legacy short ONNX metadata says0..0.2V/Nm; actual training uses shared bus resistance0.05..0.15ohm and PWM-weighted current. See checkpoint randomization_contract.'})
   allocation=json.loads((d/'training-allocation.json').read_text());contract['observation_term_scales']={k:v.get('scale')for k,v in allocation['env']['observations']['actor']['terms'].items()};contract['action_target_clip_by_joint']=allocation['env']['actions']['joint_pos']['clip']
   (d/'runtime-contract.json').write_text(json.dumps(contract,indent=2)+'\n');manifest={**original,'source_repository':'https://github.com/microduck-awesome/microduck_rl','observation':'microduck-v2-61d-policy-joint-order','model_id':contract['model_id'],'runtime_contract':'runtime-contract.json','checkpoint_sha256':sha(d/'checkpoint.pt'),'hardware_tested':False};(d/f'{skill}-{n}.json').write_text(json.dumps(manifest,indent=2)+'\n')
   (d/'onnx-metadata.json').write_text(json.dumps(metadata,indent=2)+'\n');(d/'checkpoint-info.json').write_text(json.dumps(serial(record),indent=2)+'\n')
@@ -60,9 +63,9 @@ def main():
     summaries.append(dict(protocol=protocol,trials=len(worlds),qualified=sum(a['wins']for a in report['records']),never_fell=sum(bool(a.get('never_fell'))for a in worlds),body_stable_tail=sum(bool(a.get('body_stable_tail'))for a in worlds),quiet_stop_tail=sum(bool(a.get('quiet_stop_tail'))for a in worlds),self_contact=sum(bool(a.get('self_contact'))for a in worlds)))
   p=experiment/f'{skill}-formal-005/assessment-{n}.json'
   if p.exists():(evidence/'recovery.json').write_bytes(p.read_bytes())
-  validation=dict(checkpoint_matches_onnx_weights_and_normalizer_exactly=True,normalizer_epsilon=.01,cpu_onnx_test_inputs=len(inputs),cpu_onnx_max_absolute_error=error,fp32_mdp_coefficients_exact=True,fp32_mdp_crc_and_source_sha_verified=True,converter_source_sha256=sha(converter),gpu_simulation_performed=False,hardware_tested=False)
+  validation=dict(mdp_header_version=2,v2_runtime_verified=True,deployment_runtime=decoded['runtime'],checkpoint_matches_onnx_weights_and_normalizer_exactly=True,normalizer_epsilon=.01,cpu_onnx_test_inputs=len(inputs),cpu_onnx_max_absolute_error=error,fp32_mdp_coefficients_exact=True,fp32_mdp_crc_and_source_sha_verified=True,converter_source_sha256=sha(converter),gpu_simulation_performed=False,hardware_tested=False)
   (d/'validation.json').write_text(json.dumps(validation,indent=2)+'\n')
   models.append(dict(id=contract['model_id'],directory=d.name,completed_updates=n,recipe_sha256=record['recipe_sha256'],source_commit=subprocess.check_output(['git','-C',str(source),'rev-parse','HEAD'],text=True).strip(),source_worktree=str(source),source_archive_scope='Recipe-hashed Python sources, three entry scripts, balance poses, task MJCF and recipe document; external mesh/measurement assets and dependencies not bundled',validation=validation,evaluation=summaries))
- files=[dict(path=str(p.relative_to(root)),bytes=p.stat().st_size,sha256=sha(p))for p in sorted(root.rglob('*'))if p.is_file()and p.name!='manifest.json']
+ files=[dict(path=str(p.relative_to(root)),bytes=p.stat().st_size,sha256=sha(p))for p in sorted(root.rglob('*'))if p.is_file()and p!=root/'manifest.json'and '__pycache__'not in p.parts and p.suffix!='.pyc']
  (root/'manifest.json').write_text(json.dumps(dict(schema=1,snapshot_date='2026-10-22',purpose='User-requested current-model hardware observation; not a passed-policy release',models=models,files=files),indent=2)+'\n');print(json.dumps(models,indent=2))
 if __name__=='__main__':main()

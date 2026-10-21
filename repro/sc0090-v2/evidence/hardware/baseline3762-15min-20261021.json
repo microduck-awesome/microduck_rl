@@ -1,0 +1,263 @@
+{
+  "schema": 1,
+  "date": "2026-10-21",
+  "device": "D747A9",
+  "selected_model": "rise_baseline_paired3762",
+  "selection": "Best observed physical behavior among the baseline3762, P04_1856 and baseline_to_P04_4466 comparisons to date; operator selection, not a randomized multi-device success-rate benchmark",
+  "operator_feedback": "能起身并基本站稳",
+  "deployment_snapshot": "../../deployment/D747A9-20261021.json",
+  "model_mdp_sha256": "9017cc5ef86e80ad7ed6ede6a37cb4ffddc4583870affc09adf2068156c12102",
+  "firmware_elf_sha256": "b5e2969b491471b3fae636c803d2b5d58a5d76b691fa7cfc55bcd6b57e3df8dc",
+  "trial": {
+    "complete": true,
+    "state": "MAINTENANCE",
+    "faults": 0,
+    "loop": {
+      "epoch": 3,
+      "kind": 0,
+      "computer": false,
+      "policy_trial": true,
+      "start_pending": false,
+      "running": false,
+      "ticks": 45001,
+      "observations": 45000,
+      "committed_targets": 44999,
+      "local_results": 45000,
+      "computer_results": 0,
+      "pending": 0,
+      "missing_feedback": 0,
+      "max_count_deviation": 648,
+      "started_us": 65537788,
+      "finished_us": 965538564,
+      "first_result_us": 65544736,
+      "last_result_us": 965524835,
+      "max_result_gap_us": 21022,
+      "expires_us": 965518296
+    },
+    "all_torque_off": true,
+    "status_read_errors": 1,
+    "host_timeout_disarm": false,
+    "automatic_retry": false,
+    "physical_recovery_result": "Operator reports able to get up and mostly stand steadily",
+    "operator_feedback": "能起身并基本站稳",
+    "elapsed_motion_s": 900.000776,
+    "reset_detected": false,
+    "final_result_after_lease_us": 6539
+  },
+  "joint_feedback": [
+    {
+      "name": "left_hip_yaw",
+      "attempts": 90068,
+      "valid": 90068,
+      "transport_failures": 0,
+      "invalid_replies": 0,
+      "tolerated_status_count": 0,
+      "command_readback_delta": {
+        "mismatches": 0
+      },
+      "end_temperature_c": 41,
+      "end_status": 0
+    },
+    {
+      "name": "left_hip_roll",
+      "attempts": 90068,
+      "valid": 90068,
+      "transport_failures": 0,
+      "invalid_replies": 0,
+      "tolerated_status_count": 0,
+      "command_readback_delta": {
+        "mismatches": 0
+      },
+      "end_temperature_c": 39,
+      "end_status": 0
+    },
+    {
+      "name": "left_hip_pitch",
+      "attempts": 90068,
+      "valid": 90068,
+      "transport_failures": 0,
+      "invalid_replies": 0,
+      "tolerated_status_count": 0,
+      "command_readback_delta": {
+        "mismatches": 0
+      },
+      "end_temperature_c": 63,
+      "end_status": 0
+    },
+    {
+      "name": "left_knee",
+      "attempts": 90068,
+      "valid": 90068,
+      "transport_failures": 0,
+      "invalid_replies": 0,
+      "tolerated_status_count": 0,
+      "command_readback_delta": {
+        "mismatches": 0
+      },
+      "end_temperature_c": 60,
+      "end_status": 0
+    },
+    {
+      "name": "left_ankle",
+      "attempts": 90068,
+      "valid": 90068,
+      "transport_failures": 0,
+      "invalid_replies": 0,
+      "tolerated_status_count": 0,
+      "command_readback_delta": {
+        "mismatches": 0
+      },
+      "end_temperature_c": 39,
+      "end_status": 0
+    },
+    {
+      "name": "right_hip_yaw",
+      "attempts": 90068,
+      "valid": 90068,
+      "transport_failures": 0,
+      "invalid_replies": 0,
+      "tolerated_status_count": 0,
+      "command_readback_delta": {
+        "mismatches": 0
+      },
+      "end_temperature_c": 42,
+      "end_status": 0
+    },
+    {
+      "name": "right_hip_roll",
+      "attempts": 90068,
+      "valid": 90068,
+      "transport_failures": 0,
+      "invalid_replies": 0,
+      "tolerated_status_count": 0,
+      "command_readback_delta": {
+        "mismatches": 0
+      },
+      "end_temperature_c": 38,
+      "end_status": 0
+    },
+    {
+      "name": "right_hip_pitch",
+      "attempts": 90068,
+      "valid": 90068,
+      "transport_failures": 0,
+      "invalid_replies": 0,
+      "tolerated_status_count": 0,
+      "command_readback_delta": {
+        "mismatches": 0
+      },
+      "end_temperature_c": 63,
+      "end_status": 0
+    },
+    {
+      "name": "right_knee",
+      "attempts": 90068,
+      "valid": 90068,
+      "transport_failures": 0,
+      "invalid_replies": 0,
+      "tolerated_status_count": 0,
+      "command_readback_delta": {
+        "mismatches": 0
+      },
+      "end_temperature_c": 61,
+      "end_status": 0
+    },
+    {
+      "name": "right_ankle",
+      "attempts": 90068,
+      "valid": 90068,
+      "transport_failures": 0,
+      "invalid_replies": 0,
+      "tolerated_status_count": 0,
+      "command_readback_delta": {
+        "mismatches": 0
+      },
+      "end_temperature_c": 46,
+      "end_status": 0
+    },
+    {
+      "name": "neck_pitch",
+      "attempts": 90068,
+      "valid": 90068,
+      "transport_failures": 0,
+      "invalid_replies": 0,
+      "tolerated_status_count": 0,
+      "command_readback_delta": {
+        "mismatches": 0
+      },
+      "end_temperature_c": 44,
+      "end_status": 0
+    },
+    {
+      "name": "head_pitch",
+      "attempts": 90068,
+      "valid": 90068,
+      "transport_failures": 0,
+      "invalid_replies": 0,
+      "tolerated_status_count": 0,
+      "command_readback_delta": {
+        "mismatches": 0
+      },
+      "end_temperature_c": 38,
+      "end_status": 0
+    },
+    {
+      "name": "head_yaw",
+      "attempts": 90068,
+      "valid": 90068,
+      "transport_failures": 0,
+      "invalid_replies": 0,
+      "tolerated_status_count": 0,
+      "command_readback_delta": {
+        "mismatches": 0
+      },
+      "end_temperature_c": 40,
+      "end_status": 0
+    },
+    {
+      "name": "head_roll",
+      "attempts": 90068,
+      "valid": 90068,
+      "transport_failures": 0,
+      "invalid_replies": 0,
+      "tolerated_status_count": 0,
+      "command_readback_delta": {
+        "mismatches": 0
+      },
+      "end_temperature_c": 40,
+      "end_status": 0
+    },
+    {
+      "name": "mouth",
+      "attempts": 90068,
+      "valid": 90068,
+      "transport_failures": 0,
+      "invalid_replies": 0,
+      "tolerated_status_count": 0,
+      "command_readback_delta": {
+        "mismatches": 0
+      },
+      "end_temperature_c": 39,
+      "end_status": 0
+    }
+  ],
+  "sampled_metrics": {
+    "sampled_statuses": 796,
+    "sampled_battery_min_v": 11.639909744262695,
+    "sampled_battery_max_v": 12.116819381713867,
+    "sampled_max_servo_temperature_c": 68,
+    "note": "HTTP sampled extrema; not transient voltage or continuous temperature measurement"
+  },
+  "source_records": {
+    "trial-summary.json": "46c1a48f4e5923a0e5c4c0bdf35f881ca40cc9cee06ab15d4bf25579fb9ca28a",
+    "joint-readback-comparison.json": "7ea68025ecece7455aa6681e769afb8162cc96e6726931c68ca7baeb0602ec4b",
+    "sampled-metrics.json": "bb425d615ae151985ff80ad17fa09d5cbee78c38009d7172ce69859a6b0a677a",
+    "statuses.jsonl": "a7a31d73e1585c3395bedc5f342280bf6dad6832805a19518918a0b688bcf152"
+  },
+  "scope_notes": [
+    "Started prone with operator fall protection.",
+    "Counters span the before/terminal HTTP snapshots, including a small admission/completion margin.",
+    "No status0x14 occurred; its discard/coast branch was not exercised on hardware in this run.",
+    "Frozen model weights, training source and release qualification labels are unchanged."
+  ]
+}

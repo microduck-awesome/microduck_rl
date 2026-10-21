@@ -1,4 +1,6 @@
-> **SC0090 V2 sim2real 实验分支（2026-10-16）**：同事交接、真实模型下载、训练复现及固件差异请先读 [repro/sc0090-v2/README.md](repro/sc0090-v2/README.md)。此分支不代表已通过实机验收。
+> **2026-10-21 实机更新**：当前选用 **基线 `rise_baseline_paired3762`**，在已测试候选中实物效果最好。D747A9 已连续运行 15 分钟，操作者反馈“能起身并基本站稳”。见[实机记录](repro/sc0090-v2/evidence/hardware/baseline3762-15min-20261021.json)、[当前零位/限位/HOME 部署快照](repro/sc0090-v2/deployment/D747A9-20261021.json)和[部署说明](docs/baseline_sim2real_delays.md)。这是指定设备与配置下的本轮结果，不是所有场景的验收。
+
+> **SC0090 V2 sim2real 实验分支（2026-10-16）**：同事交接、真实模型下载、训练复现及固件差异请先读 [repro/sc0090-v2/README.md](repro/sc0090-v2/README.md)。该交付快照当时尚未经过实机验收，后续结果见下方更新。
 
 # Microduck RL
 

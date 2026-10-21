@@ -1,0 +1,11 @@
+{
+  "checkpoint_matches_onnx_weights_and_normalizer_exactly": true,
+  "normalizer_epsilon": 0.01,
+  "cpu_onnx_test_inputs": 771,
+  "cpu_onnx_max_absolute_error": 7.62939453125e-06,
+  "fp32_mdp_coefficients_exact": true,
+  "fp32_mdp_crc_and_source_sha_verified": true,
+  "converter_source_sha256": "2cb14ad7ad86f80e365a33c881c854b40c94f37c16a404f2d02028ca615f094f",
+  "gpu_simulation_performed": false,
+  "hardware_tested": false
+}

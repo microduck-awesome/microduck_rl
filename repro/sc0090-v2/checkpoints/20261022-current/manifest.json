@@ -1,0 +1,262 @@
+{
+  "schema": 1,
+  "snapshot_date": "2026-10-22",
+  "purpose": "User-requested current-model hardware observation; not a passed-policy release",
+  "models": [
+    {
+      "id": "v2_sim2real_rise_4000_20261022",
+      "directory": "rise-4000",
+      "completed_updates": 4000,
+      "recipe_sha256": "202fb2ed5f1f5cdba5f8dbb3fb80f588d08bb483fba1cbd3ed234b32e02b1a15",
+      "source_commit": "f7ae53a67dba54f20b2d95447c033fbc6a2830dd",
+      "source_worktree": "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-sim2real",
+      "source_archive_scope": "Recipe-hashed Python sources, three entry scripts, balance poses, task MJCF and recipe document; external mesh/measurement assets and dependencies not bundled",
+      "validation": {
+        "checkpoint_matches_onnx_weights_and_normalizer_exactly": true,
+        "normalizer_epsilon": 0.01,
+        "cpu_onnx_test_inputs": 771,
+        "cpu_onnx_max_absolute_error": 7.62939453125e-06,
+        "fp32_mdp_coefficients_exact": true,
+        "fp32_mdp_crc_and_source_sha_verified": true,
+        "converter_source_sha256": "2cb14ad7ad86f80e365a33c881c854b40c94f37c16a404f2d02028ca615f094f",
+        "gpu_simulation_performed": false,
+        "hardware_tested": false
+      },
+      "evaluation": [
+        {
+          "protocol": "tilt",
+          "trials": 1184,
+          "qualified": 0,
+          "never_fell": 1184,
+          "body_stable_tail": 429,
+          "quiet_stop_tail": 0,
+          "self_contact": 2
+        },
+        {
+          "protocol": "four_way_push",
+          "trials": 768,
+          "qualified": 0,
+          "never_fell": 766,
+          "body_stable_tail": 287,
+          "quiet_stop_tail": 1,
+          "self_contact": 2
+        },
+        {
+          "protocol": "head",
+          "trials": 832,
+          "qualified": 0,
+          "never_fell": 832,
+          "body_stable_tail": 329,
+          "quiet_stop_tail": 0,
+          "self_contact": 0
+        }
+      ]
+    },
+    {
+      "id": "v2_sim2real_walk_4600_20261022",
+      "directory": "walk-4600",
+      "completed_updates": 4600,
+      "recipe_sha256": "054ffee57128797ee33236f4739973ce55559dca5cc669be69d2eaae17539694",
+      "source_commit": "f06b2be1e7ae8552288999dcdd5d65758c1b86eb",
+      "source_worktree": "/home/l40-vm01/data2/experiments/microduck-v2-20261021/formal-four-way-20261021-001/walk-smoothing-repair",
+      "source_archive_scope": "Recipe-hashed Python sources, three entry scripts, balance poses, task MJCF and recipe document; external mesh/measurement assets and dependencies not bundled",
+      "validation": {
+        "checkpoint_matches_onnx_weights_and_normalizer_exactly": true,
+        "normalizer_epsilon": 0.01,
+        "cpu_onnx_test_inputs": 771,
+        "cpu_onnx_max_absolute_error": 1.9073486328125e-06,
+        "fp32_mdp_coefficients_exact": true,
+        "fp32_mdp_crc_and_source_sha_verified": true,
+        "converter_source_sha256": "2cb14ad7ad86f80e365a33c881c854b40c94f37c16a404f2d02028ca615f094f",
+        "gpu_simulation_performed": false,
+        "hardware_tested": false
+      },
+      "evaluation": [
+        {
+          "protocol": "walking",
+          "trials": 928,
+          "qualified": 0,
+          "never_fell": 922,
+          "body_stable_tail": 0,
+          "quiet_stop_tail": 0,
+          "self_contact": 571
+        },
+        {
+          "protocol": "straight",
+          "trials": 256,
+          "qualified": 0,
+          "never_fell": 254,
+          "body_stable_tail": 0,
+          "quiet_stop_tail": 0,
+          "self_contact": 204
+        },
+        {
+          "protocol": "four_way_push",
+          "trials": 768,
+          "qualified": 0,
+          "never_fell": 760,
+          "body_stable_tail": 0,
+          "quiet_stop_tail": 0,
+          "self_contact": 59
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 3645,
+      "sha256": "999cc960d2d3f8c5b4d47d8e92d4ca791f81887cfc86f10437a8263bbff4a9c0"
+    },
+    {
+      "path": "rise-4000/checkpoint-info.json",
+      "bytes": 85965,
+      "sha256": "5763ae9f8807ed39745207910a1671523d2fde0f7387d041f966682d7f29fc8b"
+    },
+    {
+      "path": "rise-4000/checkpoint.pt",
+      "bytes": 4858995,
+      "sha256": "ac2b71f9b97b377271359590b80a948e8c13aa7836b754026a1748c47fc4e511"
+    },
+    {
+      "path": "rise-4000/converter-original.json",
+      "bytes": 900,
+      "sha256": "c5a4f2efbdd1eabe75f1975c8a360838462478880efdf9922f31741008b87958"
+    },
+    {
+      "path": "rise-4000/evaluation/four_way_push.json",
+      "bytes": 1191594,
+      "sha256": "c7e73c80207b3f1f7f208ec3b644cc934ff6739c38b647d02bd3bfdec506962e"
+    },
+    {
+      "path": "rise-4000/evaluation/head.json",
+      "bytes": 3796556,
+      "sha256": "8492a708dfd67e416ad2084671d85209f97aad01934aec331b721de1f70e2592"
+    },
+    {
+      "path": "rise-4000/evaluation/recovery.json",
+      "bytes": 3925,
+      "sha256": "38c459b1c0ff3259ba48b79e58b980de3e8bdc746acca6e60ac0baa05e6741fe"
+    },
+    {
+      "path": "rise-4000/evaluation/tilt.json",
+      "bytes": 1471312,
+      "sha256": "7dd69f3fc938b82a0ff42ef24d928c321c8f478857030340de51422314152b48"
+    },
+    {
+      "path": "rise-4000/onnx-metadata.json",
+      "bytes": 3931,
+      "sha256": "104668dcfaabe7717cf15939fcf694a9aeeeee2cc6d120c441e14f71ac34667b"
+    },
+    {
+      "path": "rise-4000/policy.onnx",
+      "bytes": 796723,
+      "sha256": "10ff80c41614aab1e255d10d06051ea8d4b1629d64c08388791f9fee656b268e"
+    },
+    {
+      "path": "rise-4000/rise-4000.json",
+      "bytes": 1123,
+      "sha256": "03de9350692ced54c7660154f537aba40447266f2bb6a526d13545c91e169674"
+    },
+    {
+      "path": "rise-4000/rise-4000.mdp",
+      "bytes": 791712,
+      "sha256": "4de71604509127bbce8a03e86410712d44af00a32236bcb423f21a1868f7b345"
+    },
+    {
+      "path": "rise-4000/runtime-contract.json",
+      "bytes": 2998,
+      "sha256": "ab554eaaded499c543bb7f14221a9128263e7b07a32b2f7118400262c7974d7c"
+    },
+    {
+      "path": "rise-4000/training-allocation.json",
+      "bytes": 87172,
+      "sha256": "3b7670bd78f430f2458336c5a9ce86e9b4f6a768d8e822ae9849683f2bf23b2a"
+    },
+    {
+      "path": "rise-4000/training-code.tar.gz",
+      "bytes": 376525,
+      "sha256": "b37b2ca0966791f961f157a52097603a4b9ce34e53f0a5017f6c81064fde47d5"
+    },
+    {
+      "path": "rise-4000/validation.json",
+      "bytes": 431,
+      "sha256": "d399202add8e010f8dd32d8d796b09065c047eba5e395a42abe4a50668e84216"
+    },
+    {
+      "path": "verify_and_package.py",
+      "bytes": 9004,
+      "sha256": "d9db18a4e8010d78cfc130da0dc0f8921d75c0b7b70a0e989f7da0f2890d7246"
+    },
+    {
+      "path": "walk-4600/checkpoint-info.json",
+      "bytes": 85128,
+      "sha256": "7819d1e21f1df9ed38bf1e9c55b66ac80a4e79bd3a3df1f1fe975382e0adf616"
+    },
+    {
+      "path": "walk-4600/checkpoint.pt",
+      "bytes": 4871091,
+      "sha256": "04defa317a6e194962460008ac3ca3bb0aae849ed621ea13873ab0941582cfc3"
+    },
+    {
+      "path": "walk-4600/converter-original.json",
+      "bytes": 896,
+      "sha256": "ae555f1db362b35929a709c47b12d574544814cc41ed85a8de8e0ee05777ac33"
+    },
+    {
+      "path": "walk-4600/evaluation/four_way_push.json",
+      "bytes": 1189534,
+      "sha256": "a52259c4e8a4665e4f7af58ccb4013cede96ca9f9c1734a76eb97fc709919442"
+    },
+    {
+      "path": "walk-4600/evaluation/straight.json",
+      "bytes": 788043,
+      "sha256": "7e756be2d4c4138633cdcbd2293b2fd15261b92c89680193183741fefbac994d"
+    },
+    {
+      "path": "walk-4600/evaluation/walking.json",
+      "bytes": 4578057,
+      "sha256": "467966b5e22ef0e0b102f71bddf460b123bd4ab46c3d6564df4e3b70f55d3597"
+    },
+    {
+      "path": "walk-4600/onnx-metadata.json",
+      "bytes": 3931,
+      "sha256": "7195986941b8a22555f48d22a7a7da2a183bc3470db15ed72ff41d064d93e544"
+    },
+    {
+      "path": "walk-4600/policy.onnx",
+      "bytes": 796723,
+      "sha256": "a9873fc0fb9da388849f6bcdce960778282bdda7bdf29c491545924362a204bc"
+    },
+    {
+      "path": "walk-4600/runtime-contract.json",
+      "bytes": 2998,
+      "sha256": "574a89adaade46ee605eb00046d3ef51d0c5396b1f5e20f9ddf4d30cae9314c8"
+    },
+    {
+      "path": "walk-4600/training-allocation.json",
+      "bytes": 78731,
+      "sha256": "2276ca2d18423100a508b4cc5147a5e5561b170ad61aac3d84633058a632a8af"
+    },
+    {
+      "path": "walk-4600/training-code.tar.gz",
+      "bytes": 377757,
+      "sha256": "d436347e0a66d81cad6900f9da3d44d2416c2283e3388a9f4016390a87c27ca8"
+    },
+    {
+      "path": "walk-4600/validation.json",
+      "bytes": 433,
+      "sha256": "f1a7a1f005d8e0e2893cd83ba2cb85a443fd29355432eeb5f3264bb496d70c30"
+    },
+    {
+      "path": "walk-4600/walk-4600.json",
+      "bytes": 1119,
+      "sha256": "48c41f6a3c1ae1d1df35f9430036d785eec16a9f9a81cedbbf7a328baf062942"
+    },
+    {
+      "path": "walk-4600/walk-4600.mdp",
+      "bytes": 791712,
+      "sha256": "86fb3cd59aec03501099d0354b7130985d21d28173c02096c101c757226005e0"
+    }
+  ]
+}

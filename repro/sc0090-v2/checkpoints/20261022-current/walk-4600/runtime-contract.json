@@ -1,0 +1,130 @@
+{
+  "model_id": "v2_sim2real_walk_4600_20261022",
+  "runtime_family": "microduck-v2-sc0090-official-baseline-v1",
+  "observation_dim": 61,
+  "action_dim": 14,
+  "policy_hz": 50,
+  "normalizer_included": true,
+  "normalize_again": false,
+  "joint_names": [
+    "left_hip_yaw",
+    "left_hip_roll",
+    "left_hip_pitch",
+    "left_knee",
+    "left_ankle",
+    "neck_pitch",
+    "head_pitch",
+    "head_yaw",
+    "head_roll",
+    "right_hip_yaw",
+    "right_hip_roll",
+    "right_hip_pitch",
+    "right_knee",
+    "right_ankle"
+  ],
+  "home_rad": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "action_scale": 1.0,
+  "action_semantics": "continuous CAD-radian target; apply existing V2 per-joint device target bounds; no P04 native-count policy semantics",
+  "observation_layout": [
+    "gyro_body_xyz:0:3",
+    "projected_gravity:3:6",
+    "joint_position_HOME_relative:6:20",
+    "joint_velocity:20:34",
+    "previous_raw_policy_action:34:48",
+    "twist_vx_vy_yaw_rate:48:51",
+    "head_neckpitch_pitch_yaw_roll:51:55",
+    "body_pose:55:61"
+  ],
+  "mouth": "excluded; independent hold",
+  "training_action_ema": false,
+  "operating_point": "SC0090 P15/D30/I0; training v5 derivative_seconds=0",
+  "robot_mass_kg": 0.6246,
+  "hardware_tested": false,
+  "simulation_acceptance_passed": false,
+  "metadata_corrections": {
+    "microduck_motor_operating_point": "Legacy short ONNX metadata says0..0.2V/Nm; actual training uses shared bus resistance0.05..0.15ohm and PWM-weighted current. See checkpoint randomization_contract."
+  },
+  "observation_term_scales": {
+    "base_ang_vel": null,
+    "projected_gravity": null,
+    "joint_pos": null,
+    "joint_vel": null,
+    "actions": null,
+    "command": null,
+    "head_command": null,
+    "body_command": null
+  },
+  "action_target_clip_by_joint": {
+    "left_hip_yaw": [
+      -2.7229609548213767,
+      2.5773771910981367
+    ],
+    "left_hip_roll": [
+      -2.73913709203822,
+      2.5612010538812933
+    ],
+    "left_hip_pitch": [
+      -2.7913334437370834,
+      2.50900470218243
+    ],
+    "left_knee": [
+      -2.130968381648421,
+      3.1693697642710923
+    ],
+    "left_ankle": [
+      -3.1812812710467653,
+      2.119056874872748
+    ],
+    "neck_pitch": [
+      -0.844470162356913,
+      4.455867983562601
+    ],
+    "head_pitch": [
+      -3.1402194509030266,
+      2.160118695016487
+    ],
+    "head_yaw": [
+      -2.652865221660571,
+      2.647472924258942
+    ],
+    "head_roll": [
+      -2.696000943906222,
+      2.604337202013292
+    ],
+    "right_hip_yaw": [
+      -0.9921284186192604,
+      4.308209727300253
+    ],
+    "right_hip_roll": [
+      -2.8415851335158098,
+      2.4587530124037036
+    ],
+    "right_hip_pitch": [
+      -2.591829396848033,
+      2.7085087490714805
+    ],
+    "right_knee": [
+      -2.3628246061865057,
+      2.9375135397330077
+    ],
+    "right_ankle": [
+      -2.9494250465086806,
+      2.3509130994108327
+    ]
+  }
+}

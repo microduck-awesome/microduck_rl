@@ -1,0 +1,39 @@
+{
+  "format": "MDPOL001",
+  "converter_version": 1,
+  "source_file": "policy.onnx",
+  "source_sha256": "a9873fc0fb9da388849f6bcdce960778282bdda7bdf29c491545924362a204bc",
+  "source_repository": "https://github.com/microduck-awesome/microduck_rl",
+  "license": "Apache-2.0",
+  "binary_sha256": "86fb3cd59aec03501099d0354b7130985d21d28173c02096c101c757226005e0",
+  "dims": [
+    61,
+    512,
+    256,
+    128,
+    14
+  ],
+  "bytes": 791712,
+  "normalizer_included": true,
+  "observation": "microduck-v2-61d-policy-joint-order",
+  "selftest_zero_output": [
+    -1.4027988910675049,
+    0.7722674012184143,
+    -0.06187216192483902,
+    0.024673476815223694,
+    -1.046014666557312,
+    0.3306306302547455,
+    -1.0708292722702026,
+    -0.0243622288107872,
+    0.1324373185634613,
+    0.5221299529075623,
+    0.02236016094684601,
+    0.629285454750061,
+    -0.26152387261390686,
+    -0.6689547300338745
+  ],
+  "model_id": "v2_sim2real_walk_4600_20261022",
+  "runtime_contract": "runtime-contract.json",
+  "checkpoint_sha256": "04defa317a6e194962460008ac3ca3bb0aae849ed621ea13873ab0941582cfc3",
+  "hardware_tested": false
+}

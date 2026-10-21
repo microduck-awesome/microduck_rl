@@ -1,0 +1,191 @@
+{
+  "report": {
+    "schema": 2,
+    "checkpoint_sha256": "ac2b71f9b97b377271359590b80a948e8c13aa7836b754026a1748c47fc4e511",
+    "config_sha256": "ba4c0081acd957317b14a8d43c68efe709e0c3638e5b7c8334993349ee77de4c",
+    "iteration": 4000,
+    "stage": 0,
+    "discovery": true,
+    "seeds": [
+      2026102102,
+      2026102103
+    ],
+    "samples_per_group": 128,
+    "duration_s": 8.0,
+    "deterministic": true,
+    "cases": [
+      {
+        "seed": 2026102102,
+        "finite": true,
+        "groups": {
+          "standing": {
+            "trials": 128,
+            "wins": 43
+          },
+          "sitting": {
+            "trials": 128,
+            "wins": 64
+          },
+          "prone": {
+            "trials": 128,
+            "wins": 48
+          },
+          "frontier": {
+            "trials": 128,
+            "wins": 59
+          },
+          "left_side": {
+            "trials": 128,
+            "wins": 42
+          },
+          "right_side": {
+            "trials": 128,
+            "wins": 44
+          },
+          "supine": {
+            "trials": 128,
+            "wins": 65
+          }
+        },
+        "frontier_directions": {
+          "negative": {
+            "trials": 64,
+            "wins": 28
+          },
+          "positive": {
+            "trials": 64,
+            "wins": 31
+          }
+        },
+        "head_tail_mae_rad": null,
+        "training_reference_factor": 2.0,
+        "com_range": [
+          -0.003,
+          0.003
+        ]
+      },
+      {
+        "seed": 2026102103,
+        "finite": true,
+        "groups": {
+          "standing": {
+            "trials": 128,
+            "wins": 32
+          },
+          "sitting": {
+            "trials": 128,
+            "wins": 59
+          },
+          "prone": {
+            "trials": 128,
+            "wins": 49
+          },
+          "frontier": {
+            "trials": 128,
+            "wins": 57
+          },
+          "left_side": {
+            "trials": 128,
+            "wins": 48
+          },
+          "right_side": {
+            "trials": 128,
+            "wins": 42
+          },
+          "supine": {
+            "trials": 128,
+            "wins": 64
+          }
+        },
+        "frontier_directions": {
+          "negative": {
+            "trials": 64,
+            "wins": 29
+          },
+          "positive": {
+            "trials": 64,
+            "wins": 28
+          }
+        },
+        "head_tail_mae_rad": null,
+        "training_reference_factor": 2.0,
+        "com_range": [
+          -0.003,
+          0.003
+        ]
+      }
+    ]
+  },
+  "decision": {
+    "last_iteration": 4000,
+    "last_promotion_reference_step": 0,
+    "evaluated_stage": 0,
+    "stage_after": 0,
+    "discovery": true,
+    "discovery_graduated": false,
+    "promoted": false,
+    "polish": false,
+    "checkpoint_sha256": "ac2b71f9b97b377271359590b80a948e8c13aa7836b754026a1748c47fc4e511",
+    "counts": {
+      "standing": [
+        256,
+        75
+      ],
+      "sitting": [
+        256,
+        123
+      ],
+      "prone": [
+        256,
+        97
+      ],
+      "frontier": [
+        256,
+        116
+      ],
+      "left_side": [
+        256,
+        90
+      ],
+      "right_side": [
+        256,
+        86
+      ],
+      "supine": [
+        256,
+        129
+      ]
+    },
+    "rates_per_seed": [
+      {
+        "standing": 0.3359375,
+        "sitting": 0.5,
+        "prone": 0.375,
+        "frontier": 0.4609375,
+        "left_side": 0.328125,
+        "right_side": 0.34375,
+        "supine": 0.5078125
+      },
+      {
+        "standing": 0.25,
+        "sitting": 0.4609375,
+        "prone": 0.3828125,
+        "frontier": 0.4453125,
+        "left_side": 0.375,
+        "right_side": 0.328125,
+        "supine": 0.5
+      }
+    ],
+    "direction_rates_per_seed": [
+      [
+        0.4375,
+        0.484375
+      ],
+      [
+        0.453125,
+        0.4375
+      ]
+    ],
+    "sufficient_coverage": true
+  }
+}

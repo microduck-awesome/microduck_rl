@@ -277,7 +277,7 @@
     20,
     1003
   ],
-  "manual_home_bounds": "Per-joint saved min/max radians and counts, intersected with [20,1003] at encoding",
+  "manual_home_bounds": "Saved per-joint angular limits plus saved manual count bounds intersected with servo target count bounds; see limits for the separate target-radian range",
   "imu": {
     "sensor_to_body": [
       -0.009102088399231434,
@@ -304,5 +304,298 @@
     "policy_nominal_voltage": 11.100000381469727
   },
   "model_mdp_sha256": "9017cc5ef86e80ad7ed6ede6a37cb4ffddc4583870affc09adf2068156c12102",
-  "firmware_elf_sha256": "b5e2969b491471b3fae636c803d2b5d58a5d76b691fa7cfc55bcd6b57e3df8dc"
+  "firmware_elf_sha256": "b5e2969b491471b3fae636c803d2b5d58a5d76b691fa7cfc55bcd6b57e3df8dc",
+  "limits": {
+    "servo_target_range_meaning": "Native servo command acceptance range, converted separately for each joint using its current signed O0 affine calibration; these are target radians, not a mechanical travel assertion",
+    "joint_angle_range_meaning": "Current saved per-joint angular limits from the device; independent of servo command acceptance, not independent hard-stop measurements or an automatic overwrite of frozen CAD training limits",
+    "policy_application": "Clip policy targets to servo_target_rad_range and encode to [20,1003]; saved joint angular limits are not an additional policy-target clamp",
+    "home_manual_application": "Clamp to saved joint angular limits and encode within saved manual count range intersected with [20,1003]",
+    "per_joint": [
+      {
+        "name": "left_hip_yaw",
+        "servo_target_count_range": [
+          20,
+          1003
+        ],
+        "servo_target_rad_range": [
+          -2.7229609548213767,
+          2.5773771910981367
+        ],
+        "joint_angle_rad_range": [
+          -0.43633198738098145,
+          0.43633198738098145
+        ],
+        "saved_manual_count_range": [
+          444,
+          606
+        ]
+      },
+      {
+        "name": "left_hip_roll",
+        "servo_target_count_range": [
+          20,
+          1003
+        ],
+        "servo_target_rad_range": [
+          -2.73913709203822,
+          2.5612010538812933
+        ],
+        "joint_angle_rad_range": [
+          -0.3139289915561676,
+          0.454016000032425
+        ],
+        "saved_manual_count_range": [
+          410,
+          554
+        ]
+      },
+      {
+        "name": "left_hip_pitch",
+        "servo_target_count_range": [
+          20,
+          1003
+        ],
+        "servo_target_rad_range": [
+          -2.7913334437370834,
+          2.50900470218243
+        ],
+        "joint_angle_rad_range": [
+          -1.5707999467849731,
+          1.5707999467849731
+        ],
+        "saved_manual_count_range": [
+          193,
+          777
+        ]
+      },
+      {
+        "name": "left_knee",
+        "servo_target_count_range": [
+          20,
+          1003
+        ],
+        "servo_target_rad_range": [
+          -2.130968381648421,
+          3.1693697642710923
+        ],
+        "joint_angle_rad_range": [
+          -1.1927599906921387,
+          1.948830008506775
+        ],
+        "saved_manual_count_range": [
+          194,
+          777
+        ]
+      },
+      {
+        "name": "left_ankle",
+        "servo_target_count_range": [
+          20,
+          1003
+        ],
+        "servo_target_rad_range": [
+          -3.1812812710467653,
+          2.119056874872748
+        ],
+        "joint_angle_rad_range": [
+          -1.948830008506775,
+          1.1927599906921387
+        ],
+        "saved_manual_count_range": [
+          191,
+          775
+        ]
+      },
+      {
+        "name": "neck_pitch",
+        "servo_target_count_range": [
+          20,
+          1003
+        ],
+        "servo_target_rad_range": [
+          -0.844470162356913,
+          4.455867983562601
+        ],
+        "joint_angle_rad_range": [
+          -0.607200026512146,
+          3.447566270828247
+        ],
+        "saved_manual_count_range": [
+          207,
+          959
+        ]
+      },
+      {
+        "name": "head_pitch",
+        "servo_target_count_range": [
+          20,
+          1003
+        ],
+        "servo_target_rad_range": [
+          -3.1402194509030266,
+          2.160118695016487
+        ],
+        "joint_angle_rad_range": [
+          -2.010770082473755,
+          1.1308200359344482
+        ],
+        "saved_manual_count_range": [
+          229,
+          813
+        ]
+      },
+      {
+        "name": "head_yaw",
+        "servo_target_count_range": [
+          20,
+          1003
+        ],
+        "servo_target_rad_range": [
+          -2.652865221660571,
+          2.647472924258942
+        ],
+        "joint_angle_rad_range": [
+          -2.6420810222625732,
+          2.647473096847534
+        ],
+        "saved_manual_count_range": [
+          20,
+          1001
+        ]
+      },
+      {
+        "name": "head_roll",
+        "servo_target_count_range": [
+          20,
+          1003
+        ],
+        "servo_target_rad_range": [
+          -2.696000943906222,
+          2.604337202013292
+        ],
+        "joint_angle_rad_range": [
+          -0.43633198738098145,
+          0.43633198738098145
+        ],
+        "saved_manual_count_range": [
+          439,
+          601
+        ]
+      },
+      {
+        "name": "mouth",
+        "servo_target_count_range": [
+          20,
+          1003
+        ],
+        "servo_target_rad_range": [
+          -2.6906090723909406,
+          2.6097290735285728
+        ],
+        "joint_angle_rad_range": [
+          0,
+          0.479966014623642
+        ],
+        "saved_manual_count_range": [
+          414,
+          504
+        ]
+      },
+      {
+        "name": "right_hip_yaw",
+        "servo_target_count_range": [
+          20,
+          1003
+        ],
+        "servo_target_rad_range": [
+          -0.9921284186192604,
+          4.308209727300253
+        ],
+        "joint_angle_rad_range": [
+          -0.43633198738098145,
+          0.43633198738098145
+        ],
+        "saved_manual_count_range": [
+          123,
+          285
+        ]
+      },
+      {
+        "name": "right_hip_roll",
+        "servo_target_count_range": [
+          20,
+          1003
+        ],
+        "servo_target_rad_range": [
+          -2.8415851335158098,
+          2.4587530124037036
+        ],
+        "joint_angle_rad_range": [
+          -0.454014003276825,
+          0.3139309883117676
+        ],
+        "saved_manual_count_range": [
+          417,
+          561
+        ]
+      },
+      {
+        "name": "right_hip_pitch",
+        "servo_target_count_range": [
+          20,
+          1003
+        ],
+        "servo_target_rad_range": [
+          -2.591829396848033,
+          2.7085087490714805
+        ],
+        "joint_angle_rad_range": [
+          -1.5707999467849731,
+          1.5707999467849731
+        ],
+        "saved_manual_count_range": [
+          209,
+          793
+        ]
+      },
+      {
+        "name": "right_knee",
+        "servo_target_count_range": [
+          20,
+          1003
+        ],
+        "servo_target_rad_range": [
+          -2.3628246061865057,
+          2.9375135397330077
+        ],
+        "joint_angle_rad_range": [
+          -1.1927599906921387,
+          1.948830008506775
+        ],
+        "saved_manual_count_range": [
+          203,
+          786
+        ]
+      },
+      {
+        "name": "right_ankle",
+        "servo_target_count_range": [
+          20,
+          1003
+        ],
+        "servo_target_rad_range": [
+          -2.9494250465086806,
+          2.3509130994108327
+        ],
+        "joint_angle_rad_range": [
+          -1.948830008506775,
+          1.1927599906921387
+        ],
+        "saved_manual_count_range": [
+          205,
+          789
+        ]
+      }
+    ]
+  }
 }

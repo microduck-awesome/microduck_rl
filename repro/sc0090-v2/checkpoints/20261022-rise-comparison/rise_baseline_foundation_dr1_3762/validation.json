@@ -1,0 +1,14 @@
+{
+  "model_id": "rise_baseline_foundation_dr1_3762",
+  "checkpoint_onnx_coefficients_exact": true,
+  "normalizer_epsilon": 0.01,
+  "cpu_input_count": 513,
+  "cpu_onnx_max_absolute_error": 3.5762786865234375e-07,
+  "mdp_version": 2,
+  "runtime_id": "0x834335f5",
+  "mdp_coefficients_exact": true,
+  "crc_and_source_sha_pass": true,
+  "new_gpu_steps": 0,
+  "new_training_updates": 0,
+  "new_hardware_trials": 0
+}

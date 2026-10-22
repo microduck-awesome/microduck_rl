@@ -1,0 +1,221 @@
+{
+  "schema": 1,
+  "checkpoint_file": "checkpoint_004466.pt",
+  "checkpoint_sha256": "f5a9a86b9acd16faeca12a9aefc63e204fff7fe90a7f328b6aad32ce7133159f",
+  "config_sha256": "98c72bfea3aae5d69612492d74440a303d86698d1453b0095ae024ac0d413092",
+  "iteration": 4466,
+  "stage": 5,
+  "seeds": [
+    2026101501,
+    2026101502
+  ],
+  "samples_per_group": 128,
+  "duration_s": 8.0,
+  "deterministic": true,
+  "cases": [
+    {
+      "seed": 2026101501,
+      "finite": true,
+      "groups": {
+        "standing": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 0.7107812762260437
+        },
+        "sitting": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.623437523841858
+        },
+        "prone": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.1870311498641968
+        },
+        "frontier": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.2607812881469727
+        },
+        "left_side": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.122656226158142
+        },
+        "right_side": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.4314062595367432
+        },
+        "supine": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.2614063024520874
+        }
+      },
+      "frontier_directions": {
+        "positive": {
+          "trials": 65,
+          "wins": 65,
+          "faults": 0
+        },
+        "negative": {
+          "trials": 63,
+          "wins": 63,
+          "faults": 0
+        }
+      }
+    },
+    {
+      "seed": 2026101502,
+      "finite": true,
+      "groups": {
+        "standing": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 0.7023438215255737
+        },
+        "sitting": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.657656192779541
+        },
+        "prone": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.178125023841858
+        },
+        "frontier": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.257656216621399
+        },
+        "left_side": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.120937466621399
+        },
+        "right_side": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.4185937643051147
+        },
+        "supine": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.2578125
+        }
+      },
+      "frontier_directions": {
+        "positive": {
+          "trials": 67,
+          "wins": 67,
+          "faults": 0
+        },
+        "negative": {
+          "trials": 61,
+          "wins": 61,
+          "faults": 0
+        }
+      }
+    }
+  ],
+  "decision": {
+    "last_iteration": 4466,
+    "last_promotion_step": 30000,
+    "evaluated_stage": 5,
+    "stage_after": 5,
+    "checkpoint_sha256": "f5a9a86b9acd16faeca12a9aefc63e204fff7fe90a7f328b6aad32ce7133159f",
+    "counts": {
+      "standing": [
+        256,
+        256
+      ],
+      "sitting": [
+        256,
+        256
+      ],
+      "prone": [
+        256,
+        256
+      ],
+      "frontier": [
+        256,
+        256
+      ],
+      "left_side": [
+        256,
+        256
+      ],
+      "right_side": [
+        256,
+        256
+      ],
+      "supine": [
+        256,
+        256
+      ]
+    },
+    "rates": {
+      "standing": 1.0,
+      "sitting": 1.0,
+      "prone": 1.0,
+      "frontier": 1.0,
+      "left_side": 1.0,
+      "right_side": 1.0,
+      "supine": 1.0
+    },
+    "promoted": false,
+    "polish": true,
+    "discovery": false,
+    "discovery_graduated": false,
+    "curriculum_gate": "original",
+    "evaluated_frontier_low_deg": 0.0,
+    "next_frontier_low_deg": 0.0,
+    "frontier_width_deg": 30.0,
+    "frontier_direction_gate": false,
+    "frontier_direction_rates_per_seed": []
+  }
+}

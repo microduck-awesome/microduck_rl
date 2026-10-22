@@ -1,0 +1,102 @@
+{
+  "model_id": "rise_baseline_foundation_dr2_4018",
+  "allocation": "baseline/head-foundation4-dr2-allocation-001",
+  "checkpoint_filename": "checkpoint_004018.pt",
+  "checkpoint_sha256": "0d86d6526d54e12da0025ec1baf05bdb5702ef7d138bae587afd93a97e733187",
+  "checkpoint_local_source": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/head-foundation4-dr2-allocation-001/checkpoint_004018.pt",
+  "checkpoint_included": false,
+  "source_archive_sha256": "30badc1176bbb83a79547b4954c361e207833ddbe1f43ccdbe51369ae23f14c1",
+  "original_onnx_sha256": "11f8afef067756cfb04279023be280b85e4ad83a7bfd655f1957dbcb979fa299",
+  "training_task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+  "parent": "runs-v2/head-foundation4-dr1-allocation-001/resume_003762.pt",
+  "update": 4018,
+  "priority": 2,
+  "purpose": "上一DR1支路继续，位置噪声扩大至±0.04rad",
+  "original_training_metadata": {
+    "run_path": "local",
+    "joint_names": "left_hip_yaw,left_hip_roll,left_hip_pitch,left_knee,left_ankle,neck_pitch,head_pitch,head_yaw,head_roll,right_hip_yaw,right_hip_roll,right_hip_pitch,right_knee,right_ankle",
+    "joint_stiffness": "1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000",
+    "joint_damping": "0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080",
+    "default_joint_pos": "0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000",
+    "command_names": "twist,head_pose,body_pose",
+    "observation_names": "base_ang_vel,projected_gravity,joint_pos,joint_vel,actions,command,head_command,body_command",
+    "action_scale": "1.0",
+    "microduck_robot": "microduck-v2-sc0090",
+    "microduck_runtime": "microduck-v2-sc0090-official-baseline-v1",
+    "microduck_feedback": "official-joint-noise-delay-and-encoder-bias",
+    "microduck_motor_sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+    "microduck_motor_operating_point": "P15/D30/I0;11.1V;goal_profile_zeroed",
+    "microduck_deployment": "simulation-baseline-only"
+  },
+  "position_robustness_recipe": {
+    "id": "v2-position-robustness-2",
+    "stage": 2,
+    "uniform_noise_half_width_rad": 0.04,
+    "position_delay_control_steps": 1,
+    "control_dt_s": 0.02,
+    "encoder_bias_event": "retained",
+    "velocity_observation": "unchanged",
+    "purpose": "Bounded baseline continuation; evaluate full P04 independently before acceptance"
+  },
+  "head_precision_recipe": {
+    "id": "v2-head-precision-4",
+    "stage": 4,
+    "ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ],
+    "final_ranges": [
+      [
+        -0.48577760000000003,
+        1.1
+      ],
+      [
+        -1.1,
+        0.904656
+      ],
+      [
+        -1.4,
+        1.4
+      ],
+      [
+        -0.31,
+        0.31
+      ]
+    ],
+    "reward_weight": 3.0,
+    "std": 0.5,
+    "fine_std": 0.04,
+    "fine_weight": 0.5,
+    "precision_scale": 0.003,
+    "command_sampling": {
+      "zero_probability": 0.4,
+      "precision_probability": 0.5,
+      "precision_amplitude_rad": [
+        0.005,
+        0.04
+      ],
+      "active_axis_count_probabilities": {
+        "1": 0.5,
+        "2": 0.25,
+        "4": 0.25
+      }
+    },
+    "reason": "Basic micro/combined-command precision recipe after 3250 small-step 22/128; bounded reward and explicit exposure, no added position DR"
+  },
+  "training_mass_note": "Historical approximately600.94g CAD; not retrained on624.6g/corrected shell contacts",
+  "hardware_status": "NOT_TESTED_IN_THIS_DELIVERY"
+}

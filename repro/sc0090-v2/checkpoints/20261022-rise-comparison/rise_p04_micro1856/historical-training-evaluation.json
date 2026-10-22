@@ -1,0 +1,372 @@
+{
+  "schema": 1,
+  "checkpoint_file": "checkpoint_001856.pt",
+  "checkpoint_sha256": "e4772c33149410d62446180a9214b26695cb51ba1d5b7b26fac31d3ea273122b",
+  "config_sha256": "326557dfde2c9797e5fe81583859ded4f5d39325d7494b19371a0f8acc5e82c4",
+  "iteration": 1856,
+  "stage": 10,
+  "seeds": [
+    2026101501,
+    2026101502
+  ],
+  "samples_per_group": 128,
+  "duration_s": 8.0,
+  "deterministic": true,
+  "cases": [
+    {
+      "seed": 2026101501,
+      "finite": true,
+      "groups": {
+        "standing": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 0.6560937762260437
+        },
+        "sitting": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 2.123593807220459
+        },
+        "prone": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.251406192779541
+        },
+        "frontier": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.3546875715255737
+        },
+        "left_side": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.5901563167572021
+        },
+        "right_side": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.2051563262939453
+        },
+        "supine": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.3196874856948853
+        }
+      },
+      "frontier_directions": {
+        "positive": {
+          "trials": 65,
+          "wins": 65,
+          "faults": 0
+        },
+        "negative": {
+          "trials": 63,
+          "wins": 63,
+          "faults": 0
+        }
+      }
+    },
+    {
+      "seed": 2026101502,
+      "finite": true,
+      "groups": {
+        "standing": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 0.6645312309265137
+        },
+        "sitting": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 2.122187614440918
+        },
+        "prone": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.2429687976837158
+        },
+        "frontier": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.346093773841858
+        },
+        "left_side": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.5840624570846558
+        },
+        "right_side": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.2170313596725464
+        },
+        "supine": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "sensor_faults": 0,
+          "first_stable_mean_s": 1.343906283378601
+        }
+      },
+      "frontier_directions": {
+        "positive": {
+          "trials": 67,
+          "wins": 67,
+          "faults": 0
+        },
+        "negative": {
+          "trials": 61,
+          "wins": 61,
+          "faults": 0
+        }
+      }
+    }
+  ],
+  "decision": {
+    "last_iteration": 1856,
+    "last_promotion_step": 24576,
+    "evaluated_stage": 10,
+    "stage_after": 10,
+    "checkpoint_sha256": "e4772c33149410d62446180a9214b26695cb51ba1d5b7b26fac31d3ea273122b",
+    "counts": {
+      "standing": [
+        256,
+        256
+      ],
+      "sitting": [
+        256,
+        256
+      ],
+      "prone": [
+        256,
+        256
+      ],
+      "frontier": [
+        256,
+        256
+      ],
+      "left_side": [
+        256,
+        256
+      ],
+      "right_side": [
+        256,
+        256
+      ],
+      "supine": [
+        256,
+        256
+      ]
+    },
+    "rates": {
+      "standing": 1.0,
+      "sitting": 1.0,
+      "prone": 1.0,
+      "frontier": 1.0,
+      "left_side": 1.0,
+      "right_side": 1.0,
+      "supine": 1.0
+    },
+    "promoted": false,
+    "polish": true,
+    "discovery": false,
+    "discovery_graduated": false,
+    "curriculum_gate": "standing+prone+frontier; sitting retained for final all-pose acceptance",
+    "evaluated_frontier_low_deg": 0.0,
+    "next_frontier_low_deg": 0.0,
+    "frontier_width_deg": 30.0,
+    "frontier_direction_gate": true,
+    "frontier_direction_rates_per_seed": [
+      {
+        "positive": 1.0,
+        "negative": 1.0
+      },
+      {
+        "positive": 1.0,
+        "negative": 1.0
+      }
+    ],
+    "promotion_method": "frozen_all_remaining_frontier_coverage_v1",
+    "coverage_transition": {
+      "schema": 1,
+      "method": "frozen_all_remaining_frontier_coverage_v1",
+      "checkpoint_sha256": "10cbb3995f9b32c7643623d74e82793ad3c6e44b01cacf7784bd404a18467c69",
+      "completed_updates": 1024,
+      "evidence": {
+        "formal": {
+          "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/fresh-p04-m4-allocation-002/evaluation_001024.json",
+          "sha256": "150386d3252acbc5a92a16972fd0409a6bc2bc23a3137d85e83fa76943344606"
+        },
+        "coverage": {
+          "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/fresh-p04-1024-frontier-sweep/report.json",
+          "sha256": "8eb85f0ead602e5890afd04238b824e35d211d0cefcc1f2ffd43b769a9e6df2c"
+        },
+        "measured": {
+          "path": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/p04/fresh-p04-1024-measured/report.json",
+          "sha256": "8509e87e904080949c5e6b24f17c9c0158d05571280e0f37c1fe5ffb0168544e"
+        }
+      },
+      "previous_recovery": {
+        "stage": 3,
+        "last_assessment_step": 21504,
+        "polish": false,
+        "discovery": false,
+        "trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "wins": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rates": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "total_trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "previous_eval_history": {
+        "last_iteration": 960,
+        "last_promotion_step": 21504,
+        "evaluated_stage": 3,
+        "stage_after": 3,
+        "checkpoint_sha256": "6133e808b026c3c7c665f2502bad607e0347dbe308cb1ce18cc8d6ee8f0b05ad",
+        "counts": {
+          "standing": [
+            256,
+            256
+          ],
+          "sitting": [
+            256,
+            253
+          ],
+          "prone": [
+            256,
+            256
+          ],
+          "frontier": [
+            256,
+            256
+          ],
+          "left_side": [
+            256,
+            256
+          ],
+          "right_side": [
+            256,
+            256
+          ],
+          "supine": [
+            256,
+            256
+          ]
+        },
+        "rates": {
+          "standing": 1.0,
+          "sitting": 0.98828125,
+          "prone": 1.0,
+          "frontier": 1.0,
+          "left_side": 1.0,
+          "right_side": 1.0,
+          "supine": 1.0
+        },
+        "promoted": false,
+        "polish": false,
+        "discovery": false,
+        "discovery_graduated": false,
+        "curriculum_gate": "standing+prone+frontier; sitting retained for final all-pose acceptance",
+        "evaluated_frontier_low_deg": 105.0,
+        "next_frontier_low_deg": 105.0,
+        "frontier_width_deg": 30.0,
+        "frontier_direction_gate": true,
+        "frontier_direction_rates_per_seed": [
+          {
+            "positive": 1.0,
+            "negative": 1.0
+          },
+          {
+            "positive": 1.0,
+            "negative": 1.0
+          }
+        ]
+      },
+      "changes": {
+        "stage": [
+          3,
+          10
+        ],
+        "polish": [
+          false,
+          true
+        ]
+      },
+      "gate": "Each remaining window and final measured window: two seeds, 128 trials per pose, each pose and direction >=70%, directions >=32 trials, no faults; all actual results were 100%",
+      "dwell_exception": "The original 2400-step per-window dwell is replaced by explicit complete frozen coverage, not reported as elapsed training; no online promotion records invented",
+      "unchanged": "actor, critic, normalizer, Adam, learning rate, RNG, iteration, controls, environment clock and source",
+      "scope": "Curriculum transition into existing recovery polish only; not head, hardware or overall qualification"
+    }
+  }
+}

@@ -1,0 +1,761 @@
+{
+  "schema": 1,
+  "purpose": "Existing historical rise candidates for hardware comparison; not causal ablation",
+  "models": [
+    {
+      "id": "rise_baseline_paired3762",
+      "priority": 1,
+      "purpose": "现有实机参照；head4＋配对误差块＋三档电压",
+      "update": 3762,
+      "upload": "rise_baseline_paired3762/rise_baseline_paired3762.mdp",
+      "mdp_sha256": "9017cc5ef86e80ad7ed6ede6a37cb4ffddc4583870affc09adf2068156c12102",
+      "onnx": "rise_baseline_paired3762/policy.onnx",
+      "checkpoint_sha256": "e753856776bb43e44d9465b4067a0b9cd2d10fe03fc8cb88ee4177ec786f93e1",
+      "validation": {
+        "model_id": "rise_baseline_paired3762",
+        "checkpoint_onnx_coefficients_exact": true,
+        "normalizer_epsilon": 0.01,
+        "cpu_input_count": 513,
+        "cpu_onnx_max_absolute_error": 3.5762786865234375e-07,
+        "mdp_version": 2,
+        "runtime_id": "0x834335f5",
+        "mdp_coefficients_exact": true,
+        "crc_and_source_sha_pass": true,
+        "new_gpu_steps": 0,
+        "new_training_updates": 0,
+        "new_hardware_trials": 0
+      }
+    },
+    {
+      "id": "rise_baseline_foundation3506",
+      "priority": 1,
+      "purpose": "paired3762加入配对随机化前的父模型",
+      "update": 3506,
+      "upload": "rise_baseline_foundation3506/rise_baseline_foundation3506.mdp",
+      "mdp_sha256": "1514eacc23cac62daa2b3f40b0455dcddc5dd173ea49d69b8304ba49c2c0f2f7",
+      "onnx": "rise_baseline_foundation3506/policy.onnx",
+      "checkpoint_sha256": "846b8e790d41692eb4f9416d5f105fa63cea0d01de1f1d470850ec7b77324a91",
+      "validation": {
+        "model_id": "rise_baseline_foundation3506",
+        "checkpoint_onnx_coefficients_exact": true,
+        "normalizer_epsilon": 0.01,
+        "cpu_input_count": 513,
+        "cpu_onnx_max_absolute_error": 4.76837158203125e-07,
+        "mdp_version": 2,
+        "runtime_id": "0x834335f5",
+        "mdp_coefficients_exact": true,
+        "crc_and_source_sha_pass": true,
+        "new_gpu_steps": 0,
+        "new_training_updates": 0,
+        "new_hardware_trials": 0
+      }
+    },
+    {
+      "id": "rise_baseline_foundation4018",
+      "priority": 1,
+      "purpose": "基础head4继续训练；不是paired3762续训",
+      "update": 4018,
+      "upload": "rise_baseline_foundation4018/rise_baseline_foundation4018.mdp",
+      "mdp_sha256": "bcc3ede581cdbb9567c99b258cf1e8dd68c6ca1bee94a60e140ff4476ebdc2a8",
+      "onnx": "rise_baseline_foundation4018/policy.onnx",
+      "checkpoint_sha256": "4c9ded38f23d38ce8a8bbb10af2fd23cb4f55bb8ec5db56fc50756aaaab1674e",
+      "validation": {
+        "model_id": "rise_baseline_foundation4018",
+        "checkpoint_onnx_coefficients_exact": true,
+        "normalizer_epsilon": 0.01,
+        "cpu_input_count": 513,
+        "cpu_onnx_max_absolute_error": 3.5762786865234375e-07,
+        "mdp_version": 2,
+        "runtime_id": "0x834335f5",
+        "mdp_coefficients_exact": true,
+        "crc_and_source_sha_pass": true,
+        "new_gpu_steps": 0,
+        "new_training_updates": 0,
+        "new_hardware_trials": 0
+      }
+    },
+    {
+      "id": "rise_baseline_position_dr2_4012",
+      "priority": 1,
+      "purpose": "独立位置噪声±0.04rad＋20ms；head2",
+      "update": 4012,
+      "upload": "rise_baseline_position_dr2_4012/rise_baseline_position_dr2_4012.mdp",
+      "mdp_sha256": "20bc226f6f9a5f11329f52441a4fa9c946c4d78741ad3fb27f6cd7e619c87f5d",
+      "onnx": "rise_baseline_position_dr2_4012/policy.onnx",
+      "checkpoint_sha256": "2757cea0875f01d6b10e97a115453d925dc721bdc3de7bb0784391b27a0c7a3c",
+      "validation": {
+        "model_id": "rise_baseline_position_dr2_4012",
+        "checkpoint_onnx_coefficients_exact": true,
+        "normalizer_epsilon": 0.01,
+        "cpu_input_count": 513,
+        "cpu_onnx_max_absolute_error": 4.76837158203125e-07,
+        "mdp_version": 2,
+        "runtime_id": "0x834335f5",
+        "mdp_coefficients_exact": true,
+        "crc_and_source_sha_pass": true,
+        "new_gpu_steps": 0,
+        "new_training_updates": 0,
+        "new_hardware_trials": 0
+      }
+    },
+    {
+      "id": "rise_baseline_axis3_4268",
+      "priority": 1,
+      "purpose": "位置DR2；逐轴收窄头部精度奖励",
+      "update": 4268,
+      "upload": "rise_baseline_axis3_4268/rise_baseline_axis3_4268.mdp",
+      "mdp_sha256": "fa1294ca29f98db2815499daccc3ae729e99bf98ce814824f012075f7db8d45f",
+      "onnx": "rise_baseline_axis3_4268/policy.onnx",
+      "checkpoint_sha256": "76f29f702ec9fe3275007871ad23a7a2ac7ae4c6bb97c0741da0993c84167590",
+      "validation": {
+        "model_id": "rise_baseline_axis3_4268",
+        "checkpoint_onnx_coefficients_exact": true,
+        "normalizer_epsilon": 0.01,
+        "cpu_input_count": 513,
+        "cpu_onnx_max_absolute_error": 4.76837158203125e-07,
+        "mdp_version": 2,
+        "runtime_id": "0x834335f5",
+        "mdp_coefficients_exact": true,
+        "crc_and_source_sha_pass": true,
+        "new_gpu_steps": 0,
+        "new_training_updates": 0,
+        "new_hardware_trials": 0
+      }
+    },
+    {
+      "id": "rise_baseline_head_noise3_4012",
+      "priority": 2,
+      "purpose": "腿位置噪声±0.04rad，头±0.015rad；head2",
+      "update": 4012,
+      "upload": "rise_baseline_head_noise3_4012/rise_baseline_head_noise3_4012.mdp",
+      "mdp_sha256": "9165f02a775af5b2e2ad2bc50ccb09a47682ea6badd20569202702fbdfdbcca6",
+      "onnx": "rise_baseline_head_noise3_4012/policy.onnx",
+      "checkpoint_sha256": "d342a20f48e7ed934a060a0ec02f9b3faaf7c50c1782fdaba2086dee542def1b",
+      "validation": {
+        "model_id": "rise_baseline_head_noise3_4012",
+        "checkpoint_onnx_coefficients_exact": true,
+        "normalizer_epsilon": 0.01,
+        "cpu_input_count": 513,
+        "cpu_onnx_max_absolute_error": 4.76837158203125e-07,
+        "mdp_version": 2,
+        "runtime_id": "0x834335f5",
+        "mdp_coefficients_exact": true,
+        "crc_and_source_sha_pass": true,
+        "new_gpu_steps": 0,
+        "new_training_updates": 0,
+        "new_hardware_trials": 0
+      }
+    },
+    {
+      "id": "rise_baseline_foundation_dr1_3762",
+      "priority": 2,
+      "purpose": "head4＋位置白噪声±0.02rad和20ms；不是paired3762",
+      "update": 3762,
+      "upload": "rise_baseline_foundation_dr1_3762/rise_baseline_foundation_dr1_3762.mdp",
+      "mdp_sha256": "22e16a6d13d4f9bc612dada55248398c334498a3712e78f86f1316b0e22c4dd8",
+      "onnx": "rise_baseline_foundation_dr1_3762/policy.onnx",
+      "checkpoint_sha256": "1a93658577280ba4bc3600a26c6ce515d3bbde6c9ddf70e75942a8049dd97b5c",
+      "validation": {
+        "model_id": "rise_baseline_foundation_dr1_3762",
+        "checkpoint_onnx_coefficients_exact": true,
+        "normalizer_epsilon": 0.01,
+        "cpu_input_count": 513,
+        "cpu_onnx_max_absolute_error": 3.5762786865234375e-07,
+        "mdp_version": 2,
+        "runtime_id": "0x834335f5",
+        "mdp_coefficients_exact": true,
+        "crc_and_source_sha_pass": true,
+        "new_gpu_steps": 0,
+        "new_training_updates": 0,
+        "new_hardware_trials": 0
+      }
+    },
+    {
+      "id": "rise_baseline_foundation_dr2_4018",
+      "priority": 2,
+      "purpose": "上一DR1支路继续，位置噪声扩大至±0.04rad",
+      "update": 4018,
+      "upload": "rise_baseline_foundation_dr2_4018/rise_baseline_foundation_dr2_4018.mdp",
+      "mdp_sha256": "24a890076e35c9e5eeeb9ef9b045a0b43589c5052be864c3cecae116b1264193",
+      "onnx": "rise_baseline_foundation_dr2_4018/policy.onnx",
+      "checkpoint_sha256": "0d86d6526d54e12da0025ec1baf05bdb5702ef7d138bae587afd93a97e733187",
+      "validation": {
+        "model_id": "rise_baseline_foundation_dr2_4018",
+        "checkpoint_onnx_coefficients_exact": true,
+        "normalizer_epsilon": 0.01,
+        "cpu_input_count": 513,
+        "cpu_onnx_max_absolute_error": 4.76837158203125e-07,
+        "mdp_version": 2,
+        "runtime_id": "0x834335f5",
+        "mdp_coefficients_exact": true,
+        "crc_and_source_sha_pass": true,
+        "new_gpu_steps": 0,
+        "new_training_updates": 0,
+        "new_hardware_trials": 0
+      }
+    },
+    {
+      "id": "rise_baseline_position_dr2_3756",
+      "priority": 2,
+      "purpose": "position4012、axis3和head-noise3的共同父节点",
+      "update": 3756,
+      "upload": "rise_baseline_position_dr2_3756/rise_baseline_position_dr2_3756.mdp",
+      "mdp_sha256": "07258841cde3ce213c35f944ce7c1004176e707a2e10167230b84dacff919c9c",
+      "onnx": "rise_baseline_position_dr2_3756/policy.onnx",
+      "checkpoint_sha256": "02c5898e92e9ee5c21ab5f08a0c77d1c698c81c06902a268b49b64198766abb0",
+      "validation": {
+        "model_id": "rise_baseline_position_dr2_3756",
+        "checkpoint_onnx_coefficients_exact": true,
+        "normalizer_epsilon": 0.01,
+        "cpu_input_count": 513,
+        "cpu_onnx_max_absolute_error": 7.152557373046875e-07,
+        "mdp_version": 2,
+        "runtime_id": "0x834335f5",
+        "mdp_coefficients_exact": true,
+        "crc_and_source_sha_pass": true,
+        "new_gpu_steps": 0,
+        "new_training_updates": 0,
+        "new_hardware_trials": 0
+      }
+    },
+    {
+      "id": "rise_baseline_axis3_4012",
+      "priority": 2,
+      "purpose": "axis3较早节点，与4268比较继续训练收益",
+      "update": 4012,
+      "upload": "rise_baseline_axis3_4012/rise_baseline_axis3_4012.mdp",
+      "mdp_sha256": "6355e2ab91a0d52875d542f6030eeea30ca5b8a6f8bbd2edc2a92ce8e88a0fd6",
+      "onnx": "rise_baseline_axis3_4012/policy.onnx",
+      "checkpoint_sha256": "068b58b5e390223afdcf5d2e47fbec590dd3d353779206eca73ee7c0692db632",
+      "validation": {
+        "model_id": "rise_baseline_axis3_4012",
+        "checkpoint_onnx_coefficients_exact": true,
+        "normalizer_epsilon": 0.01,
+        "cpu_input_count": 513,
+        "cpu_onnx_max_absolute_error": 4.76837158203125e-07,
+        "mdp_version": 2,
+        "runtime_id": "0x834335f5",
+        "mdp_coefficients_exact": true,
+        "crc_and_source_sha_pass": true,
+        "new_gpu_steps": 0,
+        "new_training_updates": 0,
+        "new_hardware_trials": 0
+      }
+    },
+    {
+      "id": "rise_p04_micro1856",
+      "priority": 2,
+      "purpose": "既有P04从零参照；实机曾被评价弱于paired3762",
+      "update": 1856,
+      "upload": "rise_p04_micro1856/rise_p04_micro1856.mdp",
+      "mdp_sha256": "5d5d4feac4e5de7e9442ab7656f6db489d0d36073ae99f42b8796cf8e6c7614b",
+      "onnx": "rise_p04_micro1856/policy.onnx",
+      "checkpoint_sha256": "e4772c33149410d62446180a9214b26695cb51ba1d5b7b26fac31d3ea273122b",
+      "validation": {
+        "model_id": "rise_p04_micro1856",
+        "checkpoint_onnx_coefficients_exact": true,
+        "normalizer_epsilon": 0.01,
+        "cpu_input_count": 513,
+        "cpu_onnx_max_absolute_error": 5.364418029785156e-07,
+        "mdp_version": 2,
+        "runtime_id": "0x834335f5",
+        "mdp_coefficients_exact": true,
+        "crc_and_source_sha_pass": true,
+        "new_gpu_steps": 0,
+        "new_training_updates": 0,
+        "new_hardware_trials": 0
+      }
+    },
+    {
+      "id": "rise_baseline_to_p04_4466",
+      "priority": 2,
+      "purpose": "既有基线到P04参照；实机曾被评价更差",
+      "update": 4466,
+      "upload": "rise_baseline_to_p04_4466/rise_baseline_to_p04_4466.mdp",
+      "mdp_sha256": "f684729ec98523e7914bc580afb0c02bdfa2562f46eae1afab208cccc3d00e5b",
+      "onnx": "rise_baseline_to_p04_4466/policy.onnx",
+      "checkpoint_sha256": "f5a9a86b9acd16faeca12a9aefc63e204fff7fe90a7f328b6aad32ce7133159f",
+      "validation": {
+        "model_id": "rise_baseline_to_p04_4466",
+        "checkpoint_onnx_coefficients_exact": true,
+        "normalizer_epsilon": 0.01,
+        "cpu_input_count": 513,
+        "cpu_onnx_max_absolute_error": 3.5762786865234375e-07,
+        "mdp_version": 2,
+        "runtime_id": "0x834335f5",
+        "mdp_coefficients_exact": true,
+        "crc_and_source_sha_pass": true,
+        "new_gpu_steps": 0,
+        "new_training_updates": 0,
+        "new_hardware_trials": 0
+      }
+    }
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 7851,
+      "sha256": "9034924d3bda57b14e72d3513c808c7678d6fe661031715971af281c68637300"
+    },
+    {
+      "path": "hardware-results-template.csv",
+      "bytes": 511,
+      "sha256": "fc611d5889bca45a8470f4b8c0b35ee9a36bdd7b94e835e4691f271667832325"
+    },
+    {
+      "path": "models.json",
+      "bytes": 11351,
+      "sha256": "072da7484953d82380f4b924fb62fc4b5fe66b1fcb2c3af909f30d6f27564896"
+    },
+    {
+      "path": "package.py",
+      "bytes": 10286,
+      "sha256": "c4c2100fb03646d90494972c88fe695ebeab663f506208195928b0a59691c9f1"
+    },
+    {
+      "path": "rise_baseline_axis3_4012/historical-training-evaluation.json",
+      "bytes": 4378,
+      "sha256": "c9dd038a0c7198b7d31eaeb18fe18bf8c0ca8b86daf6900bd039fa70b96c1ee9"
+    },
+    {
+      "path": "rise_baseline_axis3_4012/policy.onnx",
+      "bytes": 794087,
+      "sha256": "4e131218f32035b9cd8924a74cb969cc6e84a826134f9b32d57efc31c9662742"
+    },
+    {
+      "path": "rise_baseline_axis3_4012/provenance.json",
+      "bytes": 3392,
+      "sha256": "1a40cd0f573b7301d2dee4e2c2eae80fe0ac625076ae77a11068702c9235612f"
+    },
+    {
+      "path": "rise_baseline_axis3_4012/rise_baseline_axis3_4012.json",
+      "bytes": 4124,
+      "sha256": "3eb6eae06288d28a98518b301e990b8f04b25f78b21144429748d5cac6956a66"
+    },
+    {
+      "path": "rise_baseline_axis3_4012/rise_baseline_axis3_4012.mdp",
+      "bytes": 791712,
+      "sha256": "6355e2ab91a0d52875d542f6030eeea30ca5b8a6f8bbd2edc2a92ce8e88a0fd6"
+    },
+    {
+      "path": "rise_baseline_axis3_4012/training-run.json",
+      "bytes": 83180,
+      "sha256": "70c37b6be9863aa0ecfccef09c136553fb12dc3664583d616091e00821b41c70"
+    },
+    {
+      "path": "rise_baseline_axis3_4012/validation.json",
+      "bytes": 400,
+      "sha256": "d7af413b556484f1c22566acd10fcf0e18ff911b1a391fb434da5aff6fde09db"
+    },
+    {
+      "path": "rise_baseline_axis3_4268/historical-training-evaluation.json",
+      "bytes": 4383,
+      "sha256": "da966aa43bb261a07e8dd8d516063aa3e3e4211acc30ebb9ecc38a3b7b12c760"
+    },
+    {
+      "path": "rise_baseline_axis3_4268/policy.onnx",
+      "bytes": 794087,
+      "sha256": "9b6b305eaef9f91350e725a764b710ff86949b1ea34bf6d4dd62680dc2b894ce"
+    },
+    {
+      "path": "rise_baseline_axis3_4268/provenance.json",
+      "bytes": 3373,
+      "sha256": "f1fe5a3fb3748d532535fb71a27213b6c41ca3f6253a88a9047d7cfff9b6f720"
+    },
+    {
+      "path": "rise_baseline_axis3_4268/rise_baseline_axis3_4268.json",
+      "bytes": 4125,
+      "sha256": "deb163f319125047fe5e4cdc67664649b0ab2b54234fa55fa7e98146658d7c2f"
+    },
+    {
+      "path": "rise_baseline_axis3_4268/rise_baseline_axis3_4268.mdp",
+      "bytes": 791712,
+      "sha256": "fa1294ca29f98db2815499daccc3ae729e99bf98ce814824f012075f7db8d45f"
+    },
+    {
+      "path": "rise_baseline_axis3_4268/training-run.json",
+      "bytes": 83170,
+      "sha256": "19a0a65f02f6b14abfd5969c189ceab12dc230c06e2363bc04ae8fcc75d9bc81"
+    },
+    {
+      "path": "rise_baseline_axis3_4268/validation.json",
+      "bytes": 400,
+      "sha256": "9129c3e1d0bdc1271cb6f06c18aae1e7c4dd49c39b7e23cc1d203821592a25da"
+    },
+    {
+      "path": "rise_baseline_foundation3506/historical-training-evaluation.json",
+      "bytes": 4037,
+      "sha256": "8028c3e23a9b49fef251b85bb6654c3a1e300de20963321c0b409425d9a4e962"
+    },
+    {
+      "path": "rise_baseline_foundation3506/policy.onnx",
+      "bytes": 794087,
+      "sha256": "234e8a46df165dfb5821c7b3e1018cd49bf0ecbe7098065dd550350e4928e0b0"
+    },
+    {
+      "path": "rise_baseline_foundation3506/provenance.json",
+      "bytes": 3323,
+      "sha256": "feaab2037f4e8abf11d310e81662dfefc52a7f6f1edcc9f59d9e6460aa98fdd1"
+    },
+    {
+      "path": "rise_baseline_foundation3506/rise_baseline_foundation3506.json",
+      "bytes": 4137,
+      "sha256": "f5d850e856b4c47af392d5dcdfc9d593e022c5610bbdf54dbd955f47320106f2"
+    },
+    {
+      "path": "rise_baseline_foundation3506/rise_baseline_foundation3506.mdp",
+      "bytes": 791712,
+      "sha256": "1514eacc23cac62daa2b3f40b0455dcddc5dd173ea49d69b8304ba49c2c0f2f7"
+    },
+    {
+      "path": "rise_baseline_foundation3506/training-run.json",
+      "bytes": 83141,
+      "sha256": "d3086da955d43277f71c1f8ebeb9d39ba5008d2b32476892d8e12292ccfb8446"
+    },
+    {
+      "path": "rise_baseline_foundation3506/validation.json",
+      "bytes": 404,
+      "sha256": "2b5ca50c23d5ef947505750688a29fb83e985c6410b496809a6675ea3e3af678"
+    },
+    {
+      "path": "rise_baseline_foundation4018/historical-training-evaluation.json",
+      "bytes": 4041,
+      "sha256": "54fd1c4e1668f0ad9bb120941ffb6abaa90004ba6878384ab615ed80aab9a13b"
+    },
+    {
+      "path": "rise_baseline_foundation4018/policy.onnx",
+      "bytes": 794087,
+      "sha256": "797989c99f32db5e0ab786ad450460b272752c66e41511be34e9428bc6a00f9d"
+    },
+    {
+      "path": "rise_baseline_foundation4018/provenance.json",
+      "bytes": 3326,
+      "sha256": "50821c0e99a64a3b48f65f4bdc778454d91fd2c8bd9ca5c4e2361995b426b93e"
+    },
+    {
+      "path": "rise_baseline_foundation4018/rise_baseline_foundation4018.json",
+      "bytes": 4134,
+      "sha256": "4493998f5598862ebf07c1f11380526542758a71470b27a6b45aa94bf3a1b699"
+    },
+    {
+      "path": "rise_baseline_foundation4018/rise_baseline_foundation4018.mdp",
+      "bytes": 791712,
+      "sha256": "bcc3ede581cdbb9567c99b258cf1e8dd68c6ca1bee94a60e140ff4476ebdc2a8"
+    },
+    {
+      "path": "rise_baseline_foundation4018/training-run.json",
+      "bytes": 83142,
+      "sha256": "3fa763cdf6fcd680d140ef3981a27a19d47f3016ebf5710139e1c493be2e4770"
+    },
+    {
+      "path": "rise_baseline_foundation4018/validation.json",
+      "bytes": 406,
+      "sha256": "408d031cf013682842675fadbfaa63e7632e19244b7d232795f5215dde27d5e8"
+    },
+    {
+      "path": "rise_baseline_foundation_dr1_3762/historical-training-evaluation.json",
+      "bytes": 4388,
+      "sha256": "a31d29974bdacb7cbfd7dca47837d77c7c137b8e4cd3f970ab466b22e166e1f2"
+    },
+    {
+      "path": "rise_baseline_foundation_dr1_3762/policy.onnx",
+      "bytes": 794087,
+      "sha256": "3849952c449270d4a739ab9cd7a68a796b45355fa258f4e54062ff15523ae533"
+    },
+    {
+      "path": "rise_baseline_foundation_dr1_3762/provenance.json",
+      "bytes": 3688,
+      "sha256": "bd832bed82db05ebfbe3ccdb65bdca40cc00428143fb824214768a5d4e8c4eba"
+    },
+    {
+      "path": "rise_baseline_foundation_dr1_3762/rise_baseline_foundation_dr1_3762.json",
+      "bytes": 4139,
+      "sha256": "2729a574c59ea60ad91604c8b4fdfdd7c81fa33d3563b72fc4daeb27436cfa91"
+    },
+    {
+      "path": "rise_baseline_foundation_dr1_3762/rise_baseline_foundation_dr1_3762.mdp",
+      "bytes": 791712,
+      "sha256": "22e16a6d13d4f9bc612dada55248398c334498a3712e78f86f1316b0e22c4dd8"
+    },
+    {
+      "path": "rise_baseline_foundation_dr1_3762/training-run.json",
+      "bytes": 83483,
+      "sha256": "f450fc86e07e13f6a940ffd6848e0094c19f26b0846571f9515799dd9c280a6a"
+    },
+    {
+      "path": "rise_baseline_foundation_dr1_3762/validation.json",
+      "bytes": 411,
+      "sha256": "11d724016a9b99567cf6669f038d9023497dcec076cfea970f3ae77cd2c7bad4"
+    },
+    {
+      "path": "rise_baseline_foundation_dr2_4018/historical-training-evaluation.json",
+      "bytes": 4362,
+      "sha256": "ad9244ff1a0dea59d94e447416786953f2a07036be5549fde7498bda924287c5"
+    },
+    {
+      "path": "rise_baseline_foundation_dr2_4018/policy.onnx",
+      "bytes": 794087,
+      "sha256": "11f8afef067756cfb04279023be280b85e4ad83a7bfd655f1957dbcb979fa299"
+    },
+    {
+      "path": "rise_baseline_foundation_dr2_4018/provenance.json",
+      "bytes": 3688,
+      "sha256": "a1f9957640acf7cb5ab0c91027685596c40d535c7f72bed26f299d9cc802b57e"
+    },
+    {
+      "path": "rise_baseline_foundation_dr2_4018/rise_baseline_foundation_dr2_4018.json",
+      "bytes": 4140,
+      "sha256": "dbedd03340c291a7bcee89777cc16f2df48a522ad050ff2f942ea280743bdeaa"
+    },
+    {
+      "path": "rise_baseline_foundation_dr2_4018/rise_baseline_foundation_dr2_4018.mdp",
+      "bytes": 791712,
+      "sha256": "24a890076e35c9e5eeeb9ef9b045a0b43589c5052be864c3cecae116b1264193"
+    },
+    {
+      "path": "rise_baseline_foundation_dr2_4018/training-run.json",
+      "bytes": 83487,
+      "sha256": "71014912b9ba110132627ee7f490d7c3ad840cd9bf389e4bc6b75bd57e5b92da"
+    },
+    {
+      "path": "rise_baseline_foundation_dr2_4018/validation.json",
+      "bytes": 409,
+      "sha256": "b4bbab647fa3228ed5ada092346309d614af01c773bd516dd42c604ed7fcd83b"
+    },
+    {
+      "path": "rise_baseline_head_noise3_4012/historical-training-evaluation.json",
+      "bytes": 4555,
+      "sha256": "b3462606fde0a227130a19561bd4c5a7de2debfc82c9fec192298b61f4b0a5e8"
+    },
+    {
+      "path": "rise_baseline_head_noise3_4012/policy.onnx",
+      "bytes": 794087,
+      "sha256": "7761e19afdb3354433e9bff713ba0264982ba4c7db26892f9d6ce3dec4b7578f"
+    },
+    {
+      "path": "rise_baseline_head_noise3_4012/provenance.json",
+      "bytes": 3451,
+      "sha256": "f5ca467e53baa4f42b228064a14bbdfaa91ae877bd632def128a0ecf12e11402"
+    },
+    {
+      "path": "rise_baseline_head_noise3_4012/rise_baseline_head_noise3_4012.json",
+      "bytes": 4132,
+      "sha256": "476215555a5021ae1e061e87f60496e58429d09b1c292ec1cadd48668f496520"
+    },
+    {
+      "path": "rise_baseline_head_noise3_4012/rise_baseline_head_noise3_4012.mdp",
+      "bytes": 791712,
+      "sha256": "9165f02a775af5b2e2ad2bc50ccb09a47682ea6badd20569202702fbdfdbcca6"
+    },
+    {
+      "path": "rise_baseline_head_noise3_4012/training-run.json",
+      "bytes": 83847,
+      "sha256": "99c0313ae2c913456008813134f6789c4366327b551825de7305679ec3518872"
+    },
+    {
+      "path": "rise_baseline_head_noise3_4012/validation.json",
+      "bytes": 406,
+      "sha256": "f0e38741b9585163e6aef648b996403b2cf607aa06cec2e84972d7db65809109"
+    },
+    {
+      "path": "rise_baseline_paired3762/historical-training-evaluation.json",
+      "bytes": 4044,
+      "sha256": "66e6e4b989daa282aea07e89f2285ef4ccffd2585313735c6d56742a66f8d45c"
+    },
+    {
+      "path": "rise_baseline_paired3762/policy.onnx",
+      "bytes": 794216,
+      "sha256": "8264c7f8b60df4e7511d6661c22d403ca513e6cb9e838adb2b99701a7fb3dc3e"
+    },
+    {
+      "path": "rise_baseline_paired3762/provenance.json",
+      "bytes": 3509,
+      "sha256": "b56279df1e3c89bfc2e02bb38efad7bdd3f91af434aee22ee05b107e8007c123"
+    },
+    {
+      "path": "rise_baseline_paired3762/rise_baseline_paired3762.json",
+      "bytes": 4266,
+      "sha256": "f9f2701462008f8d02176effe3d4e3a3b0545eef6a951c578ec0e27616c6dffe"
+    },
+    {
+      "path": "rise_baseline_paired3762/rise_baseline_paired3762.mdp",
+      "bytes": 791712,
+      "sha256": "9017cc5ef86e80ad7ed6ede6a37cb4ffddc4583870affc09adf2068156c12102"
+    },
+    {
+      "path": "rise_baseline_paired3762/training-run.json",
+      "bytes": 79185,
+      "sha256": "0c256943ff38687a8c1c214fc07f6ac6393b5855592de688e5c77fddf928a8e2"
+    },
+    {
+      "path": "rise_baseline_paired3762/validation.json",
+      "bytes": 402,
+      "sha256": "070f70a6332a7462c1fd0a3009097d95bda708dd1fa603840ae2100bf85ef625"
+    },
+    {
+      "path": "rise_baseline_position_dr2_3756/historical-training-evaluation.json",
+      "bytes": 4002,
+      "sha256": "527a058b828c571f352d4caf237590e50635b585af5d6688a0dd6a88f458c2b7"
+    },
+    {
+      "path": "rise_baseline_position_dr2_3756/policy.onnx",
+      "bytes": 794087,
+      "sha256": "5662095500d1f3c01d6aa4efa8f67a844f2dc40f686f74d7e3544f8edb907e78"
+    },
+    {
+      "path": "rise_baseline_position_dr2_3756/provenance.json",
+      "bytes": 3300,
+      "sha256": "9dcacaca8fb03a13521c2bcebb62716dc085beda4375b660b55729be71d5d279"
+    },
+    {
+      "path": "rise_baseline_position_dr2_3756/rise_baseline_position_dr2_3756.json",
+      "bytes": 4134,
+      "sha256": "582934b6667d6e3800352b20f36cb518ae553860edf1b0a7277ad942c25d9cac"
+    },
+    {
+      "path": "rise_baseline_position_dr2_3756/rise_baseline_position_dr2_3756.mdp",
+      "bytes": 791712,
+      "sha256": "07258841cde3ce213c35f944ce7c1004176e707a2e10167230b84dacff919c9c"
+    },
+    {
+      "path": "rise_baseline_position_dr2_3756/training-run.json",
+      "bytes": 82940,
+      "sha256": "2cc1429e3d0f4e8bfd11f4bd8605c7e044f00cdb1eeb0a94c425cc38b0479aa2"
+    },
+    {
+      "path": "rise_baseline_position_dr2_3756/validation.json",
+      "bytes": 408,
+      "sha256": "92c256e23ebfffb358f375cab38279335d5dd7e67f1c63893d9604bd19317fd9"
+    },
+    {
+      "path": "rise_baseline_position_dr2_4012/historical-training-evaluation.json",
+      "bytes": 4390,
+      "sha256": "c626b21f90add30fcbfd68ff307335d7d132b7df922c3c14ffa6975d9b4bbc4c"
+    },
+    {
+      "path": "rise_baseline_position_dr2_4012/policy.onnx",
+      "bytes": 794087,
+      "sha256": "648098eb2e64cec6d3c21ad601062bdb5ce4b655dc2d72deb5c72d9d2b334c6e"
+    },
+    {
+      "path": "rise_baseline_position_dr2_4012/provenance.json",
+      "bytes": 3290,
+      "sha256": "146ee8a925e429cdf98d76c562cbb54008ed5659a9c8d9871d480ca07e15d8e0"
+    },
+    {
+      "path": "rise_baseline_position_dr2_4012/rise_baseline_position_dr2_4012.json",
+      "bytes": 4134,
+      "sha256": "1e127e5152bc141e6fb997a3f73c9217475bc297775de7da9ceee76d74b2f339"
+    },
+    {
+      "path": "rise_baseline_position_dr2_4012/rise_baseline_position_dr2_4012.mdp",
+      "bytes": 791712,
+      "sha256": "20bc226f6f9a5f11329f52441a4fa9c946c4d78741ad3fb27f6cd7e619c87f5d"
+    },
+    {
+      "path": "rise_baseline_position_dr2_4012/training-run.json",
+      "bytes": 82989,
+      "sha256": "41782697d5a14f01f92d125f95dd863b471399b7bb18c4ae0f0ac26c04eaf4db"
+    },
+    {
+      "path": "rise_baseline_position_dr2_4012/validation.json",
+      "bytes": 407,
+      "sha256": "cd9b0bc8284cf86a93e5432ce03d9f5db24e79ba1876e75c7ee83f09eaf6f6e3"
+    },
+    {
+      "path": "rise_baseline_to_p04_4466/historical-training-evaluation.json",
+      "bytes": 5182,
+      "sha256": "c7bf28bd7e1e733b9083a585296a16b0ced99bba45958a559f8a9b06e1738151"
+    },
+    {
+      "path": "rise_baseline_to_p04_4466/policy.onnx",
+      "bytes": 797884,
+      "sha256": "5a6bad11b33f158a007d7abfab440848ecb6076dac64d7d2ef4f47fa94648205"
+    },
+    {
+      "path": "rise_baseline_to_p04_4466/provenance.json",
+      "bytes": 8053,
+      "sha256": "3253f1ee79360bc061123a7018f93720b6b050aee93de6611ce617c69c516123"
+    },
+    {
+      "path": "rise_baseline_to_p04_4466/rise_baseline_to_p04_4466.json",
+      "bytes": 8227,
+      "sha256": "6d400fd12da4a13be4a20ded795a933d1d1aa09f9dafa9133049f5e2da87d79d"
+    },
+    {
+      "path": "rise_baseline_to_p04_4466/rise_baseline_to_p04_4466.mdp",
+      "bytes": 791712,
+      "sha256": "f684729ec98523e7914bc580afb0c02bdfa2562f46eae1afab208cccc3d00e5b"
+    },
+    {
+      "path": "rise_baseline_to_p04_4466/training-run.json",
+      "bytes": 83871,
+      "sha256": "98c72bfea3aae5d69612492d74440a303d86698d1453b0095ae024ac0d413092"
+    },
+    {
+      "path": "rise_baseline_to_p04_4466/validation.json",
+      "bytes": 403,
+      "sha256": "f2d84199d64385fb93e6039272f7cea19f2d5a94acea5a8dd20f1882be151201"
+    },
+    {
+      "path": "rise_p04_micro1856/historical-training-evaluation.json",
+      "bytes": 9488,
+      "sha256": "81e945047645cd72117bcb93b3015e8aeaebce812820f4f45430d715a163cb12"
+    },
+    {
+      "path": "rise_p04_micro1856/policy.onnx",
+      "bytes": 797885,
+      "sha256": "4c3478c6efb1b908b8f556a18a63821332410115e8d9ffb6690c2c4bcfd63f01"
+    },
+    {
+      "path": "rise_p04_micro1856/provenance.json",
+      "bytes": 7158,
+      "sha256": "d0c975f3803cff0d3e3e43a547b4838768cef5fda6c751f0acc4668b00f4642c"
+    },
+    {
+      "path": "rise_p04_micro1856/rise_p04_micro1856.json",
+      "bytes": 8228,
+      "sha256": "d990f91797eb8838a4eeac319ea323d46ae0b00694d9aa9ae48f7bf70f8f9017"
+    },
+    {
+      "path": "rise_p04_micro1856/rise_p04_micro1856.mdp",
+      "bytes": 791712,
+      "sha256": "5d5d4feac4e5de7e9442ab7656f6db489d0d36073ae99f42b8796cf8e6c7614b"
+    },
+    {
+      "path": "rise_p04_micro1856/training-run.json",
+      "bytes": 82553,
+      "sha256": "326557dfde2c9797e5fe81583859ded4f5d39325d7494b19371a0f8acc5e82c4"
+    },
+    {
+      "path": "rise_p04_micro1856/validation.json",
+      "bytes": 395,
+      "sha256": "6f9491c5e5875a3f143484e861717a77799437aa3bac89b676e72f2f5d049b3f"
+    },
+    {
+      "path": "tools/contracts/v2-rise-candidates.json",
+      "bytes": 32393,
+      "sha256": "c07c192b38a7e9658725a07910f0665abf70c3f06684458ae33e379401380776"
+    },
+    {
+      "path": "tools/contracts/v2-walking-candidates.json",
+      "bytes": 12057,
+      "sha256": "110b36e231e8229fafdc417f5532ec10a982abef66eb07412ffe51f22e9838c2"
+    },
+    {
+      "path": "tools/convert_policy.py",
+      "bytes": 8426,
+      "sha256": "8b355e1589268f540c316efb62302f5272187c485d3b2ba3aff23ad89a5aa809"
+    },
+    {
+      "path": "tools/v2_contract.py",
+      "bytes": 5064,
+      "sha256": "f487f25796ce83758af405ec7fbc4aec09a612a37dd94bc8353d79c2276e277b"
+    },
+    {
+      "path": "verify_files.py",
+      "bytes": 1044,
+      "sha256": "ed8f18946781bb23aa28419141ccdf19db48755be215e6b07918e57712588309"
+    }
+  ]
+}

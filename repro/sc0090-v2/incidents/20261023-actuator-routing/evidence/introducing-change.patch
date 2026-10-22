@@ -1,0 +1,39 @@
+commit 8eafdcfcc594f658acdc0a1f5019c244319caed8
+Author: frank <xiefs@foxmail.com>
+Date:   Wed Oct 21 20:45:35 2026 +0800
+
+    Share one battery sag model across all fifteen V2 servos
+
+diff --git a/src/mjlab_microduck/custom_v2/sim2real.py b/src/mjlab_microduck/custom_v2/sim2real.py
+index 12824aa7..48fb0746 100644
+--- a/src/mjlab_microduck/custom_v2/sim2real.py
++++ b/src/mjlab_microduck/custom_v2/sim2real.py
+@@ -35,8 +35,9 @@ RANDOMIZATION_CONTRACT=dict(
+     encoder_bias_application='observation_plus_b;physical_target_clipped_action_minus_b',
+     head_com_bodies=list(HEAD_COM_BODIES),voltage_uniform_v=[10.2,12.4],
+     voltage_drop_gain_uniform_v_per_nm=[0.,.2],voltage_floor_v=9.,
+-    supply_sampling='startup_fixed_across_resets;shared_voltage_and_gain_across_groups',
+-    supply_load='sum_abs_previous_motor_torque_per_actuator_group',
++    supply_sampling='startup_fixed_across_resets;one_common_3s_bus',
++    supply_load='sum_abs_previous_motor_torque_of_all_15_servos',
++    supply_gain_basis='official_training_prior_not_identified_battery_resistance',
+     paired_error_retained=True,extra_joint_white_noise=False,
+     explicit_backlash=True,backlash_total_width_deg=2.,backlash_source='official_v8_training_assumption',
+     load_voltage_sag=True,terrain='plane',
+@@ -46,11 +47,13 @@ RANDOMIZATION_CONTRACT=dict(
+ def configure_randomization(cfg):
+     """Current V2 tasks only; retain historical baseline/P04 identities."""
+     robot=cfg.scene.entities['robot']
+-    robot.articulation.actuators=tuple(replace(a,command_transport_delay=True,
++    # One electrical group: the 3S battery directly supplies all 15 servos.
++    # Actions still address only the named 14 policy joints; mouth holds separately.
++    robot.articulation.actuators=(replace(robot.articulation.actuators[0],
++        target_names_expr=(*v2.POLICY_JOINTS,'mouth'),command_transport_delay=True,
+         delay_min_lag=2,delay_max_lag=5,delay_update_period=0,delay_hold_prob=0.,
+         randomized_supply=True,vin_range=(10.2,12.4),vin_drop_gain_range=(0.,.2),vin_min=9.,
+-        encoder_through_backlash=True)
+-        for a in robot.articulation.actuators)
++        encoder_through_backlash=True),)
+     cfg.events['randomize_head_com'].params['asset_cfg']=SceneEntityCfg(
+         'robot',body_names=HEAD_COM_BODIES)
+     cfg.events['randomize_joint_friction']=EventTermCfg(

@@ -1,0 +1,26 @@
+[
+  {
+    "model": "rise_p04_micro1856",
+    "source_sha256": "eecb4b8ec6a584ec4a218f46eaae354aeb35cc14452173d1d84c9f201afe504e",
+    "path": "src/mjlab_microduck/custom_v2/microduck_v2.py",
+    "actuator_groups_source": "cfg.scene.entities['robot'].articulation.actuators=(\n        SC0090V5ActuatorCfg(target_names_expr=(POLICY_PATTERN,),**kwargs),\n        SC0090V5ActuatorCfg(target_names_expr=('^mouth$',),**kwargs),\n    )\n    cfg.events['expand_bam_friction_fields']=EventTermCfg(\n        func=mdp.expand_bam_friction_",
+    "source_snapshot": "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-repro/repro/sc0090-v2/snapshots/rise_p04_micro1856.json",
+    "affected_by_this_specific_shared_group_bug": false
+  },
+  {
+    "model": "rise_baseline_to_p04_4466",
+    "source_sha256": "eecb4b8ec6a584ec4a218f46eaae354aeb35cc14452173d1d84c9f201afe504e",
+    "path": "src/mjlab_microduck/custom_v2/microduck_v2.py",
+    "actuator_groups_source": "cfg.scene.entities['robot'].articulation.actuators=(\n        SC0090V5ActuatorCfg(target_names_expr=(POLICY_PATTERN,),**kwargs),\n        SC0090V5ActuatorCfg(target_names_expr=('^mouth$',),**kwargs),\n    )\n    cfg.events['expand_bam_friction_fields']=EventTermCfg(\n        func=mdp.expand_bam_friction_",
+    "source_snapshot": "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-repro/repro/sc0090-v2/snapshots/rise_baseline_to_p04_4466.json",
+    "affected_by_this_specific_shared_group_bug": false
+  },
+  {
+    "model": "rise_baseline_paired3762",
+    "source_sha256": "8b4e53cae1a4a28cd848f856bbd5efc200f10c46a2c15f24d444533ca6929941",
+    "path": "src/mjlab_microduck/custom_v2/microduck_v2.py",
+    "actuator_groups_source": "cfg.scene.entities[\"robot\"].articulation.actuators = (\n        SC0090V5ActuatorCfg(target_names_expr=(POLICY_PATTERN,), **kwargs),\n        SC0090V5ActuatorCfg(target_names_expr=(\"^mouth$\",), **kwargs),\n    )\n    cfg.events[\"expand_bam_friction_fields\"] = EventTermCfg(\n        func=mdp.expand_bam_fri",
+    "source_snapshot": "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-repro/repro/sc0090-v2/snapshots/rise_baseline_paired3762.json",
+    "affected_by_this_specific_shared_group_bug": false
+  }
+]

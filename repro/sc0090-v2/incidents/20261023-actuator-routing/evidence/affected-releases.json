@@ -1,0 +1,34 @@
+[
+  {
+    "model": "rise-8040",
+    "package": "20261022-evening",
+    "shared_actuator_group_count": 1,
+    "sort_actuators": false,
+    "source_onnx_sha256": "80a89c5df7cce3ac9dedbce9870e8b0c6e3759c08fd386305c340c92b1e919cd",
+    "status": "WITHDRAWN_FOR_INCORRECT_SIMULATED_ACTUATOR_ROUTING"
+  },
+  {
+    "model": "walk-3400",
+    "package": "20261022-evening",
+    "shared_actuator_group_count": 1,
+    "sort_actuators": false,
+    "source_onnx_sha256": "397de6163e5c0a085176c9f0f94e506734b27aaae41db02b34813bd89db227e7",
+    "status": "WITHDRAWN_FOR_INCORRECT_SIMULATED_ACTUATOR_ROUTING"
+  },
+  {
+    "model": "rise-4000",
+    "package": "20261022-current",
+    "shared_actuator_group_count": 1,
+    "sort_actuators": false,
+    "source_onnx_sha256": "10ff80c41614aab1e255d10d06051ea8d4b1629d64c08388791f9fee656b268e",
+    "status": "WITHDRAWN_FOR_INCORRECT_SIMULATED_ACTUATOR_ROUTING"
+  },
+  {
+    "model": "walk-4600",
+    "package": "20261022-current",
+    "shared_actuator_group_count": 1,
+    "sort_actuators": false,
+    "source_onnx_sha256": "a9873fc0fb9da388849f6bcdce960778282bdda7bdf29c491545924362a204bc",
+    "status": "WITHDRAWN_FOR_INCORRECT_SIMULATED_ACTUATOR_ROUTING"
+  }
+]

@@ -1,0 +1,18 @@
+[mdp] Patches 1-2 active: finite PPO targets; true terminal takes precedence
+[mdp] Patch 4 active: ONNX export filters passive_* joints
+[mdp] Patch 5 active: MICRODUCK_WARM_START=1 restarts curricula after checkpoint load
+test_shared_bus_torques_reach_the_named_joints (test_sc0090_actuator_mapping.ActuatorMappingTest.test_shared_bus_torques_reach_the_named_joints) ... 
+  test_shared_bus_torques_reach_the_named_joints (test_sc0090_actuator_mapping.ActuatorMappingTest.test_shared_bus_torques_reach_the_named_joints) (task='Mjlab-StandUp-Flat-MicroDuck-V2-Sim2real-Baseline-20261021', sort_actuators=False) ... FAIL
+
+======================================================================
+FAIL: test_shared_bus_torques_reach_the_named_joints (test_sc0090_actuator_mapping.ActuatorMappingTest.test_shared_bus_torques_reach_the_named_joints) (task='Mjlab-StandUp-Flat-MicroDuck-V2-Sim2real-Baseline-20261021', sort_actuators=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-actuator-order/tests/test_sc0090_actuator_mapping.py", line 37, in test_shared_bus_torques_reach_the_named_joints
+    self.assertAlmostEqual(data.qfrc_actuator[dof], torque,
+AssertionError: np.float64(0.015) != 0.01 within 1e-12 delta (np.float64(0.004999999999999999) difference) : mouth
+
+----------------------------------------------------------------------
+Ran 1 test in 0.260s
+
+FAILED (failures=1)

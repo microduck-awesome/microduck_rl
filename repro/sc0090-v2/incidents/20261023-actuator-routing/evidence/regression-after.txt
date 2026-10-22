@@ -1,0 +1,9 @@
+[mdp] Patches 1-2 active: finite PPO targets; true terminal takes precedence
+[mdp] Patch 4 active: ONNX export filters passive_* joints
+[mdp] Patch 5 active: MICRODUCK_WARM_START=1 restarts curricula after checkpoint load
+test_shared_bus_torques_reach_the_named_joints (test_sc0090_actuator_mapping.ActuatorMappingTest.test_shared_bus_torques_reach_the_named_joints) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.550s
+
+OK

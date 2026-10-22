@@ -1,0 +1,204 @@
+{
+  "confirmed": true,
+  "new_physics_steps": 0,
+  "new_PPO_updates": 0,
+  "groups": [
+    {
+      "mode": "new_shared15",
+      "pairs": [
+        {
+          "computed_for": "left_hip_yaw",
+          "applied_to": "left_hip_yaw",
+          "actuator": "left_hip_yaw"
+        },
+        {
+          "computed_for": "left_hip_roll",
+          "applied_to": "left_hip_roll",
+          "actuator": "left_hip_roll"
+        },
+        {
+          "computed_for": "left_hip_pitch",
+          "applied_to": "left_hip_pitch",
+          "actuator": "left_hip_pitch"
+        },
+        {
+          "computed_for": "left_knee",
+          "applied_to": "left_knee",
+          "actuator": "left_knee"
+        },
+        {
+          "computed_for": "left_ankle",
+          "applied_to": "left_ankle",
+          "actuator": "left_ankle"
+        },
+        {
+          "computed_for": "neck_pitch",
+          "applied_to": "neck_pitch",
+          "actuator": "neck_pitch"
+        },
+        {
+          "computed_for": "head_pitch",
+          "applied_to": "head_pitch",
+          "actuator": "head_pitch"
+        },
+        {
+          "computed_for": "head_yaw",
+          "applied_to": "head_yaw",
+          "actuator": "head_yaw"
+        },
+        {
+          "computed_for": "head_roll",
+          "applied_to": "head_roll",
+          "actuator": "head_roll"
+        },
+        {
+          "computed_for": "mouth",
+          "applied_to": "right_hip_yaw",
+          "actuator": "right_hip_yaw"
+        },
+        {
+          "computed_for": "right_hip_yaw",
+          "applied_to": "right_hip_roll",
+          "actuator": "right_hip_roll"
+        },
+        {
+          "computed_for": "right_hip_roll",
+          "applied_to": "right_hip_pitch",
+          "actuator": "right_hip_pitch"
+        },
+        {
+          "computed_for": "right_hip_pitch",
+          "applied_to": "right_knee",
+          "actuator": "right_knee"
+        },
+        {
+          "computed_for": "right_knee",
+          "applied_to": "right_ankle",
+          "actuator": "right_ankle"
+        },
+        {
+          "computed_for": "right_ankle",
+          "applied_to": "mouth",
+          "actuator": "mouth"
+        }
+      ],
+      "mismatches": [
+        {
+          "computed_for": "mouth",
+          "applied_to": "right_hip_yaw",
+          "actuator": "right_hip_yaw"
+        },
+        {
+          "computed_for": "right_hip_yaw",
+          "applied_to": "right_hip_roll",
+          "actuator": "right_hip_roll"
+        },
+        {
+          "computed_for": "right_hip_roll",
+          "applied_to": "right_hip_pitch",
+          "actuator": "right_hip_pitch"
+        },
+        {
+          "computed_for": "right_hip_pitch",
+          "applied_to": "right_knee",
+          "actuator": "right_knee"
+        },
+        {
+          "computed_for": "right_knee",
+          "applied_to": "right_ankle",
+          "actuator": "right_ankle"
+        },
+        {
+          "computed_for": "right_ankle",
+          "applied_to": "mouth",
+          "actuator": "mouth"
+        }
+      ],
+      "new_simulation_steps": 0,
+      "new_training_updates": 0
+    },
+    {
+      "mode": "historical_split14and1",
+      "pairs": [
+        {
+          "computed_for": "left_hip_yaw",
+          "applied_to": "left_hip_yaw",
+          "actuator": "left_hip_yaw"
+        },
+        {
+          "computed_for": "left_hip_roll",
+          "applied_to": "left_hip_roll",
+          "actuator": "left_hip_roll"
+        },
+        {
+          "computed_for": "left_hip_pitch",
+          "applied_to": "left_hip_pitch",
+          "actuator": "left_hip_pitch"
+        },
+        {
+          "computed_for": "left_knee",
+          "applied_to": "left_knee",
+          "actuator": "left_knee"
+        },
+        {
+          "computed_for": "left_ankle",
+          "applied_to": "left_ankle",
+          "actuator": "left_ankle"
+        },
+        {
+          "computed_for": "neck_pitch",
+          "applied_to": "neck_pitch",
+          "actuator": "neck_pitch"
+        },
+        {
+          "computed_for": "head_pitch",
+          "applied_to": "head_pitch",
+          "actuator": "head_pitch"
+        },
+        {
+          "computed_for": "head_yaw",
+          "applied_to": "head_yaw",
+          "actuator": "head_yaw"
+        },
+        {
+          "computed_for": "head_roll",
+          "applied_to": "head_roll",
+          "actuator": "head_roll"
+        },
+        {
+          "computed_for": "right_hip_yaw",
+          "applied_to": "right_hip_yaw",
+          "actuator": "right_hip_yaw"
+        },
+        {
+          "computed_for": "right_hip_roll",
+          "applied_to": "right_hip_roll",
+          "actuator": "right_hip_roll"
+        },
+        {
+          "computed_for": "right_hip_pitch",
+          "applied_to": "right_hip_pitch",
+          "actuator": "right_hip_pitch"
+        },
+        {
+          "computed_for": "right_knee",
+          "applied_to": "right_knee",
+          "actuator": "right_knee"
+        },
+        {
+          "computed_for": "right_ankle",
+          "applied_to": "right_ankle",
+          "actuator": "right_ankle"
+        },
+        {
+          "computed_for": "mouth",
+          "applied_to": "mouth",
+          "actuator": "mouth"
+        }
+      ],
+      "mismatches": [],
+      "new_simulation_steps": 0,
+      "new_training_updates": 0
+    }
+  ]
+}

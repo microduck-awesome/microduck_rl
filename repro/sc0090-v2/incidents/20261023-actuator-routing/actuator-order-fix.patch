@@ -1,0 +1,70 @@
+diff --git a/src/mjlab_microduck/actuator/sc0090_v5.py b/src/mjlab_microduck/actuator/sc0090_v5.py
+index b280f322..926956ee 100644
+--- a/src/mjlab_microduck/actuator/sc0090_v5.py
++++ b/src/mjlab_microduck/actuator/sc0090_v5.py
+@@ -183,6 +183,12 @@ class SC0090V5Actuator(BamActuator):
+ 
+     def edit_spec(self, spec, target_names):
+         super().edit_spec(spec, target_names)
++        # BAM discovers existing motors in XML order, whereas compute(cmd)
++        # columns follow entity joint order. The V2 mouth precedes the right
++        # leg in joint order but is last in the XML actuator block. Align the
++        # control destinations without changing either physical joint order.
++        target_order = {name: i for i, name in enumerate(self.target_names)}
++        self._mjs_actuators.sort(key=lambda motor: target_order[motor.target])
+         for actuator in self._mjs_actuators:
+             actuator.ctrllimited = self.cfg.official_effort_clamps
+             actuator.forcelimited = self.cfg.official_effort_clamps
+@@ -194,6 +200,8 @@ class SC0090V5Actuator(BamActuator):
+                 actuator.forcerange = (-limit, limit)
+ 
+     def initialize(self, mj_model, model, data, device):
++        if [motor.target for motor in self._mjs_actuators] != list(self.target_names):
++            raise ValueError("SC0090 torque columns must match their named motor targets")
+         super().initialize(mj_model, model, data, device)
+         self.friction_scale = torch.ones_like(self.kp_scale)
+         self.default_friction_scale = self.friction_scale.clone()
+diff --git a/tests/test_sc0090_actuator_mapping.py b/tests/test_sc0090_actuator_mapping.py
+new file mode 100644
+index 00000000..ba989add
+--- /dev/null
++++ b/tests/test_sc0090_actuator_mapping.py
+@@ -0,0 +1,38 @@
++"""Check named motor torques at their actual MuJoCo joint destinations on CPU."""
++
++import mujoco
++import numpy as np
++import unittest
++import mjlab.tasks
++from mjlab.entity import Entity
++from mjlab.tasks.registry import load_env_cfg
++
++from mjlab_microduck.custom_v2.sim2real import RISE_TASK, WALK_TASK
++
++
++class ActuatorMappingTest(unittest.TestCase):
++    def test_shared_bus_torques_reach_the_named_joints(self):
++        for task in (RISE_TASK, WALK_TASK):
++            for sort_actuators in (False, True):
++                with self.subTest(task=task, sort_actuators=sort_actuators):
++                    cfg = load_env_cfg(task).scene.entities["robot"]
++                    cfg.sort_actuators = sort_actuators
++                    robot = Entity(cfg)
++                    model = robot.spec.compile()
++                    data = mujoco.MjData(model)
++                    expected = {}
++                    for group in robot.actuators:
++                        # compute(cmd) column order, independently of XML controls.
++                        for column, name in enumerate(group.target_names):
++                            expected[name] = (column + 1) * 0.001
++                        controls = np.array([expected[name] for name in group.target_names])
++                        control_ids = [motor.id for motor in group._mjs_actuators]
++                        data.ctrl[control_ids] = controls
++                    # Forward dynamics only: no integration, GPU, or rollout.
++                    mujoco.mj_forward(model, data)
++                    self.assertEqual(len(expected), 15)
++                    self.assertIn("mouth", expected)
++                    for name, torque in expected.items():
++                        dof = int(model.joint(name).dofadr[0])
++                        self.assertAlmostEqual(data.qfrc_actuator[dof], torque,
++                                               delta=1e-12, msg=name)

@@ -15,8 +15,8 @@
   "files": [
     {
       "path": "README.md",
-      "bytes": 5184,
-      "sha256": "2322635bf3cedd92ed8a53e72ccf973c96506c0fd368e6836e606fed5ca86f84"
+      "bytes": 5632,
+      "sha256": "eb75b017bce681164a7474de6610322c6f5561df5b0ae6e8a77c590226d2b12d"
     },
     {
       "path": "package_and_verify.py",
@@ -228,5 +228,12 @@
       "bytes": 791712,
       "sha256": "cd8f376fa160ad08b089b532ceaf5ba009666f4e6e1a320348bcd79eb42a3006"
     }
-  ]
+  ],
+  "withdrawal": {
+    "date": "2026-10-23",
+    "status": "WITHDRAWN_FOR_INCORRECT_SIMULATED_ACTUATOR_ROUTING",
+    "reason": "Shared fifteen-servo torque columns mapped mouth/right leg to different joints",
+    "incident": "../../incidents/20261023-actuator-routing/README.md",
+    "original_checkpoint_onnx_and_mdp_bytes_preserved": true
+  }
 }

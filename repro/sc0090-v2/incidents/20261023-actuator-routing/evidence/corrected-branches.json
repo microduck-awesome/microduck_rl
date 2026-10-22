@@ -1,0 +1,32 @@
+{
+  "status": "BOTH_SKILL_SOURCE_BRANCHES_FIXED",
+  "training_status": "PAUSED_BY_USER",
+  "new_formal_updates": 0,
+  "new_gpu_rollout_steps": 0,
+  "corrected_actuator_source_sha256": "4c61de8d25ed05e8dab80fbce099b4a70f8e55970730d24749d7057484948b00",
+  "branches": [
+    {
+      "skill": "walk",
+      "branch": "fix/v2-actuator-target-order-20261023",
+      "worktree": "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-actuator-order",
+      "source_base_commit": "9684bcb7",
+      "fix_commit": "37e3066e",
+      "cpu_mapping_cases": 4,
+      "cpu_result": "PASS"
+    },
+    {
+      "skill": "rise",
+      "branch": "fix/v2-rise-actuator-target-order-20261023",
+      "worktree": "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-rise-actuator-order",
+      "source_base_commit": "79a0977a",
+      "fix_commit": "5c953ad5",
+      "cpu_mapping_cases": 4,
+      "cpu_result": "PASS"
+    }
+  ],
+  "limitations": [
+    "CPU assembly and named joint torque mapping only; no post-fix learned skill claims",
+    "8040 and3400 remain withdrawn; existing weights are unchanged",
+    "Original training branches remain preserved; use corrected branches for any later authorized evaluation or training"
+  ]
+}

@@ -46,3 +46,7 @@ bash scripts/v2_python.sh -m unittest discover -s tests -p test_sc0090_actuator_
 证据：本目录的`evidence/`。只做了本缺陷必要回归，不重跑大规模资格或训练。后续如用户授权恢复，应先在正确映射的624.6g模型下检查可信旧策略，再决定重训/迁移；错误plant的checkpoint不能原样视为健康续训起点。当前保持暂停。
 
 本目录同时保留最小源码修复补丁及定向CPU回归。原训练分支保留；本地修复代码提交37e3066e、引入定位文档提交562dea42。尚未进行修复后策略评测或正式训练，不把修复前评分移植为修复后评分。
+
+## 起身与步行均已修复源码
+
+步行从暂停训练源码9684bcb7派生`fix/v2-actuator-target-order-20261023`（代码修复37e3066e）；起身从最新暂停源码79a0977a派生`fix/v2-rise-actuator-target-order-20261023`（代码修复5c953ad5）。两树SC0090驱动修复文件SHA一致，分别在对应源环境完成实际命名DOF的CPU力矩路由检查。源分支仍在本地，最小修复补丁已随本说明交付；没有重训或声称旧模型随代码修复自动可用。见[evidence/corrected-branches.json](evidence/corrected-branches.json)。

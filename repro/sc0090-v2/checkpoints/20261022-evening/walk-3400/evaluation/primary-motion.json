@@ -1,0 +1,183 @@
+{
+  "training_phase": "random075_transport050",
+  "common_step_counter": 81600,
+  "recipe_sha256": "8afdc9918fcc4b98256695395e44b6d43de1e20acb4d55e9364b348f422147fb",
+  "checkpoint_sha256": "d089c2813a47d8bff63a3c624d704bcffcb12cf107d1c06d058001f48412d8c9",
+  "seeds": [
+    2026102102,
+    2026102103
+  ],
+  "sufficient_coverage": true,
+  "motion_mastered": false,
+  "phase_criterion": "user_20261022_hip_yaw_clearance",
+  "phase_ready": false,
+  "basic_survival_pass": true,
+  "minimum_survival_fraction": 0.99,
+  "sustained_yaw_parking": false,
+  "sustained_idle_roll_parking": false,
+  "role": "user accepts current motion metrics; hip yaw clearance gates next physics phase; full skill remains separate",
+  "cases": [
+    {
+      "seed": 2026102102,
+      "groups": {
+        "idle": {
+          "trials": 2720,
+          "wins": 2462
+        },
+        "straight": {
+          "trials": 384,
+          "wins": 68
+        },
+        "low": {
+          "trials": 384,
+          "wins": 73
+        },
+        "turn_negative": {
+          "trials": 192,
+          "wins": 78
+        },
+        "turn_positive": {
+          "trials": 192,
+          "wins": 84
+        },
+        "lateral": {
+          "trials": 384,
+          "wins": 3
+        },
+        "curve": {
+          "trials": 256,
+          "wins": 49
+        }
+      },
+      "hip_yaw_clearance": {
+        "criterion": "user_20261022_hip_yaw_clearance",
+        "joint_names": [
+          "left_hip_yaw",
+          "right_hip_yaw"
+        ],
+        "worlds": 928,
+        "inspected_command_segments": 4509,
+        "finite_physics": true,
+        "near_limit_margin_rad": 0.03,
+        "allowed_near_fraction": 0.05,
+        "maximum_near_fraction_per_joint": [
+          0.022857142612338066,
+          0.01744186133146286
+        ],
+        "raw_including_unhealthy_maximum_near_fraction_per_joint": [
+          1.0,
+          0.017142856493592262
+        ],
+        "maximum_continuous_hard_stop_s_per_joint": [
+          0.03999999910593033,
+          0.03999999910593033
+        ],
+        "hard_stop_distance_rad": 0.001,
+        "sustained_parking": false,
+        "clearance_pass": true,
+        "scope": "maximum per world and actual command segment over shared healthy physical states; first0.5s excluded; falls remain separate failures"
+      },
+      "hip_roll_parking": {
+        "joint_names": [
+          "left_hip_roll",
+          "right_hip_roll"
+        ],
+        "worlds": 928,
+        "finite_physics": true,
+        "near_limit_margin_rad": 0.03,
+        "maximum_allowed_hold_s": 1.0,
+        "maximum_continuous_idle_near_stop_s_per_joint": [
+          0.03999999910593033,
+          0.03999999910593033
+        ],
+        "sustained_idle_parking": false,
+        "scope": "healthy zero-command frames after0.5s request age; moving gait and fallen poses excluded"
+      },
+      "survival": {
+        "trials": 928,
+        "never_fell": 927
+      }
+    },
+    {
+      "seed": 2026102103,
+      "groups": {
+        "idle": {
+          "trials": 2720,
+          "wins": 2455
+        },
+        "straight": {
+          "trials": 384,
+          "wins": 71
+        },
+        "low": {
+          "trials": 384,
+          "wins": 90
+        },
+        "turn_negative": {
+          "trials": 192,
+          "wins": 76
+        },
+        "turn_positive": {
+          "trials": 192,
+          "wins": 80
+        },
+        "lateral": {
+          "trials": 384,
+          "wins": 1
+        },
+        "curve": {
+          "trials": 256,
+          "wins": 43
+        }
+      },
+      "hip_yaw_clearance": {
+        "criterion": "user_20261022_hip_yaw_clearance",
+        "joint_names": [
+          "left_hip_yaw",
+          "right_hip_yaw"
+        ],
+        "worlds": 928,
+        "inspected_command_segments": 4508,
+        "finite_physics": true,
+        "near_limit_margin_rad": 0.03,
+        "allowed_near_fraction": 0.05,
+        "maximum_near_fraction_per_joint": [
+          0.08620689809322357,
+          0.022857142612338066
+        ],
+        "raw_including_unhealthy_maximum_near_fraction_per_joint": [
+          1.0,
+          1.0
+        ],
+        "maximum_continuous_hard_stop_s_per_joint": [
+          0.019999999552965164,
+          0.07999999821186066
+        ],
+        "hard_stop_distance_rad": 0.001,
+        "sustained_parking": false,
+        "clearance_pass": false,
+        "scope": "maximum per world and actual command segment over shared healthy physical states; first0.5s excluded; falls remain separate failures"
+      },
+      "hip_roll_parking": {
+        "joint_names": [
+          "left_hip_roll",
+          "right_hip_roll"
+        ],
+        "worlds": 928,
+        "finite_physics": true,
+        "near_limit_margin_rad": 0.03,
+        "maximum_allowed_hold_s": 1.0,
+        "maximum_continuous_idle_near_stop_s_per_joint": [
+          0.0,
+          0.09999999403953552
+        ],
+        "sustained_idle_parking": false,
+        "scope": "healthy zero-command frames after0.5s request age; moving gait and fallen poses excluded"
+      },
+      "survival": {
+        "trials": 928,
+        "never_fell": 927
+      }
+    }
+  ]
+}

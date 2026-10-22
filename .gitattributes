@@ -8,3 +8,7 @@ repro/sc0090-v2/history/** -text -diff linguist-generated=true
 repro/sc0090-v2/checkpoints/20261022-current/** -text
 repro/sc0090-v2/checkpoints/20261022-current/**/evaluation/** -diff linguist-generated=true
 repro/sc0090-v2/checkpoints/20261022-rise-comparison/** -text
+
+# Immutable latest-completed8040/3400 experiment objects.
+repro/sc0090-v2/checkpoints/20261022-evening/** -text
+repro/sc0090-v2/checkpoints/20261022-evening/**/evaluation/** -diff linguist-generated=true

@@ -1,0 +1,134 @@
+[
+  {
+    "protocol": "walking",
+    "seed": 2026102102,
+    "trials": 928,
+    "qualified": 0,
+    "never_fell": 927,
+    "body_stable_tail": 927,
+    "quiet_stop_tail": 732,
+    "head_tail_pass": 0,
+    "self_contact": 10,
+    "hip_yaw_clearance": {
+      "criterion": "user_20261022_hip_yaw_clearance",
+      "joint_names": [
+        "left_hip_yaw",
+        "right_hip_yaw"
+      ],
+      "worlds": 928,
+      "inspected_command_segments": 4509,
+      "finite_physics": true,
+      "near_limit_margin_rad": 0.03,
+      "allowed_near_fraction": 0.05,
+      "maximum_near_fraction_per_joint": [
+        0.022857142612338066,
+        0.01744186133146286
+      ],
+      "raw_including_unhealthy_maximum_near_fraction_per_joint": [
+        1.0,
+        0.017142856493592262
+      ],
+      "maximum_continuous_hard_stop_s_per_joint": [
+        0.03999999910593033,
+        0.03999999910593033
+      ],
+      "hard_stop_distance_rad": 0.001,
+      "sustained_parking": false,
+      "clearance_pass": true,
+      "scope": "maximum per world and actual command segment over shared healthy physical states; first0.5s excluded; falls remain separate failures"
+    },
+    "hip_roll_parking": {
+      "joint_names": [
+        "left_hip_roll",
+        "right_hip_roll"
+      ],
+      "worlds": 928,
+      "finite_physics": true,
+      "near_limit_margin_rad": 0.03,
+      "maximum_allowed_hold_s": 1.0,
+      "maximum_continuous_idle_near_stop_s_per_joint": [
+        0.03999999910593033,
+        0.03999999910593033
+      ],
+      "sustained_idle_parking": false,
+      "scope": "healthy zero-command frames after0.5s request age; moving gait and fallen poses excluded"
+    }
+  },
+  {
+    "protocol": "walking",
+    "seed": 2026102103,
+    "trials": 928,
+    "qualified": 0,
+    "never_fell": 927,
+    "body_stable_tail": 926,
+    "quiet_stop_tail": 727,
+    "head_tail_pass": 0,
+    "self_contact": 8,
+    "hip_yaw_clearance": {
+      "criterion": "user_20261022_hip_yaw_clearance",
+      "joint_names": [
+        "left_hip_yaw",
+        "right_hip_yaw"
+      ],
+      "worlds": 928,
+      "inspected_command_segments": 4508,
+      "finite_physics": true,
+      "near_limit_margin_rad": 0.03,
+      "allowed_near_fraction": 0.05,
+      "maximum_near_fraction_per_joint": [
+        0.08620689809322357,
+        0.022857142612338066
+      ],
+      "raw_including_unhealthy_maximum_near_fraction_per_joint": [
+        1.0,
+        1.0
+      ],
+      "maximum_continuous_hard_stop_s_per_joint": [
+        0.019999999552965164,
+        0.07999999821186066
+      ],
+      "hard_stop_distance_rad": 0.001,
+      "sustained_parking": false,
+      "clearance_pass": false,
+      "scope": "maximum per world and actual command segment over shared healthy physical states; first0.5s excluded; falls remain separate failures"
+    },
+    "hip_roll_parking": {
+      "joint_names": [
+        "left_hip_roll",
+        "right_hip_roll"
+      ],
+      "worlds": 928,
+      "finite_physics": true,
+      "near_limit_margin_rad": 0.03,
+      "maximum_allowed_hold_s": 1.0,
+      "maximum_continuous_idle_near_stop_s_per_joint": [
+        0.0,
+        0.09999999403953552
+      ],
+      "sustained_idle_parking": false,
+      "scope": "healthy zero-command frames after0.5s request age; moving gait and fallen poses excluded"
+    }
+  },
+  {
+    "protocol": "straight",
+    "seed": 2026102102,
+    "trials": 256,
+    "qualified": 0,
+    "never_fell": 256,
+    "body_stable_tail": 255,
+    "quiet_stop_tail": 183,
+    "head_tail_pass": 0,
+    "self_contact": 2,
+    "hip_yaw_clearance": null,
+    "hip_roll_parking": null
+  },
+  {
+    "protocol": "full-walking",
+    "seed": 2026102102,
+    "trials": 928,
+    "qualified": 0,
+    "never_fell": 274,
+    "evaluation_profile": "full",
+    "role": "shadow diagnostic; not phase graduation"
+  }
+]

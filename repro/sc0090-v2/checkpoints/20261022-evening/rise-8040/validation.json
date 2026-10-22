@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "checkpoint_and_onnx_weights_and_normalizer_exact": true,
+  "cpu_inputs": 771,
+  "cpu_onnx_max_absolute_error": 1.1444091796875e-05,
+  "normalizer_epsilon": 0.01,
+  "fp32_mdp_payload_exact": true,
+  "crc_and_source_sha_verified": true,
+  "mdp_header_version": 2,
+  "deployment_runtime": "microduck-v2-sc0090-native-o0-rise-v1",
+  "policy_runtime_id_hex": "0x834335F5",
+  "candidate_metadata_guard_verified": true,
+  "source_archive_recipe_sha_verified": true,
+  "hardware_tested": false,
+  "new_GPU_simulation": false
+}

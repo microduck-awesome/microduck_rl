@@ -1,0 +1,232 @@
+{
+  "schema": 1,
+  "as_of_utc": "2026-10-22T15:36:33Z",
+  "purpose": "User requested latest completed rise/walk for on-robot observation; not full simulation or hardware acceptance",
+  "models": [
+    {
+      "directory": "rise-8040",
+      "completed_updates": 8040
+    },
+    {
+      "directory": "walk-3400",
+      "completed_updates": 3400
+    }
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 5184,
+      "sha256": "2322635bf3cedd92ed8a53e72ccf973c96506c0fd368e6836e606fed5ca86f84"
+    },
+    {
+      "path": "package_and_verify.py",
+      "bytes": 13342,
+      "sha256": "c221633f4451c415dd6b13070e421efbd8a90657c14335981beb89746d68c5a2"
+    },
+    {
+      "path": "rise-8040/checkpoint-info.json",
+      "bytes": 112219,
+      "sha256": "3a42f9c16c751154ab9e61a15b1f55213fdd6f6733f840c285129aeb3f9139fd"
+    },
+    {
+      "path": "rise-8040/checkpoint.pt",
+      "bytes": 4879923,
+      "sha256": "f5bbb07b2c39aea596ec44c82da9abf28f3daacb67bb3c06dc413d973f94a0fd"
+    },
+    {
+      "path": "rise-8040/converter.json",
+      "bytes": 7573,
+      "sha256": "16bb09bfa6c2c10a37c0e0bf4631a3778f2a60ae2df1190c7cdb080fd8ff83a9"
+    },
+    {
+      "path": "rise-8040/evaluation/four_way_push.json",
+      "bytes": 1193652,
+      "sha256": "e765615b82c01407eb0887c862f787304157e962f70392c655a7f4ea0f0afbff"
+    },
+    {
+      "path": "rise-8040/evaluation/head.json",
+      "bytes": 3768183,
+      "sha256": "e42f6b9db4e15c68fc9ee2911a970ddee471909bd3066fac64bc9de197c57d70"
+    },
+    {
+      "path": "rise-8040/evaluation/recovery.json",
+      "bytes": 6189,
+      "sha256": "739c8872f5846f644cd5e0542655e89f41982cc7fcdfcc9e27f283194c713d63"
+    },
+    {
+      "path": "rise-8040/evaluation/tilt.json",
+      "bytes": 1476092,
+      "sha256": "bd31e092e53e6ae724c303fae584daad29804f506f4e6599ac37c19705ae2f14"
+    },
+    {
+      "path": "rise-8040/evaluation-summary.json",
+      "bytes": 873,
+      "sha256": "04e13b8219a9bff2dd856711a17139a5b716ab9d66d41a137ed72f58ec830404"
+    },
+    {
+      "path": "rise-8040/onnx-metadata.json",
+      "bytes": 4520,
+      "sha256": "f3906e190238916e495ced72b0aa52918df915f74b09f5b14c2fff46061a8892"
+    },
+    {
+      "path": "rise-8040/policy.onnx",
+      "bytes": 797270,
+      "sha256": "80a89c5df7cce3ac9dedbce9870e8b0c6e3759c08fd386305c340c92b1e919cd"
+    },
+    {
+      "path": "rise-8040/rise-8040.json",
+      "bytes": 7573,
+      "sha256": "16bb09bfa6c2c10a37c0e0bf4631a3778f2a60ae2df1190c7cdb080fd8ff83a9"
+    },
+    {
+      "path": "rise-8040/rise-8040.mdp",
+      "bytes": 791712,
+      "sha256": "383754fb9c0837020937b7fafb8fe8c0d0d82180d7e9e193ed44d476c897358c"
+    },
+    {
+      "path": "rise-8040/runtime-contract.json",
+      "bytes": 9245,
+      "sha256": "673a1d06bc7dbb5bc256d6a86aa8d0889975380c3cda50c3fd3c26b3028399ce"
+    },
+    {
+      "path": "rise-8040/source-info.json",
+      "bytes": 5440,
+      "sha256": "b6c47a6c485637a0a224d2608138eaf5c2c8a57777ec0806a9e50fcac394c630"
+    },
+    {
+      "path": "rise-8040/training-allocation.json",
+      "bytes": 86416,
+      "sha256": "bddaef4dac7b66ae8688ebfd5d8c7a1bfb05fc6b5b06ef10e27d8b951932c137"
+    },
+    {
+      "path": "rise-8040/training-code.tar.gz",
+      "bytes": 517006,
+      "sha256": "813fd70c5e9ac0d7a6185c90a3a80b23e29564af645a642fe9931f689590bf73"
+    },
+    {
+      "path": "rise-8040/validation.json",
+      "bytes": 544,
+      "sha256": "74c5c20f7885b9f7cbc334fe3b3b474ebe9920263a4d35eac4cb5d4848c734be"
+    },
+    {
+      "path": "rise-8040/verification-observations.npy",
+      "bytes": 125056,
+      "sha256": "6bc72a28b11391bf86abc5189011038218df10c582f14b82ca1780ab02402045"
+    },
+    {
+      "path": "tools/contracts/v2-rise-candidates.json",
+      "bytes": 6549,
+      "sha256": "b725e284b0375094e537df501b9dd55b47a44e13903b9ee2c55069578d387559"
+    },
+    {
+      "path": "tools/contracts/v2-walking-candidates.json",
+      "bytes": 6474,
+      "sha256": "165d2b5368f854437e55ecaa19646884369e33a25c909b3a9dd472ff87bef0ce"
+    },
+    {
+      "path": "tools/convert_policy.py",
+      "bytes": 8426,
+      "sha256": "8b355e1589268f540c316efb62302f5272187c485d3b2ba3aff23ad89a5aa809"
+    },
+    {
+      "path": "tools/v2_contract.py",
+      "bytes": 5064,
+      "sha256": "f487f25796ce83758af405ec7fbc4aec09a612a37dd94bc8353d79c2276e277b"
+    },
+    {
+      "path": "walk-3400/checkpoint-info.json",
+      "bytes": 131636,
+      "sha256": "47838e02176a61c69f760e61e8c7abcf30228d58e7cbd4271e1e9d444a49c606"
+    },
+    {
+      "path": "walk-3400/checkpoint.pt",
+      "bytes": 4904703,
+      "sha256": "d089c2813a47d8bff63a3c624d704bcffcb12cf107d1c06d058001f48412d8c9"
+    },
+    {
+      "path": "walk-3400/converter.json",
+      "bytes": 7479,
+      "sha256": "38f956579c5d15ad9ad0c59041a19c447ef851a9d8e149118c2fff54cefb3a6e"
+    },
+    {
+      "path": "walk-3400/evaluation/full-walking.json",
+      "bytes": 8177802,
+      "sha256": "e0c8722231df7e071111b2c4bf4985c9d11c8e5723007e6b1b1441530b21e224"
+    },
+    {
+      "path": "walk-3400/evaluation/primary-motion.json",
+      "bytes": 5145,
+      "sha256": "d1190cc2424653e10dff597264ed58a996ce1ed1e3dafbd3783d277348802d76"
+    },
+    {
+      "path": "walk-3400/evaluation/straight.json",
+      "bytes": 1380604,
+      "sha256": "c2e99d8796b2088a60b2e4df81d35bb43fc40399debaa9f21b3c78999ab409cf"
+    },
+    {
+      "path": "walk-3400/evaluation/walking-seed2026102103.json",
+      "bytes": 8159726,
+      "sha256": "4dfbff850e2721f18c53a7b5f7c4e2fcf32eceb2ff969467af89feb3cf3fb60c"
+    },
+    {
+      "path": "walk-3400/evaluation/walking.json",
+      "bytes": 8158031,
+      "sha256": "e52615e184da3edec5abc0188fff492f5a0264d5cc4ff99c37aab9b127bef1ce"
+    },
+    {
+      "path": "walk-3400/evaluation-summary.json",
+      "bytes": 3812,
+      "sha256": "2de1efc033376bd6afe67042c133e6141b61bd768690f0969c28d557367fbf24"
+    },
+    {
+      "path": "walk-3400/onnx-metadata.json",
+      "bytes": 4607,
+      "sha256": "fa320d75bde1d27620f8a8320f88aebea00288da2965d8aac3aa148dbf5efba4"
+    },
+    {
+      "path": "walk-3400/policy.onnx",
+      "bytes": 797357,
+      "sha256": "397de6163e5c0a085176c9f0f94e506734b27aaae41db02b34813bd89db227e7"
+    },
+    {
+      "path": "walk-3400/runtime-contract.json",
+      "bytes": 9174,
+      "sha256": "ba076cf4743a29a805f5a6bb12065cad437ecab83fed317ad9f4a51151c28d94"
+    },
+    {
+      "path": "walk-3400/source-info.json",
+      "bytes": 6707,
+      "sha256": "44c963714e77ee1753dc0c8ad6a945f06fc285589e598e8ca9a67339cc0cb996"
+    },
+    {
+      "path": "walk-3400/training-allocation.json",
+      "bytes": 85663,
+      "sha256": "b0afe4be839e3ecaeed4d704a4bcbddff34ddabad4985bd7f395fb796002e829"
+    },
+    {
+      "path": "walk-3400/training-code.tar.gz",
+      "bytes": 665859,
+      "sha256": "f9e5e0972e9a7a03a48a13a57b79a83462272362728791dbe07d56d1c12907de"
+    },
+    {
+      "path": "walk-3400/validation.json",
+      "bytes": 545,
+      "sha256": "47db82ec9f7c30dfa3e6bf913cfbc3364e8252d645416340e16d0c757d41ce9c"
+    },
+    {
+      "path": "walk-3400/verification-observations.npy",
+      "bytes": 125056,
+      "sha256": "392b1a0368a71c8759be730d3aeb500a4705afb725528d472afc7740d7d39ad6"
+    },
+    {
+      "path": "walk-3400/walk-3400.json",
+      "bytes": 7479,
+      "sha256": "38f956579c5d15ad9ad0c59041a19c447ef851a9d8e149118c2fff54cefb3a6e"
+    },
+    {
+      "path": "walk-3400/walk-3400.mdp",
+      "bytes": 791712,
+      "sha256": "cd8f376fa160ad08b089b532ceaf5ba009666f4e6e1a320348bcd79eb42a3006"
+    }
+  ]
+}

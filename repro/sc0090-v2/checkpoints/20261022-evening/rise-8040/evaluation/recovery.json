@@ -1,0 +1,238 @@
+{
+  "report": {
+    "schema": 2,
+    "evaluation_profile": "training",
+    "training_phase": "robust",
+    "promotion_eligible": true,
+    "checkpoint_sha256": "f5bbb07b2c39aea596ec44c82da9abf28f3daacb67bb3c06dc413d973f94a0fd",
+    "config_sha256": "36558e2b8b20d8974a395f047205f5afe602b245ab153f2811584722f1de97df",
+    "iteration": 8040,
+    "stage": 10,
+    "discovery": false,
+    "seeds": [
+      2026102102,
+      2026102103
+    ],
+    "samples_per_group": 128,
+    "duration_s": 8.0,
+    "deterministic": true,
+    "cases": [
+      {
+        "seed": 2026102102,
+        "finite": true,
+        "groups": {
+          "standing": {
+            "trials": 128,
+            "wins": 128,
+            "arrival_by_3s": 128,
+            "first_broad_hold_median_s": 0.8399999737739563,
+            "first_broad_hold_p90_s": 1.100000023841858
+          },
+          "sitting": {
+            "trials": 128,
+            "wins": 128,
+            "arrival_by_3s": 128,
+            "first_broad_hold_median_s": 1.7599999904632568,
+            "first_broad_hold_p90_s": 2.1579997539520264
+          },
+          "prone": {
+            "trials": 128,
+            "wins": 128,
+            "arrival_by_3s": 128,
+            "first_broad_hold_median_s": 1.3399999141693115,
+            "first_broad_hold_p90_s": 1.6059998273849487
+          },
+          "frontier": {
+            "trials": 128,
+            "wins": 128,
+            "arrival_by_3s": 128,
+            "first_broad_hold_median_s": 1.5399999618530273,
+            "first_broad_hold_p90_s": 1.8519997596740723
+          },
+          "left_side": {
+            "trials": 128,
+            "wins": 128,
+            "arrival_by_3s": 128,
+            "first_broad_hold_median_s": 1.2799999713897705,
+            "first_broad_hold_p90_s": 1.625999927520752
+          },
+          "right_side": {
+            "trials": 128,
+            "wins": 128,
+            "arrival_by_3s": 125,
+            "first_broad_hold_median_s": 1.659999966621399,
+            "first_broad_hold_p90_s": 2.2659997940063477
+          },
+          "supine": {
+            "trials": 128,
+            "wins": 128,
+            "arrival_by_3s": 128,
+            "first_broad_hold_median_s": 1.5399999618530273,
+            "first_broad_hold_p90_s": 1.8059998750686646
+          }
+        },
+        "frontier_directions": {
+          "negative": {
+            "trials": 64,
+            "wins": 64
+          },
+          "positive": {
+            "trials": 64,
+            "wins": 64
+          }
+        },
+        "head_tail_mae_rad": null,
+        "training_reference_factor": 2.0,
+        "com_range": [
+          -0.015,
+          0.015
+        ]
+      },
+      {
+        "seed": 2026102103,
+        "finite": true,
+        "groups": {
+          "standing": {
+            "trials": 128,
+            "wins": 127,
+            "arrival_by_3s": 128,
+            "first_broad_hold_median_s": 0.8799999952316284,
+            "first_broad_hold_p90_s": 1.125999927520752
+          },
+          "sitting": {
+            "trials": 128,
+            "wins": 128,
+            "arrival_by_3s": 127,
+            "first_broad_hold_median_s": 1.6999999284744263,
+            "first_broad_hold_p90_s": 2.111999750137329
+          },
+          "prone": {
+            "trials": 128,
+            "wins": 128,
+            "arrival_by_3s": 128,
+            "first_broad_hold_median_s": 1.3399999141693115,
+            "first_broad_hold_p90_s": 1.7400000095367432
+          },
+          "frontier": {
+            "trials": 128,
+            "wins": 128,
+            "arrival_by_3s": 127,
+            "first_broad_hold_median_s": 1.5399999618530273,
+            "first_broad_hold_p90_s": 1.8919998407363892
+          },
+          "left_side": {
+            "trials": 128,
+            "wins": 128,
+            "arrival_by_3s": 128,
+            "first_broad_hold_median_s": 1.2599999904632568,
+            "first_broad_hold_p90_s": 1.5459998846054077
+          },
+          "right_side": {
+            "trials": 128,
+            "wins": 128,
+            "arrival_by_3s": 125,
+            "first_broad_hold_median_s": 1.6399999856948853,
+            "first_broad_hold_p90_s": 2.1459996700286865
+          },
+          "supine": {
+            "trials": 128,
+            "wins": 128,
+            "arrival_by_3s": 128,
+            "first_broad_hold_median_s": 1.5199999809265137,
+            "first_broad_hold_p90_s": 1.8859999179840088
+          }
+        },
+        "frontier_directions": {
+          "negative": {
+            "trials": 64,
+            "wins": 64
+          },
+          "positive": {
+            "trials": 64,
+            "wins": 64
+          }
+        },
+        "head_tail_mae_rad": null,
+        "training_reference_factor": 2.0,
+        "com_range": [
+          -0.015,
+          0.015
+        ]
+      }
+    ]
+  },
+  "decision": {
+    "last_iteration": 8040,
+    "last_promotion_reference_step": 230400.0,
+    "evaluated_stage": 10,
+    "stage_after": 10,
+    "discovery": false,
+    "discovery_graduated": false,
+    "promoted": false,
+    "polish": true,
+    "checkpoint_sha256": "f5bbb07b2c39aea596ec44c82da9abf28f3daacb67bb3c06dc413d973f94a0fd",
+    "counts": {
+      "standing": [
+        256,
+        255
+      ],
+      "sitting": [
+        256,
+        256
+      ],
+      "prone": [
+        256,
+        256
+      ],
+      "frontier": [
+        256,
+        256
+      ],
+      "left_side": [
+        256,
+        256
+      ],
+      "right_side": [
+        256,
+        256
+      ],
+      "supine": [
+        256,
+        256
+      ]
+    },
+    "rates_per_seed": [
+      {
+        "standing": 1.0,
+        "sitting": 1.0,
+        "prone": 1.0,
+        "frontier": 1.0,
+        "left_side": 1.0,
+        "right_side": 1.0,
+        "supine": 1.0
+      },
+      {
+        "standing": 0.9921875,
+        "sitting": 1.0,
+        "prone": 1.0,
+        "frontier": 1.0,
+        "left_side": 1.0,
+        "right_side": 1.0,
+        "supine": 1.0
+      }
+    ],
+    "direction_rates_per_seed": [
+      [
+        1.0,
+        1.0
+      ],
+      [
+        1.0,
+        1.0
+      ]
+    ],
+    "sufficient_coverage": true,
+    "motion_mastered": true,
+    "training_phase": "robust"
+  }
+}

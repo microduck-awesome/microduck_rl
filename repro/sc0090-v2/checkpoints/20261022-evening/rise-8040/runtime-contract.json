@@ -1,0 +1,353 @@
+{
+  "model_id": "v2_sim2real_rise_8040_20261022_evening",
+  "observation_dim": 61,
+  "action_dim": 14,
+  "policy_hz": 50,
+  "normalizer_included": true,
+  "normalize_again": false,
+  "joint_names": [
+    "left_hip_yaw",
+    "left_hip_roll",
+    "left_hip_pitch",
+    "left_knee",
+    "left_ankle",
+    "neck_pitch",
+    "head_pitch",
+    "head_yaw",
+    "head_roll",
+    "right_hip_yaw",
+    "right_hip_roll",
+    "right_hip_pitch",
+    "right_knee",
+    "right_ankle"
+  ],
+  "home_rad": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "action_scale": 1.0,
+  "action_semantics": "continuous CAD-radian target; apply existing V2 per-joint device target bounds; no P04 native-count policy semantics",
+  "observation_layout": [
+    "gyro_body_xyz:0:3",
+    "projected_gravity:3:6",
+    "joint_position_HOME_relative:6:20",
+    "joint_velocity:20:34",
+    "previous_raw_policy_action:34:48",
+    "twist_vx_vy_yaw_rate:48:51",
+    "head_neckpitch_pitch_yaw_roll:51:55",
+    "body_pose:55:61"
+  ],
+  "mouth": "excluded; independent hold",
+  "training_action_ema": false,
+  "operating_point": "SC0090 P15/D30/I0; training v5 derivative_seconds=0",
+  "robot_mass_kg": 0.6246,
+  "hardware_tested": false,
+  "simulation_acceptance_passed": false,
+  "metadata_corrections": {
+    "microduck_motor_operating_point": "Legacy short ONNX metadata says0..0.2V/Nm; actual training uses shared bus resistance0.05..0.15ohm and PWM-weighted current. See checkpoint randomization_contract."
+  },
+  "observation_term_scales": {
+    "base_ang_vel": null,
+    "projected_gravity": null,
+    "joint_pos": null,
+    "joint_vel": null,
+    "actions": null,
+    "command": null,
+    "head_command": null,
+    "body_command": null
+  },
+  "action_target_clip_by_joint": {
+    "left_hip_yaw": [
+      -2.7229609548213767,
+      2.5773771910981367
+    ],
+    "left_hip_roll": [
+      -2.73913709203822,
+      2.5612010538812933
+    ],
+    "left_hip_pitch": [
+      -2.7913334437370834,
+      2.50900470218243
+    ],
+    "left_knee": [
+      -2.130968381648421,
+      3.1693697642710923
+    ],
+    "left_ankle": [
+      -3.1812812710467653,
+      2.119056874872748
+    ],
+    "neck_pitch": [
+      -0.844470162356913,
+      4.455867983562601
+    ],
+    "head_pitch": [
+      -3.1402194509030266,
+      2.160118695016487
+    ],
+    "head_yaw": [
+      -2.652865221660571,
+      2.647472924258942
+    ],
+    "head_roll": [
+      -2.696000943906222,
+      2.604337202013292
+    ],
+    "right_hip_yaw": [
+      -0.9921284186192604,
+      4.308209727300253
+    ],
+    "right_hip_roll": [
+      -2.8415851335158098,
+      2.4587530124037036
+    ],
+    "right_hip_pitch": [
+      -2.591829396848033,
+      2.7085087490714805
+    ],
+    "right_knee": [
+      -2.3628246061865057,
+      2.9375135397330077
+    ],
+    "right_ankle": [
+      -2.9494250465086806,
+      2.3509130994108327
+    ]
+  },
+  "training_runtime_family": "microduck-v2-sc0090-official-baseline-v1",
+  "deployment_runtime_family": "microduck-v2-sc0090-native-o0-rise-v1",
+  "policy_runtime_id_hex": "0x834335F5",
+  "mdp_header_version": 2,
+  "deployment_contract": {
+    "runtime": "microduck-v2-sc0090-native-o0-rise-v1",
+    "robot": "microduck-v2-sc0090",
+    "task": "rise_stand",
+    "observer": "native-count-v2-O0",
+    "raw_count_limits": [
+      0,
+      1023
+    ],
+    "command_count_limits": [
+      20,
+      1001
+    ],
+    "sample_hz": 100,
+    "policy_hz": 50,
+    "query_delay_us": 20000,
+    "command_evidence_max_age_us": 25000,
+    "command_confirmation": "native changed-goal readback in the same UART round; shared original 9ms deadline; no inferred ACK",
+    "spike_rejection": false,
+    "o0_valid_samples": 5,
+    "refractory_us": 0,
+    "home": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "action_scale": 1.0,
+    "command_rate_rad_s": null,
+    "action_ema": false,
+    "twist": [
+      0,
+      0,
+      0
+    ],
+    "body": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "head_limit_rad": [
+      0.39,
+      0.39,
+      0.49,
+      0.11
+    ],
+    "hardware_validated": false,
+    "target_release": "eligible_on_publication_without_extra_policy_period; UART owner rechecks before TX",
+    "recovery_window_ms": 8000,
+    "recovery_inclination_exception": "explicit neutral deadman admission and bounded rise only; ordinary upright gate resumes at expiry",
+    "source_sha256": "80a89c5df7cce3ac9dedbce9870e8b0c6e3759c08fd386305c340c92b1e919cd",
+    "source_runtime": "microduck-v2-sc0090-official-baseline-v1",
+    "experiment": "fresh_6246g_baseline_hardware_observation_not_full_sim_pass",
+    "candidate_id": "v2_sim2real_rise_8040_20261022_evening",
+    "original_training_contract_sha256": null
+  },
+  "deployment_contract_sha256": "969c82ae8b49bbb1827b108e512b501018ed864fe243b97414efa56754ebb00a",
+  "training_phase": "robust",
+  "training_randomization_contract": {
+    "phase": "robust",
+    "strength": 1.0,
+    "kind": "rise",
+    "geometry_sha256": "8cf36d66b7dea77885c34c64913f074e30b036fdc290ab28b8d3084c2b7acb23",
+    "mass_kg": 0.6246,
+    "backlash_total_width_deg": 2.0,
+    "encoder_bias_deg": 2.0,
+    "paired_error_strength": 1.0,
+    "imu_misalignment_max_deg": 6.0,
+    "command_delay_physics_steps": [
+      2,
+      5
+    ],
+    "supply_voltage_v": [
+      10.2,
+      12.4
+    ],
+    "supply_resistance_ohm": [
+      0.05,
+      0.15
+    ],
+    "motor_friction_and_armature_scale": [
+      0.9,
+      1.1
+    ],
+    "disturbances": true,
+    "balance_spawn_trials": true,
+    "final_target": {
+      "command_transport_delay_ms": [
+        10,
+        15,
+        20,
+        25
+      ],
+      "command_delay_update": "each_5ms_physics_step",
+      "command_delay_sampling": "uniform_per_world_per_actuator_group",
+      "joint_friction_scale": [
+        0.9,
+        1.1
+      ],
+      "joint_armature_scale": [
+        0.9,
+        1.1
+      ],
+      "encoder_bias_rad": [
+        -0.03490658503988659,
+        0.03490658503988659
+      ],
+      "encoder_bias_lifetime": "whole_run_per_joint_per_world",
+      "encoder_bias_basis": "user_requested_2deg_robustness_range_not_measured_distribution",
+      "encoder_bias_application": "observation_plus_b;physical_target_clipped_action_minus_b",
+      "head_com_bodies": [
+        "neck",
+        "neck_pitch",
+        "yaw_roll_motion",
+        "bottom_head_shell",
+        "jaw_soft"
+      ],
+      "voltage_uniform_v": [
+        10.2,
+        12.4
+      ],
+      "supply_resistance_uniform_ohm": [
+        0.05,
+        0.15
+      ],
+      "voltage_floor_v": 9.0,
+      "supply_sampling": "startup_fixed_across_resets;one_common_3s_bus",
+      "supply_load": "max(0,sum(previous_duty*previous_motor_torque/kt));all_15_servos",
+      "supply_resistance_basis": "engineering_training_prior_0.2_to_0.6V_at_4A_not_measured",
+      "battery": "user_confirmed_GNB_2000mAh_3S_5C",
+      "supply_base": "quiescent_bus_voltage_including_electronics;no_double_count_idle_load",
+      "supply_regeneration": "offset_shared_load_only;no_bus_overvoltage_model",
+      "paired_error_retained": true,
+      "extra_joint_white_noise": false,
+      "explicit_backlash": true,
+      "backlash_total_width_deg": 2.0,
+      "backlash_source": "official_v8_training_assumption",
+      "load_voltage_sag": true,
+      "terrain": "plane",
+      "max_pwm": 1.0,
+      "max_current_a": 0.6,
+      "current_cap_basis": "SC0090_0.6A_stall_reference_training_prior_not_measured_limiter",
+      "ctrl_limited": true,
+      "force_limited": true,
+      "effort_limit_formula": "min(V_range_max*max_pwm*kt/R_motor,max_current*kt);symmetric_Nm_all_15",
+      "disturbances": "regular_walk_0.3mps;regular_rise_0_0.08_0.3_at_0_500_1000_reference_updates;3-6s;user_retained_topple_4-8s_0.3_0.6_0.9_1.2_at_0_100_400_800;velocity_pushes_outside_balance_trials",
+      "balance_initial_angles_deg": [
+        2,
+        5,
+        10
+      ],
+      "balance_outward_rates_rad_s": [
+        0.0,
+        0.1,
+        0.3
+      ],
+      "balance_directions": [
+        "back",
+        "front",
+        "left",
+        "right"
+      ],
+      "balance_band_deg": 4.0,
+      "force_peaks_N": [
+        0.25,
+        0.45,
+        0.7
+      ],
+      "force_pulse_s": [
+        0.24,
+        0.4
+      ],
+      "force_sustained_s": [
+        1.2,
+        2.0
+      ]
+    }
+  },
+  "source_checkpoint_sha256": "f5bbb07b2c39aea596ec44c82da9abf28f3daacb67bb3c06dc413d973f94a0fd",
+  "source_onnx_sha256": "80a89c5df7cce3ac9dedbce9870e8b0c6e3759c08fd386305c340c92b1e919cd",
+  "source_recipe_sha256": "94097d714e9c9b526d557c8b85ca43e7da0024e51346dbe968919809375e5399",
+  "training_head_ranges_rad_at_snapshot": [
+    [
+      -0.39,
+      0.39
+    ],
+    [
+      -0.39,
+      0.39
+    ],
+    [
+      -0.49,
+      0.49
+    ],
+    [
+      -0.11,
+      0.11
+    ]
+  ],
+  "training_head_reference_stage": 1000,
+  "deployment_head_command_limits_rad": [
+    0.39,
+    0.39,
+    0.49,
+    0.11
+  ],
+  "range_note": "training-allocation contains initial defaults; runtime curriculum ranges recorded separately. Existing hardware deployment profile remains unchanged."
+}

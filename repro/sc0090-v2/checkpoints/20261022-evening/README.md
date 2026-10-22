@@ -1,0 +1,47 @@
+# 2026-10-22 晚间：最新完成模型上车快照
+
+按用户要求冻结 **北京时间23:36时已完成的起身8040、步行3400**。后续训练不覆盖本目录；旧4000/4600及历史3762参照保留。两项供实机观察和对比，完整仿真验收、此次实机验收仍未通过。
+
+| 策略 | Web上传文件（FP32、MDPOL001 v2） | 训练检查点 | 原始ONNX |
+|---|---|---|---|
+| 起身8040 | [rise-8040.mdp](rise-8040/rise-8040.mdp) | [checkpoint.pt](rise-8040/checkpoint.pt) | [policy.onnx](rise-8040/policy.onnx) |
+| 步行3400 | [walk-3400.mdp](walk-3400/walk-3400.mdp) | [checkpoint.pt](walk-3400/checkpoint.pt) | [policy.onnx](walk-3400/policy.onnx) |
+
+这是624.6g新质量模型的两条基线训练分支。步行3400与早期4600不是同一条连续更新谱系，不能只按数字大小判断新旧。步行本谱系已记录实际5450次更新，含2050次弃用；3400是有效模型计数。
+
+## 上车方式与范围
+
+沿用现有V2本体配置，通过Web上传对应`.mdp`，在ESP32-P4板端推理。61输入/14输出、50Hz、CAD HOME全0、action scale1、归一化已内置，嘴巴独立保持。`.pt`不是Web上传格式。关节顺序、目标截断和观测排列见各目录`runtime-contract.json`。
+
+本包沿用既有两类固件契约：起身runtime ID `0x834335F5`，步行`0x11D720E4`。起身使用零twist/body请求；步行速度契约为前后0.4m/s、侧移0.3m/s、转向1rad/s上限。先记录零命令保持和0.03/0.05m/s低速，再比较前后直行、左右转及运动后停车。起身分别记录坐姿、伏卧、仰卧、左右侧卧、前后倾承接与站立后保持。
+
+头控尚未达到四轴±2°。既有walking部署契约头部请求限制仍为0，当前包不自动改固件头控范围；这与模型训练中的非零头命令范围不同，二者均明确记录在`runtime-contract.json`。起身既有头请求范围为±0.39/0.39/0.49/0.11rad。先观察身体与实际头偏置，不把“命令为零”当作“实际已回零”。
+
+训练直接使用策略动作，没有动作EMA。实机当前若配置了头/腿EMA，记录实际值，不能把不同滤波设置混为同一条件。使用[既有实测模板](../../hardware-results-template.csv)，填写本包模型ID/MDP SHA、设备配置、初态、命令、成功次数、起身时间、保持时间、偏移、触限及视频/遥测。本次只增加实验文件，没有刷固件或改设备配置。
+
+## 与这些检查点绑定的仿真证据
+
+| 检查点 | 结果 | 尚未完成 |
+|---|---|---|
+| 起身8040 | 七类恢复1791/1792；严格倾姿1056/1184；四向推力611/768；中性站立31/32严格通过、32/32未倒 | 完整头控0/832；neck/head_pitch HOME MAE约7.1°/11.6°；完整抗扰未毕业 |
+| 步行3400 | 两独立seed各927/928未倒；静停732/928、727/928；直线256/256未倒、183/256静停；无持续yaw/idle roll停车 | 第二seed极限后退某样本left yaw近限位8.62%，高于5%门槛；头尾0/928；完整行为未通过 |
+
+起身使用完整硬件DR及robust课程，最终四向推力与各组标准仍有缺口。步行处于75%其它硬件DR、发送5–10ms过渡档，尚未通过完整100%/发送10–25ms和robust验收。保存的完整100%影子结果为274/928未倒（见训练目录原报告，不作为本包正式通过证据）；不能把当前阶段高存活当成全部条件已合格。
+
+各目录`evaluation/`为绑定**不可变assessed检查点SHA**的原报告；不是把后续resume文件强行贴上旧成绩。`checkpoint-info.json`、`training-allocation.json`、`source-info.json`记录配置/课程/精确来源。分配配置里的头范围是初始默认值，实际课程范围另列在runtime契约中；不混用二者。
+
+## 数值、源码与封装核验
+
+checkpoint与原ONNX每层权重、归一化逐位一致。各用771组CPU输入（512条保存的实际观测）比较，最大误差起身1.14e-5、步行7.63e-6；FP32 MDP系数逐位相同，v2头、runtime、CRC及源ONNX SHA通过。原ONNX/权重没有重标或修改。此核验不增加GPU仿真，也不等于动作验收。
+
+`tools/`保留原已验证转换器，来自固件提交`13eea5de53224b5cb6bd1bf0de91ff4f1f5692de`；本包注册表仅登记这两份ONNX的精确SHA和原始元数据，保留未知候选/元数据变化拒绝机制。训练身份仍为baseline；部署采用已有V2物理接口，不冒称模型经过P04残差训练。
+
+`training-code.tar.gz`包含完整recipe哈希覆盖文件、模型JSON/YAML及依赖锁，内部重新计算recipe SHA通过。它不包含全部外部CAD网格、测量误差库和已安装依赖，不是完整独立仿真环境。分支根目录的旧训练源码也不能替代该快照直接resume新checkpoint；精确源提交/recipe及原路径见`source-info.json`。
+
+文件SHA/大小见[manifest.json](manifest.json)。安装numpy、torch、onnx、onnxruntime后，在本目录可只读核验及重做封装：
+
+```bash
+python package_and_verify.py --verify-only
+python tools/convert_policy.py rise-8040/policy.onnx /tmp/rise-8040.mdp
+python tools/convert_policy.py walk-3400/policy.onnx /tmp/walk-3400.mdp
+```

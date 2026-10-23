@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "restored_update": 500,
+  "final_update": 506,
+  "assessment_boundaries": [
+    502,
+    504,
+    506
+  ],
+  "both_ranks_exact_restoration": true,
+  "post_training_actor_critic_normalizers_optimizer_equal": true,
+  "validation_only": true
+}

@@ -107,6 +107,8 @@ def main():
     p.add_argument('--eval-samples', type=int, default=128)
     p.add_argument('--preflight', type=Path, required=True)
     p.add_argument('--resume', type=Path)
+    p.add_argument('--resume-root', type=Path)
+    p.add_argument('--resume-update', type=int, default=500)
     p.add_argument('--validation-only', action='store_true')
     p.add_argument('--head-precision', action='store_true')
     p.add_argument('--head-precision-stage',type=int,choices=(1,2,3,4),default=1)
@@ -115,6 +117,9 @@ def main():
     rank = int(os.environ.get('LOCAL_RANK', '0'))
     world = int(os.environ.get('WORLD_SIZE', '1'))
     assert world == 2, 'This launcher requires two synchronized GPU ranks'
+    if args.resume_root is not None:
+        assert args.resume is None
+        args.resume = args.resume_root / f'rank{rank}' / f'resume_{args.resume_update:06d}.pt'
     args.device = f'cuda:{rank}'
     torch.cuda.set_device(rank)
     args.output = args.output / f'rank{rank}'
@@ -363,6 +368,11 @@ def main():
             command_exposure=exposure.report(),
             exposure_segment_start_update=start,
             recovery_stage=recovery._sc0090_recovery_state(env).stage))
+    except BaseException as exc:
+        write_json(output/'status.json', dict(status='FAILED', pid=os.getpid(),
+            completed_updates=completed, updated_unix=time.time(),
+            error=repr(exc), resume_checkpoint=str(last_resume_path)))
+        raise
     finally:
         env.close()
         torch.distributed.destroy_process_group()

@@ -9,7 +9,10 @@ def install_global_statistics(alg):
         def update(x, original=original):
             batches = [torch.empty_like(x) for _ in range(world)]
             torch.distributed.all_gather(batches, x.contiguous())
-            original(torch.cat(batches, dim=0))
+            # Rollout runs under inference_mode; persistent buffers must remain
+            # ordinary tensors so the next learn() can load/broadcast them.
+            with torch.inference_mode(False), torch.no_grad():
+                original(torch.cat(batches, dim=0))
         normalizer.update = update
     original_returns = alg.compute_returns
     def returns(obs):

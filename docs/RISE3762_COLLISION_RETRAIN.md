@@ -12,3 +12,11 @@ Output: /home/l40-vm01/data2/experiments/microduck-v2-20261023/rise3762-collisio
 Service: microduck-rise3762-collision.service
 
 Historical logs migrate separately to /home/l40-vm01/data2/archive/root-disk-20261023 with checksum verification before replacing each directory by a symlink.
+
+## Update-500 failure and repair
+
+At 21:30:45 the first evaluation completed and promoted the curriculum, but the next learn() failed on both ranks: loading obs_normalizer._std outside inference mode attempted to write an inference tensor. Initial qualification had only one learn segment and missed this boundary. Original status files were stale RUNNING; corrected to FAILED while retaining their original copies and update-500 resume checkpoints.
+
+Fix: run persistent normalizer updates under inference_mode(False) and no_grad. Statistical formulas, batches and training recipe are unchanged. Add rank-specific resume-root selection and FAILED status on training-loop exceptions. Requalified from each rank's saved update-500 checkpoint at the actual 4096 environments per rank, through updates 502, 504 and 506 with evaluations between segments. Restoration of actor/critic/optimizer/normalizers is exact; final actor/critic/optimizer/normalizers are bitwise identical across ranks. Verification weights are discarded.
+
+Resume formal training from original update 500 for 3262 remaining updates (endpoint 3762), with original 500-update full assessment cadence. Output formal-resumed; service microduck-rise3762-collision-resumed.service. Physics restarts native episodes as documented above.

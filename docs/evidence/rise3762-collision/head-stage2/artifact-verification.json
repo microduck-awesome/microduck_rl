@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "updates": 5012,
+  "rank_weights_normalizers_optimizer_equal": true,
+  "onnx_normalizer_parity_max_error": 9.5367431640625e-07,
+  "parity_samples": 66,
+  "checkpoint_sha256": "dff03cd8375f79035ad61b9f16aa541e678ec55860c583367ef961f8067c64d6",
+  "onnx_sha256": "9894c1cdd57a02ebf8524d50fa2295e54aad788d5fd1848f95a9658fa92ec22e",
+  "collision_xml_sha256": "8ae0d89041950d565bbcd6272ab87317f46132ff1eef99b922782ecbe2b95308"
+}

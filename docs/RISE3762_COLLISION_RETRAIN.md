@@ -40,3 +40,9 @@ Completed the historical 1000-update head stage 1 at cumulative update 4762. All
 ## Head phase 2 complete
 
 Historical 250-update stage 2 ended at cumulative 5012. Independent recovery is 1792/1792. Idle neck MAE 0.302 degrees, matching old3762 0.299; trained-range neck MAE 1.958 still exceeds old3762 0.450. Continue the existing historical stage-4 recipe for 512 updates (the original combined 256 foundation plus 256 paired-error exposure), retaining the paired-error task already used throughout this new lineage. No new reward formula is introduced; qualification weights are discarded and original-stage behavior is documented.
+
+## Stage 4 at 5524: recovery retained, positive neck response incomplete
+
+Stage 4's 512 updates and independent recovery pass 1792/1792. The artifact parity check passes with maximum ONNX error 5.96e-7. Idle errors improve; however the +0.39 rad neck case still has about 14 degree MAE versus old3762 0.6-0.8 degrees. Aggregate trained-range neck error declines 2.188 -> 1.958 -> 1.376 degrees across head stages but hides this specific gap. This is not a full replacement acceptance.
+
+Keep 5524 frozen and continue exactly the same qualified stage-4 recipe for a bounded 512 updates to 6036. No new reward, range, action filtering or physics is introduced. Reuse qualification only after every parent training-source hash matches; re-evaluate all recovery buckets and the same head cases at the endpoint. Further action depends on actual improvement, not just update count.

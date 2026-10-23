@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "global_envs": 8192,
+  "updates": 5,
+  "actor_critic_and_normalizers_bitwise_equal": true,
+  "curriculum_equal": true
+}

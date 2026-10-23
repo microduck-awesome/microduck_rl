@@ -1,0 +1,600 @@
+{
+  "status": "PASS",
+  "scope": "passive gravity drop, not policy behavior qualification",
+  "mass_kg": 0.600941825,
+  "cases": [
+    {
+      "pose": "supine",
+      "ground_geoms": [
+        "ground_battery_collision",
+        "ground_head_shell_collision",
+        "left_foot_collision",
+        "right_foot_collision",
+        "sim2real_shell_000_collision",
+        "sim2real_shell_001_collision",
+        "sim2real_shell_004_collision",
+        "sim2real_shell_005_collision",
+        "sim2real_shell_008_collision",
+        "sim2real_shell_011_collision",
+        "sim2real_shell_013_collision",
+        "sim2real_shell_014_collision",
+        "sim2real_shell_018_collision",
+        "sim2real_shell_023_collision",
+        "sim2real_shell_031_collision"
+      ],
+      "peak_contacts": 41,
+      "min_distance_m": -0.014879227556024971,
+      "final_qpos": [
+        0.01737630152538689,
+        0.002376020905018908,
+        0.063843623502746,
+        0.8014843509920853,
+        -0.008373812210781496,
+        -0.5978854464880625,
+        -0.00925782164565702,
+        -0.00046988081906315795,
+        0.00013376772153296526,
+        -0.004518315997738948,
+        -0.0038301719758536915,
+        -0.0009273374525840134,
+        -0.01610891915294309,
+        -0.005844085136960977,
+        0.00013103967151783705,
+        -7.145478007214026e-05,
+        0.0004518345762520474,
+        -0.0012172024385911225,
+        0.0003547286106282619,
+        -0.0034208975042899054,
+        -0.0029372050530553306,
+        -0.0007925070166101033
+      ],
+      "final_contacts": [
+        {
+          "geoms": [
+            "audit_floor",
+            "sim2real_shell_004_collision"
+          ],
+          "distance_m": -0.0002836409585080077,
+          "normal_force_N": 2.423772403441106
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "sim2real_shell_004_collision"
+          ],
+          "distance_m": -0.00016704081307402025,
+          "normal_force_N": 1.33468827066214
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "sim2real_shell_014_collision"
+          ],
+          "distance_m": -7.753220219080398e-05,
+          "normal_force_N": 0.6029604554173482
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.00028431537842967675,
+          "normal_force_N": 0.25211280777930745
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.000262697329420733,
+          "normal_force_N": 0.2293854505097196
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.00020099609619967512,
+          "normal_force_N": 0.16919984395931945
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.00022255942604827716,
+          "normal_force_N": 0.1895354955044554
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.00021819111447607398,
+          "normal_force_N": 0.18487715663352616
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.00021417121986740464,
+          "normal_force_N": 0.18107105327022482
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.00019253489286715983,
+          "normal_force_N": 0.16097704243653138
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.00019867425980721332,
+          "normal_force_N": 0.1666137383058322
+        }
+      ]
+    },
+    {
+      "pose": "prone",
+      "ground_geoms": [
+        "ground_head_shell_collision",
+        "ground_jaw_collision",
+        "ground_left_hip_collision",
+        "ground_right_hip_collision",
+        "left_foot_collision",
+        "right_foot_collision",
+        "self_trunk_support_00_collision"
+      ],
+      "peak_contacts": 24,
+      "min_distance_m": -0.021207770623713144,
+      "final_qpos": [
+        0.025127087573447563,
+        -0.0046658380630899806,
+        0.042200899138826416,
+        0.7848368804154426,
+        -0.040804020439702736,
+        0.6158255126936071,
+        0.055902065895337416,
+        0.001472660506963838,
+        0.002248599750960556,
+        0.008834440527002243,
+        0.0012710194431611202,
+        -0.0023065501122086535,
+        -0.009535193455360788,
+        -0.006492802809536424,
+        -0.0010947138767037777,
+        0.0012829217932730577,
+        -0.0038012053454247723,
+        -0.0014840999598251096,
+        -0.0024922064985067934,
+        0.005460411847748132,
+        0.005547761231329136,
+        0.002034060750027616
+      ],
+      "final_contacts": [
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.0004811598006409165,
+          "normal_force_N": 0.49037162689722147
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.0004309311255310637,
+          "normal_force_N": 0.4471167429067835
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.00042994020908333416,
+          "normal_force_N": 0.4426914027738806
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.00047924411825562424,
+          "normal_force_N": 0.48084800400967076
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "ground_jaw_collision"
+          ],
+          "distance_m": -0.0009039963233625631,
+          "normal_force_N": 2.0417105695871465
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "ground_jaw_collision"
+          ],
+          "distance_m": -0.0006365143060086537,
+          "normal_force_N": 1.033908745473448
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.0009689588152035009,
+          "normal_force_N": 0.34516497441199545
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.0008825817846148387,
+          "normal_force_N": 0.26933246754406964
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.0008345900348431592,
+          "normal_force_N": 0.1930918010048474
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.000920943496773876,
+          "normal_force_N": 0.2699193840510926
+        }
+      ]
+    },
+    {
+      "pose": "left",
+      "ground_geoms": [
+        "ground_head_shell_collision",
+        "ground_jaw_collision",
+        "ground_right_hip_collision",
+        "right_foot_collision",
+        "self_right_shin_structure_00_collision",
+        "self_trunk_support_00_collision",
+        "sim2real_shell_004_collision",
+        "sim2real_shell_011_collision",
+        "sim2real_shell_012_collision",
+        "sim2real_shell_013_collision",
+        "sim2real_shell_014_collision",
+        "sim2real_shell_020_collision",
+        "sim2real_shell_023_collision",
+        "sim2real_shell_024_collision"
+      ],
+      "peak_contacts": 45,
+      "min_distance_m": -0.01999029256769471,
+      "final_qpos": [
+        0.0016175502426138807,
+        -0.005340984753520027,
+        0.05464612419848073,
+        0.6651285895224676,
+        0.7393162516907638,
+        -0.10074561996421297,
+        0.02942379043900705,
+        0.0020389955918776914,
+        -0.0027304269141725664,
+        0.0005166760887001341,
+        0.0002516114547447581,
+        4.048353384346001e-05,
+        0.0020278952783017246,
+        0.0010080682321175283,
+        -0.0029762870834314174,
+        -0.0005318897009234322,
+        -8.422349324602993e-05,
+        -0.0066450713344570565,
+        0.018696289672616814,
+        -0.004464110959848514,
+        -0.0017681410187581103,
+        -0.0006644201662987643
+      ],
+      "final_contacts": [
+        {
+          "geoms": [
+            "audit_floor",
+            "sim2real_shell_004_collision"
+          ],
+          "distance_m": -4.5302010812327265e-05,
+          "normal_force_N": 0.31903000504381057
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "ground_jaw_collision"
+          ],
+          "distance_m": -0.0006857532241449846,
+          "normal_force_N": 1.6918294089564065
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "ground_jaw_collision"
+          ],
+          "distance_m": -0.0005525455736096821,
+          "normal_force_N": 1.142514141456343
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "ground_jaw_collision"
+          ],
+          "distance_m": -0.00016877588336339927,
+          "normal_force_N": 0.2400754478112278
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.0006631133259546035,
+          "normal_force_N": 0.9107496539972446
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.000619286196489606,
+          "normal_force_N": 0.8096067896680155
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.0006292803054050965,
+          "normal_force_N": 0.8326911135924577
+        }
+      ]
+    },
+    {
+      "pose": "right",
+      "ground_geoms": [
+        "ground_head_shell_collision",
+        "ground_jaw_collision",
+        "ground_left_hip_collision",
+        "left_foot_collision",
+        "self_left_shin_structure_00_collision",
+        "sim2real_shell_000_collision",
+        "sim2real_shell_003_collision",
+        "sim2real_shell_004_collision",
+        "sim2real_shell_005_collision",
+        "sim2real_shell_008_collision",
+        "sim2real_shell_009_collision",
+        "sim2real_shell_010_collision",
+        "sim2real_shell_015_collision",
+        "sim2real_shell_018_collision",
+        "sim2real_shell_025_collision",
+        "sim2real_shell_031_collision"
+      ],
+      "peak_contacts": 56,
+      "min_distance_m": -0.01991746375653864,
+      "final_qpos": [
+        0.0032196126994354954,
+        0.009570826398088282,
+        0.054514546869865385,
+        0.6647794698747782,
+        -0.7401495489603247,
+        -0.09630008169232156,
+        -0.031196087461231984,
+        0.00644241719528498,
+        -0.018378480689536195,
+        -0.004474017451222917,
+        -0.0016508857188603625,
+        -0.0007110137522042221,
+        0.0018144343918456741,
+        0.0009591792545862584,
+        0.002404735915373446,
+        0.0016077591730100397,
+        0.0001405626208378282,
+        -0.002078071475604512,
+        0.0025974960423283977,
+        0.0006389548070609178,
+        0.0003057670053236732,
+        5.052103492316606e-05
+      ],
+      "final_contacts": [
+        {
+          "geoms": [
+            "audit_floor",
+            "sim2real_shell_004_collision"
+          ],
+          "distance_m": -5.9544207927891835e-05,
+          "normal_force_N": 0.4755267861298795
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.0006888537921654232,
+          "normal_force_N": 0.9468339853753778
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.0006437478341765404,
+          "normal_force_N": 0.8027108546268561
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.0006312535046057756,
+          "normal_force_N": 0.7665214793603541
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "ground_jaw_collision"
+          ],
+          "distance_m": -0.0009232945479379293,
+          "normal_force_N": 2.6950345077330136
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "ground_jaw_collision"
+          ],
+          "distance_m": -0.0001494999453347315,
+          "normal_force_N": 0.21808899853051342
+        }
+      ]
+    },
+    {
+      "pose": "rear_seated",
+      "ground_geoms": [
+        "ground_battery_collision",
+        "ground_head_shell_collision",
+        "left_foot_collision",
+        "right_foot_collision",
+        "self_left_shin_structure_00_collision",
+        "self_right_shin_structure_00_collision",
+        "sim2real_shell_000_collision",
+        "sim2real_shell_001_collision",
+        "sim2real_shell_004_collision",
+        "sim2real_shell_005_collision",
+        "sim2real_shell_008_collision",
+        "sim2real_shell_011_collision",
+        "sim2real_shell_013_collision",
+        "sim2real_shell_014_collision",
+        "sim2real_shell_018_collision",
+        "sim2real_shell_031_collision"
+      ],
+      "peak_contacts": 45,
+      "min_distance_m": -0.01872562858186473,
+      "final_qpos": [
+        -0.034998957972708876,
+        0.0004958655311544408,
+        0.06384342906431585,
+        0.8014077364229405,
+        0.009283688726326069,
+        -0.597872675462051,
+        0.014412392616746652,
+        -0.0004691703339677982,
+        0.00013353076163603986,
+        -0.004516294255502742,
+        -0.003826678430292267,
+        -0.0009281002500649017,
+        -0.016106980734664506,
+        -0.00584520914160128,
+        0.00013103861571913547,
+        -7.12463976737778e-05,
+        0.00045134707894801745,
+        -0.0012174626247771977,
+        0.0003549027903164853,
+        -0.0034188426172274437,
+        -0.0029336743341210436,
+        -0.0007931713062191253
+      ],
+      "final_contacts": [
+        {
+          "geoms": [
+            "audit_floor",
+            "sim2real_shell_004_collision"
+          ],
+          "distance_m": -0.0002837413661675135,
+          "normal_force_N": 2.4240262555703778
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "sim2real_shell_004_collision"
+          ],
+          "distance_m": -0.000167173643206234,
+          "normal_force_N": 1.3350900345868437
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "sim2real_shell_014_collision"
+          ],
+          "distance_m": -7.762132089072366e-05,
+          "normal_force_N": 0.6028770449462905
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.00028427422568387886,
+          "normal_force_N": 0.251958001133724
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.0002626587037422648,
+          "normal_force_N": 0.22928663259153848
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.00020093544139005576,
+          "normal_force_N": 0.1691378446978658
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.00022249624368139015,
+          "normal_force_N": 0.18942024682409694
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.00021808202551343303,
+          "normal_force_N": 0.184738631066527
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.00021406217632693667,
+          "normal_force_N": 0.18093338136747664
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.0001924283069071886,
+          "normal_force_N": 0.1608904711969969
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.0001985676081878232,
+          "normal_force_N": 0.1665261818406571
+        }
+      ]
+    }
+  ]
+}

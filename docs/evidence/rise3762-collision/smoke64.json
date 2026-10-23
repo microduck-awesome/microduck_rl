@@ -1,0 +1,113 @@
+{
+  "status": "PASS",
+  "head_precision_recipe": null,
+  "position_robustness_recipe": null,
+  "task": "Mjlab-StandUp-Flat-MicroDuck-V2-PairedError-Baseline",
+  "device": "cuda:0",
+  "envs": 64,
+  "iterations": 5,
+  "steps_per_env": 24,
+  "learning_epochs": 5,
+  "minibatches": 4,
+  "losses": [
+    {
+      "value": 0.8284515559673309,
+      "surrogate": -0.01372525468468666,
+      "entropy": 19.85217456817627
+    },
+    {
+      "value": 0.8433726906776429,
+      "surrogate": -0.04047840103157796,
+      "entropy": 19.847721004486083
+    },
+    {
+      "value": 0.6864369869232178,
+      "surrogate": -0.04867181124427589,
+      "entropy": 19.835289764404298
+    },
+    {
+      "value": 0.6170862451195717,
+      "surrogate": -0.039379644114524125,
+      "entropy": 19.821690940856932
+    },
+    {
+      "value": 0.5492083683609963,
+      "surrogate": -0.042066658940166236,
+      "entropy": 19.808288383483887
+    }
+  ],
+  "policy_parameter_max_change": 0.013683333992958069,
+  "finite_policy_parameters": true,
+  "terminal_bootstrap_samples": 0,
+  "elapsed_seconds": 5.009990906808525,
+  "robot_xml": "robot.xml",
+  "robot_xml_sha256": "8ae0d89041950d565bbcd6272ab87317f46132ff1eef99b922782ecbe2b95308",
+  "action_scale": 1.0,
+  "peak_contacts_across_worlds": 649,
+  "physics_cuda_graph": true,
+  "motor_graph_replays": [
+    478,
+    478
+  ],
+  "contact_capacity_across_worlds": 2240,
+  "contact_capacity_checked_each_physics_step": true,
+  "logging": "local TensorBoard",
+  "upload_model": false,
+  "limitation": "A short PPO smoke validates the training path; it does not demonstrate learned walking or SC0090 sim2real.",
+  "iteration_timing": [
+    {
+      "iteration": 0,
+      "collection_s": 0.7026693820953369,
+      "learning_s": 0.2318887710571289,
+      "wall_s": 1.49574900791049
+    },
+    {
+      "iteration": 1,
+      "collection_s": 0.5797147750854492,
+      "learning_s": 0.1395120620727539,
+      "wall_s": 0.8542931540869176
+    },
+    {
+      "iteration": 2,
+      "collection_s": 0.5602185726165771,
+      "learning_s": 0.14874720573425293,
+      "wall_s": 0.7530834041535854
+    },
+    {
+      "iteration": 3,
+      "collection_s": 0.556368350982666,
+      "learning_s": 0.15462684631347656,
+      "wall_s": 0.7570408890023828
+    },
+    {
+      "iteration": 4,
+      "collection_s": 0.561403751373291,
+      "learning_s": 0.15552759170532227,
+      "wall_s": 0.7589788427576423
+    }
+  ],
+  "throughput": {
+    "warmup_updates": 3,
+    "measured_updates": 2,
+    "median_wall_s": 0.7580098658800125,
+    "median_end_to_end_steps_per_s": 2026.3621611173871,
+    "median_collection_steps_per_s": 2748.3798683760606,
+    "aggregate_wall_steps_per_s": 2026.3588498505608
+  },
+  "onnx_exported": true,
+  "runtime": "microduck-v2-sc0090-official-baseline-v1",
+  "feedback": "empirical-paired-qv-block-randomization;not-full-S0-O0",
+  "motor_sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+  "onnx_cpu_inference": {
+    "input": [
+      1,
+      61
+    ],
+    "output": [
+      1,
+      14
+    ],
+    "metadata_joint_count": 14,
+    "normalizer_parity_max_error": 1.7881393432617188e-07
+  }
+}

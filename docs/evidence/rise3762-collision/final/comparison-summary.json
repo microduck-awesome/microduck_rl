@@ -1,0 +1,212 @@
+{
+  "new": {
+    "recovery_checkpoint_sha256": "125a03f483dd320898ec654799e20551cd0c03e501b80dedb054eafdb2b89df3",
+    "recovery": {
+      "standing": {
+        "wins": 256,
+        "trials": 256
+      },
+      "sitting": {
+        "wins": 256,
+        "trials": 256
+      },
+      "prone": {
+        "wins": 256,
+        "trials": 256
+      },
+      "frontier": {
+        "wins": 256,
+        "trials": 256
+      },
+      "left_side": {
+        "wins": 256,
+        "trials": 256
+      },
+      "right_side": {
+        "wins": 256,
+        "trials": 256
+      },
+      "supine": {
+        "wins": 256,
+        "trials": 256
+      }
+    },
+    "head": {
+      "zero": {
+        "cases": 2,
+        "trials": 16,
+        "mean_axis_mae_deg": [
+          0.22961214929819107,
+          0.2885620892047882,
+          0.19789473712444305,
+          0.2629486471414566
+        ],
+        "mean_stable_fraction": 1.0,
+        "invalid_trials": 0
+      },
+      "small": {
+        "cases": 16,
+        "trials": 128,
+        "mean_axis_mae_deg": [
+          0.4167408151552081,
+          0.35581734869629145,
+          0.3687065476551652,
+          0.2849588394165039
+        ],
+        "mean_stable_fraction": 0.9999218732118607,
+        "invalid_trials": 0
+      },
+      "current": {
+        "cases": 72,
+        "trials": 576,
+        "mean_axis_mae_deg": [
+          0.6050799720817142,
+          0.31126944431000286,
+          0.2960619051526818,
+          0.33015999922321904
+        ],
+        "mean_stable_fraction": 0.9996354149447547,
+        "invalid_trials": 0
+      },
+      "final": {
+        "cases": 72,
+        "trials": 576,
+        "mean_axis_mae_deg": [
+          5.073099602427748,
+          1.378788981379734,
+          0.9061018202660812,
+          0.41678463315798175
+        ],
+        "mean_stable_fraction": 0.9917534697386954,
+        "invalid_trials": 0
+      }
+    },
+    "trained_head_ranges_rad": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ],
+    "positive_neck_mae_deg": [
+      1.1479734182357788,
+      1.3747755289077759
+    ]
+  },
+  "old": {
+    "recovery_checkpoint_sha256": "e753856776bb43e44d9465b4067a0b9cd2d10fe03fc8cb88ee4177ec786f93e1",
+    "recovery": {
+      "standing": {
+        "wins": 256,
+        "trials": 256
+      },
+      "sitting": {
+        "wins": 254,
+        "trials": 256
+      },
+      "prone": {
+        "wins": 256,
+        "trials": 256
+      },
+      "frontier": {
+        "wins": 256,
+        "trials": 256
+      },
+      "left_side": {
+        "wins": 256,
+        "trials": 256
+      },
+      "right_side": {
+        "wins": 2,
+        "trials": 256
+      },
+      "supine": {
+        "wins": 255,
+        "trials": 256
+      }
+    },
+    "head": {
+      "zero": {
+        "cases": 2,
+        "trials": 16,
+        "mean_axis_mae_deg": [
+          0.29948170483112335,
+          0.282553568482399,
+          0.36382273584604263,
+          0.3670617341995239
+        ],
+        "mean_stable_fraction": 0.9956249892711639,
+        "invalid_trials": 0
+      },
+      "small": {
+        "cases": 16,
+        "trials": 128,
+        "mean_axis_mae_deg": [
+          0.4075668081641197,
+          0.32995209377259016,
+          0.3825487457215786,
+          0.3391807470470667
+        ],
+        "mean_stable_fraction": 0.9899218641221523,
+        "invalid_trials": 0
+      },
+      "current": {
+        "cases": 72,
+        "trials": 576,
+        "mean_axis_mae_deg": [
+          0.4503439406139983,
+          0.42292540623909897,
+          0.5118124940329127,
+          0.35537012645767796
+        ],
+        "mean_stable_fraction": 0.9880555479062928,
+        "invalid_trials": 0
+      },
+      "final": {
+        "cases": 72,
+        "trials": 576,
+        "mean_axis_mae_deg": [
+          1.8340167206608586,
+          1.3202462697194681,
+          1.839286569919851,
+          0.48964969637907213
+        ],
+        "mean_stable_fraction": 0.9472742966479726,
+        "invalid_trials": 0
+      }
+    },
+    "trained_head_ranges_rad": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ],
+    "positive_neck_mae_deg": [
+      0.7582253813743591,
+      0.6047940850257874
+    ]
+  }
+}

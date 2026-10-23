@@ -1,0 +1,13 @@
+{
+  "skill": "rise",
+  "device": "cuda:1",
+  "source_worktree": "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-rise-actuator-order",
+  "source_commit": "fe2cc15205583df3508ec86ea9fcc2f9ebeee720",
+  "source_checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261023/correct-routing-retrain-007/rise/formal-001/resume.pt",
+  "training_phase": "robust",
+  "num_envs": 16384,
+  "new_formal_update_budget": 600,
+  "initial_completed_updates": 1000,
+  "original_total_budget": 1600,
+  "reason": "random100 primary1754/1792>=95%, HOME small unsaturated, broad neutral body32/32 but strict quiet17/32; train scheduled4deg hold and four-way disturbance, head precision remains unfinished; not deployment qualification"
+}

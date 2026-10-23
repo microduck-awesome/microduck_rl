@@ -1,0 +1,28 @@
+[
+  {
+    "protocol": "tilt",
+    "seed": 2026102102,
+    "trials": 1184,
+    "qualified": 1081,
+    "never_fell": 1148,
+    "body_stable_tail": 1179,
+    "quiet_stop_tail": 1115,
+    "head_tail_pass": 0,
+    "self_contact": 29,
+    "hip_yaw_clearance": null,
+    "hip_roll_parking": null
+  },
+  {
+    "protocol": "four_way_push",
+    "seed": 2026102102,
+    "trials": 768,
+    "qualified": 571,
+    "never_fell": 677,
+    "body_stable_tail": 767,
+    "quiet_stop_tail": 718,
+    "head_tail_pass": 0,
+    "self_contact": 86,
+    "hip_yaw_clearance": null,
+    "hip_roll_parking": null
+  }
+]

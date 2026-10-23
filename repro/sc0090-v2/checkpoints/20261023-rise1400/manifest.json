@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "as_of_utc": "2026-10-23",
+  "purpose": "User requested latest completed rise/walk for on-robot observation; not full simulation or hardware acceptance",
+  "models": [
+    {
+      "directory": "rise-1400",
+      "completed_updates": 1400
+    }
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2876,
+      "sha256": "61b30b56c4106f56f31f9b04bd7199978e5de6c7c0a817c544bd13f73997ea91"
+    },
+    {
+      "path": "export_checkpoint.py",
+      "bytes": 2304,
+      "sha256": "ad5a83d7f76ef141ff172db824c9f0b324d1a35476e6a24c329ce9a1359a0f11"
+    },
+    {
+      "path": "package_and_verify.py",
+      "bytes": 13401,
+      "sha256": "7053fd625bb62f59348a50a99d66c4a061204e5b742d48d64430fb60a5b58563"
+    },
+    {
+      "path": "rise-1400/actuator-routing-qualification.json",
+      "bytes": 18886,
+      "sha256": "78a9cde53dd62c94cd1dbba591411b9888fb09843ced62a500eb768a10615802"
+    },
+    {
+      "path": "rise-1400/allocation-plan.json",
+      "bytes": 736,
+      "sha256": "9d6ec5448997bce4a347c3d17c5fbc9b027dd6a0e6a5ac25fba18ba73718fafc"
+    },
+    {
+      "path": "rise-1400/checkpoint-info.json",
+      "bytes": 100938,
+      "sha256": "4b6b6a8d57128afdf63f4036fb4ecd6acc30da32b3b86a7c5dbc89dcd646d731"
+    },
+    {
+      "path": "rise-1400/checkpoint.pt",
+      "bytes": 4870131,
+      "sha256": "25c797669db74bca582bf8fcd409660ff3736d9ae5cd34130b4b60d3865ae62c"
+    },
+    {
+      "path": "rise-1400/converter.json",
+      "bytes": 7974,
+      "sha256": "c093c93f4d8931244a32cb5a1641fb98eb60778378c23a1f219b88c4e1936413"
+    },
+    {
+      "path": "rise-1400/evaluation/four_way_push.json",
+      "bytes": 1192460,
+      "sha256": "fc5a10bd8c3f50e9621ab599beedd11b65b470d7c8ebcc7a845ea3b7a5cb70b0"
+    },
+    {
+      "path": "rise-1400/evaluation/recovery.json",
+      "bytes": 6262,
+      "sha256": "e0f682a65aae11d179956088c9152766a93942432e5909f8e33a05573727b2e1"
+    },
+    {
+      "path": "rise-1400/evaluation/tilt.json",
+      "bytes": 1476330,
+      "sha256": "b6f962ea1a1da93991b00ff9939e444b8f01a657f72ea376761c315b0e5dc46a"
+    },
+    {
+      "path": "rise-1400/evaluation-summary.json",
+      "bytes": 591,
+      "sha256": "d93ec29e0801c50db3553261d16ba96436b03725bb5580d8883651a9f028b049"
+    },
+    {
+      "path": "rise-1400/onnx-metadata.json",
+      "bytes": 4921,
+      "sha256": "beb7f6d8a2db47c5f039d02f9b4311c5786bace46b49755d3c37c8152f4e708f"
+    },
+    {
+      "path": "rise-1400/policy.onnx",
+      "bytes": 797659,
+      "sha256": "00e1f7f9f443cc848e0100fce6021bb58ab86edf226d34330864bdd4ed3e6f11"
+    },
+    {
+      "path": "rise-1400/rise-1400.json",
+      "bytes": 7974,
+      "sha256": "c093c93f4d8931244a32cb5a1641fb98eb60778378c23a1f219b88c4e1936413"
+    },
+    {
+      "path": "rise-1400/rise-1400.mdp",
+      "bytes": 791712,
+      "sha256": "2e522ee3ddcc7dc5970e9a5749d0507876ee96f95038a04b162e5dae37e6ee06"
+    },
+    {
+      "path": "rise-1400/runtime-contract.json",
+      "bytes": 8997,
+      "sha256": "e133f6a8f76f8cc75caab14ba5072462b372178440d73bbb894734dfd73da965"
+    },
+    {
+      "path": "rise-1400/source-info.json",
+      "bytes": 5519,
+      "sha256": "028cac7ab657a01a5a39ac6428fb587feb5fff33a19257b65a5f3b79c1a48bc4"
+    },
+    {
+      "path": "rise-1400/training-allocation.json",
+      "bytes": 85228,
+      "sha256": "4da676851729851fd75446580543a0b3fc94562db84a2e384bfda52e3379d247"
+    },
+    {
+      "path": "rise-1400/training-code.tar.gz",
+      "bytes": 518784,
+      "sha256": "2d7fe569e9ef554ae8f3897b89e52ee54a92d97ff9559435c75013e6734bdaa9"
+    },
+    {
+      "path": "rise-1400/validation.json",
+      "bytes": 544,
+      "sha256": "559c9f0a5fe28829bc4f3c55124782d58a281504344d0d556d7a1618a0072aaf"
+    },
+    {
+      "path": "rise-1400/verification-observations.npy",
+      "bytes": 125056,
+      "sha256": "b5b7c8bb9952402d486695fb06896cc501358ffe0d9398ddfcfe2ccf26936185"
+    },
+    {
+      "path": "tools/contracts/v2-rise-candidates.json",
+      "bytes": 6977,
+      "sha256": "8c7527476d6c32e4bdbc4c94c5384dfa22e97f991043b7d8ecc446d4852bcd14"
+    },
+    {
+      "path": "tools/convert_policy.py",
+      "bytes": 8426,
+      "sha256": "8b355e1589268f540c316efb62302f5272187c485d3b2ba3aff23ad89a5aa809"
+    },
+    {
+      "path": "tools/v2_contract.py",
+      "bytes": 5064,
+      "sha256": "f487f25796ce83758af405ec7fbc4aec09a612a37dd94bc8353d79c2276e277b"
+    }
+  ]
+}

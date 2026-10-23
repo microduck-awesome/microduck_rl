@@ -1,0 +1,427 @@
+{
+  "status": "PASS",
+  "allocation_kind": "ENVIRONMENT_QUALIFICATION_ONLY",
+  "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Sim2real-Baseline-20261021",
+  "skill": "rise",
+  "device": "cuda:1",
+  "num_envs": 16384,
+  "updates": 5,
+  "head_course": null,
+  "head_exploration": null,
+  "head_replay": null,
+  "standing_replay_reset_audit": false,
+  "batch_contract": {
+    "reference_envs": 8192,
+    "num_envs": 16384,
+    "rollout_steps": 24,
+    "minibatches": 8,
+    "samples_per_minibatch": 49152,
+    "epochs": 5,
+    "reference_learning_step_factor": 2.0,
+    "physical_time_unchanged": true
+  },
+  "rollout_steps": 24,
+  "epochs": 5,
+  "minibatches": 8,
+  "control_dt_s": 0.02,
+  "physics_dt_s": 0.005,
+  "diagnostic_controls": 1966080,
+  "physical_substeps": 7864320,
+  "new_formal_updates": 0,
+  "source_sha256": {
+    "src/mjlab_microduck/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/ppo_diagnostics.py": "d91c778baa9a5a34082a9745f9045489ad7b9048a74a3022f75191de3c6d8b6a",
+    "src/mjlab_microduck/train_cli.py": "6c1e118d2bf65f86f6b932dd41b4ddff2a20a0633194a03072f700c7bfa8e372",
+    "src/mjlab_microduck/train_hook.py": "db1bcbceadd41d65077983eaadcb89dee146dc14ea9c9cc3df9d29c1cba20db5",
+    "src/mjlab_microduck/export.py": "ef4d851eee70ce0d1c896a0be14fd4a936a0d17e83649dfd572a5282ffcdf5b9",
+    "src/mjlab_microduck/hf_jobs.py": "d447a20e1feed595ef29a1a19e6a51630327341eb270f0acf4fcb314f69fd285",
+    "src/mjlab_microduck/robot/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/robot/testbench_constants.py": "bf5e95376131471443e1daddf5abb0bc6326bc6b5c49bfb352774bcc6b011b9f",
+    "src/mjlab_microduck/robot/microduck_constants.py": "0e7097afe833ac1259b197f9854d01c1666be03ac0c9b090233b4fbc7619eb94",
+    "src/mjlab_microduck/tasks/__init__.py": "6e70ce6e75a3077aa9c13eddfaf2fbd6ad610fb09b13ca27dc7c632cfbf871fe",
+    "src/mjlab_microduck/tasks/distill.py": "d7a2326d3a3b85ba0acb8910dde2701208e61e5bfce0f246eace3d11f51a6026",
+    "src/mjlab_microduck/tasks/microduck_roller_standup_env_cfg.py": "146e417c082823039b87d2ff350e96e84007df80c268d53984d7c160f25cdeee",
+    "src/mjlab_microduck/tasks/microduck_velocity_env_cfg.py": "75a0430b814ac7495eb237ab806fbd4dd10309b9fd3027ac3eee3c2e3c5a944a",
+    "src/mjlab_microduck/tasks/mdp.py": "522bedfe71d14b3c8bfc1bbf925c0c7b372256497750df9ae63ebcc5da0d4f32",
+    "src/mjlab_microduck/tasks/symmetry.py": "e37980389773f2f87b8f376df449af4d70e0c983744459f9a35a3ee7b686186b",
+    "src/mjlab_microduck/tasks/microduck_velstand_env_cfg.py": "4b0aebefcc33ad43c2741bf09d8516be82c3ec859bcac54d4ef6531c2759898d",
+    "src/mjlab_microduck/tasks/microduck_ball_kick_env_cfg.py": "313180628c0d0364ea6d0f1843e7e3e10b76585491b90b0c1f0e301d9e5fd30c",
+    "src/mjlab_microduck/tasks/microduck_sitstand_env_cfg.py": "65b1961566b0772852ba36af8e92c02a13a53de9b9a98f91e2dce1f4d8d627b1",
+    "src/mjlab_microduck/tasks/testbench_env_cfg.py": "d254218ca3f491e52d471ad033ebd1cb39a339f1f21394ea55e2bec4f3dc2776",
+    "src/mjlab_microduck/tasks/microduck_spin_env_cfg.py": "ba85e26407a29a208f871aa229bb2c7971eca6087f0740e7de6f898adbc5b395",
+    "src/mjlab_microduck/tasks/microduck_velocity_swizzle_env_cfg.py": "75197c956afd77586f60e4b773033ace15e088179bb5912a88328862b0a10f49",
+    "src/mjlab_microduck/tasks/backlash.py": "35598c2a3db496527fb8835269b4e0ac0eddcc86e683a7af447933c7281d0e22",
+    "src/mjlab_microduck/tasks/microduck_ground_pick_env_cfg.py": "9b68951e2c84fdccb5894701efa97e060438eb56c956a34c65e844ba3fa6185e",
+    "src/mjlab_microduck/tasks/slope_terrain.py": "1ce48eef8b4bd82cde94d7c9f50f19d2992f4dc8d3b5b5d314b7381bc572b8a0",
+    "src/mjlab_microduck/tasks/microduck_standup_env_cfg.py": "b20b8f3fac5a374dd602f371f0b500955b4dbcb4d3f7330bddfa15b327826873",
+    "src/mjlab_microduck/tasks/microduck_velocity_rollers_env_cfg.py": "53567a5ed91b4c70166b57c79fc31917fdcf41287128aff12d3b9ff678f4c38c",
+    "src/mjlab_microduck/tasks/microduck_roulade_env_cfg.py": "5e923d9ba69946228062c72102fe2b97bce02b9fd6f52c2418a42bbd4f919b42",
+    "src/mjlab_microduck/tasks/microduck_roller_crouch_env_cfg.py": "745142fab9ffc4c43a6b7d367d6be37f5675f5fbf255ac4341a9e2a21a4062ee",
+    "src/mjlab_microduck/tasks/microduck_roller_slope_env_cfg.py": "92738df650e3527c8cbe194169f60fb2a232933b1eabbbaf7d4b7d2aa67e2b42",
+    "src/mjlab_microduck/custom_v2/terminal.py": "3a195a3aa788595fca0f856eba7b51b97c1c89e2382b1a2aaa0b019b24bb85c4",
+    "src/mjlab_microduck/custom_v2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/custom_v2/head_mixed.py": "3b9f5ed2d5acb5f2de54db7c31f08b683425fd55d7cfe29c3a4fd28b2f0cdd85",
+    "src/mjlab_microduck/custom_v2/ppo.py": "71b31bce40096faf9d8860672dc0826d5a36e2bf5b157e9ecef2524b239e62e5",
+    "src/mjlab_microduck/custom_v2/sim2real.py": "fea4cd77294c1fc9767f21ea1bb3ae849f248a2b8fe4c66f12cd6ba6d470f78f",
+    "src/mjlab_microduck/custom_v2/microduck_v2.py": "889638be509fbd0a5a38df375c26421c24c5034725b05e5e7fe2229cb065ffc6",
+    "src/mjlab_microduck/custom_v2/runtime.py": "66786dc0f292f161343e03ddf8ed55e885bc119c554aa6279e3e8cd8c14a918e",
+    "src/mjlab_microduck/custom_v2/head_standing_replay.py": "2ad5ec68b02b76aca02854dfc6bbc566fd10a7c8b8876f9e48e32c20ae0281c8",
+    "src/mjlab_microduck/custom_v2/recovery.py": "60549f9d2a2e33dd2bd745216dc0053cddce39911dc5d811e35b8265313b2941",
+    "src/mjlab_microduck/custom_v2/training.py": "6a9b774cfbe3989acdce4efdc36ee2fd48b9dd6c5cf9bc81f75d8528316145ae",
+    "src/mjlab_microduck/custom_v2/training_phases.py": "5b044b59a360c7f0d9cc1154e6e6634cde0fcfb311a6ce761bb7cdac4e409cfc",
+    "src/mjlab_microduck/custom_v2/error_proxy.py": "5b1449037b5ee33d74e350cd5e44f02592618152f24166ce054f1e44d2670874",
+    "src/mjlab_microduck/custom_v2/paired_randomization.py": "65a96253b1530e03659f9c31cb933bff4ccba6e1c82a9013c80ae96436a3f45d",
+    "src/mjlab_microduck/custom_v2/commands.py": "16d530d3548889b73824d841d1ff2a586f2afb0286573336d12c8167e553f98c",
+    "src/mjlab_microduck/custom_v2/assessment.py": "235a241b59c2e6f825271797d4d3424d840aa3c56fa0c939a9c58f2a855e1997",
+    "src/mjlab_microduck/custom_v2/head_metrics.py": "5641c7679671f9fe124af5968a585df9e1425b9d3fa4462992f0c3d35f503599",
+    "src/mjlab_microduck/custom_v2/sim2real_learning.py": "bd617104cfe691145727cd3e0f653e393e3b6c976f8a683caf93b702645a3463",
+    "src/mjlab_microduck/custom_v2/head_conditional_exploration.py": "19e2603251d9d8103b5cb07c61bf4dfad5c1d0c36bb9f4fae8cb7723a86bdee7",
+    "src/mjlab_microduck/custom_v2/phase_stability.py": "75a1434ac24eb12d8b044ac4af982485c9bd09a63b4f839c60b885c13db251a2",
+    "src/mjlab_microduck/custom_v2/exposure.py": "08c834418f3bc88923419e556d51f5cd9802a50ac1e5e4a52728ef7f1934a0df",
+    "src/mjlab_microduck/pickup/__init__.py": "7f9ef6fbcbd8b157b71f978092f41cdf8505992a6ecd91b59fc2b0fdef8cad2f",
+    "src/mjlab_microduck/pickup/hand.py": "6b3229a8784e685b2837d44aa11d2c5cdb46e8337de62db8591572ba17537c3a",
+    "src/mjlab_microduck/pickup/model.py": "d738f60870bfa44be8d14afca4ec05d2c1920968202419bd814949b25d94813e",
+    "src/mjlab_microduck/pickup/features.py": "e1f49f64ce597215bca8d2734476fe5aa615a46a6bb6387c57fdd9a4b35f5015",
+    "src/mjlab_microduck/physics/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/physics/v2_cpu_replay.py": "c5d13822b56b5a68850e5e76768b968e5fc6f2290674ceb10e530b11d4d61048",
+    "src/mjlab_microduck/physics/cpu_warp_contacts.py": "84ad6f3a96c06bc5552ca63fbd9f396d255545c54b956f8bd9bdba0abaa827dc",
+    "src/mjlab_microduck/publish/__init__.py": "7768b41714b565cc97b5553a170b5d95cf17abafe6baa0f9a4be0b7e8cfec7bf",
+    "src/mjlab_microduck/publish/manifest.py": "d66bae7920c2a86fef56877d8ced25c4b1fee67d5637da56d284056722dc7866",
+    "src/mjlab_microduck/publish/cli.py": "adb198a8b2c0aa10069cbcc3fe2c32b5540533cf04b410caa190b3bdcc24058b",
+    "src/mjlab_microduck/actuator/__init__.py": "181bfbec32115818720695915322f6e2c860fe87767570662a029f8e2d01f12d",
+    "src/mjlab_microduck/actuator/friction_dr_bam.py": "20d25ce2fd06a94bc4fd5356a657710a0959a352bad3dfcc670122f0f0bcd4d4",
+    "src/mjlab_microduck/actuator/v5_graph.py": "19da7ffbbbe81c9366f36c54de7adeac4efdc1b84b77d7b3335369d56014f811",
+    "src/mjlab_microduck/actuator/mujoco.py": "8786168d73b75a002c61bcc1b9aa6163276cf58637559ad21f96805baeb0e5d4",
+    "src/mjlab_microduck/actuator/friction_force.py": "c84648a4c15a7173a9580d72deff2a9356b8c3aa2fd086413a795924d438a7f6",
+    "src/mjlab_microduck/actuator/sc0090_v5.py": "d9862301d287c9e598a95e9e5da49180730162d323790c23ae87f668801cd2e2",
+    "src/mjlab_microduck/sim/terminal.py": "970b529849b5ee63474c7b5981f308b02bdf77a005dcbed106bbe906c9cd797f",
+    "src/mjlab_microduck/sim/__init__.py": "f13d4940266b9579529074bc60426353ed8fc6f49bf8f480691d30e8e4276e22",
+    "src/mjlab_microduck/sim/recompute.py": "a5281fe33ab2c83cc4a1aafe127aee3b657b72d14663fbfd95962770e715b35c",
+    "src/mjlab_microduck/sim/body_server.py": "2040c827628c33fee998944bce1fcd456c4b993802bb473f016681688bff7b08",
+    "src/mjlab_microduck/sim/camera.py": "5f2e6c83b33e594583cbd5f3e003c3b8bb77f7a0e7b734d86ba0b2c821eaed71",
+    "src/mjlab_microduck/sim/tof.py": "256c06bac5ac64a02f3e065785bd70314b616c58da3cb94f93484c9e00d42663",
+    "src/mjlab_microduck/robot/microduck/add_backlash.py": "805a17ba4ad60f7a2ba20ff90879ad93a6db66013150c5ad9be3d31bc7b4252c",
+    "src/mjlab_microduck/custom_v2/assets/fastener_mass.json": "1e86485cb69d25c1038e80616afde6c01fb021838ffb6dd0d8e4425c34ed0331",
+    "src/mjlab_microduck/custom_v2/assets/sim2real_collision_profiles.json": "d918589216b2db411813e30002af7b891c0b32ad5c8de1329ad475f14b3fd81c",
+    "src/mjlab_microduck/custom_v2/assets/model_metadata.json": "14964512f02f32bc0291de005ba1b79efe1650761aec9eb7037c5b83a6d561e1",
+    "src/mjlab_microduck/custom_v2/assets/sim2real_balance_poses.json": "5b67bec8f301485b44fea60a1a42f7cc79f0393861b0862dd3e462f4b40e7e07",
+    "src/mjlab_microduck/custom_v2/assets/sim2real_shell_collision.json": "5d82b5255494514e12f9739078fe6d916489c1bf27dfe083e1afda94a706c757",
+    "src/mjlab_microduck/custom_v2/assets/robot_sim2real_rise_backlash.xml": "8cf36d66b7dea77885c34c64913f074e30b036fdc290ab28b8d3084c2b7acb23",
+    "scripts/validate_v2_sim2real.py": "f2747b7bf685ee80b1cfaf0cfed9743081fcbaf191f015d6ebf75b46a22e8025"
+  },
+  "recipe_sha256": "776cdb9b5cf44148987ecb01e2000d61ead142d2e95af067fd725b70a61c7dd1",
+  "training_phase": "robust",
+  "phase_contract": {
+    "phase": "robust",
+    "strength": 1.0,
+    "kind": "rise",
+    "geometry_sha256": "8cf36d66b7dea77885c34c64913f074e30b036fdc290ab28b8d3084c2b7acb23",
+    "mass_kg": 0.6246,
+    "backlash_total_width_deg": 2.0,
+    "encoder_bias_deg": 2.0,
+    "paired_error_strength": 1.0,
+    "imu_misalignment_max_deg": 6.0,
+    "command_delay_physics_steps": [
+      2,
+      5
+    ],
+    "supply_voltage_v": [
+      10.2,
+      12.4
+    ],
+    "supply_resistance_ohm": [
+      0.05,
+      0.15
+    ],
+    "motor_friction_and_armature_scale": [
+      0.9,
+      1.1
+    ],
+    "disturbances": true,
+    "balance_spawn_trials": true,
+    "final_target": {
+      "command_transport_delay_ms": [
+        10,
+        15,
+        20,
+        25
+      ],
+      "command_delay_update": "each_5ms_physics_step",
+      "command_delay_sampling": "uniform_per_world_per_actuator_group",
+      "joint_friction_scale": [
+        0.9,
+        1.1
+      ],
+      "joint_armature_scale": [
+        0.9,
+        1.1
+      ],
+      "encoder_bias_rad": [
+        -0.03490658503988659,
+        0.03490658503988659
+      ],
+      "encoder_bias_lifetime": "whole_run_per_joint_per_world",
+      "encoder_bias_basis": "user_requested_2deg_robustness_range_not_measured_distribution",
+      "encoder_bias_application": "observation_plus_b;physical_target_clipped_action_minus_b",
+      "head_com_bodies": [
+        "neck",
+        "neck_pitch",
+        "yaw_roll_motion",
+        "bottom_head_shell",
+        "jaw_soft"
+      ],
+      "voltage_uniform_v": [
+        10.2,
+        12.4
+      ],
+      "supply_resistance_uniform_ohm": [
+        0.05,
+        0.15
+      ],
+      "voltage_floor_v": 9.0,
+      "supply_sampling": "startup_fixed_across_resets;one_common_3s_bus",
+      "supply_load": "max(0,sum(previous_duty*previous_motor_torque/kt));all_15_servos",
+      "supply_resistance_basis": "engineering_training_prior_0.2_to_0.6V_at_4A_not_measured",
+      "battery": "user_confirmed_GNB_2000mAh_3S_5C",
+      "supply_base": "quiescent_bus_voltage_including_electronics;no_double_count_idle_load",
+      "supply_regeneration": "offset_shared_load_only;no_bus_overvoltage_model",
+      "paired_error_retained": true,
+      "extra_joint_white_noise": false,
+      "explicit_backlash": true,
+      "backlash_total_width_deg": 2.0,
+      "backlash_source": "official_v8_training_assumption",
+      "load_voltage_sag": true,
+      "terrain": "plane",
+      "max_pwm": 1.0,
+      "max_current_a": 0.6,
+      "current_cap_basis": "SC0090_0.6A_stall_reference_training_prior_not_measured_limiter",
+      "ctrl_limited": true,
+      "force_limited": true,
+      "effort_limit_formula": "min(V_range_max*max_pwm*kt/R_motor,max_current*kt);symmetric_Nm_all_15",
+      "disturbances": "regular_walk_0.3mps;regular_rise_0_0.08_0.3_at_0_500_1000_reference_updates;3-6s;user_retained_topple_4-8s_0.3_0.6_0.9_1.2_at_0_100_400_800;velocity_pushes_outside_balance_trials",
+      "balance_initial_angles_deg": [
+        2,
+        5,
+        10
+      ],
+      "balance_outward_rates_rad_s": [
+        0.0,
+        0.1,
+        0.3
+      ],
+      "balance_directions": [
+        "back",
+        "front",
+        "left",
+        "right"
+      ],
+      "balance_band_deg": 4.0,
+      "force_peaks_N": [
+        0.25,
+        0.45,
+        0.7
+      ],
+      "force_pulse_s": [
+        0.24,
+        0.4
+      ],
+      "force_sustained_s": [
+        1.2,
+        2.0
+      ]
+    }
+  },
+  "checkpoint_schema": 3,
+  "checkpoint_restore_verified": true,
+  "actuator_routes": [
+    {
+      "computed_for": "left_hip_yaw",
+      "applied_to": "left_hip_yaw",
+      "global_ctrl_id": 0
+    },
+    {
+      "computed_for": "left_hip_roll",
+      "applied_to": "left_hip_roll",
+      "global_ctrl_id": 1
+    },
+    {
+      "computed_for": "left_hip_pitch",
+      "applied_to": "left_hip_pitch",
+      "global_ctrl_id": 2
+    },
+    {
+      "computed_for": "left_knee",
+      "applied_to": "left_knee",
+      "global_ctrl_id": 3
+    },
+    {
+      "computed_for": "left_ankle",
+      "applied_to": "left_ankle",
+      "global_ctrl_id": 4
+    },
+    {
+      "computed_for": "neck_pitch",
+      "applied_to": "neck_pitch",
+      "global_ctrl_id": 5
+    },
+    {
+      "computed_for": "head_pitch",
+      "applied_to": "head_pitch",
+      "global_ctrl_id": 6
+    },
+    {
+      "computed_for": "head_yaw",
+      "applied_to": "head_yaw",
+      "global_ctrl_id": 7
+    },
+    {
+      "computed_for": "head_roll",
+      "applied_to": "head_roll",
+      "global_ctrl_id": 8
+    },
+    {
+      "computed_for": "mouth",
+      "applied_to": "mouth",
+      "global_ctrl_id": 14
+    },
+    {
+      "computed_for": "right_hip_yaw",
+      "applied_to": "right_hip_yaw",
+      "global_ctrl_id": 9
+    },
+    {
+      "computed_for": "right_hip_roll",
+      "applied_to": "right_hip_roll",
+      "global_ctrl_id": 10
+    },
+    {
+      "computed_for": "right_hip_pitch",
+      "applied_to": "right_hip_pitch",
+      "global_ctrl_id": 11
+    },
+    {
+      "computed_for": "right_knee",
+      "applied_to": "right_knee",
+      "global_ctrl_id": 12
+    },
+    {
+      "computed_for": "right_ankle",
+      "applied_to": "right_ankle",
+      "global_ctrl_id": 13
+    }
+  ],
+  "actuator_routes_verified": true,
+  "randomization": [
+    {
+      "targets": [
+        "left_hip_yaw",
+        "left_hip_roll",
+        "left_hip_pitch",
+        "left_knee",
+        "left_ankle",
+        "neck_pitch",
+        "head_pitch",
+        "head_yaw",
+        "head_roll",
+        "mouth",
+        "right_hip_yaw",
+        "right_hip_roll",
+        "right_hip_pitch",
+        "right_knee",
+        "right_ankle"
+      ],
+      "voltage_range": [
+        10.200324058532715,
+        12.399883270263672
+      ],
+      "supply_resistance_ohm": [
+        0.05000123754143715,
+        0.14999954402446747
+      ],
+      "effective_voltage_range": [
+        9.541621208190918,
+        12.2501220703125
+      ],
+      "supply_persistent_across_reset": true,
+      "friction_range": [
+        0.9000292420387268,
+        1.0999890565872192
+      ],
+      "armature_scale_range": [
+        0.9000009894371033,
+        1.099999189376831
+      ],
+      "sampled_delay_lags": [
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "fixed_encoder_bias_preserved_on_reset": true,
+  "model_sha256": "8cf36d66b7dea77885c34c64913f074e30b036fdc290ab28b8d3084c2b7acb23",
+  "mass_kg": 0.6245999999999999,
+  "terminal_bootstrap_samples": 8192,
+  "terminal_successor_max_abs": 5.960464477539063e-08,
+  "terminal_capture_preserved_live_state_and_rng": true,
+  "finite_losses": true,
+  "partial_reset_after_inference_pass": true,
+  "onnx_max_abs": 5.960464477539063e-08,
+  "peak_contacts": 115205,
+  "contact_capacity": 2097152,
+  "physics_cuda_graph": true,
+  "motor_graph_replays": [
+    478
+  ],
+  "total_wall_s": 68.8723956970498,
+  "learning_wall_s": 25.814988228026778,
+  "end_to_end_controls_per_s": 28546.705542932326,
+  "steady_controls_per_s": 80852.37927498312,
+  "steady_physics_substeps_per_s": 323409.5170999325,
+  "steady_collection_s": 4.399231672286987,
+  "steady_learning_s": 0.40294158458709717,
+  "gpu_steady_sample_count": 10,
+  "gpu_steady_mean_percent": 85.5,
+  "gpu_steady_p50_percent": 87.0,
+  "gpu_steady_p95_percent": 88.0,
+  "gpu_peak_memory_MiB": 40850.0,
+  "iteration_timing": [
+    {
+      "update": 1,
+      "elapsed_s": 48.343582364032045,
+      "wall_s": 6.045725940959528,
+      "collection_s": 5.454010963439941,
+      "learning_s": 0.48781800270080566
+    },
+    {
+      "update": 2,
+      "elapsed_s": 53.396714214002714,
+      "wall_s": 5.0531318499706686,
+      "collection_s": 4.482801675796509,
+      "learning_s": 0.4039015769958496
+    },
+    {
+      "update": 3,
+      "elapsed_s": 58.256339326966554,
+      "wall_s": 4.85962511296384,
+      "collection_s": 4.401756525039673,
+      "learning_s": 0.40595364570617676
+    },
+    {
+      "update": 4,
+      "elapsed_s": 63.13012725394219,
+      "wall_s": 4.873787926975638,
+      "collection_s": 4.406240224838257,
+      "learning_s": 0.4069209098815918
+    },
+    {
+      "update": 5,
+      "elapsed_s": 67.98310317797586,
+      "wall_s": 4.852975924033672,
+      "collection_s": 4.392223119735718,
+      "learning_s": 0.39896225929260254
+    }
+  ],
+  "limitation": "Startup and finite qualification only; not learned skill success. Discard weights before approved fresh formal training."
+}

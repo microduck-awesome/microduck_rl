@@ -1,0 +1,781 @@
+{
+  "status": "PASS",
+  "original_snapshot": "rise_baseline_paired3762",
+  "original_src_files_checked": 340,
+  "modified_original_src_files": [
+    "src/mjlab_microduck/custom_v2/assets/robot.xml"
+  ],
+  "xml_original_elements_unchanged": true,
+  "added_shell_meshes": 32,
+  "added_shell_geoms": 32,
+  "added_elements": [
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_000",
+        "file": "sim2real_shell_000.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_001",
+        "file": "sim2real_shell_001.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_002",
+        "file": "sim2real_shell_002.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_003",
+        "file": "sim2real_shell_003.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_004",
+        "file": "sim2real_shell_004.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_005",
+        "file": "sim2real_shell_005.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_006",
+        "file": "sim2real_shell_006.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_007",
+        "file": "sim2real_shell_007.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_008",
+        "file": "sim2real_shell_008.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_009",
+        "file": "sim2real_shell_009.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_010",
+        "file": "sim2real_shell_010.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_011",
+        "file": "sim2real_shell_011.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_012",
+        "file": "sim2real_shell_012.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_013",
+        "file": "sim2real_shell_013.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_014",
+        "file": "sim2real_shell_014.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_015",
+        "file": "sim2real_shell_015.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_016",
+        "file": "sim2real_shell_016.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_017",
+        "file": "sim2real_shell_017.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_018",
+        "file": "sim2real_shell_018.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_019",
+        "file": "sim2real_shell_019.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_020",
+        "file": "sim2real_shell_020.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_021",
+        "file": "sim2real_shell_021.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_022",
+        "file": "sim2real_shell_022.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_023",
+        "file": "sim2real_shell_023.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_024",
+        "file": "sim2real_shell_024.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_025",
+        "file": "sim2real_shell_025.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_026",
+        "file": "sim2real_shell_026.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_027",
+        "file": "sim2real_shell_027.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_028",
+        "file": "sim2real_shell_028.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_029",
+        "file": "sim2real_shell_029.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_030",
+        "file": "sim2real_shell_030.stl"
+      }
+    },
+    {
+      "tag": "mesh",
+      "attributes": {
+        "name": "sim2real_shell_031",
+        "file": "sim2real_shell_031.stl"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_000_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_000",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_001_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_001",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_002_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_002",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_003_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_003",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_004_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_004",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_005_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_005",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_006_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_006",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_007_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_007",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_008_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_008",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_009_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_009",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_010_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_010",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_011_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_011",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_012_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_012",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_013_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_013",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_014_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_014",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_015_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_015",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_016_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_016",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_017_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_017",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_018_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_018",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_019_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_019",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_020_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_020",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_021_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_021",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_022_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_022",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_023_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_023",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_024_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_024",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_025_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_025",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_026_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_026",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_027_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_027",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_028_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_028",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_029_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_029",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_030_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_030",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    },
+    {
+      "tag": "geom",
+      "attributes": {
+        "name": "sim2real_shell_031_collision",
+        "type": "mesh",
+        "mesh": "sim2real_shell_031",
+        "group": "3",
+        "contype": "1",
+        "conaffinity": "1",
+        "condim": "3",
+        "priority": "0",
+        "friction": "1.0 0.005 0.0001",
+        "solref": "0.02 1.0",
+        "density": "0",
+        "rgba": "0.2 0.6 1 0.35"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1434 @@
+{
+  "status": "PASS",
+  "current_dependency_versions": {
+    "torch": "2.9.1",
+    "mjlab": "1.3.0",
+    "mujoco": "3.13.0",
+    "mujoco-warp": "3.8.1",
+    "warp-lang": "1.12.0",
+    "better-actuator-models": "1.0.1",
+    "rsl-rl-lib": "5.0.1"
+  },
+  "checkpoints": [
+    {
+      "phase": "standup-allocation-001",
+      "file": "checkpoint_000012.pt",
+      "sha256": "76bcf7a9467a535deecca329bbbcd05da194a514032304ca13b70b48c16d866b",
+      "checkpoint_iter": 12,
+      "completed_updates": 12,
+      "common_step_counter": 288,
+      "recovery": {
+        "stage": 0,
+        "last_assessment_step": 0,
+        "polish": false,
+        "trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "wins": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rates": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "total_trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "eval_history": {},
+      "head_precision_recipe": null,
+      "physics_resume": "native-new-episodes",
+      "torch_rng_sha256": "78c5ee4f40bdca6ce0766a7fa959da54b4fe32204d7910a43d9feb443fecd520",
+      "cuda_rng_states": 2,
+      "cuda_rng_sha256": [
+        "04cc03ab379023debea64e094dcefb19a4f74d73a347cacdb8d80a7210c2c940",
+        "cb89f9f9fde6ec0c89e173cd7ec496c9e2cdec005701ead96c4f08aa5a74713c"
+      ],
+      "optimizer_learning_rates": [
+        0.002962962962962963
+      ],
+      "terminal_bootstrap": null
+    },
+    {
+      "phase": "standup-allocation-002",
+      "file": "checkpoint_001000.pt",
+      "sha256": "80c26df9ffd7c0797f07a72c8e760cd96238dd4e69e1a6f12a7e63533e945655",
+      "checkpoint_iter": 1000,
+      "completed_updates": 1000,
+      "common_step_counter": 24000,
+      "recovery": {
+        "stage": 4,
+        "last_assessment_step": 24000,
+        "polish": false,
+        "trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "wins": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rates": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "total_trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "eval_history": {
+        "last_iteration": 1000,
+        "last_promotion_step": 24000,
+        "evaluated_stage": 3,
+        "stage_after": 4,
+        "checkpoint_sha256": "0c536bcf568f5235be09f9ac79439852f02e7acafbc6e46aea2960662fdf5ec7",
+        "counts": {
+          "standing": [
+            256,
+            256
+          ],
+          "sitting": [
+            256,
+            256
+          ],
+          "prone": [
+            256,
+            256
+          ],
+          "frontier": [
+            256,
+            256
+          ],
+          "left_side": [
+            256,
+            256
+          ],
+          "right_side": [
+            256,
+            256
+          ],
+          "supine": [
+            256,
+            256
+          ]
+        },
+        "rates": {
+          "standing": 1.0,
+          "sitting": 1.0,
+          "prone": 1.0,
+          "frontier": 1.0,
+          "left_side": 1.0,
+          "right_side": 1.0,
+          "supine": 1.0
+        },
+        "promoted": true,
+        "polish": false
+      },
+      "head_precision_recipe": null,
+      "physics_resume": "native-new-episodes",
+      "torch_rng_sha256": "78c5ee4f40bdca6ce0766a7fa959da54b4fe32204d7910a43d9feb443fecd520",
+      "cuda_rng_states": 2,
+      "cuda_rng_sha256": [
+        "04cc03ab379023debea64e094dcefb19a4f74d73a347cacdb8d80a7210c2c940",
+        "b1da16742fa3fa53bc5638ee95fdda0211a101f2386be59c83addb2e14dc18af"
+      ],
+      "optimizer_learning_rates": [
+        0.0002562890625000001
+      ],
+      "terminal_bootstrap": {
+        "schema": 1,
+        "state": "no_reset_successor_critic_v1",
+        "normalization": "before_step_update",
+        "terminal_precedence": true
+      }
+    },
+    {
+      "phase": "standup-allocation-003",
+      "file": "resume_002000.pt",
+      "sha256": "182d7ebde5a62be252d76353b61206149332ace06a9053e3f72d7b88eaff4600",
+      "checkpoint_iter": 2000,
+      "completed_updates": 2000,
+      "common_step_counter": 48000,
+      "recovery": {
+        "stage": 5,
+        "last_assessment_step": 30000,
+        "polish": true,
+        "trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "wins": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rates": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "total_trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "eval_history": {
+        "last_iteration": 2000,
+        "last_promotion_step": 30000,
+        "evaluated_stage": 5,
+        "stage_after": 5,
+        "checkpoint_sha256": "1427cf5a51103df0d64b7b0d52413f386ee361df2abb7b8a84a1f86025fe2faa",
+        "counts": {
+          "standing": [
+            256,
+            256
+          ],
+          "sitting": [
+            256,
+            256
+          ],
+          "prone": [
+            256,
+            256
+          ],
+          "frontier": [
+            256,
+            256
+          ],
+          "left_side": [
+            256,
+            256
+          ],
+          "right_side": [
+            256,
+            256
+          ],
+          "supine": [
+            256,
+            256
+          ]
+        },
+        "rates": {
+          "standing": 1.0,
+          "sitting": 1.0,
+          "prone": 1.0,
+          "frontier": 1.0,
+          "left_side": 1.0,
+          "right_side": 1.0,
+          "supine": 1.0
+        },
+        "promoted": false,
+        "polish": true
+      },
+      "head_precision_recipe": null,
+      "physics_resume": "native-new-episodes",
+      "torch_rng_sha256": "78c5ee4f40bdca6ce0766a7fa959da54b4fe32204d7910a43d9feb443fecd520",
+      "cuda_rng_states": 2,
+      "cuda_rng_sha256": [
+        "04cc03ab379023debea64e094dcefb19a4f74d73a347cacdb8d80a7210c2c940",
+        "ec2ef39ad6175dadee2c110f8366a719b2c09dd61a2be3bb590e56ca9992c6ad"
+      ],
+      "optimizer_learning_rates": [
+        0.00017085937500000009
+      ],
+      "terminal_bootstrap": {
+        "schema": 1,
+        "state": "no_reset_successor_critic_v1",
+        "normalization": "before_step_update",
+        "terminal_precedence": true
+      }
+    },
+    {
+      "phase": "head-precision-allocation-001",
+      "file": "resume_002250.pt",
+      "sha256": "eeef85c1396e611304da60f3930849554f8b61dad257cd48a3d7ece431d5e9c0",
+      "checkpoint_iter": 2250,
+      "completed_updates": 2250,
+      "common_step_counter": 54000,
+      "recovery": {
+        "stage": 5,
+        "last_assessment_step": 30000,
+        "polish": true,
+        "trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "wins": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rates": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "total_trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "eval_history": {
+        "last_iteration": 2250,
+        "last_promotion_step": 30000,
+        "evaluated_stage": 5,
+        "stage_after": 5,
+        "checkpoint_sha256": "7c308dcca73127de9b56f1a5a6455b04be4dde063b7ee4516af9e5203da526b0",
+        "counts": {
+          "standing": [
+            256,
+            256
+          ],
+          "sitting": [
+            256,
+            256
+          ],
+          "prone": [
+            256,
+            256
+          ],
+          "frontier": [
+            256,
+            256
+          ],
+          "left_side": [
+            256,
+            256
+          ],
+          "right_side": [
+            256,
+            256
+          ],
+          "supine": [
+            256,
+            256
+          ]
+        },
+        "rates": {
+          "standing": 1.0,
+          "sitting": 1.0,
+          "prone": 1.0,
+          "frontier": 1.0,
+          "left_side": 1.0,
+          "right_side": 1.0,
+          "supine": 1.0
+        },
+        "promoted": false,
+        "polish": true
+      },
+      "head_precision_recipe": {
+        "id": "v2-head-precision-1",
+        "ranges": [
+          [
+            -0.39,
+            0.39
+          ],
+          [
+            -0.39,
+            0.39
+          ],
+          [
+            -0.49,
+            0.49
+          ],
+          [
+            -0.11,
+            0.11
+          ]
+        ],
+        "final_ranges": [
+          [
+            -0.48577760000000003,
+            1.1
+          ],
+          [
+            -1.1,
+            0.904656
+          ],
+          [
+            -1.4,
+            1.4
+          ],
+          [
+            -0.31,
+            0.31
+          ]
+        ],
+        "reward_weight": 3.0,
+        "std": 0.5,
+        "fine_std": 0.08,
+        "fine_weight": 0.5,
+        "reason": "2000-update head response failed despite mastered recovery"
+      },
+      "physics_resume": "native-new-episodes",
+      "torch_rng_sha256": "78c5ee4f40bdca6ce0766a7fa959da54b4fe32204d7910a43d9feb443fecd520",
+      "cuda_rng_states": 2,
+      "cuda_rng_sha256": [
+        "04cc03ab379023debea64e094dcefb19a4f74d73a347cacdb8d80a7210c2c940",
+        "2e9c9c170e4e41c3fa2e74d5cb2491283df73282f095482e7816d23e22105919"
+      ],
+      "optimizer_learning_rates": [
+        0.00017085937500000006
+      ],
+      "terminal_bootstrap": {
+        "schema": 1,
+        "state": "no_reset_successor_critic_v1",
+        "normalization": "before_step_update",
+        "terminal_precedence": true
+      }
+    },
+    {
+      "phase": "head-precision-allocation-002",
+      "file": "resume_002500.pt",
+      "sha256": "f5b9edf7f2718a0a6dbeded0dc86a072693bc9afc51ba079b9b7fc01fcad6eeb",
+      "checkpoint_iter": 2500,
+      "completed_updates": 2500,
+      "common_step_counter": 60000,
+      "recovery": {
+        "stage": 5,
+        "last_assessment_step": 30000,
+        "polish": true,
+        "trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "wins": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rates": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "total_trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "eval_history": {
+        "last_iteration": 2500,
+        "last_promotion_step": 30000,
+        "evaluated_stage": 5,
+        "stage_after": 5,
+        "checkpoint_sha256": "3f861ae2ed18e03aaef08f6611897d4782a6ce0c57ad5e5790018f7503d4b7ec",
+        "counts": {
+          "standing": [
+            256,
+            256
+          ],
+          "sitting": [
+            256,
+            256
+          ],
+          "prone": [
+            256,
+            256
+          ],
+          "frontier": [
+            256,
+            256
+          ],
+          "left_side": [
+            256,
+            256
+          ],
+          "right_side": [
+            256,
+            256
+          ],
+          "supine": [
+            256,
+            256
+          ]
+        },
+        "rates": {
+          "standing": 1.0,
+          "sitting": 1.0,
+          "prone": 1.0,
+          "frontier": 1.0,
+          "left_side": 1.0,
+          "right_side": 1.0,
+          "supine": 1.0
+        },
+        "promoted": false,
+        "polish": true
+      },
+      "head_precision_recipe": {
+        "id": "v2-head-precision-1",
+        "ranges": [
+          [
+            -0.39,
+            0.39
+          ],
+          [
+            -0.39,
+            0.39
+          ],
+          [
+            -0.49,
+            0.49
+          ],
+          [
+            -0.11,
+            0.11
+          ]
+        ],
+        "final_ranges": [
+          [
+            -0.48577760000000003,
+            1.1
+          ],
+          [
+            -1.1,
+            0.904656
+          ],
+          [
+            -1.4,
+            1.4
+          ],
+          [
+            -0.31,
+            0.31
+          ]
+        ],
+        "reward_weight": 3.0,
+        "std": 0.5,
+        "fine_std": 0.08,
+        "fine_weight": 0.5,
+        "reason": "2000-update head response failed despite mastered recovery"
+      },
+      "physics_resume": "native-new-episodes",
+      "torch_rng_sha256": "78c5ee4f40bdca6ce0766a7fa959da54b4fe32204d7910a43d9feb443fecd520",
+      "cuda_rng_states": 2,
+      "cuda_rng_sha256": [
+        "04cc03ab379023debea64e094dcefb19a4f74d73a347cacdb8d80a7210c2c940",
+        "b60e99696f930cc0b8192466a5728c199da1d03406473fbca3f52fa97b9333c5"
+      ],
+      "optimizer_learning_rates": [
+        0.0002562890625000001
+      ],
+      "terminal_bootstrap": {
+        "schema": 1,
+        "state": "no_reset_successor_critic_v1",
+        "normalization": "before_step_update",
+        "terminal_precedence": true
+      }
+    },
+    {
+      "phase": "head-precision-allocation-003",
+      "file": "resume_002750.pt",
+      "sha256": "dc6381cb958c8c34ec876e79b75622bd9a1e27d329f3ec5109d3b2abbba4b15f",
+      "checkpoint_iter": 2750,
+      "completed_updates": 2750,
+      "common_step_counter": 66000,
+      "recovery": {
+        "stage": 5,
+        "last_assessment_step": 30000,
+        "polish": true,
+        "trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "wins": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rates": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "total_trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "eval_history": {
+        "last_iteration": 2750,
+        "last_promotion_step": 30000,
+        "evaluated_stage": 5,
+        "stage_after": 5,
+        "checkpoint_sha256": "76491e4bc70924fafb3f3d223b7daab0b917fe8e5f118d5889594b9dee5f6356",
+        "counts": {
+          "standing": [
+            256,
+            256
+          ],
+          "sitting": [
+            256,
+            256
+          ],
+          "prone": [
+            256,
+            256
+          ],
+          "frontier": [
+            256,
+            256
+          ],
+          "left_side": [
+            256,
+            256
+          ],
+          "right_side": [
+            256,
+            256
+          ],
+          "supine": [
+            256,
+            256
+          ]
+        },
+        "rates": {
+          "standing": 1.0,
+          "sitting": 1.0,
+          "prone": 1.0,
+          "frontier": 1.0,
+          "left_side": 1.0,
+          "right_side": 1.0,
+          "supine": 1.0
+        },
+        "promoted": false,
+        "polish": true
+      },
+      "head_precision_recipe": {
+        "id": "v2-head-precision-1",
+        "ranges": [
+          [
+            -0.39,
+            0.39
+          ],
+          [
+            -0.39,
+            0.39
+          ],
+          [
+            -0.49,
+            0.49
+          ],
+          [
+            -0.11,
+            0.11
+          ]
+        ],
+        "final_ranges": [
+          [
+            -0.48577760000000003,
+            1.1
+          ],
+          [
+            -1.1,
+            0.904656
+          ],
+          [
+            -1.4,
+            1.4
+          ],
+          [
+            -0.31,
+            0.31
+          ]
+        ],
+        "reward_weight": 3.0,
+        "std": 0.5,
+        "fine_std": 0.08,
+        "fine_weight": 0.5,
+        "reason": "2000-update head response failed despite mastered recovery"
+      },
+      "physics_resume": "native-new-episodes",
+      "torch_rng_sha256": "78c5ee4f40bdca6ce0766a7fa959da54b4fe32204d7910a43d9feb443fecd520",
+      "cuda_rng_states": 2,
+      "cuda_rng_sha256": [
+        "04cc03ab379023debea64e094dcefb19a4f74d73a347cacdb8d80a7210c2c940",
+        "412688bd0ca780bd4697adadc764ccb6ad8ae93f667aeeb4441d00628f321f65"
+      ],
+      "optimizer_learning_rates": [
+        0.00017085937500000009
+      ],
+      "terminal_bootstrap": {
+        "schema": 1,
+        "state": "no_reset_successor_critic_v1",
+        "normalization": "before_step_update",
+        "terminal_precedence": true
+      }
+    },
+    {
+      "phase": "head-precision-allocation-004",
+      "file": "resume_003000.pt",
+      "sha256": "0ea86d027d3900e5881157dad4325dac3cc9a2bdc7a76311cdf90862b1a3e117",
+      "checkpoint_iter": 3000,
+      "completed_updates": 3000,
+      "common_step_counter": 72000,
+      "recovery": {
+        "stage": 5,
+        "last_assessment_step": 30000,
+        "polish": true,
+        "trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "wins": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rates": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "total_trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "eval_history": {
+        "last_iteration": 3000,
+        "last_promotion_step": 30000,
+        "evaluated_stage": 5,
+        "stage_after": 5,
+        "checkpoint_sha256": "5ff733d8387a8139e8b49b05c3e349b1707c9c74e9fb67f20bfba337d4b98aec",
+        "counts": {
+          "standing": [
+            256,
+            256
+          ],
+          "sitting": [
+            256,
+            256
+          ],
+          "prone": [
+            256,
+            256
+          ],
+          "frontier": [
+            256,
+            256
+          ],
+          "left_side": [
+            256,
+            256
+          ],
+          "right_side": [
+            256,
+            256
+          ],
+          "supine": [
+            256,
+            256
+          ]
+        },
+        "rates": {
+          "standing": 1.0,
+          "sitting": 1.0,
+          "prone": 1.0,
+          "frontier": 1.0,
+          "left_side": 1.0,
+          "right_side": 1.0,
+          "supine": 1.0
+        },
+        "promoted": false,
+        "polish": true
+      },
+      "head_precision_recipe": {
+        "id": "v2-head-precision-1",
+        "ranges": [
+          [
+            -0.39,
+            0.39
+          ],
+          [
+            -0.39,
+            0.39
+          ],
+          [
+            -0.49,
+            0.49
+          ],
+          [
+            -0.11,
+            0.11
+          ]
+        ],
+        "final_ranges": [
+          [
+            -0.48577760000000003,
+            1.1
+          ],
+          [
+            -1.1,
+            0.904656
+          ],
+          [
+            -1.4,
+            1.4
+          ],
+          [
+            -0.31,
+            0.31
+          ]
+        ],
+        "reward_weight": 3.0,
+        "std": 0.5,
+        "fine_std": 0.08,
+        "fine_weight": 0.5,
+        "reason": "2000-update head response failed despite mastered recovery"
+      },
+      "physics_resume": "native-new-episodes",
+      "torch_rng_sha256": "78c5ee4f40bdca6ce0766a7fa959da54b4fe32204d7910a43d9feb443fecd520",
+      "cuda_rng_states": 2,
+      "cuda_rng_sha256": [
+        "04cc03ab379023debea64e094dcefb19a4f74d73a347cacdb8d80a7210c2c940",
+        "ca453af0d76a769311cd0358be215c64048d086c46a0a2df6c2093e81bd21507"
+      ],
+      "optimizer_learning_rates": [
+        0.00017085937500000009
+      ],
+      "terminal_bootstrap": {
+        "schema": 1,
+        "state": "no_reset_successor_critic_v1",
+        "normalization": "before_step_update",
+        "terminal_precedence": true
+      }
+    },
+    {
+      "phase": "head-precision2-allocation-001",
+      "file": "resume_003250.pt",
+      "sha256": "36464f635139316de187439849947444d29f212dea28b6d88b950b3b53a1d77f",
+      "checkpoint_iter": 3250,
+      "completed_updates": 3250,
+      "common_step_counter": 78000,
+      "recovery": {
+        "stage": 5,
+        "last_assessment_step": 30000,
+        "polish": true,
+        "trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "wins": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rates": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "total_trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "eval_history": {
+        "last_iteration": 3250,
+        "last_promotion_step": 30000,
+        "evaluated_stage": 5,
+        "stage_after": 5,
+        "checkpoint_sha256": "ab6ed2aa53d937945b486d6a9494faf7145d7281b24d494e0f92437d15e04f9b",
+        "counts": {
+          "standing": [
+            256,
+            256
+          ],
+          "sitting": [
+            256,
+            256
+          ],
+          "prone": [
+            256,
+            256
+          ],
+          "frontier": [
+            256,
+            256
+          ],
+          "left_side": [
+            256,
+            256
+          ],
+          "right_side": [
+            256,
+            256
+          ],
+          "supine": [
+            256,
+            256
+          ]
+        },
+        "rates": {
+          "standing": 1.0,
+          "sitting": 1.0,
+          "prone": 1.0,
+          "frontier": 1.0,
+          "left_side": 1.0,
+          "right_side": 1.0,
+          "supine": 1.0
+        },
+        "promoted": false,
+        "polish": true
+      },
+      "head_precision_recipe": {
+        "id": "v2-head-precision-2",
+        "stage": 2,
+        "ranges": [
+          [
+            -0.39,
+            0.39
+          ],
+          [
+            -0.39,
+            0.39
+          ],
+          [
+            -0.49,
+            0.49
+          ],
+          [
+            -0.11,
+            0.11
+          ]
+        ],
+        "final_ranges": [
+          [
+            -0.48577760000000003,
+            1.1
+          ],
+          [
+            -1.1,
+            0.904656
+          ],
+          [
+            -1.4,
+            1.4
+          ],
+          [
+            -0.31,
+            0.31
+          ]
+        ],
+        "reward_weight": 3.0,
+        "std": 0.5,
+        "fine_std": 0.04,
+        "fine_weight": 0.5,
+        "reason": "2000-update head response failed despite mastered recovery"
+      },
+      "physics_resume": "native-new-episodes",
+      "torch_rng_sha256": "78c5ee4f40bdca6ce0766a7fa959da54b4fe32204d7910a43d9feb443fecd520",
+      "cuda_rng_states": 2,
+      "cuda_rng_sha256": [
+        "04cc03ab379023debea64e094dcefb19a4f74d73a347cacdb8d80a7210c2c940",
+        "727a707bf24119db8351a89e734816cb3629e9bd760c5b307598ac95487d9a7f"
+      ],
+      "optimizer_learning_rates": [
+        0.00017085937500000009
+      ],
+      "terminal_bootstrap": {
+        "schema": 1,
+        "state": "no_reset_successor_critic_v1",
+        "normalization": "before_step_update",
+        "terminal_precedence": true
+      }
+    },
+    {
+      "phase": "head-foundation4-allocation-001",
+      "file": "resume_003506.pt",
+      "sha256": "a7fadaaed2f766bd69087789acbfd275e7093f3d6979ad2b7628c2273f8f66b4",
+      "checkpoint_iter": 3506,
+      "completed_updates": 3506,
+      "common_step_counter": 84144,
+      "recovery": {
+        "stage": 5,
+        "last_assessment_step": 30000,
+        "polish": true,
+        "trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "wins": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rates": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "total_trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "eval_history": {
+        "last_iteration": 3506,
+        "last_promotion_step": 30000,
+        "evaluated_stage": 5,
+        "stage_after": 5,
+        "checkpoint_sha256": "846b8e790d41692eb4f9416d5f105fa63cea0d01de1f1d470850ec7b77324a91",
+        "counts": {
+          "standing": [
+            256,
+            256
+          ],
+          "sitting": [
+            256,
+            256
+          ],
+          "prone": [
+            256,
+            256
+          ],
+          "frontier": [
+            256,
+            256
+          ],
+          "left_side": [
+            256,
+            256
+          ],
+          "right_side": [
+            256,
+            256
+          ],
+          "supine": [
+            256,
+            256
+          ]
+        },
+        "rates": {
+          "standing": 1.0,
+          "sitting": 1.0,
+          "prone": 1.0,
+          "frontier": 1.0,
+          "left_side": 1.0,
+          "right_side": 1.0,
+          "supine": 1.0
+        },
+        "promoted": false,
+        "polish": true
+      },
+      "head_precision_recipe": {
+        "id": "v2-head-precision-4",
+        "stage": 4,
+        "ranges": [
+          [
+            -0.39,
+            0.39
+          ],
+          [
+            -0.39,
+            0.39
+          ],
+          [
+            -0.49,
+            0.49
+          ],
+          [
+            -0.11,
+            0.11
+          ]
+        ],
+        "final_ranges": [
+          [
+            -0.48577760000000003,
+            1.1
+          ],
+          [
+            -1.1,
+            0.904656
+          ],
+          [
+            -1.4,
+            1.4
+          ],
+          [
+            -0.31,
+            0.31
+          ]
+        ],
+        "reward_weight": 3.0,
+        "std": 0.5,
+        "fine_std": 0.04,
+        "fine_weight": 0.5,
+        "precision_scale": 0.003,
+        "command_sampling": {
+          "zero_probability": 0.4,
+          "precision_probability": 0.5,
+          "precision_amplitude_rad": [
+            0.005,
+            0.04
+          ],
+          "active_axis_count_probabilities": {
+            "1": 0.5,
+            "2": 0.25,
+            "4": 0.25
+          }
+        },
+        "reason": "Basic micro/combined-command precision recipe after 3250 small-step 22/128; bounded reward and explicit exposure, no added position DR"
+      },
+      "physics_resume": "native-new-episodes",
+      "torch_rng_sha256": "78c5ee4f40bdca6ce0766a7fa959da54b4fe32204d7910a43d9feb443fecd520",
+      "cuda_rng_states": 2,
+      "cuda_rng_sha256": [
+        "04cc03ab379023debea64e094dcefb19a4f74d73a347cacdb8d80a7210c2c940",
+        "281ff0556961789bbef8be75f11ea5cdbea380ffcde91e722e1764d0c12e7664"
+      ],
+      "optimizer_learning_rates": [
+        1e-05
+      ],
+      "terminal_bootstrap": {
+        "schema": 1,
+        "state": "no_reset_successor_critic_v1",
+        "normalization": "before_step_update",
+        "terminal_precedence": true
+      }
+    },
+    {
+      "phase": "paired-feedback-allocation-001",
+      "file": "resume_003762.pt",
+      "sha256": "79b1bbd0795f2a32dc18ddc4e5079c7284735ce4c7e5cf954b7054127b09ef2c",
+      "checkpoint_iter": 3762,
+      "completed_updates": 3762,
+      "common_step_counter": 90288,
+      "recovery": {
+        "stage": 5,
+        "last_assessment_step": 30000,
+        "polish": true,
+        "trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "wins": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rates": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "total_trials": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "eval_history": {
+        "last_iteration": 3762,
+        "last_promotion_step": 30000,
+        "evaluated_stage": 5,
+        "stage_after": 5,
+        "checkpoint_sha256": "e753856776bb43e44d9465b4067a0b9cd2d10fe03fc8cb88ee4177ec786f93e1",
+        "counts": {
+          "standing": [
+            256,
+            256
+          ],
+          "sitting": [
+            256,
+            256
+          ],
+          "prone": [
+            256,
+            256
+          ],
+          "frontier": [
+            256,
+            256
+          ],
+          "left_side": [
+            256,
+            256
+          ],
+          "right_side": [
+            256,
+            256
+          ],
+          "supine": [
+            256,
+            256
+          ]
+        },
+        "rates": {
+          "standing": 1.0,
+          "sitting": 1.0,
+          "prone": 1.0,
+          "frontier": 1.0,
+          "left_side": 1.0,
+          "right_side": 1.0,
+          "supine": 1.0
+        },
+        "promoted": false,
+        "polish": true
+      },
+      "head_precision_recipe": {
+        "id": "v2-head-precision-4",
+        "stage": 4,
+        "ranges": [
+          [
+            -0.39,
+            0.39
+          ],
+          [
+            -0.39,
+            0.39
+          ],
+          [
+            -0.49,
+            0.49
+          ],
+          [
+            -0.11,
+            0.11
+          ]
+        ],
+        "final_ranges": [
+          [
+            -0.48577760000000003,
+            1.1
+          ],
+          [
+            -1.1,
+            0.904656
+          ],
+          [
+            -1.4,
+            1.4
+          ],
+          [
+            -0.31,
+            0.31
+          ]
+        ],
+        "reward_weight": 3.0,
+        "std": 0.5,
+        "fine_std": 0.04,
+        "fine_weight": 0.5,
+        "precision_scale": 0.003,
+        "command_sampling": {
+          "zero_probability": 0.4,
+          "precision_probability": 0.5,
+          "precision_amplitude_rad": [
+            0.005,
+            0.04
+          ],
+          "active_axis_count_probabilities": {
+            "1": 0.5,
+            "2": 0.25,
+            "4": 0.25
+          }
+        },
+        "reason": "Basic micro/combined-command precision recipe after 3250 small-step 22/128; bounded reward and explicit exposure, no added position DR"
+      },
+      "physics_resume": "native-new-episodes",
+      "torch_rng_sha256": "78c5ee4f40bdca6ce0766a7fa959da54b4fe32204d7910a43d9feb443fecd520",
+      "cuda_rng_states": 2,
+      "cuda_rng_sha256": [
+        "04cc03ab379023debea64e094dcefb19a4f74d73a347cacdb8d80a7210c2c940",
+        "c430610d3ea99410eadb6d6a7d2141c9b6d3408ae178ba689059346357b2a769"
+      ],
+      "optimizer_learning_rates": [
+        7.593750000000004e-05
+      ],
+      "terminal_bootstrap": {
+        "schema": 1,
+        "state": "no_reset_successor_critic_v1",
+        "normalization": "before_step_update",
+        "terminal_precedence": true
+      }
+    }
+  ]
+}

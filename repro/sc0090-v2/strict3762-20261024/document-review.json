@@ -1,0 +1,53 @@
+{
+  "status": "PARTIAL_REVIEW_NOT_LAUNCH_APPROVAL",
+  "document_sha256": "36537f24e83c7145f529fde7d69543eca47aa0365c7d2deb70f1cdea1142ecf5",
+  "checks": [
+    {
+      "phase": "standup-allocation-001",
+      "argv_manifest_table_and_checkpoint": "PASS"
+    },
+    {
+      "phase": "standup-allocation-002",
+      "argv_manifest_table_and_checkpoint": "PASS"
+    },
+    {
+      "phase": "standup-allocation-003",
+      "argv_manifest_table_and_checkpoint": "PASS"
+    },
+    {
+      "phase": "head-precision-allocation-001",
+      "argv_manifest_table_and_checkpoint": "PASS"
+    },
+    {
+      "phase": "head-precision-allocation-002",
+      "argv_manifest_table_and_checkpoint": "PASS"
+    },
+    {
+      "phase": "head-precision-allocation-003",
+      "argv_manifest_table_and_checkpoint": "PASS"
+    },
+    {
+      "phase": "head-precision-allocation-004",
+      "argv_manifest_table_and_checkpoint": "PASS"
+    },
+    {
+      "phase": "head-precision2-allocation-001",
+      "argv_manifest_table_and_checkpoint": "PASS"
+    },
+    {
+      "phase": "head-foundation4-allocation-001",
+      "argv_manifest_table_and_checkpoint": "PASS"
+    },
+    {
+      "phase": "paired-feedback-allocation-001",
+      "argv_manifest_table_and_checkpoint": "PASS"
+    }
+  ],
+  "remaining": [
+    "materialized source and static resource identity",
+    "effective config re-instantiation per phase",
+    "compiler/runtime compatibility and original source fingerprints",
+    "deterministic update12 stop event validation",
+    "fresh corrected-collision qualification after document review"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "status": "ALLOCATION_COMPLETE",
+  "pid": 2613655,
+  "completed_updates": 3506,
+  "updated_unix": 1792059813.0937347,
+  "goal_complete": false,
+  "resume_checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/head-foundation4-allocation-001/resume_003506.pt",
+  "command_exposure": {
+    "environment_control_steps": 50331648,
+    "combinations": [
+      20059829,
+      15113850,
+      7507922,
+      7650047
+    ],
+    "combination_axes": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "positive": [
+      7611560,
+      7593016,
+      7542852,
+      7656489
+    ],
+    "negative": [
+      7622782,
+      7569356,
+      7592496,
+      7541331
+    ],
+    "range_quarters": [
+      [
+        9147948,
+        1522003,
+        1507048,
+        3057343
+      ],
+      [
+        9114020,
+        1498737,
+        1521858,
+        3027757
+      ],
+      [
+        9030145,
+        1515021,
+        1544132,
+        3046050
+      ],
+      [
+        6434889,
+        4206564,
+        1531265,
+        3025102
+      ]
+    ],
+    "current_ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ]
+  },
+  "exposure_segment_start_update": 3250,
+  "recovery_stage": 5
+}

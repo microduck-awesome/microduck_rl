@@ -1,0 +1,81 @@
+{
+  "status": "ALLOCATION_COMPLETE",
+  "pid": 2227155,
+  "completed_updates": 2000,
+  "updated_unix": 1792038231.578717,
+  "goal_complete": false,
+  "resume_checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/baseline/standup-allocation-003/resume_002000.pt",
+  "command_exposure": {
+    "environment_control_steps": 196608000,
+    "combinations": [
+      117854509,
+      39308721,
+      19699970,
+      19744800
+    ],
+    "combination_axes": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "positive": [
+      21287568,
+      19714032,
+      19716079,
+      19638132
+    ],
+    "negative": [
+      18097840,
+      19762135,
+      19674355,
+      19797720
+    ],
+    "range_quarters": [
+      [
+        8670020,
+        8721866,
+        9837381,
+        12156141
+      ],
+      [
+        7885078,
+        7920853,
+        7868421,
+        15801815
+      ],
+      [
+        7924013,
+        7859380,
+        7837366,
+        15769675
+      ],
+      [
+        7892299,
+        7809086,
+        7919840,
+        15814627
+      ]
+    ],
+    "current_ranges": [
+      [
+        -0.48577760000000003,
+        0.72
+      ],
+      [
+        -0.72,
+        0.72
+      ],
+      [
+        -0.91,
+        0.91
+      ],
+      [
+        -0.2,
+        0.2
+      ]
+    ]
+  },
+  "exposure_segment_start_update": 1000,
+  "recovery_stage": 5
+}

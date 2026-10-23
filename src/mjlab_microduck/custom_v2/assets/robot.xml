@@ -78,6 +78,38 @@
     <mesh name="cad_full_mainboard_7" file="cad_full_mainboard_7.stl" />
     <mesh name="cad_full_mainboard_8" file="cad_full_mainboard_8.stl" />
     <mesh name="cad_full_mainboard_9" file="cad_full_mainboard_9.stl" />
+    <mesh name="sim2real_shell_000" file="sim2real_shell_000.stl" />
+    <mesh name="sim2real_shell_001" file="sim2real_shell_001.stl" />
+    <mesh name="sim2real_shell_002" file="sim2real_shell_002.stl" />
+    <mesh name="sim2real_shell_003" file="sim2real_shell_003.stl" />
+    <mesh name="sim2real_shell_004" file="sim2real_shell_004.stl" />
+    <mesh name="sim2real_shell_005" file="sim2real_shell_005.stl" />
+    <mesh name="sim2real_shell_006" file="sim2real_shell_006.stl" />
+    <mesh name="sim2real_shell_007" file="sim2real_shell_007.stl" />
+    <mesh name="sim2real_shell_008" file="sim2real_shell_008.stl" />
+    <mesh name="sim2real_shell_009" file="sim2real_shell_009.stl" />
+    <mesh name="sim2real_shell_010" file="sim2real_shell_010.stl" />
+    <mesh name="sim2real_shell_011" file="sim2real_shell_011.stl" />
+    <mesh name="sim2real_shell_012" file="sim2real_shell_012.stl" />
+    <mesh name="sim2real_shell_013" file="sim2real_shell_013.stl" />
+    <mesh name="sim2real_shell_014" file="sim2real_shell_014.stl" />
+    <mesh name="sim2real_shell_015" file="sim2real_shell_015.stl" />
+    <mesh name="sim2real_shell_016" file="sim2real_shell_016.stl" />
+    <mesh name="sim2real_shell_017" file="sim2real_shell_017.stl" />
+    <mesh name="sim2real_shell_018" file="sim2real_shell_018.stl" />
+    <mesh name="sim2real_shell_019" file="sim2real_shell_019.stl" />
+    <mesh name="sim2real_shell_020" file="sim2real_shell_020.stl" />
+    <mesh name="sim2real_shell_021" file="sim2real_shell_021.stl" />
+    <mesh name="sim2real_shell_022" file="sim2real_shell_022.stl" />
+    <mesh name="sim2real_shell_023" file="sim2real_shell_023.stl" />
+    <mesh name="sim2real_shell_024" file="sim2real_shell_024.stl" />
+    <mesh name="sim2real_shell_025" file="sim2real_shell_025.stl" />
+    <mesh name="sim2real_shell_026" file="sim2real_shell_026.stl" />
+    <mesh name="sim2real_shell_027" file="sim2real_shell_027.stl" />
+    <mesh name="sim2real_shell_028" file="sim2real_shell_028.stl" />
+    <mesh name="sim2real_shell_029" file="sim2real_shell_029.stl" />
+    <mesh name="sim2real_shell_030" file="sim2real_shell_030.stl" />
+    <mesh name="sim2real_shell_031" file="sim2real_shell_031.stl" />
   </asset>
   <worldbody>
     <body name="trunk_base" pos="0 0 0.1163804919">
@@ -227,6 +259,38 @@
       <site name="imu_raw" pos="-0.0403 -0.023475 0.0332" quat="0 0 1 0" size=".002" group="4" rgba="0 1 1 1" />
       <geom pos="-0.0352955438 0 -0.119273673" quat="1 0 0 0" group="3" type="mesh" mesh="c_2_collision_hull_23" rgba="0.4 0.4 0.4 1" name="ground_battery_collision" contype="1" conaffinity="1" condim="3" solref="0.02 1.0" priority="0" friction="1.0 0.005 0.0001" />
       <geom name="self_trunk_support_00_collision" type="mesh" mesh="c_06_1_0" group="3" contype="2" conaffinity="2" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" rgba="0.9 0.3 0.1 0.25" pos="0 0 0" quat="1 0 0 0" />
+      <geom name="sim2real_shell_000_collision" type="mesh" mesh="sim2real_shell_000" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_001_collision" type="mesh" mesh="sim2real_shell_001" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_002_collision" type="mesh" mesh="sim2real_shell_002" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_003_collision" type="mesh" mesh="sim2real_shell_003" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_004_collision" type="mesh" mesh="sim2real_shell_004" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_005_collision" type="mesh" mesh="sim2real_shell_005" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_006_collision" type="mesh" mesh="sim2real_shell_006" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_007_collision" type="mesh" mesh="sim2real_shell_007" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_008_collision" type="mesh" mesh="sim2real_shell_008" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_009_collision" type="mesh" mesh="sim2real_shell_009" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_010_collision" type="mesh" mesh="sim2real_shell_010" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_011_collision" type="mesh" mesh="sim2real_shell_011" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_012_collision" type="mesh" mesh="sim2real_shell_012" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_013_collision" type="mesh" mesh="sim2real_shell_013" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_014_collision" type="mesh" mesh="sim2real_shell_014" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_015_collision" type="mesh" mesh="sim2real_shell_015" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_016_collision" type="mesh" mesh="sim2real_shell_016" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_017_collision" type="mesh" mesh="sim2real_shell_017" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_018_collision" type="mesh" mesh="sim2real_shell_018" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_019_collision" type="mesh" mesh="sim2real_shell_019" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_020_collision" type="mesh" mesh="sim2real_shell_020" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_021_collision" type="mesh" mesh="sim2real_shell_021" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_022_collision" type="mesh" mesh="sim2real_shell_022" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_023_collision" type="mesh" mesh="sim2real_shell_023" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_024_collision" type="mesh" mesh="sim2real_shell_024" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_025_collision" type="mesh" mesh="sim2real_shell_025" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_026_collision" type="mesh" mesh="sim2real_shell_026" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_027_collision" type="mesh" mesh="sim2real_shell_027" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_028_collision" type="mesh" mesh="sim2real_shell_028" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_029_collision" type="mesh" mesh="sim2real_shell_029" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_030_collision" type="mesh" mesh="sim2real_shell_030" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
+      <geom name="sim2real_shell_031_collision" type="mesh" mesh="sim2real_shell_031" group="3" contype="1" conaffinity="1" condim="3" priority="0" friction="1.0 0.005 0.0001" solref="0.02 1.0" density="0" rgba="0.2 0.6 1 0.35" />
     </body>
   </worldbody>
   <actuator>

@@ -1,0 +1,9 @@
+{
+  "status": "PHASE_COMPLETE_REQUIRES_REVIEW",
+  "stage": 4,
+  "parent": "/home/l40-vm01/data2/experiments/microduck-v2-20261023/rise3762-collision/head-stage4/formal",
+  "parent_update": 5524,
+  "updated_unix": 1792772869.3417587,
+  "completed_updates": 6036,
+  "checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261023/rise3762-collision/head-stage4-continue/formal/rank0/resume_006036.pt"
+}

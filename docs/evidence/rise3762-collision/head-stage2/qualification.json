@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "stage": 2,
+  "resume_update": 4762,
+  "global_envs": 8192,
+  "actor_critic_normalizers_optimizer_equal": true,
+  "qualification_weights_discarded": true
+}

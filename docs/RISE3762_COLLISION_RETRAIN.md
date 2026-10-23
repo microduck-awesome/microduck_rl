@@ -36,3 +36,7 @@ After recovery mastery and initial comparison, complete the historical head curr
 ## Head phase 1 complete
 
 Completed the historical 1000-update head stage 1 at cumulative update 4762. All periodic recovery evaluations and independent final recovery pass 1792/1792. Idle neck MAE drops from foundation 8.316 degrees to 0.563 (old3762 0.299). Common trained-range neck MAE remains 2.188 versus old3762 0.450; head precision work is still incomplete. Stage 2 continues for the historical 250 updates, after independent smoke, actual-batch and DDP boundary qualification. Preserve stage-1 weights and evidence. Historical log migration completed all four directories with checksum verification and original-path symlinks; root now has about 290 GB free.
+
+## Head phase 2 complete
+
+Historical 250-update stage 2 ended at cumulative 5012. Independent recovery is 1792/1792. Idle neck MAE 0.302 degrees, matching old3762 0.299; trained-range neck MAE 1.958 still exceeds old3762 0.450. Continue the existing historical stage-4 recipe for 512 updates (the original combined 256 foundation plus 256 paired-error exposure), retaining the paired-error task already used throughout this new lineage. No new reward formula is introduced; qualification weights are discarded and original-stage behavior is documented.

@@ -14,7 +14,7 @@ for j in range(7):
  q=qpos[0,j,3:7];yaw=math.atan2(2*(q[0]*q[3]+q[1]*q[2]),1-2*(q[2]*q[2]+q[3]*q[3]))
  cam=mujoco.MjvCamera();cam.distance=.48;cam.azimuth=math.degrees(yaw)+130;cam.elevation=-18;cam.lookat[:]=[0,0,.10];cams.append(cam)
 def tile(i,j):
- d.qpos[:]=qpos[i,j];d.qpos[:3]-=origins[j];mujoco.mj_forward(m,d);renderer.update_scene(d,camera=cams[j]);im=Image.fromarray(renderer.render().copy());draw=ImageDraw.Draw(im);draw.rectangle((0,0,w,18),fill='white');draw.text((5,3),f'{names[j]}   {i*.02:.2f}s',fill='black');return im
+ d.qpos[:]=qpos[i,j];d.qpos[:3]-=origins[j];mujoco.mj_forward(m,d);cams[j].lookat[:2]=d.qpos[:2];renderer.update_scene(d,camera=cams[j]);im=Image.fromarray(renderer.render().copy());draw=ImageDraw.Draw(im);draw.rectangle((0,0,w,18),fill='white');draw.text((5,3),f'{names[j]}   {i*.02:.2f}s',fill='black');return im
 selected=[0,50,100,200,400];strip=Image.new('RGB',(7*w,len(selected)*h),'white')
 for row,i in enumerate(selected):
  for j in range(7):strip.paste(tile(min(i,len(qpos)-1),j),(j*w,row*h))

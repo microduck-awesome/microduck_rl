@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "parent_update": 6036,
+  "target_stage": 2,
+  "validation_updates": 6,
+  "rank_states_equal": true,
+  "validation_weights_discarded": true
+}

@@ -1,0 +1,61 @@
+{
+  "status": "REQUESTED_TRAINING_AND_DELIVERY_COMPLETE",
+  "objective": "训练3762的新碰撞模型",
+  "requirements": [
+    {
+      "requirement": "Repair rear and both side protrusion contacts",
+      "evidence": "source-identity.json; collision-check.json; package-verification.json",
+      "result": "32 contact parts, original elements and inertials preserved; compiled package model valid"
+    },
+    {
+      "requirement": "Train a new 3762-derived policy on the corrected collision model",
+      "evidence": "frozen source manifest; all run.json and phase checkpoints; final resume_006804.pt",
+      "result": "Random initialization; original recovery/head reward families; final stage-4 recipe; lineage deviations documented"
+    },
+    {
+      "requirement": "Use two GPUs together for one policy",
+      "evidence": "both rank configurations; DDP boundary checks; final artifact-verification.json",
+      "result": "4096 environments per GPU, global8192; actor/critic/normalizers/optimizer equal"
+    },
+    {
+      "requirement": "Verify learned behavior and export",
+      "evidence": "final recovery/head reports, old baseline comparison, 66-sample ONNX parity, illustrative replay",
+      "result": "1792/1792 recovery; all head results and wider-range neck regression explicitly retained"
+    },
+    {
+      "requirement": "Deliver reviewable local artifacts and preserve original baseline",
+      "evidence": "/home/l40-vm01/data2/experiments/microduck-v2-20261023/rise3762-collision/release/rise3762-new-collision-20261024/manifest.json",
+      "result": "ONNX, both rank resume states, full model assets, source archive, reports and replay; original baseline SHA reverified"
+    }
+  ],
+  "package": "/home/l40-vm01/data2/experiments/microduck-v2-20261023/rise3762-collision/release/rise3762-new-collision-20261024",
+  "package_manifest_sha256": "2cd01736657e0f2dd5bc8e4aef3d9ecf86fc8b3cb93b705612991e90e0ec5d78",
+  "package_verification": {
+    "status": "PASS",
+    "files_verified": 186,
+    "mass_kg": 0.600941825,
+    "shell_geoms": 32,
+    "model_nq": 22,
+    "model_nu": 15,
+    "onnx_input": [
+      1,
+      61
+    ],
+    "onnx_output": [
+      1,
+      14
+    ]
+  },
+  "migrated_directories": 4,
+  "scope_limitations": [
+    "Recovery uses development seeds and final-stability criterion, not zero transient falls or hardware acceptance.",
+    "Wide out-of-trained-range neck commands have larger error than the old 3762 baseline.",
+    "Paired-error randomization is used from initialization in this new lineage; historical 3762 enabled it later.",
+    "Checkpoint physics resume uses native new episodes."
+  ],
+  "not_claimed": [
+    "Hardware qualification",
+    "All-metric superiority over old3762",
+    "Held-out generalization acceptance"
+  ]
+}

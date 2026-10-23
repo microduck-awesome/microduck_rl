@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "files_verified": 186,
+  "mass_kg": 0.600941825,
+  "shell_geoms": 32,
+  "model_nq": 22,
+  "model_nu": 15,
+  "onnx_input": [
+    1,
+    61
+  ],
+  "onnx_output": [
+    1,
+    14
+  ]
+}

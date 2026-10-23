@@ -15,3 +15,6 @@ repro/sc0090-v2/checkpoints/20261022-evening/**/evaluation/** -diff linguist-gen
 
 # Correct-routing1400 immutable hardware experiment bundle.
 repro/sc0090-v2/checkpoints/20261023-rise1400/** -text
+
+# Immutable 6804 collision-adaptation result, explicitly not strict-history replay.
+repro/sc0090-v2/checkpoints/20261024-rise3762-collision-adaptation/** -text

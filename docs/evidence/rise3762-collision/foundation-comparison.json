@@ -1,0 +1,78 @@
+{
+  "status": "RECOVERY_FOUNDATION_EVALUATED_NOT_FULL_3762_REPLACEMENT",
+  "conditions": "Same corrected collision XML; final recovery stage 5; original development seeds; zero commands; eight seconds",
+  "results": {
+    "recovery-new": {
+      "checkpoint_sha256": "ef196bd84c9a5b00bc027c436af7eb663912e687307e6c00d897f3398607cbd7",
+      "evaluation_stage": 5,
+      "robot_xml_sha256": "8ae0d89041950d565bbcd6272ab87317f46132ff1eef99b922782ecbe2b95308",
+      "report_sha256": "851c4ef450707c8bbccef73073e6f4e27a35ebd33ee8119aa09f5fe2d358f798",
+      "groups": {
+        "standing": {
+          "wins": 256,
+          "trials": 256
+        },
+        "sitting": {
+          "wins": 255,
+          "trials": 256
+        },
+        "prone": {
+          "wins": 256,
+          "trials": 256
+        },
+        "frontier": {
+          "wins": 256,
+          "trials": 256
+        },
+        "left_side": {
+          "wins": 256,
+          "trials": 256
+        },
+        "right_side": {
+          "wins": 256,
+          "trials": 256
+        },
+        "supine": {
+          "wins": 256,
+          "trials": 256
+        }
+      }
+    },
+    "recovery-old": {
+      "checkpoint_sha256": "e753856776bb43e44d9465b4067a0b9cd2d10fe03fc8cb88ee4177ec786f93e1",
+      "evaluation_stage": 5,
+      "robot_xml_sha256": "8ae0d89041950d565bbcd6272ab87317f46132ff1eef99b922782ecbe2b95308",
+      "report_sha256": "ab9a31b9606e41d5bd6fb93163684c8c20f17b46dca2f2199b81d993fde5e33a",
+      "groups": {
+        "standing": {
+          "wins": 256,
+          "trials": 256
+        },
+        "sitting": {
+          "wins": 254,
+          "trials": 256
+        },
+        "prone": {
+          "wins": 256,
+          "trials": 256
+        },
+        "frontier": {
+          "wins": 256,
+          "trials": 256
+        },
+        "left_side": {
+          "wins": 256,
+          "trials": 256
+        },
+        "right_side": {
+          "wins": 2,
+          "trials": 256
+        },
+        "supine": {
+          "wins": 255,
+          "trials": 256
+        }
+      }
+    }
+  }
+}

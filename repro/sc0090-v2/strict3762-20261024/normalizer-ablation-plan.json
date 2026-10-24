@@ -1,0 +1,18 @@
+{
+  "status": "PREPARED_DIAGNOSTIC_ONLY",
+  "source": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/regression-diagnostic-source",
+  "helper_sha256": "44ab3cbcae349f0b21d71979f80b4058277611b68157c289666c2ac21e3de824",
+  "pairs": [
+    {
+      "network": 2250,
+      "normalizer": 2500
+    },
+    {
+      "network": 2500,
+      "normalizer": 2250
+    }
+  ],
+  "reason": "Both MLP parameters and normalizer statistics changed naturally between2250 and2500. Separate their effects on right-side recovery without changing the trained checkpoints.",
+  "original_checkpoints_modified": false,
+  "hybrid_models_deliverable": false
+}

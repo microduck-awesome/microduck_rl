@@ -1,0 +1,16 @@
+{
+  "status": "NATIVE_REASSESSMENT_RECOVERED",
+  "verified_unix": 1792810033.1790223,
+  "iteration": 2750,
+  "right_side_wins": 256,
+  "right_side_trials": 256,
+  "total_wins": 1792,
+  "total_trials": 1792,
+  "continued_from_2500_exact_state": true,
+  "numerical_source_changed": false,
+  "head_recipe_changed": false,
+  "rescue_training_added": false,
+  "rollback_performed": false,
+  "mechanism_pending_trajectory_replay": true,
+  "training_complete": false
+}

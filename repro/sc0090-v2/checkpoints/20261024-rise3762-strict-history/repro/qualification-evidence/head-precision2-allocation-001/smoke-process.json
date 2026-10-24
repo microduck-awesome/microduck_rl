@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "pid": 1337283,
+  "argv": [
+    "bash",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision2-allocation-001/scripts/v2_python.sh",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/publication/repro/sc0090-v2/strict3762-20261024/tools/qualify_phase.py",
+    "--task",
+    "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+    "--device",
+    "cuda:1",
+    "--num-envs",
+    "64",
+    "--iterations",
+    "5",
+    "--output-dir",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/qualification/head-precision2-allocation-001/smoke64",
+    "--report",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/qualification/head-precision2-allocation-001/smoke64/report.json",
+    "--head-precision",
+    "--head-precision-stage",
+    "2"
+  ],
+  "cwd": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision2-allocation-001",
+  "started_unix": 1792804053.858836,
+  "document_review_sha256": "5ebf5ccd0248f42d2f789ed80146f911f923125cf960d97edea5c26c4596604a",
+  "formal_weights_used": false,
+  "returncode": 0,
+  "ended_unix": 1792804081.1947064,
+  "report_sha256": "36c5773a429884f91225307d1c38c97812ff9abcc4fbed52792210bec46b6e9a"
+}

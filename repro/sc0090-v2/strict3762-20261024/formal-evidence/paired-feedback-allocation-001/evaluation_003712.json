@@ -1,0 +1,176 @@
+{
+  "schema": 1,
+  "checkpoint_file": "checkpoint_003712.pt",
+  "checkpoint_sha256": "95f962a8d451a3e7aa69c6d9fad2789ff8a16d4ee3182a71c66e78c22be5734a",
+  "config_sha256": "3c49fa2a8a0a7b8a27f08b1493fcfe6dd67ea4a14a016a3cde6e56185b4db097",
+  "iteration": 3712,
+  "stage": 5,
+  "seeds": [
+    2026101501,
+    2026101502
+  ],
+  "samples_per_group": 128,
+  "duration_s": 8.0,
+  "deterministic": true,
+  "position_observation_recipe": null,
+  "cases": [
+    {
+      "seed": 2026101501,
+      "finite": true,
+      "groups": {
+        "standing": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 0.8342187404632568
+        },
+        "sitting": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 2.5399999618530273
+        },
+        "prone": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.4893749952316284
+        },
+        "frontier": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.6948437690734863
+        },
+        "left_side": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.3326563835144043
+        },
+        "right_side": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.892031192779541
+        },
+        "supine": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.6039061546325684
+        }
+      }
+    },
+    {
+      "seed": 2026101502,
+      "finite": true,
+      "groups": {
+        "standing": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 0.8993749618530273
+        },
+        "sitting": {
+          "trials": 128,
+          "wins": 126,
+          "any_stable": 126,
+          "faults": 0,
+          "first_stable_mean_s": 2.781111240386963
+        },
+        "prone": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.4528125524520874
+        },
+        "frontier": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.71875
+        },
+        "left_side": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.326718807220459
+        },
+        "right_side": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.893125057220459
+        },
+        "supine": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.640468716621399
+        }
+      }
+    }
+  ],
+  "decision": {
+    "last_iteration": 3712,
+    "last_promotion_step": 30000,
+    "evaluated_stage": 5,
+    "stage_after": 5,
+    "checkpoint_sha256": "95f962a8d451a3e7aa69c6d9fad2789ff8a16d4ee3182a71c66e78c22be5734a",
+    "counts": {
+      "standing": [
+        256,
+        256
+      ],
+      "sitting": [
+        256,
+        254
+      ],
+      "prone": [
+        256,
+        256
+      ],
+      "frontier": [
+        256,
+        256
+      ],
+      "left_side": [
+        256,
+        256
+      ],
+      "right_side": [
+        256,
+        256
+      ],
+      "supine": [
+        256,
+        256
+      ]
+    },
+    "rates": {
+      "standing": 1.0,
+      "sitting": 0.9921875,
+      "prone": 1.0,
+      "frontier": 1.0,
+      "left_side": 1.0,
+      "right_side": 1.0,
+      "supine": 1.0
+    },
+    "promoted": false,
+    "polish": true
+  }
+}

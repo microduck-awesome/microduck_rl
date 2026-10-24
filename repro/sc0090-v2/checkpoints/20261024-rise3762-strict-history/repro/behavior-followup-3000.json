@@ -1,0 +1,22 @@
+{
+  "status": "RIGHT_SIDE_RECOVERY_RETAINED_AT_NEXT_NATIVE_EVALUATION",
+  "verified_unix": 1792810270.5682454,
+  "iteration": 3000,
+  "right_side_wins": 256,
+  "right_side_trials": 256,
+  "total_wins": 1788,
+  "total_trials": 1792,
+  "rates": {
+    "standing": 1.0,
+    "sitting": 0.99609375,
+    "prone": 1.0,
+    "frontier": 0.9921875,
+    "left_side": 1.0,
+    "right_side": 1.0,
+    "supine": 0.99609375
+  },
+  "rollback_performed": false,
+  "recipe_changes_outside_history": false,
+  "causal_mechanism_pending_replay": true,
+  "training_complete": false
+}

@@ -1,0 +1,9 @@
+{
+  "status": "PUSHED_AND_REMOTE_HEAD_VERIFIED",
+  "repository": "microduck-awesome/microduck_rl",
+  "branch": "repro/sc0090-v2-sim2real",
+  "commit": "768a43321d6d0ded736f8ad73bb02c5d6fbd4020",
+  "archived_result": "repro/sc0090-v2/checkpoints/20261024-rise3762-collision-adaptation",
+  "manifest_files_verified_as_git_blobs": 186,
+  "verified_at_utc": "2026-10-23T23:40:54.335141+00:00"
+}

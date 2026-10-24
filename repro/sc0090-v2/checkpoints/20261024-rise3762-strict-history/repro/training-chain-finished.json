@@ -1,0 +1,63 @@
+{
+  "status": "TRAINING_CHAIN_FINISHED_PENDING_FINAL_AUDIT",
+  "pid": 1332696,
+  "qualification_pid": 1332666,
+  "qualification_start_ticks": "215616366",
+  "started_unix": 1792803763.3208475,
+  "completed_phases": [
+    {
+      "index": 0,
+      "name": "standup-allocation-001",
+      "updates": 12
+    },
+    {
+      "index": 1,
+      "name": "standup-allocation-002",
+      "updates": 1000
+    },
+    {
+      "index": 2,
+      "name": "standup-allocation-003",
+      "updates": 2000
+    },
+    {
+      "index": 3,
+      "name": "head-precision-allocation-001",
+      "updates": 2250
+    },
+    {
+      "index": 4,
+      "name": "head-precision-allocation-002",
+      "updates": 2500
+    },
+    {
+      "index": 5,
+      "name": "head-precision-allocation-003",
+      "updates": 2750
+    },
+    {
+      "index": 6,
+      "name": "head-precision-allocation-004",
+      "updates": 3000
+    },
+    {
+      "index": 7,
+      "name": "head-precision2-allocation-001",
+      "updates": 3250
+    },
+    {
+      "index": 8,
+      "name": "head-foundation4-allocation-001",
+      "updates": 3506
+    },
+    {
+      "index": 9,
+      "name": "paired-feedback-allocation-001",
+      "updates": 3762
+    }
+  ],
+  "updated_unix": 1792811464.8875365,
+  "document_review_sha256": "5ebf5ccd0248f42d2f789ed80146f911f923125cf960d97edea5c26c4596604a",
+  "current_phase": "paired-feedback-allocation-001",
+  "completed_updates": 3762
+}

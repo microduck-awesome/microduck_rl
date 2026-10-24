@@ -1,0 +1,46 @@
+{
+  "status": "PASS_SAMPLED_RUNTIME_CHECK",
+  "verified_unix": 1792807339.9336717,
+  "completed_updates": 1660,
+  "common_step_counter": 39840,
+  "historical_course_node": {
+    "step": 36000,
+    "ranges": [
+      [
+        -0.48577760000000003,
+        0.72
+      ],
+      [
+        -0.72,
+        0.72
+      ],
+      [
+        -0.91,
+        0.91
+      ],
+      [
+        -0.2,
+        0.2
+      ]
+    ]
+  },
+  "current_ranges": [
+    [
+      -0.48577760000000003,
+      0.72
+    ],
+    [
+      -0.72,
+      0.72
+    ],
+    [
+      -0.91,
+      0.91
+    ],
+    [
+      -0.2,
+      0.2
+    ]
+  ],
+  "scope": "Actual head exposure after native polish entry; no claim about later unvisited nodes"
+}

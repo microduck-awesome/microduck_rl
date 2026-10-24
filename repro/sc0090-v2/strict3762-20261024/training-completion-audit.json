@@ -1,0 +1,467 @@
+{
+  "status": "PASS_REQUESTED_TRAINING_AND_EVIDENCE_AUDIT",
+  "verified_unix": 1792814877.619001,
+  "legacy_result_publication": {
+    "status": "PUSHED_AND_REMOTE_HEAD_VERIFIED",
+    "repository": "microduck-awesome/microduck_rl",
+    "branch": "repro/sc0090-v2-sim2real",
+    "commit": "768a43321d6d0ded736f8ad73bb02c5d6fbd4020",
+    "archived_result": "repro/sc0090-v2/checkpoints/20261024-rise3762-collision-adaptation",
+    "manifest_files_verified_as_git_blobs": 186,
+    "verified_at_utc": "2026-10-23T23:40:54.335141+00:00"
+  },
+  "legacy_published_tree_unchanged": true,
+  "frozen_document_sha256": "23fad64fab5b85963e06edf84f7b38d31e201e21c911e90882cc3d609e8f9385",
+  "review_sha256": "5ebf5ccd0248f42d2f789ed80146f911f923125cf960d97edea5c26c4596604a",
+  "phases": [
+    {
+      "index": 0,
+      "name": "standup-allocation-001",
+      "completed_updates": 12,
+      "common_step_counter": 288,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+      "num_envs": 8192,
+      "device": "cuda:1",
+      "fp_fusion": true,
+      "source_files_exact": 57,
+      "static_and_collision_files_exact": 370,
+      "selected_checkpoint": "checkpoint_000012.pt",
+      "selected_checkpoint_sha256": "bf01b6b8b14aefd785565dc92908aa3364bc49652429065108a0d66808d54018",
+      "native_exit_code": 0,
+      "native_recovery_stage": 0,
+      "native_polish": false
+    },
+    {
+      "index": 1,
+      "name": "standup-allocation-002",
+      "completed_updates": 1000,
+      "common_step_counter": 24000,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+      "num_envs": 8192,
+      "device": "cuda:1",
+      "fp_fusion": true,
+      "source_files_exact": 62,
+      "static_and_collision_files_exact": 375,
+      "selected_checkpoint": "checkpoint_001000.pt",
+      "selected_checkpoint_sha256": "f196b135016d18d757ec6ee11739e93e455d5e425d1d27d553b71a51fe603344",
+      "native_exit_code": 0,
+      "native_recovery_stage": 4,
+      "native_polish": false
+    },
+    {
+      "index": 2,
+      "name": "standup-allocation-003",
+      "completed_updates": 2000,
+      "common_step_counter": 48000,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+      "num_envs": 8192,
+      "device": "cuda:1",
+      "fp_fusion": true,
+      "source_files_exact": 62,
+      "static_and_collision_files_exact": 375,
+      "selected_checkpoint": "resume_002000.pt",
+      "selected_checkpoint_sha256": "78bf56d5eca0c225894769966d0268a035d5494b45bc36db359adca6afad3826",
+      "native_exit_code": 0,
+      "native_recovery_stage": 5,
+      "native_polish": true
+    },
+    {
+      "index": 3,
+      "name": "head-precision-allocation-001",
+      "completed_updates": 2250,
+      "common_step_counter": 54000,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+      "num_envs": 8192,
+      "device": "cuda:1",
+      "fp_fusion": false,
+      "source_files_exact": 63,
+      "static_and_collision_files_exact": 376,
+      "selected_checkpoint": "resume_002250.pt",
+      "selected_checkpoint_sha256": "82876ccf8e68e087ffb2f75c73ebe6edcd477a6129f04002eb6e47bba4237a7f",
+      "native_exit_code": 0,
+      "native_recovery_stage": 5,
+      "native_polish": true
+    },
+    {
+      "index": 4,
+      "name": "head-precision-allocation-002",
+      "completed_updates": 2500,
+      "common_step_counter": 60000,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+      "num_envs": 8192,
+      "device": "cuda:1",
+      "fp_fusion": false,
+      "source_files_exact": 63,
+      "static_and_collision_files_exact": 376,
+      "selected_checkpoint": "resume_002500.pt",
+      "selected_checkpoint_sha256": "5b347bc954be2fe09cee22d7e0db847a5487eec28c8e9ff21370e902af83ca91",
+      "native_exit_code": 0,
+      "native_recovery_stage": 5,
+      "native_polish": true
+    },
+    {
+      "index": 5,
+      "name": "head-precision-allocation-003",
+      "completed_updates": 2750,
+      "common_step_counter": 66000,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+      "num_envs": 8192,
+      "device": "cuda:1",
+      "fp_fusion": false,
+      "source_files_exact": 63,
+      "static_and_collision_files_exact": 376,
+      "selected_checkpoint": "resume_002750.pt",
+      "selected_checkpoint_sha256": "4f13a039595b24685829ad519014c00184cb1f087bd0b1033ce692aa8ddecc02",
+      "native_exit_code": 0,
+      "native_recovery_stage": 5,
+      "native_polish": true
+    },
+    {
+      "index": 6,
+      "name": "head-precision-allocation-004",
+      "completed_updates": 3000,
+      "common_step_counter": 72000,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+      "num_envs": 8192,
+      "device": "cuda:1",
+      "fp_fusion": false,
+      "source_files_exact": 63,
+      "static_and_collision_files_exact": 376,
+      "selected_checkpoint": "resume_003000.pt",
+      "selected_checkpoint_sha256": "a94f2cbfc904aeb5cbe97a488ba8ca618812d27373f93bf97b5b063fa3c41005",
+      "native_exit_code": 0,
+      "native_recovery_stage": 5,
+      "native_polish": true
+    },
+    {
+      "index": 7,
+      "name": "head-precision2-allocation-001",
+      "completed_updates": 3250,
+      "common_step_counter": 78000,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+      "num_envs": 8192,
+      "device": "cuda:1",
+      "fp_fusion": false,
+      "source_files_exact": 63,
+      "static_and_collision_files_exact": 376,
+      "selected_checkpoint": "resume_003250.pt",
+      "selected_checkpoint_sha256": "6f1fbae7c2c9bcdd207b996e8b5465dac195ccbf09ba1094e003cdab9fea90b4",
+      "native_exit_code": 0,
+      "native_recovery_stage": 5,
+      "native_polish": true
+    },
+    {
+      "index": 8,
+      "name": "head-foundation4-allocation-001",
+      "completed_updates": 3506,
+      "common_step_counter": 84144,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+      "num_envs": 8192,
+      "device": "cuda:1",
+      "fp_fusion": false,
+      "source_files_exact": 64,
+      "static_and_collision_files_exact": 377,
+      "selected_checkpoint": "resume_003506.pt",
+      "selected_checkpoint_sha256": "a27637ef34addbfb2a3cadc4cf5f8fdde786351cc76b1d6f6f6ce65c07f25b8b",
+      "native_exit_code": 0,
+      "native_recovery_stage": 5,
+      "native_polish": true
+    },
+    {
+      "index": 9,
+      "name": "paired-feedback-allocation-001",
+      "completed_updates": 3762,
+      "common_step_counter": 90288,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-PairedError-Baseline",
+      "num_envs": 8192,
+      "device": "cuda:1",
+      "fp_fusion": false,
+      "source_files_exact": 66,
+      "static_and_collision_files_exact": 379,
+      "selected_checkpoint": "resume_003762.pt",
+      "selected_checkpoint_sha256": "9073d0549cecfda9c1ec965d5e4c8e76c8acba4f8569908420ba5a201f6f68a4",
+      "native_exit_code": 0,
+      "native_recovery_stage": 5,
+      "native_polish": true
+    }
+  ],
+  "native_evaluations": [
+    {
+      "phase": "standup-allocation-002",
+      "iteration": 250,
+      "wins": 1792,
+      "trials": 1792,
+      "polish": false,
+      "right_side_rate": 1.0,
+      "report_sha256": "d75231e4985cac4535c363ff9a6e214d6c4d1adaa2a0c55ce1b9e70ceb90990a"
+    },
+    {
+      "phase": "standup-allocation-002",
+      "iteration": 500,
+      "wins": 1791,
+      "trials": 1792,
+      "polish": false,
+      "right_side_rate": 1.0,
+      "report_sha256": "ef4c48f426f50fadf798560c7081f10472114ec6d430b251aefb48636db97e3b"
+    },
+    {
+      "phase": "standup-allocation-002",
+      "iteration": 750,
+      "wins": 1789,
+      "trials": 1792,
+      "polish": false,
+      "right_side_rate": 1.0,
+      "report_sha256": "9ce712360615884709dfcad4f43dd7709b18f10231119e8b1076f038419d868b"
+    },
+    {
+      "phase": "standup-allocation-002",
+      "iteration": 1000,
+      "wins": 1792,
+      "trials": 1792,
+      "polish": false,
+      "right_side_rate": 1.0,
+      "report_sha256": "91365e28a00dc5f7b05e78995f228188321fde06413371185d4e303b23dff4d7"
+    },
+    {
+      "phase": "standup-allocation-003",
+      "iteration": 1250,
+      "wins": 1790,
+      "trials": 1792,
+      "polish": false,
+      "right_side_rate": 1.0,
+      "report_sha256": "f005bbad4e8947e228b65b804445f90c0ebb1bb357c30984b08ea3b68afb7803"
+    },
+    {
+      "phase": "standup-allocation-003",
+      "iteration": 1500,
+      "wins": 1792,
+      "trials": 1792,
+      "polish": true,
+      "right_side_rate": 1.0,
+      "report_sha256": "d119ccbedd5341a120fa0adc296f735b7f561135d6d5d2e5b000d16fc671f743"
+    },
+    {
+      "phase": "standup-allocation-003",
+      "iteration": 1750,
+      "wins": 1792,
+      "trials": 1792,
+      "polish": true,
+      "right_side_rate": 1.0,
+      "report_sha256": "fb6faa577373a8c42c5575e4f56fbfdae685bb7d0d32858f291ab1f329b755ec"
+    },
+    {
+      "phase": "standup-allocation-003",
+      "iteration": 2000,
+      "wins": 1792,
+      "trials": 1792,
+      "polish": true,
+      "right_side_rate": 1.0,
+      "report_sha256": "a3179ec89d1fffa78111193314f9b2ee646f0361482c4e86db9980a8ffbacf65"
+    },
+    {
+      "phase": "head-precision-allocation-001",
+      "iteration": 2250,
+      "wins": 1790,
+      "trials": 1792,
+      "polish": true,
+      "right_side_rate": 1.0,
+      "report_sha256": "7e03db2d08c34268217b66cf08c9b9a3c036b4d0fc3467a9e8b21d877131c517"
+    },
+    {
+      "phase": "head-precision-allocation-002",
+      "iteration": 2500,
+      "wins": 1534,
+      "trials": 1792,
+      "polish": true,
+      "right_side_rate": 0.0,
+      "report_sha256": "3ee79586fee20b5df4d56236bf0433f401ab5604348cd78451d9f2a007be11f4"
+    },
+    {
+      "phase": "head-precision-allocation-003",
+      "iteration": 2750,
+      "wins": 1792,
+      "trials": 1792,
+      "polish": true,
+      "right_side_rate": 1.0,
+      "report_sha256": "53fff2a68b1e076f040a27357afd9e10d602c2effa870daf98609aaac0507e21"
+    },
+    {
+      "phase": "head-precision-allocation-004",
+      "iteration": 3000,
+      "wins": 1788,
+      "trials": 1792,
+      "polish": true,
+      "right_side_rate": 1.0,
+      "report_sha256": "bdd2be4cc16978282678e1eae75fcf7e79f5e70eb92643d85cb7d1603b58010f"
+    },
+    {
+      "phase": "head-precision2-allocation-001",
+      "iteration": 3250,
+      "wins": 1792,
+      "trials": 1792,
+      "polish": true,
+      "right_side_rate": 1.0,
+      "report_sha256": "23afe45db65e9038f4641d24c74d333ede176f0b70136fb4b2e5e3362ba2e134"
+    },
+    {
+      "phase": "head-foundation4-allocation-001",
+      "iteration": 3328,
+      "wins": 1792,
+      "trials": 1792,
+      "polish": true,
+      "right_side_rate": 1.0,
+      "report_sha256": "bb6a3ffeee8a25e6149c92b5ad5c64e08fae0d36795438b62964f2c749aa7fe3"
+    },
+    {
+      "phase": "head-foundation4-allocation-001",
+      "iteration": 3456,
+      "wins": 1792,
+      "trials": 1792,
+      "polish": true,
+      "right_side_rate": 1.0,
+      "report_sha256": "f2a2c37f9c6ecbae5046d5b61ac928dfb001f13878b7250a718f5174c8f1c7a9"
+    },
+    {
+      "phase": "head-foundation4-allocation-001",
+      "iteration": 3506,
+      "wins": 1792,
+      "trials": 1792,
+      "polish": true,
+      "right_side_rate": 1.0,
+      "report_sha256": "bb92bf5274fb7b7e13699848f3e4e89cd40303cad838e37439b6c069906c23d6"
+    },
+    {
+      "phase": "paired-feedback-allocation-001",
+      "iteration": 3584,
+      "wins": 1792,
+      "trials": 1792,
+      "polish": true,
+      "right_side_rate": 1.0,
+      "report_sha256": "e2385bbde433acb2646ad71e1f2f9feed41b4fe5cfa6f974b566fa60c117c46b"
+    },
+    {
+      "phase": "paired-feedback-allocation-001",
+      "iteration": 3712,
+      "wins": 1790,
+      "trials": 1792,
+      "polish": true,
+      "right_side_rate": 1.0,
+      "report_sha256": "1c495d8526a75dcf75f0b5943d92fc89036c035327cd86c211d2e56832cd65ea"
+    },
+    {
+      "phase": "paired-feedback-allocation-001",
+      "iteration": 3762,
+      "wins": 1792,
+      "trials": 1792,
+      "polish": true,
+      "right_side_rate": 1.0,
+      "report_sha256": "2fabc9e27937f982b569c8ef5dc8811cf6529e7c63261c9f753599e9f6bddf57"
+    }
+  ],
+  "single_gpu_sequential_training": true,
+  "formal_retries": 0,
+  "completed_updates": 3762,
+  "control_steps_per_environment": 90288,
+  "aggregate_environment_control_steps": 739639296,
+  "collision_delta": {
+    "original_geoms": 75,
+    "new_geoms": 107,
+    "added_shells": 32,
+    "mass_kg": 0.600941825,
+    "existing_model_fields_exact": [
+      "body_mass",
+      "body_inertia",
+      "body_ipos",
+      "body_iquat",
+      "body_pos",
+      "body_quat",
+      "body_parentid",
+      "jnt_type",
+      "jnt_bodyid",
+      "jnt_pos",
+      "jnt_axis",
+      "jnt_range",
+      "jnt_limited",
+      "qpos0",
+      "actuator_trnid",
+      "actuator_ctrlrange",
+      "actuator_gear"
+    ],
+    "existing_geom_fields_exact": true,
+    "robot_xml_sha256": "8ae0d89041950d565bbcd6272ab87317f46132ff1eef99b922782ecbe2b95308"
+  },
+  "final_artifact": {
+    "status": "PASS_ARTIFACTS_ONLY",
+    "completed_updates": 3762,
+    "phases": [
+      {
+        "name": "standup-allocation-001",
+        "completed_updates": 12,
+        "receipt_sha256": "f7eeb0ca7b72cefcaad54e45efab17ccc8e87f08d77ec157ae0eeb3b2121b90c"
+      },
+      {
+        "name": "standup-allocation-002",
+        "completed_updates": 1000,
+        "receipt_sha256": "5fe96efd10f969efe7cb9a55e9138fd533a988dbde36e28e13ad3b2c58050bc9"
+      },
+      {
+        "name": "standup-allocation-003",
+        "completed_updates": 2000,
+        "receipt_sha256": "22d38564a1808c731e73e193dbe240056fa73bcee25b33242a5afc3867548b81"
+      },
+      {
+        "name": "head-precision-allocation-001",
+        "completed_updates": 2250,
+        "receipt_sha256": "f0a6e2993d0f6f1a60145d059d184ff0906f8f15b962d1b0bdae612de3f549fa"
+      },
+      {
+        "name": "head-precision-allocation-002",
+        "completed_updates": 2500,
+        "receipt_sha256": "6375944d08ae793ea167b93d75953b7f86eed2c6b8692258b4a6eb97f775e05b"
+      },
+      {
+        "name": "head-precision-allocation-003",
+        "completed_updates": 2750,
+        "receipt_sha256": "0d3cf4495094712b0c902636aaf42189583a32be56c8684650d931c0c70d5245"
+      },
+      {
+        "name": "head-precision-allocation-004",
+        "completed_updates": 3000,
+        "receipt_sha256": "9128717c561b74216104df42d55aa7c4795aaf203f755c6810c1840b314bcb6b"
+      },
+      {
+        "name": "head-precision2-allocation-001",
+        "completed_updates": 3250,
+        "receipt_sha256": "940cfb1088e6be031eddb734b27e6aa7076b2a8cd718f1d0c2835dce4e27718b"
+      },
+      {
+        "name": "head-foundation4-allocation-001",
+        "completed_updates": 3506,
+        "receipt_sha256": "870ca4d81d514618051b6bb2b1cf1b84dcb3c55ba91c032a2d4dc3549d93aa8d"
+      },
+      {
+        "name": "paired-feedback-allocation-001",
+        "completed_updates": 3762,
+        "receipt_sha256": "2127eb36fe509c58a966f16b1a144e72a8a38246609076161d6f117f88cd97a0"
+      }
+    ],
+    "checkpoint_and_resume_actor_critic_optimizer_equal": true,
+    "checkpoint_sha256": "caa5d00fd92a430a69c098a10798646e8e6e77405848b6b61d5eb1fbd151c1ea",
+    "resume_sha256": "9073d0549cecfda9c1ec965d5e4c8e76c8acba4f8569908420ba5a201f6f68a4",
+    "onnx_sha256": "01b5fafde4bde1c33bf5ce1a671b275bd06556354dcacdc9288ba13d47a084e9",
+    "normalizer_parity_max_error": 7.748603820800781e-07,
+    "parity_samples": 66,
+    "robot_xml_sha256": "8ae0d89041950d565bbcd6272ab87317f46132ff1eef99b922782ecbe2b95308",
+    "verifier_sha256": "f0f2ad992d298a4bd87869c8d1eda6d919600328a2fbbe5fda25027641b723fc",
+    "behavior_evaluation_pending": true
+  },
+  "behavior_qualified_as_replacement": false,
+  "hardware_qualified": false,
+  "limitations": [
+    "New +63deg neck command causes marked body instability despite restored angular accuracy",
+    "Transient physical joint-limit penetration occurs in the head battery",
+    "2500 right-side regression is preserved and reproducible; normalizer swaps localize it to the network component",
+    "Frozen original protocol clarified by the one-way-polish review addendum; no numerical recipe change made"
+  ],
+  "pending_delivery_publication": true
+}

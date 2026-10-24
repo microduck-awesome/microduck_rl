@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "checkpoint_sha256": "78bf56d5eca0c225894769966d0268a035d5494b45bc36db359adca6afad3826",
+  "completed_updates": 2000,
+  "common_step_counter": 48000,
+  "learning_rate": 0.0002562890625000001,
+  "actor_critic_normalizers_optimizer_exact": true,
+  "previous_bootstrap_contract": {
+    "schema": 1,
+    "state": "no_reset_successor_critic_v1",
+    "normalization": "before_step_update",
+    "terminal_precedence": true
+  },
+  "current_bootstrap_contract": {
+    "schema": 1,
+    "state": "no_reset_successor_critic_v1",
+    "normalization": "before_step_update",
+    "terminal_precedence": true
+  },
+  "source_changed": true,
+  "physics_resume": "native-new-episodes",
+  "exposure_scope": "current allocation segment"
+}

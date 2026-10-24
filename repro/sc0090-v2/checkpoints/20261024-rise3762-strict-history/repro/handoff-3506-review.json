@@ -1,0 +1,140 @@
+{
+  "status": "PASS_PAIRED_ONLY_AFTER_3506",
+  "verified_unix": 1792811305.2605932,
+  "completed_official_phases": [
+    {
+      "phase": "standup-allocation-001",
+      "completed_updates": 12,
+      "source_exact": true,
+      "exit_code": 0,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline"
+    },
+    {
+      "phase": "standup-allocation-002",
+      "completed_updates": 1000,
+      "source_exact": true,
+      "exit_code": 0,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline"
+    },
+    {
+      "phase": "standup-allocation-003",
+      "completed_updates": 2000,
+      "source_exact": true,
+      "exit_code": 0,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline"
+    },
+    {
+      "phase": "head-precision-allocation-001",
+      "completed_updates": 2250,
+      "source_exact": true,
+      "exit_code": 0,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline"
+    },
+    {
+      "phase": "head-precision-allocation-002",
+      "completed_updates": 2500,
+      "source_exact": true,
+      "exit_code": 0,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline"
+    },
+    {
+      "phase": "head-precision-allocation-003",
+      "completed_updates": 2750,
+      "source_exact": true,
+      "exit_code": 0,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline"
+    },
+    {
+      "phase": "head-precision-allocation-004",
+      "completed_updates": 3000,
+      "source_exact": true,
+      "exit_code": 0,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline"
+    },
+    {
+      "phase": "head-precision2-allocation-001",
+      "completed_updates": 3250,
+      "source_exact": true,
+      "exit_code": 0,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline"
+    },
+    {
+      "phase": "head-foundation4-allocation-001",
+      "completed_updates": 3506,
+      "source_exact": true,
+      "exit_code": 0,
+      "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline"
+    }
+  ],
+  "paired_parent_sha256": "a27637ef34addbfb2a3cadc4cf5f8fdde786351cc76b1d6f6f6ce65c07f25b8b",
+  "restored_updates": 3506,
+  "common_step_counter": 84144,
+  "actor_critic_normalizers_optimizer_exact": true,
+  "paired_source_exact": true,
+  "head_recipe": {
+    "id": "v2-head-precision-4",
+    "stage": 4,
+    "ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ],
+    "final_ranges": [
+      [
+        -0.48577760000000003,
+        1.1
+      ],
+      [
+        -1.1,
+        0.904656
+      ],
+      [
+        -1.4,
+        1.4
+      ],
+      [
+        -0.31,
+        0.31
+      ]
+    ],
+    "reward_weight": 3.0,
+    "std": 0.5,
+    "fine_std": 0.04,
+    "fine_weight": 0.5,
+    "precision_scale": 0.003,
+    "command_sampling": {
+      "zero_probability": 0.4,
+      "precision_probability": 0.5,
+      "precision_amplitude_rad": [
+        0.005,
+        0.04
+      ],
+      "active_axis_count_probabilities": {
+        "1": 0.5,
+        "2": 0.25,
+        "4": 0.25
+      }
+    },
+    "reason": "Basic micro/combined-command precision recipe after 3250 small-step 22/128; bounded reward and explicit exposure, no added position DR"
+  },
+  "expected_paired_evaluations": [
+    3584,
+    3712,
+    3762
+  ],
+  "behavior_regression_2500_retained": true,
+  "training_complete": false
+}

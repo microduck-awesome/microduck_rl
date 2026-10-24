@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "commands": {
+    "standup-allocation-001": {
+      "timestamp": "2026-10-15T02:43:57.552Z",
+      "session_id": "01a13d41-0df5-7443-a8a8-155b6a46523c",
+      "tool_call_id": "call_0c76ab051c4b48aeb3424efbb27fbf9e",
+      "launch_command": "scripts/v2_python.sh scripts/train_v2_standup.py --task Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline --device cuda:1 --iterations 1000 --preflight runs-v2/preflight-8192/report.json --output runs-v2/standup-allocation-001 > runs-v2/standup-allocation-001.log 2>&1",
+      "enclosing_tool_input_sha256": "b89c64232c49e2ca474fa98ede57d32ff4922d7fc5ebb6807bfff7d52145ba57"
+    },
+    "standup-allocation-002": {
+      "timestamp": "2026-10-15T03:26:06.346Z",
+      "session_id": "01a13d41-0df5-7443-a8a8-155b6a46523c",
+      "tool_call_id": "call_a102aa83299944ab8833776800ddb7c7",
+      "launch_command": "scripts/v2_python.sh scripts/train_v2_standup.py --task Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline --device cuda:1 --num-envs 8192 --iterations 988 --eval-interval 250 --eval-samples 128 --preflight runs-v2/graph-throughput-8192/report.json --resume runs-v2/standup-allocation-001/checkpoint_000012.pt --output runs-v2/standup-allocation-002 > runs-v2/standup-allocation-002.log 2>&1",
+      "enclosing_tool_input_sha256": "f0be63d0abfcf7ceaeb6776df5cbdeb1d288c90802dad820e8cee4cb1908462c"
+    },
+    "standup-allocation-003": {
+      "timestamp": "2026-10-15T03:55:50.121Z",
+      "session_id": "01a13d41-0df5-7443-a8a8-155b6a46523c",
+      "tool_call_id": "call_7bb150e09f694a37a054f7911bf378ae",
+      "launch_command": "scripts/v2_python.sh scripts/train_v2_standup.py --task Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline --device cuda:1 --num-envs 8192 --iterations 1000 --eval-interval 250 --eval-samples 128 --preflight runs-v2/graph-throughput-8192/report.json --resume runs-v2/standup-allocation-002/checkpoint_001000.pt --output runs-v2/standup-allocation-003 > runs-v2/standup-allocation-003.log 2>&1",
+      "enclosing_tool_input_sha256": "a891e3c87bdb68b72a3cd01896e7d84b5b2ab01437053844aff8f73005c9b928"
+    },
+    "head-precision-allocation-001": {
+      "timestamp": "2026-10-15T04:36:03.055Z",
+      "session_id": "01a13d41-0df5-7443-a8a8-155b6a46523c",
+      "tool_call_id": "call_3d153055dcc3485386aec3688015f4e4",
+      "launch_command": "scripts/v2_python.sh scripts/train_v2_standup.py --task Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline --device cuda:1 --num-envs 8192 --iterations 250 --eval-interval 250 --eval-samples 128 --head-precision --preflight runs-v2/head-precision-throughput-8192/report.json --resume runs-v2/standup-allocation-003/resume_002000.pt --output runs-v2/head-precision-allocation-001 > runs-v2/head-precision-allocation-001.log 2>&1",
+      "enclosing_tool_input_sha256": "784e6a4396741cdfd2622545818f1b7cf3d7520cf8c1938144d38b28798d810b"
+    },
+    "head-precision-allocation-002": {
+      "timestamp": "2026-10-15T04:47:01.024Z",
+      "session_id": "01a13d41-0df5-7443-a8a8-155b6a46523c",
+      "tool_call_id": "call_48fb826e157f487c82663684fbedde01",
+      "launch_command": "scripts/v2_python.sh scripts/train_v2_standup.py --task Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline --device cuda:1 --num-envs 8192 --iterations 250 --eval-interval 250 --eval-samples 128 --head-precision --preflight runs-v2/head-precision-throughput-8192/report.json --resume runs-v2/head-precision-allocation-001/resume_002250.pt --output runs-v2/head-precision-allocation-002 > runs-v2/head-precision-allocation-002.log 2>&1",
+      "enclosing_tool_input_sha256": "a110a89f3c0e4a4d2521ba0898775d7d5cc5616900006e7d6bac153c200a695e"
+    },
+    "head-precision-allocation-003": {
+      "timestamp": "2026-10-15T05:00:23.156Z",
+      "session_id": "01a13d41-0df5-7443-a8a8-155b6a46523c",
+      "tool_call_id": "call_a75e6242f97841659222eb1af18171ae",
+      "launch_command": "scripts/v2_python.sh scripts/train_v2_standup.py --task Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline --device cuda:1 --num-envs 8192 --iterations 250 --eval-interval 250 --eval-samples 128 --head-precision --preflight runs-v2/head-precision-throughput-8192/report.json --resume runs-v2/head-precision-allocation-002/resume_002500.pt --output runs-v2/head-precision-allocation-003 > runs-v2/head-precision-allocation-003.log 2>&1",
+      "enclosing_tool_input_sha256": "17a2f7679da58b8cd1020161f74168d014f746c69c6b873c81b9d9d35aa2669b"
+    },
+    "head-precision-allocation-004": {
+      "timestamp": "2026-10-15T05:15:59.392Z",
+      "session_id": "01a13d41-0df5-7443-a8a8-155b6a46523c",
+      "tool_call_id": "call_25d040bdc0c2424587720cac64574679",
+      "launch_command": "scripts/v2_python.sh scripts/train_v2_standup.py --task Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline --device cuda:1 --num-envs 8192 --iterations 250 --eval-interval 250 --eval-samples 128 --head-precision --preflight runs-v2/head-precision-throughput-8192/report.json --resume runs-v2/head-precision-allocation-003/resume_002750.pt --output runs-v2/head-precision-allocation-004 > runs-v2/head-precision-allocation-004.log 2>&1",
+      "enclosing_tool_input_sha256": "bedf0343eecd4ca807346e741f167b050cbaaead80d3d62acf1679b475c83929"
+    },
+    "head-precision2-allocation-001": {
+      "timestamp": "2026-10-15T05:38:28.593Z",
+      "session_id": "01a13d41-0df5-7443-a8a8-155b6a46523c",
+      "tool_call_id": "call_0841d79e98b94f4bad746e6a8b39a174",
+      "launch_command": "scripts/v2_python.sh scripts/train_v2_standup.py --task Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline --device cuda:1 --num-envs 8192 --iterations 250 --eval-interval 250 --eval-samples 128 --head-precision --head-precision-stage 2 --preflight runs-v2/head-precision2-throughput-8192/report.json --resume runs-v2/head-precision-allocation-004/resume_003000.pt --output runs-v2/head-precision2-allocation-001 > runs-v2/head-precision2-allocation-001.log 2>&1",
+      "enclosing_tool_input_sha256": "3804349d6d23518ccc46bf5080323f4fa113297b581633e36ff5da488fbf922b"
+    },
+    "head-foundation4-allocation-001": {
+      "timestamp": "2026-10-15T10:13:54.789Z",
+      "session_id": "01a13d41-0df5-7443-a8a8-155b6a46523c",
+      "tool_call_id": "call_d420b4c0bdfc488ebb76c50767601e92",
+      "launch_command": "scripts/v2_python.sh scripts/train_v2_standup.py --task Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline --device cuda:1 --num-envs 8192 --iterations 256 --eval-interval 128 --eval-samples 128 --preflight runs-v2/head-foundation4-throughput-8192/report.json --resume runs-v2/head-precision2-allocation-001/resume_003250.pt --head-precision --head-precision-stage 4 --output runs-v2/head-foundation4-allocation-001 > runs-v2/head-foundation4-allocation-001.log 2>&1",
+      "enclosing_tool_input_sha256": "90c17705a0bbb3519da9fe662e46e0a75ba9c5db567d80927c8fe8a97b244e0b"
+    },
+    "paired-feedback-allocation-001": {
+      "timestamp": "2026-10-15T11:34:34.657Z",
+      "session_id": "01a13d41-0df5-7443-a8a8-155b6a46523c",
+      "tool_call_id": "call_1e4beba7e432413b8260a5d27f5c536d",
+      "launch_command": "scripts/v2_python.sh scripts/train_v2_standup.py --task Mjlab-StandUp-Flat-MicroDuck-V2-PairedError-Baseline --device cuda:1 --num-envs 8192 --iterations 256 --eval-interval 128 --eval-samples 128 --preflight runs-v2/paired-feedback-throughput-8192/report.json --resume runs-v2/head-foundation4-allocation-001/resume_003506.pt --head-precision --head-precision-stage 4 --output runs-v2/paired-feedback-allocation-001 > runs-v2/paired-feedback-allocation-001.log 2>&1",
+      "enclosing_tool_input_sha256": "ce6af9eee8ede0c5bbe9fa130fc8caab4e651b518fef7b162348b1d8913871ec"
+    }
+  },
+  "missing": []
+}

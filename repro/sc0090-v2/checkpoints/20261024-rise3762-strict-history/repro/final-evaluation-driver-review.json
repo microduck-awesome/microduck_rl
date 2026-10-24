@@ -1,0 +1,18 @@
+{
+  "status": "REVIEWED_NOT_RUN",
+  "driver_sha256": "6e44d92a0835867535b00f11e3f1757acfcec4b68bc2a054d83ef65a5ae1e181",
+  "guards": [
+    "Requires whole formal chain finished",
+    "Exclusive shared GPU lock for all comparison jobs",
+    "Original final numerical source/static assets and corrected XML hashes checked",
+    "Original environment cleanup and wrapper; explicit cuda:1 on all GPU jobs",
+    "Abnormal process exit is a failure even with an output report",
+    "No overwrite of existing evaluation attempt"
+  ],
+  "jobs": [
+    "CPU artifact and ONNX parity verification",
+    "Same-collision recovery and head batteries for new and original3762",
+    "CPU all14 physical joint trace diagnostics"
+  ],
+  "separate_followup": "Three stage1 regression replays acquire their own lock after these comparisons; not run concurrently"
+}

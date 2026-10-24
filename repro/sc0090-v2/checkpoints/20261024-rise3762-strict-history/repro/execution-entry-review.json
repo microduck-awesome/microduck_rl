@@ -1,0 +1,31 @@
+{
+  "status": "PASS_CONDITIONAL_FORMAL_ENTRY",
+  "formal_started": false,
+  "tools": {
+    "run_formal_phase.py": "d9bc3b8bc562db00fe366640fcde002968a3336bb57e1a9dcaafff0ca3b1c9ed",
+    "run_stop_boundary.py": "680413d7210a6da5f42497601aaf47212f81f881416d6a51110876e2e8aaea0c",
+    "run_qualification.py": "a7dac0f86cbb503165df797ca4e0b87b8a72e476721509dfcc67c13d8f24751a",
+    "run_chain.py": "34444c5387060d5be80fdbf3a022abe99d90bba38667ccc9768d23cb1d548d19"
+  },
+  "checks": [
+    "No archived training source modified",
+    "Formal argv comes from path-only replay plan",
+    "Qualification and formal use same exclusive process lock",
+    "Review hashes and numerical/static/collision files checked before launch",
+    "Fresh phase-specific smoke and actual batch required; original throughput gate retained",
+    "Real stop boundary report required with matching document and entry hashes",
+    "Parent restricted to previous new formal allocation with exact artifact digest",
+    "Head stages require native parent polish state",
+    "No restart into existing output directories",
+    "Child return code and historical terminal status independently checked",
+    "Actual runtime configs, dependencies, source hashes, checkpoint steps and two CUDA RNG states checked after exit",
+    "Exact original evaluation file schedule, seeds, per-group samples and duration checked; outcomes not forced",
+    "Chain waits for a live PID plus start ticks, then requires all twenty qualification reports",
+    "Chain records training completion as pending final audit, not goal complete",
+    "Stop signals forwarded through allocation launcher to native trainer; no automatic next phase"
+  ],
+  "limits": [
+    "Each phase needs actual passed qualifications before launch",
+    "This review does not claim any formal updates or learned behavior"
+  ]
+}

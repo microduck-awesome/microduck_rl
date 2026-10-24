@@ -1,0 +1,7 @@
+{
+  "status": "PASS_REJECTED_DURING_FORMAL_TRAINING",
+  "verified_unix": 1792810033.1509116,
+  "returncode": 1,
+  "no_output_directory_created": true,
+  "helper_sha256": "6fe178fe855ed616c663982d682ba14e487943c8aa80d7640b2470b9445ef0e2"
+}

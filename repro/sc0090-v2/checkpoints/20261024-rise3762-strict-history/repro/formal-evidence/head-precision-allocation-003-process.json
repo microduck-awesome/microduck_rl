@@ -1,0 +1,87 @@
+{
+  "status": "PASS",
+  "pid": 1393532,
+  "argv": [
+    "bash",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-003/scripts/v2_python.sh",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-003/scripts/train_v2_standup.py",
+    "--task",
+    "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+    "--device",
+    "cuda:1",
+    "--num-envs",
+    "8192",
+    "--iterations",
+    "250",
+    "--eval-interval",
+    "250",
+    "--eval-samples",
+    "128",
+    "--head-precision",
+    "--preflight",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/qualification/head-precision-allocation-003/batch/report.json",
+    "--resume",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/formal/head-precision-allocation-002/resume_002500.pt",
+    "--output",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/formal/head-precision-allocation-003"
+  ],
+  "cwd": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-003",
+  "started_unix": 1792808942.132013,
+  "qualification_hashes": {
+    "smoke": "5d5934fc4b4e9d95f9946486c9baff7725f5a3c3b547b4757bb9e61da55db2f4",
+    "batch": "149aa19f81325193b9a73e5c785a0e40641bee0c7f291d38073974e86adc5c04"
+  },
+  "parent_sha256": "5b347bc954be2fe09cee22d7e0db847a5487eec28c8e9ff21370e902af83ca91",
+  "document_review_sha256": "5ebf5ccd0248f42d2f789ed80146f911f923125cf960d97edea5c26c4596604a",
+  "returncode": 0,
+  "ended_unix": 1792809421.6864352,
+  "completed_updates": 2750,
+  "checkpoint_hashes": {
+    "checkpoint_002750.pt": "cec232c87428a2f280b9231fa1c6fe5f3af8aa47454394339f7bab59085b1a09",
+    "model_2749.pt": "5b8ffd686cb825e81cfe8c3268c5581e2c3f184547d62a83405a74fec21f4341",
+    "resume_002750.pt": "4f13a039595b24685829ad519014c00184cb1f087bd0b1033ce692aa8ddecc02",
+    "model_2500.pt": "447bce1b3af16d4858ad11a13e938ad2c8ba84ad288ed818bdcb1c7875f7dcc6"
+  },
+  "run_sha256": "617e4411e88c386d7b49b9137d18e77bf7c6858e15af153d256e8b09f7231ed8",
+  "native_recovery": {
+    "stage": 5,
+    "last_assessment_step": 30000,
+    "polish": true,
+    "trials": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "wins": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "rates": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "total_trials": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "event": "historical_SIGTERM_boundary",
+  "before_completed_update": 12,
+  "original_script_sha256": "c63650bbfa32c8b5464f8ce121cc9c3df4af742a0f34be1cf6ce1b25e0dcf418",
+  "entry_sha256": "9e075167c19ce743f32e007c1920443374b006ae850f942b0a44fbaa3dd98b81",
+  "pid": 1318080
+}

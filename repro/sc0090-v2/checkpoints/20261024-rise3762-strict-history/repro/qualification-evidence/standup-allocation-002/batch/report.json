@@ -1,0 +1,234 @@
+{
+  "status": "PASS",
+  "head_precision_recipe": null,
+  "position_robustness_recipe": null,
+  "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+  "device": "cuda:1",
+  "envs": 8192,
+  "iterations": 16,
+  "steps_per_env": 24,
+  "learning_epochs": 5,
+  "minibatches": 4,
+  "losses": [
+    {
+      "value": 0.7687262415885925,
+      "surrogate": -0.002855323487892747,
+      "entropy": 19.78951358795166
+    },
+    {
+      "value": 0.7032127857208252,
+      "surrogate": -0.008865314623108134,
+      "entropy": 19.586141204833986
+    },
+    {
+      "value": 0.5470190972089768,
+      "surrogate": -0.009500844893045724,
+      "entropy": 19.312785816192626
+    },
+    {
+      "value": 0.44377034306526186,
+      "surrogate": -0.007723960193106905,
+      "entropy": 19.110594177246092
+    },
+    {
+      "value": 0.3509805366396904,
+      "surrogate": -0.007769139122683555,
+      "entropy": 18.94625606536865
+    },
+    {
+      "value": 0.2867790922522545,
+      "surrogate": -0.0066523137691547165,
+      "entropy": 18.77007074356079
+    },
+    {
+      "value": 0.20874649733304979,
+      "surrogate": -0.010281373315956443,
+      "entropy": 18.506512928009034
+    },
+    {
+      "value": 0.15496056154370308,
+      "surrogate": -0.012265574117191137,
+      "entropy": 18.26884260177612
+    },
+    {
+      "value": 0.11448037587106227,
+      "surrogate": -0.013789167569484562,
+      "entropy": 18.01864004135132
+    },
+    {
+      "value": 0.08988329470157623,
+      "surrogate": -0.015124107117298991,
+      "entropy": 17.803539848327638
+    },
+    {
+      "value": 0.057752230949699876,
+      "surrogate": -0.016837349394336343,
+      "entropy": 17.599848079681397
+    },
+    {
+      "value": 0.04116849303245544,
+      "surrogate": -0.018715705641079695,
+      "entropy": 17.359869956970215
+    },
+    {
+      "value": 0.030120901018381118,
+      "surrogate": -0.017861897297552786,
+      "entropy": 17.130635738372803
+    },
+    {
+      "value": 0.018776839366182685,
+      "surrogate": -0.020732625026721508,
+      "entropy": 16.65874671936035
+    },
+    {
+      "value": 0.013064601039513946,
+      "surrogate": -0.02184880987042561,
+      "entropy": 16.281559658050536
+    },
+    {
+      "value": 0.008608810952864587,
+      "surrogate": -0.024954031291417777,
+      "entropy": 15.799970626831055
+    }
+  ],
+  "policy_parameter_max_change": 0.3146193027496338,
+  "finite_policy_parameters": true,
+  "terminal_bootstrap_samples": 4096,
+  "elapsed_seconds": 27.266157775186002,
+  "robot_xml": "robot.xml",
+  "robot_xml_sha256": "8ae0d89041950d565bbcd6272ab87317f46132ff1eef99b922782ecbe2b95308",
+  "action_scale": 1.0,
+  "peak_contacts_across_worlds": 73039,
+  "physics_cuda_graph": true,
+  "motor_graph_replays": [
+    1534,
+    1534
+  ],
+  "contact_capacity_across_worlds": 286720,
+  "contact_capacity_checked_each_physics_step": true,
+  "logging": "local TensorBoard",
+  "upload_model": false,
+  "limitation": "A short PPO smoke validates the training path; it does not demonstrate learned walking or SC0090 sim2real.",
+  "iteration_timing": [
+    {
+      "iteration": 0,
+      "collection_s": 1.9488277435302734,
+      "learning_s": 0.2986185550689697,
+      "wall_s": 2.859097159933299
+    },
+    {
+      "iteration": 1,
+      "collection_s": 1.3891947269439697,
+      "learning_s": 0.206681489944458,
+      "wall_s": 1.7476111110299826
+    },
+    {
+      "iteration": 2,
+      "collection_s": 1.3446249961853027,
+      "learning_s": 0.20479178428649902,
+      "wall_s": 1.6020882870070636
+    },
+    {
+      "iteration": 3,
+      "collection_s": 1.3261897563934326,
+      "learning_s": 0.20409655570983887,
+      "wall_s": 1.5789048839360476
+    },
+    {
+      "iteration": 4,
+      "collection_s": 1.3453145027160645,
+      "learning_s": 0.20876502990722656,
+      "wall_s": 1.600660267751664
+    },
+    {
+      "iteration": 5,
+      "collection_s": 1.349973440170288,
+      "learning_s": 0.20676422119140625,
+      "wall_s": 1.6058366633951664
+    },
+    {
+      "iteration": 6,
+      "collection_s": 1.339609146118164,
+      "learning_s": 0.20867419242858887,
+      "wall_s": 1.6000840566121042
+    },
+    {
+      "iteration": 7,
+      "collection_s": 1.354313611984253,
+      "learning_s": 0.21018743515014648,
+      "wall_s": 1.6123282541520894
+    },
+    {
+      "iteration": 8,
+      "collection_s": 1.3150889873504639,
+      "learning_s": 0.20336484909057617,
+      "wall_s": 1.5676324502564967
+    },
+    {
+      "iteration": 9,
+      "collection_s": 1.326594352722168,
+      "learning_s": 0.210707426071167,
+      "wall_s": 1.584087603725493
+    },
+    {
+      "iteration": 10,
+      "collection_s": 1.317737340927124,
+      "learning_s": 0.2061316967010498,
+      "wall_s": 1.5731141231954098
+    },
+    {
+      "iteration": 11,
+      "collection_s": 1.3037471771240234,
+      "learning_s": 0.21679091453552246,
+      "wall_s": 1.5754917738959193
+    },
+    {
+      "iteration": 12,
+      "collection_s": 1.3178672790527344,
+      "learning_s": 0.21203398704528809,
+      "wall_s": 1.577164018061012
+    },
+    {
+      "iteration": 13,
+      "collection_s": 1.3580381870269775,
+      "learning_s": 0.21398663520812988,
+      "wall_s": 1.6234350437298417
+    },
+    {
+      "iteration": 14,
+      "collection_s": 1.3146183490753174,
+      "learning_s": 0.20842576026916504,
+      "wall_s": 1.5743240653537214
+    },
+    {
+      "iteration": 15,
+      "collection_s": 1.3022511005401611,
+      "learning_s": 0.2125556468963623,
+      "wall_s": 1.562865040730685
+    }
+  ],
+  "throughput": {
+    "warmup_updates": 3,
+    "measured_updates": 13,
+    "median_wall_s": 1.5789048839360476,
+    "median_end_to_end_steps_per_s": 124521.75048687954,
+    "median_collection_steps_per_s": 148250.27795017406,
+    "aggregate_wall_steps_per_s": 123856.99202286164
+  },
+  "onnx_exported": true,
+  "runtime": "microduck-v2-sc0090-official-baseline-v1",
+  "feedback": "official-joint-noise-delay-and-encoder-bias",
+  "motor_sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+  "onnx_cpu_inference": {
+    "input": [
+      1,
+      61
+    ],
+    "output": [
+      1,
+      14
+    ],
+    "metadata_joint_count": 14,
+    "normalizer_parity_max_error": 2.384185791015625e-07
+  }
+}

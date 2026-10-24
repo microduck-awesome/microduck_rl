@@ -1,0 +1,9 @@
+{
+  "status": "RESOLVED_BEFORE_PHASE2_QUALIFICATION",
+  "cause": "Review tool edited while phase1 qualification was running; phase2 hash guard rejected entry before any GPU run. Waiting chain correctly rejected the exited qualification PID.",
+  "formal_updates": 0,
+  "numerical_sources_changed": false,
+  "phase0_and_phase1_qualification_valid": true,
+  "correction": "Freeze reviewed orchestration now; start remaining qualifications at phase2. Preserve failed wait receipt in attempts/chain-wait-expired-001.json.",
+  "review_sha256": "5ebf5ccd0248f42d2f789ed80146f911f923125cf960d97edea5c26c4596604a"
+}

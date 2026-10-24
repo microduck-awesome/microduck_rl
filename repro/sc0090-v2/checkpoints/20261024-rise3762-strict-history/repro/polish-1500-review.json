@@ -1,0 +1,17 @@
+{
+  "status": "PASS_NATIVE_POLISH_ENTRY",
+  "verified_unix": 1792807247.8496053,
+  "iteration": 1500,
+  "stage": 5,
+  "trials": 1792,
+  "wins": 1792,
+  "each_seed_each_bucket_passed": true,
+  "historical_protocol_and_polish_boundary_match": true,
+  "pre_evaluation_checkpoint_sha256": "a3d952e6445ae22bbfa529297ce703ccb9822979386a2dbaee64136a2c8daab8",
+  "post_evaluation_resume_sha256": "332e82198554e1a1c94f641c495a203aa894c4943d56846dcd4b52817b38d184",
+  "checkpoint_polish": false,
+  "resume_polish": true,
+  "common_step_counter": 36000,
+  "limitations": "Original development-seed recovery evaluation; not final head precision or hardware qualification.",
+  "training_complete": false
+}

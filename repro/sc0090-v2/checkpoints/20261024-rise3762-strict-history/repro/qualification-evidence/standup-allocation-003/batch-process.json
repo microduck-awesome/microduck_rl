@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "pid": 1324448,
+  "argv": [
+    "bash",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/standup-allocation-003/scripts/v2_python.sh",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/publication/repro/sc0090-v2/strict3762-20261024/tools/qualify_phase.py",
+    "--task",
+    "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+    "--device",
+    "cuda:1",
+    "--num-envs",
+    "8192",
+    "--iterations",
+    "16",
+    "--output-dir",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/qualification/standup-allocation-003/batch",
+    "--report",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/qualification/standup-allocation-003/batch/report.json",
+    "--force-timeouts"
+  ],
+  "cwd": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/standup-allocation-003",
+  "started_unix": 1792803245.5198898,
+  "document_review_sha256": "5ebf5ccd0248f42d2f789ed80146f911f923125cf960d97edea5c26c4596604a",
+  "formal_weights_used": false,
+  "returncode": 0,
+  "ended_unix": 1792803314.4645483,
+  "report_sha256": "5156e5bb596c86ad49996d5892b9ea4154d2af914a22d2999243a7dfae0d1118",
+  "formal_throughput_gate_passed": true
+}

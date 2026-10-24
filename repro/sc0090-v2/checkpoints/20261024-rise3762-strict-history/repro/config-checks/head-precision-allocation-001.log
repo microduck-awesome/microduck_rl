@@ -1,0 +1,4 @@
+[mdp] Patches 1-2 active: finite PPO targets; true terminal takes precedence
+[mdp] Patch 4 active: ONNX export filters passive_* joints
+[mdp] Patch 5 active: MICRODUCK_WARM_START=1 restarts curricula after checkpoint load
+{"status": "PASS", "phase": "head-precision-allocation-001", "unexpected_differences": [], "allowed_collision_entries": 96, "resource_remaps": 2}

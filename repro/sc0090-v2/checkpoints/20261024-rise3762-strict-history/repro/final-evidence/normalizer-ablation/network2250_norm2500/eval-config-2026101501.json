@@ -1,0 +1,1268 @@
+{
+  "decimation": 4,
+  "scene": {
+    "num_envs": 896,
+    "env_spacing": 2.0,
+    "terrain": {
+      "init_state": {
+        "pos": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rot": [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "lin_vel": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ang_vel": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "joint_pos": {
+          ".*": 0.0
+        },
+        "joint_vel": {
+          ".*": 0.0
+        }
+      },
+      "spec_fn": "<function EntityCfg.<lambda>.<locals>.<lambda> at 0x7f8515153b00>",
+      "articulation": null,
+      "sort_actuators": false,
+      "lights": [
+        {
+          "name": "sun",
+          "body": "world",
+          "mode": "fixed",
+          "target": null,
+          "type": "directional",
+          "castshadow": true,
+          "pos": [
+            0.0,
+            0.0,
+            1.5
+          ],
+          "dir": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "cutoff": 45.0,
+          "exponent": 10.0
+        }
+      ],
+      "cameras": [],
+      "textures": [
+        {
+          "name": "groundplane",
+          "type": "2d",
+          "builtin": "checker",
+          "rgb1": [
+            0.2,
+            0.3,
+            0.4
+          ],
+          "rgb2": [
+            0.1,
+            0.2,
+            0.3
+          ],
+          "width": 300,
+          "height": 300,
+          "mark": "edge",
+          "markrgb": [
+            0.8,
+            0.8,
+            0.8
+          ]
+        }
+      ],
+      "materials": [
+        {
+          "name": "groundplane",
+          "rgba": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "texuniform": true,
+          "texrepeat": [
+            4.0,
+            4.0
+          ],
+          "reflectance": 0.2,
+          "texture": "groundplane",
+          "geom_names_expr": [
+            "terrain$"
+          ]
+        }
+      ],
+      "collisions": [],
+      "terrain_type": "plane",
+      "terrain_generator": null,
+      "env_spacing": 2.0,
+      "max_init_terrain_level": 5,
+      "num_envs": 896
+    },
+    "entities": {
+      "robot": {
+        "init_state": {
+          "pos": [
+            0.0,
+            0.0,
+            0.11638049189959615
+          ],
+          "rot": [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "lin_vel": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ang_vel": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "joint_pos": {
+            ".*": 0.0
+          },
+          "joint_vel": {
+            ".*": 0.0
+          }
+        },
+        "spec_fn": "<function get_full_spec at 0x7f85150efb00>",
+        "articulation": {
+          "actuators": [
+            {
+              "target_names_expr": [
+                "^(left_hip_yaw|left_hip_roll|left_hip_pitch|left_knee|left_ankle|neck_pitch|head_pitch|head_yaw|head_roll|right_hip_yaw|right_hip_roll|right_hip_pitch|right_knee|right_ankle)$"
+              ],
+              "transmission_type": "joint",
+              "armature": null,
+              "frictionloss": null,
+              "viscous_damping": null,
+              "delay_min_lag": 0,
+              "delay_max_lag": 0,
+              "delay_hold_prob": 0.0,
+              "delay_update_period": 0,
+              "delay_per_env_phase": true,
+              "motor_name": null,
+              "model": null,
+              "json_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/regression-diagnostic-source/src/mjlab_microduck/actuator/params/sc0090_v5_m6.json",
+              "vin": 11.1,
+              "kp_fw": 15.0,
+              "vin_range": null,
+              "vin_drop_gain_range": null,
+              "vin_min": null,
+              "stiff_frictionloss": true,
+              "kd_fw": 30.0,
+              "graph_compute": true,
+              "fast_friction_force": true
+            },
+            {
+              "target_names_expr": [
+                "^mouth$"
+              ],
+              "transmission_type": "joint",
+              "armature": null,
+              "frictionloss": null,
+              "viscous_damping": null,
+              "delay_min_lag": 0,
+              "delay_max_lag": 0,
+              "delay_hold_prob": 0.0,
+              "delay_update_period": 0,
+              "delay_per_env_phase": true,
+              "motor_name": null,
+              "model": null,
+              "json_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/regression-diagnostic-source/src/mjlab_microduck/actuator/params/sc0090_v5_m6.json",
+              "vin": 11.1,
+              "kp_fw": 15.0,
+              "vin_range": null,
+              "vin_drop_gain_range": null,
+              "vin_min": null,
+              "stiff_frictionloss": true,
+              "kd_fw": 30.0,
+              "graph_compute": true,
+              "fast_friction_force": true
+            }
+          ],
+          "soft_joint_pos_limit_factor": 0.9
+        },
+        "sort_actuators": false,
+        "lights": [],
+        "cameras": [],
+        "textures": [],
+        "materials": [],
+        "collisions": [
+          {
+            "geom_names_expr": [
+              ".*_collision"
+            ],
+            "contype": {
+              "^ground_battery_collision$": 1,
+              "^self_trunk_support_00_collision$": 2,
+              "^sim2real_shell_000_collision$": 1,
+              "^sim2real_shell_001_collision$": 1,
+              "^sim2real_shell_002_collision$": 1,
+              "^sim2real_shell_003_collision$": 1,
+              "^sim2real_shell_004_collision$": 1,
+              "^sim2real_shell_005_collision$": 1,
+              "^sim2real_shell_006_collision$": 1,
+              "^sim2real_shell_007_collision$": 1,
+              "^sim2real_shell_008_collision$": 1,
+              "^sim2real_shell_009_collision$": 1,
+              "^sim2real_shell_010_collision$": 1,
+              "^sim2real_shell_011_collision$": 1,
+              "^sim2real_shell_012_collision$": 1,
+              "^sim2real_shell_013_collision$": 1,
+              "^sim2real_shell_014_collision$": 1,
+              "^sim2real_shell_015_collision$": 1,
+              "^sim2real_shell_016_collision$": 1,
+              "^sim2real_shell_017_collision$": 1,
+              "^sim2real_shell_018_collision$": 1,
+              "^sim2real_shell_019_collision$": 1,
+              "^sim2real_shell_020_collision$": 1,
+              "^sim2real_shell_021_collision$": 1,
+              "^sim2real_shell_022_collision$": 1,
+              "^sim2real_shell_023_collision$": 1,
+              "^sim2real_shell_024_collision$": 1,
+              "^sim2real_shell_025_collision$": 1,
+              "^sim2real_shell_026_collision$": 1,
+              "^sim2real_shell_027_collision$": 1,
+              "^sim2real_shell_028_collision$": 1,
+              "^sim2real_shell_029_collision$": 1,
+              "^sim2real_shell_030_collision$": 1,
+              "^sim2real_shell_031_collision$": 1,
+              "^ground_left_hip_collision$": 1,
+              "^self_left_shin_structure_00_collision$": 1,
+              "^left_foot_collision$": 1,
+              "^ground_head_shell_collision$": 1,
+              "^ground_jaw_collision$": 1,
+              "^ground_right_hip_collision$": 1,
+              "^self_right_shin_structure_00_collision$": 1,
+              "^right_foot_collision$": 1
+            },
+            "conaffinity": {
+              "^ground_battery_collision$": 1,
+              "^self_trunk_support_00_collision$": 2,
+              "^sim2real_shell_000_collision$": 1,
+              "^sim2real_shell_001_collision$": 1,
+              "^sim2real_shell_002_collision$": 1,
+              "^sim2real_shell_003_collision$": 1,
+              "^sim2real_shell_004_collision$": 1,
+              "^sim2real_shell_005_collision$": 1,
+              "^sim2real_shell_006_collision$": 1,
+              "^sim2real_shell_007_collision$": 1,
+              "^sim2real_shell_008_collision$": 1,
+              "^sim2real_shell_009_collision$": 1,
+              "^sim2real_shell_010_collision$": 1,
+              "^sim2real_shell_011_collision$": 1,
+              "^sim2real_shell_012_collision$": 1,
+              "^sim2real_shell_013_collision$": 1,
+              "^sim2real_shell_014_collision$": 1,
+              "^sim2real_shell_015_collision$": 1,
+              "^sim2real_shell_016_collision$": 1,
+              "^sim2real_shell_017_collision$": 1,
+              "^sim2real_shell_018_collision$": 1,
+              "^sim2real_shell_019_collision$": 1,
+              "^sim2real_shell_020_collision$": 1,
+              "^sim2real_shell_021_collision$": 1,
+              "^sim2real_shell_022_collision$": 1,
+              "^sim2real_shell_023_collision$": 1,
+              "^sim2real_shell_024_collision$": 1,
+              "^sim2real_shell_025_collision$": 1,
+              "^sim2real_shell_026_collision$": 1,
+              "^sim2real_shell_027_collision$": 1,
+              "^sim2real_shell_028_collision$": 1,
+              "^sim2real_shell_029_collision$": 1,
+              "^sim2real_shell_030_collision$": 1,
+              "^sim2real_shell_031_collision$": 1,
+              "^ground_left_hip_collision$": 1,
+              "^self_left_shin_structure_00_collision$": 1,
+              "^left_foot_collision$": 1,
+              "^ground_head_shell_collision$": 1,
+              "^ground_jaw_collision$": 1,
+              "^ground_right_hip_collision$": 1,
+              "^self_right_shin_structure_00_collision$": 1,
+              "^right_foot_collision$": 1
+            },
+            "condim": {
+              "^ground_battery_collision$": 3,
+              "^self_trunk_support_00_collision$": 3,
+              "^sim2real_shell_000_collision$": 3,
+              "^sim2real_shell_001_collision$": 3,
+              "^sim2real_shell_002_collision$": 3,
+              "^sim2real_shell_003_collision$": 3,
+              "^sim2real_shell_004_collision$": 3,
+              "^sim2real_shell_005_collision$": 3,
+              "^sim2real_shell_006_collision$": 3,
+              "^sim2real_shell_007_collision$": 3,
+              "^sim2real_shell_008_collision$": 3,
+              "^sim2real_shell_009_collision$": 3,
+              "^sim2real_shell_010_collision$": 3,
+              "^sim2real_shell_011_collision$": 3,
+              "^sim2real_shell_012_collision$": 3,
+              "^sim2real_shell_013_collision$": 3,
+              "^sim2real_shell_014_collision$": 3,
+              "^sim2real_shell_015_collision$": 3,
+              "^sim2real_shell_016_collision$": 3,
+              "^sim2real_shell_017_collision$": 3,
+              "^sim2real_shell_018_collision$": 3,
+              "^sim2real_shell_019_collision$": 3,
+              "^sim2real_shell_020_collision$": 3,
+              "^sim2real_shell_021_collision$": 3,
+              "^sim2real_shell_022_collision$": 3,
+              "^sim2real_shell_023_collision$": 3,
+              "^sim2real_shell_024_collision$": 3,
+              "^sim2real_shell_025_collision$": 3,
+              "^sim2real_shell_026_collision$": 3,
+              "^sim2real_shell_027_collision$": 3,
+              "^sim2real_shell_028_collision$": 3,
+              "^sim2real_shell_029_collision$": 3,
+              "^sim2real_shell_030_collision$": 3,
+              "^sim2real_shell_031_collision$": 3,
+              "^ground_left_hip_collision$": 3,
+              "^self_left_shin_structure_00_collision$": 3,
+              "^left_foot_collision$": 3,
+              "^ground_head_shell_collision$": 3,
+              "^ground_jaw_collision$": 3,
+              "^ground_right_hip_collision$": 3,
+              "^self_right_shin_structure_00_collision$": 3,
+              "^right_foot_collision$": 3
+            },
+            "priority": {
+              "^(left|right)_foot_collision$": 1
+            },
+            "friction": {
+              "^(left|right)_foot_collision$": [
+                1.0
+              ]
+            },
+            "solref": null,
+            "solimp": null,
+            "margin": null,
+            "gap": null,
+            "solmix": null,
+            "disable_other_geoms": true
+          }
+        ]
+      }
+    },
+    "sensors": [
+      {
+        "name": "feet_ground_contact",
+        "primary": {
+          "mode": "geom",
+          "pattern": "^(left_foot_collision|right_foot_collision)$",
+          "entity": "robot",
+          "exclude": []
+        },
+        "secondary": {
+          "mode": "body",
+          "pattern": "terrain",
+          "entity": null,
+          "exclude": []
+        },
+        "fields": [
+          "found",
+          "force"
+        ],
+        "reduce": "netforce",
+        "num_slots": 1,
+        "secondary_policy": "first",
+        "track_air_time": true,
+        "global_frame": false,
+        "history_length": 0,
+        "debug": false
+      },
+      {
+        "name": "self_collision",
+        "primary": {
+          "mode": "subtree",
+          "pattern": "trunk_base",
+          "entity": "robot",
+          "exclude": []
+        },
+        "secondary": {
+          "mode": "subtree",
+          "pattern": "trunk_base",
+          "entity": "robot",
+          "exclude": []
+        },
+        "fields": [
+          "found"
+        ],
+        "reduce": "none",
+        "num_slots": 1,
+        "secondary_policy": "first",
+        "track_air_time": false,
+        "global_frame": false,
+        "history_length": 0,
+        "debug": false
+      }
+    ],
+    "extent": 2.0,
+    "spec_fn": "<function remove_origin_markers at 0x7f85150ee7a0>"
+  },
+  "observations": {
+    "actor": {
+      "terms": {
+        "base_ang_vel": {
+          "func": "<function base_ang_vel_imu_misaligned at 0x7f85154b85e0>",
+          "params": {
+            "max_angle_deg": 6.0
+          },
+          "noise": {
+            "operation": "add",
+            "_tensor_cache": {},
+            "n_min": -0.03,
+            "n_max": 0.03
+          },
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 0,
+          "delay_max_lag": 1,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 64,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        },
+        "projected_gravity": {
+          "func": "<function projected_gravity_imu_misaligned at 0x7f85154b8540>",
+          "params": {
+            "max_angle_deg": 6.0
+          },
+          "noise": {
+            "operation": "add",
+            "_tensor_cache": {},
+            "n_min": -0.01,
+            "n_max": 0.01
+          },
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 0,
+          "delay_max_lag": 1,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 64,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        },
+        "joint_pos": {
+          "func": "<function joint_pos_rel at 0x7f8518947060>",
+          "params": {
+            "asset_cfg": {
+              "name": "robot",
+              "joint_names": [
+                "left_hip_yaw",
+                "left_hip_roll",
+                "left_hip_pitch",
+                "left_knee",
+                "left_ankle",
+                "neck_pitch",
+                "head_pitch",
+                "head_yaw",
+                "head_roll",
+                "right_hip_yaw",
+                "right_hip_roll",
+                "right_hip_pitch",
+                "right_knee",
+                "right_ankle"
+              ],
+              "joint_ids": "slice(None, None, None)",
+              "body_names": null,
+              "body_ids": "slice(None, None, None)",
+              "geom_names": null,
+              "geom_ids": "slice(None, None, None)",
+              "site_names": null,
+              "site_ids": "slice(None, None, None)",
+              "actuator_names": null,
+              "actuator_ids": "slice(None, None, None)",
+              "tendon_names": null,
+              "tendon_ids": "slice(None, None, None)",
+              "camera_names": null,
+              "camera_ids": "slice(None, None, None)",
+              "light_names": null,
+              "light_ids": "slice(None, None, None)",
+              "material_names": null,
+              "material_ids": "slice(None, None, None)",
+              "pair_names": null,
+              "pair_ids": "slice(None, None, None)",
+              "preserve_order": true
+            },
+            "biased": true
+          },
+          "noise": {
+            "operation": "add",
+            "_tensor_cache": {},
+            "n_min": -0.001,
+            "n_max": 0.001
+          },
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 0,
+          "delay_max_lag": 0,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 0,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        },
+        "joint_vel": {
+          "func": "<function joint_vel_rel at 0x7f8518947100>",
+          "params": {
+            "asset_cfg": {
+              "name": "robot",
+              "joint_names": [
+                "left_hip_yaw",
+                "left_hip_roll",
+                "left_hip_pitch",
+                "left_knee",
+                "left_ankle",
+                "neck_pitch",
+                "head_pitch",
+                "head_yaw",
+                "head_roll",
+                "right_hip_yaw",
+                "right_hip_roll",
+                "right_hip_pitch",
+                "right_knee",
+                "right_ankle"
+              ],
+              "joint_ids": "slice(None, None, None)",
+              "body_names": null,
+              "body_ids": "slice(None, None, None)",
+              "geom_names": null,
+              "geom_ids": "slice(None, None, None)",
+              "site_names": null,
+              "site_ids": "slice(None, None, None)",
+              "actuator_names": null,
+              "actuator_ids": "slice(None, None, None)",
+              "tendon_names": null,
+              "tendon_ids": "slice(None, None, None)",
+              "camera_names": null,
+              "camera_ids": "slice(None, None, None)",
+              "light_names": null,
+              "light_ids": "slice(None, None, None)",
+              "material_names": null,
+              "material_ids": "slice(None, None, None)",
+              "pair_names": null,
+              "pair_ids": "slice(None, None, None)",
+              "preserve_order": true
+            }
+          },
+          "noise": {
+            "operation": "add",
+            "_tensor_cache": {},
+            "n_min": -0.25,
+            "n_max": 0.25
+          },
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 1,
+          "delay_max_lag": 1,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 0,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        },
+        "actions": {
+          "func": "<function last_action at 0x7f85189471a0>",
+          "params": {},
+          "noise": null,
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 0,
+          "delay_max_lag": 0,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 0,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        },
+        "command": {
+          "func": "<function generated_commands at 0x7f8518947240>",
+          "params": {
+            "command_name": "twist"
+          },
+          "noise": null,
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 0,
+          "delay_max_lag": 0,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 0,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        },
+        "head_command": {
+          "func": "<function generated_commands at 0x7f8518947240>",
+          "params": {
+            "command_name": "head_pose"
+          },
+          "noise": null,
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 0,
+          "delay_max_lag": 0,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 0,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        },
+        "body_command": {
+          "func": "<function generated_commands at 0x7f8518947240>",
+          "params": {
+            "command_name": "body_pose"
+          },
+          "noise": null,
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 0,
+          "delay_max_lag": 0,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 0,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        }
+      },
+      "concatenate_terms": true,
+      "concatenate_dim": -1,
+      "enable_corruption": false,
+      "history_length": null,
+      "flatten_history_dim": true,
+      "nan_policy": "disabled",
+      "nan_check_per_term": true
+    },
+    "critic": {
+      "terms": {
+        "base_lin_vel": {
+          "func": "<function base_lin_vel at 0x7f8518946e80>",
+          "params": {},
+          "noise": null,
+          "clip": null,
+          "scale": 1.0,
+          "delay_min_lag": 0,
+          "delay_max_lag": 0,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 0,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        },
+        "base_ang_vel": {
+          "func": "<function builtin_sensor at 0x7f85189472e0>",
+          "params": {
+            "sensor_name": "robot/imu_ang_vel"
+          },
+          "noise": {
+            "operation": "add",
+            "_tensor_cache": {},
+            "n_min": -0.2,
+            "n_max": 0.2
+          },
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 0,
+          "delay_max_lag": 0,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 0,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        },
+        "projected_gravity": {
+          "func": "<function projected_gravity at 0x7f8518946fc0>",
+          "params": {},
+          "noise": {
+            "operation": "add",
+            "_tensor_cache": {},
+            "n_min": -0.05,
+            "n_max": 0.05
+          },
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 0,
+          "delay_max_lag": 0,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 0,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        },
+        "joint_pos": {
+          "func": "<function joint_pos_rel at 0x7f8518947060>",
+          "params": {
+            "asset_cfg": {
+              "name": "robot",
+              "joint_names": [
+                "left_hip_yaw",
+                "left_hip_roll",
+                "left_hip_pitch",
+                "left_knee",
+                "left_ankle",
+                "neck_pitch",
+                "head_pitch",
+                "head_yaw",
+                "head_roll",
+                "right_hip_yaw",
+                "right_hip_roll",
+                "right_hip_pitch",
+                "right_knee",
+                "right_ankle"
+              ],
+              "joint_ids": "slice(None, None, None)",
+              "body_names": null,
+              "body_ids": "slice(None, None, None)",
+              "geom_names": null,
+              "geom_ids": "slice(None, None, None)",
+              "site_names": null,
+              "site_ids": "slice(None, None, None)",
+              "actuator_names": null,
+              "actuator_ids": "slice(None, None, None)",
+              "tendon_names": null,
+              "tendon_ids": "slice(None, None, None)",
+              "camera_names": null,
+              "camera_ids": "slice(None, None, None)",
+              "light_names": null,
+              "light_ids": "slice(None, None, None)",
+              "material_names": null,
+              "material_ids": "slice(None, None, None)",
+              "pair_names": null,
+              "pair_ids": "slice(None, None, None)",
+              "preserve_order": true
+            },
+            "biased": false
+          },
+          "noise": {
+            "operation": "add",
+            "_tensor_cache": {},
+            "n_min": -0.001,
+            "n_max": 0.001
+          },
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 0,
+          "delay_max_lag": 0,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 0,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        },
+        "joint_vel": {
+          "func": "<function joint_vel_rel at 0x7f8518947100>",
+          "params": {
+            "asset_cfg": {
+              "name": "robot",
+              "joint_names": [
+                "left_hip_yaw",
+                "left_hip_roll",
+                "left_hip_pitch",
+                "left_knee",
+                "left_ankle",
+                "neck_pitch",
+                "head_pitch",
+                "head_yaw",
+                "head_roll",
+                "right_hip_yaw",
+                "right_hip_roll",
+                "right_hip_pitch",
+                "right_knee",
+                "right_ankle"
+              ],
+              "joint_ids": "slice(None, None, None)",
+              "body_names": null,
+              "body_ids": "slice(None, None, None)",
+              "geom_names": null,
+              "geom_ids": "slice(None, None, None)",
+              "site_names": null,
+              "site_ids": "slice(None, None, None)",
+              "actuator_names": null,
+              "actuator_ids": "slice(None, None, None)",
+              "tendon_names": null,
+              "tendon_ids": "slice(None, None, None)",
+              "camera_names": null,
+              "camera_ids": "slice(None, None, None)",
+              "light_names": null,
+              "light_ids": "slice(None, None, None)",
+              "material_names": null,
+              "material_ids": "slice(None, None, None)",
+              "pair_names": null,
+              "pair_ids": "slice(None, None, None)",
+              "preserve_order": true
+            }
+          },
+          "noise": {
+            "operation": "add",
+            "_tensor_cache": {},
+            "n_min": -0.25,
+            "n_max": 0.25
+          },
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 0,
+          "delay_max_lag": 0,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 0,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        },
+        "actions": {
+          "func": "<function last_action at 0x7f85189471a0>",
+          "params": {},
+          "noise": null,
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 0,
+          "delay_max_lag": 0,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 0,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        },
+        "command": {
+          "func": "<function generated_commands at 0x7f8518947240>",
+          "params": {
+            "command_name": "twist"
+          },
+          "noise": null,
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 0,
+          "delay_max_lag": 0,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 0,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        },
+        "foot_air_time": {
+          "func": "<function foot_air_time_safe at 0x7f85154d04a0>",
+          "params": {
+            "sensor_name": "feet_ground_contact"
+          },
+          "noise": null,
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 0,
+          "delay_max_lag": 0,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 0,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        },
+        "foot_contact": {
+          "func": "<function foot_contact at 0x7f85157268e0>",
+          "params": {
+            "sensor_name": "feet_ground_contact"
+          },
+          "noise": null,
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 0,
+          "delay_max_lag": 0,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 0,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        },
+        "foot_contact_forces": {
+          "func": "<function foot_contact_forces_safe at 0x7f85154d0360>",
+          "params": {
+            "sensor_name": "feet_ground_contact"
+          },
+          "noise": null,
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 0,
+          "delay_max_lag": 0,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 0,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        },
+        "head_command": {
+          "func": "<function generated_commands at 0x7f8518947240>",
+          "params": {
+            "command_name": "head_pose"
+          },
+          "noise": null,
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 0,
+          "delay_max_lag": 0,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 0,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        },
+        "body_command": {
+          "func": "<function generated_commands at 0x7f8518947240>",
+          "params": {
+            "command_name": "body_pose"
+          },
+          "noise": null,
+          "clip": null,
+          "scale": null,
+          "delay_min_lag": 0,
+          "delay_max_lag": 0,
+          "delay_per_env": true,
+          "delay_hold_prob": 0.0,
+          "delay_update_period": 0,
+          "delay_per_env_phase": true,
+          "history_length": 0,
+          "flatten_history_dim": true
+        }
+      },
+      "concatenate_terms": true,
+      "concatenate_dim": -1,
+      "enable_corruption": false,
+      "history_length": null,
+      "flatten_history_dim": true,
+      "nan_policy": "disabled",
+      "nan_check_per_term": true
+    }
+  },
+  "actions": {
+    "joint_pos": {
+      "entity_name": "robot",
+      "clip": null,
+      "transmission_type": "joint",
+      "actuator_names": [
+        "left_hip_yaw",
+        "left_hip_roll",
+        "left_hip_pitch",
+        "left_knee",
+        "left_ankle",
+        "neck_pitch",
+        "head_pitch",
+        "head_yaw",
+        "head_roll",
+        "right_hip_yaw",
+        "right_hip_roll",
+        "right_hip_pitch",
+        "right_knee",
+        "right_ankle"
+      ],
+      "scale": 1.0,
+      "offset": 0.0,
+      "preserve_order": true,
+      "use_default_offset": true
+    }
+  },
+  "events": {
+    "reset_base": {
+      "func": "<function reset_root_state_uniform at 0x7f8518946340>",
+      "params": {
+        "pose_range": {
+          "x": [
+            -0.5,
+            0.5
+          ],
+          "y": [
+            -0.5,
+            0.5
+          ],
+          "z": [
+            0.0,
+            0.01
+          ],
+          "yaw": [
+            -3.14,
+            3.14
+          ]
+        },
+        "velocity_range": {}
+      },
+      "mode": "reset",
+      "interval_range_s": null,
+      "is_global_time": false,
+      "min_step_count_between_reset": 0
+    },
+    "expand_bam_friction_fields": {
+      "func": "<function expand_bam_friction_fields at 0x7f85154b7ce0>",
+      "params": {},
+      "mode": "startup",
+      "interval_range_s": null,
+      "is_global_time": false,
+      "min_step_count_between_reset": 0
+    },
+    "set_ground_state": {
+      "func": "<function sc0090_reset_recovery at 0x7f8515152660>",
+      "params": {
+        "prone_z_min": 0.05,
+        "prone_z_max": 0.09,
+        "sitting_joint_overrides": {
+          "1": 0.0873,
+          "2": -0.1,
+          "3": -1.1,
+          "4": -0.85,
+          "10": -0.0873,
+          "11": -0.1,
+          "12": -1.1,
+          "13": -0.85
+        },
+        "sitting_joint_noise_std": 0.12,
+        "sitting_tilt_max": 0.17453292519943295,
+        "sitting_z_min": 0.0634,
+        "sitting_z_max": 0.0834,
+        "standing_z_min": 0.11638049189959615,
+        "standing_z_max": 0.12638049189959616,
+        "evaluation_buckets": true
+      },
+      "mode": "reset",
+      "interval_range_s": null,
+      "is_global_time": false,
+      "min_step_count_between_reset": 0
+    },
+    "v2_runtime": {
+      "func": "<function install_runtime at 0x7f85150eeca0>",
+      "params": {},
+      "mode": "startup",
+      "interval_range_s": null,
+      "is_global_time": false,
+      "min_step_count_between_reset": 0
+    },
+    "mouth_reset": {
+      "func": "<function reset_mouth at 0x7f85150ec0e0>",
+      "params": {},
+      "mode": "reset",
+      "interval_range_s": null,
+      "is_global_time": false,
+      "min_step_count_between_reset": 0
+    },
+    "mouth_hold": {
+      "func": "<function hold_mouth at 0x7f85150ec040>",
+      "params": {},
+      "mode": "step",
+      "interval_range_s": null,
+      "is_global_time": false,
+      "min_step_count_between_reset": 0
+    },
+    "v2_reset_joint_guards": {
+      "func": "<function guard_reset_joints at 0x7f8515150040>",
+      "params": {},
+      "mode": "reset",
+      "interval_range_s": null,
+      "is_global_time": false,
+      "min_step_count_between_reset": 0
+    }
+  },
+  "seed": 2026101501,
+  "sim": {
+    "nconmax": 35,
+    "njmax": 1500,
+    "ls_parallel": true,
+    "contact_sensor_maxmatch": 64,
+    "mujoco": {
+      "timestep": 0.005,
+      "integrator": "implicitfast",
+      "impratio": 1.0,
+      "cone": "pyramidal",
+      "jacobian": "auto",
+      "solver": "newton",
+      "iterations": 10,
+      "tolerance": 1e-08,
+      "ls_iterations": 20,
+      "ls_tolerance": 0.01,
+      "ccd_iterations": 50,
+      "gravity": [
+        0.0,
+        0.0,
+        -9.81
+      ],
+      "disableflags": [],
+      "enableflags": []
+    },
+    "nan_guard": {
+      "enabled": false,
+      "buffer_size": 100,
+      "output_dir": "/tmp/mjlab/nan_dumps",
+      "max_envs_to_dump": 5
+    }
+  },
+  "viewer": {
+    "lookat": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "distance": 3.0,
+    "fovy": null,
+    "elevation": -5.0,
+    "azimuth": 90.0,
+    "origin_type": "OriginType.ASSET_BODY",
+    "entity_name": "robot",
+    "body_name": "trunk_base",
+    "env_idx": 0,
+    "max_extra_envs": 2,
+    "enable_reflections": true,
+    "enable_shadows": true,
+    "height": 240,
+    "width": 320
+  },
+  "episode_length_s": 8.0,
+  "rewards": {
+    "stable_standing": {
+      "func": "<function sc0090_stable_standing at 0x7f8515152840>",
+      "params": {},
+      "weight": 1.0
+    }
+  },
+  "terminations": {},
+  "commands": {
+    "twist": {
+      "resampling_time_range": [
+        6.0,
+        12.0
+      ],
+      "debug_vis": false,
+      "entity_name": "robot",
+      "heading_command": false,
+      "heading_control_stiffness": 0.5,
+      "rel_standing_envs": 1.0,
+      "rel_heading_envs": 0.0,
+      "rel_world_envs": 0.0,
+      "rel_forward_envs": 0.0,
+      "init_velocity_prob": 0.0,
+      "ranges": {
+        "lin_vel_x": [
+          0.0,
+          0.0
+        ],
+        "lin_vel_y": [
+          0.0,
+          0.0
+        ],
+        "ang_vel_z": [
+          0.0,
+          0.0
+        ],
+        "heading": null
+      },
+      "viz": {
+        "z_offset": 0.2,
+        "scale": 0.5
+      },
+      "rel_turn_in_place_envs": 0.0,
+      "turn_in_place_min_frac": 0.4
+    },
+    "head_pose": {
+      "resampling_time_range": [
+        2.0,
+        5.0
+      ],
+      "debug_vis": false,
+      "ranges": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "zero_command_prob": 0.6
+    },
+    "body_pose": {
+      "resampling_time_range": [
+        2.0,
+        5.0
+      ],
+      "debug_vis": false,
+      "ranges": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "zero_command_prob": 0.3
+    }
+  },
+  "curriculum": {},
+  "metrics": {
+    "mean_action_acc": {
+      "func": "<function mean_action_acc at 0x7f8518946d40>",
+      "params": {},
+      "per_substep": false,
+      "reduce": "mean"
+    }
+  },
+  "recorders": {},
+  "is_finite_horizon": false,
+  "auto_reset": true,
+  "scale_rewards_by_dt": true
+}

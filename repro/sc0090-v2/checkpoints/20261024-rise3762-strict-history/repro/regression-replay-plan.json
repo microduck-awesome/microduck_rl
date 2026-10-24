@@ -1,0 +1,47 @@
+{
+  "status": "PREPARED_NOT_RUN",
+  "source": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/regression-diagnostic-source",
+  "helper_sha256": "6fe178fe855ed616c663982d682ba14e487943c8aa80d7640b2470b9445ef0e2",
+  "jobs": [
+    {
+      "update": 2250,
+      "argv": [
+        "scripts/replay_regression.py",
+        "--checkpoint",
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/formal/head-precision-allocation-001/checkpoint_002250.pt",
+        "--output",
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/regression-replay/2250",
+        "--device",
+        "cuda:1"
+      ]
+    },
+    {
+      "update": 2500,
+      "argv": [
+        "scripts/replay_regression.py",
+        "--checkpoint",
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/formal/head-precision-allocation-002/checkpoint_002500.pt",
+        "--output",
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/regression-replay/2500",
+        "--device",
+        "cuda:1"
+      ]
+    },
+    {
+      "update": 2750,
+      "argv": [
+        "scripts/replay_regression.py",
+        "--checkpoint",
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/formal/head-precision-allocation-003/checkpoint_002750.pt",
+        "--output",
+        "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/regression-replay/2750",
+        "--device",
+        "cuda:1"
+      ]
+    }
+  ],
+  "prerequisite": "Entire formal chain completed; helper takes the shared GPU process lock",
+  "recording": "Read-only copies of qpos/qvel/actions/stability counters during the original native evaluate function; same two seeds, 7x128 samples, 400 controls",
+  "checks": "Compare replay counts to original native reports; do not force agreement. Verify policy/normalizer unchanged.",
+  "limitations": "Observational replay localizes changed motion/contact behavior; it does not by itself prove a reward-level causal explanation."
+}

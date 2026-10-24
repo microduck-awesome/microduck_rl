@@ -1,0 +1,81 @@
+{
+  "status": "ALLOCATION_COMPLETE",
+  "pid": 1417032,
+  "completed_updates": 3762,
+  "updated_unix": 1792811462.1271763,
+  "goal_complete": false,
+  "resume_checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/formal/paired-feedback-allocation-001/resume_003762.pt",
+  "command_exposure": {
+    "environment_control_steps": 50331648,
+    "combinations": [
+      20120067,
+      15184672,
+      7520356,
+      7506553
+    ],
+    "combination_axes": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "positive": [
+      7565314,
+      7507114,
+      7579351,
+      7571053
+    ],
+    "negative": [
+      7517810,
+      7504321,
+      7505440,
+      7501193
+    ],
+    "range_quarters": [
+      [
+        9110808,
+        1470776,
+        1493571,
+        3007969
+      ],
+      [
+        9073737,
+        1474943,
+        1498640,
+        2964115
+      ],
+      [
+        9080342,
+        1496626,
+        1491537,
+        3016286
+      ],
+      [
+        6352338,
+        4233520,
+        1501653,
+        2984735
+      ]
+    ],
+    "current_ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ]
+  },
+  "exposure_segment_start_update": 3506,
+  "recovery_stage": 5
+}

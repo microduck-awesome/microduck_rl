@@ -1,0 +1,486 @@
+{
+  "status": "REPLAY_COMPLETED_NOT_CAUSAL_PROOF",
+  "checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/formal/head-precision-allocation-002/checkpoint_002500.pt",
+  "checkpoint_sha256": "0d2045516703302283142e3cbe675ca14a501952790b5aac6c92eabf361161de",
+  "completed_updates": 2500,
+  "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+  "device": "cuda:1",
+  "native_evaluate_source_sha256": "898f4e14a2a7e9e41ae4c7053de833a9aa9ccb720e29a2cf8192475da87e601a",
+  "observer_sha256": "6fe178fe855ed616c663982d682ba14e487943c8aa80d7640b2470b9445ef0e2",
+  "reference_evaluation_sha256": "3ee79586fee20b5df4d56236bf0433f401ab5604348cd78451d9f2a007be11f4",
+  "same_counts_as_native_reference": false,
+  "actor_and_normalizer_unchanged": true,
+  "cases": [
+    {
+      "seed": 2026101501,
+      "finite": true,
+      "groups": {
+        "standing": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 0.8082812428474426
+        },
+        "sitting": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.8851561546325684
+        },
+        "prone": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.3767187595367432
+        },
+        "frontier": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.5206249952316284
+        },
+        "left_side": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.458593726158142
+        },
+        "right_side": {
+          "trials": 128,
+          "wins": 0,
+          "any_stable": 0,
+          "faults": 0,
+          "first_stable_mean_s": null
+        },
+        "supine": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.5095312595367432
+        }
+      }
+    },
+    {
+      "seed": 2026101502,
+      "finite": true,
+      "groups": {
+        "standing": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 0.8539062738418579
+        },
+        "sitting": {
+          "trials": 128,
+          "wins": 127,
+          "any_stable": 127,
+          "faults": 0,
+          "first_stable_mean_s": 1.9669290781021118
+        },
+        "prone": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.3267186880111694
+        },
+        "frontier": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.5525000095367432
+        },
+        "left_side": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.421875
+        },
+        "right_side": {
+          "trials": 128,
+          "wins": 0,
+          "any_stable": 0,
+          "faults": 0,
+          "first_stable_mean_s": null
+        },
+        "supine": {
+          "trials": 128,
+          "wins": 128,
+          "any_stable": 128,
+          "faults": 0,
+          "first_stable_mean_s": 1.5089061260223389
+        }
+      }
+    }
+  ],
+  "traces": [
+    {
+      "seed": 2026101501,
+      "steps": 400,
+      "reset_calls": 1,
+      "num_envs": 896,
+      "nq": 22,
+      "nv": 21,
+      "policy_joints": [
+        {
+          "name": "left_hip_yaw",
+          "joint_id": 1,
+          "qpos_address": 7,
+          "dof_address": 6,
+          "limits_rad": [
+            -0.436332,
+            0.436332
+          ],
+          "limited": true
+        },
+        {
+          "name": "left_hip_roll",
+          "joint_id": 2,
+          "qpos_address": 8,
+          "dof_address": 7,
+          "limits_rad": [
+            -0.313929,
+            0.454016
+          ],
+          "limited": true
+        },
+        {
+          "name": "left_hip_pitch",
+          "joint_id": 3,
+          "qpos_address": 9,
+          "dof_address": 8,
+          "limits_rad": [
+            -1.5708,
+            1.5708
+          ],
+          "limited": true
+        },
+        {
+          "name": "left_knee",
+          "joint_id": 4,
+          "qpos_address": 10,
+          "dof_address": 9,
+          "limits_rad": [
+            -1.19276,
+            1.94883
+          ],
+          "limited": true
+        },
+        {
+          "name": "left_ankle",
+          "joint_id": 5,
+          "qpos_address": 11,
+          "dof_address": 10,
+          "limits_rad": [
+            -1.94883,
+            1.19276
+          ],
+          "limited": true
+        },
+        {
+          "name": "neck_pitch",
+          "joint_id": 6,
+          "qpos_address": 12,
+          "dof_address": 11,
+          "limits_rad": [
+            -0.607222,
+            2.01077
+          ],
+          "limited": true
+        },
+        {
+          "name": "head_pitch",
+          "joint_id": 7,
+          "qpos_address": 13,
+          "dof_address": 12,
+          "limits_rad": [
+            -2.01077,
+            1.13082
+          ],
+          "limited": true
+        },
+        {
+          "name": "head_yaw",
+          "joint_id": 8,
+          "qpos_address": 14,
+          "dof_address": 13,
+          "limits_rad": [
+            -2.96706,
+            2.96706
+          ],
+          "limited": true
+        },
+        {
+          "name": "head_roll",
+          "joint_id": 9,
+          "qpos_address": 15,
+          "dof_address": 14,
+          "limits_rad": [
+            -0.436332,
+            0.436332
+          ],
+          "limited": true
+        },
+        {
+          "name": "right_hip_yaw",
+          "joint_id": 11,
+          "qpos_address": 17,
+          "dof_address": 16,
+          "limits_rad": [
+            -0.436332,
+            0.436332
+          ],
+          "limited": true
+        },
+        {
+          "name": "right_hip_roll",
+          "joint_id": 12,
+          "qpos_address": 18,
+          "dof_address": 17,
+          "limits_rad": [
+            -0.454014,
+            0.313931
+          ],
+          "limited": true
+        },
+        {
+          "name": "right_hip_pitch",
+          "joint_id": 13,
+          "qpos_address": 19,
+          "dof_address": 18,
+          "limits_rad": [
+            -1.5708,
+            1.5708
+          ],
+          "limited": true
+        },
+        {
+          "name": "right_knee",
+          "joint_id": 14,
+          "qpos_address": 20,
+          "dof_address": 19,
+          "limits_rad": [
+            -1.19276,
+            1.94883
+          ],
+          "limited": true
+        },
+        {
+          "name": "right_ankle",
+          "joint_id": 15,
+          "qpos_address": 21,
+          "dof_address": 20,
+          "limits_rad": [
+            -1.94883,
+            1.19276
+          ],
+          "limited": true
+        }
+      ],
+      "trace_sha256": "bfcb153abd94f5d8f8b283c4b2953f249b6aee254eb7818593d5e35557cb8885",
+      "dt": 0.02,
+      "bucket_order": [
+        "standing",
+        "sitting",
+        "prone",
+        "frontier",
+        "left_side",
+        "right_side",
+        "supine"
+      ],
+      "samples_per_bucket": 128,
+      "scene_scope": "Exported scene is for kinematic replay of saved qpos, not a new physics integration"
+    },
+    {
+      "seed": 2026101502,
+      "steps": 400,
+      "reset_calls": 1,
+      "num_envs": 896,
+      "nq": 22,
+      "nv": 21,
+      "policy_joints": [
+        {
+          "name": "left_hip_yaw",
+          "joint_id": 1,
+          "qpos_address": 7,
+          "dof_address": 6,
+          "limits_rad": [
+            -0.436332,
+            0.436332
+          ],
+          "limited": true
+        },
+        {
+          "name": "left_hip_roll",
+          "joint_id": 2,
+          "qpos_address": 8,
+          "dof_address": 7,
+          "limits_rad": [
+            -0.313929,
+            0.454016
+          ],
+          "limited": true
+        },
+        {
+          "name": "left_hip_pitch",
+          "joint_id": 3,
+          "qpos_address": 9,
+          "dof_address": 8,
+          "limits_rad": [
+            -1.5708,
+            1.5708
+          ],
+          "limited": true
+        },
+        {
+          "name": "left_knee",
+          "joint_id": 4,
+          "qpos_address": 10,
+          "dof_address": 9,
+          "limits_rad": [
+            -1.19276,
+            1.94883
+          ],
+          "limited": true
+        },
+        {
+          "name": "left_ankle",
+          "joint_id": 5,
+          "qpos_address": 11,
+          "dof_address": 10,
+          "limits_rad": [
+            -1.94883,
+            1.19276
+          ],
+          "limited": true
+        },
+        {
+          "name": "neck_pitch",
+          "joint_id": 6,
+          "qpos_address": 12,
+          "dof_address": 11,
+          "limits_rad": [
+            -0.607222,
+            2.01077
+          ],
+          "limited": true
+        },
+        {
+          "name": "head_pitch",
+          "joint_id": 7,
+          "qpos_address": 13,
+          "dof_address": 12,
+          "limits_rad": [
+            -2.01077,
+            1.13082
+          ],
+          "limited": true
+        },
+        {
+          "name": "head_yaw",
+          "joint_id": 8,
+          "qpos_address": 14,
+          "dof_address": 13,
+          "limits_rad": [
+            -2.96706,
+            2.96706
+          ],
+          "limited": true
+        },
+        {
+          "name": "head_roll",
+          "joint_id": 9,
+          "qpos_address": 15,
+          "dof_address": 14,
+          "limits_rad": [
+            -0.436332,
+            0.436332
+          ],
+          "limited": true
+        },
+        {
+          "name": "right_hip_yaw",
+          "joint_id": 11,
+          "qpos_address": 17,
+          "dof_address": 16,
+          "limits_rad": [
+            -0.436332,
+            0.436332
+          ],
+          "limited": true
+        },
+        {
+          "name": "right_hip_roll",
+          "joint_id": 12,
+          "qpos_address": 18,
+          "dof_address": 17,
+          "limits_rad": [
+            -0.454014,
+            0.313931
+          ],
+          "limited": true
+        },
+        {
+          "name": "right_hip_pitch",
+          "joint_id": 13,
+          "qpos_address": 19,
+          "dof_address": 18,
+          "limits_rad": [
+            -1.5708,
+            1.5708
+          ],
+          "limited": true
+        },
+        {
+          "name": "right_knee",
+          "joint_id": 14,
+          "qpos_address": 20,
+          "dof_address": 19,
+          "limits_rad": [
+            -1.19276,
+            1.94883
+          ],
+          "limited": true
+        },
+        {
+          "name": "right_ankle",
+          "joint_id": 15,
+          "qpos_address": 21,
+          "dof_address": 20,
+          "limits_rad": [
+            -1.94883,
+            1.19276
+          ],
+          "limited": true
+        }
+      ],
+      "trace_sha256": "1dbd867e92f0c5ff569cd218dad825463f9e3f4a3191564bc50015d15913e8c0",
+      "dt": 0.02,
+      "bucket_order": [
+        "standing",
+        "sitting",
+        "prone",
+        "frontier",
+        "left_side",
+        "right_side",
+        "supine"
+      ],
+      "samples_per_bucket": 128,
+      "scene_scope": "Exported scene is for kinematic replay of saved qpos, not a new physics integration"
+    }
+  ],
+  "limitations": [
+    "Recording only adds tensor copies and output; it is not a policy/reward modification",
+    "Fresh-process replay may expose numerical sensitivity; mismatched counts must be investigated rather than forced",
+    "Control-rate traces do not capture all 200 Hz substep extremes"
+  ]
+}

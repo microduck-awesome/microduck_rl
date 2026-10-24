@@ -1,0 +1,12 @@
+{
+  "status": "FIRST_NATIVE_EVALUATION_VERIFIED",
+  "verified_unix": 1792805015.3260043,
+  "iteration": 250,
+  "evaluated_stage": 0,
+  "stage_after": 1,
+  "original_seeds_samples_duration_match": true,
+  "promotion_matches_historical_first_boundary": true,
+  "actual_evaluation_sha256": "d75231e4985cac4535c363ff9a6e214d6c4d1adaa2a0c55ce1b9e70ceb90990a",
+  "historical_evaluation_sha256": "65777a8cc908b1ffe5df06315428bdf8c24dfcf1d3d6bb28efe066616da7b3e6",
+  "training_complete": false
+}

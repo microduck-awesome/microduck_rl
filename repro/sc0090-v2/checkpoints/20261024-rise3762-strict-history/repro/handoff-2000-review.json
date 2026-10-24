@@ -1,0 +1,63 @@
+{
+  "status": "PASS_NATIVE_HEAD_PRECISION_ENTRY",
+  "verified_unix": 1792808209.6017244,
+  "parent_completed_updates": 2000,
+  "parent_resume_sha256": "78bf56d5eca0c225894769966d0268a035d5494b45bc36db359adca6afad3826",
+  "actor_critic_normalizers_optimizer_exact": true,
+  "common_step_counter": 48000,
+  "head_recipe": {
+    "id": "v2-head-precision-1",
+    "ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ],
+    "final_ranges": [
+      [
+        -0.48577760000000003,
+        1.1
+      ],
+      [
+        -1.1,
+        0.904656
+      ],
+      [
+        -1.4,
+        1.4
+      ],
+      [
+        -0.31,
+        0.31
+      ]
+    ],
+    "reward_weight": 3.0,
+    "std": 0.5,
+    "fine_std": 0.08,
+    "fine_weight": 0.5,
+    "reason": "2000-update head response failed despite mastered recovery"
+  },
+  "reward_weights": {
+    "action_rate_l2": -0.5,
+    "arrival_damping": -0.025,
+    "joint_torque_rate_l2": -0.0005,
+    "head_pose_bias": 0.5,
+    "body_pose_tracking": 0.5
+  },
+  "actual_process_fp_fusion": "0",
+  "checked_triton_fp_fusion": false,
+  "historical_phase_source_exact": true,
+  "training_complete": false
+}

@@ -1,0 +1,34 @@
+{
+  "status": "PASS_NATIVE_RESTORE",
+  "verified_unix": 1792806367.724664,
+  "parent_checkpoint_sha256": "f196b135016d18d757ec6ee11739e93e455d5e425d1d27d553b71a51fe603344",
+  "actor_critic_normalizers_optimizer_exact": true,
+  "restored_common_step_counter": 24000,
+  "original_third_allocation_source_exact": true,
+  "head_ranges": [
+    [
+      -0.39,
+      0.39
+    ],
+    [
+      -0.39,
+      0.39
+    ],
+    [
+      -0.49,
+      0.49
+    ],
+    [
+      -0.11,
+      0.11
+    ]
+  ],
+  "reward_weights": {
+    "action_rate_l2": -0.2,
+    "arrival_damping": 0.0,
+    "joint_torque_rate_l2": 0.0,
+    "head_pose_bias": 0.0,
+    "body_pose_tracking": 0.0
+  },
+  "training_complete": false
+}

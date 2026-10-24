@@ -1,0 +1,612 @@
+{
+  "schema": 1,
+  "status": "EVALUATED_WITH_LIMITATIONS",
+  "model_checks": {
+    "status": "PASS_ARTIFACTS_ONLY",
+    "completed_updates": 3762,
+    "phases": [
+      {
+        "name": "standup-allocation-001",
+        "completed_updates": 12,
+        "receipt_sha256": "f7eeb0ca7b72cefcaad54e45efab17ccc8e87f08d77ec157ae0eeb3b2121b90c"
+      },
+      {
+        "name": "standup-allocation-002",
+        "completed_updates": 1000,
+        "receipt_sha256": "5fe96efd10f969efe7cb9a55e9138fd533a988dbde36e28e13ad3b2c58050bc9"
+      },
+      {
+        "name": "standup-allocation-003",
+        "completed_updates": 2000,
+        "receipt_sha256": "22d38564a1808c731e73e193dbe240056fa73bcee25b33242a5afc3867548b81"
+      },
+      {
+        "name": "head-precision-allocation-001",
+        "completed_updates": 2250,
+        "receipt_sha256": "f0a6e2993d0f6f1a60145d059d184ff0906f8f15b962d1b0bdae612de3f549fa"
+      },
+      {
+        "name": "head-precision-allocation-002",
+        "completed_updates": 2500,
+        "receipt_sha256": "6375944d08ae793ea167b93d75953b7f86eed2c6b8692258b4a6eb97f775e05b"
+      },
+      {
+        "name": "head-precision-allocation-003",
+        "completed_updates": 2750,
+        "receipt_sha256": "0d3cf4495094712b0c902636aaf42189583a32be56c8684650d931c0c70d5245"
+      },
+      {
+        "name": "head-precision-allocation-004",
+        "completed_updates": 3000,
+        "receipt_sha256": "9128717c561b74216104df42d55aa7c4795aaf203f755c6810c1840b314bcb6b"
+      },
+      {
+        "name": "head-precision2-allocation-001",
+        "completed_updates": 3250,
+        "receipt_sha256": "940cfb1088e6be031eddb734b27e6aa7076b2a8cd718f1d0c2835dce4e27718b"
+      },
+      {
+        "name": "head-foundation4-allocation-001",
+        "completed_updates": 3506,
+        "receipt_sha256": "870ca4d81d514618051b6bb2b1cf1b84dcb3c55ba91c032a2d4dc3549d93aa8d"
+      },
+      {
+        "name": "paired-feedback-allocation-001",
+        "completed_updates": 3762,
+        "receipt_sha256": "2127eb36fe509c58a966f16b1a144e72a8a38246609076161d6f117f88cd97a0"
+      }
+    ],
+    "checkpoint_and_resume_actor_critic_optimizer_equal": true,
+    "checkpoint_sha256": "caa5d00fd92a430a69c098a10798646e8e6e77405848b6b61d5eb1fbd151c1ea",
+    "resume_sha256": "9073d0549cecfda9c1ec965d5e4c8e76c8acba4f8569908420ba5a201f6f68a4",
+    "onnx_sha256": "01b5fafde4bde1c33bf5ce1a671b275bd06556354dcacdc9288ba13d47a084e9",
+    "normalizer_parity_max_error": 7.748603820800781e-07,
+    "parity_samples": 66,
+    "robot_xml_sha256": "8ae0d89041950d565bbcd6272ab87317f46132ff1eef99b922782ecbe2b95308",
+    "verifier_sha256": "f0f2ad992d298a4bd87869c8d1eda6d919600328a2fbbe5fda25027641b723fc",
+    "behavior_evaluation_pending": true
+  },
+  "comparison_config_identity": {
+    "recovery": [
+      {
+        "seed": 2026101501,
+        "effective_config_equal_ignoring_callable_addresses": true,
+        "new_config_sha256": "75a4b8ba0d460f048da13622e412b96d9c0f89b6677b5088ef035035aab97dd4",
+        "old_config_sha256": "ed6aa264bb59c297185e2bf14f549450f30a74f427f2e8671446c81388555fd6"
+      },
+      {
+        "seed": 2026101502,
+        "effective_config_equal_ignoring_callable_addresses": true,
+        "new_config_sha256": "e7726679fae1bbe8cc62151ef0c597ebb413c2114087080577dabb7b77b1b1b6",
+        "old_config_sha256": "0085e6f1710595ed22ae690e7429336c46b85e2611a740b50abcbb7cb7c98584"
+      }
+    ],
+    "head": [
+      {
+        "seed": 2026101503,
+        "effective_config_equal_ignoring_callable_addresses": true,
+        "new_config_sha256": "8a4571dae62eaa43b0a841404d377b73b02a821065d6fe0b826966147d0b7687",
+        "old_config_sha256": "cbe2da985639ce022b3685bcf4949d3a66e0115b85f7432899a2d9bd0e36b516"
+      },
+      {
+        "seed": 2026101504,
+        "effective_config_equal_ignoring_callable_addresses": true,
+        "new_config_sha256": "67bc31c6433f5fdc62c6ef683e7be4b29679a1b8981402e867ef416643086404",
+        "old_config_sha256": "df2ee4fdba84a464ede800a35d6c0c126edb819290c38920d9d4c9eb0516d674"
+      }
+    ]
+  },
+  "recovery": {
+    "new": {
+      "checkpoint_sha256": "9073d0549cecfda9c1ec965d5e4c8e76c8acba4f8569908420ba5a201f6f68a4",
+      "groups": {
+        "standing": {
+          "wins": 256,
+          "trials": 256
+        },
+        "sitting": {
+          "wins": 256,
+          "trials": 256
+        },
+        "prone": {
+          "wins": 256,
+          "trials": 256
+        },
+        "frontier": {
+          "wins": 256,
+          "trials": 256
+        },
+        "left_side": {
+          "wins": 256,
+          "trials": 256
+        },
+        "right_side": {
+          "wins": 256,
+          "trials": 256
+        },
+        "supine": {
+          "wins": 256,
+          "trials": 256
+        }
+      },
+      "wins": 1792,
+      "trials": 1792,
+      "report_sha256": "064241df221e768f2b12a5eda0a225ed48bf8db78d33f458bb301a83b8056259"
+    },
+    "old": {
+      "checkpoint_sha256": "e753856776bb43e44d9465b4067a0b9cd2d10fe03fc8cb88ee4177ec786f93e1",
+      "groups": {
+        "standing": {
+          "wins": 256,
+          "trials": 256
+        },
+        "sitting": {
+          "wins": 251,
+          "trials": 256
+        },
+        "prone": {
+          "wins": 256,
+          "trials": 256
+        },
+        "frontier": {
+          "wins": 253,
+          "trials": 256
+        },
+        "left_side": {
+          "wins": 256,
+          "trials": 256
+        },
+        "right_side": {
+          "wins": 1,
+          "trials": 256
+        },
+        "supine": {
+          "wins": 252,
+          "trials": 256
+        }
+      },
+      "wins": 1525,
+      "trials": 1792,
+      "report_sha256": "7419d54f310a9cbbe763c2bdf56f7f7bd077c8f423ffd71e9bade8808ad7c58b"
+    }
+  },
+  "head": {
+    "new": {
+      "checkpoint_sha256": "9073d0549cecfda9c1ec965d5e4c8e76c8acba4f8569908420ba5a201f6f68a4",
+      "axis_order": [
+        "neck_pitch",
+        "head_pitch",
+        "head_yaw",
+        "head_roll"
+      ],
+      "current_ranges": [
+        [
+          -0.39,
+          0.39
+        ],
+        [
+          -0.39,
+          0.39
+        ],
+        [
+          -0.49,
+          0.49
+        ],
+        [
+          -0.11,
+          0.11
+        ]
+      ],
+      "final_ranges": [
+        [
+          -0.48577760000000003,
+          1.1
+        ],
+        [
+          -1.1,
+          0.904656
+        ],
+        [
+          -1.4,
+          1.4
+        ],
+        [
+          -0.31,
+          0.31
+        ]
+      ],
+      "range_averages": {
+        "zero": {
+          "records": 2,
+          "steady_mae_deg": [
+            0.3899319916963577,
+            0.3008000999689102,
+            0.28120072931051254,
+            0.3321673944592476
+          ]
+        },
+        "small": {
+          "records": 16,
+          "steady_mae_deg": [
+            0.5602634642273188,
+            0.3185640824958682,
+            0.32309683226048946,
+            0.3280501523986459
+          ]
+        },
+        "current": {
+          "records": 72,
+          "steady_mae_deg": [
+            0.6094901172651185,
+            0.5072869581894742,
+            0.3859389058003823,
+            0.3546281022330125
+          ]
+        },
+        "final": {
+          "records": 72,
+          "steady_mae_deg": [
+            2.1672754018670983,
+            1.335723493455185,
+            1.5390408490267065,
+            0.5684592574834824
+          ]
+        }
+      },
+      "neck_plus63": {
+        "target_deg": 63.02535746439057,
+        "steady_mae_deg_mean": 11.761014938354492,
+        "per_seed": [
+          {
+            "seed": 2026101503,
+            "mae_deg": 10.487187385559082,
+            "stable_fraction": 0.5399999618530273,
+            "height_min_m": 0.05011218041181564,
+            "tilt_p95_deg": 32.73104476928711
+          },
+          {
+            "seed": 2026101504,
+            "mae_deg": 13.034842491149902,
+            "stable_fraction": 0.3037499785423279,
+            "height_min_m": 0.04372969642281532,
+            "tilt_p95_deg": 67.1402816772461
+          }
+        ],
+        "pooled_stable_fraction": 0.421875,
+        "pooled_height_min_m": 0.04372969642281532,
+        "pooled_tilt_p95_deg": 52.64456558227539,
+        "trials": 16,
+        "severe_low_posture_trials": 7,
+        "severe_low_posture_definition": "Any step with trunk height<0.08m or tilt>45deg during the two-second command; descriptive diagnostic, not a new training gate"
+      },
+      "report_sha256": "2db92c5bda9e40999051cde410d4a737b0194858f30e88865250daa10fd56175"
+    },
+    "old": {
+      "checkpoint_sha256": "e753856776bb43e44d9465b4067a0b9cd2d10fe03fc8cb88ee4177ec786f93e1",
+      "axis_order": [
+        "neck_pitch",
+        "head_pitch",
+        "head_yaw",
+        "head_roll"
+      ],
+      "current_ranges": [
+        [
+          -0.39,
+          0.39
+        ],
+        [
+          -0.39,
+          0.39
+        ],
+        [
+          -0.49,
+          0.49
+        ],
+        [
+          -0.11,
+          0.11
+        ]
+      ],
+      "final_ranges": [
+        [
+          -0.48577760000000003,
+          1.1
+        ],
+        [
+          -1.1,
+          0.904656
+        ],
+        [
+          -1.4,
+          1.4
+        ],
+        [
+          -0.31,
+          0.31
+        ]
+      ],
+      "range_averages": {
+        "zero": {
+          "records": 2,
+          "steady_mae_deg": [
+            0.29317763447761536,
+            0.2807733565568924,
+            0.3637066036462784,
+            0.36838245391845703
+          ]
+        },
+        "small": {
+          "records": 16,
+          "steady_mae_deg": [
+            0.4165701186284423,
+            0.3322600182145834,
+            0.38285901863127947,
+            0.35033308900892735
+          ]
+        },
+        "current": {
+          "records": 72,
+          "steady_mae_deg": [
+            0.44922238526244956,
+            0.4260268658399582,
+            0.5093089188966486,
+            0.3550492181546158
+          ]
+        },
+        "final": {
+          "records": 72,
+          "steady_mae_deg": [
+            1.8375010982983642,
+            1.314254639049371,
+            1.8349184197270207,
+            0.4862552318308089
+          ]
+        }
+      },
+      "neck_plus63": {
+        "target_deg": 63.02535746439057,
+        "steady_mae_deg_mean": 10.582205295562744,
+        "per_seed": [
+          {
+            "seed": 2026101503,
+            "mae_deg": 10.263936996459961,
+            "stable_fraction": 0.7099999785423279,
+            "height_min_m": 0.108684241771698,
+            "tilt_p95_deg": 11.986424446105957
+          },
+          {
+            "seed": 2026101504,
+            "mae_deg": 10.900473594665527,
+            "stable_fraction": 0.7112500071525574,
+            "height_min_m": 0.10982909798622131,
+            "tilt_p95_deg": 11.898343086242676
+          }
+        ],
+        "pooled_stable_fraction": 0.7106249928474426,
+        "pooled_height_min_m": 0.108684241771698,
+        "pooled_tilt_p95_deg": 11.924070358276367,
+        "trials": 16,
+        "severe_low_posture_trials": 0,
+        "severe_low_posture_definition": "Any step with trunk height<0.08m or tilt>45deg during the two-second command; descriptive diagnostic, not a new training gate"
+      },
+      "report_sha256": "a30111f21bfc7efa3d14e733b4f75198aa1a252397e307f3910f1875b48264fb"
+    }
+  },
+  "joint_limits": {
+    "new": {
+      "minimum_clearance_deg": -4.296177036964785,
+      "worst": {
+        "name": "left_hip_roll",
+        "model_name": "robot/left_hip_roll",
+        "joint_id": 2,
+        "qpos_address": 8,
+        "lower_rad": -0.313929,
+        "upper_rad": 0.454016,
+        "min_clearance_deg": -4.296177036964785,
+        "max_lower_overrun_deg": 3.5204839201037124,
+        "max_upper_overrun_deg": 4.296177036964785,
+        "fraction_within_half_degree": 0.004753086419753087,
+        "fraction_within_one_degree": 0.004907407407407407,
+        "longest_within_half_degree_s": 0.24,
+        "longest_within_one_degree_s": 0.24,
+        "worst_step": 141,
+        "worst_env": 50,
+        "minimum_position_deg": -21.507290686866135,
+        "maximum_position_deg": 30.309377668376367,
+        "seed": 2026101503,
+        "case": "neck_pitch_final_+1"
+      },
+      "max_near_half_degree_duration_s": 0.36,
+      "scope": "All 14 policy joints across the full 6-second standing/head battery, at 50 Hz post-step qpos. Mouth excluded. Near-limit durations are diagnostics, not new training gates.",
+      "report_sha256": "49afe94cb79a1a6feb21514bb68d3fed952b179817b0b966a49d74bd28789ca6"
+    },
+    "old": {
+      "minimum_clearance_deg": -4.809524792372164,
+      "worst": {
+        "name": "head_roll",
+        "model_name": "robot/head_roll",
+        "joint_id": 9,
+        "qpos_address": 15,
+        "lower_rad": -0.436332,
+        "upper_rad": 0.436332,
+        "min_clearance_deg": -4.809524792372164,
+        "max_lower_overrun_deg": 4.809524792372164,
+        "max_upper_overrun_deg": 1.405155311910001,
+        "fraction_within_half_degree": 0.0015432098765432098,
+        "fraction_within_one_degree": 0.0016049382716049382,
+        "longest_within_half_degree_s": 0.2,
+        "longest_within_one_degree_s": 0.2,
+        "worst_step": 39,
+        "worst_env": 278,
+        "minimum_position_deg": -29.8095068588744,
+        "maximum_position_deg": 26.40513737841224,
+        "seed": 2026101504,
+        "case": "pair_(0, 3)_(-1, 1)_current"
+      },
+      "max_near_half_degree_duration_s": 0.44,
+      "scope": "All 14 policy joints across the full 6-second standing/head battery, at 50 Hz post-step qpos. Mouth excluded. Near-limit durations are diagnostics, not new training gates.",
+      "report_sha256": "7e88f1410342d24f7b834875cb73283193722dbe3793e41c478337832f67a9c2"
+    }
+  },
+  "regression": {
+    "2250": {
+      "right_wins": 256,
+      "right_trials": 256,
+      "total_wins": 1790,
+      "all_counts_exactly_match_native": false,
+      "other_count_differences": [
+        {
+          "seed": 2026101501,
+          "bucket": "sitting",
+          "field": "wins",
+          "native": 127,
+          "replay": 126
+        },
+        {
+          "seed": 2026101501,
+          "bucket": "sitting",
+          "field": "any_stable",
+          "native": 127,
+          "replay": 126
+        },
+        {
+          "seed": 2026101502,
+          "bucket": "sitting",
+          "field": "wins",
+          "native": 127,
+          "replay": 128
+        },
+        {
+          "seed": 2026101502,
+          "bucket": "sitting",
+          "field": "any_stable",
+          "native": 127,
+          "replay": 128
+        }
+      ],
+      "seeds": [
+        {
+          "seed": 2026101501,
+          "initial_qpos_max_difference_from2250": 0.0,
+          "max_stable_hold_controls": 347,
+          "final_height_median_m": 0.11196063458919525,
+          "final_tilt_median_deg": 0.34576719999313354,
+          "last2s_joint_speed_rms_rad_s": 0.002665800042450428,
+          "trace_sha256": "4a496ac4ca5a1c118a9db68f7f906b900bfd94e808d47c008acf6de0e776974b"
+        },
+        {
+          "seed": 2026101502,
+          "initial_qpos_max_difference_from2250": 0.0,
+          "max_stable_hold_controls": 347,
+          "final_height_median_m": 0.1119469627737999,
+          "final_tilt_median_deg": 0.3345502018928528,
+          "last2s_joint_speed_rms_rad_s": 0.002571604447439313,
+          "trace_sha256": "7ce5135983b74d8ebc2340764fbc7819fd7d0ad687f3e994f358b11f903722c5"
+        }
+      ],
+      "report_sha256": "3df3c9e478c7572afdd177f962b7b0d7d9896d9e83e8412d1835ee550fe5d65e"
+    },
+    "2500": {
+      "right_wins": 0,
+      "right_trials": 256,
+      "total_wins": 1535,
+      "all_counts_exactly_match_native": false,
+      "other_count_differences": [
+        {
+          "seed": 2026101502,
+          "bucket": "sitting",
+          "field": "wins",
+          "native": 126,
+          "replay": 127
+        },
+        {
+          "seed": 2026101502,
+          "bucket": "sitting",
+          "field": "any_stable",
+          "native": 126,
+          "replay": 127
+        }
+      ],
+      "seeds": [
+        {
+          "seed": 2026101501,
+          "initial_qpos_max_difference_from2250": 0.0,
+          "max_stable_hold_controls": 0,
+          "final_height_median_m": 0.05026640743017197,
+          "final_tilt_median_deg": 89.6278076171875,
+          "last2s_joint_speed_rms_rad_s": 0.26762068271636963,
+          "trace_sha256": "bfcb153abd94f5d8f8b283c4b2953f249b6aee254eb7818593d5e35557cb8885"
+        },
+        {
+          "seed": 2026101502,
+          "initial_qpos_max_difference_from2250": 0.0,
+          "max_stable_hold_controls": 0,
+          "final_height_median_m": 0.050368718802928925,
+          "final_tilt_median_deg": 89.56315612792969,
+          "last2s_joint_speed_rms_rad_s": 0.2504090666770935,
+          "trace_sha256": "1dbd867e92f0c5ff569cd218dad825463f9e3f4a3191564bc50015d15913e8c0"
+        }
+      ],
+      "report_sha256": "fe5d8e2c8de5f009e9d22ef7f57352d11507d182ace8ce111e016b31df98550a"
+    },
+    "2750": {
+      "right_wins": 256,
+      "right_trials": 256,
+      "total_wins": 1792,
+      "all_counts_exactly_match_native": true,
+      "other_count_differences": [],
+      "seeds": [
+        {
+          "seed": 2026101501,
+          "initial_qpos_max_difference_from2250": 0.0,
+          "max_stable_hold_controls": 344,
+          "final_height_median_m": 0.11176712810993195,
+          "final_tilt_median_deg": 0.4833548963069916,
+          "last2s_joint_speed_rms_rad_s": 0.0038252181839197874,
+          "trace_sha256": "c581bd5497512a8a712e80ccb0a495be3491d2265f9b20de3f2803e2670480a0"
+        },
+        {
+          "seed": 2026101502,
+          "initial_qpos_max_difference_from2250": 0.0,
+          "max_stable_hold_controls": 350,
+          "final_height_median_m": 0.1117667406797409,
+          "final_tilt_median_deg": 0.4643598198890686,
+          "last2s_joint_speed_rms_rad_s": 0.0037223028484731913,
+          "trace_sha256": "576cb5b81723f1052d68ee06bb8f1c8803a54ee139da71437d4e77fa9a4cee5b"
+        }
+      ],
+      "report_sha256": "351809c2b657c3bbfa959d482f7b85c2a6d71f0a9df9ceb3345d8abe599fe81e"
+    }
+  },
+  "limitations": [
+    "Development-seed simulation evaluation, not held-out or hardware qualification",
+    "Exact configuration/history replay does not promise bitwise trajectories or equal learned performance",
+    "Large-angle head stability and transient physical limit penetration remain material limitations"
+  ],
+  "previous_adaptive_6804_reference": {
+    "checkpoint_sha256": "125a03f483dd320898ec654799e20551cd0c03e501b80dedb054eafdb2b89df3",
+    "neck_plus63_steady_mae_deg_mean": 46.96431541442871,
+    "scope": "Archived prior evaluation, not rerun in this comparison; not a single-factor causal attribution"
+  },
+  "normalizer_ablation": {
+    "network2250_norm2500": {
+      "right_wins": 256,
+      "right_trials": 256,
+      "report_sha256": "95cd1d6d0de38b1ab1b2375c0edf281148e4db2398920b2fe5d273feff3f316d",
+      "diagnostic_only": true
+    },
+    "network2500_norm2250": {
+      "right_wins": 0,
+      "right_trials": 256,
+      "report_sha256": "9571c35ad1dca7009228c7a748da96ea88162f16844c3ac4b23f7e73c9aabc93",
+      "diagnostic_only": true
+    }
+  },
+  "regression_interpretation": {
+    "observation": "2500 stays near5cm trunk height and90deg tilt throughout right-side recovery; 2250/2750 stand from identical initial poses",
+    "localization": "Failure tracks the2500 network parameters under both tested normalizers. Restoring2250 normalization does not rescue it;2250 network with2500 normalization succeeds.",
+    "not_proven": "The exact reward term or gradient sequence causing the parameter change is not isolated. This is a recovered, reproducible regression, not ordinary sample-count noise.",
+    "no_rollback_or_rescue_training": true
+  },
+  "analysis_script_sha256": "b69c80cc5676dbed895e43b18af01d5b4fc05b8fd84d9da7096e4805c98ace29"
+}

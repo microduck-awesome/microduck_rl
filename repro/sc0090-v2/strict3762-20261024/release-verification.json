@@ -1,0 +1,23 @@
+{
+  "status": "PASS_PACKAGE_BYTES_AND_MODEL",
+  "verified_utc": "2026-10-24T04:32:00.802625+00:00",
+  "package": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/release/rise3762-strict-history-collision-20261024",
+  "manifest_sha256": "c998a8658c8f4473c9595103e6e6d9ad5e9a56a96eb4e6f67c72c2d517b927d1",
+  "manifest_payload_files": 454,
+  "all_package_files_accounted": true,
+  "source_archive_members": 382,
+  "source_archive_contents_exact": true,
+  "packaged_model_identity_exact": true,
+  "model_dimensions": {
+    "nq": 22,
+    "nv": 21,
+    "nu": 15,
+    "ngeom": 107
+  },
+  "mass_kg": 0.600941825,
+  "checkpoint_bytes_match_native_training": true,
+  "onnx_sha256": "01b5fafde4bde1c33bf5ce1a671b275bd06556354dcacdc9288ba13d47a084e9",
+  "frozen_contract_sha256": "23fad64fab5b85963e06edf84f7b38d31e201e21c911e90882cc3d609e8f9385",
+  "completed_review_stage_table_unchanged": true,
+  "git_blob_verification_pending": true
+}

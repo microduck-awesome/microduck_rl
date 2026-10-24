@@ -1,0 +1,65 @@
+{
+  "status": "PASS_ARTIFACTS_ONLY",
+  "completed_updates": 3762,
+  "phases": [
+    {
+      "name": "standup-allocation-001",
+      "completed_updates": 12,
+      "receipt_sha256": "f7eeb0ca7b72cefcaad54e45efab17ccc8e87f08d77ec157ae0eeb3b2121b90c"
+    },
+    {
+      "name": "standup-allocation-002",
+      "completed_updates": 1000,
+      "receipt_sha256": "5fe96efd10f969efe7cb9a55e9138fd533a988dbde36e28e13ad3b2c58050bc9"
+    },
+    {
+      "name": "standup-allocation-003",
+      "completed_updates": 2000,
+      "receipt_sha256": "22d38564a1808c731e73e193dbe240056fa73bcee25b33242a5afc3867548b81"
+    },
+    {
+      "name": "head-precision-allocation-001",
+      "completed_updates": 2250,
+      "receipt_sha256": "f0a6e2993d0f6f1a60145d059d184ff0906f8f15b962d1b0bdae612de3f549fa"
+    },
+    {
+      "name": "head-precision-allocation-002",
+      "completed_updates": 2500,
+      "receipt_sha256": "6375944d08ae793ea167b93d75953b7f86eed2c6b8692258b4a6eb97f775e05b"
+    },
+    {
+      "name": "head-precision-allocation-003",
+      "completed_updates": 2750,
+      "receipt_sha256": "0d3cf4495094712b0c902636aaf42189583a32be56c8684650d931c0c70d5245"
+    },
+    {
+      "name": "head-precision-allocation-004",
+      "completed_updates": 3000,
+      "receipt_sha256": "9128717c561b74216104df42d55aa7c4795aaf203f755c6810c1840b314bcb6b"
+    },
+    {
+      "name": "head-precision2-allocation-001",
+      "completed_updates": 3250,
+      "receipt_sha256": "940cfb1088e6be031eddb734b27e6aa7076b2a8cd718f1d0c2835dce4e27718b"
+    },
+    {
+      "name": "head-foundation4-allocation-001",
+      "completed_updates": 3506,
+      "receipt_sha256": "870ca4d81d514618051b6bb2b1cf1b84dcb3c55ba91c032a2d4dc3549d93aa8d"
+    },
+    {
+      "name": "paired-feedback-allocation-001",
+      "completed_updates": 3762,
+      "receipt_sha256": "2127eb36fe509c58a966f16b1a144e72a8a38246609076161d6f117f88cd97a0"
+    }
+  ],
+  "checkpoint_and_resume_actor_critic_optimizer_equal": true,
+  "checkpoint_sha256": "caa5d00fd92a430a69c098a10798646e8e6e77405848b6b61d5eb1fbd151c1ea",
+  "resume_sha256": "9073d0549cecfda9c1ec965d5e4c8e76c8acba4f8569908420ba5a201f6f68a4",
+  "onnx_sha256": "01b5fafde4bde1c33bf5ce1a671b275bd06556354dcacdc9288ba13d47a084e9",
+  "normalizer_parity_max_error": 7.748603820800781e-07,
+  "parity_samples": 66,
+  "robot_xml_sha256": "8ae0d89041950d565bbcd6272ab87317f46132ff1eef99b922782ecbe2b95308",
+  "verifier_sha256": "f0f2ad992d298a4bd87869c8d1eda6d919600328a2fbbe5fda25027641b723fc",
+  "behavior_evaluation_pending": true
+}

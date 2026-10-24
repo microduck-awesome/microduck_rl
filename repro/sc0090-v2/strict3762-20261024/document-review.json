@@ -1,6 +1,6 @@
 {
-  "status": "PARTIAL_REVIEW_NOT_LAUNCH_APPROVAL",
-  "document_sha256": "36537f24e83c7145f529fde7d69543eca47aa0365c7d2deb70f1cdea1142ecf5",
+  "status": "PASS_FOR_QUALIFICATION_ONLY",
+  "document_sha256": "23fad64fab5b85963e06edf84f7b38d31e201e21c911e90882cc3d609e8f9385",
   "checks": [
     {
       "phase": "standup-allocation-001",
@@ -43,11 +43,55 @@
       "argv_manifest_table_and_checkpoint": "PASS"
     }
   ],
-  "remaining": [
-    "materialized source and static resource identity",
-    "effective config re-instantiation per phase",
-    "compiler/runtime compatibility and original source fingerprints",
-    "deterministic update12 stop event validation",
-    "fresh corrected-collision qualification after document review"
+  "locked_files": {
+    "STRICT_3762_SINGLE_GPU.md": "23fad64fab5b85963e06edf84f7b38d31e201e21c911e90882cc3d609e8f9385",
+    "execution-plan.json": "13a6150f38536da888885c17b4b9c3b98460e9c32cee87a55bb30e7a95544d9b",
+    "history-inventory.json": "7c757a10d0a50d8ad0167a75e2be29e6c70934dd2d632404771f20900ab2a1fd",
+    "materialized-sources.json": "0276ee9c1bc6823b5bb4c8e6cec946b7f88303b5bd98194441ceee64a8b2054c",
+    "historical-launch-evidence.json": "a31929bfbb087b00bcb8a6135b5cf637b9c4c0ced028c4b43d73e4a6caabfc4b",
+    "checkpoint-history.json": "a295273fbe310d56b96a14cd1dbf511bb83b4f80de486f91e50d187788bf3e7a",
+    "config-review.json": "c632dbc52d5d36f6542c34ff3722f70e9c8ce69a1ad6a641cfe79f5195e95146",
+    "collision-identity-review.json": "83f45cbb37005bae3da2143e5d00e0b215c134cd69316f4fb4248acda5de01d8",
+    "stop-boundary-unit-check.json": "dc31e72c796cd04128de10d1d69a5fa702af07c4b3aa61b6953f5f9283206dc6",
+    "qualification-harness-provenance.json": "5200528432cd9dd8ed2a1539729daa04158a3c3c8c18f00ae7ddf238bce66e7c",
+    "tools/build_execution_plan.py": "7c90c10d2148a8a1ea3ed438b1a45442bdee911a8eb626644464a63a51fb403e",
+    "tools/check_all_configs.py": "92eb68a7cde7467b7424526cf5704b7b0505d4d9d19df7fd3ddb7d959b432ab8",
+    "tools/check_collision_identity.py": "96d129b1421eb2635535f94bbfa40ed0bce038e868e7b801e2f0fa4510734c05",
+    "tools/check_phase_config.py": "5de0aa2b3bae972fd1e415f75a5a6627d96254a6f994fcd1c7c38292993f6f01",
+    "tools/extract_launch_evidence.py": "a82890dc78f16873b79a0fc9566700ee0cd331bf35c8794f057a9b9b3554670e",
+    "tools/historical_entry.py": "9e075167c19ce743f32e007c1920443374b006ae850f942b0a44fbaa3dd98b81",
+    "tools/inspect_checkpoint_history.py": "3e4e91c1a13279035d974e9d1dbb515a3045254f7c4714b2fbcbc0749be32a0c",
+    "tools/inventory_history.py": "8084bb798d3fde11172572e8383b3d140a272281a6ab878c5dbc5c931fc6714f",
+    "tools/materialize_phases.py": "a468c4ef392bbd8f2cda00a2271c8918de2b9c6ffbab649727d6355b1d44178b",
+    "tools/qualify_phase.py": "f11bedfc613a393326ce28f20636485ba14a19146cee0f0a6f65c54176753f9e",
+    "tools/review_document.py": "ce3b0f2fe7ede560da0ac3ab0e9832ade43da9999b647656ecd97beefe359969",
+    "tools/run_qualification.py": "a7dac0f86cbb503165df797ca4e0b87b8a72e476721509dfcc67c13d8f24751a",
+    "tools/test_historical_entry.py": "0449e2ad8287f6b03ebdb8b3b59a608d3aa95bc32361c4188ef9238917744501",
+    "config-checks/head-foundation4-allocation-001.config.json": "9fe12534f762541462b18626a932307477f92f609852c493feb9d3181490ca2c",
+    "config-checks/head-foundation4-allocation-001.json": "fdbb50378de0392590741ea54e059c7b685fd9f2088ed4747b1c6cdb0b50297f",
+    "config-checks/head-precision-allocation-001.config.json": "0ff2098ad41512e6932f21e0a9063b65145dab856becb578b50eb8912c8fc9b2",
+    "config-checks/head-precision-allocation-001.json": "3973b9b0825530218f4caf645fde56a0f0a229b6e6523dd2933ccfde9f54f386",
+    "config-checks/head-precision-allocation-002.config.json": "113cbf1343d8ff511b74fa34efd579e5a28b477c57daca99113091ae45e81046",
+    "config-checks/head-precision-allocation-002.json": "7d410219632007d04410cf5ec7d3168222a04e9f4646d3ea9bb6ba867f65df00",
+    "config-checks/head-precision-allocation-003.config.json": "04a70622ed5be3a9afebaaae724c6223db179fb30fcdb75179b14e7e145d825e",
+    "config-checks/head-precision-allocation-003.json": "001aa982a2834e350730826c76551ad1c42350222fd9e3c48de63e73a94de450",
+    "config-checks/head-precision-allocation-004.config.json": "a70d4fc737c188e3714758be502872ffd8578baaec9d50c9454a3510c5ed208d",
+    "config-checks/head-precision-allocation-004.json": "a5353511f4181cc666d2f6ad1456eca94e9f66bcd97125c59a1a8972f49235be",
+    "config-checks/head-precision2-allocation-001.config.json": "cc44c051e6a104de3e5a2ff0033e4b4edddaeb191ff834568f8c8dd1c112044e",
+    "config-checks/head-precision2-allocation-001.json": "9c264650845110a6492a71cac9907be022860ea2d7222576c462a63fa318ea01",
+    "config-checks/paired-feedback-allocation-001.config.json": "9e5ad55c5c992583750ce446b0f6b1df60cc6d7c268ed89988d443025689ecd8",
+    "config-checks/paired-feedback-allocation-001.json": "c6498d8eae5ce18bb07c621eb8335d7b35deb60715e826c02395eb479360c6b0",
+    "config-checks/standup-allocation-001.config.json": "eb30ddb1ec9315a806fc9022790de9b213ac7fd08747e0b23e023a4af5cd03b2",
+    "config-checks/standup-allocation-001.json": "3d7656712190f04f27970fb64343f7c7eab02686f0c52433c278fb3e2800454a",
+    "config-checks/standup-allocation-002.config.json": "5919d5b9dcce062f45dce40ff1c926ce459c418bbe99344ec1a5d8f289790bc4",
+    "config-checks/standup-allocation-002.json": "ab10b4c1867cbf301b3a990870b3d34d42c4783c4bf2603be473875a43646edb",
+    "config-checks/standup-allocation-003.config.json": "96969ec673bb381264e746c7bf5d341ec5e0af3e994aac14b33e0f8a3c918a61",
+    "config-checks/standup-allocation-003.json": "4a3f164a2ce6535dcea41b592c5b4fee744e743191265e7a35bea6e2e68c6346"
+  },
+  "formal_training_permitted": false,
+  "remaining_formal_gates": [
+    "fresh corrected-collision smoke64 and actual8192 reports; original throughput threshold unchanged",
+    "real GPU environment update12 SIGTERM boundary and absence of extra eval",
+    "native parent checkpoint and curriculum prerequisites per segment"
   ]
 }

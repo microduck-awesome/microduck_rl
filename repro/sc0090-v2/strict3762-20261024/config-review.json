@@ -1,0 +1,66 @@
+{
+  "status": "PASS",
+  "phases": [
+    {
+      "phase": "standup-allocation-001",
+      "status": "PASS",
+      "allowed_collision_entries": 96,
+      "resource_remaps": 2
+    },
+    {
+      "phase": "standup-allocation-002",
+      "status": "PASS",
+      "allowed_collision_entries": 96,
+      "resource_remaps": 2
+    },
+    {
+      "phase": "standup-allocation-003",
+      "status": "PASS",
+      "allowed_collision_entries": 96,
+      "resource_remaps": 2
+    },
+    {
+      "phase": "head-precision-allocation-001",
+      "status": "PASS",
+      "allowed_collision_entries": 96,
+      "resource_remaps": 2
+    },
+    {
+      "phase": "head-precision-allocation-002",
+      "status": "PASS",
+      "allowed_collision_entries": 96,
+      "resource_remaps": 2
+    },
+    {
+      "phase": "head-precision-allocation-003",
+      "status": "PASS",
+      "allowed_collision_entries": 96,
+      "resource_remaps": 2
+    },
+    {
+      "phase": "head-precision-allocation-004",
+      "status": "PASS",
+      "allowed_collision_entries": 96,
+      "resource_remaps": 2
+    },
+    {
+      "phase": "head-precision2-allocation-001",
+      "status": "PASS",
+      "allowed_collision_entries": 96,
+      "resource_remaps": 2
+    },
+    {
+      "phase": "head-foundation4-allocation-001",
+      "status": "PASS",
+      "allowed_collision_entries": 96,
+      "resource_remaps": 2
+    },
+    {
+      "phase": "paired-feedback-allocation-001",
+      "status": "PASS",
+      "allowed_collision_entries": 96,
+      "resource_remaps": 5
+    }
+  ],
+  "formal_updates": 0
+}

@@ -1,0 +1,565 @@
+{
+  "status": "PASS",
+  "phase": "head-precision-allocation-002",
+  "differences": [],
+  "allowed_collision_differences": [
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_000_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_001_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_002_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_003_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_004_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_005_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_006_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_007_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_008_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_009_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_010_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_011_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_012_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_013_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_014_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_015_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_016_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_017_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_018_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_019_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_020_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_021_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_022_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_023_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_024_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_025_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_026_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_027_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_028_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_029_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_030_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].conaffinity.^sim2real_shell_031_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_000_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_001_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_002_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_003_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_004_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_005_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_006_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_007_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_008_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_009_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_010_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_011_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_012_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_013_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_014_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_015_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_016_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_017_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_018_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_019_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_020_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_021_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_022_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_023_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_024_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_025_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_026_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_027_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_028_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_029_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_030_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].condim.^sim2real_shell_031_collision$",
+      "actual": 3,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_000_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_001_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_002_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_003_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_004_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_005_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_006_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_007_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_008_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_009_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_010_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_011_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_012_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_013_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_014_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_015_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_016_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_017_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_018_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_019_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_020_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_021_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_022_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_023_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_024_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_025_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_026_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_027_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_028_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_029_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_030_collision$",
+      "actual": 1,
+      "expected": null
+    },
+    {
+      "path": ".environment.scene.entities.robot.collisions[0].contype.^sim2real_shell_031_collision$",
+      "actual": 1,
+      "expected": null
+    }
+  ],
+  "identical_resource_path_remaps": [
+    {
+      "path": ".environment.scene.entities.robot.articulation.actuators[0].json_path",
+      "historical": "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-baseline/src/mjlab_microduck/actuator/params/sc0090_v5_m6.json",
+      "materialized": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/actuator/params/sc0090_v5_m6.json",
+      "resource_hashes": {
+        "": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4"
+      }
+    },
+    {
+      "path": ".environment.scene.entities.robot.articulation.actuators[1].json_path",
+      "historical": "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-baseline/src/mjlab_microduck/actuator/params/sc0090_v5_m6.json",
+      "materialized": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/actuator/params/sc0090_v5_m6.json",
+      "resource_hashes": {
+        "": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4"
+      }
+    }
+  ],
+  "imported_source_modules": {
+    "mjlab_microduck": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/__init__.py",
+    "mjlab_microduck.train_hook": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/train_hook.py",
+    "mjlab_microduck.robot": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/robot/__init__.py",
+    "mjlab_microduck.actuator.friction_dr_bam": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/actuator/friction_dr_bam.py",
+    "mjlab_microduck.actuator": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/actuator/__init__.py",
+    "mjlab_microduck.robot.microduck_constants": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/robot/microduck_constants.py",
+    "mjlab_microduck.tasks.mdp": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/mdp.py",
+    "mjlab_microduck.tasks.symmetry": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/symmetry.py",
+    "mjlab_microduck.tasks.microduck_velocity_env_cfg": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/microduck_velocity_env_cfg.py",
+    "mjlab_microduck.tasks.microduck_standup_env_cfg": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/microduck_standup_env_cfg.py",
+    "mjlab_microduck.tasks.distill": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/distill.py",
+    "mjlab_microduck.tasks.microduck_velstand_env_cfg": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/microduck_velstand_env_cfg.py",
+    "mjlab_microduck.tasks.microduck_ground_pick_env_cfg": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/microduck_ground_pick_env_cfg.py",
+    "mjlab_microduck.tasks.microduck_ball_kick_env_cfg": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/microduck_ball_kick_env_cfg.py",
+    "mjlab_microduck.tasks.microduck_sitstand_env_cfg": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/microduck_sitstand_env_cfg.py",
+    "mjlab_microduck.tasks.microduck_velocity_rollers_env_cfg": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/microduck_velocity_rollers_env_cfg.py",
+    "mjlab_microduck.tasks.microduck_velocity_swizzle_env_cfg": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/microduck_velocity_swizzle_env_cfg.py",
+    "mjlab_microduck.tasks.microduck_roller_crouch_env_cfg": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/microduck_roller_crouch_env_cfg.py",
+    "mjlab_microduck.tasks.slope_terrain": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/slope_terrain.py",
+    "mjlab_microduck.tasks.microduck_roller_slope_env_cfg": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/microduck_roller_slope_env_cfg.py",
+    "mjlab_microduck.tasks.microduck_roller_standup_env_cfg": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/microduck_roller_standup_env_cfg.py",
+    "mjlab_microduck.tasks.microduck_spin_env_cfg": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/microduck_spin_env_cfg.py",
+    "mjlab_microduck.tasks.microduck_roulade_env_cfg": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/microduck_roulade_env_cfg.py",
+    "mjlab_microduck.tasks.backlash": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/backlash.py",
+    "mjlab_microduck.custom_v2": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/custom_v2/__init__.py",
+    "mjlab_microduck.custom_v2.microduck_v2": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/custom_v2/microduck_v2.py",
+    "mjlab_microduck.actuator.sc0090_v5": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/actuator/sc0090_v5.py",
+    "mjlab_microduck.custom_v2.runtime": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/custom_v2/runtime.py",
+    "mjlab_microduck.custom_v2.training": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/custom_v2/training.py",
+    "mjlab_microduck.custom_v2.recovery": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/custom_v2/recovery.py",
+    "mjlab_microduck.custom_v2.commands": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/custom_v2/commands.py",
+    "mjlab_microduck.tasks": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/head-precision-allocation-002/src/mjlab_microduck/tasks/__init__.py"
+  },
+  "dependencies": {
+    "torch": "2.9.1",
+    "mjlab": "1.3.0",
+    "mujoco": "3.13.0",
+    "mujoco-warp": "3.8.1",
+    "warp-lang": "1.12.0",
+    "better-actuator-models": "1.0.1",
+    "rsl-rl-lib": "5.0.1"
+  },
+  "upstream_ppo_update_sha256": "507b4a88853dc6eda17c7c2e79bd081430c97ec8ca2e2efc24572729c94907b0",
+  "formal_updates": 0,
+  "compiler_environment": {
+    "TRITON_DEFAULT_FP_FUSION": "0",
+    "TORCHINDUCTOR_CACHE_DIR": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/inductor-no-fma",
+    "TRITON_CACHE_DIR": "/home/l40-vm01/data2/experiments/microduck-v2-20261015/triton-no-fma",
+    "OMP_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "1",
+    "CUDA_VISIBLE_DEVICES": null,
+    "WORLD_SIZE": null,
+    "RANK": null,
+    "LOCAL_RANK": null,
+    "MICRODUCK_WARM_START": null
+  },
+  "triton_enable_fp_fusion": false,
+  "python_version": "3.12.14"
+}

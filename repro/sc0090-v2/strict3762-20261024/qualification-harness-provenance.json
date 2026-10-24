@@ -1,0 +1,7 @@
+{
+  "base_snapshot": "rise_baseline_paired3762",
+  "base_file": "scripts/smoke_v2_ppo.py",
+  "base_sha256": "c83d909cd840afbd8756121db455e978acd2d99aba432db762d85f4de2adf59c",
+  "adaptation": "Only signature adaptation for historical stage1 configure_head_precision_learning(cfg); no changes to archived formal trainer or its source tree",
+  "qualification_weights_used_for_formal": false
+}

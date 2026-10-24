@@ -26,5 +26,31 @@ for phase,cp in zip(inv['phases'],cps['checkpoints']):
  if phase['index']>0:assert previous+a.iterations==phase['completed_updates']
  previous=phase['completed_updates'];checks.append(dict(phase=name,argv_manifest_table_and_checkpoint='PASS'))
 assert previous==3762
-result=dict(status='PARTIAL_REVIEW_NOT_LAUNCH_APPROVAL',document_sha256=hashlib.sha256((ROOT/'STRICT_3762_SINGLE_GPU.md').read_bytes()).hexdigest(),checks=checks,remaining=['materialized source and static resource identity','effective config re-instantiation per phase','compiler/runtime compatibility and original source fingerprints','deterministic update12 stop event validation','fresh corrected-collision qualification after document review'])
+
+materialized=json.loads((ROOT/'materialized-sources.json').read_text())
+plan=json.loads((ROOT/'execution-plan.json').read_text())
+assert len(plan['phases'])==len(materialized['phases'])==10
+for phase, built, row in zip(inv['phases'], materialized['phases'], plan['phases']):
+ assert phase['name']==built['phase']==row['name']
+ source=Path(built['path'])
+ expected={**materialized['static_file_hashes'], **phase['source_files'], **built['added_meshes']}
+ expected[built['only_modified_static_file']]=built['corrected_xml_sha256']
+ for name,sha in expected.items():
+  assert hashlib.sha256((source/name).read_bytes()).hexdigest()==sha,(phase['name'],name)
+ actual={str(f.relative_to(source)) for f in source.glob('src/**/*') if f.suffix in ('.py','.cpp')}
+ assert actual=={n for n in phase['source_files'] if n.startswith('src/')}
+ config=json.loads((ROOT/'config-checks'/f"{phase['name']}.json").read_text())
+ assert config['status']=='PASS' and not config['differences']
+ assert len(config['allowed_collision_differences'])==96
+ assert config['triton_enable_fp_fusion']==(phase['index']<3)
+ restored=row['replay_trainer_argv'][1:].copy()
+ for change in row['path_remaps_only']:restored[restored.index(change['flag'])+1]=change['historical']
+ assert restored==row['historical_argv'][2:]
+ assert row['source']==built['path'] and row['expected_completed_updates']==phase['completed_updates']
+ assert row['expected_terminal_status']==('STOPPED' if phase['index']==0 else 'ALLOCATION_COMPLETE')
+ assert '--resume' not in row['launch_argv'] if phase['index']==0 else True
+for name in ('config-review.json','collision-identity-review.json','stop-boundary-unit-check.json','materialized-sources.json'):
+ assert json.loads((ROOT/name).read_text())['status']=='PASS',name
+locked=[ROOT/'STRICT_3762_SINGLE_GPU.md',ROOT/'execution-plan.json',ROOT/'history-inventory.json',ROOT/'materialized-sources.json',ROOT/'historical-launch-evidence.json',ROOT/'checkpoint-history.json',ROOT/'config-review.json',ROOT/'collision-identity-review.json',ROOT/'stop-boundary-unit-check.json',ROOT/'qualification-harness-provenance.json',*sorted((ROOT/'tools').glob('*.py')),*sorted((ROOT/'config-checks').glob('*.json'))]
+result=dict(status='PASS_FOR_QUALIFICATION_ONLY',document_sha256=hashlib.sha256((ROOT/'STRICT_3762_SINGLE_GPU.md').read_bytes()).hexdigest(),checks=checks,locked_files={str(f.relative_to(ROOT)):hashlib.sha256(f.read_bytes()).hexdigest() for f in locked},formal_training_permitted=False,remaining_formal_gates=['fresh corrected-collision smoke64 and actual8192 reports; original throughput threshold unchanged','real GPU environment update12 SIGTERM boundary and absence of extra eval','native parent checkpoint and curriculum prerequisites per segment'])
 (ROOT/'document-review.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(dict(status=result['status'],phase_checks=len(checks),final_update=previous)))

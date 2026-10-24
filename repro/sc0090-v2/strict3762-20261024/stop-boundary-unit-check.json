@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "cpu_control_flow_only": true,
+  "completed_updates": 12,
+  "update13_executed": false,
+  "optimizer_call_sequence_and_rng_preserved": true,
+  "original_checked_update_restored": true,
+  "real_environment_boundary_qualification_pending": true
+}

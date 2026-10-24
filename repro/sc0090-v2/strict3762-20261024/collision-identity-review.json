@@ -1,0 +1,508 @@
+{
+  "status": "PASS",
+  "model_fields_exact": [
+    "body_mass",
+    "body_inertia",
+    "body_ipos",
+    "body_iquat",
+    "body_pos",
+    "body_quat",
+    "body_parentid",
+    "jnt_pos",
+    "jnt_axis",
+    "jnt_range",
+    "jnt_qposadr",
+    "qpos0",
+    "actuator_trnid",
+    "actuator_ctrlrange",
+    "actuator_gear"
+  ],
+  "existing_geom_fields_exact": [
+    "geom_bodyid",
+    "geom_type",
+    "geom_pos",
+    "geom_quat",
+    "geom_size",
+    "geom_contype",
+    "geom_conaffinity",
+    "geom_condim",
+    "geom_friction",
+    "geom_solref",
+    "geom_solimp"
+  ],
+  "old_geom_count": 75,
+  "new_geom_count": 107,
+  "mass_kg": 0.600941825,
+  "cases": [
+    {
+      "pose": "supine",
+      "contact_geoms": [
+        "audit_floor",
+        "ground_battery_collision",
+        "ground_head_shell_collision",
+        "left_foot_collision",
+        "right_foot_collision",
+        "sim2real_shell_000_collision",
+        "sim2real_shell_001_collision",
+        "sim2real_shell_004_collision",
+        "sim2real_shell_005_collision",
+        "sim2real_shell_008_collision",
+        "sim2real_shell_011_collision",
+        "sim2real_shell_013_collision",
+        "sim2real_shell_014_collision",
+        "sim2real_shell_018_collision",
+        "sim2real_shell_023_collision",
+        "sim2real_shell_031_collision"
+      ],
+      "final_contacts": [
+        {
+          "geoms": [
+            "audit_floor",
+            "sim2real_shell_004_collision"
+          ],
+          "distance_m": -0.0002836409585080077,
+          "force_N": 2.423772403441106
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "sim2real_shell_004_collision"
+          ],
+          "distance_m": -0.00016704081307402025,
+          "force_N": 1.33468827066214
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "sim2real_shell_014_collision"
+          ],
+          "distance_m": -7.753220219080398e-05,
+          "force_N": 0.6029604554173482
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.00028431537842967675,
+          "force_N": 0.25211280777930745
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.000262697329420733,
+          "force_N": 0.2293854505097196
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.00020099609619967512,
+          "force_N": 0.16919984395931945
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.00022255942604827716,
+          "force_N": 0.1895354955044554
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.00021819111447607398,
+          "force_N": 0.18487715663352616
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.00021417121986740464,
+          "force_N": 0.18107105327022482
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.00019253489286715983,
+          "force_N": 0.16097704243653138
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.00019867425980721332,
+          "force_N": 0.1666137383058322
+        }
+      ]
+    },
+    {
+      "pose": "prone",
+      "contact_geoms": [
+        "audit_floor",
+        "ground_head_shell_collision",
+        "ground_jaw_collision",
+        "ground_left_hip_collision",
+        "ground_right_hip_collision",
+        "left_foot_collision",
+        "right_foot_collision",
+        "self_trunk_support_00_collision"
+      ],
+      "final_contacts": [
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.0004811598006409165,
+          "force_N": 0.49037162689722147
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.0004309311255310637,
+          "force_N": 0.4471167429067835
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.00042994020908333416,
+          "force_N": 0.4426914027738806
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.00047924411825562424,
+          "force_N": 0.48084800400967076
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "ground_jaw_collision"
+          ],
+          "distance_m": -0.0009039963233625631,
+          "force_N": 2.0417105695871465
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "ground_jaw_collision"
+          ],
+          "distance_m": -0.0006365143060086537,
+          "force_N": 1.033908745473448
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.0009689588152035009,
+          "force_N": 0.34516497441199545
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.0008825817846148387,
+          "force_N": 0.26933246754406964
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.0008345900348431592,
+          "force_N": 0.1930918010048474
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.000920943496773876,
+          "force_N": 0.2699193840510926
+        }
+      ]
+    },
+    {
+      "pose": "side_positive",
+      "contact_geoms": [
+        "audit_floor",
+        "ground_head_shell_collision",
+        "ground_jaw_collision",
+        "ground_right_hip_collision",
+        "right_foot_collision",
+        "self_right_shin_structure_00_collision",
+        "self_trunk_support_00_collision",
+        "sim2real_shell_004_collision",
+        "sim2real_shell_011_collision",
+        "sim2real_shell_012_collision",
+        "sim2real_shell_013_collision",
+        "sim2real_shell_014_collision",
+        "sim2real_shell_020_collision",
+        "sim2real_shell_023_collision",
+        "sim2real_shell_024_collision"
+      ],
+      "final_contacts": [
+        {
+          "geoms": [
+            "audit_floor",
+            "sim2real_shell_004_collision"
+          ],
+          "distance_m": -4.5302010812327265e-05,
+          "force_N": 0.31903000504381057
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "ground_jaw_collision"
+          ],
+          "distance_m": -0.0006857532241449846,
+          "force_N": 1.6918294089564065
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "ground_jaw_collision"
+          ],
+          "distance_m": -0.0005525455736096821,
+          "force_N": 1.142514141456343
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "ground_jaw_collision"
+          ],
+          "distance_m": -0.00016877588336339927,
+          "force_N": 0.2400754478112278
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.0006631133259546035,
+          "force_N": 0.9107496539972446
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.000619286196489606,
+          "force_N": 0.8096067896680155
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.0006292803054050965,
+          "force_N": 0.8326911135924577
+        }
+      ]
+    },
+    {
+      "pose": "side_negative",
+      "contact_geoms": [
+        "audit_floor",
+        "ground_head_shell_collision",
+        "ground_jaw_collision",
+        "ground_left_hip_collision",
+        "left_foot_collision",
+        "self_left_shin_structure_00_collision",
+        "sim2real_shell_000_collision",
+        "sim2real_shell_003_collision",
+        "sim2real_shell_004_collision",
+        "sim2real_shell_005_collision",
+        "sim2real_shell_008_collision",
+        "sim2real_shell_009_collision",
+        "sim2real_shell_010_collision",
+        "sim2real_shell_015_collision",
+        "sim2real_shell_018_collision",
+        "sim2real_shell_025_collision",
+        "sim2real_shell_031_collision"
+      ],
+      "final_contacts": [
+        {
+          "geoms": [
+            "audit_floor",
+            "sim2real_shell_004_collision"
+          ],
+          "distance_m": -5.9544207927891835e-05,
+          "force_N": 0.4755267861298795
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.0006888537921654232,
+          "force_N": 0.9468339853753778
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.0006437478341765404,
+          "force_N": 0.8027108546268561
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.0006312535046057756,
+          "force_N": 0.7665214793603541
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "ground_jaw_collision"
+          ],
+          "distance_m": -0.0009232945479379293,
+          "force_N": 2.6950345077330136
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "ground_jaw_collision"
+          ],
+          "distance_m": -0.0001494999453347315,
+          "force_N": 0.21808899853051342
+        }
+      ]
+    },
+    {
+      "pose": "rear_tilt",
+      "contact_geoms": [
+        "audit_floor",
+        "ground_battery_collision",
+        "ground_head_shell_collision",
+        "left_foot_collision",
+        "right_foot_collision",
+        "self_left_shin_structure_00_collision",
+        "self_right_shin_structure_00_collision",
+        "sim2real_shell_000_collision",
+        "sim2real_shell_001_collision",
+        "sim2real_shell_004_collision",
+        "sim2real_shell_005_collision",
+        "sim2real_shell_008_collision",
+        "sim2real_shell_011_collision",
+        "sim2real_shell_013_collision",
+        "sim2real_shell_014_collision",
+        "sim2real_shell_018_collision",
+        "sim2real_shell_031_collision"
+      ],
+      "final_contacts": [
+        {
+          "geoms": [
+            "audit_floor",
+            "sim2real_shell_004_collision"
+          ],
+          "distance_m": -0.0002837413661675135,
+          "force_N": 2.4240262555703778
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "sim2real_shell_004_collision"
+          ],
+          "distance_m": -0.000167173643206234,
+          "force_N": 1.3350900345868437
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "sim2real_shell_014_collision"
+          ],
+          "distance_m": -7.762132089072366e-05,
+          "force_N": 0.6028770449462905
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.00028427422568387886,
+          "force_N": 0.251958001133724
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.0002626587037422648,
+          "force_N": 0.22928663259153848
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.00020093544139005576,
+          "force_N": 0.1691378446978658
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "left_foot_collision"
+          ],
+          "distance_m": -0.00022249624368139015,
+          "force_N": 0.18942024682409694
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.00021808202551343303,
+          "force_N": 0.184738631066527
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.00021406217632693667,
+          "force_N": 0.18093338136747664
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.0001924283069071886,
+          "force_N": 0.1608904711969969
+        },
+        {
+          "geoms": [
+            "audit_floor",
+            "right_foot_collision"
+          ],
+          "distance_m": -0.0001985676081878232,
+          "force_N": 0.1665261818406571
+        }
+      ]
+    }
+  ],
+  "scope": "CPU compiled identity and passive contact support only; not policy performance",
+  "formal_updates": 0
+}

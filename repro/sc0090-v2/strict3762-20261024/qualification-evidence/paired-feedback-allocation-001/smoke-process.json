@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "pid": 1341685,
+  "argv": [
+    "bash",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/paired-feedback-allocation-001/scripts/v2_python.sh",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/publication/repro/sc0090-v2/strict3762-20261024/tools/qualify_phase.py",
+    "--task",
+    "Mjlab-StandUp-Flat-MicroDuck-V2-PairedError-Baseline",
+    "--device",
+    "cuda:1",
+    "--num-envs",
+    "64",
+    "--iterations",
+    "5",
+    "--output-dir",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/qualification/paired-feedback-allocation-001/smoke64",
+    "--report",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/qualification/paired-feedback-allocation-001/smoke64/report.json",
+    "--head-precision",
+    "--head-precision-stage",
+    "4"
+  ],
+  "cwd": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/paired-feedback-allocation-001",
+  "started_unix": 1792804308.7111306,
+  "document_review_sha256": "5ebf5ccd0248f42d2f789ed80146f911f923125cf960d97edea5c26c4596604a",
+  "formal_weights_used": false,
+  "returncode": 0,
+  "ended_unix": 1792804337.4158309,
+  "report_sha256": "56832f1908cb183aa203619e3277e25c8bb4ac02197396d2cd8a1d96d4a3e77c"
+}

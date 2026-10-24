@@ -1,0 +1,277 @@
+{
+  "status": "PASS",
+  "head_precision_recipe": {
+    "id": "v2-head-precision-1",
+    "ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ],
+    "final_ranges": [
+      [
+        -0.48577760000000003,
+        1.1
+      ],
+      [
+        -1.1,
+        0.904656
+      ],
+      [
+        -1.4,
+        1.4
+      ],
+      [
+        -0.31,
+        0.31
+      ]
+    ],
+    "reward_weight": 3.0,
+    "std": 0.5,
+    "fine_std": 0.08,
+    "fine_weight": 0.5,
+    "reason": "2000-update head response failed despite mastered recovery"
+  },
+  "position_robustness_recipe": null,
+  "task": "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+  "device": "cuda:1",
+  "envs": 8192,
+  "iterations": 16,
+  "steps_per_env": 24,
+  "learning_epochs": 5,
+  "minibatches": 4,
+  "losses": [
+    {
+      "value": 0.5354778468608856,
+      "surrogate": -0.0037842629244551063,
+      "entropy": 19.78803300857544
+    },
+    {
+      "value": 0.47892983108758924,
+      "surrogate": -0.010423780381097458,
+      "entropy": 19.572864818573
+    },
+    {
+      "value": 0.3497088134288788,
+      "surrogate": -0.011575569363776595,
+      "entropy": 19.259681034088135
+    },
+    {
+      "value": 0.2755229286849499,
+      "surrogate": -0.010974649363197387,
+      "entropy": 19.029699325561523
+    },
+    {
+      "value": 0.18951047360897064,
+      "surrogate": -0.012422006466658786,
+      "entropy": 18.736928081512453
+    },
+    {
+      "value": 0.12840525917708873,
+      "surrogate": -0.013523002003785223,
+      "entropy": 18.432128429412842
+    },
+    {
+      "value": 0.08424974307417869,
+      "surrogate": -0.01584076026920229,
+      "entropy": 18.126829147338867
+    },
+    {
+      "value": 0.05262362845242023,
+      "surrogate": -0.01681105876341462,
+      "entropy": 17.788104629516603
+    },
+    {
+      "value": 0.031170255318284035,
+      "surrogate": -0.0191614495619433,
+      "entropy": 17.45622510910034
+    },
+    {
+      "value": 0.02087090853601694,
+      "surrogate": -0.0207562925916136,
+      "entropy": 17.037162113189698
+    },
+    {
+      "value": 0.013391948910430074,
+      "surrogate": -0.024002353777177632,
+      "entropy": 16.633806228637695
+    },
+    {
+      "value": 0.010498407762497663,
+      "surrogate": -0.025280980148818345,
+      "entropy": 16.23867311477661
+    },
+    {
+      "value": 0.00875575109384954,
+      "surrogate": -0.02383155102143064,
+      "entropy": 15.893408346176148
+    },
+    {
+      "value": 0.008642168529331685,
+      "surrogate": -0.020942278625443577,
+      "entropy": 15.58083758354187
+    },
+    {
+      "value": 0.009320957958698273,
+      "surrogate": -0.02066395492583979,
+      "entropy": 15.278242206573486
+    },
+    {
+      "value": 0.010259802266955376,
+      "surrogate": -0.021361669909674676,
+      "entropy": 14.817099618911744
+    }
+  ],
+  "policy_parameter_max_change": 0.37361007928848267,
+  "finite_policy_parameters": true,
+  "terminal_bootstrap_samples": 4096,
+  "elapsed_seconds": 26.674550510011613,
+  "robot_xml": "robot.xml",
+  "robot_xml_sha256": "8ae0d89041950d565bbcd6272ab87317f46132ff1eef99b922782ecbe2b95308",
+  "action_scale": 1.0,
+  "peak_contacts_across_worlds": 72942,
+  "physics_cuda_graph": true,
+  "motor_graph_replays": [
+    1534,
+    1534
+  ],
+  "contact_capacity_across_worlds": 286720,
+  "contact_capacity_checked_each_physics_step": true,
+  "logging": "local TensorBoard",
+  "upload_model": false,
+  "limitation": "A short PPO smoke validates the training path; it does not demonstrate learned walking or SC0090 sim2real.",
+  "iteration_timing": [
+    {
+      "iteration": 0,
+      "collection_s": 1.9303007125854492,
+      "learning_s": 0.3057742118835449,
+      "wall_s": 2.7895577889867127
+    },
+    {
+      "iteration": 1,
+      "collection_s": 1.3710877895355225,
+      "learning_s": 0.20794677734375,
+      "wall_s": 1.7192309512756765
+    },
+    {
+      "iteration": 2,
+      "collection_s": 1.3167505264282227,
+      "learning_s": 0.20642638206481934,
+      "wall_s": 1.572385552804917
+    },
+    {
+      "iteration": 3,
+      "collection_s": 1.2931618690490723,
+      "learning_s": 0.21294522285461426,
+      "wall_s": 1.5585683002136648
+    },
+    {
+      "iteration": 4,
+      "collection_s": 1.312830924987793,
+      "learning_s": 0.20481538772583008,
+      "wall_s": 1.5682223928160965
+    },
+    {
+      "iteration": 5,
+      "collection_s": 1.3076014518737793,
+      "learning_s": 0.20812439918518066,
+      "wall_s": 1.565378698054701
+    },
+    {
+      "iteration": 6,
+      "collection_s": 1.307673692703247,
+      "learning_s": 0.2098550796508789,
+      "wall_s": 1.5622128918766975
+    },
+    {
+      "iteration": 7,
+      "collection_s": 1.3017969131469727,
+      "learning_s": 0.20474720001220703,
+      "wall_s": 1.5523143270984292
+    },
+    {
+      "iteration": 8,
+      "collection_s": 1.2894904613494873,
+      "learning_s": 0.21106410026550293,
+      "wall_s": 1.5502070458605886
+    },
+    {
+      "iteration": 9,
+      "collection_s": 1.2897284030914307,
+      "learning_s": 0.20899176597595215,
+      "wall_s": 1.5500891413539648
+    },
+    {
+      "iteration": 10,
+      "collection_s": 1.285871982574463,
+      "learning_s": 0.2056879997253418,
+      "wall_s": 1.5390365100465715
+    },
+    {
+      "iteration": 11,
+      "collection_s": 1.2751028537750244,
+      "learning_s": 0.209808349609375,
+      "wall_s": 1.5301048369146883
+    },
+    {
+      "iteration": 12,
+      "collection_s": 1.2818615436553955,
+      "learning_s": 0.21810269355773926,
+      "wall_s": 1.5475016017444432
+    },
+    {
+      "iteration": 13,
+      "collection_s": 1.3044471740722656,
+      "learning_s": 0.21078062057495117,
+      "wall_s": 1.5634677270427346
+    },
+    {
+      "iteration": 14,
+      "collection_s": 1.2729918956756592,
+      "learning_s": 0.21183443069458008,
+      "wall_s": 1.53483253903687
+    },
+    {
+      "iteration": 15,
+      "collection_s": 1.2742547988891602,
+      "learning_s": 0.20787739753723145,
+      "wall_s": 1.5315586188808084
+    }
+  ],
+  "throughput": {
+    "warmup_updates": 3,
+    "measured_updates": 13,
+    "median_wall_s": 1.5502070458605886,
+    "median_end_to_end_steps_per_s": 126826.92968335349,
+    "median_collection_steps_per_s": 152441.39737384862,
+    "aggregate_wall_steps_per_s": 126821.8761462887
+  },
+  "onnx_exported": true,
+  "runtime": "microduck-v2-sc0090-official-baseline-v1",
+  "feedback": "official-joint-noise-delay-and-encoder-bias",
+  "motor_sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+  "onnx_cpu_inference": {
+    "input": [
+      1,
+      61
+    ],
+    "output": [
+      1,
+      14
+    ],
+    "metadata_joint_count": 14,
+    "normalizer_parity_max_error": 2.2351741790771484e-07
+  }
+}

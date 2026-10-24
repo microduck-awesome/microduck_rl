@@ -1,0 +1,98 @@
+{
+  "status": "PASS",
+  "pid": 1363550,
+  "argv": [
+    "bash",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/standup-allocation-003/scripts/v2_python.sh",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/standup-allocation-003/scripts/train_v2_standup.py",
+    "--task",
+    "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+    "--device",
+    "cuda:1",
+    "--num-envs",
+    "8192",
+    "--iterations",
+    "1000",
+    "--eval-interval",
+    "250",
+    "--eval-samples",
+    "128",
+    "--preflight",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/qualification/standup-allocation-003/batch/report.json",
+    "--resume",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/formal/standup-allocation-002/checkpoint_001000.pt",
+    "--output",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/formal/standup-allocation-003"
+  ],
+  "cwd": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/standup-allocation-003",
+  "started_unix": 1792806202.7211676,
+  "qualification_hashes": {
+    "smoke": "e8497f41ff89adfd2bf218c07ae9ebe72e20e091530268953a28990bf8ab9561",
+    "batch": "5156e5bb596c86ad49996d5892b9ea4154d2af914a22d2999243a7dfae0d1118"
+  },
+  "parent_sha256": "f196b135016d18d757ec6ee11739e93e455d5e425d1d27d553b71a51fe603344",
+  "document_review_sha256": "5ebf5ccd0248f42d2f789ed80146f911f923125cf960d97edea5c26c4596604a",
+  "returncode": 0,
+  "ended_unix": 1792807915.9735627,
+  "completed_updates": 2000,
+  "checkpoint_hashes": {
+    "resume_002000.pt": "78bf56d5eca0c225894769966d0268a035d5494b45bc36db359adca6afad3826",
+    "model_1999.pt": "95ad1f58118fff3e489f4a243dee4689e8f1e7570469e804dba0fbcb9435aa2b",
+    "checkpoint_001500.pt": "a3d952e6445ae22bbfa529297ce703ccb9822979386a2dbaee64136a2c8daab8",
+    "model_1249.pt": "4a0349771e17d1d1de75f482948a2d52beff52b5470f82d427ebe8d8c100b790",
+    "model_1000.pt": "5db06fb2946df690a1a869810a0ed31c389849e9474b45914c54eacb100232f3",
+    "checkpoint_002000.pt": "976b6a9358e6dda222a8898fc690ea9c8ba5eb0902cfe98095ea3c7d1ad42bb1",
+    "checkpoint_001750.pt": "415661141cd50a941de7c34b3cf11abab4c24efdbd87f496a288ad74f9106e8d",
+    "model_1250.pt": "bbbb01ccbda0cf81a5a2bb40891bdb9780ad806d92990822f4be23198f9f1b65",
+    "model_1750.pt": "f77cbd109f3458cac32216b7c90cf89c1f14aa4b586b50b0a6e6272354b0f79b",
+    "model_1500.pt": "47ee31512e167db49d034b66e7d77701c5cb4d465aa663e5d551e7fdddef7d23",
+    "resume_001750.pt": "bfc6b176592529e2c08cb0879b0169f78cb071bcd7b047690b36806224c0530e",
+    "model_1749.pt": "b8dfa97ead0502954e7ca662aa779fe18e22ccbff537e314814c488938daaa0b",
+    "resume_001250.pt": "61188f94b043094041a42e5eafa56932573f785308989f13b23c0b8e3159e714",
+    "resume_001500.pt": "332e82198554e1a1c94f641c495a203aa894c4943d56846dcd4b52817b38d184",
+    "model_1499.pt": "b81a97e8bd925d542a480303b4f7e9a06dd25dfff26768affd2b20415abfef23",
+    "checkpoint_001250.pt": "09f038db3501d9cbe7a3af78eca42319ad468300f4284a4ff1681d62ba2ad8b1"
+  },
+  "run_sha256": "261e1b491c2f86071a0841f95d8990e847c81469245fb112cc85e8389b16e901",
+  "native_recovery": {
+    "stage": 5,
+    "last_assessment_step": 30000,
+    "polish": true,
+    "trials": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "wins": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "rates": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "total_trials": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

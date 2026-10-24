@@ -1,0 +1,83 @@
+{
+  "status": "PASS",
+  "pid": 1343858,
+  "argv": [
+    "bash",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/standup-allocation-001/scripts/v2_python.sh",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/publication/repro/sc0090-v2/strict3762-20261024/tools/historical_entry.py",
+    "--script",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/standup-allocation-001/scripts/train_v2_standup.py",
+    "--event-report",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/formal/standup-allocation-001/historical-stop-event.json",
+    "--stop-after",
+    "12",
+    "--",
+    "--task",
+    "Mjlab-StandUp-Flat-MicroDuck-V2-Official-Baseline",
+    "--device",
+    "cuda:1",
+    "--iterations",
+    "1000",
+    "--preflight",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/qualification/standup-allocation-001/batch/report.json",
+    "--output",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/formal/standup-allocation-001"
+  ],
+  "cwd": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/sources/standup-allocation-001",
+  "started_unix": 1792804436.5350044,
+  "qualification_hashes": {
+    "smoke": "93f3667f0d09588d3a78f8b71b2b90164b8aa861184a686db79df2c860513d25",
+    "batch": "a5e3dba8c070af4d913bacb86ba329959ac69e27770f3b1b661212c37dc1f028"
+  },
+  "parent_sha256": null,
+  "document_review_sha256": "5ebf5ccd0248f42d2f789ed80146f911f923125cf960d97edea5c26c4596604a",
+  "returncode": 0,
+  "ended_unix": 1792804497.9598408,
+  "completed_updates": 12,
+  "checkpoint_hashes": {
+    "checkpoint_000012.pt": "bf01b6b8b14aefd785565dc92908aa3364bc49652429065108a0d66808d54018",
+    "model_0.pt": "35e1a29af1f9de5780f6563d9de0ed48ef0e53a602b6ff647fdcf76556aee1bc"
+  },
+  "run_sha256": "11568b478b3b090a3813e534c188afaf19290fd585ae8d53f6f8cd2031f9ba0a",
+  "native_recovery": {
+    "stage": 0,
+    "last_assessment_step": 0,
+    "polish": false,
+    "trials": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "wins": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "rates": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "total_trials": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

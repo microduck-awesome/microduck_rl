@@ -1,6 +1,6 @@
 """Launch one unchanged historical allocation after its reviewed qualification gates."""
 from pathlib import Path
-import argparse, fcntl, hashlib, json, os, re, subprocess, time
+import argparse, fcntl, hashlib, json, os, re, signal, subprocess, time
 ROOT=Path(__file__).resolve().parents[1]
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def read(p):return json.loads(p.read_text())
@@ -11,6 +11,12 @@ def canonical(x):
  return x
 
 def main():
+ child=None;stopping=False
+ def stop(*_):
+  nonlocal stopping
+  stopping=True
+  if child is not None and child.poll() is None:child.send_signal(signal.SIGTERM)
+ signal.signal(signal.SIGTERM,stop);signal.signal(signal.SIGINT,stop)
  parser=argparse.ArgumentParser();parser.add_argument('--phase',type=int,required=True,choices=range(10));a=parser.parse_args()
  review=read(ROOT/'document-review.json');assert review['status']=='PASS_FOR_QUALIFICATION_ONLY'
  for name,h in review['locked_files'].items():assert sha(ROOT/name)==h,('Changed reviewed file',name)
@@ -58,13 +64,15 @@ def main():
  with (formal/f'{row["name"]}-config.log').open('w') as log:
   subprocess.run(['bash',row['wrapper'],str(ROOT/'tools/check_phase_config.py'),'--phase',row['name'],'--output',str(check)],cwd=row['source'],env=env,stdout=log,stderr=subprocess.STDOUT,check=True)
  assert read(check)['status']=='PASS'
+ assert not stopping,'Stop requested before formal launch'
  argv=['bash',row['wrapper'],*row['launch_argv']]
  receipt=dict(status='RUNNING',pid=os.getpid(),argv=argv,cwd=row['source'],started_unix=time.time(),qualification_hashes=proof,parent_sha256=sha(parent) if parent else None,document_review_sha256=sha(ROOT/'document-review.json'))
  record=formal/f'{row["name"]}-process.json';record.write_text(json.dumps(receipt,indent=2)+'\n')
  with (formal/f'{row["name"]}.log').open('w') as log:
-  result=subprocess.run(argv,cwd=row['source'],env=env,stdout=log,stderr=subprocess.STDOUT)
- receipt.update(status='EXITED',returncode=result.returncode,ended_unix=time.time());record.write_text(json.dumps(receipt,indent=2)+'\n')
- assert result.returncode==0,('Original trainer failed; preserve attempt',out)
+  child=subprocess.Popen(argv,cwd=row['source'],env=env,stdout=log,stderr=subprocess.STDOUT)
+  returncode=child.wait();child=None
+ receipt.update(status='EXITED',returncode=returncode,ended_unix=time.time());record.write_text(json.dumps(receipt,indent=2)+'\n')
+ assert returncode==0 and not stopping,('Original trainer failed; preserve attempt',out)
  status=read(out/'status.json');assert status['status']==row['expected_terminal_status'] and status['completed_updates']==row['expected_completed_updates']
  run=read(out/'run.json');assert run['source_sha256']==hist['source_files'] and run['dependencies']==hist['dependencies']
  cfg=read(check.with_suffix('.config.json'))

@@ -1,0 +1,46 @@
+{
+  "status": "PASS_SAMPLED_RUNTIME_CHECK",
+  "verified_unix": 1792806057.712118,
+  "completed_updates": 930,
+  "common_step_counter": 22320,
+  "historical_course_node": {
+    "step": 12000,
+    "ranges": [
+      [
+        -0.17,
+        0.17
+      ],
+      [
+        -0.17,
+        0.17
+      ],
+      [
+        -0.21,
+        0.21
+      ],
+      [
+        -0.047,
+        0.047
+      ]
+    ]
+  },
+  "current_ranges": [
+    [
+      -0.17,
+      0.17
+    ],
+    [
+      -0.17,
+      0.17
+    ],
+    [
+      -0.21,
+      0.21
+    ],
+    [
+      -0.047,
+      0.047
+    ]
+  ],
+  "scope": "One runtime sample, not proof of unvisited later curriculum nodes"
+}

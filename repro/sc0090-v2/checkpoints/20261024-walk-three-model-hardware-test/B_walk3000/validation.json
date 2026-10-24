@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "inputs": 601,
+  "onnx_checkpoint_max_absolute_error": 9.5367431640625e-07,
+  "weights_and_normalizer_exact": true,
+  "mdp_payload_exact": true,
+  "crc_and_source_sha_verified": true,
+  "runtime": "microduck-v2-sc0090-native-o0-walking-v1",
+  "runtime_id_hex": "0x11D720E4",
+  "hardware_tested": false
+}

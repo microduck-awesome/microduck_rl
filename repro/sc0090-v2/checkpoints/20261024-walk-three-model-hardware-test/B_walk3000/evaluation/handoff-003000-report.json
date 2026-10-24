@@ -1,0 +1,369 @@
+{
+  "status": "DIAGNOSTIC_COMPLETE",
+  "rise_sha256": "125a03f483dd320898ec654799e20551cd0c03e501b80dedb054eafdb2b89df3",
+  "walk_sha256": "2a289ff89da652899436426b7e46a571c1005b733acc2949f503f51dd897ab55",
+  "evaluator_sha256": "883ed2bfd98891e5b86cd351f566af86ef94a405908e7d5c863022d61588422a",
+  "self_contact_sampling": "four-substep OR plus post-forward sample",
+  "own_normalizers_unchanged": true,
+  "physics": "released rise model with its mature DR, same dynamics as walking",
+  "results": [
+    {
+      "seed": 2026102403,
+      "buckets": [
+        {
+          "bucket": "standing",
+          "trials": 16,
+          "stable_at_handoff": 16,
+          "survived_handoff_walk_home": 16,
+          "near_limit_longest_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "bucket": "sitting",
+          "trials": 16,
+          "stable_at_handoff": 16,
+          "survived_handoff_walk_home": 16,
+          "near_limit_longest_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "bucket": "prone",
+          "trials": 16,
+          "stable_at_handoff": 16,
+          "survived_handoff_walk_home": 16,
+          "near_limit_longest_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "bucket": "frontier",
+          "trials": 16,
+          "stable_at_handoff": 16,
+          "survived_handoff_walk_home": 16,
+          "near_limit_longest_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "bucket": "left_side",
+          "trials": 16,
+          "stable_at_handoff": 16,
+          "survived_handoff_walk_home": 16,
+          "near_limit_longest_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "bucket": "right_side",
+          "trials": 16,
+          "stable_at_handoff": 15,
+          "survived_handoff_walk_home": 14,
+          "near_limit_longest_s": [
+            0.05999999865889549,
+            0.05999999865889549,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.03999999910593033,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "bucket": "supine",
+          "trials": 16,
+          "stable_at_handoff": 16,
+          "survived_handoff_walk_home": 16,
+          "near_limit_longest_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "no_reset_on_switch": true,
+      "phases": [
+        [
+          "rise",
+          8
+        ],
+        [
+          "handoff_idle",
+          5
+        ],
+        [
+          "walk",
+          20
+        ],
+        [
+          "home",
+          60
+        ]
+      ]
+    },
+    {
+      "seed": 2026102404,
+      "buckets": [
+        {
+          "bucket": "standing",
+          "trials": 16,
+          "stable_at_handoff": 16,
+          "survived_handoff_walk_home": 16,
+          "near_limit_longest_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "bucket": "sitting",
+          "trials": 16,
+          "stable_at_handoff": 16,
+          "survived_handoff_walk_home": 16,
+          "near_limit_longest_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "bucket": "prone",
+          "trials": 16,
+          "stable_at_handoff": 16,
+          "survived_handoff_walk_home": 16,
+          "near_limit_longest_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "bucket": "frontier",
+          "trials": 16,
+          "stable_at_handoff": 16,
+          "survived_handoff_walk_home": 16,
+          "near_limit_longest_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "bucket": "left_side",
+          "trials": 16,
+          "stable_at_handoff": 16,
+          "survived_handoff_walk_home": 16,
+          "near_limit_longest_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "bucket": "right_side",
+          "trials": 16,
+          "stable_at_handoff": 16,
+          "survived_handoff_walk_home": 16,
+          "near_limit_longest_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "bucket": "supine",
+          "trials": 16,
+          "stable_at_handoff": 16,
+          "survived_handoff_walk_home": 16,
+          "near_limit_longest_s": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "no_reset_on_switch": true,
+      "phases": [
+        [
+          "rise",
+          8
+        ],
+        [
+          "handoff_idle",
+          5
+        ],
+        [
+          "walk",
+          20
+        ],
+        [
+          "home",
+          60
+        ]
+      ]
+    }
+  ],
+  "full_acceptance": false,
+  "limitation": "Survival and 14-joint switch diagnostics; HOME quality remains in fixed-command battery"
+}

@@ -1,0 +1,385 @@
+{
+  "schema": 1,
+  "purpose": "User-authorized three walking candidates for hardware comparison; not simulation or hardware qualification",
+  "models": [
+    {
+      "id": "A_walk3500",
+      "completed_updates": 3500
+    },
+    {
+      "id": "B_walk3000",
+      "completed_updates": 3000
+    },
+    {
+      "id": "C_walk3750",
+      "completed_updates": 3750
+    }
+  ],
+  "files": [
+    {
+      "path": "A_walk3500/A_walk3500.json",
+      "bytes": 4158,
+      "sha256": "34e36cffd9a6780985bbc0efdc50b8bf8a8aae016a755ca90476268e021af3f1"
+    },
+    {
+      "path": "A_walk3500/A_walk3500.mdp",
+      "bytes": 791712,
+      "sha256": "1c100bc7d99e53e7602fdc2eadc7d04e7655b32d93ca2bd62405b5361be992d0"
+    },
+    {
+      "path": "A_walk3500/checkpoint-source-sha256.json",
+      "bytes": 44165,
+      "sha256": "274d2a8d50f4d53738cc7433651250534d1cd4215d77315cb8246f734d12c9bd"
+    },
+    {
+      "path": "A_walk3500/checkpoint.pt",
+      "bytes": 4905949,
+      "sha256": "30eb73ccb0842771cf5a010ee62c0dd3717a6d0e80e934e924b46ed01f815e04"
+    },
+    {
+      "path": "A_walk3500/converter.json",
+      "bytes": 4158,
+      "sha256": "34e36cffd9a6780985bbc0efdc50b8bf8a8aae016a755ca90476268e021af3f1"
+    },
+    {
+      "path": "A_walk3500/evaluation/all14-clearance-003500.json",
+      "bytes": 10796,
+      "sha256": "aee19c02164d7f6e9fc4a44b8e77ddfa35d4431a6013d86f3011eac2fdc6a7b8"
+    },
+    {
+      "path": "A_walk3500/evaluation/artifact-verification-003500.json",
+      "bytes": 2692,
+      "sha256": "92d71f9d5e6b560b1e7cecd135f3011c84a979262c8a930cd6c9ed486ff69681"
+    },
+    {
+      "path": "A_walk3500/evaluation/evaluation-003500-adjudication.json",
+      "bytes": 28794,
+      "sha256": "64d5bdfa237848de1ce03b6243f6759e3d6d80a865765f7c26791b8a4f5621e3"
+    },
+    {
+      "path": "A_walk3500/evaluation/evaluation-003500-report.json",
+      "bytes": 358196,
+      "sha256": "c896cb0f51fb3bbde93284550aa158da27e90d56f6315947b26f26529eb8b48a"
+    },
+    {
+      "path": "A_walk3500/evaluation/handoff-003500-quality-audit.json",
+      "bytes": 52714,
+      "sha256": "2a7e09d6472f500980b389be2b1e8d607c1f5957e4f4cf8297288ba0ce07acdb"
+    },
+    {
+      "path": "A_walk3500/evaluation/handoff-003500-report.json",
+      "bytes": 7552,
+      "sha256": "c4490a2aef3c29b7c702cf9ce6ff8fad2d6a6f27cec46b4b238ffb25464601dc"
+    },
+    {
+      "path": "A_walk3500/evaluation/head-composition-003500-adjudication.json",
+      "bytes": 30122,
+      "sha256": "e0988e3c997b2fa6b264e2b01b99c4a1765e78b8166893edff8cc49a9cefd0e2"
+    },
+    {
+      "path": "A_walk3500/evaluation/head-composition-003500-report.json",
+      "bytes": 336590,
+      "sha256": "892986d60c262db37ebef3a5d53eeea8ddd745030af27f15ac29d94fdf6e2cbf"
+    },
+    {
+      "path": "A_walk3500/policy.onnx",
+      "bytes": 794216,
+      "sha256": "d54028a62cf8c76b55f1ccd1aa7a3b04307291e7d93b80a61d4ec2cf72e73b05"
+    },
+    {
+      "path": "A_walk3500/provenance.json",
+      "bytes": 908,
+      "sha256": "d800457edf2a36749c23d941f2bcb8ac0973b27dd794533dbe04858495b93218"
+    },
+    {
+      "path": "A_walk3500/runtime-contract.json",
+      "bytes": 2753,
+      "sha256": "7ee05cea7d811147bb1f9579b37fe33477222e3671d84d93fcbbd6b1ccb335ff"
+    },
+    {
+      "path": "A_walk3500/training-run.json",
+      "bytes": 123517,
+      "sha256": "f695e91944dac6fb8ed7875176871871ac9906ed1f0b0b8eae692aee734805b4"
+    },
+    {
+      "path": "A_walk3500/validation.json",
+      "bytes": 328,
+      "sha256": "d6a278d8ad400214224138e2674febd531dd6e4f6f37d6d2273e54e880f0d7df"
+    },
+    {
+      "path": "A_walk3500/verification-observations.npy",
+      "bytes": 107732,
+      "sha256": "accb99d3e45c20f708cd8af9087316e3fc56d106ece7edf6513859e8cbf24b8b"
+    },
+    {
+      "path": "A_walk3500_mass600p94g.onnx",
+      "bytes": 794216,
+      "sha256": "d54028a62cf8c76b55f1ccd1aa7a3b04307291e7d93b80a61d4ec2cf72e73b05"
+    },
+    {
+      "path": "B_walk3000/B_walk3000.json",
+      "bytes": 4162,
+      "sha256": "205853267da8899b948feac38af3aff3ee76075835da87b0a2186702d56102af"
+    },
+    {
+      "path": "B_walk3000/B_walk3000.mdp",
+      "bytes": 791712,
+      "sha256": "7b26418b9b8f14f6e427a3b229f65f0474ed47299db45ae134e13109fbc1b3c1"
+    },
+    {
+      "path": "B_walk3000/checkpoint-source-sha256.json",
+      "bytes": 44165,
+      "sha256": "274d2a8d50f4d53738cc7433651250534d1cd4215d77315cb8246f734d12c9bd"
+    },
+    {
+      "path": "B_walk3000/checkpoint.pt",
+      "bytes": 4905949,
+      "sha256": "2a289ff89da652899436426b7e46a571c1005b733acc2949f503f51dd897ab55"
+    },
+    {
+      "path": "B_walk3000/converter.json",
+      "bytes": 4162,
+      "sha256": "205853267da8899b948feac38af3aff3ee76075835da87b0a2186702d56102af"
+    },
+    {
+      "path": "B_walk3000/evaluation/all14-clearance-003000.json",
+      "bytes": 10744,
+      "sha256": "45d5ea66ad5bb0dc0979b084ebc8d30a7ea04c7ce05c12420917e2a1bad09f65"
+    },
+    {
+      "path": "B_walk3000/evaluation/artifact-verification-003000.json",
+      "bytes": 2692,
+      "sha256": "6bac1a2ea0c42ec6891fecd847fa20fe1bbbc5c75482f2621ff4c456b1cfc343"
+    },
+    {
+      "path": "B_walk3000/evaluation/evaluation-003000-adjudication.json",
+      "bytes": 28977,
+      "sha256": "597b32c7b78853f31a1dc080646b725a8cfdee4d42a7c39368d6ca23555cfa8f"
+    },
+    {
+      "path": "B_walk3000/evaluation/evaluation-003000-report.json",
+      "bytes": 358382,
+      "sha256": "5fd5793dfd1bdc5f01ccefdc3229b0d81b4e229ed3f6b1f250bb5405403b4bf2"
+    },
+    {
+      "path": "B_walk3000/evaluation/handoff-003000-quality-audit.json",
+      "bytes": 52713,
+      "sha256": "6ccd2343338c1d16006cd6ae4212ea94cf0ecad9eed7abbaf6a8b896b5721640"
+    },
+    {
+      "path": "B_walk3000/evaluation/handoff-003000-report.json",
+      "bytes": 7535,
+      "sha256": "1c69c86648cc02740d6e3c63e0d47e2ae239908597a267b3a6eaee8356172a3d"
+    },
+    {
+      "path": "B_walk3000/evaluation/head-composition-003000-adjudication.json",
+      "bytes": 29911,
+      "sha256": "7c6cd737ea1691804491c603d27e98bb91e847c14ce7cb7ba742774fea7749ef"
+    },
+    {
+      "path": "B_walk3000/evaluation/head-composition-003000-report.json",
+      "bytes": 336308,
+      "sha256": "2e207c91cb67475501a7c1a50856be51601a56b6b2141871ceb59469749043c9"
+    },
+    {
+      "path": "B_walk3000/policy.onnx",
+      "bytes": 794216,
+      "sha256": "63bd6964392be740e210425e525eaf53bb1332e129ef7250975ebe6abd93fa40"
+    },
+    {
+      "path": "B_walk3000/provenance.json",
+      "bytes": 908,
+      "sha256": "1db720ba0e25452af3b1d65518532ed34cf576fa67e454659a8ff1e388db8ba6"
+    },
+    {
+      "path": "B_walk3000/runtime-contract.json",
+      "bytes": 2753,
+      "sha256": "41ba31b5fd3d67d2cd80f096f55e49ba1b94a75dbe1b56baf2178592f7a42eaa"
+    },
+    {
+      "path": "B_walk3000/training-run.json",
+      "bytes": 123512,
+      "sha256": "2c971ac37a38121947e261e1f014caf47769a83370baddff231b28acdd553153"
+    },
+    {
+      "path": "B_walk3000/validation.json",
+      "bytes": 328,
+      "sha256": "541939a8b5486ed76a12f7243729306b390c81e26de41fc42d2affb3c87de237"
+    },
+    {
+      "path": "B_walk3000/verification-observations.npy",
+      "bytes": 115296,
+      "sha256": "60f6be08722cb051e6dd1f3dd7335a6ba309e2630f8dc52aa96df74bcbdff1aa"
+    },
+    {
+      "path": "B_walk3000_mass600p94g.onnx",
+      "bytes": 794216,
+      "sha256": "63bd6964392be740e210425e525eaf53bb1332e129ef7250975ebe6abd93fa40"
+    },
+    {
+      "path": "C_walk3750/C_walk3750.json",
+      "bytes": 4160,
+      "sha256": "ed61fe1da6c1bcd2c74bdaf8e7253f78761dfbe81158f59358bc0db0e7c26e34"
+    },
+    {
+      "path": "C_walk3750/C_walk3750.mdp",
+      "bytes": 791712,
+      "sha256": "b1fad50f21c42f1b65154659687e72ac8291ffcc24b558a90eca386921771e62"
+    },
+    {
+      "path": "C_walk3750/checkpoint-source-sha256.json",
+      "bytes": 44165,
+      "sha256": "274d2a8d50f4d53738cc7433651250534d1cd4215d77315cb8246f734d12c9bd"
+    },
+    {
+      "path": "C_walk3750/checkpoint.pt",
+      "bytes": 4905949,
+      "sha256": "8f8f9f1185437529ebf91f015171baf599c4f53aaa5fbaa08365c7e4498142b1"
+    },
+    {
+      "path": "C_walk3750/converter.json",
+      "bytes": 4160,
+      "sha256": "ed61fe1da6c1bcd2c74bdaf8e7253f78761dfbe81158f59358bc0db0e7c26e34"
+    },
+    {
+      "path": "C_walk3750/evaluation/all14-clearance-003750.json",
+      "bytes": 10855,
+      "sha256": "af5ecee12e1330ea3ce6f15153ae88c5ba935788db41ab599d03b2a90117f487"
+    },
+    {
+      "path": "C_walk3750/evaluation/artifact-verification-003750.json",
+      "bytes": 2693,
+      "sha256": "9a941b52e278750ef3cb9d6941f0c68317b17d7459f4e3b1d2831203a7cb887b"
+    },
+    {
+      "path": "C_walk3750/evaluation/evaluation-003750-adjudication.json",
+      "bytes": 30181,
+      "sha256": "540603fb1d628dfc0d85f6ce031418b8d0c7492d3bc0882f45abcd508c7fd1d8"
+    },
+    {
+      "path": "C_walk3750/evaluation/evaluation-003750-report.json",
+      "bytes": 357929,
+      "sha256": "38bfcc867c61023430a852eebe7e0c858650cdba6b42bf1bc40cb3ae1481c9f4"
+    },
+    {
+      "path": "C_walk3750/evaluation/handoff-003750-quality-audit.json",
+      "bytes": 52745,
+      "sha256": "250a0e68dd45bcd41d9cfa093377d06862f33283053c0821b48e2f76f6c3f601"
+    },
+    {
+      "path": "C_walk3750/evaluation/handoff-003750-report.json",
+      "bytes": 7554,
+      "sha256": "ec25715fa28a4d70576a0f7c600f1270bd9373f90f5b9f55e63895b26556ec47"
+    },
+    {
+      "path": "C_walk3750/evaluation/head-composition-003750-adjudication.json",
+      "bytes": 30505,
+      "sha256": "e425ef2baaf1a58807a0f32a3436af9d2d72c2cf4c1f91ff328171c1103e368e"
+    },
+    {
+      "path": "C_walk3750/evaluation/head-composition-003750-report.json",
+      "bytes": 336192,
+      "sha256": "ec04789204aaa258f6a19b7dcde7b2c7d517cccac9dec49ea2de5911b11a4d9d"
+    },
+    {
+      "path": "C_walk3750/policy.onnx",
+      "bytes": 794216,
+      "sha256": "5f13722ff19f1c2ecb64a3d3082e811e5e13fc1a721e9c7fed189779b6802cbe"
+    },
+    {
+      "path": "C_walk3750/provenance.json",
+      "bytes": 908,
+      "sha256": "b5fa4b077d55aab6dfbb2bf13271bc12348df91a89d735f794a875adfea6f94f"
+    },
+    {
+      "path": "C_walk3750/runtime-contract.json",
+      "bytes": 2753,
+      "sha256": "e1f620c63c2e13e53358d654be22db262682e09aef4afb954a2c58f9b4fee309"
+    },
+    {
+      "path": "C_walk3750/training-run.json",
+      "bytes": 123517,
+      "sha256": "851f8d9eb354080541699871cf467fee45677f528edbc4391471cb2c7bee3c75"
+    },
+    {
+      "path": "C_walk3750/validation.json",
+      "bytes": 330,
+      "sha256": "9617d8c6277a7860d2a21f4aea5af9f4a09beaae75f7127a8e046c9b975ee544"
+    },
+    {
+      "path": "C_walk3750/verification-observations.npy",
+      "bytes": 46244,
+      "sha256": "98df0572c39c4e04aad5d49b699c716ced77e7b07f048d0c4abb2c2c4c0d8c27"
+    },
+    {
+      "path": "C_walk3750_mass600p94g.onnx",
+      "bytes": 794216,
+      "sha256": "5f13722ff19f1c2ecb64a3d3082e811e5e13fc1a721e9c7fed189779b6802cbe"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 11351,
+      "sha256": "2d3fd9ffffa70a4307498ec630b14a6b4731e010f8ddda92686eaf65733c2dfe"
+    },
+    {
+      "path": "LICENSE-MODELS.md",
+      "bytes": 1552,
+      "sha256": "33770e7b20f8888d4a7e5668c63f1b6d0f76319a4eded206c1cc6870e9864e1d"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5536,
+      "sha256": "5f76acd9134893c2b8dccb0a8da336e7071c654f55202db3a4d7ca60517007c8"
+    },
+    {
+      "path": "SHA256SUMS",
+      "bytes": 558,
+      "sha256": "616ff95c62bd9d032342dbd37c9f5d704436b3597d7703f5213ceade0ecb6e96"
+    },
+    {
+      "path": "comparison-summary.json",
+      "bytes": 5270,
+      "sha256": "535de8a0d092109bd92ff03ff42188182c6cfe8a35f69bb4c4297a86fe0843c3"
+    },
+    {
+      "path": "hardware-results-template.csv",
+      "bytes": 2378,
+      "sha256": "46265236b9aae5e4e1b10f4e9061834484d8106472bd518c24b004bec35abaee"
+    },
+    {
+      "path": "package_and_verify.py",
+      "bytes": 9878,
+      "sha256": "2b2bd43e0db55091ea604ed5d41c3d45acce34c8659ce07117f56089db8b58f2"
+    },
+    {
+      "path": "source-archive.json",
+      "bytes": 51732,
+      "sha256": "23bce6fd3855b6ed9435ad095f2847710622312917c4175d95b362c4e3bc6d03"
+    },
+    {
+      "path": "tools/contracts/v2-rise-candidates.json",
+      "bytes": 38,
+      "sha256": "596ee112ff11b91f559f8edca626cd51105af7d6ab32a7224cb8a8c59b96ba52"
+    },
+    {
+      "path": "tools/contracts/v2-walking-candidates.json",
+      "bytes": 6568,
+      "sha256": "9ac26629d8806d72506d51cff24cbabe0a2a81805587392f9934d70070b0180f"
+    },
+    {
+      "path": "tools/convert_policy.py",
+      "bytes": 8426,
+      "sha256": "8b355e1589268f540c316efb62302f5272187c485d3b2ba3aff23ad89a5aa809"
+    },
+    {
+      "path": "tools/v2_contract.py",
+      "bytes": 5064,
+      "sha256": "f487f25796ce83758af405ec7fbc4aec09a612a37dd94bc8353d79c2276e277b"
+    },
+    {
+      "path": "training-code.tar.gz",
+      "bytes": 496308,
+      "sha256": "92e5ed309f3a37cc7665bd023206633a38ef3d2ba4f67fe66736163df651a1ae"
+    }
+  ]
+}

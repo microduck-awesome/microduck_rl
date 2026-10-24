@@ -1,0 +1,185 @@
+{
+  "scope": "23 zero-head cases x2 seeds x16 trials;20s command+60sHOME; velocity medians use full80s survivors after3s warmup; not full qualification",
+  "models": [
+    {
+      "id": "A_walk3500",
+      "update": 3500,
+      "checkpoint_sha256": "30eb73ccb0842771cf5a010ee62c0dd3717a6d0e80e934e924b46ed01f815e04",
+      "neutral_head_trials": 736,
+      "neutral_head_survived": 712,
+      "neutral_head_self_contact_trials": 43,
+      "mean_home_planar_p95": 0.03460690747622563,
+      "maximum_near_limit_s": 0.19999997317790985,
+      "velocity": {
+        "forward_+0.1": {
+          "survived_trials": 32,
+          "median_trial_mean": [
+            0.0035519753582775593,
+            0.00021493146778084338,
+            0.0006178204494062811
+          ]
+        },
+        "forward_+0.2": {
+          "survived_trials": 31,
+          "median_trial_mean": [
+            0.17655794322490692,
+            0.0009755799546837807,
+            0.039835259318351746
+          ]
+        },
+        "forward_+0.4": {
+          "survived_trials": 31,
+          "median_trial_mean": [
+            0.34648415446281433,
+            0.01491062343120575,
+            0.031166791915893555
+          ]
+        },
+        "forward_-0.2": {
+          "survived_trials": 32,
+          "median_trial_mean": [
+            -0.0914536900818348,
+            -0.0011629549553617835,
+            -0.005286468658596277
+          ]
+        },
+        "turn_+0.5": {
+          "survived_trials": 32,
+          "median_trial_mean": [
+            1.4271445479607792e-05,
+            0.0009795157238841057,
+            0.14209666848182678
+          ]
+        },
+        "turn_-0.5": {
+          "survived_trials": 31,
+          "median_trial_mean": [
+            0.00011384359822841361,
+            0.00013314143870957196,
+            -0.15357688069343567
+          ]
+        }
+      }
+    },
+    {
+      "id": "B_walk3000",
+      "update": 3000,
+      "checkpoint_sha256": "2a289ff89da652899436426b7e46a571c1005b733acc2949f503f51dd897ab55",
+      "neutral_head_trials": 736,
+      "neutral_head_survived": 714,
+      "neutral_head_self_contact_trials": 43,
+      "mean_home_planar_p95": 0.03280314924600332,
+      "maximum_near_limit_s": 0.17999997735023499,
+      "velocity": {
+        "forward_+0.1": {
+          "survived_trials": 32,
+          "median_trial_mean": [
+            0.0011628266074694693,
+            1.291952617066272e-05,
+            0.0020479191443882883
+          ]
+        },
+        "forward_+0.2": {
+          "survived_trials": 31,
+          "median_trial_mean": [
+            0.11104970425367355,
+            -0.005577608477324247,
+            0.00142421864438802
+          ]
+        },
+        "forward_+0.4": {
+          "survived_trials": 31,
+          "median_trial_mean": [
+            0.3467406630516052,
+            0.009788860566914082,
+            0.0808039978146553
+          ]
+        },
+        "forward_-0.2": {
+          "survived_trials": 31,
+          "median_trial_mean": [
+            -0.08768463879823685,
+            -0.002667510649189353,
+            -0.0027497306000441313
+          ]
+        },
+        "turn_+0.5": {
+          "survived_trials": 31,
+          "median_trial_mean": [
+            0.00014542373537551612,
+            -0.0008604779723100364,
+            0.11888544261455536
+          ]
+        },
+        "turn_-0.5": {
+          "survived_trials": 32,
+          "median_trial_mean": [
+            8.030271965253633e-05,
+            -0.0007518451457144693,
+            -0.18734363466501236
+          ]
+        }
+      }
+    },
+    {
+      "id": "C_walk3750",
+      "update": 3750,
+      "checkpoint_sha256": "8f8f9f1185437529ebf91f015171baf599c4f53aaa5fbaa08365c7e4498142b1",
+      "neutral_head_trials": 736,
+      "neutral_head_survived": 716,
+      "neutral_head_self_contact_trials": 89,
+      "mean_home_planar_p95": 0.03206837343294983,
+      "maximum_near_limit_s": 0.13999998569488525,
+      "velocity": {
+        "forward_+0.1": {
+          "survived_trials": 32,
+          "median_trial_mean": [
+            0.0007522580926888622,
+            5.301911733113229e-05,
+            0.004813629435375333
+          ]
+        },
+        "forward_+0.2": {
+          "survived_trials": 32,
+          "median_trial_mean": [
+            0.15366311371326447,
+            -0.003466327441856265,
+            -0.014827430248260498
+          ]
+        },
+        "forward_+0.4": {
+          "survived_trials": 32,
+          "median_trial_mean": [
+            0.3347257375717163,
+            -0.0016664713621139526,
+            0.02472679759375751
+          ]
+        },
+        "forward_-0.2": {
+          "survived_trials": 31,
+          "median_trial_mean": [
+            -0.09714646637439728,
+            4.960030491929501e-05,
+            0.03950870409607887
+          ]
+        },
+        "turn_+0.5": {
+          "survived_trials": 32,
+          "median_trial_mean": [
+            -9.872991358861327e-05,
+            -4.675725085689919e-05,
+            0.11521583423018456
+          ]
+        },
+        "turn_-0.5": {
+          "survived_trials": 31,
+          "median_trial_mean": [
+            3.484190892777406e-05,
+            7.488695700885728e-05,
+            -0.14308340847492218
+          ]
+        }
+      }
+    }
+  ]
+}

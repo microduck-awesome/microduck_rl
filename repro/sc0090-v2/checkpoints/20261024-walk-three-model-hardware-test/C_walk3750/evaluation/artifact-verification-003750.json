@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "scope": "artifact schema, source XML identity and ONNX numerical parity only",
+  "behavior_qualified": false,
+  "checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261024/walk3762-anticipation/formal-0003/checkpoint_003750.pt",
+  "onnx": "/home/l40-vm01/data2/experiments/microduck-v2-20261024/walk3762-anticipation/formal-0003/formal-0003.onnx",
+  "checkpoint_sha256": "8f8f9f1185437529ebf91f015171baf599c4f53aaa5fbaa08365c7e4498142b1",
+  "onnx_sha256": "5f13722ff19f1c2ecb64a3d3082e811e5e13fc1a721e9c7fed189779b6802cbe",
+  "collision_xml_sha256": "8ae0d89041950d565bbcd6272ab87317f46132ff1eef99b922782ecbe2b95308",
+  "motor_sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+  "completed_updates": 3750,
+  "input_shape": [
+    1,
+    61
+  ],
+  "output_shape": [
+    1,
+    14
+  ],
+  "joint_names": [
+    "left_hip_yaw",
+    "left_hip_roll",
+    "left_hip_pitch",
+    "left_knee",
+    "left_ankle",
+    "neck_pitch",
+    "head_pitch",
+    "head_yaw",
+    "head_roll",
+    "right_hip_yaw",
+    "right_hip_roll",
+    "right_hip_pitch",
+    "right_knee",
+    "right_ankle"
+  ],
+  "normalizer_embedded": true,
+  "parity_samples": 74,
+  "max_absolute_error": 3.8743019104003906e-07,
+  "actor_normalizer_unchanged": true,
+  "metadata": {
+    "run_path": "local",
+    "joint_names": "left_hip_yaw,left_hip_roll,left_hip_pitch,left_knee,left_ankle,neck_pitch,head_pitch,head_yaw,head_roll,right_hip_yaw,right_hip_roll,right_hip_pitch,right_knee,right_ankle",
+    "joint_stiffness": "1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000",
+    "joint_damping": "0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080",
+    "default_joint_pos": "0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000",
+    "command_names": "twist,head_pose,body_pose",
+    "observation_names": "base_ang_vel,projected_gravity,joint_pos,joint_vel,actions,command,head_command,body_command",
+    "action_scale": "1.0",
+    "microduck_robot": "microduck-v2-sc0090",
+    "microduck_runtime": "microduck-v2-sc0090-official-baseline-v1",
+    "microduck_feedback": "empirical-paired-qv-block-randomization;not-full-S0-O0",
+    "microduck_motor_sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+    "microduck_motor_operating_point": "P15/D30/I0;vin-random-10.2,11.1,12.4V;goal_profile_zeroed",
+    "microduck_deployment": "simulation-baseline-only",
+    "microduck_error_bank_sha256": "d2eaedd5e76d315765f9ceb8f3cdf93baa628d3944b0660331c693822562a0af"
+  },
+  "evaluator_sha256": "79f39e509ff6018727e99875ae8def5defc9819d90407893c753aaf9348f907b"
+}

@@ -25,3 +25,6 @@ repro/sc0090-v2/checkpoints/20261024-rise3762-strict-history/** -text
 # Matplotlib generated figures preserve exact manifest bytes, including whitespace.
 repro/sc0090-v2/checkpoints/20261024-rise3762-strict-history/repro/final-evidence/*.svg -whitespace linguist-generated=true
 repro/sc0090-v2/strict3762-20261024/final-evidence/*.svg -whitespace linguist-generated=true
+
+# Immutable user-requested walking comparison candidates.
+repro/sc0090-v2/checkpoints/20261024-walk-three-model-hardware-test/** -text

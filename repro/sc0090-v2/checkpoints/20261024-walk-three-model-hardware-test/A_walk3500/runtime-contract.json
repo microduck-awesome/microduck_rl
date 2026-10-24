@@ -1,0 +1,132 @@
+{
+  "model_id": "v2_walk3762_A_walk3500_20261024",
+  "observation_dim": 61,
+  "action_dim": 14,
+  "policy_hz": 50,
+  "home_rad": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "action_scale": 1.0,
+  "normalizer_included": true,
+  "normalize_again": false,
+  "joint_names": [
+    "left_hip_yaw",
+    "left_hip_roll",
+    "left_hip_pitch",
+    "left_knee",
+    "left_ankle",
+    "neck_pitch",
+    "head_pitch",
+    "head_yaw",
+    "head_roll",
+    "right_hip_yaw",
+    "right_hip_roll",
+    "right_hip_pitch",
+    "right_knee",
+    "right_ankle"
+  ],
+  "mouth": "independent hold, excluded from policy",
+  "robot_mass_kg": 0.600941825,
+  "training_action_ema": false,
+  "motor": "SC0090 v5 BAM P15/D30/I0",
+  "training_feedback": "paired q/v error blocks, one control-step observation delay",
+  "deployment_contract": {
+    "runtime": "microduck-v2-sc0090-native-o0-walking-v1",
+    "robot": "microduck-v2-sc0090",
+    "task": "velocity_walking",
+    "observer": "native-count-v2-O0",
+    "raw_count_limits": [
+      0,
+      1023
+    ],
+    "command_count_limits": [
+      20,
+      1001
+    ],
+    "sample_hz": 100,
+    "policy_hz": 50,
+    "query_delay_us": 20000,
+    "command_evidence_max_age_us": 25000,
+    "command_confirmation": "native changed-goal readback in the same UART round; shared original 9ms deadline; no inferred ACK",
+    "spike_rejection": false,
+    "o0_valid_samples": 5,
+    "refractory_us": 0,
+    "home": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "action_scale": 1.0,
+    "command_rate_rad_s": null,
+    "action_ema": false,
+    "body": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "head_limit_rad": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "hardware_validated": false,
+    "target_release": "eligible_on_publication_without_extra_policy_period; UART owner rechecks before TX",
+    "twist_limit": [
+      0.4,
+      0.3,
+      1.0
+    ],
+    "source_sha256": "d54028a62cf8c76b55f1ccd1aa7a3b04307291e7d93b80a61d4ec2cf72e73b05",
+    "source_runtime": "microduck-v2-sc0090-official-baseline-v1",
+    "experiment": "new_collision_paired3762_walking_zero_head_hardware_comparison_not_qualified",
+    "candidate_id": "v2_walk3762_A_walk3500_20261024",
+    "original_training_contract_sha256": null
+  },
+  "deployment_runtime": "microduck-v2-sc0090-native-o0-walking-v1",
+  "runtime_id_hex": "0x11D720E4",
+  "head_projection_in_mdp": false,
+  "experiment_head_command": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "experiment_body_command": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "hardware_tested": false,
+  "simulation_acceptance_passed": false
+}

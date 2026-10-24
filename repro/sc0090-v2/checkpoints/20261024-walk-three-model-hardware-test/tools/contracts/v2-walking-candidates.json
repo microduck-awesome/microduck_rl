@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "source_repository": "microduck-awesome/microduck_rl",
+  "release": "20261024-walk-three-model-hardware-test",
+  "deployment": {
+    "runtime": "microduck-v2-sc0090-native-o0-walking-v1",
+    "robot": "microduck-v2-sc0090",
+    "task": "velocity_walking",
+    "observer": "native-count-v2-O0",
+    "raw_count_limits": [
+      0,
+      1023
+    ],
+    "command_count_limits": [
+      20,
+      1001
+    ],
+    "sample_hz": 100,
+    "policy_hz": 50,
+    "query_delay_us": 20000,
+    "command_evidence_max_age_us": 25000,
+    "command_confirmation": "native changed-goal readback in the same UART round; shared original 9ms deadline; no inferred ACK",
+    "spike_rejection": false,
+    "o0_valid_samples": 5,
+    "refractory_us": 0,
+    "home": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "action_scale": 1.0,
+    "command_rate_rad_s": null,
+    "action_ema": false,
+    "body": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "head_limit_rad": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "hardware_validated": false,
+    "target_release": "eligible_on_publication_without_extra_policy_period; UART owner rechecks before TX",
+    "twist_limit": [
+      0.4,
+      0.3,
+      1.0
+    ]
+  },
+  "candidates": [
+    {
+      "id": "v2_walk3762_A_walk3500_20261024",
+      "onnx_sha256": "d54028a62cf8c76b55f1ccd1aa7a3b04307291e7d93b80a61d4ec2cf72e73b05",
+      "checkpoint_sha256": "30eb73ccb0842771cf5a010ee62c0dd3717a6d0e80e934e924b46ed01f815e04",
+      "source_metadata": {
+        "run_path": "local",
+        "joint_names": "left_hip_yaw,left_hip_roll,left_hip_pitch,left_knee,left_ankle,neck_pitch,head_pitch,head_yaw,head_roll,right_hip_yaw,right_hip_roll,right_hip_pitch,right_knee,right_ankle",
+        "joint_stiffness": "1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000",
+        "joint_damping": "0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080",
+        "default_joint_pos": "0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000",
+        "command_names": "twist,head_pose,body_pose",
+        "observation_names": "base_ang_vel,projected_gravity,joint_pos,joint_vel,actions,command,head_command,body_command",
+        "action_scale": "1.0",
+        "microduck_robot": "microduck-v2-sc0090",
+        "microduck_runtime": "microduck-v2-sc0090-official-baseline-v1",
+        "microduck_feedback": "empirical-paired-qv-block-randomization;not-full-S0-O0",
+        "microduck_motor_sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+        "microduck_motor_operating_point": "P15/D30/I0;vin-random-10.2,11.1,12.4V;goal_profile_zeroed",
+        "microduck_deployment": "simulation-baseline-only",
+        "microduck_error_bank_sha256": "d2eaedd5e76d315765f9ceb8f3cdf93baa628d3944b0660331c693822562a0af"
+      },
+      "experiment": "new_collision_paired3762_walking_zero_head_hardware_comparison_not_qualified"
+    },
+    {
+      "id": "v2_walk3762_B_walk3000_20261024",
+      "onnx_sha256": "63bd6964392be740e210425e525eaf53bb1332e129ef7250975ebe6abd93fa40",
+      "checkpoint_sha256": "2a289ff89da652899436426b7e46a571c1005b733acc2949f503f51dd897ab55",
+      "source_metadata": {
+        "run_path": "local",
+        "joint_names": "left_hip_yaw,left_hip_roll,left_hip_pitch,left_knee,left_ankle,neck_pitch,head_pitch,head_yaw,head_roll,right_hip_yaw,right_hip_roll,right_hip_pitch,right_knee,right_ankle",
+        "joint_stiffness": "1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000",
+        "joint_damping": "0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080",
+        "default_joint_pos": "0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000",
+        "command_names": "twist,head_pose,body_pose",
+        "observation_names": "base_ang_vel,projected_gravity,joint_pos,joint_vel,actions,command,head_command,body_command",
+        "action_scale": "1.0",
+        "microduck_robot": "microduck-v2-sc0090",
+        "microduck_runtime": "microduck-v2-sc0090-official-baseline-v1",
+        "microduck_feedback": "empirical-paired-qv-block-randomization;not-full-S0-O0",
+        "microduck_motor_sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+        "microduck_motor_operating_point": "P15/D30/I0;vin-random-10.2,11.1,12.4V;goal_profile_zeroed",
+        "microduck_deployment": "simulation-baseline-only",
+        "microduck_error_bank_sha256": "d2eaedd5e76d315765f9ceb8f3cdf93baa628d3944b0660331c693822562a0af"
+      },
+      "experiment": "new_collision_paired3762_walking_zero_head_hardware_comparison_not_qualified"
+    },
+    {
+      "id": "v2_walk3762_C_walk3750_20261024",
+      "onnx_sha256": "5f13722ff19f1c2ecb64a3d3082e811e5e13fc1a721e9c7fed189779b6802cbe",
+      "checkpoint_sha256": "8f8f9f1185437529ebf91f015171baf599c4f53aaa5fbaa08365c7e4498142b1",
+      "source_metadata": {
+        "run_path": "local",
+        "joint_names": "left_hip_yaw,left_hip_roll,left_hip_pitch,left_knee,left_ankle,neck_pitch,head_pitch,head_yaw,head_roll,right_hip_yaw,right_hip_roll,right_hip_pitch,right_knee,right_ankle",
+        "joint_stiffness": "1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000,1.000",
+        "joint_damping": "0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080,0.080",
+        "default_joint_pos": "0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000,0.000",
+        "command_names": "twist,head_pose,body_pose",
+        "observation_names": "base_ang_vel,projected_gravity,joint_pos,joint_vel,actions,command,head_command,body_command",
+        "action_scale": "1.0",
+        "microduck_robot": "microduck-v2-sc0090",
+        "microduck_runtime": "microduck-v2-sc0090-official-baseline-v1",
+        "microduck_feedback": "empirical-paired-qv-block-randomization;not-full-S0-O0",
+        "microduck_motor_sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+        "microduck_motor_operating_point": "P15/D30/I0;vin-random-10.2,11.1,12.4V;goal_profile_zeroed",
+        "microduck_deployment": "simulation-baseline-only",
+        "microduck_error_bank_sha256": "d2eaedd5e76d315765f9ceb8f3cdf93baa628d3944b0660331c693822562a0af"
+      },
+      "experiment": "new_collision_paired3762_walking_zero_head_hardware_comparison_not_qualified"
+    }
+  ]
+}

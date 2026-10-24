@@ -1,0 +1,327 @@
+{
+  "status": "OFFLINE_COVERAGE_DIAGNOSIS",
+  "margin_deg": 4,
+  "scope": "Healthy frames before first fall, after initial3s; no gate replacement or policy update",
+  "results": [
+    {
+      "evaluation": "/home/l40-vm01/data2/experiments/microduck-v2-20261024/walk3762-anticipation/evaluation-003500",
+      "checkpoint_sha256": "30eb73ccb0842771cf5a010ee62c0dd3717a6d0e80e934e924b46ed01f815e04",
+      "seed": 2026102401,
+      "valid_frames": 4302772,
+      "added_guard_active_fraction": 3.6720514124383075e-05,
+      "mean_added_raw_cost": 3.111477053607814e-05,
+      "joints": [
+        {
+          "joint": "left_hip_yaw",
+          "minimum_clearance_deg": 0.1422864943742752,
+          "within4deg_fraction": 2.0916748551863775e-06
+        },
+        {
+          "joint": "left_hip_roll",
+          "minimum_clearance_deg": -3.137317419052124,
+          "within4deg_fraction": 1.4874132303547573e-05
+        },
+        {
+          "joint": "left_hip_pitch",
+          "minimum_clearance_deg": 23.18048667907715,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "left_knee",
+          "minimum_clearance_deg": 10.393457412719727,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "left_ankle",
+          "minimum_clearance_deg": -2.636944532394409,
+          "within4deg_fraction": 4.648166344858617e-06
+        },
+        {
+          "joint": "neck_pitch",
+          "minimum_clearance_deg": 1.476912260055542,
+          "within4deg_fraction": 3.021308124158101e-06
+        },
+        {
+          "joint": "head_pitch",
+          "minimum_clearance_deg": -2.4053330421447754,
+          "within4deg_fraction": 2.78889980691517e-06
+        },
+        {
+          "joint": "head_yaw",
+          "minimum_clearance_deg": 49.14904022216797,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "head_roll",
+          "minimum_clearance_deg": -0.8515008687973022,
+          "within4deg_fraction": 5.345391296587409e-06
+        },
+        {
+          "joint": "right_hip_yaw",
+          "minimum_clearance_deg": -2.7141788005828857,
+          "within4deg_fraction": 1.138800754490361e-05
+        },
+        {
+          "joint": "right_hip_roll",
+          "minimum_clearance_deg": -2.6626124382019043,
+          "within4deg_fraction": 4.8805746621015475e-06
+        },
+        {
+          "joint": "right_hip_pitch",
+          "minimum_clearance_deg": 12.049490928649902,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "right_knee",
+          "minimum_clearance_deg": 10.07099723815918,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "right_ankle",
+          "minimum_clearance_deg": 4.199507236480713,
+          "within4deg_fraction": 0.0
+        }
+      ]
+    },
+    {
+      "evaluation": "/home/l40-vm01/data2/experiments/microduck-v2-20261024/walk3762-anticipation/evaluation-003500",
+      "checkpoint_sha256": "30eb73ccb0842771cf5a010ee62c0dd3717a6d0e80e934e924b46ed01f815e04",
+      "seed": 2026102402,
+      "valid_frames": 4327767,
+      "added_guard_active_fraction": 2.611046297085772e-05,
+      "mean_added_raw_cost": 2.9945131245767698e-05,
+      "joints": [
+        {
+          "joint": "left_hip_yaw",
+          "minimum_clearance_deg": 2.7033135890960693,
+          "within4deg_fraction": 1.1553302199494566e-06
+        },
+        {
+          "joint": "left_hip_roll",
+          "minimum_clearance_deg": -0.5913321375846863,
+          "within4deg_fraction": 1.039797197954511e-05
+        },
+        {
+          "joint": "left_hip_pitch",
+          "minimum_clearance_deg": 25.66832733154297,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "left_knee",
+          "minimum_clearance_deg": 12.881189346313477,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "left_ankle",
+          "minimum_clearance_deg": -2.292682647705078,
+          "within4deg_fraction": 6.007717143737175e-06
+        },
+        {
+          "joint": "neck_pitch",
+          "minimum_clearance_deg": -0.9319758415222168,
+          "within4deg_fraction": 6.93198131969674e-07
+        },
+        {
+          "joint": "head_pitch",
+          "minimum_clearance_deg": -2.0714049339294434,
+          "within4deg_fraction": 2.310660439898913e-06
+        },
+        {
+          "joint": "head_yaw",
+          "minimum_clearance_deg": 60.186058044433594,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "head_roll",
+          "minimum_clearance_deg": -1.7390190362930298,
+          "within4deg_fraction": 2.772792527878696e-06
+        },
+        {
+          "joint": "right_hip_yaw",
+          "minimum_clearance_deg": -2.538198947906494,
+          "within4deg_fraction": 3.46599065984837e-06
+        },
+        {
+          "joint": "right_hip_roll",
+          "minimum_clearance_deg": -0.6423843502998352,
+          "within4deg_fraction": 5.545585055757392e-06
+        },
+        {
+          "joint": "right_hip_pitch",
+          "minimum_clearance_deg": 29.395034790039062,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "right_knee",
+          "minimum_clearance_deg": 1.2535377740859985,
+          "within4deg_fraction": 9.242641759595652e-07
+        },
+        {
+          "joint": "right_ankle",
+          "minimum_clearance_deg": -1.5726919174194336,
+          "within4deg_fraction": 3.928122747828153e-06
+        }
+      ]
+    },
+    {
+      "evaluation": "/home/l40-vm01/data2/experiments/microduck-v2-20261024/walk3762-anticipation/head-composition-003500",
+      "checkpoint_sha256": "30eb73ccb0842771cf5a010ee62c0dd3717a6d0e80e934e924b46ed01f815e04",
+      "seed": 2026102411,
+      "valid_frames": 3862178,
+      "added_guard_active_fraction": 7.638177215032554e-05,
+      "mean_added_raw_cost": 7.531220762757584e-05,
+      "joints": [
+        {
+          "joint": "left_hip_yaw",
+          "minimum_clearance_deg": 0.3833921551704407,
+          "within4deg_fraction": 3.6248976613713817e-06
+        },
+        {
+          "joint": "left_hip_roll",
+          "minimum_clearance_deg": -2.0477402210235596,
+          "within4deg_fraction": 1.5276354430065108e-05
+        },
+        {
+          "joint": "left_hip_pitch",
+          "minimum_clearance_deg": 14.520565032958984,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "left_knee",
+          "minimum_clearance_deg": 9.525313377380371,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "left_ankle",
+          "minimum_clearance_deg": -1.9651819467544556,
+          "within4deg_fraction": 1.0615771722587617e-05
+        },
+        {
+          "joint": "neck_pitch",
+          "minimum_clearance_deg": -1.265504240989685,
+          "within4deg_fraction": 1.2687141814799835e-05
+        },
+        {
+          "joint": "head_pitch",
+          "minimum_clearance_deg": -2.893787145614624,
+          "within4deg_fraction": 2.8999181290971054e-05
+        },
+        {
+          "joint": "head_yaw",
+          "minimum_clearance_deg": 35.668487548828125,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "head_roll",
+          "minimum_clearance_deg": -2.4935805797576904,
+          "within4deg_fraction": 1.3463905599379418e-05
+        },
+        {
+          "joint": "right_hip_yaw",
+          "minimum_clearance_deg": -1.643174409866333,
+          "within4deg_fraction": 7.767637845795818e-06
+        },
+        {
+          "joint": "right_hip_roll",
+          "minimum_clearance_deg": -0.7061134576797485,
+          "within4deg_fraction": 7.50871658426929e-06
+        },
+        {
+          "joint": "right_hip_pitch",
+          "minimum_clearance_deg": 24.342416763305664,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "right_knee",
+          "minimum_clearance_deg": 13.040753364562988,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "right_ankle",
+          "minimum_clearance_deg": -3.1798832416534424,
+          "within4deg_fraction": 4.919503969004018e-06
+        }
+      ]
+    },
+    {
+      "evaluation": "/home/l40-vm01/data2/experiments/microduck-v2-20261024/walk3762-anticipation/head-composition-003500",
+      "checkpoint_sha256": "30eb73ccb0842771cf5a010ee62c0dd3717a6d0e80e934e924b46ed01f815e04",
+      "seed": 2026102412,
+      "valid_frames": 3861972,
+      "added_guard_active_fraction": 9.243982089978902e-05,
+      "mean_added_raw_cost": 0.00010610761819407344,
+      "joints": [
+        {
+          "joint": "left_hip_yaw",
+          "minimum_clearance_deg": -0.9170450568199158,
+          "within4deg_fraction": 5.955506668613858e-06
+        },
+        {
+          "joint": "left_hip_roll",
+          "minimum_clearance_deg": -2.09659481048584,
+          "within4deg_fraction": 1.3982493917615145e-05
+        },
+        {
+          "joint": "left_hip_pitch",
+          "minimum_clearance_deg": 9.150267601013184,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "left_knee",
+          "minimum_clearance_deg": 16.44048309326172,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "left_ankle",
+          "minimum_clearance_deg": -3.533311367034912,
+          "within4deg_fraction": 1.3982493917615145e-05
+        },
+        {
+          "joint": "neck_pitch",
+          "minimum_clearance_deg": -1.2693325281143188,
+          "within4deg_fraction": 1.657184464309943e-05
+        },
+        {
+          "joint": "head_pitch",
+          "minimum_clearance_deg": -2.4673304557800293,
+          "within4deg_fraction": 3.547410493913472e-05
+        },
+        {
+          "joint": "head_yaw",
+          "minimum_clearance_deg": 41.03759002685547,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "head_roll",
+          "minimum_clearance_deg": -1.3025460243225098,
+          "within4deg_fraction": 6.732311886259145e-06
+        },
+        {
+          "joint": "right_hip_yaw",
+          "minimum_clearance_deg": -3.6869802474975586,
+          "within4deg_fraction": 1.2687818554873003e-05
+        },
+        {
+          "joint": "right_hip_roll",
+          "minimum_clearance_deg": -2.069547176361084,
+          "within4deg_fraction": 1.0875273047034002e-05
+        },
+        {
+          "joint": "right_hip_pitch",
+          "minimum_clearance_deg": 25.667993545532227,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "right_knee",
+          "minimum_clearance_deg": 11.194880485534668,
+          "within4deg_fraction": 0.0
+        },
+        {
+          "joint": "right_ankle",
+          "minimum_clearance_deg": -3.0886523723602295,
+          "within4deg_fraction": 5.955506668613858e-06
+        }
+      ]
+    }
+  ]
+}

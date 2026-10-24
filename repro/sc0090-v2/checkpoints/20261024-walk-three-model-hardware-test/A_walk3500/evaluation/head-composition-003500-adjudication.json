@@ -1,0 +1,1456 @@
+{
+  "status": "ADJUDICATED",
+  "checkpoint_sha256": "30eb73ccb0842771cf5a010ee62c0dd3717a6d0e80e934e924b46ed01f815e04",
+  "cases": 128,
+  "passing": 0,
+  "limit_parking_cases": 0,
+  "home_failure_cases": 110,
+  "full_acceptance": false,
+  "missing": [
+    "toe-yaw review",
+    "rise handoff",
+    "video",
+    "per-case gate adjudication"
+  ],
+  "rows": [
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0000_idle",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0000_walk",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0000_turn_left",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0000_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0001_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0001_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0001_turn_left",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0001_turn_right",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0010_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0010_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0010_turn_left",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0010_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0011_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0011_walk",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0011_turn_left",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0011_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0100_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0100_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0100_turn_left",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0100_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0101_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0101_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0101_turn_left",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0101_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0110_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0110_walk",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0110_turn_left",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0110_turn_right",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0111_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "self_collision"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0111_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0111_turn_left",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_0111_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1000_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1000_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1000_turn_left",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1000_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1001_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1001_walk",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1001_turn_left",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1001_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1010_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1010_walk",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1010_turn_left",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1010_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1011_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1011_walk",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1011_turn_left",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1011_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1100_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1100_walk",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1100_turn_left",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1100_turn_right",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1101_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1101_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1101_turn_left",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1101_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1110_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1110_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1110_turn_left",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1110_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1111_idle",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1111_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1111_turn_left",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102411,
+      "case": "head_joint_1111_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0000_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0000_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0000_turn_left",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0000_turn_right",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0001_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0001_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0001_turn_left",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0001_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0010_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0010_walk",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0010_turn_left",
+      "passing": false,
+      "reasons": [
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0010_turn_right",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0011_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0011_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0011_turn_left",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0011_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0100_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0100_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0100_turn_left",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0100_turn_right",
+      "passing": false,
+      "reasons": [
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0101_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0101_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0101_turn_left",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0101_turn_right",
+      "passing": false,
+      "reasons": [
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0110_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "self_collision"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0110_walk",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0110_turn_left",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0110_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0111_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0111_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0111_turn_left",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_0111_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1000_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1000_walk",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1000_turn_left",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1000_turn_right",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1001_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1001_walk",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1001_turn_left",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1001_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1010_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1010_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1010_turn_left",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1010_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1011_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1011_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1011_turn_left",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1011_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1100_idle",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1100_walk",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1100_turn_left",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1100_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1101_idle",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1101_walk",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1101_turn_left",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1101_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1110_idle",
+      "passing": false,
+      "reasons": [
+        "head_tracking"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1110_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1110_turn_left",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1110_turn_right",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1111_idle",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "yaw_tracking",
+        "head_tracking",
+        "self_collision",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1111_walk",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1111_turn_left",
+      "passing": false,
+      "reasons": [
+        "fall",
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking",
+        "home_return"
+      ]
+    },
+    {
+      "seed": 2026102412,
+      "case": "head_joint_1111_turn_right",
+      "passing": false,
+      "reasons": [
+        "linear_tracking",
+        "yaw_tracking",
+        "head_tracking"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "label": "C_walk3750",
+  "completed_updates": 3750,
+  "checkpoint_source": "/home/l40-vm01/data2/experiments/microduck-v2-20261024/walk3762-anticipation/formal-0003/checkpoint_003750.pt",
+  "checkpoint_sha256": "8f8f9f1185437529ebf91f015171baf599c4f53aaa5fbaa08365c7e4498142b1",
+  "onnx_sha256": "5f13722ff19f1c2ecb64a3d3082e811e5e13fc1a721e9c7fed189779b6802cbe",
+  "training_source": "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-walk-3762-anticipation",
+  "source_archive": "../training-code.tar.gz",
+  "hardware_tested": false,
+  "simulation_acceptance_passed": false,
+  "hardware_experiment_head_command": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "native_onnx_requires_effective_head_commands": true,
+  "head_projection_note": "Zero head request equals effective zero; MDP contains native MLP only, not the nonzero-head geometry projection. This comparison uses zero head/body commands."
+}

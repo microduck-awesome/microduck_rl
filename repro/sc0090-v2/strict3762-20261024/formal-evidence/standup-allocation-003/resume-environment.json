@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "stage": 4,
+  "polish": false,
+  "all_spawn_stages_match": true,
+  "common_step_counter": 24000,
+  "head_ranges": [
+    [
+      -0.39,
+      0.39
+    ],
+    [
+      -0.39,
+      0.39
+    ],
+    [
+      -0.49,
+      0.49
+    ],
+    [
+      -0.11,
+      0.11
+    ]
+  ],
+  "reward_weights": {
+    "action_rate_l2": -0.2,
+    "arrival_damping": 0.0,
+    "joint_torque_rate_l2": 0.0,
+    "head_pose_bias": 0.0,
+    "body_pose_tracking": 0.0
+  },
+  "physics_resume": "native-new-episodes after restoring clocks and RNG"
+}

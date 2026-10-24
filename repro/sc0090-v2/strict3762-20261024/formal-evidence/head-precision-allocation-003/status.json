@@ -1,0 +1,81 @@
+{
+  "status": "ALLOCATION_COMPLETE",
+  "pid": 1394112,
+  "completed_updates": 2750,
+  "updated_unix": 1792809419.4592307,
+  "goal_complete": false,
+  "resume_checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/formal/head-precision-allocation-003/resume_002750.pt",
+  "command_exposure": {
+    "environment_control_steps": 49152000,
+    "combinations": [
+      29500232,
+      9816345,
+      4919584,
+      4915839
+    ],
+    "combination_axes": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "positive": [
+      4913106,
+      4962250,
+      4899548,
+      4938649
+    ],
+    "negative": [
+      4921117,
+      4893043,
+      4886904,
+      4904252
+    ],
+    "range_quarters": [
+      [
+        1955592,
+        1970904,
+        1976935,
+        3930792
+      ],
+      [
+        1966837,
+        1959597,
+        1964564,
+        3964295
+      ],
+      [
+        1967303,
+        1968811,
+        1954328,
+        3896010
+      ],
+      [
+        1998345,
+        1961623,
+        1920946,
+        3961987
+      ]
+    ],
+    "current_ranges": [
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.39,
+        0.39
+      ],
+      [
+        -0.49,
+        0.49
+      ],
+      [
+        -0.11,
+        0.11
+      ]
+    ]
+  },
+  "exposure_segment_start_update": 2500,
+  "recovery_stage": 5
+}

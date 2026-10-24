@@ -1,0 +1,2 @@
+Oct 24 08:59:49 l40vm01 kernel: cuda-EvtHandlr[1330132]: segfault at 18 ip 00007f8ede69b0f0 sp 00007f8d493633e0 error 4 in libc.so.6[7f8ede628000+195000] likely on CPU 24 (core 12, socket 0)
+Oct 24 08:59:49 l40vm01 kernel: Code: ff ff 0f 86 74 ff ff ff 83 c0 16 83 e0 f7 0f 85 0e ff ff ff e9 63 ff ff ff 90 f3 0f 1e fa 41 56 41 55 41 54 55 53 48 89 fb 90 <8b> 57 18 64 8b 04 25 d0 02 00 00 39 c2 74 69 8b 07 89 c1 89 c2 83

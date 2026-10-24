@@ -1,0 +1,23 @@
+{
+  "status": "FROZEN_FAILED_ATTEMPT",
+  "process_exit": -11,
+  "all_16_updates_and_report_completed": true,
+  "report_is_not_admission": true,
+  "kernel_observation": "cuda-EvtHandlr segfault in libc at exit time; no logged Xid or OOM",
+  "cause_confirmed": false,
+  "formal_updates": 0,
+  "next_action": "One isolated full qualification repeat with unchanged numerical code/config and PYTHONFAULTHANDLER=1 for crash diagnostics; preserve this failed attempt. No automatic training retry.",
+  "files": {
+    "batch-process.json": "3f01c06e7f25021ed0945b912c9509e794032c224699d74ac339268917266b77",
+    "batch-config.json": "7d410219632007d04410cf5ec7d3168222a04e9f4646d3ea9bb6ba867f65df00",
+    "kernel.log": "3f2ed43f951125e8f04cf02952f79bf68cae23c5238e197c413c315115365c7b",
+    "batch.log": "c5d43ff2a51e7b443c65b18d039b1edb412ffa95e3aa53b0987405a8febb41ea",
+    "batch-config.config.json": "989879c1b91f047be249b46c83e11a0dfcf4ed08ef5b1fd09422820dc41166e9",
+    "batch-config.log": "bf98f18f77071e8f97fb402f0ebd8dc885cc6571f6063a5d20dc8e86eb3ce245",
+    "batch/model_15.pt": "cd0da7c8a59fc9b7ddc2f2c3f76df92d161054737847db609941aa7822ce012f",
+    "batch/batch.onnx": "192fc032a1380f6bcfb7895a92ad0c9f7ad057f18b2e2a823601b4ad7a8acb4f",
+    "batch/report.json": "6249676c8d8047bcaeba5ef4bed82a707664809ad20fe96f4c4bdbb0c2dd3a4a",
+    "batch/model_0.pt": "75334b73f65f9b2615d6c6f729420bed53c5ad8147fab11a28772b5d044fbd3d",
+    "batch/events.out.tfevents.1792803561.l40vm01.1329498.0": "8b4a7ded01285bf6ec92717610346b09493c7db30c827a963e0e89ca3f4fe2ca"
+  }
+}

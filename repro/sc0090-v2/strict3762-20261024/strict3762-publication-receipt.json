@@ -1,0 +1,18 @@
+{
+  "status": "PUSHED_AND_REMOTE_HEAD_VERIFIED",
+  "repository": "microduck-awesome/microduck_rl",
+  "branch": "repro/sc0090-v2-sim2real",
+  "content_commit": "0e8b4bef24ca7700e0e2b5fb1e178c182bcbcbbc",
+  "verified_remote_tip": "5cc115b7c3958fc59ab75c0485725d9b47b0d21f",
+  "verified_utc": "2026-10-24T04:44:18.242373+00:00",
+  "git_blob_verification": {
+    "status": "PASS_COMMITTED_GIT_BLOBS",
+    "commit": "0e8b4bef24ca7700e0e2b5fb1e178c182bcbcbbc",
+    "package_path": "repro/sc0090-v2/checkpoints/20261024-rise3762-strict-history",
+    "verified_files": 455,
+    "model_binaries": 16,
+    "manifest_sha256": "c998a8658c8f4473c9595103e6e6d9ad5e9a56a96eb4e6f67c72c2d517b927d1",
+    "policy_onnx_sha256": "01b5fafde4bde1c33bf5ce1a671b275bd06556354dcacdc9288ba13d47a084e9",
+    "verified_utc": "2026-10-24T04:40:58.746692+00:00"
+  }
+}

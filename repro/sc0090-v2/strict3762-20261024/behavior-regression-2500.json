@@ -1,0 +1,42 @@
+{
+  "status": "BEHAVIOR_REGRESSION_FROZEN_FOR_DIAGNOSIS",
+  "observed_unix": 1792809368.5933366,
+  "iteration": 2500,
+  "checkpoint_sha256": "0d2045516703302283142e3cbe675ca14a501952790b5aac6c92eabf361161de",
+  "resume_sha256": "5b347bc954be2fe09cee22d7e0db847a5487eec28c8e9ff21370e902af83ca91",
+  "new_right_side": [
+    {
+      "trials": 128,
+      "wins": 0,
+      "any_stable": 0,
+      "faults": 0,
+      "first_stable_mean_s": null
+    },
+    {
+      "trials": 128,
+      "wins": 0,
+      "any_stable": 0,
+      "faults": 0,
+      "first_stable_mean_s": null
+    }
+  ],
+  "previous_2250_right_side_rate": 1.0,
+  "historical_2500_right_side_rate": 1.0,
+  "native_polish_still_true": true,
+  "source_matches_historical_archive": true,
+  "polish_assignments_in_native_evaluation": [
+    {
+      "line": 206,
+      "value": true
+    }
+  ],
+  "contract_process_pass_is_not_behavior_pass": true,
+  "training_recipe_changes": 0,
+  "interpretation": "Native flag records prior mastery and is not revoked by failed later assessments. Strict-history execution retains this original semantics; this does not qualify current recovery behavior.",
+  "physical_failure_mechanism": "Not determined from aggregate evaluation; needs saved-policy trajectory replay after the single-GPU training chain.",
+  "diagnostic_checkpoints_preserved": [
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/formal/head-precision-allocation-002/checkpoint_002500.pt",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/formal/head-precision-allocation-002/resume_002500.pt",
+    "/home/l40-vm01/data2/experiments/microduck-v2-20261024-strict3762/formal/head-precision-allocation-001/checkpoint_002250.pt"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "status": "PASS_COMMITTED_GIT_BLOBS",
+  "commit": "0e8b4bef24ca7700e0e2b5fb1e178c182bcbcbbc",
+  "package_path": "repro/sc0090-v2/checkpoints/20261024-rise3762-strict-history",
+  "verified_files": 455,
+  "model_binaries": 16,
+  "manifest_sha256": "c998a8658c8f4473c9595103e6e6d9ad5e9a56a96eb4e6f67c72c2d517b927d1",
+  "policy_onnx_sha256": "01b5fafde4bde1c33bf5ce1a671b275bd06556354dcacdc9288ba13d47a084e9",
+  "verified_utc": "2026-10-24T04:40:58.746692+00:00"
+}

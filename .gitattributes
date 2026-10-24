@@ -21,3 +21,7 @@ repro/sc0090-v2/checkpoints/20261024-rise3762-collision-adaptation/** -text
 
 # Immutable strict-history3762 collision-corrected experiment bundle.
 repro/sc0090-v2/checkpoints/20261024-rise3762-strict-history/** -text
+
+# Matplotlib generated figures preserve exact manifest bytes, including whitespace.
+repro/sc0090-v2/checkpoints/20261024-rise3762-strict-history/repro/final-evidence/*.svg -whitespace linguist-generated=true
+repro/sc0090-v2/strict3762-20261024/final-evidence/*.svg -whitespace linguist-generated=true

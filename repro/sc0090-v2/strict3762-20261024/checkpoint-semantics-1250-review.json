@@ -1,0 +1,13 @@
+{
+  "status": "PASS_HISTORICAL_SPLIT_SAVE_SEMANTICS",
+  "verified_unix": 1792806799.3390265,
+  "iteration": 1250,
+  "pre_evaluation_checkpoint_sha256": "09f038db3501d9cbe7a3af78eca42319ad468300f4284a4ff1681d62ba2ad8b1",
+  "post_evaluation_resume_sha256": "61188f94b043094041a42e5eafa56932573f785308989f13b23c0b8e3159e714",
+  "original_eval_request_checkpoint_hash_still_matches": true,
+  "actor_critic_normalizers_optimizer_unchanged_by_evaluation": true,
+  "checkpoint_recovery_stage": 4,
+  "resume_recovery_stage": 5,
+  "common_step_counter": 30000,
+  "training_complete": false
+}

@@ -1,0 +1,55 @@
+{
+  "status": "VERIFIED_THROUGH_EVALUATION_500",
+  "verified_unix": 1792805416.8195226,
+  "evaluations": [
+    {
+      "iteration": 250,
+      "actual_evaluation_sha256": "d75231e4985cac4535c363ff9a6e214d6c4d1adaa2a0c55ce1b9e70ceb90990a",
+      "stage_after": 1,
+      "actual_rates": {
+        "standing": 1.0,
+        "sitting": 1.0,
+        "prone": 1.0,
+        "frontier": 1.0,
+        "left_side": 1.0,
+        "right_side": 1.0,
+        "supine": 1.0
+      },
+      "historical_rates": {
+        "standing": 1.0,
+        "sitting": 1.0,
+        "prone": 1.0,
+        "frontier": 1.0,
+        "left_side": 1.0,
+        "right_side": 1.0,
+        "supine": 1.0
+      },
+      "same_protocol_and_native_promotion": true
+    },
+    {
+      "iteration": 500,
+      "actual_evaluation_sha256": "ef4c48f426f50fadf798560c7081f10472114ec6d430b251aefb48636db97e3b",
+      "stage_after": 2,
+      "actual_rates": {
+        "standing": 1.0,
+        "sitting": 0.99609375,
+        "prone": 1.0,
+        "frontier": 1.0,
+        "left_side": 1.0,
+        "right_side": 1.0,
+        "supine": 1.0
+      },
+      "historical_rates": {
+        "standing": 1.0,
+        "sitting": 1.0,
+        "prone": 1.0,
+        "frontier": 1.0,
+        "left_side": 1.0,
+        "right_side": 1.0,
+        "supine": 1.0
+      },
+      "same_protocol_and_native_promotion": true
+    }
+  ],
+  "training_complete": false
+}

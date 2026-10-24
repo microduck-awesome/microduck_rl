@@ -158,5 +158,12 @@
     "Retain all 14 joint physical clearance evidence from traces"
   ],
   "artifact_verifier": "scripts/verify_strict_artifact.py",
-  "artifact_verifier_sha256": "f0f2ad992d298a4bd87869c8d1eda6d919600328a2fbbe5fda25027641b723fc"
+  "artifact_verifier_sha256": "f0f2ad992d298a4bd87869c8d1eda6d919600328a2fbbe5fda25027641b723fc",
+  "joint_limit_analyzer": {
+    "script": "scripts/check_head_trace_joint_limits.py",
+    "sha256": "5865383d3b71c5857f779e0a5db246d250d2d3e4dea41bdc158def501164f941",
+    "device": "cpu",
+    "physical_scope": "All 14 policy joints, actual compiled scene qpos addresses, full 6s saved head traces at 50Hz",
+    "validation": "Previous 6804 saved traces only; not a new-model result"
+  }
 }

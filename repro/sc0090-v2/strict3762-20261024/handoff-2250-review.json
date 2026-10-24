@@ -1,0 +1,13 @@
+{
+  "status": "PASS_SEPARATE_STAGE1_PROCESS_RESTORE",
+  "verified_unix": 1792808636.3354125,
+  "parent_completed_updates": 2250,
+  "parent_resume_sha256": "82876ccf8e68e087ffb2f75c73ebe6edcd477a6129f04002eb6e47bba4237a7f",
+  "common_step_counter": 54000,
+  "actor_critic_normalizers_optimizer_exact": true,
+  "same_stage1_numerical_sources": true,
+  "separate_native_environment_reset": true,
+  "previous_recovery_wins": 1790,
+  "previous_recovery_trials": 1792,
+  "training_complete": false
+}

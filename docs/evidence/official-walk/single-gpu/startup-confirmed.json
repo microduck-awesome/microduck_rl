@@ -1,0 +1,12 @@
+{
+  "status": "TRAINING",
+  "confirmed_utc": "2026-10-25T05:57:24.200332+00:00",
+  "physical_gpu": 0,
+  "GPU1_released": true,
+  "num_envs": 4096,
+  "resume_checkpoint": "model_250.pt",
+  "observed_iteration": 262,
+  "nan_state": 0,
+  "configuration_committed_as": "ffd5744f",
+  "next_regular_check_local": "2026-10-25 14:26:15 Asia/Shanghai"
+}

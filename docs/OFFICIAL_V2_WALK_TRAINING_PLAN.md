@@ -66,3 +66,5 @@ bash scripts/v2_python.sh -m mjlab.scripts.train \
 碰撞接触规则相同，几何形状因 V2 CAD 而不同：官方 power_support/leg 对应 V2 trunk_support/shin，不能声称几何完全相同。证据：evidence/official-walk/collision-comparison.json。
 
 单卡日志与半小时记录改存 evidence/official-walk/single-gpu/。首次单卡启动遇到 CLI 对 --gpu-ids 0 的列表解析错误；改用 CUDA_VISIBLE_DEVICES=0 配合 --gpu-ids all，未改训练算法。
+
+单卡于 13:56:15 启动，已确认从 iteration 250 继续更新，GPU1 无本任务计算进程。下次常规检查 14:26:15，此后每半小时一次。

@@ -1,0 +1,25 @@
+{
+  "status": "STARTING",
+  "started_utc": "2026-10-25T06:10:58.855689+00:00",
+  "trainer_pid": 2609344,
+  "supervisor_pid": 2609342,
+  "command": [
+    "bash",
+    "scripts/v2_python.sh",
+    "-m",
+    "mjlab.scripts.train",
+    "Mjlab-Velocity-Flat-MicroDuck-V2-Official-Baseline",
+    "--gpu-ids",
+    "all",
+    "--env.scene.num-envs",
+    "4096",
+    "--agent.logger",
+    "tensorboard",
+    "--agent.upload-model",
+    "False",
+    "--agent.run-name",
+    "official_v2_sc0090_v5_dr_fresh"
+  ],
+  "check_interval_s": 1800,
+  "source_commit": "7aec17f231e44ee3aef3fa20201795c9f359c0f6"
+}

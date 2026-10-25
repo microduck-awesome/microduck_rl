@@ -1,0 +1,12 @@
+{
+  "status": "TRAINING",
+  "confirmed_utc": "2026-10-25T06:12:29.620338+00:00",
+  "physical_gpu": 0,
+  "num_envs": 4096,
+  "fresh_initialization": true,
+  "observed_iteration": 20,
+  "nan_state": 0,
+  "locked_mujoco": "3.10.0",
+  "source_commit": "7aec17f231e44ee3aef3fa20201795c9f359c0f6",
+  "next_check_local": "2026-10-25T14:40:58.855689+08:00"
+}

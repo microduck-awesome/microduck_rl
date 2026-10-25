@@ -1,0 +1,3 @@
+# Preserve source delivery bytes and accept its CRLF line endings.
+src/mjlab_microduck/custom_v2/assets/** -text whitespace=cr-at-eol
+src/mjlab_microduck/actuator/params/sc0090_v5_m6.json -text whitespace=cr-at-eol

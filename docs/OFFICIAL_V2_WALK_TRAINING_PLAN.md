@@ -1,91 +1,70 @@
-# V2 官方基线步行训练方案（当前 GPU0 单卡）
+# V2 官方基线步行训练方案
 
-## 目标与来源
+## 当前要求
 
-初次从随机初始化使用 GPU0 和 GPU1 训练；用户随后要求单卡，当前使用 GPU0，释放 GPU1。以 2026-10-25 实时核验的官方默认分支 develop 为唯一训练基线：
+使用 GPU0 单卡、4096 环境，GPU1 留给其他任务。初始双卡要求已被用户后续单卡指令替代。V2 总质量采用用户确认的 **624.6 g**。重新完整对照官方代码后，从随机初始化训练；此前冻结电机随机化的运行及其 checkpoint 全部保留为作废记录，不用于本次训练。
+
+正式训练后每 **30 分钟**检查一次；异常退出或完成可以提前处理。以训练为主线，完成必要的配置对照和 64 环境、5 更新短测后启动，不进行额外奖励或课程搜索。
+
+## 唯一训练基线
+
+官方默认分支 develop，2026-10-25 再次通过 git ls-remote 核验：
 https://github.com/pollen-robotics/microduck_rl/commit/b02fdea4902c2b93b7d34a83a6f05da4ececb7d3
 
-官方任务：`Mjlab-Velocity-Flat-MicroDuck`。本地适配任务：`Mjlab-Velocity-Flat-MicroDuck-V2-Official-Baseline`。
-不参考 10 月 24 日和 25 日步行实验，不加载其配置、奖励、课程、策略或优化器状态。
+原始任务 `Mjlab-Velocity-Flat-MicroDuck`；适配任务 `Mjlab-Velocity-Flat-MicroDuck-V2-Official-Baseline`。依赖由未修改的官方 uv.lock 通过 uv sync --frozen 安装至独立 .venv，包括 MuJoCo 3.10.0、mjlab 1.3.0、mujoco-warp 3.8.1、warp-lang 1.12.0、torch 2.9.1、rsl-rl-lib 5.0.1、BAM 62bd8ce。
 
-## 仅替换以下三项
+不采用昨天和今天步行实验的奖励、课程、策略、优化器、reset、command 或 recompute 改版。
 
-1. V2 结构：直接取 `microduck-assembly@88392c4859046976dbee706b4288f02af2e78814` 的 model 文件与 reports/model_metadata.json。总质量 **624.6 g**，已由用户确认；保留结构仓库质量、质心、惯量和关节定义。
-2. V2 HOME：使用结构交付的 CAD 保存姿态，15 个关节零位和对应根部高度；14 个策略关节按官方左右腿及头颈顺序排列，mouth 独立保持。相应调整初始化高度和关节选择器。
-3. SC0090 V5 BAM：冻结 M6 标定系数，SHA256 `7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4`；P15/D30/I0、11.1 V。电机适配从 10 月 15 日已提交的原始接入代码取用，不使用后续步行实验改版。当前接入冻结了电机参数随机化，保留官方观测及其他随机化。该冻结范围包含可用于其他 BAM 电机的摩擦和 armature 随机化，因此不能称为随机化与官方完全一致，见下表。
+## 允许的模型替换
 
-## 官方训练过程约束
+- 结构：`microduck-assembly@88392c4859046976dbee706b4288f02af2e78814` 的 model 和 metadata；624.6 g，包括对应质心、惯量和关节限位。
+- HOME：V2 CAD 保存姿态的 15 关节零位及根部高度；14 关节按官方策略顺序控制，mouth 独立保持。重置高度以 V2 HOME 为原点，保留官方区间宽度。
+- 电机：SC0090 V5 M6，标定文件 SHA256 `7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4`。保留 SC0090 的标定控制律和 P15/D30/I0 工作点；不修改标定文件。
+- 电压：用户指定启动时每环境均匀采样 **10.2–12.4 V**；沿用官方负载下垂增益 0.0–0.2，电压下限使用 10.2 V，符合所指定电压范围。
 
-- 官方任务 MDP、步行配置、奖励权重、命令采样和所有课程阶段保持原样；不裁剪头部课程范围，不增加奖励、阶段、自定义 PPO 或反馈误差库。
-- 使用官方 `mjlab.scripts.train`、官方 Microduck runner 和 rsl_rl PPO；不引入旧实验的 reset/command/recompute 流程修改。
-- 50 Hz 策略，5 ms 物理步长，4 次 decimation；actor 61 维、14 维动作；网络 512/256/128，观测归一化。
-- 官方 PPO：每环境 24 步、5 epochs、4 minibatches、初始学习率 0.001、自适应 KL=0.01；其余直接继承官方配置。
-- 当前 GPU0 单卡 4096 环境，保持总采样批量；此前为双卡各 2048 环境。GPU1 留给其他任务。
-- 正式训练沿用官方上限 50000 次更新和每 250 次保存一次。日志使用本地 TensorBoard，禁止自动上传。训练产物不能等同于真机验证。
+## 完整官方对照范围
 
-## 执行顺序
+所有官方跟踪文件逐字节对照，唯一已有文件的变动是 tasks/__init__.py 末尾增加 V2 注册。官方 mdp、步行 cfg、BAM 随机化事件、PPO、runner、train CLI、pyproject 和 uv.lock 保持原样。
 
-1. 保存本方案，完成最小来源/配置检查；修正接入错误，不进行额外配方搜索。
-2. 双卡各 64 环境、5 次更新启动短测，确认能训练并保存。
-3. 从零启动正式双卡训练，不从短测 checkpoint 续训。
-4. 正式训练开始后每 **30 分钟**检查一次进程、迭代、损失、奖励各项、episode length 和 checkpoint。异常退出或完成可提前检查。无依据不频繁自检，不自动调整奖励或课程。
-5. 保留日志、配置、模型和本地提交；真实步行效果需在训练后另行评估。
+配置全量递归对照，仅允许 V2 实体、HOME 高度、14 关节选择器、独立 mouth 通道和日志名称差异。奖励和课程的函数、权重、参数、阶段、时间表逐项对照，不排除电机随机化事件；不得删减官方事件。
 
-## 启动命令
+| 项目 | 本次设置 |
+| --- | --- |
+| 奖励、课程、命令、终止 | 全部继承官方 |
+| 观测噪声、观测延迟、编码器偏置、IMU 安装误差 | 官方设置 |
+| 机体质量/惯量、质心、足底摩擦、外力扰动 | 官方设置，基于 V2 名义结构 |
+| BAM 摩擦倍率 | 官方 0.9–1.1，每次 reset 非累积重采样 |
+| armature 倍率 | 官方 0.9–1.1，每次 reset 非累积重采样 |
+| 命令延迟 | 官方 3–6 个物理步及全部缓冲采样设置 |
+| 负载电压下垂增益 | 官方 0.0–0.2，启动时每环境采样 |
+| P/D、额外关节阻尼随机化开关 | 沿用官方关闭状态 |
+| 策略/物理频率 | 官方 50 Hz、5 ms 物理步长、decimation=4 |
+| 网络/观测 | 官方 512/256/128；actor 61D、critic 76D、动作 14D；归一化开启 |
+| PPO | 官方每环境 24 步、5 epochs、4 minibatches、初始 lr=0.001、adaptive KL=0.01 |
+| 总更新数、保存 | 官方默认 50000 次；每 250 次保存 |
+| 日志 | 本地 TensorBoard，关闭自动上传 |
 
-在本目录执行（环境兼容设置见 scripts/v2_python.sh）：
+SC0090 actuator 继承官方 FrictionDRBamActuator，使官方事件能实际识别并随机化；供电、负载下垂、延迟和 reset 使用官方机制。标定系数固定不等于关闭训练随机化。
 
-```bash
-bash scripts/v2_python.sh -m mjlab.scripts.train \
-  Mjlab-Velocity-Flat-MicroDuck-V2-Official-Baseline \
-  --gpu-ids all --env.scene.num-envs 4096 \
-  --agent.logger tensorboard --agent.upload-model False \
-  --agent.run-name official_v2_sc0090_v5
-```
+## 碰撞
 
-`--gpu-ids all` 在启动脚本限定 `CUDA_VISIBLE_DEVICES=0` 后使用。max_iterations、save_interval 和算法参数直接使用官方默认值。
+规则与官方 walk 一致：双足 1/1 掩码接地；躯干支撑及双小腿 2/2 掩码自碰撞，共 5 个启用碰撞的几何体。摩擦、condim、priority、solref、solimp 一致，无额外 body exclusion。形状对应 V2 CAD；头壳等不参与地面碰撞。此配置遵循官方精简步行拓扑，不能称为全身碰撞模型。
 
-## 启动前结果
+## 执行与证据
 
-- 来源与配置测试 15/15 通过；完整奖励及课程参数与官方一致。
-- 双卡各 64 环境、5 次更新完成，退出码 0，已保存 model_4.pt 及 ONNX。训练中 nan_state=0。日志末尾有 rank1 shutdown traceback 标头，但 launcher 报告双方成功退出，未出现训练异常；保留原日志。
-- 正式训练从随机初始化开始；移除旧入口遗留的 no-FMA 编译环境覆盖，使用默认编译行为。
-- scripts/run_official_walk.py 只负责启动官方命令和每 1800 秒记录状态，不更改训练配置或训练循环；退出时立即记录。
-- 证据位于 evidence/official-walk/，正式启动信息见 launch.json，定时记录见 monitor.jsonl。
+1. `bash scripts/v2_python.sh scripts/audit_official_alignment.py`：完整官方源文件、环境/算法配置和锁定依赖对照。
+2. `bash scripts/v2_python.sh scripts/smoke_official_v2.py`：64 环境、5 次更新；检查实际摩擦、armature、电压、延迟缓冲及模型导出。
+3. `python3 scripts/run_official_walk.py`：从零启动官方 train CLI，GPU0 单卡 4096 环境；不加载已有 checkpoint。
+4. supervisor 每 1800 秒保存 GPU、日志和运行状态；进程退出时立即记录。它不修改训练循环。
 
-## 正式启动
+运行证据位于 `docs/evidence/official-walk/corrected/`。完整对照脚本列出每个允许的差异，未解释的差异会使检查失败。训练产物和模拟结果均不代表真机验证。
 
-2026-10-25 13:47:03（北京时间）启动，已确认双卡进入 PPO 更新，nan_state=0。代码提交 b315a689。下次常规检查为 14:17:03，此后每 30 分钟一次。
+## 已纠正的旧接入错误
 
-## 单卡切换及碰撞核对（2026-10-25）
+旧入口误删 BAM 摩擦和 armature 随机化，并禁用了命令延迟、供电随机化；旧检查还排除了这些项。此外旧共享环境 MuJoCo 为 3.13.0，与官方锁定的 3.10.0 不同。本次移除事件排除、继承官方 actuator 配置、使用独立锁定环境，并将旧运行标为作废；历史证据仍保留。
 
-按用户要求停止双卡进程，从最近的 model_250.pt 使用官方 resume 恢复至 GPU0 单卡、4096 环境。恢复模型、优化器、迭代和课程 common_step_counter；不重置课程，不改奖励。未保存的 checkpoint 后更新丢弃；环境物理状态按官方 resume 重新初始化，并非逐步完全连续复现。剩余更新 49750，使目标终点仍为 50000。具体命令见 scripts/run_official_walk.py。
+## 重新训练前的结果
 
-编译官方与 V2 Entity 后核对：两者均有 5 个启用碰撞 geom；双足的 contype/conaffinity=1/1、condim=3、priority=1；躯干支撑和双小腿的自碰撞 geom 为 2/2、condim=3、priority=0。摩擦、solref、solimp 相同；均无显式接触 pair 和额外 body exclusion。头壳等不参与地面碰撞，遵循官方 walk 的精简碰撞拓扑，不是全身碰撞模型。
+完整官方源文件与配置对照 PASS；12 项配置/标定测试通过；独立环境通过 uv pip check，安装版本与官方锁文件一致。64 环境、5 次更新短测通过，实际摩擦倍率、14 个策略关节的 armature 倍率、10.2–12.4 V 电压和 3–6 步命令延迟缓冲均生效；checkpoint 和 61D→14D ONNX 导出成功，CUDA graphs 开启。
 
-碰撞接触规则相同，几何形状因 V2 CAD 而不同：官方 power_support/leg 对应 V2 trunk_support/shin，不能声称几何完全相同。证据：evidence/official-walk/collision-comparison.json。
-
-单卡日志与半小时记录改存 evidence/official-walk/single-gpu/。首次单卡启动遇到 CLI 对 --gpu-ids 0 的列表解析错误；改用 CUDA_VISIBLE_DEVICES=0 配合 --gpu-ids all，未改训练算法。
-
-单卡于 13:56:15 启动，已确认从 iteration 250 继续更新，GPU1 无本任务计算进程。下次常规检查 14:26:15，此后每半小时一次。
-
-## 随机化实际差异核对
-
-以官方 b02fdea 配置和本次 GPU0 运行保存的 params/env.yaml 为准。此前“移除只适用于 XL330 的随机化”的措辞不准确：摩擦倍率与 armature 倍率也适用于 SC0090，冻结它们属于额外差异。
-
-| 项目 | 官方步行 | 当前 V2 | 一致性 |
-| --- | --- | --- | --- |
-| 足底摩擦 | 0.7–1.3 | 0.7–1.3 | 相同 |
-| 躯干/头部质心及范围课程 | 官方事件与时间表 | 同一事件与时间表，作用于 V2 对应身体 | 保留 |
-| 躯干质量/惯量 | 同步 ±5% | 同步 ±5%，基于 V2 名义值 | 保留 |
-| 外力速度扰动、IMU 安装误差、编码器偏置 | 官方范围 | 官方范围 | 相同 |
-| 观测噪声、观测延迟 | 官方配置 | 官方配置 | 相同 |
-| BAM 摩擦倍率 | 0.9–1.1 | 固定 1.0 | 不同，接入时删除了事件 |
-| armature 倍率 | 0.9–1.1 | 固定标定值 | 不同，接入时删除了事件 |
-| 电池电压 | XL330 6.5–8.2 V | SC0090 固定 11.1 V | 不同 |
-| 负载电压下垂增益 | 0.0–0.2 | 无随机化 | 不同 |
-| 电机命令延迟 | 3–6 个物理步 | 0 | 不同，区别于观测延迟 |
-| P/D 增益随机化 | 官方开关关闭 | 关闭 | 当前无实际差异 |
-| 额外关节阻尼随机化 | 官方开关关闭 | 关闭 | 当前无实际差异 |
-
-此表仅记录当前生效状态；本次核对未更改正在运行的随机化、奖励或课程。
+独立环境使用逐项通过 wheel RECORD 哈希校验的同版本官方依赖文件作为安装缓存，不匹配的 MuJoCo 3.13.0 被排除，并通过未修改的官方 uv.lock 安装 3.10.0。未使用旧实验的环境代码修改或 checkpoint。

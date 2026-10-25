@@ -7,16 +7,14 @@ import subprocess
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
-EVIDENCE = ROOT / 'docs/evidence/official-walk/single-gpu'
+EVIDENCE = ROOT / 'docs/evidence/official-walk/corrected'
 EVIDENCE.mkdir(parents=True, exist_ok=True)
 LOG = EVIDENCE / 'formal.log'
 COMMAND = ['bash', 'scripts/v2_python.sh', '-m', 'mjlab.scripts.train',
            'Mjlab-Velocity-Flat-MicroDuck-V2-Official-Baseline',
            '--gpu-ids', 'all', '--env.scene.num-envs', '4096',
            '--agent.logger', 'tensorboard', '--agent.upload-model', 'False',
-           '--agent.run-name', 'official_v2_sc0090_v5_gpu0',
-           '--agent.resume', 'True', '--agent.load-run', '2026-10-25_13-47-22_official_v2_sc0090_v5',
-           '--agent.load-checkpoint', 'model_250.pt', '--agent.max-iterations', '49750']
+           '--agent.run-name', 'official_v2_sc0090_v5_dr_fresh']
 
 def now():
     return datetime.datetime.now(datetime.timezone.utc).isoformat()

@@ -22,5 +22,5 @@ case "$V2_DRIVER" in
     export LD_LIBRARY_PATH="$V2_COMPAT_DIR${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
     ;;
 esac
-V2_PYTHON=${SC0090_V2_PYTHON:-/home/l40-vm01/data2/experiments/microduck-v2-20261015/venv-p04/bin/python}
+V2_PYTHON=${SC0090_V2_PYTHON:-$V2_REPO_DIR/.venv/bin/python}
 exec "$V2_PYTHON" "$@"

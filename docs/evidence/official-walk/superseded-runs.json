@@ -1,0 +1,9 @@
+{
+  "time_utc": "2026-10-25T06:01:52.144602+00:00",
+  "reason": "User requested complete official audit and fresh retraining; previous runs froze motor randomization",
+  "stopped_pids": [
+    2598182,
+    2598192
+  ],
+  "reuse_checkpoints": false
+}

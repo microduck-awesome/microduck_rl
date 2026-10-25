@@ -85,18 +85,12 @@ def test_observation_noise_delay_bias_and_privileged_critic_match_upstream(play)
 def test_rewards_commands_general_randomization_and_ppo_are_inherited():
     stock = make_microduck_velocity_env_cfg()
     cfg = make_v2_baseline_env_cfg()
-    motor_events = {
-        "randomize_joint_friction",
-        "randomize_joint_damping",
-        "randomize_armature",
-        "randomize_motor_gains",
-    }
-    assert set(cfg.events) == (set(stock.events) - motor_events) | {
+    assert set(cfg.events) == set(stock.events) | {
         "mouth_hold",
         "mouth_reset",
     }
     for name, expected in stock.events.items():
-        if name in motor_events or name == "reset_base":
+        if name == "reset_base":
             continue
         term = cfg.events[name]
         assert term.func is expected.func
@@ -151,7 +145,12 @@ def test_cad_motor_and_archive_independence():
             hashlib.sha256(Path(actuator.json_path).read_bytes()).hexdigest()
             == MODEL_SHA256
         )
-        assert actuator.vin_range is None
+        assert actuator.vin_range == (10.2, 12.4)
+        assert actuator.vin_min == 10.2
+        official_motor = make_microduck_velocity_env_cfg().scene.entities["robot"].articulation.actuators[0]
+        for name in ("vin_drop_gain_range", "delay_min_lag", "delay_max_lag",
+                     "delay_hold_prob", "delay_update_period", "delay_per_env_phase"):
+            assert getattr(actuator, name) == getattr(official_motor, name)
     assert importlib.util.find_spec("mjlab_microduck.sc0090") is None
     assert importlib.util.find_spec("mjlab_microduck.sc0090_v2") is None
     assert not (ASSETS.parent / "training-assets").exists()

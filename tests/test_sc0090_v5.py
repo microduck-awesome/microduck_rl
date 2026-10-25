@@ -81,13 +81,10 @@ def test_m6_friction_matches_identification_equation_all_signs_and_ties():
 @pytest.mark.parametrize(
     "overrides",
     [
-        dict(delay_max_lag=1),
-        dict(vin_range=(9.0, 12.0)),
-        dict(vin_drop_gain_range=(0.0, 1.0)),
         dict(vin=0.0),
         dict(kp_fw=-1.0),
     ],
 )
-def test_unmeasured_operating_conditions_cannot_silently_replace_v5(overrides):
+def test_invalid_operating_conditions_are_rejected(overrides):
     with pytest.raises(ValueError):
         SC0090V5ActuatorCfg(target_names_expr=(".*",), **overrides)

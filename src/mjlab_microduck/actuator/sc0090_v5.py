@@ -17,7 +17,8 @@ import numpy as np
 import torch
 from bam.actuator import VoltageControlledActuator
 from bam.actuators import actuators
-from bam.mjlab import BamActuator, BamActuatorCfg
+from bam.mjlab import BamActuatorCfg
+from .friction_dr_bam import FrictionDRBamActuator
 from bam.model import load_model_from_dict
 from bam.parameter import Parameter
 from bam.testbench import Pendulum
@@ -113,12 +114,6 @@ class SC0090V5ActuatorCfg(BamActuatorCfg):
 
     def __post_init__(self):
         super().__post_init__()
-        if self.delay_min_lag or self.delay_max_lag:
-            raise ValueError(
-                "v5 identified command delay is zero; schedule bus commands separately"
-            )
-        if self.vin_range is not None or self.vin_drop_gain_range is not None:
-            raise ValueError("Use the shared, measured V2 supply sampler, not XL330 voltage DR")
         if self.kp_fw is None or self.vin is None:
             raise ValueError("SC0090 firmware P and voltage must be explicit")
         load_v5_model(self.json_path, kp=self.kp_fw, kd=self.kd_fw, vin=self.vin)
@@ -127,7 +122,7 @@ class SC0090V5ActuatorCfg(BamActuatorCfg):
         return SC0090V5Actuator(self, entity, target_ids, target_names)
 
 
-class SC0090V5Actuator(BamActuator):
+class SC0090V5Actuator(FrictionDRBamActuator):
     """BAM solver integration with the identification model's exact M6 gate."""
 
     def __init__(self, cfg, entity, target_ids, target_names):
@@ -146,19 +141,11 @@ class SC0090V5Actuator(BamActuator):
 
     def initialize(self, mj_model, model, data, device):
         super().initialize(mj_model, model, data, device)
-        self.friction_scale = torch.ones_like(self.kp_scale)
-        self.default_friction_scale = self.friction_scale.clone()
         self.firmware_kd_scale = torch.ones_like(self.kp_scale)
 
     def reset(self, env_ids=None):
         super().reset(env_ids)
         self._bam_model.actuator.reset(env_ids)
-
-    def reset_friction_scale(self, env_ids):
-        self.friction_scale[env_ids] = self.default_friction_scale[env_ids]
-
-    def set_friction_scale(self, env_ids, scale):
-        self.friction_scale[env_ids] = scale
 
     def _compute_friction_budget(self, motor_torque, external_torque, stribeck_coeff):
         """Match bam.model.Model.compute_frictions, including opposite signs/ties."""
@@ -186,7 +173,14 @@ class SC0090V5Actuator(BamActuator):
         # Keep actual velocity in the firmware D term; upstream kd_scale is
         # electrical damping, a different quantity from the firmware D register.
         model, act = self._bam_model, self._bam_model.actuator
-        act.vin = self.vin_tensor
+        # Same per-world voltage/sag pipeline as the pinned official BAM.
+        vin = self.vin_tensor
+        if self.vin_drop_gain is not None and self._prev_motor_torque is not None:
+            load = self._prev_motor_torque.abs().sum(dim=-1, keepdim=True)
+            vin = vin - self.vin_drop_gain * load
+            if self.cfg.vin_min is not None:
+                vin = torch.clamp(vin, min=self.cfg.vin_min)
+        act.vin = vin
         act.kp = self.cfg.kp_fw * self.kp_scale
         act.kd = self.cfg.kd_fw * self.firmware_kd_scale
         control = act.compute_control(cmd.position_target, cmd.pos, cmd.vel, self._dt)
@@ -204,4 +198,6 @@ class SC0090V5Actuator(BamActuator):
         )
         budget = self._compute_friction_budget(previous, external, stribeck)
         self._write_frictions(budget, model.friction_viscous.value)
+        if self._prev_motor_torque is not None:
+            self._prev_motor_torque = torque.detach()
         return torque

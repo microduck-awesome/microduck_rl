@@ -1,0 +1,26 @@
+[mdp] Patches 1-2 active: NaN-safe reward/advantage
+[mdp] Patch 4 active: ONNX export filters passive_* joints
+[mdp] Patch 5 active: MICRODUCK_WARM_START=1 restarts curricula after checkpoint load
+{
+  "status": "PASS",
+  "upstream_revision": "b02fdea4902c2b93b7d34a83a6f05da4ececb7d3",
+  "official_files_checked": 254,
+  "modified_official_files": [
+    "src/mjlab_microduck/tasks/__init__.py (registration suffix only)"
+  ],
+  "rl_differences": [
+    [
+      "experiment_name",
+      "velocity",
+      "microduck_v2_official_baseline"
+    ],
+    [
+      "run_name",
+      "velocity",
+      "microduck_v2_official_baseline"
+    ]
+  ],
+  "all_official_events_preserved": true,
+  "official_runner": true,
+  "rewards_and_curricula": "all terms and parameters compared; only V2 policy selectors adapted"
+}

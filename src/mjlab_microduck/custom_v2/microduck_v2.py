@@ -88,7 +88,7 @@ def install_policy_mapping():
             result["microduck_feedback"] = "official-joint-noise-delay-and-encoder-bias"
             result["microduck_motor_sha256"] = MODEL_SHA256
             result["microduck_motor_operating_point"] = (
-                "P15/D30/I0;11.1V;goal_profile_zeroed"
+                "P15/D30/I0;vin=10.2..12.4V;sag_floor=10.2V;goal_profile_zeroed"
             )
             result["microduck_deployment"] = "simulation-baseline-only"
         return result
@@ -258,14 +258,6 @@ def _make_v2_geometry_env_cfg(play=False):
     cfg.rewards["dof_pos_limits"].params["asset_cfg"] = SceneEntityCfg(
         "robot", joint_names=POLICY_JOINTS, preserve_order=True
     )
-    # The geometry helper uses preview XML actuators; the baseline below replaces
-    # them with frozen M6. Body/contact/IMU randomizations stay upstream.
-    for event in (
-        "expand_bam_friction_fields",
-        "randomize_joint_friction",
-        "randomize_motor_gains",
-    ):
-        cfg.events.pop(event, None)
     # Keep the official head-CoM selector, including its documented legacy
     # bearing_roll (right hip yaw) entry. Its (bottom_head_shell|jaw_soft)
     # alternation selects both bodies on V2 because the jaw is independent.
@@ -301,11 +293,23 @@ def make_v2_baseline_env_cfg(play=False):
     from mjlab.managers import EventTermCfg
     from mjlab_microduck.actuator.sc0090_v5 import SC0090V5ActuatorCfg
     from mjlab_microduck.tasks import mdp
+    from mjlab_microduck.tasks.microduck_velocity_env_cfg import make_microduck_velocity_env_cfg
 
     cfg = _make_v2_geometry_env_cfg(play)
     if abs(float(get_spec().compile().body_mass.sum()) - NOMINAL_MASS_KG) > 1e-8:
         raise ValueError("V2 CAD mass differs from the baseline provenance")
-    kwargs = dict(kp_fw=15.0, kd_fw=30.0, vin=11.1)
+    # Inherit all official actuator settings except motor identity, firmware
+    # operating point and the user-specified supply-voltage range.
+    from dataclasses import fields
+    from bam.mjlab import BamActuatorCfg
+    official = make_microduck_velocity_env_cfg(play=play, rough=False)
+    upstream = official.scene.entities["robot"].articulation.actuators[0]
+    kwargs = {field.name: deepcopy(getattr(upstream, field.name))
+              for field in fields(BamActuatorCfg) if field.init}
+    for name in ("motor_name", "model", "json_path", "target_names_expr"):
+        kwargs.pop(name, None)
+    kwargs.update(kp_fw=15.0, kd_fw=30.0, vin=11.1,
+                  vin_range=(10.2, 12.4), vin_min=10.2)
     cfg.scene.entities["robot"].articulation.actuators = (
         SC0090V5ActuatorCfg(target_names_expr=(POLICY_PATTERN,), **kwargs),
         SC0090V5ActuatorCfg(target_names_expr=("^mouth$",), **kwargs),
@@ -313,15 +317,6 @@ def make_v2_baseline_env_cfg(play=False):
     cfg.events["expand_bam_friction_fields"] = EventTermCfg(
         func=mdp.expand_bam_friction_fields, mode="startup"
     )
-    # Freeze the identified actuator coefficients and operating point. These stock
-    # XL330 perturbations would change that model, unlike generic observation DR.
-    for event in (
-        "randomize_joint_friction",
-        "randomize_joint_damping",
-        "randomize_armature",
-        "randomize_motor_gains",
-    ):
-        cfg.events.pop(event, None)
     return cfg
 
 

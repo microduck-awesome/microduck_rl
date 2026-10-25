@@ -1,0 +1,13 @@
+Installed 12 packages in 54ms
+ + gitpython==3.1.46
+ + hf-xet==1.5.0
+ + huggingface-hub==1.15.0
+ + idna==3.11
+ + ipython==9.15.0
+ + mjlab-microduck==0.1.0 (from file:///home/l40-vm01/Documents/ai-research/microduck/microduck-v2-official-walk-20261025)
+ + mujoco==3.10.0
+ + nvidia-curand-cu12==10.3.9.90
+ + pexpect==4.9.0
+ + pydantic-core==2.41.5
+ + setuptools==80.9.0
+ + typeguard==4.4.4

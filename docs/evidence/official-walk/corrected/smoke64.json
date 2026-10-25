@@ -1,0 +1,65 @@
+{
+  "status": "PASS",
+  "device": "cuda:0",
+  "envs": 64,
+  "updates": 5,
+  "runtime_randomization": [
+    {
+      "friction_min": 0.9063685536384583,
+      "friction_max": 1.0996651649475098,
+      "armature_ratio_min": 0.9000158309936523,
+      "armature_ratio_max": 1.0996692180633545,
+      "vin_min": 10.216207504272461,
+      "vin_max": 12.367413520812988,
+      "delay_steps": [
+        3,
+        6
+      ],
+      "official_delay_buffer": true
+    },
+    {
+      "friction_min": 0.9106175899505615,
+      "friction_max": 1.0963128805160522,
+      "armature_ratio_min": 1.0,
+      "armature_ratio_max": 1.0,
+      "vin_min": 10.2830228805542,
+      "vin_max": 12.39439582824707,
+      "delay_steps": [
+        3,
+        6
+      ],
+      "official_delay_buffer": true
+    }
+  ],
+  "finite_losses": [
+    {
+      "value": 0.03634015880525112,
+      "surrogate": -0.03337587786954828,
+      "entropy": 19.852128124237062
+    },
+    {
+      "value": 0.044586625322699545,
+      "surrogate": -0.04128081095404923,
+      "entropy": 19.846425247192382
+    },
+    {
+      "value": 0.04192936792969704,
+      "surrogate": -0.04227503999718465,
+      "entropy": 19.836593532562254
+    },
+    {
+      "value": 0.021899795066565274,
+      "surrogate": -0.04059478688577656,
+      "entropy": 19.819012546539305
+    },
+    {
+      "value": 0.03095720810815692,
+      "surrogate": -0.041670774947851895,
+      "entropy": 19.79922733306885
+    }
+  ],
+  "checkpoint": "model_4.pt",
+  "onnx_actor_input": 61,
+  "onnx_actions": 14,
+  "physics_cuda_graph": true
+}

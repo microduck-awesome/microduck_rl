@@ -278,3 +278,7 @@ for _task_id, _make_cfg, _kw, _rl_cfg, _robot_cfg in _BACKLASH_TASKS:
         rl_cfg=_rl_cfg,
         runner_cls=MicroduckOnPolicyRunner,
     )
+
+# V2 structure/HOME and frozen SC0090 V5 BAM adapter.
+from mjlab_microduck.custom_v2.microduck_v2 import register as _register_v2
+_register_v2()

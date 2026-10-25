@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "upstream_revision": "b02fdea4902c2b93b7d34a83a6f05da4ececb7d3",
+  "assembly_revision": "88392c4859046976dbee706b4288f02af2e78814",
+  "actuator_adapter_source": "bc8a4d3f (2026-10-15 original adapter)",
+  "gpus": [
+    0,
+    1
+  ],
+  "envs_per_gpu": 64,
+  "updates": 5,
+  "exit_code": 0,
+  "run_directory": "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-official-walk-20261025/logs/rsl_rl/microduck_v2_official_baseline/2026-10-25_13-45-27_clean_smoke64",
+  "checkpoint_sha256": "9217a421438fe0634d1f471d1c73326f96ca8756b36e1d549ef5416b04b1389e",
+  "onnx_sha256": "b706b83497a470605b3f636054a0727632ef6f2bf0f863e5cdd896a76df4e0fb",
+  "notes": [
+    "Launcher reports both workers completed successfully; trailing rank1 traceback header occurs during shutdown without a reported exception or nonzero exit.",
+    "Formal launch retains default compiler fusion; removed the inherited no-FMA environment override."
+  ]
+}

@@ -1,0 +1,586 @@
+[mdp] Patches 1-2 active: NaN-safe reward/advantage
+[mdp] Patch 4 active: ONNX export filters passive_* joints
+[mdp] Patch 5 active: MICRODUCK_WARM_START=1 restarts curricula after checkpoint load
+/home/l40-vm01/data2/experiments/microduck-v2-20261015/venv-p04/lib/python3.12/site-packages/tyro/_parsers.py:353: UserWarning: The field `env.scene.entities.robot.collisions.0.geom-names-expr` is annotated with type `tuple[str, ...]`, but the default value `['.*_collision']` has type `<class 'list'>`. We'll try to handle this gracefully, but it may cause unexpected behavior.
+  warnings.warn(message)
+/home/l40-vm01/data2/experiments/microduck-v2-20261015/venv-p04/lib/python3.12/site-packages/tyro/_resolver.py:600: TyroWarning: <class 'list'> does not match any type in Union: [<class 'str'>, <class 'tuple'>, <class 'NoneType'>]
+  warnings.warn(
+[INFO] Launching training with 2 GPUs
+INFO:torchrunx:Launching "run_train" on localhost.
+[Gloo] Rank 0 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+INFO:torchrunx.localhost:[Gloo] Rank 1 is connected to 1 peer ranks. Expected number of connected peer ranks is : 1
+INFO:torchrunx.localhost:OpenGL.acceleratesupport:No OpenGL_accelerate module loaded: No module named 'OpenGL_accelerate'
+INFO:torchrunx.localhost:[mdp] Patches 1-2 active: NaN-safe reward/advantage
+INFO:torchrunx.localhost:[mdp] Patch 4 active: ONNX export filters passive_* joints
+INFO:torchrunx.localhost:[mdp] Patch 5 active: MICRODUCK_WARM_START=1 restarts curricula after checkpoint load
+INFO:torchrunx.localhost:Starting 2 worker processes.
+INFO:torchrunx.localhost:[mdp] Patches 1-2 active: NaN-safe reward/advantage
+INFO:torchrunx.localhost:[mdp] Patch 4 active: ONNX export filters passive_* joints
+INFO:torchrunx.localhost:[mdp] Patch 5 active: MICRODUCK_WARM_START=1 restarts curricula after checkpoint load
+INFO:torchrunx.localhost:[mdp] Patches 1-2 active: NaN-safe reward/advantage
+INFO:torchrunx.localhost:[mdp] Patch 4 active: ONNX export filters passive_* joints
+INFO:torchrunx.localhost:[mdp] Patch 5 active: MICRODUCK_WARM_START=1 restarts curricula after checkpoint load
+INFO:torchrunx.localhost.0:[INFO] Training with: device=cuda:0, seed=42, rank=0
+INFO:torchrunx.localhost.0:[INFO] Logging experiment in directory: logs/rsl_rl/microduck_v2_official_baseline/2026-10-25_13-45-27_clean_smoke64
+INFO:torchrunx.localhost.0:Setting seed: 42
+INFO:torchrunx.localhost.0:Warp 1.12.0 initialized:
+INFO:torchrunx.localhost.0:   CUDA Toolkit 12.9, Driver 12.9
+INFO:torchrunx.localhost.0:   Devices:
+INFO:torchrunx.localhost.0:     "cpu"      : "x86_64"
+INFO:torchrunx.localhost.0:     "cuda:0"   : "NVIDIA L40" (47 GiB, sm_89, mempool enabled)
+INFO:torchrunx.localhost.0:     "cuda:1"   : "NVIDIA L40" (47 GiB, sm_89, mempool enabled)
+INFO:torchrunx.localhost.0:   CUDA peer access:
+INFO:torchrunx.localhost.0:     Not supported
+INFO:torchrunx.localhost.0:   Kernel cache:
+INFO:torchrunx.localhost.0:     /home/l40-vm01/.cache/warp/1.12.0
+WARNING:torchrunx.localhost.0:py.warnings:/home/l40-vm01/data2/experiments/microduck-v2-20261015/venv-p04/lib/python3.12/site-packages/mjlab/scene/scene.py:65: UserWarning: Entity 'robot' has 2 keyframes; only the first one will be used.
+  self._add_entities()
+
+WARNING:torchrunx.localhost.0:py.warnings:/home/l40-vm01/data2/experiments/microduck-v2-20261015/venv-p04/lib/python3.12/site-packages/mjlab/scene/scene.py:65: UserWarning: Entity 'robot' has non-default <option> fields (integrator, iterations, ls_iterations, timestep) that will not be propagated by MjSpec.attach(). Use MujocoCfg instead.
+  self._add_entities()
+
+ERROR:torchrunx.localhost.0:WARNING: Attach conflict when attaching 'microduck_v2' to 'mjlab scene', policy is 'warning'
+ERROR:torchrunx.localhost.0:timestep: parent has 0.002 (default), child has 0.005, keeping parent value
+ERROR:torchrunx.localhost.0:iterations: parent has 100 (default), child has 10, keeping parent value
+ERROR:torchrunx.localhost.0:ls_iterations: parent has 50 (default), child has 20, keeping parent value
+ERROR:torchrunx.localhost.0:integrator: parent has 0 (default), child has 3, keeping parent value
+ERROR:torchrunx.localhost.0:
+WARNING:torchrunx.localhost.0:py.warnings:/home/l40-vm01/data2/experiments/microduck-v2-20261015/venv-p04/lib/python3.12/site-packages/mjlab/scene/scene.py:71: UserWarning: Attach conflict when attaching 'microduck_v2' to 'mjlab scene', policy is 'warning'
+timestep: parent has 0.002 (default), child has 0.005, keeping parent value
+iterations: parent has 100 (default), child has 10, keeping parent value
+ls_iterations: parent has 50 (default), child has 20, keeping parent value
+integrator: parent has 0 (default), child has 3, keeping parent value
+  return self._spec.compile()
+
+INFO:torchrunx.localhost.0:Warp DeprecationWarning: The symbol `warp.context.runtime` will soon be removed from the public API. It can still be accessed from `warp._src.context.runtime` but might be changed or removed without notice.
+INFO:torchrunx.localhost.0:Module mujoco_warp._src.smooth 95a0b8b load on device 'cuda:0' took 3.88 ms  (cached)
+INFO:torchrunx.localhost.0:Module mujoco_warp._src.collision_driver 88f7770 load on device 'cuda:0' took 0.52 ms  (cached)
+INFO:torchrunx.localhost.0:Module _nxn_broadphase__locals__kernel_e73b1315 e73b131 load on device 'cuda:0' took 0.50 ms  (cached)
+INFO:torchrunx.localhost.0:Module ccd_kernel_builder__locals__ccd_kernel_079dfa94 079dfa9 load on device 'cuda:0' took 2.42 ms  (cached)
+INFO:torchrunx.localhost.0:Module _primitive_narrowphase__locals__primitive_narrowphase_b282a07a b282a07 load on device 'cuda:0' took 0.87 ms  (cached)
+INFO:torchrunx.localhost.0:Module mujoco_warp._src.constraint 27c5750 load on device 'cuda:0' took 2.35 ms  (cached)
+INFO:torchrunx.localhost.0:Module _efc_contact_init__locals__kernel_fda71e14 fda71e1 load on device 'cuda:0' took 0.57 ms  (cached)
+INFO:torchrunx.localhost.0:Module _efc_contact_jac_dense__locals__kernel_7974b597 cc0fc30 load on device 'cuda:0' took 0.54 ms  (cached)
+INFO:torchrunx.localhost.0:Module _efc_contact_update__locals__kernel_90315d53 90315d5 load on device 'cuda:0' took 0.65 ms  (cached)
+INFO:torchrunx.localhost.0:Module mujoco_warp._src.sensor 7fc0378 load on device 'cuda:0' took 2.70 ms  (cached)
+INFO:torchrunx.localhost.0:Module mujoco_warp._src.forward b4bf9c3 load on device 'cuda:0' took 1.45 ms  (cached)
+INFO:torchrunx.localhost.0:Module mujoco_warp._src.passive 1a5e55c load on device 'cuda:0' took 1.05 ms  (cached)
+INFO:torchrunx.localhost.0:Module mujoco_warp._src.forward ab3b1a6 load on device 'cuda:0' took 1.44 ms  (cached)
+INFO:torchrunx.localhost.0:Module mujoco_warp._src.support dd3f924 load on device 'cuda:0' took 0.52 ms  (cached)
+INFO:torchrunx.localhost.0:Module _tile_cholesky_factorize_solve__locals__cholesky_factorize_solve_fd1445d3 4a464d2 load on device 'cuda:0' took 37.19 ms  (cached)
+INFO:torchrunx.localhost.0:Module mujoco_warp._src.solver b116efb load on device 'cuda:0' took 1.73 ms  (cached)
+INFO:torchrunx.localhost.0:Module solve_init_jaref__locals__kernel_2aa8bdf6 2aa8bdf load on device 'cuda:0' took 0.48 ms  (cached)
+INFO:torchrunx.localhost.0:Module mul_m_dense__locals___mul_m_dense_5f474d43 5f474d4 load on device 'cuda:0' took 0.64 ms  (cached)
+INFO:torchrunx.localhost.0:Module update_constraint_efc__locals__kernel_32935e9d 32935e9 load on device 'cuda:0' took 0.49 ms  (cached)
+INFO:torchrunx.localhost.0:Module update_constraint_gauss_cost__locals__kernel_8169a580 8169a58 load on device 'cuda:0' took 0.51 ms  (cached)
+INFO:torchrunx.localhost.0:Module update_gradient_JTDAJ_dense_tiled__locals__kernel_9981265a 0667084 load on device 'cuda:0' took 0.80 ms  (cached)
+INFO:torchrunx.localhost.0:Module update_gradient_cholesky__locals__kernel_33be19e9 c4273dc load on device 'cuda:0' took 39.50 ms  (cached)
+INFO:torchrunx.localhost.0:Module linesearch_jv_fused__locals__kernel_93f316d4 93f316d load on device 'cuda:0' took 0.51 ms  (cached)
+INFO:torchrunx.localhost.0:Module linesearch_prepare_gauss__locals__kernel_c412d952 c412d95 load on device 'cuda:0' took 0.48 ms  (cached)
+INFO:torchrunx.localhost.0:Module update_constraint_efc__locals__kernel_3c1a9816 3c1a981 load on device 'cuda:0' took 0.50 ms  (cached)
+INFO:torchrunx.localhost.0:Module _contact_sort__locals__contact_sort_304c86df 6c97b35 load on device 'cuda:0' took 0.52 ms  (cached)
+INFO:torchrunx.localhost.0:Module mujoco_warp._src.derivative a753363 load on device 'cuda:0' took 0.95 ms  (cached)
+INFO:torchrunx.localhost.0:Module reset_data__locals__reset_xfrc_applied_e7898c5c e7898c5 load on device 'cuda:0' took 0.49 ms  (cached)
+INFO:torchrunx.localhost.0:Module reset_data__locals__reset_qM_10d3c793 10d3c79 load on device 'cuda:0' took 0.46 ms  (cached)
+INFO:torchrunx.localhost.0:Module reset_data__locals__reset_mocap_ff71f630 ff71f63 load on device 'cuda:0' took 0.43 ms  (cached)
+INFO:torchrunx.localhost.0:Module reset_data__locals__reset_contact_df686d47 df686d4 load on device 'cuda:0' took 0.43 ms  (cached)
+INFO:torchrunx.localhost.0:Module reset_data__locals__reset_nworld_6e0d904e 6e0d904 load on device 'cuda:0' took 0.52 ms  (cached)
+INFO:torchrunx.localhost.0:[BamActuator] model='m6' joints=14 kt=0.8924 R=27.1988 vin=11.1V no drop force_limit=±0.36Nm friction_base=0.0192 friction_viscous=0.0137 envs=64 device=cuda:0
+INFO:torchrunx.localhost.0:[BamActuator] model='m6' joints=1 kt=0.8924 R=27.1988 vin=11.1V no drop force_limit=±0.36Nm friction_base=0.0192 friction_viscous=0.0137 envs=64 device=cuda:0
+INFO:torchrunx.localhost.0:Module mujoco_warp._src.render_util 94fd13e load on device 'cuda:0' took 0.69 ms  (cached)
+INFO:torchrunx.localhost.0:Module mujoco_warp._src.bvh 08f985a load on device 'cuda:0' took 1.15 ms  (cached)
+INFO:torchrunx.localhost.0:Module mujoco_warp._src.ray c8f2bb3 load on device 'cuda:0' took 1.23 ms  (cached)
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:+---------------------------------+
+INFO:torchrunx.localhost.0:|         Base Environment        |
+INFO:torchrunx.localhost.0:+------------------------+--------+
+INFO:torchrunx.localhost.0:| Property               | Value  |
+INFO:torchrunx.localhost.0:+------------------------+--------+
+INFO:torchrunx.localhost.0:| Number of environments | 64     |
+INFO:torchrunx.localhost.0:| Environment device     | cuda:0 |
+INFO:torchrunx.localhost.0:| Environment seed       | 42     |
+INFO:torchrunx.localhost.0:| Physics step-size      | 0.005  |
+INFO:torchrunx.localhost.0:| Environment step-size  | 0.02   |
+INFO:torchrunx.localhost.0:+------------------------+--------+
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:[INFO] <EventManager> contains 4 active terms.
+INFO:torchrunx.localhost.0:+-------------------------------------+
+INFO:torchrunx.localhost.0:| Active Event Terms in Mode: 'reset' |
+INFO:torchrunx.localhost.0:+--------+----------------------------+
+INFO:torchrunx.localhost.0:| Index  | Name                       |
+INFO:torchrunx.localhost.0:+--------+----------------------------+
+INFO:torchrunx.localhost.0:|   0    | reset_base                 |
+INFO:torchrunx.localhost.0:|   1    | reset_robot_joints         |
+INFO:torchrunx.localhost.0:|   2    | reset_action_history       |
+INFO:torchrunx.localhost.0:|   3    | randomize_com              |
+INFO:torchrunx.localhost.0:|   4    | randomize_head_com         |
+INFO:torchrunx.localhost.0:|   5    | mouth_reset                |
+INFO:torchrunx.localhost.0:+--------+----------------------------+
+INFO:torchrunx.localhost.0:+----------------------------------------------+
+INFO:torchrunx.localhost.0:|    Active Event Terms in Mode: 'interval'    |
+INFO:torchrunx.localhost.0:+-------+------------+-------------------------+
+INFO:torchrunx.localhost.0:| Index | Name       | Interval time range (s) |
+INFO:torchrunx.localhost.0:+-------+------------+-------------------------+
+INFO:torchrunx.localhost.0:|   0   | push_robot |        (3.0, 6.0)       |
+INFO:torchrunx.localhost.0:+-------+------------+-------------------------+
+INFO:torchrunx.localhost.0:+---------------------------------------+
+INFO:torchrunx.localhost.0:| Active Event Terms in Mode: 'startup' |
+INFO:torchrunx.localhost.0:+-------+-------------------------------+
+INFO:torchrunx.localhost.0:| Index | Name                          |
+INFO:torchrunx.localhost.0:+-------+-------------------------------+
+INFO:torchrunx.localhost.0:|   0   | foot_friction                 |
+INFO:torchrunx.localhost.0:|   1   | encoder_bias                  |
+INFO:torchrunx.localhost.0:|   2   | base_com                      |
+INFO:torchrunx.localhost.0:|   3   | randomize_mass_inertia        |
+INFO:torchrunx.localhost.0:|   4   | expand_bam_friction_fields    |
+INFO:torchrunx.localhost.0:+-------+-------------------------------+
+INFO:torchrunx.localhost.0:+------------------------------------+
+INFO:torchrunx.localhost.0:| Active Event Terms in Mode: 'step' |
+INFO:torchrunx.localhost.0:+------------+-----------------------+
+INFO:torchrunx.localhost.0:|   Index    | Name                  |
+INFO:torchrunx.localhost.0:+------------+-----------------------+
+INFO:torchrunx.localhost.0:|     0      | mouth_hold            |
+INFO:torchrunx.localhost.0:+------------+-----------------------+
+INFO:torchrunx.localhost.0:+-----------------------------+
+INFO:torchrunx.localhost.0:| Domain Randomization Fields |
+INFO:torchrunx.localhost.0:+-------+---------------------+
+INFO:torchrunx.localhost.0:| Index | Field Name          |
+INFO:torchrunx.localhost.0:+-------+---------------------+
+INFO:torchrunx.localhost.0:|   0   | geom_friction       |
+INFO:torchrunx.localhost.0:|   1   | body_ipos           |
+INFO:torchrunx.localhost.0:|   2   | body_subtreemass    |
+INFO:torchrunx.localhost.0:|   3   | dof_invweight0      |
+INFO:torchrunx.localhost.0:|   4   | body_invweight0     |
+INFO:torchrunx.localhost.0:|   5   | tendon_length0      |
+INFO:torchrunx.localhost.0:|   6   | tendon_invweight0   |
+INFO:torchrunx.localhost.0:|   7   | body_mass           |
+INFO:torchrunx.localhost.0:|   8   | body_inertia        |
+INFO:torchrunx.localhost.0:|   9   | body_iquat          |
+INFO:torchrunx.localhost.0:|   10  | dof_frictionloss    |
+INFO:torchrunx.localhost.0:|   11  | dof_damping         |
+INFO:torchrunx.localhost.0:+-------+---------------------+
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:Module repeat_array_kernel_39317a34 b712927 load on device 'cuda:0' took 0.57 ms  (cached)
+INFO:torchrunx.localhost.0:Module repeat_array_kernel_39317a34 18fcc7e load on device 'cuda:0' took 0.78 ms  (cached)
+INFO:torchrunx.localhost.0:Module repeat_array_kernel_39317a34 5cde7e8 load on device 'cuda:0' took 0.66 ms  (cached)
+INFO:torchrunx.localhost.0:Module repeat_array_kernel_39317a34 0fe3117 load on device 'cuda:0' took 0.57 ms  (cached)
+INFO:torchrunx.localhost.0:[INFO] <CommandManager> contains 3 active terms.
+INFO:torchrunx.localhost.0:+------------------------------------------------+
+INFO:torchrunx.localhost.0:|              Active Command Terms              |
+INFO:torchrunx.localhost.0:+-------+-----------+----------------------------+
+INFO:torchrunx.localhost.0:| Index | Name      |            Type            |
+INFO:torchrunx.localhost.0:+-------+-----------+----------------------------+
+INFO:torchrunx.localhost.0:|   0   | twist     | VelocityCommandCommandOnly |
+INFO:torchrunx.localhost.0:|   1   | head_pose |     UniformPoseCommand     |
+INFO:torchrunx.localhost.0:|   2   | body_pose |     UniformPoseCommand     |
+INFO:torchrunx.localhost.0:+-------+-----------+----------------------------+
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:[INFO] <ActionManager> contains 1 active terms.
+INFO:torchrunx.localhost.0:+---------------------------------+
+INFO:torchrunx.localhost.0:| Active Action Terms (shape: 14) |
+INFO:torchrunx.localhost.0:+-------+-----------+-------------+
+INFO:torchrunx.localhost.0:| Index | Name      |   Dimension |
+INFO:torchrunx.localhost.0:+-------+-----------+-------------+
+INFO:torchrunx.localhost.0:|   0   | joint_pos |          14 |
+INFO:torchrunx.localhost.0:+-------+-----------+-------------+
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:[INFO] <ObservationManager> contains 2 groups.
+INFO:torchrunx.localhost.0:+-----------------------------------------------------------+
+INFO:torchrunx.localhost.0:| Active Observation Terms in Group: 'actor' (shape: (61,)) |
+INFO:torchrunx.localhost.0:+-----------+----------------------------------+------------+
+INFO:torchrunx.localhost.0:|   Index   | Name                             |   Shape    |
+INFO:torchrunx.localhost.0:+-----------+----------------------------------+------------+
+INFO:torchrunx.localhost.0:|     0     | base_ang_vel                     |    (3,)    |
+INFO:torchrunx.localhost.0:|     1     | projected_gravity                |    (3,)    |
+INFO:torchrunx.localhost.0:|     2     | joint_pos                        |   (14,)    |
+INFO:torchrunx.localhost.0:|     3     | joint_vel                        |   (14,)    |
+INFO:torchrunx.localhost.0:|     4     | actions                          |   (14,)    |
+INFO:torchrunx.localhost.0:|     5     | command                          |    (3,)    |
+INFO:torchrunx.localhost.0:|     6     | head_command                     |    (4,)    |
+INFO:torchrunx.localhost.0:|     7     | body_command                     |    (6,)    |
+INFO:torchrunx.localhost.0:+-----------+----------------------------------+------------+
+INFO:torchrunx.localhost.0:+------------------------------------------------------------+
+INFO:torchrunx.localhost.0:| Active Observation Terms in Group: 'critic' (shape: (76,)) |
+INFO:torchrunx.localhost.0:+----------+------------------------------------+------------+
+INFO:torchrunx.localhost.0:|  Index   | Name                               |   Shape    |
+INFO:torchrunx.localhost.0:+----------+------------------------------------+------------+
+INFO:torchrunx.localhost.0:|    0     | base_lin_vel                       |    (3,)    |
+INFO:torchrunx.localhost.0:|    1     | base_ang_vel                       |    (3,)    |
+INFO:torchrunx.localhost.0:|    2     | projected_gravity                  |    (3,)    |
+INFO:torchrunx.localhost.0:|    3     | joint_pos                          |   (14,)    |
+INFO:torchrunx.localhost.0:|    4     | joint_vel                          |   (14,)    |
+INFO:torchrunx.localhost.0:|    5     | actions                            |   (14,)    |
+INFO:torchrunx.localhost.0:|    6     | command                            |    (3,)    |
+INFO:torchrunx.localhost.0:|    7     | foot_height                        |    (2,)    |
+INFO:torchrunx.localhost.0:|    8     | foot_air_time                      |    (2,)    |
+INFO:torchrunx.localhost.0:|    9     | foot_contact                       |    (2,)    |
+INFO:torchrunx.localhost.0:|    10    | foot_contact_forces                |    (6,)    |
+INFO:torchrunx.localhost.0:|    11    | head_command                       |    (4,)    |
+INFO:torchrunx.localhost.0:|    12    | body_command                       |    (6,)    |
+INFO:torchrunx.localhost.0:+----------+------------------------------------+------------+
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:[INFO] <TerminationManager> contains 4 active terms.
+INFO:torchrunx.localhost.0:+------------------------------------------+
+INFO:torchrunx.localhost.0:|         Active Termination Terms         |
+INFO:torchrunx.localhost.0:+-------+-----------------------+----------+
+INFO:torchrunx.localhost.0:| Index | Name                  | Time Out |
+INFO:torchrunx.localhost.0:+-------+-----------------------+----------+
+INFO:torchrunx.localhost.0:|   0   | time_out              |   True   |
+INFO:torchrunx.localhost.0:|   1   | fell_over             |  False   |
+INFO:torchrunx.localhost.0:|   2   | out_of_terrain_bounds |   True   |
+INFO:torchrunx.localhost.0:|   3   | nan_state             |  False   |
+INFO:torchrunx.localhost.0:+-------+-----------------------+----------+
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:[INFO] <RewardManager> contains 16 active terms.
+INFO:torchrunx.localhost.0:+-----------------------------------------+
+INFO:torchrunx.localhost.0:|           Active Reward Terms           |
+INFO:torchrunx.localhost.0:+-------+------------------------+--------+
+INFO:torchrunx.localhost.0:| Index | Name                   | Weight |
+INFO:torchrunx.localhost.0:+-------+------------------------+--------+
+INFO:torchrunx.localhost.0:|   0   | track_linear_velocity  |    2.0 |
+INFO:torchrunx.localhost.0:|   1   | track_angular_velocity |    2.0 |
+INFO:torchrunx.localhost.0:|   2   | upright                |    2.0 |
+INFO:torchrunx.localhost.0:|   3   | pose                   |    1.0 |
+INFO:torchrunx.localhost.0:|   4   | body_ang_vel           |  -0.05 |
+INFO:torchrunx.localhost.0:|   5   | angular_momentum       |  -0.02 |
+INFO:torchrunx.localhost.0:|   6   | dof_pos_limits         |   -1.0 |
+INFO:torchrunx.localhost.0:|   7   | action_rate_l2         |   -0.1 |
+INFO:torchrunx.localhost.0:|   8   | air_time               |    3.0 |
+INFO:torchrunx.localhost.0:|   9   | foot_clearance         |   -2.0 |
+INFO:torchrunx.localhost.0:|   10  | foot_swing_height      |  -0.25 |
+INFO:torchrunx.localhost.0:|   11  | foot_slip              |   -0.1 |
+INFO:torchrunx.localhost.0:|   12  | self_collisions        |   -1.0 |
+INFO:torchrunx.localhost.0:|   13  | head_pose_tracking     |    2.0 |
+INFO:torchrunx.localhost.0:|   14  | body_pose_tracking     |    0.0 |
+INFO:torchrunx.localhost.0:|   15  | head_pose_bias         |    0.0 |
+INFO:torchrunx.localhost.0:+-------+------------------------+--------+
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:[INFO] <CurriculumManager> contains 7 active terms.
+INFO:torchrunx.localhost.0:+-------------------------------+
+INFO:torchrunx.localhost.0:|    Active Curriculum Terms    |
+INFO:torchrunx.localhost.0:+-------+-----------------------+
+INFO:torchrunx.localhost.0:| Index | Name                  |
+INFO:torchrunx.localhost.0:+-------+-----------------------+
+INFO:torchrunx.localhost.0:|   0   | action_rate_weight    |
+INFO:torchrunx.localhost.0:|   1   | standing_envs         |
+INFO:torchrunx.localhost.0:|   2   | head_pose_range       |
+INFO:torchrunx.localhost.0:|   3   | body_pose_range       |
+INFO:torchrunx.localhost.0:|   4   | com_range             |
+INFO:torchrunx.localhost.0:|   5   | head_com_range        |
+INFO:torchrunx.localhost.0:|   6   | head_pose_bias_weight |
+INFO:torchrunx.localhost.0:+-------+-----------------------+
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:[INFO] <MetricsManager> contains 1 active terms.
+INFO:torchrunx.localhost.0:+-------------------------+
+INFO:torchrunx.localhost.0:|   Active Metrics Terms  |
+INFO:torchrunx.localhost.0:+-------+-----------------+
+INFO:torchrunx.localhost.0:| Index | Name            |
+INFO:torchrunx.localhost.0:+-------+-----------------+
+INFO:torchrunx.localhost.0:|   0   | mean_action_acc |
+INFO:torchrunx.localhost.0:+-------+-----------------+
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:[INFO] <NullRecorderManager> (inactive)
+INFO:torchrunx.localhost.0:Module mujoco_warp._src.io 4b387a0 load on device 'cuda:0' took 2.31 ms  (cached)
+INFO:torchrunx.localhost.0:Module _tile_cholesky_factorize__locals__cholesky_factorize_0587d9b8 99b4248 load on device 'cuda:0' took 28.01 ms  (cached)
+INFO:torchrunx.localhost.0:Module _tile_cholesky_solve__locals__cholesky_solve_11830e2e 7d510a5 load on device 'cuda:0' took 26.96 ms  (cached)
+INFO:torchrunx.localhost.0:--------------------------------------------------------------------------------
+INFO:torchrunx.localhost.0:Resolved observation sets:
+INFO:torchrunx.localhost.0:	 actor :  ('actor',)
+INFO:torchrunx.localhost.0:	 critic :  ('critic',)
+INFO:torchrunx.localhost.0:--------------------------------------------------------------------------------
+INFO:torchrunx.localhost.0:Actor Model: MLPModel(
+INFO:torchrunx.localhost.0:  (obs_normalizer): EmpiricalNormalization()
+INFO:torchrunx.localhost.0:  (distribution): GaussianDistribution()
+INFO:torchrunx.localhost.0:  (mlp): MLP(
+INFO:torchrunx.localhost.0:    (0): Linear(in_features=61, out_features=512, bias=True)
+INFO:torchrunx.localhost.0:    (1): ELU(alpha=1.0)
+INFO:torchrunx.localhost.0:    (2): Linear(in_features=512, out_features=256, bias=True)
+INFO:torchrunx.localhost.0:    (3): ELU(alpha=1.0)
+INFO:torchrunx.localhost.0:    (4): Linear(in_features=256, out_features=128, bias=True)
+INFO:torchrunx.localhost.0:    (5): ELU(alpha=1.0)
+INFO:torchrunx.localhost.0:    (6): Linear(in_features=128, out_features=14, bias=True)
+INFO:torchrunx.localhost.0:  )
+INFO:torchrunx.localhost.0:)
+INFO:torchrunx.localhost.0:Critic Model: MLPModel(
+INFO:torchrunx.localhost.0:  (obs_normalizer): EmpiricalNormalization()
+INFO:torchrunx.localhost.0:  (mlp): MLP(
+INFO:torchrunx.localhost.0:    (0): Linear(in_features=76, out_features=512, bias=True)
+INFO:torchrunx.localhost.0:    (1): ELU(alpha=1.0)
+INFO:torchrunx.localhost.0:    (2): Linear(in_features=512, out_features=256, bias=True)
+INFO:torchrunx.localhost.0:    (3): ELU(alpha=1.0)
+INFO:torchrunx.localhost.0:    (4): Linear(in_features=256, out_features=128, bias=True)
+INFO:torchrunx.localhost.0:    (5): ELU(alpha=1.0)
+INFO:torchrunx.localhost.0:    (6): Linear(in_features=128, out_features=1, bias=True)
+INFO:torchrunx.localhost.0:  )
+INFO:torchrunx.localhost.0:)
+INFO:torchrunx.localhost.0:Synchronizing parameters for rank 0...
+INFO:torchrunx.localhost.0:Could not find git repository in /home/l40-vm01/data2/experiments/microduck-v2-20261015/venv-p04/lib/python3.12/site-packages/rsl_rl/__init__.py. Skipping.
+INFO:torchrunx.localhost.0:Could not find git repository in /home/l40-vm01/data2/experiments/microduck-v2-20261015/venv-p04/lib/python3.12/site-packages/mjlab/scripts/train.py. Skipping.
+INFO:torchrunx.localhost.0:################################################################################
+INFO:torchrunx.localhost.0:[1m                             Learning iteration 0/5                             [0m
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:                               Run name: clean_smoke64
+INFO:torchrunx.localhost.0:                            Total steps: 3072
+INFO:torchrunx.localhost.0:                       Steps per second: 1234
+INFO:torchrunx.localhost.0:                        Collection time: 2.217s
+INFO:torchrunx.localhost.0:                          Learning time: 0.272s
+INFO:torchrunx.localhost.0:                        Mean value loss: 0.0348
+INFO:torchrunx.localhost.0:                    Mean surrogate loss: -0.0117
+INFO:torchrunx.localhost.0:                      Mean entropy loss: 19.8475
+INFO:torchrunx.localhost.0:                            Mean reward: -0.13
+INFO:torchrunx.localhost.0:                    Mean episode length: 21.81
+INFO:torchrunx.localhost.0:                        Mean action std: 1.00
+INFO:torchrunx.localhost.0:   Episode_Reward/track_linear_velocity: 0.0072
+INFO:torchrunx.localhost.0:  Episode_Reward/track_angular_velocity: 0.0001
+INFO:torchrunx.localhost.0:                 Episode_Reward/upright: 0.0063
+INFO:torchrunx.localhost.0:                    Episode_Reward/pose: 0.0008
+INFO:torchrunx.localhost.0:            Episode_Reward/body_ang_vel: -0.0057
+INFO:torchrunx.localhost.0:        Episode_Reward/angular_momentum: -0.0000
+INFO:torchrunx.localhost.0:          Episode_Reward/dof_pos_limits: -0.0003
+INFO:torchrunx.localhost.0:          Episode_Reward/action_rate_l2: -0.0214
+INFO:torchrunx.localhost.0:                Episode_Reward/air_time: 0.0026
+INFO:torchrunx.localhost.0:          Episode_Reward/foot_clearance: -0.0001
+INFO:torchrunx.localhost.0:       Episode_Reward/foot_swing_height: -0.0006
+INFO:torchrunx.localhost.0:               Episode_Reward/foot_slip: -0.0000
+INFO:torchrunx.localhost.0:         Episode_Reward/self_collisions: -0.0018
+INFO:torchrunx.localhost.0:      Episode_Reward/head_pose_tracking: 0.0138
+INFO:torchrunx.localhost.0:      Episode_Reward/body_pose_tracking: 0.0000
+INFO:torchrunx.localhost.0:          Episode_Reward/head_pose_bias: 0.0000
+INFO:torchrunx.localhost.0:        Episode_Metrics/mean_action_acc: 0.8291
+INFO:torchrunx.localhost.0:          Curriculum/action_rate_weight: -0.1000
+INFO:torchrunx.localhost.0:               Curriculum/standing_envs: 0.0200
+INFO:torchrunx.localhost.0:             Curriculum/head_pose_range: 0.0700
+INFO:torchrunx.localhost.0:             Curriculum/body_pose_range: 0.0500
+INFO:torchrunx.localhost.0:                   Curriculum/com_range: 0.0030
+INFO:torchrunx.localhost.0:              Curriculum/head_com_range: 0.0030
+INFO:torchrunx.localhost.0:       Curriculum/head_pose_bias_weight: 0.0000
+INFO:torchrunx.localhost.0:             Metrics/twist/error_vel_xy: 0.0061
+INFO:torchrunx.localhost.0:            Metrics/twist/error_vel_yaw: 0.0381
+INFO:torchrunx.localhost.0:           Episode_Termination/time_out: 0.2917
+INFO:torchrunx.localhost.0:          Episode_Termination/fell_over: 0.5833
+INFO:torchrunx.localhost.0:Episode_Termination/out_of_terrain_bounds: 0.0000
+INFO:torchrunx.localhost.0:          Episode_Termination/nan_state: 0.0000
+INFO:torchrunx.localhost.0:          Metrics/angular_momentum_mean: 0.0077
+INFO:torchrunx.localhost.0:                  Metrics/air_time_mean: 0.0635
+INFO:torchrunx.localhost.0:               Metrics/peak_height_mean: 0.0083
+INFO:torchrunx.localhost.0:             Metrics/slip_velocity_mean: 0.1358
+INFO:torchrunx.localhost.0:--------------------------------------------------------------------------------
+INFO:torchrunx.localhost.0:                         Iteration time: 2.49s
+INFO:torchrunx.localhost.0:                           Time elapsed: 00:00:02
+INFO:torchrunx.localhost.0:                                    ETA: 00:00:09
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:################################################################################
+INFO:torchrunx.localhost.0:[1m                             Learning iteration 1/5                             [0m
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:                               Run name: clean_smoke64
+INFO:torchrunx.localhost.0:                            Total steps: 6144
+INFO:torchrunx.localhost.0:                       Steps per second: 2476
+INFO:torchrunx.localhost.0:                        Collection time: 1.052s
+INFO:torchrunx.localhost.0:                          Learning time: 0.189s
+INFO:torchrunx.localhost.0:                        Mean value loss: 0.0520
+INFO:torchrunx.localhost.0:                    Mean surrogate loss: -0.0286
+INFO:torchrunx.localhost.0:                      Mean entropy loss: 19.8371
+INFO:torchrunx.localhost.0:                            Mean reward: -0.27
+INFO:torchrunx.localhost.0:                    Mean episode length: 28.22
+INFO:torchrunx.localhost.0:                        Mean action std: 1.00
+INFO:torchrunx.localhost.0:   Episode_Reward/track_linear_velocity: 0.0198
+INFO:torchrunx.localhost.0:  Episode_Reward/track_angular_velocity: 0.0007
+INFO:torchrunx.localhost.0:                 Episode_Reward/upright: 0.0238
+INFO:torchrunx.localhost.0:                    Episode_Reward/pose: 0.0049
+INFO:torchrunx.localhost.0:            Episode_Reward/body_ang_vel: -0.0291
+INFO:torchrunx.localhost.0:        Episode_Reward/angular_momentum: -0.0000
+INFO:torchrunx.localhost.0:          Episode_Reward/dof_pos_limits: -0.0009
+INFO:torchrunx.localhost.0:          Episode_Reward/action_rate_l2: -0.0873
+INFO:torchrunx.localhost.0:                Episode_Reward/air_time: 0.0072
+INFO:torchrunx.localhost.0:          Episode_Reward/foot_clearance: -0.0004
+INFO:torchrunx.localhost.0:       Episode_Reward/foot_swing_height: -0.0016
+INFO:torchrunx.localhost.0:               Episode_Reward/foot_slip: -0.0001
+INFO:torchrunx.localhost.0:         Episode_Reward/self_collisions: -0.0028
+INFO:torchrunx.localhost.0:      Episode_Reward/head_pose_tracking: 0.0508
+INFO:torchrunx.localhost.0:      Episode_Reward/body_pose_tracking: 0.0000
+INFO:torchrunx.localhost.0:          Episode_Reward/head_pose_bias: 0.0000
+INFO:torchrunx.localhost.0:        Episode_Metrics/mean_action_acc: 1.9014
+INFO:torchrunx.localhost.0:          Curriculum/action_rate_weight: -0.1000
+INFO:torchrunx.localhost.0:               Curriculum/standing_envs: 0.0200
+INFO:torchrunx.localhost.0:             Curriculum/head_pose_range: 0.0700
+INFO:torchrunx.localhost.0:             Curriculum/body_pose_range: 0.0500
+INFO:torchrunx.localhost.0:                   Curriculum/com_range: 0.0030
+INFO:torchrunx.localhost.0:              Curriculum/head_com_range: 0.0030
+INFO:torchrunx.localhost.0:       Curriculum/head_pose_bias_weight: 0.0000
+INFO:torchrunx.localhost.0:             Metrics/twist/error_vel_xy: 0.0300
+INFO:torchrunx.localhost.0:            Metrics/twist/error_vel_yaw: 0.1872
+INFO:torchrunx.localhost.0:           Episode_Termination/time_out: 0.0000
+INFO:torchrunx.localhost.0:          Episode_Termination/fell_over: 2.9583
+INFO:torchrunx.localhost.0:Episode_Termination/out_of_terrain_bounds: 0.0000
+INFO:torchrunx.localhost.0:          Episode_Termination/nan_state: 0.0000
+INFO:torchrunx.localhost.0:          Metrics/angular_momentum_mean: 0.0077
+INFO:torchrunx.localhost.0:                  Metrics/air_time_mean: 0.0488
+INFO:torchrunx.localhost.0:               Metrics/peak_height_mean: 0.0119
+INFO:torchrunx.localhost.0:             Metrics/slip_velocity_mean: 0.1349
+INFO:torchrunx.localhost.0:--------------------------------------------------------------------------------
+INFO:torchrunx.localhost.0:                         Iteration time: 1.24s
+INFO:torchrunx.localhost.0:                           Time elapsed: 00:00:03
+INFO:torchrunx.localhost.0:                                    ETA: 00:00:05
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:################################################################################
+INFO:torchrunx.localhost.0:[1m                             Learning iteration 2/5                             [0m
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:                               Run name: clean_smoke64
+INFO:torchrunx.localhost.0:                            Total steps: 9216
+INFO:torchrunx.localhost.0:                       Steps per second: 2326
+INFO:torchrunx.localhost.0:                        Collection time: 1.143s
+INFO:torchrunx.localhost.0:                          Learning time: 0.177s
+INFO:torchrunx.localhost.0:                        Mean value loss: 0.0382
+INFO:torchrunx.localhost.0:                    Mean surrogate loss: -0.0361
+INFO:torchrunx.localhost.0:                      Mean entropy loss: 19.8177
+INFO:torchrunx.localhost.0:                            Mean reward: -0.30
+INFO:torchrunx.localhost.0:                    Mean episode length: 31.04
+INFO:torchrunx.localhost.0:                        Mean action std: 1.00
+INFO:torchrunx.localhost.0:   Episode_Reward/track_linear_velocity: 0.0230
+INFO:torchrunx.localhost.0:  Episode_Reward/track_angular_velocity: 0.0007
+INFO:torchrunx.localhost.0:                 Episode_Reward/upright: 0.0212
+INFO:torchrunx.localhost.0:                    Episode_Reward/pose: 0.0040
+INFO:torchrunx.localhost.0:            Episode_Reward/body_ang_vel: -0.0277
+INFO:torchrunx.localhost.0:        Episode_Reward/angular_momentum: -0.0000
+INFO:torchrunx.localhost.0:          Episode_Reward/dof_pos_limits: -0.0010
+INFO:torchrunx.localhost.0:          Episode_Reward/action_rate_l2: -0.0860
+INFO:torchrunx.localhost.0:                Episode_Reward/air_time: 0.0055
+INFO:torchrunx.localhost.0:          Episode_Reward/foot_clearance: -0.0003
+INFO:torchrunx.localhost.0:       Episode_Reward/foot_swing_height: -0.0017
+INFO:torchrunx.localhost.0:               Episode_Reward/foot_slip: -0.0001
+INFO:torchrunx.localhost.0:         Episode_Reward/self_collisions: -0.0030
+INFO:torchrunx.localhost.0:      Episode_Reward/head_pose_tracking: 0.0514
+INFO:torchrunx.localhost.0:      Episode_Reward/body_pose_tracking: 0.0000
+INFO:torchrunx.localhost.0:          Episode_Reward/head_pose_bias: 0.0000
+INFO:torchrunx.localhost.0:        Episode_Metrics/mean_action_acc: 1.8884
+INFO:torchrunx.localhost.0:          Curriculum/action_rate_weight: -0.1000
+INFO:torchrunx.localhost.0:               Curriculum/standing_envs: 0.0200
+INFO:torchrunx.localhost.0:             Curriculum/head_pose_range: 0.0700
+INFO:torchrunx.localhost.0:             Curriculum/body_pose_range: 0.0500
+INFO:torchrunx.localhost.0:                   Curriculum/com_range: 0.0030
+INFO:torchrunx.localhost.0:              Curriculum/head_com_range: 0.0030
+INFO:torchrunx.localhost.0:       Curriculum/head_pose_bias_weight: 0.0000
+INFO:torchrunx.localhost.0:             Metrics/twist/error_vel_xy: 0.0271
+INFO:torchrunx.localhost.0:            Metrics/twist/error_vel_yaw: 0.1866
+INFO:torchrunx.localhost.0:           Episode_Termination/time_out: 0.0000
+INFO:torchrunx.localhost.0:          Episode_Termination/fell_over: 2.3750
+INFO:torchrunx.localhost.0:Episode_Termination/out_of_terrain_bounds: 0.0000
+INFO:torchrunx.localhost.0:          Episode_Termination/nan_state: 0.0000
+INFO:torchrunx.localhost.0:          Metrics/angular_momentum_mean: 0.0086
+INFO:torchrunx.localhost.0:                  Metrics/air_time_mean: 0.0469
+INFO:torchrunx.localhost.0:               Metrics/peak_height_mean: 0.0120
+INFO:torchrunx.localhost.0:             Metrics/slip_velocity_mean: 0.1478
+INFO:torchrunx.localhost.0:--------------------------------------------------------------------------------
+INFO:torchrunx.localhost.0:                         Iteration time: 1.32s
+INFO:torchrunx.localhost.0:                           Time elapsed: 00:00:05
+INFO:torchrunx.localhost.0:                                    ETA: 00:00:03
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:################################################################################
+INFO:torchrunx.localhost.0:[1m                             Learning iteration 3/5                             [0m
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:                               Run name: clean_smoke64
+INFO:torchrunx.localhost.0:                            Total steps: 12288
+INFO:torchrunx.localhost.0:                       Steps per second: 2395
+INFO:torchrunx.localhost.0:                        Collection time: 1.087s
+INFO:torchrunx.localhost.0:                          Learning time: 0.195s
+INFO:torchrunx.localhost.0:                        Mean value loss: 0.0360
+INFO:torchrunx.localhost.0:                    Mean surrogate loss: -0.0313
+INFO:torchrunx.localhost.0:                      Mean entropy loss: 19.7974
+INFO:torchrunx.localhost.0:                            Mean reward: -0.27
+INFO:torchrunx.localhost.0:                    Mean episode length: 30.44
+INFO:torchrunx.localhost.0:                        Mean action std: 0.99
+INFO:torchrunx.localhost.0:   Episode_Reward/track_linear_velocity: 0.0220
+INFO:torchrunx.localhost.0:  Episode_Reward/track_angular_velocity: 0.0006
+INFO:torchrunx.localhost.0:                 Episode_Reward/upright: 0.0201
+INFO:torchrunx.localhost.0:                    Episode_Reward/pose: 0.0037
+INFO:torchrunx.localhost.0:            Episode_Reward/body_ang_vel: -0.0266
+INFO:torchrunx.localhost.0:        Episode_Reward/angular_momentum: -0.0000
+INFO:torchrunx.localhost.0:          Episode_Reward/dof_pos_limits: -0.0009
+INFO:torchrunx.localhost.0:          Episode_Reward/action_rate_l2: -0.0785
+INFO:torchrunx.localhost.0:                Episode_Reward/air_time: 0.0046
+INFO:torchrunx.localhost.0:          Episode_Reward/foot_clearance: -0.0003
+INFO:torchrunx.localhost.0:       Episode_Reward/foot_swing_height: -0.0015
+INFO:torchrunx.localhost.0:               Episode_Reward/foot_slip: -0.0001
+INFO:torchrunx.localhost.0:         Episode_Reward/self_collisions: -0.0022
+INFO:torchrunx.localhost.0:      Episode_Reward/head_pose_tracking: 0.0466
+INFO:torchrunx.localhost.0:      Episode_Reward/body_pose_tracking: 0.0000
+INFO:torchrunx.localhost.0:          Episode_Reward/head_pose_bias: 0.0000
+INFO:torchrunx.localhost.0:        Episode_Metrics/mean_action_acc: 1.8848
+INFO:torchrunx.localhost.0:          Curriculum/action_rate_weight: -0.1000
+INFO:torchrunx.localhost.0:               Curriculum/standing_envs: 0.0200
+INFO:torchrunx.localhost.0:             Curriculum/head_pose_range: 0.0700
+INFO:torchrunx.localhost.0:             Curriculum/body_pose_range: 0.0500
+INFO:torchrunx.localhost.0:                   Curriculum/com_range: 0.0030
+INFO:torchrunx.localhost.0:              Curriculum/head_com_range: 0.0030
+INFO:torchrunx.localhost.0:       Curriculum/head_pose_bias_weight: 0.0000
+INFO:torchrunx.localhost.0:             Metrics/twist/error_vel_xy: 0.0239
+INFO:torchrunx.localhost.0:            Metrics/twist/error_vel_yaw: 0.1637
+INFO:torchrunx.localhost.0:           Episode_Termination/time_out: 0.0000
+INFO:torchrunx.localhost.0:          Episode_Termination/fell_over: 2.1667
+INFO:torchrunx.localhost.0:Episode_Termination/out_of_terrain_bounds: 0.0000
+INFO:torchrunx.localhost.0:          Episode_Termination/nan_state: 0.0000
+INFO:torchrunx.localhost.0:          Metrics/angular_momentum_mean: 0.0084
+INFO:torchrunx.localhost.0:                  Metrics/air_time_mean: 0.0485
+INFO:torchrunx.localhost.0:               Metrics/peak_height_mean: 0.0113
+INFO:torchrunx.localhost.0:             Metrics/slip_velocity_mean: 0.1390
+INFO:torchrunx.localhost.0:--------------------------------------------------------------------------------
+INFO:torchrunx.localhost.0:                         Iteration time: 1.28s
+INFO:torchrunx.localhost.0:                           Time elapsed: 00:00:06
+INFO:torchrunx.localhost.0:                                    ETA: 00:00:01
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:################################################################################
+INFO:torchrunx.localhost.0:[1m                             Learning iteration 4/5                             [0m
+INFO:torchrunx.localhost.0:
+INFO:torchrunx.localhost.0:                               Run name: clean_smoke64
+INFO:torchrunx.localhost.0:                            Total steps: 15360
+INFO:torchrunx.localhost.0:                       Steps per second: 2388
+INFO:torchrunx.localhost.0:                        Collection time: 1.110s
+INFO:torchrunx.localhost.0:                          Learning time: 0.176s
+INFO:torchrunx.localhost.0:                        Mean value loss: 0.0295
+INFO:torchrunx.localhost.0:                    Mean surrogate loss: -0.0334
+INFO:torchrunx.localhost.0:                      Mean entropy loss: 19.7757
+INFO:torchrunx.localhost.0:                            Mean reward: -0.22
+INFO:torchrunx.localhost.0:                    Mean episode length: 31.24
+INFO:torchrunx.localhost.0:                        Mean action std: 0.99
+INFO:torchrunx.localhost.0:   Episode_Reward/track_linear_velocity: 0.0228
+INFO:torchrunx.localhost.0:  Episode_Reward/track_angular_velocity: 0.0007
+INFO:torchrunx.localhost.0:                 Episode_Reward/upright: 0.0258
+INFO:torchrunx.localhost.0:                    Episode_Reward/pose: 0.0047
+INFO:torchrunx.localhost.0:            Episode_Reward/body_ang_vel: -0.0288
+INFO:torchrunx.localhost.0:        Episode_Reward/angular_momentum: -0.0000
+INFO:torchrunx.localhost.0:          Episode_Reward/dof_pos_limits: -0.0012
+INFO:torchrunx.localhost.0:          Episode_Reward/action_rate_l2: -0.0916
+INFO:torchrunx.localhost.0:                Episode_Reward/air_time: 0.0081
+INFO:torchrunx.localhost.0:          Episode_Reward/foot_clearance: -0.0004
+INFO:torchrunx.localhost.0:       Episode_Reward/foot_swing_height: -0.0018
+INFO:torchrunx.localhost.0:               Episode_Reward/foot_slip: -0.0001
+INFO:torchrunx.localhost.0:         Episode_Reward/self_collisions: -0.0026
+INFO:torchrunx.localhost.0:      Episode_Reward/head_pose_tracking: 0.0522
+INFO:torchrunx.localhost.0:      Episode_Reward/body_pose_tracking: 0.0000
+INFO:torchrunx.localhost.0:          Episode_Reward/head_pose_bias: 0.0000
+INFO:torchrunx.localhost.0:        Episode_Metrics/mean_action_acc: 1.9129
+INFO:torchrunx.localhost.0:          Curriculum/action_rate_weight: -0.1000
+INFO:torchrunx.localhost.0:               Curriculum/standing_envs: 0.0200
+INFO:torchrunx.localhost.0:             Curriculum/head_pose_range: 0.0700
+INFO:torchrunx.localhost.0:             Curriculum/body_pose_range: 0.0500
+INFO:torchrunx.localhost.0:                   Curriculum/com_range: 0.0030
+INFO:torchrunx.localhost.0:              Curriculum/head_com_range: 0.0030
+INFO:torchrunx.localhost.0:       Curriculum/head_pose_bias_weight: 0.0000
+INFO:torchrunx.localhost.0:             Metrics/twist/error_vel_xy: 0.0289
+INFO:torchrunx.localhost.0:            Metrics/twist/error_vel_yaw: 0.1802
+INFO:torchrunx.localhost.0:           Episode_Termination/time_out: 0.0000
+INFO:torchrunx.localhost.0:          Episode_Termination/fell_over: 2.2917
+INFO:torchrunx.localhost.0:Episode_Termination/out_of_terrain_bounds: 0.0000
+INFO:torchrunx.localhost.0:          Episode_Termination/nan_state: 0.0000
+INFO:torchrunx.localhost.0:          Metrics/angular_momentum_mean: 0.0082
+INFO:torchrunx.localhost.0:                  Metrics/air_time_mean: 0.0489
+INFO:torchrunx.localhost.0:               Metrics/peak_height_mean: 0.0111
+INFO:torchrunx.localhost.0:             Metrics/slip_velocity_mean: 0.1362
+INFO:torchrunx.localhost.0:--------------------------------------------------------------------------------
+INFO:torchrunx.localhost.0:                         Iteration time: 1.29s
+INFO:torchrunx.localhost.0:                           Time elapsed: 00:00:07
+INFO:torchrunx.localhost.0:                                    ETA: 00:00:00
+INFO:torchrunx.localhost.0:
+INFO:torchrunx:All workers completed successfully.
+INFO:torchrunx.localhost:Workers exited without errors.
+ERROR:torchrunx.localhost:[rank1]: Traceback (most recent call last):

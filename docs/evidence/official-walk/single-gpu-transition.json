@@ -1,0 +1,18 @@
+{
+  "reason": "User requested release GPU1 for other tasks",
+  "checkpoint": "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-official-walk-20261025/logs/rsl_rl/microduck_v2_official_baseline/2026-10-25_13-47-22_official_v2_sc0090_v5/model_250.pt",
+  "resume_iteration": 250,
+  "remaining_updates": 49750,
+  "num_envs": 4096,
+  "physical_gpu": 0,
+  "old_processes_stopped": [
+    2591752,
+    2591753,
+    2592058,
+    2592059,
+    2592061,
+    2592272,
+    2592273,
+    2592274
+  ]
+}

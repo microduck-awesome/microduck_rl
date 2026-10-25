@@ -1,0 +1,264 @@
+{
+  "official": {
+    "active_geoms": [
+      {
+        "name": "",
+        "body": "trunk_base",
+        "type": 7,
+        "contype": 2,
+        "conaffinity": 2,
+        "condim": 3,
+        "priority": 0,
+        "friction": [
+          1.0,
+          0.005,
+          0.0001
+        ],
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "",
+        "body": "leg",
+        "type": 7,
+        "contype": 2,
+        "conaffinity": 2,
+        "condim": 3,
+        "priority": 0,
+        "friction": [
+          1.0,
+          0.005,
+          0.0001
+        ],
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "left_foot_collision",
+        "body": "ankle_left",
+        "type": 7,
+        "contype": 1,
+        "conaffinity": 1,
+        "condim": 3,
+        "priority": 1,
+        "friction": [
+          1.0,
+          0.005,
+          0.0001
+        ],
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "",
+        "body": "leg_2",
+        "type": 7,
+        "contype": 2,
+        "conaffinity": 2,
+        "condim": 3,
+        "priority": 0,
+        "friction": [
+          1.0,
+          0.005,
+          0.0001
+        ],
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "right_foot_collision",
+        "body": "ankle_right",
+        "type": 7,
+        "contype": 1,
+        "conaffinity": 1,
+        "condim": 3,
+        "priority": 1,
+        "friction": [
+          1.0,
+          0.005,
+          0.0001
+        ],
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      }
+    ],
+    "explicit_pairs": 0,
+    "exclude_signatures": []
+  },
+  "v2": {
+    "active_geoms": [
+      {
+        "name": "self_trunk_support_00_collision",
+        "body": "trunk_base",
+        "type": 7,
+        "contype": 2,
+        "conaffinity": 2,
+        "condim": 3,
+        "priority": 0,
+        "friction": [
+          1.0,
+          0.005,
+          0.0001
+        ],
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "self_left_shin_structure_00_collision",
+        "body": "left_shin",
+        "type": 7,
+        "contype": 2,
+        "conaffinity": 2,
+        "condim": 3,
+        "priority": 0,
+        "friction": [
+          1.0,
+          0.005,
+          0.0001
+        ],
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "left_foot_collision",
+        "body": "left_foot",
+        "type": 7,
+        "contype": 1,
+        "conaffinity": 1,
+        "condim": 3,
+        "priority": 1,
+        "friction": [
+          1.0,
+          0.005,
+          0.0001
+        ],
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "self_right_shin_structure_00_collision",
+        "body": "right_shin",
+        "type": 7,
+        "contype": 2,
+        "conaffinity": 2,
+        "condim": 3,
+        "priority": 0,
+        "friction": [
+          1.0,
+          0.005,
+          0.0001
+        ],
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      },
+      {
+        "name": "right_foot_collision",
+        "body": "right_foot",
+        "type": 7,
+        "contype": 1,
+        "conaffinity": 1,
+        "condim": 3,
+        "priority": 1,
+        "friction": [
+          1.0,
+          0.005,
+          0.0001
+        ],
+        "solref": [
+          0.02,
+          1.0
+        ],
+        "solimp": [
+          0.9,
+          0.95,
+          0.001,
+          0.5,
+          2.0
+        ]
+      }
+    ],
+    "explicit_pairs": 0,
+    "exclude_signatures": []
+  }
+}

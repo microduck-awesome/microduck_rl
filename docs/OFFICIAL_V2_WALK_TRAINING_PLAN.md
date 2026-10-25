@@ -1,8 +1,8 @@
-# V2 官方基线双 GPU 步行训练方案
+# V2 官方基线步行训练方案（当前 GPU0 单卡）
 
 ## 目标与来源
 
-从随机初始化训练步行策略，使用 GPU0 和 GPU1。以 2026-10-25 实时核验的官方默认分支 develop 为唯一训练基线：
+初次从随机初始化使用 GPU0 和 GPU1 训练；用户随后要求单卡，当前使用 GPU0，释放 GPU1。以 2026-10-25 实时核验的官方默认分支 develop 为唯一训练基线：
 https://github.com/pollen-robotics/microduck_rl/commit/b02fdea4902c2b93b7d34a83a6f05da4ececb7d3
 
 官方任务：`Mjlab-Velocity-Flat-MicroDuck`。本地适配任务：`Mjlab-Velocity-Flat-MicroDuck-V2-Official-Baseline`。
@@ -20,7 +20,7 @@ https://github.com/pollen-robotics/microduck_rl/commit/b02fdea4902c2b93b7d34a83a
 - 使用官方 `mjlab.scripts.train`、官方 Microduck runner 和 rsl_rl PPO；不引入旧实验的 reset/command/recompute 流程修改。
 - 50 Hz 策略，5 ms 物理步长，4 次 decimation；actor 61 维、14 维动作；网络 512/256/128，观测归一化。
 - 官方 PPO：每环境 24 步、5 epochs、4 minibatches、初始学习率 0.001、自适应 KL=0.01；其余直接继承官方配置。
-- 双 GPU 同步训练同一个策略，每卡 2048 环境，总计 4096；不启动两份互相独立的策略。
+- 当前 GPU0 单卡 4096 环境，保持总采样批量；此前为双卡各 2048 环境。GPU1 留给其他任务。
 - 正式训练沿用官方上限 50000 次更新和每 250 次保存一次。日志使用本地 TensorBoard，禁止自动上传。训练产物不能等同于真机验证。
 
 ## 执行顺序
@@ -38,12 +38,12 @@ https://github.com/pollen-robotics/microduck_rl/commit/b02fdea4902c2b93b7d34a83a
 ```bash
 bash scripts/v2_python.sh -m mjlab.scripts.train \
   Mjlab-Velocity-Flat-MicroDuck-V2-Official-Baseline \
-  --gpu-ids all --env.scene.num-envs 2048 \
+  --gpu-ids all --env.scene.num-envs 4096 \
   --agent.logger tensorboard --agent.upload-model False \
   --agent.run-name official_v2_sc0090_v5
 ```
 
-`--gpu-ids all` 在启动脚本限定 `CUDA_VISIBLE_DEVICES=0,1` 后使用。max_iterations、save_interval 和算法参数直接使用官方默认值。
+`--gpu-ids all` 在启动脚本限定 `CUDA_VISIBLE_DEVICES=0` 后使用。max_iterations、save_interval 和算法参数直接使用官方默认值。
 
 ## 启动前结果
 
@@ -56,3 +56,13 @@ bash scripts/v2_python.sh -m mjlab.scripts.train \
 ## 正式启动
 
 2026-10-25 13:47:03（北京时间）启动，已确认双卡进入 PPO 更新，nan_state=0。代码提交 b315a689。下次常规检查为 14:17:03，此后每 30 分钟一次。
+
+## 单卡切换及碰撞核对（2026-10-25）
+
+按用户要求停止双卡进程，从最近的 model_250.pt 使用官方 resume 恢复至 GPU0 单卡、4096 环境。恢复模型、优化器、迭代和课程 common_step_counter；不重置课程，不改奖励。未保存的 checkpoint 后更新丢弃；环境物理状态按官方 resume 重新初始化，并非逐步完全连续复现。剩余更新 49750，使目标终点仍为 50000。具体命令见 scripts/run_official_walk.py。
+
+编译官方与 V2 Entity 后核对：两者均有 5 个启用碰撞 geom；双足的 contype/conaffinity=1/1、condim=3、priority=1；躯干支撑和双小腿的自碰撞 geom 为 2/2、condim=3、priority=0。摩擦、solref、solimp 相同；均无显式接触 pair 和额外 body exclusion。头壳等不参与地面碰撞，遵循官方 walk 的精简碰撞拓扑，不是全身碰撞模型。
+
+碰撞接触规则相同，几何形状因 V2 CAD 而不同：官方 power_support/leg 对应 V2 trunk_support/shin，不能声称几何完全相同。证据：evidence/official-walk/collision-comparison.json。
+
+单卡日志与半小时记录改存 evidence/official-walk/single-gpu/。首次单卡启动遇到 CLI 对 --gpu-ids 0 的列表解析错误；改用 CUDA_VISIBLE_DEVICES=0 配合 --gpu-ids all，未改训练算法。

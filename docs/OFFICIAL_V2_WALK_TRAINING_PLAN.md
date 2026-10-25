@@ -52,3 +52,7 @@ bash scripts/v2_python.sh -m mjlab.scripts.train \
 - 正式训练从随机初始化开始；移除旧入口遗留的 no-FMA 编译环境覆盖，使用默认编译行为。
 - scripts/run_official_walk.py 只负责启动官方命令和每 1800 秒记录状态，不更改训练配置或训练循环；退出时立即记录。
 - 证据位于 evidence/official-walk/，正式启动信息见 launch.json，定时记录见 monitor.jsonl。
+
+## 正式启动
+
+2026-10-25 13:47:03（北京时间）启动，已确认双卡进入 PPO 更新，nan_state=0。代码提交 b315a689。下次常规检查为 14:17:03，此后每 30 分钟一次。

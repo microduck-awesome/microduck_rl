@@ -1,0 +1,13 @@
+{
+  "status": "TRAINING",
+  "confirmed_utc": "2026-10-25T05:48:36.946269+00:00",
+  "physical_gpus": [
+    0,
+    1
+  ],
+  "envs_per_gpu": 2048,
+  "first_iteration_completed": true,
+  "first_iteration_nan_state": 0,
+  "next_regular_check_local": "2026-10-25 14:17:03 Asia/Shanghai",
+  "reward_and_curriculum": "official unchanged"
+}

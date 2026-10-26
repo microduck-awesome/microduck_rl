@@ -1,0 +1,192 @@
+{
+  "checkpoint": "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-official-walk-20261025/logs/rsl_rl/microduck_v2_official_baseline/2026-10-25_14-11-12_official_v2_sc0090_v5_dr_fresh/model_34500.pt",
+  "sha256": "03cf2e4f1df7559c616ae6f67e4405f33d19a6ef2ec6c5a5f0d96e6b5aa99a95",
+  "device": "cpu",
+  "simulation": "official task and V2 SC0090 V5; nominal 11.1V; observation corruption off; no pushes or body DR; official command delay retained",
+  "held_command_verified_every_step": true,
+  "seconds": 8.0,
+  "cases": [
+    {
+      "case": "idle",
+      "command": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "duration_s": 8.0,
+      "mean_vx_after_2s": 0.0005881307562288404,
+      "mean_vy_after_2s": -3.848666916989411e-05,
+      "mean_yaw_rate_after_2s": -0.0008342011985708571,
+      "displacement_xyz_m": [
+        0.0010781288146972656,
+        8.165836334228516e-05,
+        -0.003288052976131439
+      ],
+      "max_tilt_deg": 0.18974563479423523,
+      "final_tilt_deg": 0.1769387125968933,
+      "fall_detected": false,
+      "joint_limit_occupancy": {
+        "left_hip_yaw": 0.0,
+        "left_hip_roll": 0.0,
+        "left_hip_pitch": 0.0,
+        "left_knee": 0.0,
+        "left_ankle": 0.0,
+        "neck_pitch": 0.0,
+        "head_pitch": 0.0,
+        "head_yaw": 0.0,
+        "head_roll": 0.0,
+        "right_hip_yaw": 0.0,
+        "right_hip_roll": 0.0,
+        "right_hip_pitch": 0.0,
+        "right_knee": 0.0,
+        "right_ankle": 0.0
+      }
+    },
+    {
+      "case": "forward_015",
+      "command": [
+        0.15,
+        0.0,
+        0.0
+      ],
+      "duration_s": 8.0,
+      "mean_vx_after_2s": 0.0003629286468155139,
+      "mean_vy_after_2s": 4.7722195352217036e-05,
+      "mean_yaw_rate_after_2s": 8.358146150688602e-05,
+      "displacement_xyz_m": [
+        0.001979827880859375,
+        0.0004507303237915039,
+        -0.003025852143764496
+      ],
+      "max_tilt_deg": 0.2510099709033966,
+      "final_tilt_deg": 0.2414744347333908,
+      "fall_detected": false,
+      "joint_limit_occupancy": {
+        "left_hip_yaw": 0.0,
+        "left_hip_roll": 0.0,
+        "left_hip_pitch": 0.0,
+        "left_knee": 0.0,
+        "left_ankle": 0.0,
+        "neck_pitch": 0.0,
+        "head_pitch": 0.0,
+        "head_yaw": 0.0,
+        "head_roll": 0.0,
+        "right_hip_yaw": 0.0,
+        "right_hip_roll": 0.0,
+        "right_hip_pitch": 0.0,
+        "right_knee": 0.0,
+        "right_ankle": 0.0
+      }
+    },
+    {
+      "case": "forward_030",
+      "command": [
+        0.3,
+        0.0,
+        0.0
+      ],
+      "duration_s": 8.0,
+      "mean_vx_after_2s": 0.24749794642130535,
+      "mean_vy_after_2s": 0.02110558035162588,
+      "mean_yaw_rate_after_2s": -0.13816073540714569,
+      "displacement_xyz_m": [
+        1.8044363260269165,
+        -0.5192821025848389,
+        0.004784904420375824
+      ],
+      "max_tilt_deg": 4.676506042480469,
+      "final_tilt_deg": 2.5259222984313965,
+      "fall_detected": false,
+      "joint_limit_occupancy": {
+        "left_hip_yaw": 0.0,
+        "left_hip_roll": 0.0,
+        "left_hip_pitch": 0.0,
+        "left_knee": 0.0,
+        "left_ankle": 0.0,
+        "neck_pitch": 0.0,
+        "head_pitch": 0.0,
+        "head_yaw": 0.0,
+        "head_roll": 0.0,
+        "right_hip_yaw": 0.0,
+        "right_hip_roll": 0.0,
+        "right_hip_pitch": 0.0,
+        "right_knee": 0.0,
+        "right_ankle": 0.0
+      }
+    },
+    {
+      "case": "turn_050",
+      "command": [
+        0.0,
+        0.0,
+        0.5
+      ],
+      "duration_s": 8.0,
+      "mean_vx_after_2s": 0.00022053494071466655,
+      "mean_vy_after_2s": -9.028200179272972e-05,
+      "mean_yaw_rate_after_2s": 0.0017820726313827133,
+      "displacement_xyz_m": [
+        0.00044381621410138905,
+        -0.0003904104232788086,
+        -0.002832457423210144
+      ],
+      "max_tilt_deg": 0.5702692866325378,
+      "final_tilt_deg": 0.5289714932441711,
+      "fall_detected": false,
+      "joint_limit_occupancy": {
+        "left_hip_yaw": 0.0,
+        "left_hip_roll": 0.0,
+        "left_hip_pitch": 0.0,
+        "left_knee": 0.0,
+        "left_ankle": 0.0,
+        "neck_pitch": 0.0,
+        "head_pitch": 0.0,
+        "head_yaw": 0.0,
+        "head_roll": 0.0,
+        "right_hip_yaw": 0.0,
+        "right_hip_roll": 0.0,
+        "right_hip_pitch": 0.0,
+        "right_knee": 0.0,
+        "right_ankle": 0.0
+      }
+    },
+    {
+      "case": "walk_turn",
+      "command": [
+        0.15,
+        0.0,
+        0.5
+      ],
+      "duration_s": 8.0,
+      "mean_vx_after_2s": 0.00010980355578491678,
+      "mean_vy_after_2s": 7.462889658351439e-05,
+      "mean_yaw_rate_after_2s": 0.0007086024402330319,
+      "displacement_xyz_m": [
+        0.004353046417236328,
+        0.003643333911895752,
+        -0.001768656075000763
+      ],
+      "max_tilt_deg": 1.7892539501190186,
+      "final_tilt_deg": 1.7892539501190186,
+      "fall_detected": false,
+      "joint_limit_occupancy": {
+        "left_hip_yaw": 0.0,
+        "left_hip_roll": 0.0,
+        "left_hip_pitch": 0.0,
+        "left_knee": 0.0,
+        "left_ankle": 0.0,
+        "neck_pitch": 0.0,
+        "head_pitch": 0.0,
+        "head_yaw": 0.0,
+        "head_roll": 0.0,
+        "right_hip_yaw": 0.0,
+        "right_hip_roll": 0.0,
+        "right_hip_pitch": 0.0,
+        "right_knee": 0.0,
+        "right_ankle": 0.0
+      }
+    }
+  ],
+  "elapsed_s": 43.56385284895077,
+  "hardware_validated": false
+}

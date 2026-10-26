@@ -136,3 +136,11 @@ vx 单位 m/s，yaw 单位 rad/s。20 个片段均未摔倒，但该短回放不
 本轮首选为 **model_10250.pt**，第二为 model_2000.pt；7500 全量排名第 15，34500 第 71。10250 的 156 个片段均未触发倾倒判据，但仍存在低速死区、后退/侧移弱及转向不足。该选择限定于本评估协议，未作真机资格声明。
 
 已保存完整 checkpoint 和官方导出的 policy.onnx，ONNX/原生最大输出差约 2.16e-7。完整报告及路径：evidence/official-walk/corrected/best-search/SEARCH_RESULT.md。训练状态继续为 PAUSED_BY_USER。
+
+## 三个 V2 checkpoint 与官方 ONNX 的对照（用户请求表格和同步视频）
+
+已完成 10250/2000/7500 的指标表，并下载官方 alpha_walking.onnx（HF 固定版本 665ae4e，SHA256 e36332d3…）直接在官方原版结构、HOME、XL330 M6 中进行相同 13 指令、20 秒、12 次重复评估。官方电压取 6.5/7.4/8.2 V；V2 为 10.2/11.1/12.4 V。官方 ONNX 的关节顺序、HOME 与动作比例均已核对；没有把它直接放到 V2 上。
+
+另制作 56 秒、1280×896、25 fps 四格同步视频，按同一时间线连续切换静止、低速/正常前进、左右原地转向、左右边走边转、后退、侧移及停止，阶段之间不重置。画面显示目标指令与各策略近 1 秒实测速度。视频在名义电压 11.1 V（V2）与 7.4 V（官方）下录制，与独立固定指令重复试验的平均表格有所区别。完整 1400 帧及末帧解码已验证。
+
+报告：evidence/official-walk/corrected/best-search/FOUR_MODEL_COMPARISON.md。视频：同目录 four-policy-comparison/comparison.mp4。训练及旧 supervisor 继续暂停，本次没有 PPO 更新或真机测试。

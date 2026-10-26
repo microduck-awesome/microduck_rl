@@ -1,0 +1,153 @@
+{
+  "training_status": "PAUSED_BY_USER",
+  "ppo_updates": 0,
+  "fps": 25,
+  "width": 1280,
+  "height": 896,
+  "seconds": 56,
+  "continuous_playback_no_resets": true,
+  "official_model": "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-official-walk-20261025/docs/evidence/official-walk/corrected/best-search/official-reference/alpha_walking.onnx",
+  "official_sha256": "e36332d383997d51401897734cd3e79cf5038406feddb18b4d57ecfb141daa6c",
+  "models": [
+    {
+      "iteration": 10250,
+      "sha256": "311c8a1fe4dfb0bcf8556b4661ed6edae69a99b766d781708e4d2d6d7355f463"
+    },
+    {
+      "iteration": 2000,
+      "sha256": "63292289d1984aafa3215016474658fa42042dffdce2ed5d82874369a4de5d2e"
+    },
+    {
+      "iteration": 7500,
+      "sha256": "081f8cec351d689de0f2c55a16e4eb8633e565b3d169c4533a9dc7ea42da5943"
+    }
+  ],
+  "timeline": [
+    [
+      "\u9759\u6b62",
+      3,
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      "\u6781\u4f4e\u901f\u524d\u8fdb",
+      4,
+      [
+        0.1,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      "\u4f4e\u901f\u524d\u8fdb",
+      6,
+      [
+        0.15,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      "\u6b63\u5e38\u524d\u8fdb",
+      6,
+      [
+        0.3,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      "\u539f\u5730\u5de6\u8f6c",
+      5,
+      [
+        0.0,
+        0.0,
+        0.5
+      ]
+    ],
+    [
+      "\u539f\u5730\u53f3\u8f6c",
+      5,
+      [
+        0.0,
+        0.0,
+        -0.5
+      ]
+    ],
+    [
+      "\u8fb9\u8d70\u8fb9\u5de6\u8f6c",
+      6,
+      [
+        0.15,
+        0.0,
+        0.5
+      ]
+    ],
+    [
+      "\u8fb9\u8d70\u8fb9\u53f3\u8f6c",
+      6,
+      [
+        0.15,
+        0.0,
+        -0.5
+      ]
+    ],
+    [
+      "\u540e\u9000",
+      4,
+      [
+        -0.1,
+        0.0,
+        0.0
+      ]
+    ],
+    [
+      "\u5de6\u4fa7\u79fb",
+      4,
+      [
+        0.0,
+        0.1,
+        0.0
+      ]
+    ],
+    [
+      "\u53f3\u4fa7\u79fb",
+      4,
+      [
+        0.0,
+        -0.1,
+        0.0
+      ]
+    ],
+    [
+      "\u505c\u6b62",
+      3,
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ]
+  ],
+  "voltages": {
+    "V2": 11.1,
+    "official": 7.4
+  },
+  "conditions": "nominal zero IMU mounting error; no body DR or pushes; native command delays retained; separate robot structures; illustrative continuous switching, distinct from fixed-command benchmark",
+  "held_command_verified_each_step": true,
+  "elapsed_s": 162.24230275099762,
+  "snapshots": [
+    "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-official-walk-20261025/docs/evidence/official-walk/corrected/best-search/four-policy-comparison/phase-01.jpg",
+    "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-official-walk-20261025/docs/evidence/official-walk/corrected/best-search/four-policy-comparison/phase-02.jpg",
+    "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-official-walk-20261025/docs/evidence/official-walk/corrected/best-search/four-policy-comparison/phase-03.jpg",
+    "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-official-walk-20261025/docs/evidence/official-walk/corrected/best-search/four-policy-comparison/phase-06.jpg",
+    "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-official-walk-20261025/docs/evidence/official-walk/corrected/best-search/four-policy-comparison/phase-07.jpg",
+    "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-official-walk-20261025/docs/evidence/official-walk/corrected/best-search/four-policy-comparison/phase-08.jpg",
+    "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-official-walk-20261025/docs/evidence/official-walk/corrected/best-search/four-policy-comparison/phase-09.jpg",
+    "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-official-walk-20261025/docs/evidence/official-walk/corrected/best-search/four-policy-comparison/phase-10.jpg"
+  ],
+  "hardware_validated": false
+}

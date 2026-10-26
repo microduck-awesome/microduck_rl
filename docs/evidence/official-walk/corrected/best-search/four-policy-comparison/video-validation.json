@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "frames": 1400,
+  "fps": 25.0,
+  "duration_s": 56.0,
+  "size": [
+    1280,
+    896
+  ],
+  "sha256": "e2bce5e7dd4272238ad517e9434963931a2f27ad789249dc45f6a91c267660e5",
+  "last_frame_decoded": true
+}

@@ -1,0 +1,21 @@
+{
+  "iterations": [
+    2000,
+    3750,
+    6250,
+    6500,
+    7000,
+    7250,
+    7500,
+    8250,
+    8750,
+    10000,
+    10250,
+    11000,
+    11500,
+    12500,
+    14500,
+    34500
+  ],
+  "rule": "top12 from full screen plus four previous reference checkpoints"
+}

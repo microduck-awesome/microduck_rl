@@ -128,3 +128,11 @@ vx 单位 m/s，yaw 单位 rad/s。20 个片段均未摔倒，但该短回放不
 查询官方原始 docs/velstand_policy.md 与 HF manifest 确认：纯 Velocity teacher 为 441tzs6d@3750，文档已记录其低速 yaw 死区；官方默认 walk 从 v5 起使用综合 VelStand，当前 v8 为 0045i2si@2749，经多阶段 warm start/resume，转向改善包括 anchor yaw remap 及 fine yaw reward。后者不是本次纯 Velocity 从零训练的同一过程。该查询不授权修改当前奖励、课程或重启训练。
 
 原始 441tzs6d 的完整结束更新数仍无法确认：W&B API 未配置 key，公开页面不可读取，因此仅能确认官方选用了 3750 checkpoint，不能断言总训练结束于 3750。完整比较见 evidence/official-walk/corrected/checkpoint-comparison-gpu0.json。
+
+## 最佳已有 checkpoint 全量搜索（用户授权，仅评估）
+
+已对本次运行全部 139 个 checkpoint 完成 13 种固定指令、3 个电压、每指令 12 次重复、每次 20 秒的 GPU0 对照，共 21684 个模拟片段。分批随机条件配对；筛选使用官方网络及各自归一化，原生前向一致性检查通过。没有 PPO 更新。
+
+本轮首选为 **model_10250.pt**，第二为 model_2000.pt；7500 全量排名第 15，34500 第 71。10250 的 156 个片段均未触发倾倒判据，但仍存在低速死区、后退/侧移弱及转向不足。该选择限定于本评估协议，未作真机资格声明。
+
+已保存完整 checkpoint 和官方导出的 policy.onnx，ONNX/原生最大输出差约 2.16e-7。完整报告及路径：evidence/official-walk/corrected/best-search/SEARCH_RESULT.md。训练状态继续为 PAUSED_BY_USER。

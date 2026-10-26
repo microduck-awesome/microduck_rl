@@ -15,8 +15,10 @@ from mjlab.rl import RslRlVecEnvWrapper
 from mjlab.tasks.registry import load_env_cfg,load_rl_cfg,load_runner_cls
 from mjlab_microduck.custom_v2.microduck_v2 import TASK_ID,POLICY_JOINTS
 
-p=argparse.ArgumentParser();p.add_argument('--checkpoint',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--device',default='cpu',choices=('cpu','cuda:0'));a=p.parse_args();a.output.mkdir(parents=True,exist_ok=True)
+p=argparse.ArgumentParser();p.add_argument('--checkpoint',type=Path,required=True);p.add_argument('--output',type=Path,required=True);p.add_argument('--device',default='cpu',choices=('cpu','cuda:0'));p.add_argument('--extended',action='store_true');a=p.parse_args();a.output.mkdir(parents=True,exist_ok=True)
 CASES=[('idle',(0.,0.,0.)),('forward_015',(.15,0.,0.)),('forward_030',(.30,0.,0.)),('turn_050',(0.,0.,.50)),('walk_turn',(.15,0.,.50))]
+if a.extended:
+ CASES=[('idle',(0.,0.,0.)),('forward_010',(.10,0.,0.)),('forward_015',(.15,0.,0.)),('forward_030',(.30,0.,0.)),('backward_010',(-.10,0.,0.)),('turn_left',(0.,0.,.50)),('turn_right',(0.,0.,-.50)),('walk_left',(.15,0.,.50)),('walk_right',(.15,0.,-.50))]
 fixed=torch.tensor([c for _,c in CASES],device=a.device);torch.set_num_threads(2)
 cfg=load_env_cfg(TASK_ID,play=True);cfg.scene.num_envs=len(CASES);cfg.seed=20261025
 cfg.episode_length_s=20.;cfg.curriculum={};cfg.rewards={};cfg.terminations={}
@@ -55,7 +57,7 @@ try:
    clearance=torch.minimum(q-limits[:,:,0],limits[:,:,1]-q)/(limits[:,:,1]-limits[:,:,0])
    logs.append(dict(t=(step+1)*.02,pos=pos.cpu().numpy().tolist(),vel_b=vel.cpu().numpy().tolist(),ang_b=ang.cpu().numpy().tolist(),tilt_deg=tilt.cpu().numpy().tolist(),limit_fraction=clearance.cpu().numpy().tolist()))
    if step%2==0 or step in sample_steps:
-    board=Image.new('RGB',(1440,640),(235,238,241));draw=ImageDraw.Draw(board)
+    board=Image.new('RGB',(1440,320*((len(CASES)+2)//3)),(235,238,241));draw=ImageDraw.Draw(board)
     for i,(name,cmd) in enumerate(CASES):
      env._offline_renderer._cfg.env_idx=i
      frame=env.render();tile=Image.fromarray(frame)

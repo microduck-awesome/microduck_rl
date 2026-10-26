@@ -1,0 +1,27 @@
+{
+  "completed_utc": "2026-10-26T07:50:50.185641+00:00",
+  "training_status": "PAUSED_BY_USER",
+  "new_ppo_updates": 0,
+  "checkpoints_screened": 139,
+  "checkpoints_fully_evaluated": 139,
+  "commands_per_checkpoint": 13,
+  "replicas_per_command": 12,
+  "seconds_per_trial": 20,
+  "voltages": [
+    10.2,
+    11.1,
+    12.4
+  ],
+  "total_trials": 21684,
+  "winner_iteration": 10250,
+  "runner_up_iteration": 2000,
+  "previous_7500_rank": 15,
+  "latest_34500_rank": 71,
+  "paired_nuisance_match": true,
+  "checkpoint_sha256": "311c8a1fe4dfb0bcf8556b4661ed6edae69a99b766d781708e4d2d6d7355f463",
+  "onnx_sha256": "290e9c026cc438104590ed1f427892059cd643444afa882fb1d20d4576f036fa",
+  "onnx_native_max_abs_error": 2.1606683731079102e-07,
+  "stable_trials_winner": 156,
+  "total_trials_winner": 156,
+  "hardware_validated": false
+}

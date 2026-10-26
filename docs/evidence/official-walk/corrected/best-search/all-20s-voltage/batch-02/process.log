@@ -1,0 +1,324 @@
+[mdp] Patches 1-2 active: NaN-safe reward/advantage
+[mdp] Patch 4 active: ONNX export filters passive_* joints
+[mdp] Patch 5 active: MICRODUCK_WARM_START=1 restarts curricula after checkpoint load
+Setting seed: 2026102603
+Warp 1.12.0 initialized:
+   CUDA Toolkit 12.9, Driver 12.9
+   Devices:
+     "cpu"      : "x86_64"
+     "cuda:0"   : "NVIDIA L40" (47 GiB, sm_89, mempool enabled)
+   Kernel cache:
+     /home/l40-vm01/.cache/warp/1.12.0
+/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-official-walk-20261025/.venv/lib/python3.12/site-packages/mjlab/scene/scene.py:65: UserWarning: Entity 'robot' has 2 keyframes; only the first one will be used.
+  self._add_entities()
+/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-official-walk-20261025/.venv/lib/python3.12/site-packages/mjlab/scene/scene.py:65: UserWarning: Entity 'robot' has non-default <option> fields (integrator, iterations, ls_iterations, timestep) that will not be propagated by MjSpec.attach(). Use MujocoCfg instead.
+  self._add_entities()
+WARNING: Attach conflict when attaching 'microduck_v2' to 'mjlab scene', policy is 'warning'
+timestep: parent has 0.002, child has 0.005, keeping parent value
+iterations: parent has 100, child has 10, keeping parent value
+ls_iterations: parent has 50, child has 20, keeping parent value
+integrator: parent has 0, child has 3, keeping parent value
+
+/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-official-walk-20261025/.venv/lib/python3.12/site-packages/mjlab/scene/scene.py:71: UserWarning: Attach conflict when attaching 'microduck_v2' to 'mjlab scene', policy is 'warning'
+timestep: parent has 0.002, child has 0.005, keeping parent value
+iterations: parent has 100, child has 10, keeping parent value
+ls_iterations: parent has 50, child has 20, keeping parent value
+integrator: parent has 0, child has 3, keeping parent value
+  return self._spec.compile()
+Warp DeprecationWarning: The symbol `warp.context.runtime` will soon be removed from the public API. It can still be accessed from `warp._src.context.runtime` but might be changed or removed without notice.
+Module mujoco_warp._src.smooth 95a0b8b load on device 'cuda:0' took 3.20 ms  (cached)
+Module mujoco_warp._src.collision_driver 88f7770 load on device 'cuda:0' took 0.39 ms  (cached)
+Module _nxn_broadphase__locals__kernel_e73b1315 e73b131 load on device 'cuda:0' took 0.41 ms  (cached)
+Module ccd_kernel_builder__locals__ccd_kernel_079dfa94 079dfa9 load on device 'cuda:0' took 2.20 ms  (cached)
+Module _primitive_narrowphase__locals__primitive_narrowphase_b282a07a b282a07 load on device 'cuda:0' took 0.84 ms  (cached)
+Module mujoco_warp._src.constraint 27c5750 load on device 'cuda:0' took 2.26 ms  (cached)
+Module _efc_contact_init__locals__kernel_fda71e14 fda71e1 load on device 'cuda:0' took 0.44 ms  (cached)
+Module _efc_contact_jac_dense__locals__kernel_7974b597 cc0fc30 load on device 'cuda:0' took 0.53 ms  (cached)
+Module _efc_contact_update__locals__kernel_90315d53 90315d5 load on device 'cuda:0' took 0.51 ms  (cached)
+Module mujoco_warp._src.sensor 7fc0378 load on device 'cuda:0' took 2.71 ms  (cached)
+Module mujoco_warp._src.forward f60f76d load on device 'cuda:0' took 1.49 ms  (cached)
+Module mujoco_warp._src.passive 1a5e55c load on device 'cuda:0' took 0.97 ms  (cached)
+Module mujoco_warp._src.forward 8ebfcb1 load on device 'cuda:0' took 1.32 ms  (cached)
+Module mujoco_warp._src.support dd3f924 load on device 'cuda:0' took 0.46 ms  (cached)
+Module _tile_cholesky_factorize_solve__locals__cholesky_factorize_solve_fd1445d3 4a464d2 load on device 'cuda:0' took 30.56 ms  (cached)
+Module mujoco_warp._src.solver b116efb load on device 'cuda:0' took 1.70 ms  (cached)
+Module solve_init_jaref__locals__kernel_2aa8bdf6 2aa8bdf load on device 'cuda:0' took 0.45 ms  (cached)
+Module mul_m_dense__locals___mul_m_dense_5f474d43 5f474d4 load on device 'cuda:0' took 0.39 ms  (cached)
+Module update_constraint_efc__locals__kernel_32935e9d 32935e9 load on device 'cuda:0' took 0.43 ms  (cached)
+Module update_constraint_gauss_cost__locals__kernel_8169a580 8169a58 load on device 'cuda:0' took 0.41 ms  (cached)
+Module update_gradient_JTDAJ_dense_tiled__locals__kernel_9981265a 0667084 load on device 'cuda:0' took 0.70 ms  (cached)
+Module update_gradient_cholesky__locals__kernel_33be19e9 c4273dc load on device 'cuda:0' took 33.78 ms  (cached)
+Module linesearch_jv_fused__locals__kernel_93f316d4 93f316d load on device 'cuda:0' took 0.48 ms  (cached)
+Module linesearch_prepare_gauss__locals__kernel_c412d952 c412d95 load on device 'cuda:0' took 0.43 ms  (cached)
+Module update_constraint_efc__locals__kernel_3c1a9816 3c1a981 load on device 'cuda:0' took 0.45 ms  (cached)
+Module _contact_sort__locals__contact_sort_304c86df 6c97b35 load on device 'cuda:0' took 0.47 ms  (cached)
+Module mujoco_warp._src.derivative d0e2fd7 load on device 'cuda:0' took 0.85 ms  (cached)
+Module reset_data__locals__reset_xfrc_applied_e7898c5c e7898c5 load on device 'cuda:0' took 0.41 ms  (cached)
+Module reset_data__locals__reset_qM_10d3c793 10d3c79 load on device 'cuda:0' took 0.36 ms  (cached)
+Module reset_data__locals__reset_mocap_ff71f630 ff71f63 load on device 'cuda:0' took 0.35 ms  (cached)
+Module reset_data__locals__reset_contact_df686d47 df686d4 load on device 'cuda:0' took 0.36 ms  (cached)
+Module reset_data__locals__reset_nworld_6e0d904e 6e0d904 load on device 'cuda:0' took 0.45 ms  (cached)
+[BamActuator] model='m6' joints=14 kt=0.8924 R=27.1988 vin=11.1V no drop force_limit=±0.36Nm friction_base=0.0192 friction_viscous=0.0137 envs=5460 device=cuda:0
+[BamActuator] model='m6' joints=1 kt=0.8924 R=27.1988 vin=11.1V no drop force_limit=±0.36Nm friction_base=0.0192 friction_viscous=0.0137 envs=5460 device=cuda:0
+Module mujoco_warp._src.render_util 94fd13e load on device 'cuda:0' took 0.64 ms  (cached)
+Module mujoco_warp._src.bvh 08f985a load on device 'cuda:0' took 1.06 ms  (cached)
+Module mujoco_warp._src.ray c8f2bb3 load on device 'cuda:0' took 1.17 ms  (cached)
+
++-------------------------------------+
+|           Base Environment          |
++------------------------+------------+
+| Property               | Value      |
++------------------------+------------+
+| Number of environments | 5460       |
+| Environment device     | cuda:0     |
+| Environment seed       | 2026102603 |
+| Physics step-size      | 0.005      |
+| Environment step-size  | 0.02       |
++------------------------+------------+
+
+[INFO] <EventManager> contains 3 active terms.
++-------------------------------------+
+| Active Event Terms in Mode: 'reset' |
++--------+----------------------------+
+| Index  | Name                       |
++--------+----------------------------+
+|   0    | reset_base                 |
+|   1    | reset_robot_joints         |
+|   2    | reset_action_history       |
+|   3    | mouth_reset                |
++--------+----------------------------+
++---------------------------------------+
+| Active Event Terms in Mode: 'startup' |
++-------+-------------------------------+
+| Index | Name                          |
++-------+-------------------------------+
+|   0   | expand_bam_friction_fields    |
++-------+-------------------------------+
++------------------------------------+
+| Active Event Terms in Mode: 'step' |
++------------+-----------------------+
+|   Index    | Name                  |
++------------+-----------------------+
+|     0      | mouth_hold            |
++------------+-----------------------+
++-----------------------------+
+| Domain Randomization Fields |
++-------+---------------------+
+| Index | Field Name          |
++-------+---------------------+
+|   0   | dof_frictionloss    |
+|   1   | dof_damping         |
++-------+---------------------+
+
+Module repeat_array_kernel_39317a34 75ac26a load on device 'cuda:0' took 0.45 ms  (cached)
+[INFO] <CommandManager> contains 3 active terms.
++------------------------------------------------+
+|              Active Command Terms              |
++-------+-----------+----------------------------+
+| Index | Name      |            Type            |
++-------+-----------+----------------------------+
+|   0   | twist     | VelocityCommandCommandOnly |
+|   1   | head_pose |     UniformPoseCommand     |
+|   2   | body_pose |     UniformPoseCommand     |
++-------+-----------+----------------------------+
+
+[INFO] <ActionManager> contains 1 active terms.
++---------------------------------+
+| Active Action Terms (shape: 14) |
++-------+-----------+-------------+
+| Index | Name      |   Dimension |
++-------+-----------+-------------+
+|   0   | joint_pos |          14 |
++-------+-----------+-------------+
+
+[INFO] <ObservationManager> contains 2 groups.
++-----------------------------------------------------------+
+| Active Observation Terms in Group: 'actor' (shape: (61,)) |
++-----------+----------------------------------+------------+
+|   Index   | Name                             |   Shape    |
++-----------+----------------------------------+------------+
+|     0     | base_ang_vel                     |    (3,)    |
+|     1     | projected_gravity                |    (3,)    |
+|     2     | joint_pos                        |   (14,)    |
+|     3     | joint_vel                        |   (14,)    |
+|     4     | actions                          |   (14,)    |
+|     5     | command                          |    (3,)    |
+|     6     | head_command                     |    (4,)    |
+|     7     | body_command                     |    (6,)    |
++-----------+----------------------------------+------------+
++------------------------------------------------------------+
+| Active Observation Terms in Group: 'critic' (shape: (76,)) |
++----------+------------------------------------+------------+
+|  Index   | Name                               |   Shape    |
++----------+------------------------------------+------------+
+|    0     | base_lin_vel                       |    (3,)    |
+|    1     | base_ang_vel                       |    (3,)    |
+|    2     | projected_gravity                  |    (3,)    |
+|    3     | joint_pos                          |   (14,)    |
+|    4     | joint_vel                          |   (14,)    |
+|    5     | actions                            |   (14,)    |
+|    6     | command                            |    (3,)    |
+|    7     | foot_height                        |    (2,)    |
+|    8     | foot_air_time                      |    (2,)    |
+|    9     | foot_contact                       |    (2,)    |
+|    10    | foot_contact_forces                |    (6,)    |
+|    11    | head_command                       |    (4,)    |
+|    12    | body_command                       |    (6,)    |
++----------+------------------------------------+------------+
+
+[INFO] <TerminationManager> contains 0 active terms.
++--------------------------+
+| Active Termination Terms |
++-------+------+-----------+
+| Index | Name |  Time Out |
++-------+------+-----------+
++-------+------+-----------+
+
+[INFO] <RewardManager> contains 0 active terms.
++-----------------------+
+|  Active Reward Terms  |
++-------+------+--------+
+| Index | Name | Weight |
++-------+------+--------+
++-------+------+--------+
+
+[INFO] <NullCurriculumManager> (inactive)
+[INFO] <MetricsManager> contains 1 active terms.
++-------------------------+
+|   Active Metrics Terms  |
++-------+-----------------+
+| Index | Name            |
++-------+-----------------+
+|   0   | mean_action_acc |
++-------+-----------------+
+
+[INFO] <NullRecorderManager> (inactive)
+--------------------------------------------------------------------------------
+Resolved observation sets: 
+	 actor :  ('actor',)
+	 critic :  ('critic',)
+--------------------------------------------------------------------------------
+Actor Model: MLPModel(
+  (obs_normalizer): EmpiricalNormalization()
+  (distribution): GaussianDistribution()
+  (mlp): MLP(
+    (0): Linear(in_features=61, out_features=512, bias=True)
+    (1): ELU(alpha=1.0)
+    (2): Linear(in_features=512, out_features=256, bias=True)
+    (3): ELU(alpha=1.0)
+    (4): Linear(in_features=256, out_features=128, bias=True)
+    (5): ELU(alpha=1.0)
+    (6): Linear(in_features=128, out_features=14, bias=True)
+  )
+)
+Critic Model: MLPModel(
+  (obs_normalizer): EmpiricalNormalization()
+  (mlp): MLP(
+    (0): Linear(in_features=76, out_features=512, bias=True)
+    (1): ELU(alpha=1.0)
+    (2): Linear(in_features=512, out_features=256, bias=True)
+    (3): ELU(alpha=1.0)
+    (4): Linear(in_features=256, out_features=128, bias=True)
+    (5): ELU(alpha=1.0)
+    (6): Linear(in_features=128, out_features=1, bias=True)
+  )
+)
+{"step": 100, "steps": 1000, "checkpoints": 35, "environments": 5460, "elapsed_s": 15.0}
+{"step": 200, "steps": 1000, "checkpoints": 35, "environments": 5460, "elapsed_s": 20.1}
+{"step": 300, "steps": 1000, "checkpoints": 35, "environments": 5460, "elapsed_s": 25.1}
+{"step": 400, "steps": 1000, "checkpoints": 35, "environments": 5460, "elapsed_s": 30.1}
+{"step": 500, "steps": 1000, "checkpoints": 35, "environments": 5460, "elapsed_s": 35.2}
+{"step": 600, "steps": 1000, "checkpoints": 35, "environments": 5460, "elapsed_s": 40.2}
+{"step": 700, "steps": 1000, "checkpoints": 35, "environments": 5460, "elapsed_s": 45.3}
+{"step": 800, "steps": 1000, "checkpoints": 35, "environments": 5460, "elapsed_s": 50.3}
+{"step": 900, "steps": 1000, "checkpoints": 35, "environments": 5460, "elapsed_s": 55.4}
+{"step": 1000, "steps": 1000, "checkpoints": 35, "environments": 5460, "elapsed_s": 60.4}
+{
+  "top": [
+    {
+      "iteration": 22250,
+      "selection_score_lower_is_better": 0.6617292769184338,
+      "responsive_motion_fraction": 0.4513888888888889,
+      "stable_trials": 156,
+      "near_limit_trials": 0
+    },
+    {
+      "iteration": 23250,
+      "selection_score_lower_is_better": 0.6787139050619272,
+      "responsive_motion_fraction": 0.4097222222222222,
+      "stable_trials": 156,
+      "near_limit_trials": 0
+    },
+    {
+      "iteration": 23750,
+      "selection_score_lower_is_better": 0.691088322191856,
+      "responsive_motion_fraction": 0.4166666666666667,
+      "stable_trials": 156,
+      "near_limit_trials": 0
+    },
+    {
+      "iteration": 25000,
+      "selection_score_lower_is_better": 0.7189984129895188,
+      "responsive_motion_fraction": 0.3611111111111111,
+      "stable_trials": 156,
+      "near_limit_trials": 0
+    },
+    {
+      "iteration": 24500,
+      "selection_score_lower_is_better": 0.7272008972767778,
+      "responsive_motion_fraction": 0.3680555555555556,
+      "stable_trials": 156,
+      "near_limit_trials": 0
+    },
+    {
+      "iteration": 24000,
+      "selection_score_lower_is_better": 0.7284056881149819,
+      "responsive_motion_fraction": 0.3611111111111111,
+      "stable_trials": 156,
+      "near_limit_trials": 0
+    },
+    {
+      "iteration": 25250,
+      "selection_score_lower_is_better": 0.7333642775483842,
+      "responsive_motion_fraction": 0.3611111111111111,
+      "stable_trials": 156,
+      "near_limit_trials": 0
+    },
+    {
+      "iteration": 22500,
+      "selection_score_lower_is_better": 0.7355621736653942,
+      "responsive_motion_fraction": 0.3472222222222222,
+      "stable_trials": 156,
+      "near_limit_trials": 0
+    },
+    {
+      "iteration": 23500,
+      "selection_score_lower_is_better": 0.7435136219827382,
+      "responsive_motion_fraction": 0.3472222222222222,
+      "stable_trials": 156,
+      "near_limit_trials": 0
+    },
+    {
+      "iteration": 22000,
+      "selection_score_lower_is_better": 0.7435461002079267,
+      "responsive_motion_fraction": 0.3333333333333333,
+      "stable_trials": 156,
+      "near_limit_trials": 0
+    },
+    {
+      "iteration": 21000,
+      "selection_score_lower_is_better": 0.7494623962952698,
+      "responsive_motion_fraction": 0.3333333333333333,
+      "stable_trials": 156,
+      "near_limit_trials": 0
+    },
+    {
+      "iteration": 20750,
+      "selection_score_lower_is_better": 0.7495004435262278,
+      "responsive_motion_fraction": 0.3472222222222222,
+      "stable_trials": 156,
+      "near_limit_trials": 0
+    }
+  ],
+  "elapsed_s": 60.493193013000564
+}

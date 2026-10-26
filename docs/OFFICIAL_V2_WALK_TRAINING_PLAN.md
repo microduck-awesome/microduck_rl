@@ -97,3 +97,9 @@ CPU 名义模拟、11.1 V、无外力推扰和机体随机化，保留官方命�
 | 前进 0.15 + 转向 0.50 | 0.094 m/s、-0.0057 rad/s | 0.00011 m/s、0.00071 rad/s，基本不动 |
 
 5 个片段均未摔倒，14 个策略关节未见持续硬限位占用。该短回放不代表完整随机化或真机结果。训练仍按用户要求的官方配方执行；此次效果核对不修改奖励或课程。视频与完整统计：evidence/official-walk/corrected/playback-34500/。
+
+## 官方实际选用 checkpoint 与默认上限的区别
+
+官方 docs/velstand_policy.md 的 lineage 表明确列出纯步行 teacher 为 run `441tzs6d` 的 `model_3750.pt`（alpha_walking）。这证明官方采用了第 3750 checkpoint，不能据此断言原始 run 的全部终止更新数。最新综合 VelStand v8 采用 `0045i2si@2749`，属于多阶段 warm start/resume，不能视为从零只训练 2749 次。
+
+官方 velocity cfg 的 `max_iterations=50000` 是默认运行上限，不是上述发布模型的实际训练次数。本次直接把该上限作为运行目标，缺少与官方选用 checkpoint 对照的依据；应明确区分“使用官方代码默认上限”与“复现官方发布模型训练长度”。此记录修正说明，不自动变更当前运行。

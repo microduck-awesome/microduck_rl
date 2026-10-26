@@ -1,0 +1,17 @@
+{
+  "status": "PAUSED_BY_USER",
+  "paused_utc": "2026-10-26T01:20:38.670882+00:00",
+  "reason": "User: \u7acb\u5373\u6682\u505c\u8bad\u7ec3\u548c\u4efb\u52a1",
+  "terminated_pids": [
+    2609342,
+    2609344
+  ],
+  "remaining_live_pids": [],
+  "latest_existing_checkpoint": "/home/l40-vm01/Documents/ai-research/microduck/microduck-v2-official-walk-20261025/logs/rsl_rl/microduck_v2_official_baseline/2026-10-25_14-11-12_official_v2_sc0090_v5_dr_fresh/model_34500.pt",
+  "saved_artifacts_preserved": true,
+  "no_automatic_restart": true,
+  "verified_process_states": {
+    "2609342": "exited",
+    "2609344": "exited"
+  }
+}

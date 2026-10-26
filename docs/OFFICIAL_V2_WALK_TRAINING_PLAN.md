@@ -103,3 +103,28 @@ CPU 名义模拟、11.1 V、无外力推扰和机体随机化，保留官方命�
 官方 docs/velstand_policy.md 的 lineage 表明确列出纯步行 teacher 为 run `441tzs6d` 的 `model_3750.pt`（alpha_walking）。这证明官方采用了第 3750 checkpoint，不能据此断言原始 run 的全部终止更新数。最新综合 VelStand v8 采用 `0045i2si@2749`，属于多阶段 warm start/resume，不能视为从零只训练 2749 次。
 
 官方 velocity cfg 的 `max_iterations=50000` 是默认运行上限，不是上述发布模型的实际训练次数。本次直接把该上限作为运行目标，缺少与官方选用 checkpoint 对照的依据；应明确区分“使用官方代码默认上限”与“复现官方发布模型训练长度”。此记录修正说明，不自动变更当前运行。
+
+## 用户暂停
+
+用户明确要求立即暂停训练和任务，状态 PAUSED_BY_USER。训练与 supervisor 已停止，保留现有 checkpoint、日志和视频；不自动继续训练、评估或监控。详细停止证据见 evidence/official-walk/corrected/paused-by-user.json。
+
+## 暂停后的评估与查询（2026-10-26，用户授权）
+
+训练及 supervisor 保持 PAUSED_BY_USER；仅运行前向推理与查询，无 PPO 更新。
+
+使用同一 GPU0 协议对照本次运行 3750/7500/14500/34500 checkpoint：同一随机种子、五种固定指令、每种 8 秒，统计第 2–8 秒。
+
+| checkpoint | 低速 0.15 的实际 vx | 高速 0.30 的实际 vx | 高速直走偏航 | 原地 0.50 的实际 yaw | 组合 0.15+0.50 的实际 vx / yaw |
+| --- | --- | --- | --- | --- | --- |
+| 3750 | 0.000 | 0.233 | 0.125 | 0.000 | 0.124 / 0.281 |
+| 7500 | 0.123 | 0.227 | 0.011 | 0.225 | 0.118 / 0.108 |
+| 14500 | 0.095 | 0.253 | -0.119 | 0.238 | 0.109 / -0.153 |
+| 34500 | 0.000 | 0.256 | -0.006 | 0.002 | 0.115 / 0.060 |
+
+vx 单位 m/s，yaw 单位 rad/s。20 个片段均未摔倒，但该短回放不等于鲁棒性合格。7500 在低速前进及原地转向上较均衡；3750 组合转向相对较好；34500 高速直走较准，但低速前进及原地转向能力明显退化。不存在一个 checkpoint 在这些指令上全面合格的证据。
+
+修正此前 CPU 回放的适用范围：34500 在 GPU 组合指令下能前进约 0.115 m/s、转速约 0.060 rad/s，并非完全不动；高速直走偏航约 -0.006 rad/s，也明显小于 CPU 的 -0.138 rad/s。低速前进与原地转向停滞在两个后端均出现。不得把 CPU 与 GPU 数字混成同一排名。
+
+查询官方原始 docs/velstand_policy.md 与 HF manifest 确认：纯 Velocity teacher 为 441tzs6d@3750，文档已记录其低速 yaw 死区；官方默认 walk 从 v5 起使用综合 VelStand，当前 v8 为 0045i2si@2749，经多阶段 warm start/resume，转向改善包括 anchor yaw remap 及 fine yaw reward。后者不是本次纯 Velocity 从零训练的同一过程。该查询不授权修改当前奖励、课程或重启训练。
+
+原始 441tzs6d 的完整结束更新数仍无法确认：W&B API 未配置 key，公开页面不可读取，因此仅能确认官方选用了 3750 checkpoint，不能断言总训练结束于 3750。完整比较见 evidence/official-walk/corrected/checkpoint-comparison-gpu0.json。

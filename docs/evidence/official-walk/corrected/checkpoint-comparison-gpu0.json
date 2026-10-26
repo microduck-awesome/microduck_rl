@@ -1,0 +1,74 @@
+{
+  "evaluated_utc": "2026-10-26T06:06:14.946722+00:00",
+  "training_status": "PAUSED_BY_USER",
+  "updates_performed": 0,
+  "protocol": "same GPU0, seed 20261025, five verified fixed commands, 8 seconds/case, averages after 2 seconds, 11.1V nominal, pushes/body DR off, official command delay retained",
+  "comparison": [
+    {
+      "checkpoint": 3750,
+      "device": "cuda:0",
+      "checkpoint_sha256": "e55595b925f4135f7db0eb365226f1cf4a30872acaf86957084d0511dd7ab973",
+      "forward_015_vx": 0.00045371036382221066,
+      "forward_030_vx": 0.23347006912032764,
+      "forward_030_yaw_drift": 0.12523506903865686,
+      "turn_050_yaw": 0.00023191122214484495,
+      "walk_turn_vx": 0.12379286197324593,
+      "walk_turn_yaw": 0.28054945667274295,
+      "falls": 0,
+      "max_tilt_deg": 8.563779830932617
+    },
+    {
+      "checkpoint": 7500,
+      "device": "cuda:0",
+      "checkpoint_sha256": "081f8cec351d689de0f2c55a16e4eb8633e565b3d169c4533a9dc7ea42da5943",
+      "forward_015_vx": 0.12328882336616516,
+      "forward_030_vx": 0.22650306299328804,
+      "forward_030_yaw_drift": 0.010959206982903803,
+      "turn_050_yaw": 0.22465869637128585,
+      "walk_turn_vx": 0.11787079133093357,
+      "walk_turn_yaw": 0.10805168478749692,
+      "falls": 0,
+      "max_tilt_deg": 6.436478137969971
+    },
+    {
+      "checkpoint": 14500,
+      "device": "cuda:0",
+      "checkpoint_sha256": "945834563835fd4d50dbc1db627152d90b557b706f158e272114003dd7fec293",
+      "forward_015_vx": 0.0950740048289299,
+      "forward_030_vx": 0.2532906986773014,
+      "forward_030_yaw_drift": -0.11944206756248604,
+      "turn_050_yaw": 0.23844078044096628,
+      "walk_turn_vx": 0.10924683560927709,
+      "walk_turn_yaw": -0.15324550205376,
+      "falls": 0,
+      "max_tilt_deg": 8.349861145019531
+    },
+    {
+      "checkpoint": 34500,
+      "device": "cuda:0",
+      "checkpoint_sha256": "03cf2e4f1df7559c616ae6f67e4405f33d19a6ef2ec6c5a5f0d96e6b5aa99a95",
+      "forward_015_vx": 0.0002725121254964809,
+      "forward_030_vx": 0.2557661352554957,
+      "forward_030_yaw_drift": -0.005748526099487208,
+      "turn_050_yaw": 0.001868827424053355,
+      "walk_turn_vx": 0.11503313799699147,
+      "walk_turn_yaw": 0.05971057309846704,
+      "falls": 0,
+      "max_tilt_deg": 5.200929164886475
+    }
+  ],
+  "limitations": [
+    "One rollout per command and checkpoint; not a robustness or hardware qualification.",
+    "CPU and GPU differ on some cases; do not combine them into one performance ranking."
+  ],
+  "official_findings": {
+    "pure_velocity_selected_checkpoint": "441tzs6d@3750",
+    "original_run_end_step": "unverified; W&B API key not configured and public page inaccessible",
+    "default_max_iterations": 50000,
+    "default_deployed_walk": "VelStand v8, 0045i2si@2749, multi-stage warm start/resume",
+    "sources": [
+      "https://github.com/pollen-robotics/microduck_rl/blob/b02fdea4902c2b93b7d34a83a6f05da4ececb7d3/docs/velstand_policy.md",
+      "https://huggingface.co/pollen-robotics/microduck-policies/raw/665ae4eb20bfe13bca1ef4ea6d4bb6b4a096e448/manifest.json"
+    ]
+  }
+}

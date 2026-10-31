@@ -1,0 +1,82 @@
+[
+  {
+    "name": "recovery-start",
+    "historical_path": "formal",
+    "start": 0,
+    "updates": 500,
+    "end": 500,
+    "head_stage": null,
+    "eval_interval": 500,
+    "historical_source": "7d731011217a2c2a2658073dc4217b4434811da0"
+  },
+  {
+    "name": "recovery",
+    "historical_path": "formal-resumed",
+    "start": 500,
+    "updates": 3262,
+    "end": 3762,
+    "head_stage": null,
+    "eval_interval": 500,
+    "historical_source": "bede80b004e9535308dcd188d17c10a678844a1a"
+  },
+  {
+    "name": "head1",
+    "historical_path": "head-stage1/formal",
+    "start": 3762,
+    "updates": 1000,
+    "end": 4762,
+    "head_stage": 1,
+    "eval_interval": 250,
+    "historical_source": "3ac923231ad33408c5026dcb481cd5d6cca1bc61"
+  },
+  {
+    "name": "head2",
+    "historical_path": "head-stage2/formal",
+    "start": 4762,
+    "updates": 250,
+    "end": 5012,
+    "head_stage": 2,
+    "eval_interval": 128,
+    "historical_source": "32e62614d89d0745112b7b857257210c13fb2ccf"
+  },
+  {
+    "name": "head4",
+    "historical_path": "head-stage4/formal",
+    "start": 5012,
+    "updates": 512,
+    "end": 5524,
+    "head_stage": 4,
+    "eval_interval": 128,
+    "historical_source": "094bb0247023f4541bb0fe8720c7ec3e5b02a949"
+  },
+  {
+    "name": "head4-continue",
+    "historical_path": "head-stage4-continue/formal",
+    "start": 5524,
+    "updates": 512,
+    "end": 6036,
+    "head_stage": 4,
+    "eval_interval": 128,
+    "historical_source": "61601d98e89781302acd3d8b2d9d334c39099f67"
+  },
+  {
+    "name": "coarse2",
+    "historical_path": "head-coarse-repair/formal",
+    "start": 6036,
+    "updates": 512,
+    "end": 6548,
+    "head_stage": 2,
+    "eval_interval": 128,
+    "historical_source": "9348f2169d09aa979d338f249b80b981e188ffdb"
+  },
+  {
+    "name": "final4",
+    "historical_path": "head-final/formal",
+    "start": 6548,
+    "updates": 256,
+    "end": 6804,
+    "head_stage": 4,
+    "eval_interval": 128,
+    "historical_source": "36e0780ca57504f309b46e8b815595a69b6bb108"
+  }
+]

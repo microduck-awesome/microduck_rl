@@ -1,0 +1,89 @@
+{
+  "status": "FAILED",
+  "pid": 878965,
+  "completed_updates": 500,
+  "allocation_end": 3762,
+  "controls": 49152000,
+  "common_step_counter": 12000,
+  "updated_unix": 1792762223.0292897,
+  "losses": {
+    "value": 0.002133005324867554,
+    "surrogate": 0.010742736468091606,
+    "entropy": -15.20767068862915
+  },
+  "command_exposure": {
+    "environment_control_steps": 49152000,
+    "combinations": [
+      29432607,
+      9895359,
+      4923364,
+      4900670
+    ],
+    "combination_axes": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "positive": [
+      4890699,
+      4932197,
+      4914863,
+      4951086
+    ],
+    "negative": [
+      4918654,
+      4911084,
+      4921687,
+      4904497
+    ],
+    "range_quarters": [
+      [
+        1905557,
+        1991952,
+        1971175,
+        3940669
+      ],
+      [
+        1977962,
+        1967658,
+        1985596,
+        3912065
+      ],
+      [
+        1958924,
+        1994031,
+        1950036,
+        3933559
+      ],
+      [
+        1965456,
+        1982197,
+        1965367,
+        3942563
+      ]
+    ],
+    "current_ranges": [
+      [
+        -0.05,
+        0.05
+      ],
+      [
+        -0.05,
+        0.05
+      ],
+      [
+        -0.07,
+        0.07
+      ],
+      [
+        -0.015,
+        0.015
+      ]
+    ]
+  },
+  "recovery_stage": 0,
+  "error": "Inference tensor write during broadcast after update-500 evaluation",
+  "resume_checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261023/rise3762-collision/formal/rank1/resume_000500.pt",
+  "corrected_unix": 1792763831.9141996
+}

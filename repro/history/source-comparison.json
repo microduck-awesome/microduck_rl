@@ -1,0 +1,53 @@
+[
+  {
+    "phase": "recovery-start",
+    "historical_source": "7d731011217a2c2a2658073dc4217b4434811da0",
+    "historical_file_count": 104,
+    "different_from_published_fixed_source": [
+      "scripts/distributed3762.py",
+      "scripts/train3762_ddp.py"
+    ]
+  },
+  {
+    "phase": "recovery",
+    "historical_source": "bede80b004e9535308dcd188d17c10a678844a1a",
+    "historical_file_count": 104,
+    "different_from_published_fixed_source": []
+  },
+  {
+    "phase": "head1",
+    "historical_source": "3ac923231ad33408c5026dcb481cd5d6cca1bc61",
+    "historical_file_count": 104,
+    "different_from_published_fixed_source": []
+  },
+  {
+    "phase": "head2",
+    "historical_source": "32e62614d89d0745112b7b857257210c13fb2ccf",
+    "historical_file_count": 104,
+    "different_from_published_fixed_source": []
+  },
+  {
+    "phase": "head4",
+    "historical_source": "094bb0247023f4541bb0fe8720c7ec3e5b02a949",
+    "historical_file_count": 104,
+    "different_from_published_fixed_source": []
+  },
+  {
+    "phase": "head4-continue",
+    "historical_source": "61601d98e89781302acd3d8b2d9d334c39099f67",
+    "historical_file_count": 104,
+    "different_from_published_fixed_source": []
+  },
+  {
+    "phase": "coarse2",
+    "historical_source": "9348f2169d09aa979d338f249b80b981e188ffdb",
+    "historical_file_count": 104,
+    "different_from_published_fixed_source": []
+  },
+  {
+    "phase": "final4",
+    "historical_source": "36e0780ca57504f309b46e8b815595a69b6bb108",
+    "historical_file_count": 104,
+    "different_from_published_fixed_source": []
+  }
+]

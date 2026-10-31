@@ -1,0 +1,83 @@
+{
+  "status": "ALLOCATION_COMPLETE",
+  "pid": 903844,
+  "completed_updates": 3762,
+  "updated_unix": 1792768194.0269487,
+  "world_size": 2,
+  "global_envs": 8192,
+  "goal_complete": false,
+  "resume_checkpoint": "/home/l40-vm01/data2/experiments/microduck-v2-20261023/rise3762-collision/formal-resumed/rank1/resume_003762.pt",
+  "command_exposure": {
+    "environment_control_steps": 320667648,
+    "combinations": [
+      192347678,
+      64016107,
+      32138205,
+      32165658
+    ],
+    "combination_axes": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "positive": [
+      38297343,
+      30766905,
+      32184307,
+      32156352
+    ],
+    "negative": [
+      25955864,
+      33409083,
+      32102942,
+      32082353
+    ],
+    "range_quarters": [
+      [
+        16009131,
+        18229941,
+        11731856,
+        18282279
+      ],
+      [
+        13578502,
+        13499138,
+        13466924,
+        23631424
+      ],
+      [
+        12843360,
+        12856511,
+        12918537,
+        25668841
+      ],
+      [
+        12889593,
+        12836181,
+        12838833,
+        25674098
+      ]
+    ],
+    "current_ranges": [
+      [
+        -0.48577760000000003,
+        1.1
+      ],
+      [
+        -1.1,
+        0.904656
+      ],
+      [
+        -1.4,
+        1.4
+      ],
+      [
+        -0.31,
+        0.31
+      ]
+    ]
+  },
+  "exposure_segment_start_update": 500,
+  "recovery_stage": 5
+}

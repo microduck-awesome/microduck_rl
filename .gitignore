@@ -1,2 +1,7 @@
 __pycache__/
 *.pyc
+
+# Local reproduction environment and outputs
+.venv-repro/
+.repro-cache/
+repro-output/

@@ -1,0 +1,156 @@
+{
+  "checkpoint_sha256": "125a03f483dd320898ec654799e20551cd0c03e501b80dedb054eafdb2b89df3",
+  "recovery": {
+    "standing": {
+      "wins": 256,
+      "trials": 256,
+      "reference": {
+        "wins": 256,
+        "trials": 256
+      },
+      "wins_delta": 0
+    },
+    "sitting": {
+      "wins": 256,
+      "trials": 256,
+      "reference": {
+        "wins": 256,
+        "trials": 256
+      },
+      "wins_delta": 0
+    },
+    "prone": {
+      "wins": 256,
+      "trials": 256,
+      "reference": {
+        "wins": 256,
+        "trials": 256
+      },
+      "wins_delta": 0
+    },
+    "frontier": {
+      "wins": 256,
+      "trials": 256,
+      "reference": {
+        "wins": 256,
+        "trials": 256
+      },
+      "wins_delta": 0
+    },
+    "left_side": {
+      "wins": 256,
+      "trials": 256,
+      "reference": {
+        "wins": 256,
+        "trials": 256
+      },
+      "wins_delta": 0
+    },
+    "right_side": {
+      "wins": 256,
+      "trials": 256,
+      "reference": {
+        "wins": 256,
+        "trials": 256
+      },
+      "wins_delta": 0
+    },
+    "supine": {
+      "wins": 256,
+      "trials": 256,
+      "reference": {
+        "wins": 256,
+        "trials": 256
+      },
+      "wins_delta": 0
+    }
+  },
+  "head": {
+    "zero": {
+      "mean_axis_mae_deg": [
+        0.22961214929819107,
+        0.2885620892047882,
+        0.19789473712444305,
+        0.2629486471414566
+      ],
+      "reference": [
+        0.22961214929819107,
+        0.2885620892047882,
+        0.19789473712444305,
+        0.2629486471414566
+      ],
+      "delta_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "invalid_trials": 0
+    },
+    "small": {
+      "mean_axis_mae_deg": [
+        0.4167408151552081,
+        0.35581734869629145,
+        0.3687065476551652,
+        0.2849588394165039
+      ],
+      "reference": [
+        0.4167408151552081,
+        0.35581734869629145,
+        0.3687065476551652,
+        0.2849588394165039
+      ],
+      "delta_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "invalid_trials": 0
+    },
+    "current": {
+      "mean_axis_mae_deg": [
+        0.6050799720817142,
+        0.31126944431000286,
+        0.2960619051526818,
+        0.33015999922321904
+      ],
+      "reference": [
+        0.6050799720817142,
+        0.31126944431000286,
+        0.2960619051526818,
+        0.33015999922321904
+      ],
+      "delta_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "invalid_trials": 0
+    },
+    "final": {
+      "mean_axis_mae_deg": [
+        5.073099602427748,
+        1.378788981379734,
+        0.9061018202660812,
+        0.41678463315798175
+      ],
+      "reference": [
+        5.073099602427748,
+        1.378788981379734,
+        0.9061018202660812,
+        0.41678463315798175
+      ],
+      "delta_deg": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "invalid_trials": 0
+    }
+  },
+  "scope": "Same stored development protocols; deltas are measured minus reference. No new numerical equivalence tolerance is invented.",
+  "recovery_reference_count_matched": true
+}

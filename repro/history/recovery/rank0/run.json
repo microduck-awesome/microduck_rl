@@ -1,0 +1,2598 @@
+{
+  "task": "Mjlab-StandUp-Flat-MicroDuck-V2-PairedError-Baseline",
+  "device": "cuda:0",
+  "num_envs": 4096,
+  "allocation_updates": 3262,
+  "evaluation_interval": 500,
+  "evaluation_samples_per_bucket_per_seed": 128,
+  "seed": 20261015,
+  "source_sha256": {
+    "scripts/distributed3762.py": "22b6034b2df29d25bf7c516d254a60404dd94ac140d1b2bd7b9c72ea05a3b6e8",
+    "scripts/train3762_ddp.py": "2fa6a31fa0adb665865911636ffa916fdacff738ae1b6a6f8fd0d4a346d851b9",
+    "scripts/train_v2_standup.py": "17ec166b938cbb53c4163d42749661838300e5ccbd122371cfcfcec3dd85edf2",
+    "scripts/v2_python.sh": "a51513a2ec91e2664b757db012c1b8d955dfd79642389e59f7976a6dd8549ae5",
+    "src/mjlab_microduck/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/actuator/__init__.py": "181bfbec32115818720695915322f6e2c860fe87767570662a029f8e2d01f12d",
+    "src/mjlab_microduck/actuator/friction_dr_bam.py": "20d25ce2fd06a94bc4fd5356a657710a0959a352bad3dfcc670122f0f0bcd4d4",
+    "src/mjlab_microduck/actuator/friction_force.py": "c84648a4c15a7173a9580d72deff2a9356b8c3aa2fd086413a795924d438a7f6",
+    "src/mjlab_microduck/actuator/mujoco.py": "8786168d73b75a002c61bcc1b9aa6163276cf58637559ad21f96805baeb0e5d4",
+    "src/mjlab_microduck/actuator/sc0090_v5.py": "c42a7e54aac610c9ef1f142b32706821e54ea42163480393842632f35924e451",
+    "src/mjlab_microduck/actuator/v5_graph.py": "9cc192dfb180f67922565742398311c5d007c1aa3946ac5788722f31b2d71796",
+    "src/mjlab_microduck/custom_v2/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_000.stl": "60c2775c37dc07c4ae2f410e9a939a4106785ea26447d46cf54f8dd26f862b31",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_001.stl": "8e1d9ddb9d8309b60cfae58b8069724f1911d03a911df8f4eb596357e69b9c74",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_002.stl": "c9f43cf26ea140687abdf562b42e6974b4f4d0264d23490d8d296ae6a284d3ee",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_003.stl": "0ecef0bbf29635f47101857d26807fcdcbed7076626751bb785b251aba993249",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_004.stl": "a0a55c06b3bef2997dbdfa7f46656b76fd7dbea00c3107881a10d78db8eafdc6",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_005.stl": "37d1c3d6e1ff2e9fd30c25c1284cc8007ee47ce9a0d3f53e432d870f078413c3",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_006.stl": "451a9d8d5869f509b7341c7f66c6683f4c92d0881a92df73e659f0d437ab5b94",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_007.stl": "76bcd3cd15f788a209a3fa211985d0d8c4c701bb23cc8e4a342411184e94158f",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_008.stl": "fbd51d1b625eabb82f249b25fcba33be9ceb43695c29b7d9cfba79f9c40a2706",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_009.stl": "2a656468ea3db637ad4f15159a6ae8200034c17bb2488cb0f0a4f196d2a21934",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_010.stl": "846ea0eae2d03cef8c1731ffd6d1935ed255a384232e6cf9bd9c6b4c4fd27847",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_011.stl": "c6088862676b2a919d482490f246fc37e5578504d9aab2fbb72eb019f2ee09fd",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_012.stl": "f17569602ec5777e3e76e13e18464219eba70ff11f5d6671f751cf6f6bb8001b",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_013.stl": "98ddbe8f4ee496868e1c2543ff5d1fb780e712826a46eeb4b298d84a6023ab09",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_014.stl": "3dc4cb27afbd874e2b95bf674a6361a7517dadfc98610dfbcdc84e432be26db9",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_015.stl": "49de277a0fc1ac55af1d544776a2f1fed2a50becf9efcca71335d9ec7cc7b955",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_016.stl": "0eadf36ad4384bd3cdb7b514c725f40236c185f6b8914ef3f3a49db981eee42e",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_017.stl": "1cb8e3bc72890aafa3daa468cfc7638782b0b565742619900475f6ebede344eb",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_018.stl": "897b4c19bcd13be3d5e679ec9a3872caaaef0206922fb005fefd3d13e7ae4135",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_019.stl": "1c88ff40b0dd5f94c909e58f55d4d651895452ddb7a61941adf7be239acd132e",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_020.stl": "3b65c30b8cec832e856f6f7e84991ec78e952fef6cd7c6d9a016864be33a2221",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_021.stl": "1c29873bf16aae9b57a14d742c176ced4ca5bba90c818684b82abe68ac6f46f2",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_022.stl": "574af3d7e0ca2eb6a3b2ca3a16012f897cb157a1f23a0a1a17be5893e2c893e1",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_023.stl": "acfdf9f176ec695d9f8eca852d5f7c750130ce17b61457056be8cedac2acf54f",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_024.stl": "c8d23ac3ab4b6ff3fc14efb6bf81a6c1f78d048b56e7e2fd389bcb03e971efba",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_025.stl": "5bc7ff27ecc8eb7706382601255ebf32dc1d205b14208d0f625c1e6c214bdc12",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_026.stl": "78b358f64a7bfbc2e016d14ff81d8a72970580f9cd35d57ad0d1711e05e127e9",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_027.stl": "c95243d21db3f4454f5f65d5d26ee9986e03d838bf83040698da2e189edf5df2",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_028.stl": "3eabc1f538152238bd5e64f79987a17a6b53034c9b5dfa7aa46e7420f4c24b12",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_029.stl": "c5dc4f79d20ffe87acbe71826abb72051764d987afac4ca7c6c5c1ee62154fc6",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_030.stl": "bc9d9657918e915d6f45aca5b0ad7e613e97f6f283a514ca877d86232b52eabf",
+    "src/mjlab_microduck/custom_v2/assets/assets/sim2real_shell_031.stl": "25ea07cabeccd73bfeb99a7d3a16e4eb43db94c300925ca9bbbfb69a86a3b3db",
+    "src/mjlab_microduck/custom_v2/assets/robot.xml": "8ae0d89041950d565bbcd6272ab87317f46132ff1eef99b922782ecbe2b95308",
+    "src/mjlab_microduck/custom_v2/assets/robot_walk.xml": "671362042e9ef3cfd53313b0264dfc095af46cdaed68fe637130354471e0e7dd",
+    "src/mjlab_microduck/custom_v2/assets/scene.xml": "3781f11824c909851a2aaca54baddf2dc82b7ec086b5383fbc5af34a080a7a44",
+    "src/mjlab_microduck/custom_v2/assets/scene_walk.xml": "6741580f429221e64407f2dcb42364f2b38633043a167512fe60a29ec037fba4",
+    "src/mjlab_microduck/custom_v2/commands.py": "5dc0c05ffe76bbdb2cb2b492b55e201d6993253521417fc56fd64b67b028fd9c",
+    "src/mjlab_microduck/custom_v2/error_proxy.py": "5b1449037b5ee33d74e350cd5e44f02592618152f24166ce054f1e44d2670874",
+    "src/mjlab_microduck/custom_v2/exposure.py": "08c834418f3bc88923419e556d51f5cd9802a50ac1e5e4a52728ef7f1934a0df",
+    "src/mjlab_microduck/custom_v2/head_metrics.py": "5641c7679671f9fe124af5968a585df9e1425b9d3fa4462992f0c3d35f503599",
+    "src/mjlab_microduck/custom_v2/microduck_v2.py": "8b4e53cae1a4a28cd848f856bbd5efc200f10c46a2c15f24d444533ca6929941",
+    "src/mjlab_microduck/custom_v2/paired_randomization.py": "65a96253b1530e03659f9c31cb933bff4ccba6e1c82a9013c80ae96436a3f45d",
+    "src/mjlab_microduck/custom_v2/ppo.py": "a2574a090d59a257217a7ce97bc762b3220a974c1f5aaafa59dbaa99c3a4532a",
+    "src/mjlab_microduck/custom_v2/recovery.py": "4edb83db9db974b217da52742be54b0ad9054f842a2ff726338666bd927826c8",
+    "src/mjlab_microduck/custom_v2/runtime.py": "66786dc0f292f161343e03ddf8ed55e885bc119c554aa6279e3e8cd8c14a918e",
+    "src/mjlab_microduck/custom_v2/terminal.py": "68d3edd33a4948c31ae0bc6a28284515c4b04ff8c903c45571263b9b72251a65",
+    "src/mjlab_microduck/custom_v2/training.py": "6a9b774cfbe3989acdce4efdc36ee2fd48b9dd6c5cf9bc81f75d8528316145ae",
+    "src/mjlab_microduck/export.py": "ef4d851eee70ce0d1c896a0be14fd4a936a0d17e83649dfd572a5282ffcdf5b9",
+    "src/mjlab_microduck/hf_jobs.py": "d447a20e1feed595ef29a1a19e6a51630327341eb270f0acf4fcb314f69fd285",
+    "src/mjlab_microduck/physics/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/physics/_cpu_warp_contacts.cpp": "9c3f41f8eb31e10f691423ea4694deb4ae13619128429dadb558776191388346",
+    "src/mjlab_microduck/physics/cpu_warp_contacts.py": "84ad6f3a96c06bc5552ca63fbd9f396d255545c54b956f8bd9bdba0abaa827dc",
+    "src/mjlab_microduck/pickup/__init__.py": "7f9ef6fbcbd8b157b71f978092f41cdf8505992a6ecd91b59fc2b0fdef8cad2f",
+    "src/mjlab_microduck/pickup/features.py": "e1f49f64ce597215bca8d2734476fe5aa615a46a6bb6387c57fdd9a4b35f5015",
+    "src/mjlab_microduck/pickup/hand.py": "6b3229a8784e685b2837d44aa11d2c5cdb46e8337de62db8591572ba17537c3a",
+    "src/mjlab_microduck/pickup/model.py": "d738f60870bfa44be8d14afca4ec05d2c1920968202419bd814949b25d94813e",
+    "src/mjlab_microduck/ppo_diagnostics.py": "d91c778baa9a5a34082a9745f9045489ad7b9048a74a3022f75191de3c6d8b6a",
+    "src/mjlab_microduck/publish/__init__.py": "7768b41714b565cc97b5553a170b5d95cf17abafe6baa0f9a4be0b7e8cfec7bf",
+    "src/mjlab_microduck/publish/cli.py": "adb198a8b2c0aa10069cbcc3fe2c32b5540533cf04b410caa190b3bdcc24058b",
+    "src/mjlab_microduck/publish/manifest.py": "d66bae7920c2a86fef56877d8ced25c4b1fee67d5637da56d284056722dc7866",
+    "src/mjlab_microduck/robot/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mjlab_microduck/robot/microduck/add_backlash.py": "805a17ba4ad60f7a2ba20ff90879ad93a6db66013150c5ad9be3d31bc7b4252c",
+    "src/mjlab_microduck/robot/microduck_constants.py": "0e7097afe833ac1259b197f9854d01c1666be03ac0c9b090233b4fbc7619eb94",
+    "src/mjlab_microduck/robot/testbench_constants.py": "bf5e95376131471443e1daddf5abb0bc6326bc6b5c49bfb352774bcc6b011b9f",
+    "src/mjlab_microduck/sim/__init__.py": "f13d4940266b9579529074bc60426353ed8fc6f49bf8f480691d30e8e4276e22",
+    "src/mjlab_microduck/sim/body_server.py": "2040c827628c33fee998944bce1fcd456c4b993802bb473f016681688bff7b08",
+    "src/mjlab_microduck/sim/camera.py": "5f2e6c83b33e594583cbd5f3e003c3b8bb77f7a0e7b734d86ba0b2c821eaed71",
+    "src/mjlab_microduck/sim/recompute.py": "a5281fe33ab2c83cc4a1aafe127aee3b657b72d14663fbfd95962770e715b35c",
+    "src/mjlab_microduck/sim/terminal.py": "970b529849b5ee63474c7b5981f308b02bdf77a005dcbed106bbe906c9cd797f",
+    "src/mjlab_microduck/sim/tof.py": "256c06bac5ac64a02f3e065785bd70314b616c58da3cb94f93484c9e00d42663",
+    "src/mjlab_microduck/tasks/__init__.py": "74f3b9dc1e4fe05777033eb02cff2f6b8e36b2ad2bf31d8ea2c6634922bc3659",
+    "src/mjlab_microduck/tasks/backlash.py": "35598c2a3db496527fb8835269b4e0ac0eddcc86e683a7af447933c7281d0e22",
+    "src/mjlab_microduck/tasks/distill.py": "d7a2326d3a3b85ba0acb8910dde2701208e61e5bfce0f246eace3d11f51a6026",
+    "src/mjlab_microduck/tasks/mdp.py": "b6cf242e0779ce24634c880f6f91a6b0716609edb0a6d99f5822f987275904a2",
+    "src/mjlab_microduck/tasks/microduck_ball_kick_env_cfg.py": "313180628c0d0364ea6d0f1843e7e3e10b76585491b90b0c1f0e301d9e5fd30c",
+    "src/mjlab_microduck/tasks/microduck_ground_pick_env_cfg.py": "9b68951e2c84fdccb5894701efa97e060438eb56c956a34c65e844ba3fa6185e",
+    "src/mjlab_microduck/tasks/microduck_roller_crouch_env_cfg.py": "745142fab9ffc4c43a6b7d367d6be37f5675f5fbf255ac4341a9e2a21a4062ee",
+    "src/mjlab_microduck/tasks/microduck_roller_slope_env_cfg.py": "92738df650e3527c8cbe194169f60fb2a232933b1eabbbaf7d4b7d2aa67e2b42",
+    "src/mjlab_microduck/tasks/microduck_roller_standup_env_cfg.py": "146e417c082823039b87d2ff350e96e84007df80c268d53984d7c160f25cdeee",
+    "src/mjlab_microduck/tasks/microduck_roulade_env_cfg.py": "5e923d9ba69946228062c72102fe2b97bce02b9fd6f52c2418a42bbd4f919b42",
+    "src/mjlab_microduck/tasks/microduck_sitstand_env_cfg.py": "65b1961566b0772852ba36af8e92c02a13a53de9b9a98f91e2dce1f4d8d627b1",
+    "src/mjlab_microduck/tasks/microduck_spin_env_cfg.py": "ba85e26407a29a208f871aa229bb2c7971eca6087f0740e7de6f898adbc5b395",
+    "src/mjlab_microduck/tasks/microduck_standup_env_cfg.py": "b20b8f3fac5a374dd602f371f0b500955b4dbcb4d3f7330bddfa15b327826873",
+    "src/mjlab_microduck/tasks/microduck_velocity_env_cfg.py": "75a0430b814ac7495eb237ab806fbd4dd10309b9fd3027ac3eee3c2e3c5a944a",
+    "src/mjlab_microduck/tasks/microduck_velocity_rollers_env_cfg.py": "53567a5ed91b4c70166b57c79fc31917fdcf41287128aff12d3b9ff678f4c38c",
+    "src/mjlab_microduck/tasks/microduck_velocity_swizzle_env_cfg.py": "75197c956afd77586f60e4b773033ace15e088179bb5912a88328862b0a10f49",
+    "src/mjlab_microduck/tasks/microduck_velstand_env_cfg.py": "4b0aebefcc33ad43c2741bf09d8516be82c3ec859bcac54d4ef6531c2759898d",
+    "src/mjlab_microduck/tasks/slope_terrain.py": "1ce48eef8b4bd82cde94d7c9f50f19d2992f4dc8d3b5b5d314b7381bc572b8a0",
+    "src/mjlab_microduck/tasks/symmetry.py": "e37980389773f2f87b8f376df449af4d70e0c983744459f9a35a3ee7b686186b",
+    "src/mjlab_microduck/tasks/testbench_env_cfg.py": "d254218ca3f491e52d471ad033ebd1cb39a339f1f21394ea55e2bec4f3dc2776",
+    "src/mjlab_microduck/train_cli.py": "6c1e118d2bf65f86f6b932dd41b4ddff2a20a0633194a03072f700c7bfa8e372",
+    "src/mjlab_microduck/train_hook.py": "db1bcbceadd41d65077983eaadcb89dee146dc14ea9c9cc3df9d29c1cba20db5"
+  },
+  "git_head": "bede80b004e9535308dcd188d17c10a678844a1a",
+  "dependencies": {
+    "torch": "2.9.1",
+    "mjlab": "1.3.0",
+    "mujoco": "3.13.0",
+    "mujoco-warp": "3.8.1",
+    "warp-lang": "1.12.0",
+    "better-actuator-models": "1.0.1",
+    "rsl-rl-lib": "5.0.1"
+  },
+  "preflight": "/home/l40-vm01/data2/experiments/microduck-v2-20261023/rise3762-collision/batch4096.json",
+  "agent": {
+    "seed": 20261015,
+    "num_steps_per_env": 24,
+    "max_iterations": 15000,
+    "obs_groups": {
+      "actor": [
+        "actor"
+      ],
+      "critic": [
+        "critic"
+      ]
+    },
+    "save_interval": 250,
+    "experiment_name": "v2_paired_error_baseline",
+    "run_name": "v2_paired_error_baseline",
+    "logger": "tensorboard",
+    "wandb_project": "mjlab_microduck",
+    "wandb_tags": [],
+    "resume": false,
+    "load_run": ".*",
+    "load_checkpoint": "model_.*.pt",
+    "clip_actions": null,
+    "upload_model": false,
+    "class_name": "OnPolicyRunner",
+    "actor": {
+      "hidden_dims": [
+        512,
+        256,
+        128
+      ],
+      "activation": "elu",
+      "obs_normalization": true,
+      "cnn_cfg": null,
+      "distribution_cfg": {
+        "class_name": "GaussianDistribution",
+        "init_std": 1.0,
+        "std_type": "scalar"
+      },
+      "rnn_type": null,
+      "rnn_hidden_dim": 256,
+      "rnn_num_layers": 1,
+      "class_name": "MLPModel"
+    },
+    "critic": {
+      "hidden_dims": [
+        512,
+        256,
+        128
+      ],
+      "activation": "elu",
+      "obs_normalization": true,
+      "cnn_cfg": null,
+      "distribution_cfg": null,
+      "rnn_type": null,
+      "rnn_hidden_dim": 256,
+      "rnn_num_layers": 1,
+      "class_name": "MLPModel"
+    },
+    "algorithm": {
+      "num_learning_epochs": 5,
+      "num_mini_batches": 4,
+      "learning_rate": 0.001,
+      "schedule": "adaptive",
+      "gamma": 0.99,
+      "lam": 0.95,
+      "entropy_coef": 0.01,
+      "desired_kl": 0.01,
+      "max_grad_norm": 1.0,
+      "value_loss_coef": 1.0,
+      "use_clipped_value_loss": true,
+      "clip_param": 0.2,
+      "normalize_advantage_per_mini_batch": false,
+      "optimizer": "adam",
+      "share_cnn_encoders": false,
+      "class_name": "mjlab_microduck.custom_v2.ppo:TerminalCriticPPO",
+      "symmetry_cfg": null
+    }
+  },
+  "environment": {
+    "decimation": 4,
+    "scene": {
+      "num_envs": 4096,
+      "env_spacing": 2.0,
+      "terrain": {
+        "init_state": {
+          "pos": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "rot": [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "lin_vel": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "ang_vel": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "joint_pos": {
+            ".*": 0.0
+          },
+          "joint_vel": {
+            ".*": 0.0
+          }
+        },
+        "spec_fn": "<function EntityCfg.<lambda>.<locals>.<lambda> at 0x7f53cf76ede0>",
+        "articulation": null,
+        "sort_actuators": false,
+        "lights": [
+          {
+            "name": "sun",
+            "body": "world",
+            "mode": "fixed",
+            "target": null,
+            "type": "directional",
+            "castshadow": true,
+            "pos": [
+              0.0,
+              0.0,
+              1.5
+            ],
+            "dir": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "cutoff": 45.0,
+            "exponent": 10.0
+          }
+        ],
+        "cameras": [],
+        "textures": [
+          {
+            "name": "groundplane",
+            "type": "2d",
+            "builtin": "checker",
+            "rgb1": [
+              0.2,
+              0.3,
+              0.4
+            ],
+            "rgb2": [
+              0.1,
+              0.2,
+              0.3
+            ],
+            "width": 300,
+            "height": 300,
+            "mark": "edge",
+            "markrgb": [
+              0.8,
+              0.8,
+              0.8
+            ]
+          }
+        ],
+        "materials": [
+          {
+            "name": "groundplane",
+            "rgba": [
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "texuniform": true,
+            "texrepeat": [
+              4.0,
+              4.0
+            ],
+            "reflectance": 0.2,
+            "texture": "groundplane",
+            "geom_names_expr": [
+              "terrain$"
+            ]
+          }
+        ],
+        "collisions": [],
+        "terrain_type": "plane",
+        "terrain_generator": null,
+        "env_spacing": 2.0,
+        "max_init_terrain_level": 5,
+        "num_envs": 1,
+        "skip_environment_origin_markers": true
+      },
+      "entities": {
+        "robot": {
+          "init_state": {
+            "pos": [
+              0.0,
+              0.0,
+              0.11638049189959615
+            ],
+            "rot": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "lin_vel": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "ang_vel": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "joint_pos": {
+              ".*": 0.0
+            },
+            "joint_vel": {
+              ".*": 0.0
+            }
+          },
+          "spec_fn": "<function get_full_spec at 0x7f53cf76d8a0>",
+          "articulation": {
+            "actuators": [
+              {
+                "target_names_expr": [
+                  "^(left_hip_yaw|left_hip_roll|left_hip_pitch|left_knee|left_ankle|neck_pitch|head_pitch|head_yaw|head_roll|right_hip_yaw|right_hip_roll|right_hip_pitch|right_knee|right_ankle)$"
+                ],
+                "transmission_type": "joint",
+                "armature": null,
+                "frictionloss": null,
+                "viscous_damping": null,
+                "delay_min_lag": 0,
+                "delay_max_lag": 0,
+                "delay_hold_prob": 0.0,
+                "delay_update_period": 0,
+                "delay_per_env_phase": true,
+                "motor_name": null,
+                "model": null,
+                "json_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261023/rise3762-collision/source/src/mjlab_microduck/actuator/params/sc0090_v5_m6.json",
+                "vin": 11.1,
+                "kp_fw": 15.0,
+                "vin_range": null,
+                "vin_drop_gain_range": null,
+                "vin_min": null,
+                "stiff_frictionloss": true,
+                "kd_fw": 30.0,
+                "graph_compute": true,
+                "fast_friction_force": true
+              },
+              {
+                "target_names_expr": [
+                  "^mouth$"
+                ],
+                "transmission_type": "joint",
+                "armature": null,
+                "frictionloss": null,
+                "viscous_damping": null,
+                "delay_min_lag": 0,
+                "delay_max_lag": 0,
+                "delay_hold_prob": 0.0,
+                "delay_update_period": 0,
+                "delay_per_env_phase": true,
+                "motor_name": null,
+                "model": null,
+                "json_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261023/rise3762-collision/source/src/mjlab_microduck/actuator/params/sc0090_v5_m6.json",
+                "vin": 11.1,
+                "kp_fw": 15.0,
+                "vin_range": null,
+                "vin_drop_gain_range": null,
+                "vin_min": null,
+                "stiff_frictionloss": true,
+                "kd_fw": 30.0,
+                "graph_compute": true,
+                "fast_friction_force": true
+              }
+            ],
+            "soft_joint_pos_limit_factor": 0.9
+          },
+          "sort_actuators": false,
+          "lights": [],
+          "cameras": [],
+          "textures": [],
+          "materials": [],
+          "collisions": [
+            {
+              "geom_names_expr": [
+                ".*_collision"
+              ],
+              "contype": {
+                "^ground_battery_collision$": 1,
+                "^self_trunk_support_00_collision$": 2,
+                "^sim2real_shell_000_collision$": 1,
+                "^sim2real_shell_001_collision$": 1,
+                "^sim2real_shell_002_collision$": 1,
+                "^sim2real_shell_003_collision$": 1,
+                "^sim2real_shell_004_collision$": 1,
+                "^sim2real_shell_005_collision$": 1,
+                "^sim2real_shell_006_collision$": 1,
+                "^sim2real_shell_007_collision$": 1,
+                "^sim2real_shell_008_collision$": 1,
+                "^sim2real_shell_009_collision$": 1,
+                "^sim2real_shell_010_collision$": 1,
+                "^sim2real_shell_011_collision$": 1,
+                "^sim2real_shell_012_collision$": 1,
+                "^sim2real_shell_013_collision$": 1,
+                "^sim2real_shell_014_collision$": 1,
+                "^sim2real_shell_015_collision$": 1,
+                "^sim2real_shell_016_collision$": 1,
+                "^sim2real_shell_017_collision$": 1,
+                "^sim2real_shell_018_collision$": 1,
+                "^sim2real_shell_019_collision$": 1,
+                "^sim2real_shell_020_collision$": 1,
+                "^sim2real_shell_021_collision$": 1,
+                "^sim2real_shell_022_collision$": 1,
+                "^sim2real_shell_023_collision$": 1,
+                "^sim2real_shell_024_collision$": 1,
+                "^sim2real_shell_025_collision$": 1,
+                "^sim2real_shell_026_collision$": 1,
+                "^sim2real_shell_027_collision$": 1,
+                "^sim2real_shell_028_collision$": 1,
+                "^sim2real_shell_029_collision$": 1,
+                "^sim2real_shell_030_collision$": 1,
+                "^sim2real_shell_031_collision$": 1,
+                "^ground_left_hip_collision$": 1,
+                "^self_left_shin_structure_00_collision$": 1,
+                "^left_foot_collision$": 1,
+                "^ground_head_shell_collision$": 1,
+                "^ground_jaw_collision$": 1,
+                "^ground_right_hip_collision$": 1,
+                "^self_right_shin_structure_00_collision$": 1,
+                "^right_foot_collision$": 1
+              },
+              "conaffinity": {
+                "^ground_battery_collision$": 1,
+                "^self_trunk_support_00_collision$": 2,
+                "^sim2real_shell_000_collision$": 1,
+                "^sim2real_shell_001_collision$": 1,
+                "^sim2real_shell_002_collision$": 1,
+                "^sim2real_shell_003_collision$": 1,
+                "^sim2real_shell_004_collision$": 1,
+                "^sim2real_shell_005_collision$": 1,
+                "^sim2real_shell_006_collision$": 1,
+                "^sim2real_shell_007_collision$": 1,
+                "^sim2real_shell_008_collision$": 1,
+                "^sim2real_shell_009_collision$": 1,
+                "^sim2real_shell_010_collision$": 1,
+                "^sim2real_shell_011_collision$": 1,
+                "^sim2real_shell_012_collision$": 1,
+                "^sim2real_shell_013_collision$": 1,
+                "^sim2real_shell_014_collision$": 1,
+                "^sim2real_shell_015_collision$": 1,
+                "^sim2real_shell_016_collision$": 1,
+                "^sim2real_shell_017_collision$": 1,
+                "^sim2real_shell_018_collision$": 1,
+                "^sim2real_shell_019_collision$": 1,
+                "^sim2real_shell_020_collision$": 1,
+                "^sim2real_shell_021_collision$": 1,
+                "^sim2real_shell_022_collision$": 1,
+                "^sim2real_shell_023_collision$": 1,
+                "^sim2real_shell_024_collision$": 1,
+                "^sim2real_shell_025_collision$": 1,
+                "^sim2real_shell_026_collision$": 1,
+                "^sim2real_shell_027_collision$": 1,
+                "^sim2real_shell_028_collision$": 1,
+                "^sim2real_shell_029_collision$": 1,
+                "^sim2real_shell_030_collision$": 1,
+                "^sim2real_shell_031_collision$": 1,
+                "^ground_left_hip_collision$": 1,
+                "^self_left_shin_structure_00_collision$": 1,
+                "^left_foot_collision$": 1,
+                "^ground_head_shell_collision$": 1,
+                "^ground_jaw_collision$": 1,
+                "^ground_right_hip_collision$": 1,
+                "^self_right_shin_structure_00_collision$": 1,
+                "^right_foot_collision$": 1
+              },
+              "condim": {
+                "^ground_battery_collision$": 3,
+                "^self_trunk_support_00_collision$": 3,
+                "^sim2real_shell_000_collision$": 3,
+                "^sim2real_shell_001_collision$": 3,
+                "^sim2real_shell_002_collision$": 3,
+                "^sim2real_shell_003_collision$": 3,
+                "^sim2real_shell_004_collision$": 3,
+                "^sim2real_shell_005_collision$": 3,
+                "^sim2real_shell_006_collision$": 3,
+                "^sim2real_shell_007_collision$": 3,
+                "^sim2real_shell_008_collision$": 3,
+                "^sim2real_shell_009_collision$": 3,
+                "^sim2real_shell_010_collision$": 3,
+                "^sim2real_shell_011_collision$": 3,
+                "^sim2real_shell_012_collision$": 3,
+                "^sim2real_shell_013_collision$": 3,
+                "^sim2real_shell_014_collision$": 3,
+                "^sim2real_shell_015_collision$": 3,
+                "^sim2real_shell_016_collision$": 3,
+                "^sim2real_shell_017_collision$": 3,
+                "^sim2real_shell_018_collision$": 3,
+                "^sim2real_shell_019_collision$": 3,
+                "^sim2real_shell_020_collision$": 3,
+                "^sim2real_shell_021_collision$": 3,
+                "^sim2real_shell_022_collision$": 3,
+                "^sim2real_shell_023_collision$": 3,
+                "^sim2real_shell_024_collision$": 3,
+                "^sim2real_shell_025_collision$": 3,
+                "^sim2real_shell_026_collision$": 3,
+                "^sim2real_shell_027_collision$": 3,
+                "^sim2real_shell_028_collision$": 3,
+                "^sim2real_shell_029_collision$": 3,
+                "^sim2real_shell_030_collision$": 3,
+                "^sim2real_shell_031_collision$": 3,
+                "^ground_left_hip_collision$": 3,
+                "^self_left_shin_structure_00_collision$": 3,
+                "^left_foot_collision$": 3,
+                "^ground_head_shell_collision$": 3,
+                "^ground_jaw_collision$": 3,
+                "^ground_right_hip_collision$": 3,
+                "^self_right_shin_structure_00_collision$": 3,
+                "^right_foot_collision$": 3
+              },
+              "priority": {
+                "^(left|right)_foot_collision$": 1
+              },
+              "friction": {
+                "^(left|right)_foot_collision$": [
+                  1.0
+                ]
+              },
+              "solref": null,
+              "solimp": null,
+              "margin": null,
+              "gap": null,
+              "solmix": null,
+              "disable_other_geoms": true
+            }
+          ]
+        }
+      },
+      "sensors": [
+        {
+          "name": "feet_ground_contact",
+          "primary": {
+            "mode": "geom",
+            "pattern": "^(left_foot_collision|right_foot_collision)$",
+            "entity": "robot",
+            "exclude": []
+          },
+          "secondary": {
+            "mode": "body",
+            "pattern": "terrain",
+            "entity": null,
+            "exclude": []
+          },
+          "fields": [
+            "found",
+            "force"
+          ],
+          "reduce": "netforce",
+          "num_slots": 1,
+          "secondary_policy": "first",
+          "track_air_time": true,
+          "global_frame": false,
+          "history_length": 0,
+          "debug": false
+        },
+        {
+          "name": "self_collision",
+          "primary": {
+            "mode": "subtree",
+            "pattern": "trunk_base",
+            "entity": "robot",
+            "exclude": []
+          },
+          "secondary": {
+            "mode": "subtree",
+            "pattern": "trunk_base",
+            "entity": "robot",
+            "exclude": []
+          },
+          "fields": [
+            "found"
+          ],
+          "reduce": "none",
+          "num_slots": 1,
+          "secondary_policy": "first",
+          "track_air_time": false,
+          "global_frame": false,
+          "history_length": 0,
+          "debug": false
+        }
+      ],
+      "extent": 2.0,
+      "spec_fn": "<function remove_origin_markers at 0x7f53cf76c4a0>"
+    },
+    "observations": {
+      "actor": {
+        "terms": {
+          "base_ang_vel": {
+            "func": "<function base_ang_vel_imu_misaligned at 0x7f53cfaf1800>",
+            "params": {
+              "max_angle_deg": 6.0
+            },
+            "noise": {
+              "operation": "add",
+              "_tensor_cache": {},
+              "n_min": -0.03,
+              "n_max": 0.03
+            },
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 0,
+            "delay_max_lag": 1,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 64,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          },
+          "projected_gravity": {
+            "func": "<function projected_gravity_imu_misaligned at 0x7f53cfaf1760>",
+            "params": {
+              "max_angle_deg": 6.0
+            },
+            "noise": {
+              "operation": "add",
+              "_tensor_cache": {},
+              "n_min": -0.01,
+              "n_max": 0.01
+            },
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 0,
+            "delay_max_lag": 1,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 64,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          },
+          "joint_pos": {
+            "func": "<function proxy_joint_pos at 0x7f53cf5c2fc0>",
+            "params": {
+              "bank_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261023/rise3762-collision/source/src/mjlab_microduck/custom_v2/training-assets/repaired-paired-errors-v2",
+              "strength": 1.0
+            },
+            "noise": null,
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 1,
+            "delay_max_lag": 1,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 0,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          },
+          "joint_vel": {
+            "func": "<function proxy_joint_vel at 0x7f53cf5c3060>",
+            "params": {
+              "bank_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261023/rise3762-collision/source/src/mjlab_microduck/custom_v2/training-assets/repaired-paired-errors-v2",
+              "strength": 1.0
+            },
+            "noise": null,
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 1,
+            "delay_max_lag": 1,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 0,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          },
+          "actions": {
+            "func": "<function last_action at 0x7f53dddf14e0>",
+            "params": {},
+            "noise": null,
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 0,
+            "delay_max_lag": 0,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 0,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          },
+          "command": {
+            "func": "<function generated_commands at 0x7f53dddf1580>",
+            "params": {
+              "command_name": "twist"
+            },
+            "noise": null,
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 0,
+            "delay_max_lag": 0,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 0,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          },
+          "head_command": {
+            "func": "<function generated_commands at 0x7f53dddf1580>",
+            "params": {
+              "command_name": "head_pose"
+            },
+            "noise": null,
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 0,
+            "delay_max_lag": 0,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 0,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          },
+          "body_command": {
+            "func": "<function generated_commands at 0x7f53dddf1580>",
+            "params": {
+              "command_name": "body_pose"
+            },
+            "noise": null,
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 0,
+            "delay_max_lag": 0,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 0,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          }
+        },
+        "concatenate_terms": true,
+        "concatenate_dim": -1,
+        "enable_corruption": true,
+        "history_length": null,
+        "flatten_history_dim": true,
+        "nan_policy": "disabled",
+        "nan_check_per_term": true
+      },
+      "critic": {
+        "terms": {
+          "base_lin_vel": {
+            "func": "<function base_lin_vel at 0x7f53dddf11c0>",
+            "params": {},
+            "noise": null,
+            "clip": null,
+            "scale": 1.0,
+            "delay_min_lag": 0,
+            "delay_max_lag": 0,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 0,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          },
+          "base_ang_vel": {
+            "func": "<function builtin_sensor at 0x7f53dddf1620>",
+            "params": {
+              "sensor_name": "robot/imu_ang_vel"
+            },
+            "noise": {
+              "operation": "add",
+              "_tensor_cache": {},
+              "n_min": -0.2,
+              "n_max": 0.2
+            },
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 0,
+            "delay_max_lag": 0,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 0,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          },
+          "projected_gravity": {
+            "func": "<function projected_gravity at 0x7f53dddf1300>",
+            "params": {},
+            "noise": {
+              "operation": "add",
+              "_tensor_cache": {},
+              "n_min": -0.05,
+              "n_max": 0.05
+            },
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 0,
+            "delay_max_lag": 0,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 0,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          },
+          "joint_pos": {
+            "func": "<function joint_pos_rel at 0x7f53dddf13a0>",
+            "params": {
+              "asset_cfg": {
+                "name": "robot",
+                "joint_names": [
+                  "left_hip_yaw",
+                  "left_hip_roll",
+                  "left_hip_pitch",
+                  "left_knee",
+                  "left_ankle",
+                  "neck_pitch",
+                  "head_pitch",
+                  "head_yaw",
+                  "head_roll",
+                  "right_hip_yaw",
+                  "right_hip_roll",
+                  "right_hip_pitch",
+                  "right_knee",
+                  "right_ankle"
+                ],
+                "joint_ids": "slice(None, None, None)",
+                "body_names": null,
+                "body_ids": "slice(None, None, None)",
+                "geom_names": null,
+                "geom_ids": "slice(None, None, None)",
+                "site_names": null,
+                "site_ids": "slice(None, None, None)",
+                "actuator_names": null,
+                "actuator_ids": "slice(None, None, None)",
+                "tendon_names": null,
+                "tendon_ids": "slice(None, None, None)",
+                "camera_names": null,
+                "camera_ids": "slice(None, None, None)",
+                "light_names": null,
+                "light_ids": "slice(None, None, None)",
+                "material_names": null,
+                "material_ids": "slice(None, None, None)",
+                "pair_names": null,
+                "pair_ids": "slice(None, None, None)",
+                "preserve_order": true
+              },
+              "biased": false
+            },
+            "noise": {
+              "operation": "add",
+              "_tensor_cache": {},
+              "n_min": -0.001,
+              "n_max": 0.001
+            },
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 0,
+            "delay_max_lag": 0,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 0,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          },
+          "joint_vel": {
+            "func": "<function joint_vel_rel at 0x7f53dddf1440>",
+            "params": {
+              "asset_cfg": {
+                "name": "robot",
+                "joint_names": [
+                  "left_hip_yaw",
+                  "left_hip_roll",
+                  "left_hip_pitch",
+                  "left_knee",
+                  "left_ankle",
+                  "neck_pitch",
+                  "head_pitch",
+                  "head_yaw",
+                  "head_roll",
+                  "right_hip_yaw",
+                  "right_hip_roll",
+                  "right_hip_pitch",
+                  "right_knee",
+                  "right_ankle"
+                ],
+                "joint_ids": "slice(None, None, None)",
+                "body_names": null,
+                "body_ids": "slice(None, None, None)",
+                "geom_names": null,
+                "geom_ids": "slice(None, None, None)",
+                "site_names": null,
+                "site_ids": "slice(None, None, None)",
+                "actuator_names": null,
+                "actuator_ids": "slice(None, None, None)",
+                "tendon_names": null,
+                "tendon_ids": "slice(None, None, None)",
+                "camera_names": null,
+                "camera_ids": "slice(None, None, None)",
+                "light_names": null,
+                "light_ids": "slice(None, None, None)",
+                "material_names": null,
+                "material_ids": "slice(None, None, None)",
+                "pair_names": null,
+                "pair_ids": "slice(None, None, None)",
+                "preserve_order": true
+              }
+            },
+            "noise": {
+              "operation": "add",
+              "_tensor_cache": {},
+              "n_min": -0.25,
+              "n_max": 0.25
+            },
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 0,
+            "delay_max_lag": 0,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 0,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          },
+          "actions": {
+            "func": "<function last_action at 0x7f53dddf14e0>",
+            "params": {},
+            "noise": null,
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 0,
+            "delay_max_lag": 0,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 0,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          },
+          "command": {
+            "func": "<function generated_commands at 0x7f53dddf1580>",
+            "params": {
+              "command_name": "twist"
+            },
+            "noise": null,
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 0,
+            "delay_max_lag": 0,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 0,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          },
+          "foot_air_time": {
+            "func": "<function foot_air_time_safe at 0x7f53cfb056c0>",
+            "params": {
+              "sensor_name": "feet_ground_contact"
+            },
+            "noise": null,
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 0,
+            "delay_max_lag": 0,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 0,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          },
+          "foot_contact": {
+            "func": "<function foot_contact at 0x7f53cfd4f740>",
+            "params": {
+              "sensor_name": "feet_ground_contact"
+            },
+            "noise": null,
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 0,
+            "delay_max_lag": 0,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 0,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          },
+          "foot_contact_forces": {
+            "func": "<function foot_contact_forces_safe at 0x7f53cfb05580>",
+            "params": {
+              "sensor_name": "feet_ground_contact"
+            },
+            "noise": null,
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 0,
+            "delay_max_lag": 0,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 0,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          },
+          "head_command": {
+            "func": "<function generated_commands at 0x7f53dddf1580>",
+            "params": {
+              "command_name": "head_pose"
+            },
+            "noise": null,
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 0,
+            "delay_max_lag": 0,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 0,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          },
+          "body_command": {
+            "func": "<function generated_commands at 0x7f53dddf1580>",
+            "params": {
+              "command_name": "body_pose"
+            },
+            "noise": null,
+            "clip": null,
+            "scale": null,
+            "delay_min_lag": 0,
+            "delay_max_lag": 0,
+            "delay_per_env": true,
+            "delay_hold_prob": 0.0,
+            "delay_update_period": 0,
+            "delay_per_env_phase": true,
+            "history_length": 0,
+            "flatten_history_dim": true
+          }
+        },
+        "concatenate_terms": true,
+        "concatenate_dim": -1,
+        "enable_corruption": false,
+        "history_length": null,
+        "flatten_history_dim": true,
+        "nan_policy": "disabled",
+        "nan_check_per_term": true
+      }
+    },
+    "actions": {
+      "joint_pos": {
+        "entity_name": "robot",
+        "clip": null,
+        "transmission_type": "joint",
+        "actuator_names": [
+          "left_hip_yaw",
+          "left_hip_roll",
+          "left_hip_pitch",
+          "left_knee",
+          "left_ankle",
+          "neck_pitch",
+          "head_pitch",
+          "head_yaw",
+          "head_roll",
+          "right_hip_yaw",
+          "right_hip_roll",
+          "right_hip_pitch",
+          "right_knee",
+          "right_ankle"
+        ],
+        "scale": 1.0,
+        "offset": 0.0,
+        "preserve_order": true,
+        "use_default_offset": true
+      }
+    },
+    "events": {
+      "reset_base": {
+        "func": "<function reset_root_state_uniform at 0x7f53dddf0680>",
+        "params": {
+          "pose_range": {
+            "x": [
+              -0.5,
+              0.5
+            ],
+            "y": [
+              -0.5,
+              0.5
+            ],
+            "z": [
+              0.0,
+              0.01
+            ],
+            "yaw": [
+              -3.14,
+              3.14
+            ]
+          },
+          "velocity_range": {}
+        },
+        "mode": "reset",
+        "interval_range_s": null,
+        "is_global_time": false,
+        "min_step_count_between_reset": 0
+      },
+      "reset_robot_joints": {
+        "func": "<function reset_joints_by_offset at 0x7f53dddf07c0>",
+        "params": {
+          "position_range": [
+            0.0,
+            0.0
+          ],
+          "velocity_range": [
+            0.0,
+            0.0
+          ],
+          "asset_cfg": {
+            "name": "robot",
+            "joint_names": [
+              "left_hip_yaw",
+              "left_hip_roll",
+              "left_hip_pitch",
+              "left_knee",
+              "left_ankle",
+              "neck_pitch",
+              "head_pitch",
+              "head_yaw",
+              "head_roll",
+              "right_hip_yaw",
+              "right_hip_roll",
+              "right_hip_pitch",
+              "right_knee",
+              "right_ankle"
+            ],
+            "joint_ids": "slice(None, None, None)",
+            "body_names": null,
+            "body_ids": "slice(None, None, None)",
+            "geom_names": null,
+            "geom_ids": "slice(None, None, None)",
+            "site_names": null,
+            "site_ids": "slice(None, None, None)",
+            "actuator_names": null,
+            "actuator_ids": "slice(None, None, None)",
+            "tendon_names": null,
+            "tendon_ids": "slice(None, None, None)",
+            "camera_names": null,
+            "camera_ids": "slice(None, None, None)",
+            "light_names": null,
+            "light_ids": "slice(None, None, None)",
+            "material_names": null,
+            "material_ids": "slice(None, None, None)",
+            "pair_names": null,
+            "pair_ids": "slice(None, None, None)",
+            "preserve_order": true
+          }
+        },
+        "mode": "reset",
+        "interval_range_s": null,
+        "is_global_time": false,
+        "min_step_count_between_reset": 0
+      },
+      "push_robot": {
+        "func": "<function push_by_setting_velocity at 0x7f53dddf0860>",
+        "params": {
+          "velocity_range": {
+            "x": [
+              -0.05,
+              0.05
+            ],
+            "y": [
+              -0.05,
+              0.05
+            ]
+          },
+          "asset_cfg": {
+            "name": "robot",
+            "joint_names": [
+              "left_hip_yaw",
+              "left_hip_roll",
+              "left_hip_pitch",
+              "left_knee",
+              "left_ankle",
+              "neck_pitch",
+              "head_pitch",
+              "head_yaw",
+              "head_roll",
+              "right_hip_yaw",
+              "right_hip_roll",
+              "right_hip_pitch",
+              "right_knee",
+              "right_ankle"
+            ],
+            "joint_ids": "slice(None, None, None)",
+            "body_names": null,
+            "body_ids": "slice(None, None, None)",
+            "geom_names": null,
+            "geom_ids": "slice(None, None, None)",
+            "site_names": null,
+            "site_ids": "slice(None, None, None)",
+            "actuator_names": null,
+            "actuator_ids": "slice(None, None, None)",
+            "tendon_names": null,
+            "tendon_ids": "slice(None, None, None)",
+            "camera_names": null,
+            "camera_ids": "slice(None, None, None)",
+            "light_names": null,
+            "light_ids": "slice(None, None, None)",
+            "material_names": null,
+            "material_ids": "slice(None, None, None)",
+            "pair_names": null,
+            "pair_ids": "slice(None, None, None)",
+            "preserve_order": true
+          }
+        },
+        "mode": "interval",
+        "interval_range_s": [
+          3.0,
+          6.0
+        ],
+        "is_global_time": false,
+        "min_step_count_between_reset": 0
+      },
+      "foot_friction": {
+        "func": "<function geom_friction at 0x7f53de012020>",
+        "params": {
+          "asset_cfg": {
+            "name": "robot",
+            "joint_names": [
+              "left_hip_yaw",
+              "left_hip_roll",
+              "left_hip_pitch",
+              "left_knee",
+              "left_ankle",
+              "neck_pitch",
+              "head_pitch",
+              "head_yaw",
+              "head_roll",
+              "right_hip_yaw",
+              "right_hip_roll",
+              "right_hip_pitch",
+              "right_knee",
+              "right_ankle"
+            ],
+            "joint_ids": "slice(None, None, None)",
+            "body_names": null,
+            "body_ids": "slice(None, None, None)",
+            "geom_names": [
+              "left_foot_collision",
+              "right_foot_collision"
+            ],
+            "geom_ids": "slice(None, None, None)",
+            "site_names": null,
+            "site_ids": "slice(None, None, None)",
+            "actuator_names": null,
+            "actuator_ids": "slice(None, None, None)",
+            "tendon_names": null,
+            "tendon_ids": "slice(None, None, None)",
+            "camera_names": null,
+            "camera_ids": "slice(None, None, None)",
+            "light_names": null,
+            "light_ids": "slice(None, None, None)",
+            "material_names": null,
+            "material_ids": "slice(None, None, None)",
+            "pair_names": null,
+            "pair_ids": "slice(None, None, None)",
+            "preserve_order": true
+          },
+          "operation": "abs",
+          "ranges": [
+            0.7,
+            1.3
+          ],
+          "shared_random": true
+        },
+        "mode": "startup",
+        "interval_range_s": null,
+        "is_global_time": false,
+        "min_step_count_between_reset": 0
+      },
+      "base_com": {
+        "func": "<function body_com_offset at 0x7f53de012840>",
+        "params": {
+          "asset_cfg": {
+            "name": "robot",
+            "joint_names": [
+              "left_hip_yaw",
+              "left_hip_roll",
+              "left_hip_pitch",
+              "left_knee",
+              "left_ankle",
+              "neck_pitch",
+              "head_pitch",
+              "head_yaw",
+              "head_roll",
+              "right_hip_yaw",
+              "right_hip_roll",
+              "right_hip_pitch",
+              "right_knee",
+              "right_ankle"
+            ],
+            "joint_ids": "slice(None, None, None)",
+            "body_names": [],
+            "body_ids": "slice(None, None, None)",
+            "geom_names": null,
+            "geom_ids": "slice(None, None, None)",
+            "site_names": null,
+            "site_ids": "slice(None, None, None)",
+            "actuator_names": null,
+            "actuator_ids": "slice(None, None, None)",
+            "tendon_names": null,
+            "tendon_ids": "slice(None, None, None)",
+            "camera_names": null,
+            "camera_ids": "slice(None, None, None)",
+            "light_names": null,
+            "light_ids": "slice(None, None, None)",
+            "material_names": null,
+            "material_ids": "slice(None, None, None)",
+            "pair_names": null,
+            "pair_ids": "slice(None, None, None)",
+            "preserve_order": true
+          },
+          "operation": "add",
+          "ranges": {
+            "0": [
+              -0.025,
+              0.025
+            ],
+            "1": [
+              -0.025,
+              0.025
+            ],
+            "2": [
+              -0.03,
+              0.03
+            ]
+          }
+        },
+        "mode": "startup",
+        "interval_range_s": null,
+        "is_global_time": false,
+        "min_step_count_between_reset": 0
+      },
+      "expand_bam_friction_fields": {
+        "func": "<function expand_bam_friction_fields at 0x7f53cfaf0f40>",
+        "params": {},
+        "mode": "startup",
+        "interval_range_s": null,
+        "is_global_time": false,
+        "min_step_count_between_reset": 0
+      },
+      "reset_action_history": {
+        "func": "<function reset_action_history at 0x7f53cfae0720>",
+        "params": {},
+        "mode": "reset",
+        "interval_range_s": null,
+        "is_global_time": false,
+        "min_step_count_between_reset": 0
+      },
+      "set_ground_state": {
+        "func": "<function sc0090_reset_recovery at 0x7f53cf5c04a0>",
+        "params": {
+          "prone_z_min": 0.05,
+          "prone_z_max": 0.09,
+          "sitting_joint_overrides": {
+            "1": 0.0873,
+            "2": -0.1,
+            "3": -1.1,
+            "4": -0.85,
+            "10": -0.0873,
+            "11": -0.1,
+            "12": -1.1,
+            "13": -0.85
+          },
+          "sitting_joint_noise_std": 0.12,
+          "sitting_tilt_max": 0.17453292519943295,
+          "sitting_z_min": 0.0634,
+          "sitting_z_max": 0.0834,
+          "standing_z_min": 0.11638049189959615,
+          "standing_z_max": 0.12638049189959616
+        },
+        "mode": "reset",
+        "interval_range_s": null,
+        "is_global_time": false,
+        "min_step_count_between_reset": 0
+      },
+      "randomize_com": {
+        "func": "<function body_com_offset at 0x7f53de012840>",
+        "params": {
+          "asset_cfg": {
+            "name": "robot",
+            "joint_names": [
+              "left_hip_yaw",
+              "left_hip_roll",
+              "left_hip_pitch",
+              "left_knee",
+              "left_ankle",
+              "neck_pitch",
+              "head_pitch",
+              "head_yaw",
+              "head_roll",
+              "right_hip_yaw",
+              "right_hip_roll",
+              "right_hip_pitch",
+              "right_knee",
+              "right_ankle"
+            ],
+            "joint_ids": "slice(None, None, None)",
+            "body_names": [
+              "trunk_base"
+            ],
+            "body_ids": "slice(None, None, None)",
+            "geom_names": null,
+            "geom_ids": "slice(None, None, None)",
+            "site_names": null,
+            "site_ids": "slice(None, None, None)",
+            "actuator_names": null,
+            "actuator_ids": "slice(None, None, None)",
+            "tendon_names": null,
+            "tendon_ids": "slice(None, None, None)",
+            "camera_names": null,
+            "camera_ids": "slice(None, None, None)",
+            "light_names": null,
+            "light_ids": "slice(None, None, None)",
+            "material_names": null,
+            "material_ids": "slice(None, None, None)",
+            "pair_names": null,
+            "pair_ids": "slice(None, None, None)",
+            "preserve_order": true
+          },
+          "operation": "add",
+          "ranges": [
+            -0.003,
+            0.003
+          ]
+        },
+        "mode": "reset",
+        "interval_range_s": null,
+        "is_global_time": false,
+        "min_step_count_between_reset": 0
+      },
+      "randomize_head_com": {
+        "func": "<function body_com_offset at 0x7f53de012840>",
+        "params": {
+          "asset_cfg": {
+            "name": "robot",
+            "joint_names": [
+              "left_hip_yaw",
+              "left_hip_roll",
+              "left_hip_pitch",
+              "left_knee",
+              "left_ankle",
+              "neck_pitch",
+              "head_pitch",
+              "head_yaw",
+              "head_roll",
+              "right_hip_yaw",
+              "right_hip_roll",
+              "right_hip_pitch",
+              "right_knee",
+              "right_ankle"
+            ],
+            "joint_ids": "slice(None, None, None)",
+            "body_names": [
+              "neck",
+              "neck_pitch",
+              "yaw_roll_motion",
+              "(bottom_head_shell|jaw_soft)",
+              "bearing_roll"
+            ],
+            "body_ids": "slice(None, None, None)",
+            "geom_names": null,
+            "geom_ids": "slice(None, None, None)",
+            "site_names": null,
+            "site_ids": "slice(None, None, None)",
+            "actuator_names": null,
+            "actuator_ids": "slice(None, None, None)",
+            "tendon_names": null,
+            "tendon_ids": "slice(None, None, None)",
+            "camera_names": null,
+            "camera_ids": "slice(None, None, None)",
+            "light_names": null,
+            "light_ids": "slice(None, None, None)",
+            "material_names": null,
+            "material_ids": "slice(None, None, None)",
+            "pair_names": null,
+            "pair_ids": "slice(None, None, None)",
+            "preserve_order": true
+          },
+          "operation": "add",
+          "ranges": [
+            -0.003,
+            0.003
+          ]
+        },
+        "mode": "reset",
+        "interval_range_s": null,
+        "is_global_time": false,
+        "min_step_count_between_reset": 0
+      },
+      "randomize_mass_inertia": {
+        "func": "<function pseudo_inertia at 0x7f53de012ac0>",
+        "params": {
+          "asset_cfg": {
+            "name": "robot",
+            "joint_names": [
+              "left_hip_yaw",
+              "left_hip_roll",
+              "left_hip_pitch",
+              "left_knee",
+              "left_ankle",
+              "neck_pitch",
+              "head_pitch",
+              "head_yaw",
+              "head_roll",
+              "right_hip_yaw",
+              "right_hip_roll",
+              "right_hip_pitch",
+              "right_knee",
+              "right_ankle"
+            ],
+            "joint_ids": "slice(None, None, None)",
+            "body_names": [
+              "trunk_base"
+            ],
+            "body_ids": "slice(None, None, None)",
+            "geom_names": null,
+            "geom_ids": "slice(None, None, None)",
+            "site_names": null,
+            "site_ids": "slice(None, None, None)",
+            "actuator_names": null,
+            "actuator_ids": "slice(None, None, None)",
+            "tendon_names": null,
+            "tendon_ids": "slice(None, None, None)",
+            "camera_names": null,
+            "camera_ids": "slice(None, None, None)",
+            "light_names": null,
+            "light_ids": "slice(None, None, None)",
+            "material_names": null,
+            "material_ids": "slice(None, None, None)",
+            "pair_names": null,
+            "pair_ids": "slice(None, None, None)",
+            "preserve_order": true
+          },
+          "alpha_range": [
+            -0.02564664719377529,
+            0.024395082084716024
+          ]
+        },
+        "mode": "startup",
+        "interval_range_s": null,
+        "is_global_time": false,
+        "min_step_count_between_reset": 0
+      },
+      "v2_runtime": {
+        "func": "<function install_runtime at 0x7f53cf76c9a0>",
+        "params": {},
+        "mode": "startup",
+        "interval_range_s": null,
+        "is_global_time": false,
+        "min_step_count_between_reset": 0
+      },
+      "mouth_reset": {
+        "func": "<function reset_mouth at 0x7f53cf89d760>",
+        "params": {},
+        "mode": "reset",
+        "interval_range_s": null,
+        "is_global_time": false,
+        "min_step_count_between_reset": 0
+      },
+      "mouth_hold": {
+        "func": "<function hold_mouth at 0x7f53cf89d6c0>",
+        "params": {},
+        "mode": "step",
+        "interval_range_s": null,
+        "is_global_time": false,
+        "min_step_count_between_reset": 0
+      },
+      "v2_reset_joint_guards": {
+        "func": "<function guard_reset_joints at 0x7f53cf76dd00>",
+        "params": {},
+        "mode": "reset",
+        "interval_range_s": null,
+        "is_global_time": false,
+        "min_step_count_between_reset": 0
+      },
+      "paired_error_reset": {
+        "func": "<function reset_paired at 0x7f53cf5c2b60>",
+        "params": {
+          "bank_path": "/home/l40-vm01/data2/experiments/microduck-v2-20261023/rise3762-collision/source/src/mjlab_microduck/custom_v2/training-assets/repaired-paired-errors-v2"
+        },
+        "mode": "reset",
+        "interval_range_s": null,
+        "is_global_time": false,
+        "min_step_count_between_reset": 0
+      }
+    },
+    "seed": 20261015,
+    "sim": {
+      "nconmax": 35,
+      "njmax": 1500,
+      "ls_parallel": true,
+      "contact_sensor_maxmatch": 64,
+      "mujoco": {
+        "timestep": 0.005,
+        "integrator": "implicitfast",
+        "impratio": 1.0,
+        "cone": "pyramidal",
+        "jacobian": "auto",
+        "solver": "newton",
+        "iterations": 10,
+        "tolerance": 1e-08,
+        "ls_iterations": 20,
+        "ls_tolerance": 0.01,
+        "ccd_iterations": 50,
+        "gravity": [
+          0.0,
+          0.0,
+          -9.81
+        ],
+        "disableflags": [],
+        "enableflags": []
+      },
+      "nan_guard": {
+        "enabled": false,
+        "buffer_size": 100,
+        "output_dir": "/tmp/mjlab/nan_dumps",
+        "max_envs_to_dump": 5
+      }
+    },
+    "viewer": {
+      "lookat": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "distance": 3.0,
+      "fovy": null,
+      "elevation": -5.0,
+      "azimuth": 90.0,
+      "origin_type": "OriginType.ASSET_BODY",
+      "entity_name": "robot",
+      "body_name": "trunk_base",
+      "env_idx": 0,
+      "max_extra_envs": 2,
+      "enable_reflections": true,
+      "enable_shadows": true,
+      "height": 240,
+      "width": 320
+    },
+    "episode_length_s": 8.0,
+    "rewards": {
+      "body_ang_vel": {
+        "func": "<function body_angular_velocity_penalty at 0x7f53cfd7c360>",
+        "params": {
+          "asset_cfg": {
+            "name": "robot",
+            "joint_names": [
+              "left_hip_yaw",
+              "left_hip_roll",
+              "left_hip_pitch",
+              "left_knee",
+              "left_ankle",
+              "neck_pitch",
+              "head_pitch",
+              "head_yaw",
+              "head_roll",
+              "right_hip_yaw",
+              "right_hip_roll",
+              "right_hip_pitch",
+              "right_knee",
+              "right_ankle"
+            ],
+            "joint_ids": "slice(None, None, None)",
+            "body_names": [
+              "trunk_base"
+            ],
+            "body_ids": "slice(None, None, None)",
+            "geom_names": null,
+            "geom_ids": "slice(None, None, None)",
+            "site_names": null,
+            "site_ids": "slice(None, None, None)",
+            "actuator_names": null,
+            "actuator_ids": "slice(None, None, None)",
+            "tendon_names": null,
+            "tendon_ids": "slice(None, None, None)",
+            "camera_names": null,
+            "camera_ids": "slice(None, None, None)",
+            "light_names": null,
+            "light_ids": "slice(None, None, None)",
+            "material_names": null,
+            "material_ids": "slice(None, None, None)",
+            "pair_names": null,
+            "pair_ids": "slice(None, None, None)",
+            "preserve_order": true
+          }
+        },
+        "weight": -0.02
+      },
+      "angular_momentum": {
+        "func": "<function angular_momentum_penalty at 0x7f53cfd7c400>",
+        "params": {
+          "sensor_name": "robot/root_angmom"
+        },
+        "weight": -0.01
+      },
+      "dof_pos_limits": {
+        "func": "<function joint_pos_limits at 0x7f53dddf1da0>",
+        "params": {},
+        "weight": -1.0
+      },
+      "action_rate_l2": {
+        "func": "<function action_rate_l2 at 0x7f53dddf1c60>",
+        "params": {},
+        "weight": -0.2
+      },
+      "pose_stand_legs": {
+        "func": "<function pose_target_match at 0x7f53cfae3920>",
+        "params": {
+          "std": 0.5,
+          "joint_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "target_overrides": null
+        },
+        "weight": 1.0
+      },
+      "head_pose_tracking": {
+        "func": "<function head_pose_tracking at 0x7f53cfb05440>",
+        "params": {
+          "command_name": "head_pose",
+          "std": 0.5
+        },
+        "weight": 0.75
+      },
+      "head_pose_bias": {
+        "func": "<function head_pose_bias_penalty at 0x7f53cfb05760>",
+        "params": {
+          "command_name": "head_pose",
+          "tau_s": 1.0,
+          "gate_height_low": 0.09,
+          "gate_height_high": 0.11,
+          "gate_tilt_full_deg": 20.0,
+          "gate_tilt_zero_deg": 45.0
+        },
+        "weight": 0.0
+      },
+      "pose_stand_l1": {
+        "func": "<function pose_l1_penalty at 0x7f53cfae3100>",
+        "params": {
+          "joint_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "target_overrides": null
+        },
+        "weight": 0.5
+      },
+      "height_stand": {
+        "func": "<function height_target_gaussian at 0x7f53cfae39c0>",
+        "params": {
+          "std": 0.04,
+          "target_height": 0.112,
+          "asset_cfg": {
+            "name": "robot",
+            "joint_names": [
+              "left_hip_yaw",
+              "left_hip_roll",
+              "left_hip_pitch",
+              "left_knee",
+              "left_ankle",
+              "neck_pitch",
+              "head_pitch",
+              "head_yaw",
+              "head_roll",
+              "right_hip_yaw",
+              "right_hip_roll",
+              "right_hip_pitch",
+              "right_knee",
+              "right_ankle"
+            ],
+            "joint_ids": "slice(None, None, None)",
+            "body_names": [
+              "trunk_base"
+            ],
+            "body_ids": "slice(None, None, None)",
+            "geom_names": null,
+            "geom_ids": "slice(None, None, None)",
+            "site_names": null,
+            "site_ids": "slice(None, None, None)",
+            "actuator_names": null,
+            "actuator_ids": "slice(None, None, None)",
+            "tendon_names": null,
+            "tendon_ids": "slice(None, None, None)",
+            "camera_names": null,
+            "camera_ids": "slice(None, None, None)",
+            "light_names": null,
+            "light_ids": "slice(None, None, None)",
+            "material_names": null,
+            "material_ids": "slice(None, None, None)",
+            "pair_names": null,
+            "pair_ids": "slice(None, None, None)",
+            "preserve_order": true
+          }
+        },
+        "weight": 1.0
+      },
+      "height_stand_sharp": {
+        "func": "<function height_target_gaussian at 0x7f53cfae39c0>",
+        "params": {
+          "std": 0.015,
+          "target_height": 0.112,
+          "asset_cfg": {
+            "name": "robot",
+            "joint_names": [
+              "left_hip_yaw",
+              "left_hip_roll",
+              "left_hip_pitch",
+              "left_knee",
+              "left_ankle",
+              "neck_pitch",
+              "head_pitch",
+              "head_yaw",
+              "head_roll",
+              "right_hip_yaw",
+              "right_hip_roll",
+              "right_hip_pitch",
+              "right_knee",
+              "right_ankle"
+            ],
+            "joint_ids": "slice(None, None, None)",
+            "body_names": [
+              "trunk_base"
+            ],
+            "body_ids": "slice(None, None, None)",
+            "geom_names": null,
+            "geom_ids": "slice(None, None, None)",
+            "site_names": null,
+            "site_ids": "slice(None, None, None)",
+            "actuator_names": null,
+            "actuator_ids": "slice(None, None, None)",
+            "tendon_names": null,
+            "tendon_ids": "slice(None, None, None)",
+            "camera_names": null,
+            "camera_ids": "slice(None, None, None)",
+            "light_names": null,
+            "light_ids": "slice(None, None, None)",
+            "material_names": null,
+            "material_ids": "slice(None, None, None)",
+            "pair_names": null,
+            "pair_ids": "slice(None, None, None)",
+            "preserve_order": true
+          }
+        },
+        "weight": 1.0
+      },
+      "height_stand_l1": {
+        "func": "<function height_l1_penalty at 0x7f53cfae3a60>",
+        "params": {
+          "target_height": 0.112,
+          "asset_cfg": {
+            "name": "robot",
+            "joint_names": [
+              "left_hip_yaw",
+              "left_hip_roll",
+              "left_hip_pitch",
+              "left_knee",
+              "left_ankle",
+              "neck_pitch",
+              "head_pitch",
+              "head_yaw",
+              "head_roll",
+              "right_hip_yaw",
+              "right_hip_roll",
+              "right_hip_pitch",
+              "right_knee",
+              "right_ankle"
+            ],
+            "joint_ids": "slice(None, None, None)",
+            "body_names": [
+              "trunk_base"
+            ],
+            "body_ids": "slice(None, None, None)",
+            "geom_names": null,
+            "geom_ids": "slice(None, None, None)",
+            "site_names": null,
+            "site_ids": "slice(None, None, None)",
+            "actuator_names": null,
+            "actuator_ids": "slice(None, None, None)",
+            "tendon_names": null,
+            "tendon_ids": "slice(None, None, None)",
+            "camera_names": null,
+            "camera_ids": "slice(None, None, None)",
+            "light_names": null,
+            "light_ids": "slice(None, None, None)",
+            "material_names": null,
+            "material_ids": "slice(None, None, None)",
+            "pair_names": null,
+            "pair_ids": "slice(None, None, None)",
+            "preserve_order": true
+          }
+        },
+        "weight": 7.5
+      },
+      "gentle_rise": {
+        "func": "<function trunk_vertical_accel_penalty at 0x7f53cfae3b00>",
+        "params": {
+          "asset_cfg": {
+            "name": "robot",
+            "joint_names": [
+              "left_hip_yaw",
+              "left_hip_roll",
+              "left_hip_pitch",
+              "left_knee",
+              "left_ankle",
+              "neck_pitch",
+              "head_pitch",
+              "head_yaw",
+              "head_roll",
+              "right_hip_yaw",
+              "right_hip_roll",
+              "right_hip_pitch",
+              "right_knee",
+              "right_ankle"
+            ],
+            "joint_ids": "slice(None, None, None)",
+            "body_names": [
+              "trunk_base"
+            ],
+            "body_ids": "slice(None, None, None)",
+            "geom_names": null,
+            "geom_ids": "slice(None, None, None)",
+            "site_names": null,
+            "site_ids": "slice(None, None, None)",
+            "actuator_names": null,
+            "actuator_ids": "slice(None, None, None)",
+            "tendon_names": null,
+            "tendon_ids": "slice(None, None, None)",
+            "camera_names": null,
+            "camera_ids": "slice(None, None, None)",
+            "light_names": null,
+            "light_ids": "slice(None, None, None)",
+            "material_names": null,
+            "material_ids": "slice(None, None, None)",
+            "pair_names": null,
+            "pair_ids": "slice(None, None, None)",
+            "preserve_order": true
+          }
+        },
+        "weight": 0.005
+      },
+      "arrival_damping": {
+        "func": "<function body_ang_vel_at_height at 0x7f53cfae14e0>",
+        "params": {
+          "height_low": 0.09,
+          "height_high": 0.11,
+          "tilt_full_deg": 20.0,
+          "tilt_zero_deg": 45.0,
+          "asset_cfg": {
+            "name": "robot",
+            "joint_names": [
+              "left_hip_yaw",
+              "left_hip_roll",
+              "left_hip_pitch",
+              "left_knee",
+              "left_ankle",
+              "neck_pitch",
+              "head_pitch",
+              "head_yaw",
+              "head_roll",
+              "right_hip_yaw",
+              "right_hip_roll",
+              "right_hip_pitch",
+              "right_knee",
+              "right_ankle"
+            ],
+            "joint_ids": "slice(None, None, None)",
+            "body_names": [
+              "trunk_base"
+            ],
+            "body_ids": "slice(None, None, None)",
+            "geom_names": null,
+            "geom_ids": "slice(None, None, None)",
+            "site_names": null,
+            "site_ids": "slice(None, None, None)",
+            "actuator_names": null,
+            "actuator_ids": "slice(None, None, None)",
+            "tendon_names": null,
+            "tendon_ids": "slice(None, None, None)",
+            "camera_names": null,
+            "camera_ids": "slice(None, None, None)",
+            "light_names": null,
+            "light_ids": "slice(None, None, None)",
+            "material_names": null,
+            "material_ids": "slice(None, None, None)",
+            "pair_names": null,
+            "pair_ids": "slice(None, None, None)",
+            "preserve_order": true
+          }
+        },
+        "weight": 0.0
+      },
+      "upright_linear": {
+        "func": "<function body_upright_linear at 0x7f53cfae1260>",
+        "params": {
+          "asset_cfg": {
+            "name": "robot",
+            "joint_names": [
+              "left_hip_yaw",
+              "left_hip_roll",
+              "left_hip_pitch",
+              "left_knee",
+              "left_ankle",
+              "neck_pitch",
+              "head_pitch",
+              "head_yaw",
+              "head_roll",
+              "right_hip_yaw",
+              "right_hip_roll",
+              "right_hip_pitch",
+              "right_knee",
+              "right_ankle"
+            ],
+            "joint_ids": "slice(None, None, None)",
+            "body_names": [
+              "trunk_base"
+            ],
+            "body_ids": "slice(None, None, None)",
+            "geom_names": null,
+            "geom_ids": "slice(None, None, None)",
+            "site_names": null,
+            "site_ids": "slice(None, None, None)",
+            "actuator_names": null,
+            "actuator_ids": "slice(None, None, None)",
+            "tendon_names": null,
+            "tendon_ids": "slice(None, None, None)",
+            "camera_names": null,
+            "camera_ids": "slice(None, None, None)",
+            "light_names": null,
+            "light_ids": "slice(None, None, None)",
+            "material_names": null,
+            "material_ids": "slice(None, None, None)",
+            "pair_names": null,
+            "pair_ids": "slice(None, None, None)",
+            "preserve_order": true
+          }
+        },
+        "weight": 1.5
+      },
+      "upright_sharp": {
+        "func": "<function upright_gaussian_at_height at 0x7f53cfae13a0>",
+        "params": {
+          "std": 0.3,
+          "height_low": 0.06,
+          "height_high": 0.112,
+          "asset_cfg": {
+            "name": "robot",
+            "joint_names": [
+              "left_hip_yaw",
+              "left_hip_roll",
+              "left_hip_pitch",
+              "left_knee",
+              "left_ankle",
+              "neck_pitch",
+              "head_pitch",
+              "head_yaw",
+              "head_roll",
+              "right_hip_yaw",
+              "right_hip_roll",
+              "right_hip_pitch",
+              "right_knee",
+              "right_ankle"
+            ],
+            "joint_ids": "slice(None, None, None)",
+            "body_names": [
+              "trunk_base"
+            ],
+            "body_ids": "slice(None, None, None)",
+            "geom_names": null,
+            "geom_ids": "slice(None, None, None)",
+            "site_names": null,
+            "site_ids": "slice(None, None, None)",
+            "actuator_names": null,
+            "actuator_ids": "slice(None, None, None)",
+            "tendon_names": null,
+            "tendon_ids": "slice(None, None, None)",
+            "camera_names": null,
+            "camera_ids": "slice(None, None, None)",
+            "light_names": null,
+            "light_ids": "slice(None, None, None)",
+            "material_names": null,
+            "material_ids": "slice(None, None, None)",
+            "pair_names": null,
+            "pair_ids": "slice(None, None, None)",
+            "preserve_order": true
+          }
+        },
+        "weight": 1.5
+      },
+      "standing_composite": {
+        "func": "<function standing_composite_score at 0x7f53cfae1580>",
+        "params": {
+          "target_height": 0.112,
+          "height_std": 0.04,
+          "upright_std": 0.4,
+          "pose_std": 0.4,
+          "joint_indices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "target_overrides": null,
+          "asset_cfg": {
+            "name": "robot",
+            "joint_names": [
+              "left_hip_yaw",
+              "left_hip_roll",
+              "left_hip_pitch",
+              "left_knee",
+              "left_ankle",
+              "neck_pitch",
+              "head_pitch",
+              "head_yaw",
+              "head_roll",
+              "right_hip_yaw",
+              "right_hip_roll",
+              "right_hip_pitch",
+              "right_knee",
+              "right_ankle"
+            ],
+            "joint_ids": "slice(None, None, None)",
+            "body_names": [
+              "trunk_base"
+            ],
+            "body_ids": "slice(None, None, None)",
+            "geom_names": null,
+            "geom_ids": "slice(None, None, None)",
+            "site_names": null,
+            "site_ids": "slice(None, None, None)",
+            "actuator_names": null,
+            "actuator_ids": "slice(None, None, None)",
+            "tendon_names": null,
+            "tendon_ids": "slice(None, None, None)",
+            "camera_names": null,
+            "camera_ids": "slice(None, None, None)",
+            "light_names": null,
+            "light_ids": "slice(None, None, None)",
+            "material_names": null,
+            "material_ids": "slice(None, None, None)",
+            "pair_names": null,
+            "pair_ids": "slice(None, None, None)",
+            "preserve_order": true
+          }
+        },
+        "weight": 3.75
+      },
+      "body_pose_tracking": {
+        "func": "<function body_pose_tracking_locomotion at 0x7f53cfb05940>",
+        "params": {
+          "command_name": "body_pose",
+          "nominal_height": 0.112,
+          "z_std": 0.01,
+          "angle_std": 0.08726646259971647,
+          "axis_weights": [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            0.0
+          ],
+          "vel_gate_command_name": null
+        },
+        "weight": 0.0
+      },
+      "joint_torque_rate_l2": {
+        "func": "<function joint_torque_rate_l2 at 0x7f53cfae2700>",
+        "params": {},
+        "weight": 0.0
+      },
+      "self_collisions": {
+        "func": "<function self_collision_cost at 0x7f53cfd7c040>",
+        "params": {
+          "sensor_name": "self_collision"
+        },
+        "weight": -1.0
+      },
+      "recovery_progress": {
+        "func": "<function sc0090_recovery_progress at 0x7f53cf5c05e0>",
+        "params": {},
+        "weight": 1.0
+      },
+      "stable_standing": {
+        "func": "<function sc0090_stable_standing at 0x7f53cf5c0680>",
+        "params": {},
+        "weight": 1.0
+      },
+      "remaining_fallen": {
+        "func": "<function fallen_state_penalty at 0x7f53cfae0d60>",
+        "params": {
+          "gate_tilt_above_deg": 40.0,
+          "release_tilt_below_deg": 20.0,
+          "release_z_above": 0.10200000000000001
+        },
+        "weight": -0.5
+      },
+      "neck_limit_proximity": {
+        "func": "<function joint_pos_limit_proximity at 0x7f53cfae2f20>",
+        "params": {
+          "asset_cfg": {
+            "name": "robot",
+            "joint_names": [
+              "neck_pitch"
+            ],
+            "joint_ids": "slice(None, None, None)",
+            "body_names": null,
+            "body_ids": "slice(None, None, None)",
+            "geom_names": null,
+            "geom_ids": "slice(None, None, None)",
+            "site_names": null,
+            "site_ids": "slice(None, None, None)",
+            "actuator_names": null,
+            "actuator_ids": "slice(None, None, None)",
+            "tendon_names": null,
+            "tendon_ids": "slice(None, None, None)",
+            "camera_names": null,
+            "camera_ids": "slice(None, None, None)",
+            "light_names": null,
+            "light_ids": "slice(None, None, None)",
+            "material_names": null,
+            "material_ids": "slice(None, None, None)",
+            "pair_names": null,
+            "pair_ids": "slice(None, None, None)",
+            "preserve_order": false
+          },
+          "margin": 0.2
+        },
+        "weight": -2.0
+      }
+    },
+    "terminations": {
+      "time_out": {
+        "func": "<function time_out at 0x7f53dddf2160>",
+        "params": {},
+        "time_out": true
+      },
+      "out_of_terrain_bounds": {
+        "func": "<function out_of_terrain_bounds at 0x7f53cfd7ca40>",
+        "params": {},
+        "time_out": true
+      },
+      "nan_state": {
+        "func": "<function robot_state_is_nan at 0x7f53cfae18a0>",
+        "params": {
+          "sensor_names": [
+            "feet_ground_contact"
+          ]
+        },
+        "time_out": false
+      }
+    },
+    "commands": {
+      "twist": {
+        "resampling_time_range": [
+          6.0,
+          12.0
+        ],
+        "debug_vis": false,
+        "entity_name": "robot",
+        "heading_command": false,
+        "heading_control_stiffness": 0.5,
+        "rel_standing_envs": 0.0,
+        "rel_heading_envs": 0.0,
+        "rel_world_envs": 0.0,
+        "rel_forward_envs": 0.0,
+        "init_velocity_prob": 0.0,
+        "ranges": {
+          "lin_vel_x": [
+            -0.01,
+            0.01
+          ],
+          "lin_vel_y": [
+            -0.01,
+            0.01
+          ],
+          "ang_vel_z": [
+            -0.05,
+            0.05
+          ],
+          "heading": null
+        },
+        "viz": {
+          "z_offset": 0.2,
+          "scale": 0.5
+        },
+        "rel_turn_in_place_envs": 0.0,
+        "turn_in_place_min_frac": 0.4
+      },
+      "head_pose": {
+        "resampling_time_range": [
+          2.0,
+          5.0
+        ],
+        "debug_vis": false,
+        "ranges": [
+          [
+            -0.05,
+            0.05
+          ],
+          [
+            -0.05,
+            0.05
+          ],
+          [
+            -0.07,
+            0.07
+          ],
+          [
+            -0.015,
+            0.015
+          ]
+        ],
+        "zero_command_prob": 0.6,
+        "precision_probability": 0.0
+      },
+      "body_pose": {
+        "resampling_time_range": [
+          2.0,
+          5.0
+        ],
+        "debug_vis": false,
+        "ranges": [
+          [
+            -0.005,
+            0.005
+          ],
+          [
+            -0.005,
+            0.005
+          ],
+          [
+            -0.005,
+            0.005
+          ],
+          [
+            -0.05,
+            0.05
+          ],
+          [
+            -0.05,
+            0.05
+          ],
+          [
+            -0.05,
+            0.05
+          ]
+        ],
+        "zero_command_prob": 0.3
+      }
+    },
+    "curriculum": {
+      "head_pose_range": {
+        "func": "<function pose_command_range_curriculum at 0x7f53cfb059e0>",
+        "params": {
+          "command_name": "head_pose",
+          "range_stages": [
+            {
+              "step": 0,
+              "ranges": [
+                [
+                  -0.05,
+                  0.05
+                ],
+                [
+                  -0.05,
+                  0.05
+                ],
+                [
+                  -0.07,
+                  0.07
+                ],
+                [
+                  -0.015,
+                  0.015
+                ]
+              ]
+            },
+            {
+              "step": 12000,
+              "ranges": [
+                [
+                  -0.17,
+                  0.17
+                ],
+                [
+                  -0.17,
+                  0.17
+                ],
+                [
+                  -0.21,
+                  0.21
+                ],
+                [
+                  -0.047,
+                  0.047
+                ]
+              ]
+            },
+            {
+              "step": 24000,
+              "ranges": [
+                [
+                  -0.39,
+                  0.39
+                ],
+                [
+                  -0.39,
+                  0.39
+                ],
+                [
+                  -0.49,
+                  0.49
+                ],
+                [
+                  -0.11,
+                  0.11
+                ]
+              ]
+            },
+            {
+              "step": 36000,
+              "ranges": [
+                [
+                  -0.48577760000000003,
+                  0.72
+                ],
+                [
+                  -0.72,
+                  0.72
+                ],
+                [
+                  -0.91,
+                  0.91
+                ],
+                [
+                  -0.2,
+                  0.2
+                ]
+              ]
+            },
+            {
+              "step": 48000,
+              "ranges": [
+                [
+                  -0.48577760000000003,
+                  1.1
+                ],
+                [
+                  -1.1,
+                  0.904656
+                ],
+                [
+                  -1.4,
+                  1.4
+                ],
+                [
+                  -0.31,
+                  0.31
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      "com_range": {
+        "func": "<function com_range_curriculum at 0x7f53cfaf13a0>",
+        "params": {
+          "event_name": "randomize_com",
+          "range_stages": [
+            {
+              "step": 0,
+              "range": 0.003
+            },
+            {
+              "step": 12000,
+              "range": 0.005
+            },
+            {
+              "step": 24000,
+              "range": 0.01
+            },
+            {
+              "step": 36000,
+              "range": 0.015
+            }
+          ]
+        }
+      },
+      "head_com_range": {
+        "func": "<function com_range_curriculum at 0x7f53cfaf13a0>",
+        "params": {
+          "event_name": "randomize_head_com",
+          "range_stages": [
+            {
+              "step": 0,
+              "range": 0.003
+            },
+            {
+              "step": 12000,
+              "range": 0.005
+            },
+            {
+              "step": 24000,
+              "range": 0.01
+            }
+          ]
+        }
+      }
+    },
+    "metrics": {
+      "mean_action_acc": {
+        "func": "<function mean_action_acc at 0x7f53dddf1080>",
+        "params": {},
+        "per_substep": false,
+        "reduce": "mean"
+      }
+    },
+    "recorders": {},
+    "is_finite_horizon": false,
+    "auto_reset": true,
+    "scale_rewards_by_dt": true
+  },
+  "resume": "../formal/rank0/resume_000500.pt",
+  "head_precision_recipe": null,
+  "position_robustness_recipe": null
+}

@@ -1,0 +1,287 @@
+{
+  "scope": "Historical paired development protocol. Report behavior deltas, not weight equality; no new equivalence tolerance is invented.",
+  "results": [
+    {
+      "iteration": 10250,
+      "sha256": "311c8a1fe4dfb0bcf8556b4661ed6edae69a99b766d781708e4d2d6d7355f463",
+      "stable_trials": 156,
+      "total_trials": 156,
+      "near_limit_trials": 0,
+      "selection_score_lower_is_better": 0.4930318937888084,
+      "balanced_tracking_error": 0.3471985604554751,
+      "responsive_motion_fraction": 0.7083333333333334,
+      "reference": {
+        "stable_trials": 156,
+        "total_trials": 156,
+        "near_limit_trials": 0,
+        "selection_score_lower_is_better": 0.4930318937888084,
+        "balanced_tracking_error": 0.3471985604554751,
+        "responsive_motion_fraction": 0.7083333333333334
+      },
+      "score_delta": 0.0,
+      "cases": [
+        {
+          "case": "idle",
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "velocity": [
+            0.00012170561240054667,
+            -5.089244223199785e-05,
+            0.00046134807053022087
+          ],
+          "reference_velocity": [
+            0.00012170561240054667,
+            -5.089244223199785e-05,
+            0.00046134807053022087
+          ],
+          "failed_trials": 0,
+          "near_limit_occupancy_max": 0.0
+        },
+        {
+          "case": "fwd010",
+          "command": [
+            0.1,
+            0.0,
+            0.0
+          ],
+          "velocity": [
+            0.0001625735458219424,
+            6.878221029182896e-05,
+            -0.0009799895342439413
+          ],
+          "reference_velocity": [
+            0.0001625735458219424,
+            6.878221029182896e-05,
+            -0.0009799895342439413
+          ],
+          "failed_trials": 0,
+          "near_limit_occupancy_max": 0.0
+        },
+        {
+          "case": "fwd015",
+          "command": [
+            0.15,
+            0.0,
+            0.0
+          ],
+          "velocity": [
+            0.09778917580842972,
+            0.0021484708413481712,
+            -0.13105835020542145
+          ],
+          "reference_velocity": [
+            0.09778917580842972,
+            0.0021484708413481712,
+            -0.13105835020542145
+          ],
+          "failed_trials": 0,
+          "near_limit_occupancy_max": 0.0
+        },
+        {
+          "case": "fwd020",
+          "command": [
+            0.2,
+            0.0,
+            0.0
+          ],
+          "velocity": [
+            0.14602024853229523,
+            -0.005602795630693436,
+            -0.049185071140527725
+          ],
+          "reference_velocity": [
+            0.14602024853229523,
+            -0.005602795630693436,
+            -0.049185071140527725
+          ],
+          "failed_trials": 0,
+          "near_limit_occupancy_max": 0.0
+        },
+        {
+          "case": "fwd030",
+          "command": [
+            0.3,
+            0.0,
+            0.0
+          ],
+          "velocity": [
+            0.24610452353954315,
+            -0.012404818087816238,
+            -0.024626100435853004
+          ],
+          "reference_velocity": [
+            0.24610452353954315,
+            -0.012404818087816238,
+            -0.024626100435853004
+          ],
+          "failed_trials": 0,
+          "near_limit_occupancy_max": 0.0
+        },
+        {
+          "case": "fwd040",
+          "command": [
+            0.4,
+            0.0,
+            0.0
+          ],
+          "velocity": [
+            0.30454567074775696,
+            -0.011227834038436413,
+            -0.0995069146156311
+          ],
+          "reference_velocity": [
+            0.30454567074775696,
+            -0.011227834038436413,
+            -0.0995069146156311
+          ],
+          "failed_trials": 0,
+          "near_limit_occupancy_max": 0.0
+        },
+        {
+          "case": "back010",
+          "command": [
+            -0.1,
+            0.0,
+            0.0
+          ],
+          "velocity": [
+            -0.003396222135052085,
+            -0.0006661561783403158,
+            -0.0034254968632012606
+          ],
+          "reference_velocity": [
+            -0.003396222135052085,
+            -0.0006661561783403158,
+            -0.0034254968632012606
+          ],
+          "failed_trials": 0,
+          "near_limit_occupancy_max": 0.0
+        },
+        {
+          "case": "left010",
+          "command": [
+            0.0,
+            0.1,
+            0.0
+          ],
+          "velocity": [
+            0.015157029032707214,
+            0.02951967902481556,
+            -0.027608849108219147
+          ],
+          "reference_velocity": [
+            0.015157029032707214,
+            0.02951967902481556,
+            -0.027608849108219147
+          ],
+          "failed_trials": 0,
+          "near_limit_occupancy_max": 0.0
+        },
+        {
+          "case": "right010",
+          "command": [
+            0.0,
+            -0.1,
+            0.0
+          ],
+          "velocity": [
+            0.006237712223082781,
+            -0.013683781959116459,
+            -0.018541650846600533
+          ],
+          "reference_velocity": [
+            0.006237712223082781,
+            -0.013683781959116459,
+            -0.018541650846600533
+          ],
+          "failed_trials": 0,
+          "near_limit_occupancy_max": 0.0033333334140479565
+        },
+        {
+          "case": "turn_left",
+          "command": [
+            0.0,
+            0.0,
+            0.5
+          ],
+          "velocity": [
+            0.02172413282096386,
+            0.0061839912086725235,
+            0.1062064990401268
+          ],
+          "reference_velocity": [
+            0.02172413282096386,
+            0.0061839912086725235,
+            0.1062064990401268
+          ],
+          "failed_trials": 0,
+          "near_limit_occupancy_max": 0.0
+        },
+        {
+          "case": "turn_right",
+          "command": [
+            0.0,
+            0.0,
+            -0.5
+          ],
+          "velocity": [
+            0.019106313586235046,
+            0.0051919701509177685,
+            -0.2781178653240204
+          ],
+          "reference_velocity": [
+            0.019106313586235046,
+            0.0051919701509177685,
+            -0.2781178653240204
+          ],
+          "failed_trials": 0,
+          "near_limit_occupancy_max": 0.0
+        },
+        {
+          "case": "walk_left",
+          "command": [
+            0.15,
+            0.0,
+            0.5
+          ],
+          "velocity": [
+            0.10361352562904358,
+            0.007083211559802294,
+            0.1118607148528099
+          ],
+          "reference_velocity": [
+            0.10361352562904358,
+            0.007083211559802294,
+            0.1118607148528099
+          ],
+          "failed_trials": 0,
+          "near_limit_occupancy_max": 0.0
+        },
+        {
+          "case": "walk_right",
+          "command": [
+            0.15,
+            0.0,
+            -0.5
+          ],
+          "velocity": [
+            0.09822716563940048,
+            -0.006309023592621088,
+            -0.31045615673065186
+          ],
+          "reference_velocity": [
+            0.09822716563940048,
+            -0.006309023592621088,
+            -0.31045615673065186
+          ],
+          "failed_trials": 0,
+          "near_limit_occupancy_max": 0.0
+        }
+      ]
+    }
+  ],
+  "reference_checkpoint_count_checked": 139
+}

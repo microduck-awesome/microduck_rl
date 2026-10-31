@@ -1,0 +1,17 @@
+{
+  "profile": "walk10250",
+  "source_files_checked": 349,
+  "python": "3.12.14",
+  "errors": [],
+  "dependencies": {
+    "torch": "2.9.1",
+    "mjlab": "1.3.0",
+    "mujoco": "3.10.0",
+    "mujoco-warp": "3.8.1",
+    "warp-lang": "1.12.0",
+    "better-actuator-models": "1.0.1",
+    "rsl-rl-lib": "5.0.1"
+  },
+  "installed_lock_packages_checked": 141,
+  "status": "PASS"
+}

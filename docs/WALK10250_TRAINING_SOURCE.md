@@ -14,3 +14,7 @@ This branch preserves the training code, V2 CAD/mesh assets, SC0090 calibration,
 V2 mass is 624.6 g and HOME is all joint zeros. This publication does not restart training or evaluate policies; the run remains paused. Checkpoint selection is simulation evidence, not hardware qualification.
 
 The historical supervisor opens its existing `formal.log` exclusively; use a fresh log directory before deliberately launching a new run.
+
+## Training reproduction guide
+
+See [repro/README.md](../repro/README.md) for the full environment setup, phase/launch commands, reference metrics, protocol-matched comparison and export verification. New helper commands do not change the archived numerical training source.

@@ -1,3 +1,5 @@
+训练复现入口：[环境、完整训练过程与同协议效果对照](repro/README.md)。允许重新训练权重不同；请先阅读各分支对应的模型与依赖说明。
+
 # Microduck RL
 
 <img width="2215" height="884" alt="image" src="https://github.com/user-attachments/assets/5db7cc83-b3ce-4f7c-83f0-0572a63baed7" />

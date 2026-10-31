@@ -38,3 +38,8 @@ backup_onnx/
 logdir/.claude/
 logdir/
 logdir/.claude/worktrees/
+
+# Local reproduction environment and outputs
+.venv-repro/
+.repro-cache/
+repro-output/

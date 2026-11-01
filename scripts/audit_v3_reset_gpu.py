@@ -8,6 +8,7 @@ from mjlab.envs import ManagerBasedRlEnv
 from mjlab.tasks.registry import load_env_cfg
 from mjlab_microduck.custom_v2 import recovery
 from mjlab_microduck.custom_v2.training import guard_ground_clearance
+from mjlab_microduck.custom_v2.microduck_v2 import POLICY_JOINTS
 
 
 def main():
@@ -29,9 +30,20 @@ def main():
             terrains = [i for i in range(m.ngeom) if m.geom_type[i] == 0]
         assert terrains, 'Could not identify terrain geometry'
         rows = []
+        initial_home_checks=[]
         for stage in range(6):
             recovery._sc0090_recovery_state(env).stage = stage
             env.reset()
+            robot=env.scene['robot']
+            home_ids,home_names=robot.find_joints(POLICY_JOINTS+('mouth',),preserve_order=True)
+            assert tuple(home_names)==POLICY_JOINTS+('mouth',)
+            delta=(robot.data.joint_pos[:,home_ids]-robot.data.default_joint_pos[:,home_ids]).abs()
+            non_sit=recovery._sc0090_recovery_state(env).bucket!=1
+            home_max=float(delta[non_sit].max())
+            mouth_max=float(delta[:,-1].max())
+            assert home_max<1e-6 and mouth_max<1e-6
+            initial_home_checks.append({'stage':stage,'non_sitting_15_joint_max_error_rad':home_max,
+                                        'all_buckets_mouth_max_error_rad':mouth_max})
             c = env.sim.wp_data.contact
             n = int(wp.to_torch(env.sim.wp_data.nacon).item())
             geoms = wp.to_torch(c.geom)[:n].long()
@@ -61,6 +73,7 @@ def main():
         path.write_text(json.dumps({'task':task,'device':'physical GPU 0','terrain_geom_ids':terrains,
                                    'terrain_geom_names':[m.geom(i).name for i in terrains],
                                    'protocol':f'six stages, {args.samples_per_bucket} actual reset worlds per bucket, contact after forward; no physics step',
+                                   'initial_home_checks':initial_home_checks,
                                    'unreset_world_state_max_abs_diff':unaffected,
                                    'results':rows},indent=2)+'\n')
         print(f'Wrote {path}')

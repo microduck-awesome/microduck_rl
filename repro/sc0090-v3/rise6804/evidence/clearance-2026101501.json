@@ -1,0 +1,1833 @@
+{
+  "seed": 2026101501,
+  "samples_per_bucket": 128,
+  "physics_dt_s": 0.005,
+  "duration_s": 8.0,
+  "joint_threshold_deg": 5.0,
+  "joint_results": {
+    "standing": {
+      "left_hip_yaw": {
+        "minimum_clearance_rad": -0.036300063133239746,
+        "samples_with_limit_violation": 1,
+        "samples_within_5deg": 1,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.26
+      },
+      "left_hip_roll": {
+        "minimum_clearance_rad": -0.05917498469352722,
+        "samples_with_limit_violation": 1,
+        "samples_within_5deg": 1,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.35000000000000003
+      },
+      "left_hip_pitch": {
+        "minimum_clearance_rad": 0.772850513458252,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "left_knee": {
+        "minimum_clearance_rad": 0.7627102136611938,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "left_ankle": {
+        "minimum_clearance_rad": 0.36145102977752686,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "neck_pitch": {
+        "minimum_clearance_rad": -0.043758392333984375,
+        "samples_with_limit_violation": 1,
+        "samples_within_5deg": 1,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.195
+      },
+      "head_pitch": {
+        "minimum_clearance_rad": 0.3776799440383911,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "head_yaw": {
+        "minimum_clearance_rad": 2.110109329223633,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "head_roll": {
+        "minimum_clearance_rad": -0.061271607875823975,
+        "samples_with_limit_violation": 1,
+        "samples_within_5deg": 1,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.18
+      },
+      "right_hip_yaw": {
+        "minimum_clearance_rad": -0.04219752550125122,
+        "samples_with_limit_violation": 1,
+        "samples_within_5deg": 1,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.17
+      },
+      "right_hip_roll": {
+        "minimum_clearance_rad": -0.023283153772354126,
+        "samples_with_limit_violation": 1,
+        "samples_within_5deg": 1,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.20500000000000002
+      },
+      "right_hip_pitch": {
+        "minimum_clearance_rad": -0.053220152854919434,
+        "samples_with_limit_violation": 1,
+        "samples_within_5deg": 1,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.125
+      },
+      "right_knee": {
+        "minimum_clearance_rad": 1.0069128274917603,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "right_ankle": {
+        "minimum_clearance_rad": 0.537752628326416,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      }
+    },
+    "sitting": {
+      "left_hip_yaw": {
+        "minimum_clearance_rad": -0.06841713190078735,
+        "samples_with_limit_violation": 9,
+        "samples_within_5deg": 20,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.42
+      },
+      "left_hip_roll": {
+        "minimum_clearance_rad": -0.04277414083480835,
+        "samples_with_limit_violation": 7,
+        "samples_within_5deg": 17,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.48
+      },
+      "left_hip_pitch": {
+        "minimum_clearance_rad": 0.2586348056793213,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "left_knee": {
+        "minimum_clearance_rad": 0.31216347217559814,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "left_ankle": {
+        "minimum_clearance_rad": 0.38291025161743164,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "neck_pitch": {
+        "minimum_clearance_rad": -0.05942356586456299,
+        "samples_with_limit_violation": 5,
+        "samples_within_5deg": 5,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.47000000000000003
+      },
+      "head_pitch": {
+        "minimum_clearance_rad": -0.04621553421020508,
+        "samples_with_limit_violation": 3,
+        "samples_within_5deg": 3,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.15
+      },
+      "head_yaw": {
+        "minimum_clearance_rad": 2.212944984436035,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "head_roll": {
+        "minimum_clearance_rad": -0.05905330181121826,
+        "samples_with_limit_violation": 11,
+        "samples_within_5deg": 25,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.435
+      },
+      "right_hip_yaw": {
+        "minimum_clearance_rad": -0.05590033531188965,
+        "samples_with_limit_violation": 5,
+        "samples_within_5deg": 6,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.3
+      },
+      "right_hip_roll": {
+        "minimum_clearance_rad": -0.0525188148021698,
+        "samples_with_limit_violation": 5,
+        "samples_within_5deg": 8,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.185
+      },
+      "right_hip_pitch": {
+        "minimum_clearance_rad": -0.06321120262145996,
+        "samples_with_limit_violation": 4,
+        "samples_within_5deg": 4,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.23
+      },
+      "right_knee": {
+        "minimum_clearance_rad": 0.34307873249053955,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "right_ankle": {
+        "minimum_clearance_rad": 0.3907299041748047,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      }
+    },
+    "prone": {
+      "left_hip_yaw": {
+        "minimum_clearance_rad": -0.02885901927947998,
+        "samples_with_limit_violation": 9,
+        "samples_within_5deg": 95,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.24
+      },
+      "left_hip_roll": {
+        "minimum_clearance_rad": -0.054587602615356445,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 2,
+        "max_continuous_within_5deg_s": 2.41
+      },
+      "left_hip_pitch": {
+        "minimum_clearance_rad": 0.4071788787841797,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "left_knee": {
+        "minimum_clearance_rad": 0.48835718631744385,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "left_ankle": {
+        "minimum_clearance_rad": 0.4704047441482544,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "neck_pitch": {
+        "minimum_clearance_rad": -0.03897571563720703,
+        "samples_with_limit_violation": 3,
+        "samples_within_5deg": 38,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.145
+      },
+      "head_pitch": {
+        "minimum_clearance_rad": 0.3419545888900757,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "head_yaw": {
+        "minimum_clearance_rad": 2.4658257961273193,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "head_roll": {
+        "minimum_clearance_rad": -0.04859203100204468,
+        "samples_with_limit_violation": 36,
+        "samples_within_5deg": 110,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.18
+      },
+      "right_hip_yaw": {
+        "minimum_clearance_rad": -0.04953685402870178,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.28500000000000003
+      },
+      "right_hip_roll": {
+        "minimum_clearance_rad": -0.03471377491950989,
+        "samples_with_limit_violation": 118,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 1,
+        "max_continuous_within_5deg_s": 1.245
+      },
+      "right_hip_pitch": {
+        "minimum_clearance_rad": -0.0727149248123169,
+        "samples_with_limit_violation": 121,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.115
+      },
+      "right_knee": {
+        "minimum_clearance_rad": 0.8896504640579224,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "right_ankle": {
+        "minimum_clearance_rad": 0.29250550270080566,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      }
+    },
+    "frontier": {
+      "left_hip_yaw": {
+        "minimum_clearance_rad": -0.07407760620117188,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.3
+      },
+      "left_hip_roll": {
+        "minimum_clearance_rad": -0.06599974632263184,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.395
+      },
+      "left_hip_pitch": {
+        "minimum_clearance_rad": 0.5109180212020874,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "left_knee": {
+        "minimum_clearance_rad": 0.7644240856170654,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "left_ankle": {
+        "minimum_clearance_rad": 0.29919588565826416,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "neck_pitch": {
+        "minimum_clearance_rad": -0.07204997539520264,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.215
+      },
+      "head_pitch": {
+        "minimum_clearance_rad": 0.10266363620758057,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "head_yaw": {
+        "minimum_clearance_rad": 2.1100661754608154,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "head_roll": {
+        "minimum_clearance_rad": -0.0727723240852356,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.4
+      },
+      "right_hip_yaw": {
+        "minimum_clearance_rad": -0.07199311256408691,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.23500000000000001
+      },
+      "right_hip_roll": {
+        "minimum_clearance_rad": -0.05477765202522278,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.31
+      },
+      "right_hip_pitch": {
+        "minimum_clearance_rad": -0.07567822933197021,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.19
+      },
+      "right_knee": {
+        "minimum_clearance_rad": 0.5095717906951904,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "right_ankle": {
+        "minimum_clearance_rad": 0.45768773555755615,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      }
+    },
+    "left_side": {
+      "left_hip_yaw": {
+        "minimum_clearance_rad": -0.019727647304534912,
+        "samples_with_limit_violation": 4,
+        "samples_within_5deg": 43,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.085
+      },
+      "left_hip_roll": {
+        "minimum_clearance_rad": -0.05843716859817505,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.35000000000000003
+      },
+      "left_hip_pitch": {
+        "minimum_clearance_rad": 0.7669123411178589,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "left_knee": {
+        "minimum_clearance_rad": 0.7937690615653992,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "left_ankle": {
+        "minimum_clearance_rad": 0.5193442106246948,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "neck_pitch": {
+        "minimum_clearance_rad": -0.0638723373413086,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.255
+      },
+      "head_pitch": {
+        "minimum_clearance_rad": -0.014189600944519043,
+        "samples_with_limit_violation": 4,
+        "samples_within_5deg": 36,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.07
+      },
+      "head_yaw": {
+        "minimum_clearance_rad": 1.8173002004623413,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "head_roll": {
+        "minimum_clearance_rad": -0.054351091384887695,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.225
+      },
+      "right_hip_yaw": {
+        "minimum_clearance_rad": -0.0655217170715332,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.2
+      },
+      "right_hip_roll": {
+        "minimum_clearance_rad": -0.04177743196487427,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.245
+      },
+      "right_hip_pitch": {
+        "minimum_clearance_rad": -0.07660245895385742,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.17500000000000002
+      },
+      "right_knee": {
+        "minimum_clearance_rad": 1.0077708959579468,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "right_ankle": {
+        "minimum_clearance_rad": 0.6021925806999207,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      }
+    },
+    "right_side": {
+      "left_hip_yaw": {
+        "minimum_clearance_rad": -0.07430702447891235,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.135
+      },
+      "left_hip_roll": {
+        "minimum_clearance_rad": -0.061986565589904785,
+        "samples_with_limit_violation": 127,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 6,
+        "max_continuous_within_5deg_s": 1.725
+      },
+      "left_hip_pitch": {
+        "minimum_clearance_rad": 0.05635392665863037,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 5,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.04
+      },
+      "left_knee": {
+        "minimum_clearance_rad": 0.6602836847305298,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "left_ankle": {
+        "minimum_clearance_rad": 0.5700563192367554,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "neck_pitch": {
+        "minimum_clearance_rad": -0.08053755760192871,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.3
+      },
+      "head_pitch": {
+        "minimum_clearance_rad": -0.04981255531311035,
+        "samples_with_limit_violation": 38,
+        "samples_within_5deg": 85,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.18
+      },
+      "head_yaw": {
+        "minimum_clearance_rad": 1.3679755926132202,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "head_roll": {
+        "minimum_clearance_rad": -0.06656986474990845,
+        "samples_with_limit_violation": 97,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.23
+      },
+      "right_hip_yaw": {
+        "minimum_clearance_rad": -0.06960833072662354,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.38
+      },
+      "right_hip_roll": {
+        "minimum_clearance_rad": -0.06948080658912659,
+        "samples_with_limit_violation": 127,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.52
+      },
+      "right_hip_pitch": {
+        "minimum_clearance_rad": 0.15905272960662842,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "right_knee": {
+        "minimum_clearance_rad": 0.5880298614501953,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "right_ankle": {
+        "minimum_clearance_rad": 0.21439588069915771,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      }
+    },
+    "supine": {
+      "left_hip_yaw": {
+        "minimum_clearance_rad": -0.07269108295440674,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.225
+      },
+      "left_hip_roll": {
+        "minimum_clearance_rad": -0.06316179037094116,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.455
+      },
+      "left_hip_pitch": {
+        "minimum_clearance_rad": 0.7708684206008911,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "left_knee": {
+        "minimum_clearance_rad": 0.7589195370674133,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "left_ankle": {
+        "minimum_clearance_rad": 0.34252047538757324,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "neck_pitch": {
+        "minimum_clearance_rad": -0.07893359661102295,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.22
+      },
+      "head_pitch": {
+        "minimum_clearance_rad": 0.15809881687164307,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "head_yaw": {
+        "minimum_clearance_rad": 2.0498335361480713,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "head_roll": {
+        "minimum_clearance_rad": -0.07240891456604004,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.325
+      },
+      "right_hip_yaw": {
+        "minimum_clearance_rad": -0.06673234701156616,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.225
+      },
+      "right_hip_roll": {
+        "minimum_clearance_rad": -0.055444031953811646,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.27
+      },
+      "right_hip_pitch": {
+        "minimum_clearance_rad": -0.07466840744018555,
+        "samples_with_limit_violation": 128,
+        "samples_within_5deg": 128,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.19
+      },
+      "right_knee": {
+        "minimum_clearance_rad": 0.5924871563911438,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      },
+      "right_ankle": {
+        "minimum_clearance_rad": 0.5228061676025391,
+        "samples_with_limit_violation": 0,
+        "samples_within_5deg": 0,
+        "samples_within_5deg_over_1s": 0,
+        "max_continuous_within_5deg_s": 0.0
+      }
+    }
+  },
+  "home_joint_positions_rad": {
+    "left_hip_yaw": 0.0,
+    "left_hip_roll": -0.07002708511546707,
+    "left_hip_pitch": -0.41313949159902463,
+    "left_knee": 0.017596039052062706,
+    "left_ankle": 0.3955434710762585,
+    "neck_pitch": -0.3491,
+    "head_pitch": 0.3491,
+    "head_yaw": 0.0,
+    "head_roll": 0.0,
+    "mouth": 0.0,
+    "right_hip_yaw": 0.0,
+    "right_hip_roll": 0.07002708511546707,
+    "right_hip_pitch": -0.41313949159902463,
+    "right_knee": 0.017596039052062706,
+    "right_ankle": 0.3955434710762585
+  },
+  "home_reference": "assembly V3 default joint positions, including independent mouth",
+  "non_sitting_initial_home_max_abs_error_rad": 0.0,
+  "final_half_second_home_results": {
+    "standing": {
+      "left_hip_yaw": {
+        "final_half_second_mean_abs_error_deg": 3.2659265320240984,
+        "final_half_second_mean_signed_error_deg": -3.2659265320240984,
+        "final_half_second_max_abs_error_deg": 4.801807828513377,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "left_hip_roll": {
+        "final_half_second_mean_abs_error_deg": 6.204997366600471,
+        "final_half_second_mean_signed_error_deg": 6.204997366600471,
+        "final_half_second_max_abs_error_deg": 7.870826546672139,
+        "samples_with_all_final_errors_within_5deg": 1
+      },
+      "left_hip_pitch": {
+        "final_half_second_mean_abs_error_deg": 1.68115872004106,
+        "final_half_second_mean_signed_error_deg": 1.68115872004106,
+        "final_half_second_max_abs_error_deg": 2.868261102318692,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "left_knee": {
+        "final_half_second_mean_abs_error_deg": 5.213588851591517,
+        "final_half_second_mean_signed_error_deg": -5.213588851591517,
+        "final_half_second_max_abs_error_deg": 7.428733161132954,
+        "samples_with_all_final_errors_within_5deg": 42
+      },
+      "left_ankle": {
+        "final_half_second_mean_abs_error_deg": 1.1345439400106005,
+        "final_half_second_mean_signed_error_deg": 1.1290829305616084,
+        "final_half_second_max_abs_error_deg": 2.6467205014947437,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "neck_pitch": {
+        "final_half_second_mean_abs_error_deg": 0.491866340058901,
+        "final_half_second_mean_signed_error_deg": 0.48370026834007135,
+        "final_half_second_max_abs_error_deg": 1.1175401840718537,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_pitch": {
+        "final_half_second_mean_abs_error_deg": 0.2503154364764036,
+        "final_half_second_mean_signed_error_deg": 0.11238318982031757,
+        "final_half_second_max_abs_error_deg": 0.9786073061646244,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_yaw": {
+        "final_half_second_mean_abs_error_deg": 0.236699044554633,
+        "final_half_second_mean_signed_error_deg": -0.07584083252483956,
+        "final_half_second_max_abs_error_deg": 0.8176820195427473,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_roll": {
+        "final_half_second_mean_abs_error_deg": 0.2554386418445197,
+        "final_half_second_mean_signed_error_deg": 0.08474683571192965,
+        "final_half_second_max_abs_error_deg": 2.960096197360687,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "right_hip_yaw": {
+        "final_half_second_mean_abs_error_deg": 1.4212958402371376,
+        "final_half_second_mean_signed_error_deg": -1.4212958402371376,
+        "final_half_second_max_abs_error_deg": 3.900729999617568,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "right_hip_roll": {
+        "final_half_second_mean_abs_error_deg": 7.148984151409594,
+        "final_half_second_mean_signed_error_deg": -7.148984151409594,
+        "final_half_second_max_abs_error_deg": 7.968617780113796,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "right_hip_pitch": {
+        "final_half_second_mean_abs_error_deg": 8.720239663553814,
+        "final_half_second_mean_signed_error_deg": -8.720239663553814,
+        "final_half_second_max_abs_error_deg": 10.39536520919911,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "right_knee": {
+        "final_half_second_mean_abs_error_deg": 4.706784990270637,
+        "final_half_second_mean_signed_error_deg": -4.706784990270637,
+        "final_half_second_max_abs_error_deg": 7.226219759789369,
+        "samples_with_all_final_errors_within_5deg": 88
+      },
+      "right_ankle": {
+        "final_half_second_mean_abs_error_deg": 10.987800723087949,
+        "final_half_second_mean_signed_error_deg": 10.987800723087949,
+        "final_half_second_max_abs_error_deg": 12.0700900276458,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "mouth": {
+        "final_half_second_mean_abs_error_deg": 0.200815279712137,
+        "final_half_second_mean_signed_error_deg": 0.200815279712137,
+        "final_half_second_max_abs_error_deg": 0.27189643728413204,
+        "samples_with_all_final_errors_within_5deg": 128
+      }
+    },
+    "sitting": {
+      "left_hip_yaw": {
+        "final_half_second_mean_abs_error_deg": 3.4087151883215836,
+        "final_half_second_mean_signed_error_deg": -3.4087151883215836,
+        "final_half_second_max_abs_error_deg": 4.789071660145419,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "left_hip_roll": {
+        "final_half_second_mean_abs_error_deg": 5.959849856155775,
+        "final_half_second_mean_signed_error_deg": 5.959849856155775,
+        "final_half_second_max_abs_error_deg": 8.611503359325722,
+        "samples_with_all_final_errors_within_5deg": 4
+      },
+      "left_hip_pitch": {
+        "final_half_second_mean_abs_error_deg": 1.9442908015893177,
+        "final_half_second_mean_signed_error_deg": 1.9384972985315294,
+        "final_half_second_max_abs_error_deg": 3.740616278207306,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "left_knee": {
+        "final_half_second_mean_abs_error_deg": 5.748716687777742,
+        "final_half_second_mean_signed_error_deg": -5.748716687777742,
+        "final_half_second_max_abs_error_deg": 7.947200014423929,
+        "samples_with_all_final_errors_within_5deg": 20
+      },
+      "left_ankle": {
+        "final_half_second_mean_abs_error_deg": 1.5027888762813106,
+        "final_half_second_mean_signed_error_deg": 1.5027888762813106,
+        "final_half_second_max_abs_error_deg": 3.355578024126177,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "neck_pitch": {
+        "final_half_second_mean_abs_error_deg": 0.6301313962200323,
+        "final_half_second_mean_signed_error_deg": 0.5901043020232232,
+        "final_half_second_max_abs_error_deg": 1.6652411007841288,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_pitch": {
+        "final_half_second_mean_abs_error_deg": 0.3104917936304254,
+        "final_half_second_mean_signed_error_deg": 0.054794633394689,
+        "final_half_second_max_abs_error_deg": 1.1740668296428793,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_yaw": {
+        "final_half_second_mean_abs_error_deg": 0.3489078511077037,
+        "final_half_second_mean_signed_error_deg": -0.24921417092557657,
+        "final_half_second_max_abs_error_deg": 1.1328631798662485,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_roll": {
+        "final_half_second_mean_abs_error_deg": 0.3275964314632133,
+        "final_half_second_mean_signed_error_deg": 0.11621020457643094,
+        "final_half_second_max_abs_error_deg": 2.487876554939869,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "right_hip_yaw": {
+        "final_half_second_mean_abs_error_deg": 1.8872880918331423,
+        "final_half_second_mean_signed_error_deg": -1.886747414058444,
+        "final_half_second_max_abs_error_deg": 4.546893215857454,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "right_hip_roll": {
+        "final_half_second_mean_abs_error_deg": 7.046822553125613,
+        "final_half_second_mean_signed_error_deg": -7.046822553125613,
+        "final_half_second_max_abs_error_deg": 8.32616110769104,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "right_hip_pitch": {
+        "final_half_second_mean_abs_error_deg": 8.490361724017596,
+        "final_half_second_mean_signed_error_deg": -8.490361724017596,
+        "final_half_second_max_abs_error_deg": 10.222670706224507,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "right_knee": {
+        "final_half_second_mean_abs_error_deg": 5.242454323854259,
+        "final_half_second_mean_signed_error_deg": -5.242454323854259,
+        "final_half_second_max_abs_error_deg": 7.483173183912541,
+        "samples_with_all_final_errors_within_5deg": 54
+      },
+      "right_ankle": {
+        "final_half_second_mean_abs_error_deg": 11.399575889278877,
+        "final_half_second_mean_signed_error_deg": 11.399575889278877,
+        "final_half_second_max_abs_error_deg": 13.392305367933549,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "mouth": {
+        "final_half_second_mean_abs_error_deg": 0.1960382454066301,
+        "final_half_second_mean_signed_error_deg": 0.1960382454066301,
+        "final_half_second_max_abs_error_deg": 0.5722842616390318,
+        "samples_with_all_final_errors_within_5deg": 128
+      }
+    },
+    "prone": {
+      "left_hip_yaw": {
+        "final_half_second_mean_abs_error_deg": 2.3931075862908413,
+        "final_half_second_mean_signed_error_deg": -2.3931075862908413,
+        "final_half_second_max_abs_error_deg": 3.94342038947744,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "left_hip_roll": {
+        "final_half_second_mean_abs_error_deg": 7.071993166254943,
+        "final_half_second_mean_signed_error_deg": 7.071993166254943,
+        "final_half_second_max_abs_error_deg": 10.640424712656351,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "left_hip_pitch": {
+        "final_half_second_mean_abs_error_deg": 1.08977498698251,
+        "final_half_second_mean_signed_error_deg": 1.0588090949462066,
+        "final_half_second_max_abs_error_deg": 2.5298303515864378,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "left_knee": {
+        "final_half_second_mean_abs_error_deg": 4.225404732285944,
+        "final_half_second_mean_signed_error_deg": -4.225404732285944,
+        "final_half_second_max_abs_error_deg": 5.9563185459020405,
+        "samples_with_all_final_errors_within_5deg": 98
+      },
+      "left_ankle": {
+        "final_half_second_mean_abs_error_deg": 0.9117645477768869,
+        "final_half_second_mean_signed_error_deg": 0.8519276510246144,
+        "final_half_second_max_abs_error_deg": 2.2138299420885055,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "neck_pitch": {
+        "final_half_second_mean_abs_error_deg": 0.5326101601562654,
+        "final_half_second_mean_signed_error_deg": 0.48642052778081224,
+        "final_half_second_max_abs_error_deg": 1.2304961450182321,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_pitch": {
+        "final_half_second_mean_abs_error_deg": 0.34356698468621216,
+        "final_half_second_mean_signed_error_deg": 0.21294738614989922,
+        "final_half_second_max_abs_error_deg": 1.2885032340918579,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_yaw": {
+        "final_half_second_mean_abs_error_deg": 0.3395125160930009,
+        "final_half_second_mean_signed_error_deg": -0.26306845833613873,
+        "final_half_second_max_abs_error_deg": 1.1154599645827619,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_roll": {
+        "final_half_second_mean_abs_error_deg": 0.30214021397373825,
+        "final_half_second_mean_signed_error_deg": 0.022274845574564186,
+        "final_half_second_max_abs_error_deg": 1.740904975914178,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "right_hip_yaw": {
+        "final_half_second_mean_abs_error_deg": 3.379963370406631,
+        "final_half_second_mean_signed_error_deg": -3.379963370406631,
+        "final_half_second_max_abs_error_deg": 4.926868165329488,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "right_hip_roll": {
+        "final_half_second_mean_abs_error_deg": 7.3392710360256155,
+        "final_half_second_mean_signed_error_deg": -7.3392710360256155,
+        "final_half_second_max_abs_error_deg": 10.00513857266971,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "right_hip_pitch": {
+        "final_half_second_mean_abs_error_deg": 8.825744776040299,
+        "final_half_second_mean_signed_error_deg": -8.825744776040299,
+        "final_half_second_max_abs_error_deg": 11.302554349854788,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "right_knee": {
+        "final_half_second_mean_abs_error_deg": 3.8762938196542156,
+        "final_half_second_mean_signed_error_deg": -3.8762938196542156,
+        "final_half_second_max_abs_error_deg": 6.690411909969379,
+        "samples_with_all_final_errors_within_5deg": 109
+      },
+      "right_ankle": {
+        "final_half_second_mean_abs_error_deg": 10.382692954326307,
+        "final_half_second_mean_signed_error_deg": 10.382692954326307,
+        "final_half_second_max_abs_error_deg": 12.072900650489261,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "mouth": {
+        "final_half_second_mean_abs_error_deg": 0.17488062454677547,
+        "final_half_second_mean_signed_error_deg": 0.17488062454677547,
+        "final_half_second_max_abs_error_deg": 0.19550985610274407,
+        "samples_with_all_final_errors_within_5deg": 128
+      }
+    },
+    "frontier": {
+      "left_hip_yaw": {
+        "final_half_second_mean_abs_error_deg": 2.864876402075492,
+        "final_half_second_mean_signed_error_deg": -2.864876402075492,
+        "final_half_second_max_abs_error_deg": 4.882746423951675,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "left_hip_roll": {
+        "final_half_second_mean_abs_error_deg": 6.359383137693505,
+        "final_half_second_mean_signed_error_deg": 6.359383137693505,
+        "final_half_second_max_abs_error_deg": 9.09634860642731,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "left_hip_pitch": {
+        "final_half_second_mean_abs_error_deg": 1.3563343208524965,
+        "final_half_second_mean_signed_error_deg": 1.3563343208524965,
+        "final_half_second_max_abs_error_deg": 2.051961288948373,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "left_knee": {
+        "final_half_second_mean_abs_error_deg": 4.666359013026299,
+        "final_half_second_mean_signed_error_deg": -4.666359013026299,
+        "final_half_second_max_abs_error_deg": 5.776051070685186,
+        "samples_with_all_final_errors_within_5deg": 91
+      },
+      "left_ankle": {
+        "final_half_second_mean_abs_error_deg": 0.8911528127109725,
+        "final_half_second_mean_signed_error_deg": 0.8541547025053888,
+        "final_half_second_max_abs_error_deg": 2.5575916554679545,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "neck_pitch": {
+        "final_half_second_mean_abs_error_deg": 0.6237282987788205,
+        "final_half_second_mean_signed_error_deg": 0.6113846443069901,
+        "final_half_second_max_abs_error_deg": 1.1623018287975324,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_pitch": {
+        "final_half_second_mean_abs_error_deg": 0.2753822307303504,
+        "final_half_second_mean_signed_error_deg": 0.07612062268645267,
+        "final_half_second_max_abs_error_deg": 1.1642979515824685,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_yaw": {
+        "final_half_second_mean_abs_error_deg": 0.42025710000792404,
+        "final_half_second_mean_signed_error_deg": -0.3665849612457761,
+        "final_half_second_max_abs_error_deg": 0.9779876799408573,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_roll": {
+        "final_half_second_mean_abs_error_deg": 0.2777004481610715,
+        "final_half_second_mean_signed_error_deg": 0.017179750703750933,
+        "final_half_second_max_abs_error_deg": 1.9786355796702897,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "right_hip_yaw": {
+        "final_half_second_mean_abs_error_deg": 3.2137004467620796,
+        "final_half_second_mean_signed_error_deg": -3.2137004467620796,
+        "final_half_second_max_abs_error_deg": 4.457367365085158,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "right_hip_roll": {
+        "final_half_second_mean_abs_error_deg": 7.206594884605685,
+        "final_half_second_mean_signed_error_deg": -7.206594884605685,
+        "final_half_second_max_abs_error_deg": 8.36862183244007,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "right_hip_pitch": {
+        "final_half_second_mean_abs_error_deg": 8.80586236857396,
+        "final_half_second_mean_signed_error_deg": -8.80586236857396,
+        "final_half_second_max_abs_error_deg": 10.402461775746753,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "right_knee": {
+        "final_half_second_mean_abs_error_deg": 4.062685583990361,
+        "final_half_second_mean_signed_error_deg": -4.062685583990361,
+        "final_half_second_max_abs_error_deg": 6.096908598456644,
+        "samples_with_all_final_errors_within_5deg": 121
+      },
+      "right_ankle": {
+        "final_half_second_mean_abs_error_deg": 10.394151279677924,
+        "final_half_second_mean_signed_error_deg": 10.394151279677924,
+        "final_half_second_max_abs_error_deg": 12.385105182355959,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "mouth": {
+        "final_half_second_mean_abs_error_deg": 0.16708954728885236,
+        "final_half_second_mean_signed_error_deg": 0.16708954728885236,
+        "final_half_second_max_abs_error_deg": 0.24943469318788397,
+        "samples_with_all_final_errors_within_5deg": 128
+      }
+    },
+    "left_side": {
+      "left_hip_yaw": {
+        "final_half_second_mean_abs_error_deg": 2.8318450608341768,
+        "final_half_second_mean_signed_error_deg": -2.8318450608341768,
+        "final_half_second_max_abs_error_deg": 4.594977320727521,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "left_hip_roll": {
+        "final_half_second_mean_abs_error_deg": 6.668122441386688,
+        "final_half_second_mean_signed_error_deg": 6.668122441386688,
+        "final_half_second_max_abs_error_deg": 8.925638273406596,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "left_hip_pitch": {
+        "final_half_second_mean_abs_error_deg": 1.271852530631309,
+        "final_half_second_mean_signed_error_deg": 1.271852530631309,
+        "final_half_second_max_abs_error_deg": 2.3513284802700323,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "left_knee": {
+        "final_half_second_mean_abs_error_deg": 4.514842467799805,
+        "final_half_second_mean_signed_error_deg": -4.514842467799805,
+        "final_half_second_max_abs_error_deg": 5.712444080265797,
+        "samples_with_all_final_errors_within_5deg": 97
+      },
+      "left_ankle": {
+        "final_half_second_mean_abs_error_deg": 0.9210051107049969,
+        "final_half_second_mean_signed_error_deg": 0.8799089552992975,
+        "final_half_second_max_abs_error_deg": 2.062606138769838,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "neck_pitch": {
+        "final_half_second_mean_abs_error_deg": 0.5924222633218506,
+        "final_half_second_mean_signed_error_deg": 0.5915492968440311,
+        "final_half_second_max_abs_error_deg": 1.227946776910525,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_pitch": {
+        "final_half_second_mean_abs_error_deg": 0.2714472050702497,
+        "final_half_second_mean_signed_error_deg": 0.06561917695548045,
+        "final_half_second_max_abs_error_deg": 1.4629650485142012,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_yaw": {
+        "final_half_second_mean_abs_error_deg": 0.35651176410689545,
+        "final_half_second_mean_signed_error_deg": -0.30406096562118334,
+        "final_half_second_max_abs_error_deg": 1.0751962128689483,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_roll": {
+        "final_half_second_mean_abs_error_deg": 0.2484921345529416,
+        "final_half_second_mean_signed_error_deg": 0.025986585947394794,
+        "final_half_second_max_abs_error_deg": 2.67535713680708,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "right_hip_yaw": {
+        "final_half_second_mean_abs_error_deg": 3.270778698410476,
+        "final_half_second_mean_signed_error_deg": -3.270778698410476,
+        "final_half_second_max_abs_error_deg": 4.376979880535516,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "right_hip_roll": {
+        "final_half_second_mean_abs_error_deg": 7.137730185317947,
+        "final_half_second_mean_signed_error_deg": -7.137730185317947,
+        "final_half_second_max_abs_error_deg": 8.064123461504439,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "right_hip_pitch": {
+        "final_half_second_mean_abs_error_deg": 8.687697910272204,
+        "final_half_second_mean_signed_error_deg": -8.687697910272204,
+        "final_half_second_max_abs_error_deg": 10.235043593905985,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "right_knee": {
+        "final_half_second_mean_abs_error_deg": 4.1807276453021895,
+        "final_half_second_mean_signed_error_deg": -4.1807276453021895,
+        "final_half_second_max_abs_error_deg": 5.6709686103045405,
+        "samples_with_all_final_errors_within_5deg": 118
+      },
+      "right_ankle": {
+        "final_half_second_mean_abs_error_deg": 10.49311361735467,
+        "final_half_second_mean_signed_error_deg": 10.49311361735467,
+        "final_half_second_max_abs_error_deg": 11.904768713880227,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "mouth": {
+        "final_half_second_mean_abs_error_deg": 0.17459428594129558,
+        "final_half_second_mean_signed_error_deg": 0.17459428594129558,
+        "final_half_second_max_abs_error_deg": 0.1932314544060159,
+        "samples_with_all_final_errors_within_5deg": 128
+      }
+    },
+    "right_side": {
+      "left_hip_yaw": {
+        "final_half_second_mean_abs_error_deg": 2.288897477670989,
+        "final_half_second_mean_signed_error_deg": -2.288897477670989,
+        "final_half_second_max_abs_error_deg": 3.8819478331736788,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "left_hip_roll": {
+        "final_half_second_mean_abs_error_deg": 8.108164009008492,
+        "final_half_second_mean_signed_error_deg": 8.108164009008492,
+        "final_half_second_max_abs_error_deg": 10.864860459914738,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "left_hip_pitch": {
+        "final_half_second_mean_abs_error_deg": 0.792360273536991,
+        "final_half_second_mean_signed_error_deg": 0.6749332024580306,
+        "final_half_second_max_abs_error_deg": 3.3417998250229686,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "left_knee": {
+        "final_half_second_mean_abs_error_deg": 3.689028610727008,
+        "final_half_second_mean_signed_error_deg": -3.689028610727008,
+        "final_half_second_max_abs_error_deg": 6.1127665901621215,
+        "samples_with_all_final_errors_within_5deg": 104
+      },
+      "left_ankle": {
+        "final_half_second_mean_abs_error_deg": 0.772723343069421,
+        "final_half_second_mean_signed_error_deg": 0.7012997134091392,
+        "final_half_second_max_abs_error_deg": 2.47200597007311,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "neck_pitch": {
+        "final_half_second_mean_abs_error_deg": 0.43135315212596,
+        "final_half_second_mean_signed_error_deg": 0.38749240935180607,
+        "final_half_second_max_abs_error_deg": 1.1469629314689762,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_pitch": {
+        "final_half_second_mean_abs_error_deg": 0.38387162361994476,
+        "final_half_second_mean_signed_error_deg": 0.20973099884332147,
+        "final_half_second_max_abs_error_deg": 1.340141171764447,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_yaw": {
+        "final_half_second_mean_abs_error_deg": 0.48170653612134456,
+        "final_half_second_mean_signed_error_deg": -0.4608227887717345,
+        "final_half_second_max_abs_error_deg": 1.171474986296271,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_roll": {
+        "final_half_second_mean_abs_error_deg": 0.28046462571817565,
+        "final_half_second_mean_signed_error_deg": 0.09191953325560916,
+        "final_half_second_max_abs_error_deg": 2.42584840543581,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "right_hip_yaw": {
+        "final_half_second_mean_abs_error_deg": 3.4417126518246155,
+        "final_half_second_mean_signed_error_deg": -3.4417126518246155,
+        "final_half_second_max_abs_error_deg": 5.3036034707008195,
+        "samples_with_all_final_errors_within_5deg": 125
+      },
+      "right_hip_roll": {
+        "final_half_second_mean_abs_error_deg": 6.73951594991273,
+        "final_half_second_mean_signed_error_deg": -6.73951594991273,
+        "final_half_second_max_abs_error_deg": 8.225392765544902,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "right_hip_pitch": {
+        "final_half_second_mean_abs_error_deg": 9.088315279435,
+        "final_half_second_mean_signed_error_deg": -9.088315279435,
+        "final_half_second_max_abs_error_deg": 10.778948632987026,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "right_knee": {
+        "final_half_second_mean_abs_error_deg": 3.5482078685331873,
+        "final_half_second_mean_signed_error_deg": -3.5482078685331873,
+        "final_half_second_max_abs_error_deg": 6.627259127129794,
+        "samples_with_all_final_errors_within_5deg": 114
+      },
+      "right_ankle": {
+        "final_half_second_mean_abs_error_deg": 10.34928185456714,
+        "final_half_second_mean_signed_error_deg": 10.34928185456714,
+        "final_half_second_max_abs_error_deg": 12.009192061005967,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "mouth": {
+        "final_half_second_mean_abs_error_deg": 0.1750157769149771,
+        "final_half_second_mean_signed_error_deg": 0.1750157769149771,
+        "final_half_second_max_abs_error_deg": 0.6174069992562219,
+        "samples_with_all_final_errors_within_5deg": 128
+      }
+    },
+    "supine": {
+      "left_hip_yaw": {
+        "final_half_second_mean_abs_error_deg": 2.8415051339811095,
+        "final_half_second_mean_signed_error_deg": -2.8415051339811095,
+        "final_half_second_max_abs_error_deg": 4.320112152392813,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "left_hip_roll": {
+        "final_half_second_mean_abs_error_deg": 6.511157044447925,
+        "final_half_second_mean_signed_error_deg": 6.511157044447925,
+        "final_half_second_max_abs_error_deg": 9.509896070104071,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "left_hip_pitch": {
+        "final_half_second_mean_abs_error_deg": 1.311853943316839,
+        "final_half_second_mean_signed_error_deg": 1.3113665410176671,
+        "final_half_second_max_abs_error_deg": 1.9738034342759172,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "left_knee": {
+        "final_half_second_mean_abs_error_deg": 4.623545201648124,
+        "final_half_second_mean_signed_error_deg": -4.623545201648124,
+        "final_half_second_max_abs_error_deg": 6.221611631001799,
+        "samples_with_all_final_errors_within_5deg": 100
+      },
+      "left_ankle": {
+        "final_half_second_mean_abs_error_deg": 0.9543082934752788,
+        "final_half_second_mean_signed_error_deg": 0.9342748022244977,
+        "final_half_second_max_abs_error_deg": 2.188618006314696,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "neck_pitch": {
+        "final_half_second_mean_abs_error_deg": 0.5959652873500112,
+        "final_half_second_mean_signed_error_deg": 0.5863451025078317,
+        "final_half_second_max_abs_error_deg": 1.1855654531105957,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_pitch": {
+        "final_half_second_mean_abs_error_deg": 0.2919995345658578,
+        "final_half_second_mean_signed_error_deg": 0.09624571531173999,
+        "final_half_second_max_abs_error_deg": 1.0428520654977644,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_yaw": {
+        "final_half_second_mean_abs_error_deg": 0.37891755081115114,
+        "final_half_second_mean_signed_error_deg": -0.32796392979150585,
+        "final_half_second_max_abs_error_deg": 1.1442818687763348,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "head_roll": {
+        "final_half_second_mean_abs_error_deg": 0.3015318490243652,
+        "final_half_second_mean_signed_error_deg": 0.05313771487940853,
+        "final_half_second_max_abs_error_deg": 2.8738541734752863,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "right_hip_yaw": {
+        "final_half_second_mean_abs_error_deg": 3.231096665370536,
+        "final_half_second_mean_signed_error_deg": -3.231096665370536,
+        "final_half_second_max_abs_error_deg": 4.388978815359936,
+        "samples_with_all_final_errors_within_5deg": 128
+      },
+      "right_hip_roll": {
+        "final_half_second_mean_abs_error_deg": 7.162610105596203,
+        "final_half_second_mean_signed_error_deg": -7.162610105596203,
+        "final_half_second_max_abs_error_deg": 8.85465724000453,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "right_hip_pitch": {
+        "final_half_second_mean_abs_error_deg": 8.84534796537337,
+        "final_half_second_mean_signed_error_deg": -8.84534796537337,
+        "final_half_second_max_abs_error_deg": 10.741416743497805,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "right_knee": {
+        "final_half_second_mean_abs_error_deg": 4.048500100706946,
+        "final_half_second_mean_signed_error_deg": -4.048500100706946,
+        "final_half_second_max_abs_error_deg": 5.463208769904739,
+        "samples_with_all_final_errors_within_5deg": 118
+      },
+      "right_ankle": {
+        "final_half_second_mean_abs_error_deg": 10.502044226298246,
+        "final_half_second_mean_signed_error_deg": 10.502044226298246,
+        "final_half_second_max_abs_error_deg": 11.85744233312121,
+        "samples_with_all_final_errors_within_5deg": 0
+      },
+      "mouth": {
+        "final_half_second_mean_abs_error_deg": 0.16798843433457192,
+        "final_half_second_mean_signed_error_deg": 0.16798843433457192,
+        "final_half_second_max_abs_error_deg": 0.21537640845886497,
+        "samples_with_all_final_errors_within_5deg": 128
+      }
+    }
+  },
+  "contact_substeps": {
+    "head_ground": {
+      "standing": {
+        "samples": 128,
+        "count_any": 1,
+        "max": 67.0
+      },
+      "sitting": {
+        "samples": 128,
+        "count_any": 5,
+        "max": 81.0
+      },
+      "prone": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 53.0
+      },
+      "frontier": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 103.0
+      },
+      "left_side": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 72.0
+      },
+      "right_side": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 91.0
+      },
+      "supine": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 98.0
+      }
+    },
+    "other_body_ground": {
+      "standing": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "sitting": {
+        "samples": 128,
+        "count_any": 3,
+        "max": 23.0
+      },
+      "prone": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "frontier": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 34.0
+      },
+      "left_side": {
+        "samples": 128,
+        "count_any": 50,
+        "max": 14.0
+      },
+      "right_side": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 20.0
+      },
+      "supine": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 32.0
+      }
+    },
+    "feet_ground": {
+      "standing": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 1599.0
+      },
+      "sitting": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 1598.0
+      },
+      "prone": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 1589.0
+      },
+      "frontier": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 1567.0
+      },
+      "left_side": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 1583.0
+      },
+      "right_side": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 1583.0
+      },
+      "supine": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 1565.0
+      }
+    },
+    "self": {
+      "standing": {
+        "samples": 128,
+        "count_any": 2,
+        "max": 36.0
+      },
+      "sitting": {
+        "samples": 128,
+        "count_any": 16,
+        "max": 72.0
+      },
+      "prone": {
+        "samples": 128,
+        "count_any": 39,
+        "max": 6.0
+      },
+      "frontier": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 63.0
+      },
+      "left_side": {
+        "samples": 128,
+        "count_any": 126,
+        "max": 40.0
+      },
+      "right_side": {
+        "samples": 128,
+        "count_any": 126,
+        "max": 53.0
+      },
+      "supine": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 54.0
+      }
+    }
+  },
+  "final_half_second_contact_substeps": {
+    "head_ground": {
+      "standing": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "sitting": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "prone": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "frontier": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "left_side": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "right_side": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "supine": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      }
+    },
+    "other_body_ground": {
+      "standing": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "sitting": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "prone": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "frontier": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "left_side": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "right_side": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "supine": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      }
+    },
+    "feet_ground": {
+      "standing": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 100.0
+      },
+      "sitting": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 100.0
+      },
+      "prone": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 100.0
+      },
+      "frontier": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 100.0
+      },
+      "left_side": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 100.0
+      },
+      "right_side": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 100.0
+      },
+      "supine": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 100.0
+      }
+    },
+    "self": {
+      "standing": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "sitting": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "prone": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "frontier": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "left_side": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "right_side": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "supine": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      }
+    }
+  },
+  "max_contact_penetration_m": {
+    "head_ground": {
+      "standing": {
+        "samples": 128,
+        "count_any": 1,
+        "max": 0.005809824448078871
+      },
+      "sitting": {
+        "samples": 128,
+        "count_any": 5,
+        "max": 0.009147918783128262
+      },
+      "prone": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 0.0045450241304934025
+      },
+      "frontier": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 0.008858411572873592
+      },
+      "left_side": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 0.008649149909615517
+      },
+      "right_side": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 0.0065759154967963696
+      },
+      "supine": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 0.007976192981004715
+      }
+    },
+    "other_body_ground": {
+      "standing": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "sitting": {
+        "samples": 128,
+        "count_any": 3,
+        "max": 0.008607495576143265
+      },
+      "prone": {
+        "samples": 128,
+        "count_any": 0,
+        "max": 0.0
+      },
+      "frontier": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 0.00353317242115736
+      },
+      "left_side": {
+        "samples": 128,
+        "count_any": 50,
+        "max": 0.001935643726028502
+      },
+      "right_side": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 0.007059165742248297
+      },
+      "supine": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 0.003712377278134227
+      }
+    },
+    "feet_ground": {
+      "standing": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 0.004279581364244223
+      },
+      "sitting": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 0.007639819756150246
+      },
+      "prone": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 0.009469210170209408
+      },
+      "frontier": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 0.009972741827368736
+      },
+      "left_side": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 0.006374838296324015
+      },
+      "right_side": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 0.007357580587267876
+      },
+      "supine": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 0.010235568508505821
+      }
+    },
+    "self": {
+      "standing": {
+        "samples": 128,
+        "count_any": 2,
+        "max": 0.0036569656804203987
+      },
+      "sitting": {
+        "samples": 128,
+        "count_any": 16,
+        "max": 0.005249366629868746
+      },
+      "prone": {
+        "samples": 128,
+        "count_any": 39,
+        "max": 0.0012514449190348387
+      },
+      "frontier": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 0.009092648513615131
+      },
+      "left_side": {
+        "samples": 128,
+        "count_any": 126,
+        "max": 0.002251621335744858
+      },
+      "right_side": {
+        "samples": 128,
+        "count_any": 126,
+        "max": 0.004498213995248079
+      },
+      "supine": {
+        "samples": 128,
+        "count_any": 128,
+        "max": 0.00981836300343275
+      }
+    }
+  },
+  "head_geoms": [
+    "robot/ground_head_shell_collision",
+    "robot/ground_jaw_collision"
+  ],
+  "foot_geoms": [
+    "robot/left_foot_collision",
+    "robot/right_foot_collision"
+  ],
+  "interpretation": "All episodes included; contact is descriptive, including necessary ground support during recovery. Limits are model limits, not measured robot stops."
+}

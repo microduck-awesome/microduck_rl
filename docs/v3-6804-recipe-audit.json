@@ -1,0 +1,165 @@
+{
+  "status": "PASS",
+  "v2_initial_rank0_run_sha256": "562c69f6da499c5104048d1aa9f3fbd522f8e00254015aa02fef2cd4e492274b",
+  "v3_initial_run_sha256": "c127b1ae8ca6da4b015ecb0993ca035ae1b7e819dd4cc8666770e67c7a343ab8",
+  "global_envs": 8192,
+  "v2_rank_envs": [
+    4096,
+    4096
+  ],
+  "agent_and_dependencies_equal": true,
+  "compared_sections": [
+    "rewards",
+    "curriculum",
+    "commands",
+    "events",
+    "sim",
+    "actions",
+    "observations"
+  ],
+  "allowed_differences": [
+    {
+      "path": "/rewards/body_pose_tracking/params/nominal_height",
+      "old": 0.112,
+      "new": 0.1248
+    },
+    {
+      "path": "/rewards/height_stand/params/target_height",
+      "old": 0.112,
+      "new": 0.1248
+    },
+    {
+      "path": "/rewards/height_stand_l1/params/target_height",
+      "old": 0.112,
+      "new": 0.1248
+    },
+    {
+      "path": "/rewards/height_stand_sharp/params/target_height",
+      "old": 0.112,
+      "new": 0.1248
+    },
+    {
+      "path": "/rewards/remaining_fallen/params/release_z_above",
+      "old": 0.10200000000000001,
+      "new": 0.1148
+    },
+    {
+      "path": "/rewards/standing_composite/params/target_height",
+      "old": 0.112,
+      "new": 0.1248
+    },
+    {
+      "path": "/rewards/upright_sharp/params/height_high",
+      "old": 0.112,
+      "new": 0.1248
+    },
+    {
+      "path": "/curriculum/head_pose_range/params/range_stages/3/ranges/0/0",
+      "old": -0.48577760000000003,
+      "new": -0.4886599999999999
+    },
+    {
+      "path": "/curriculum/head_pose_range/params/range_stages/4/ranges/0/0",
+      "old": -0.48577760000000003,
+      "new": -0.4886599999999999
+    },
+    {
+      "path": "/curriculum/head_pose_range/params/range_stages/4/ranges/1/1",
+      "old": 0.904656,
+      "new": 0.90754
+    },
+    {
+      "path": "/events/paired_error_reset/params/bank_path",
+      "old": "/home/l40-vm01/data2/experiments/microduck-v2-20261023/rise3762-collision/source/src/mjlab_microduck/custom_v2/training-assets/repaired-paired-errors-v2",
+      "new": "/home/l40-vm01/Documents/ai-research/microduck/microduck-v3-rise6804-20261101/src/mjlab_microduck/custom_v2/training-assets/repaired-paired-errors-v2"
+    },
+    {
+      "path": "/events/set_ground_state/params/sitting_joint_overrides/1",
+      "old": 0.0873,
+      "new": -0.0700270851
+    },
+    {
+      "path": "/events/set_ground_state/params/sitting_joint_overrides/10",
+      "old": -0.0873,
+      "new": 0.0700270851
+    },
+    {
+      "path": "/events/set_ground_state/params/sitting_joint_overrides/11",
+      "old": -0.1,
+      "new": 0.3
+    },
+    {
+      "path": "/events/set_ground_state/params/sitting_joint_overrides/12",
+      "old": -1.1,
+      "new": -1.0
+    },
+    {
+      "path": "/events/set_ground_state/params/sitting_joint_overrides/13",
+      "old": -0.85,
+      "new": 0.8
+    },
+    {
+      "path": "/events/set_ground_state/params/sitting_joint_overrides/2",
+      "old": -0.1,
+      "new": 0.3
+    },
+    {
+      "path": "/events/set_ground_state/params/sitting_joint_overrides/3",
+      "old": -1.1,
+      "new": -1.0
+    },
+    {
+      "path": "/events/set_ground_state/params/sitting_joint_overrides/4",
+      "old": -0.85,
+      "new": 0.8
+    },
+    {
+      "path": "/events/set_ground_state/params/sitting_z_max",
+      "old": 0.0834,
+      "new": 0.1134
+    },
+    {
+      "path": "/events/set_ground_state/params/sitting_z_min",
+      "old": 0.0634,
+      "new": 0.0934
+    },
+    {
+      "path": "/events/set_ground_state/params/standing_z_max",
+      "old": 0.12638049189959616,
+      "new": 0.13857121733465777
+    },
+    {
+      "path": "/events/set_ground_state/params/standing_z_min",
+      "old": 0.11638049189959615,
+      "new": 0.12857121733465776
+    },
+    {
+      "path": "/events/v3_reset_ground_clearance",
+      "old": "<absent>",
+      "new": {
+        "func": "<function guard_ground_clearance at <address>>",
+        "params": {},
+        "mode": "reset",
+        "interval_range_s": null,
+        "is_global_time": false,
+        "min_step_count_between_reset": 0
+      }
+    },
+    {
+      "path": "/observations/actor/terms/joint_pos/params/bank_path",
+      "old": "/home/l40-vm01/data2/experiments/microduck-v2-20261023/rise3762-collision/source/src/mjlab_microduck/custom_v2/training-assets/repaired-paired-errors-v2",
+      "new": "/home/l40-vm01/Documents/ai-research/microduck/microduck-v3-rise6804-20261101/src/mjlab_microduck/custom_v2/training-assets/repaired-paired-errors-v2"
+    },
+    {
+      "path": "/observations/actor/terms/joint_vel/params/bank_path",
+      "old": "/home/l40-vm01/data2/experiments/microduck-v2-20261023/rise3762-collision/source/src/mjlab_microduck/custom_v2/training-assets/repaired-paired-errors-v2",
+      "new": "/home/l40-vm01/Documents/ai-research/microduck/microduck-v3-rise6804-20261101/src/mjlab_microduck/custom_v2/training-assets/repaired-paired-errors-v2"
+    }
+  ],
+  "numerical_source_code_changes": [
+    "src/mjlab_microduck/custom_v2/microduck_v2.py",
+    "src/mjlab_microduck/custom_v2/training.py"
+  ],
+  "classification": "Only V3 geometry-dependent standing height, HOME-relative head bounds, feasible seven-pose reset geometry and the identical paired-error bank path differ in compared configurations. Single-GPU execution changes floating-point order and cannot be a bitwise DDP reproduction.",
+  "limitation": "Compares frozen first-segment configuration; subsequent HOME guard fix and reset evaluation fix need their own preflight. This does not imply physical hardware equivalence."
+}

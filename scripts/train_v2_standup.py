@@ -146,8 +146,8 @@ def main():
     p.add_argument('--head-precision-stage',type=int,choices=(1,2,3,4),default=1)
     p.add_argument("--position-robustness-stage",type=int,choices=(0,1,2),default=0)
     args = p.parse_args()
-    if args.num_envs not in (8192,16384,24576) and not args.validation_only:
-        p.error('Formal V3 allocation must use one of the preflighted 8192, 16384, or 24576 environment counts')
+    if args.num_envs != 8192 and not args.validation_only:
+        p.error('Formal V3 training retains the V2 6804 global batch of 8192 environments')
     smoke = json.loads(args.preflight.read_text())
     assert smoke['status'] == 'PASS' and smoke['task'] == args.task
     assert bool(smoke.get('head_precision_recipe')) == args.head_precision, 'Preflight head recipe differs'
@@ -251,8 +251,11 @@ def main():
     # Identical network initialization despite distinct feedback setup RNG use.
     torch.manual_seed(cfg.seed + 100)
     runner = load_runner_cls(args.task)(wrapped, asdict(agent), str(output), args.device)
-    from mjlab_microduck.ppo_diagnostics import attach_ppo_diagnostics
-    diagnostics = attach_ppo_diagnostics(runner, output/'ppo-diagnostics.jsonl')
+    # Historical V2 DDP runner resets the rollout RNG after network creation.
+    # A resumed run subsequently restores its checkpointed RNG state.
+    torch.manual_seed(cfg.seed + 1000)
+    # Use the native PPO update, matching the V2 6804 formal DDP runner.
+    # checked_update below only validates/records its returned losses.
     completed = 0
     prior_controls = 0
     if args.resume:

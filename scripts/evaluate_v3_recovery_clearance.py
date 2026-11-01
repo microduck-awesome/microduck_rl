@@ -30,6 +30,43 @@ def summarize_by_bucket(values, group_size):
     return result
 
 
+def update_joint_metrics(q, limits, smallest, streak, longest, violation, threshold):
+    """Update per-world/joint limit evidence at one physics boundary."""
+    clearance = torch.minimum(q-limits[:,:,0],limits[:,:,1]-q)
+    smallest = torch.minimum(smallest,clearance)
+    streak = torch.where(clearance <= threshold,streak+1,0)
+    longest = torch.maximum(longest,streak)
+    violation = violation + (clearance < 0).to(torch.int32)
+    return smallest,streak,longest,violation
+
+
+def reduce_contacts(world,pair,dist,count,n,terrain,head,feet):
+    """Reduce packed MuJoCo contacts into per-world flags and depths."""
+    device=world.device
+    valid = ((torch.arange(len(world),device=device)<count)
+             & (world>=0) & (world<n) & (dist<=0))
+    ground = (pair[:,0]==terrain) | (pair[:,1]==terrain)
+    is_head = torch.zeros_like(valid)
+    is_foot = torch.zeros_like(valid)
+    for geom in head:
+        is_head |= (pair[:,0]==geom) | (pair[:,1]==geom)
+    for geom in feet:
+        is_foot |= (pair[:,0]==geom) | (pair[:,1]==geom)
+    masks = {'head_ground':valid & ground & is_head,
+             'feet_ground':valid & ground & is_foot,
+             'other_body_ground':valid & ground & ~(is_head | is_foot),
+             'self':valid & ~ground}
+    observations={}
+    for name,mask in masks.items():
+        detected = torch.zeros(n,device=device,dtype=torch.int32)
+        depth = torch.zeros(n,device=device)
+        wid = world.clamp(0,n-1)
+        detected.scatter_reduce_(0,wid,mask.to(torch.int32),reduce='amax',include_self=True)
+        depth.scatter_reduce_(0,wid,torch.where(mask,(-dist).clamp_min(0),0.),reduce='amax',include_self=True)
+        observations[name]=(detected,depth)
+    return observations
+
+
 def main():
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument('--output',type=Path,required=True)
@@ -70,34 +107,15 @@ def main():
             original_substep()
             q = robot.data.joint_pos[:,ids]
             limits = robot.data.joint_pos_limits[:,ids,:]
-            clearance = torch.minimum(q-limits[:,:,0],limits[:,:,1]-q)
-            smallest = torch.minimum(smallest,clearance)
-            streak = torch.where(clearance <= threshold,streak+1,0)
-            longest = torch.maximum(longest,streak)
-            violation += (clearance < 0).to(torch.int32)
+            smallest,streak,longest,violation = update_joint_metrics(
+                q,limits,smallest,streak,longest,violation,threshold)
             c = env.sim.wp_data.contact
             world = wp.to_torch(c.worldid).long()
             pair = wp.to_torch(c.geom).long()
             dist = wp.to_torch(c.dist)
-            valid = ((torch.arange(len(world),device=device)<wp.to_torch(env.sim.wp_data.nacon))
-                     & (world>=0) & (world<n) & (dist<=0))
-            ground = (pair[:,0]==terrain[0]) | (pair[:,1]==terrain[0])
-            is_head = torch.zeros_like(valid)
-            is_foot = torch.zeros_like(valid)
-            for geom in head:
-                is_head |= (pair[:,0]==geom) | (pair[:,1]==geom)
-            for geom in feet:
-                is_foot |= (pair[:,0]==geom) | (pair[:,1]==geom)
-            masks = {'head_ground':valid & ground & is_head,
-                     'feet_ground':valid & ground & is_foot,
-                     'other_body_ground':valid & ground & ~(is_head | is_foot),
-                     'self':valid & ~ground}
-            for name,mask in masks.items():
-                detected = torch.zeros(n,device=device,dtype=torch.int32)
-                depth = torch.zeros(n,device=device)
-                wid = world.clamp(0,n-1)
-                detected.scatter_reduce_(0,wid,mask.to(torch.int32),reduce='amax',include_self=True)
-                depth.scatter_reduce_(0,wid,torch.where(mask,(-dist).clamp_min(0),0.),reduce='amax',include_self=True)
+            observations = reduce_contacts(world,pair,dist,wp.to_torch(env.sim.wp_data.nacon),
+                                           n,terrain[0],head,feet)
+            for name,(detected,depth) in observations.items():
                 counts[name] += detected
                 if num_substeps >= 1500:
                     terminal[name] += detected

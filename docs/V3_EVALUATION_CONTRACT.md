@@ -18,4 +18,4 @@ HOME 是 assembly 选定的第二组站立姿态，不是把 CAD 关节全设为
 
 `scripts/evaluate_v2_head.py` 保留历史文件名，但从本分支 V3 环境读取模型与 HOME：头四轴物理位置减各自 `default_joint_pos` 后再与相对 HOME 的命令比较，阶段范围也已按各关节的 V3 HOME 和限位计算。协议为 2 秒零命令、2 秒阶跃、2 秒回零，记录关节误差、身体稳定与 200 Hz 相机角运动；该相机位姿仍是 CAD 占位，并非实测相机标定。报告记录模型 SHA、质量、15 关节 HOME 和初始化根高。
 
-此前头部 CPU 检查也仅核对配置 HOME，实际初态结论作废。恢复关节重置并修正嘴的限位保护后，已重新通过两种 seed、每 seed 三个诊断指令的 CPU 检查；实际初始 15 关节角与 V3 HOME 的误差均小于 1e-6 rad，同时核对阶跃/回零时序与头部奖励。证据在 `/home/l40-vm01/data2/experiments/v3-rise6804-20261101/diagnostic-fixture/head-cpu-e2e-fixed2/`，只验证评测路径。正式完整命令网格及训练后策略评估仍未进行。`repro/compare.py` 是父分支的 V2 严格复现比较，要求 V2 相同头命令范围，不可直接拿来宣称 V3 与 V2 同模型或同 HOME；如需跨版本比较，应标明不同的模型、HOME、命令范围并仅比较共同协议。
+此前头部 CPU 检查也仅核对配置 HOME，实际初态结论作废。恢复关节重置并修正嘴的限位保护后，已重新通过两种 seed、每 seed 三个诊断指令的 CPU 检查；实际初始 15 关节角与 V3 HOME 的误差均小于 1e-6 rad，同时核对阶跃/回零时序与头部奖励。证据在 `/home/l40-vm01/data2/experiments/v3-rise6804-20261101/diagnostic-fixture/head-cpu-e2e-fixed2/`，只验证评测路径。正式 6804 训练后的 81 命令、两种子完整网格已完成，结果和局限见 [最终评测](../repro/sc0090-v3/rise6804/README.md)。`repro/compare.py` 是父分支的 V2 严格复现比较，要求 V2 相同头命令范围，不可直接拿来宣称 V3 与 V2 同模型或同 HOME；如需跨版本比较，应标明不同的模型、HOME、命令范围并仅比较共同协议。

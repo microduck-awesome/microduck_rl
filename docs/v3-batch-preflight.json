@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "device": "physical GPU 0",
+  "warmup_updates": 3,
+  "measured_updates": 10,
+  "rows": [
+    {
+      "envs": 8192,
+      "steps_per_update": 196608,
+      "minibatch_samples": 49152,
+      "median_update_s": 1.5316912545240484,
+      "median_control_steps_per_s": 128361.31212011544,
+      "sampled_gpu0_peak_mib": null,
+      "max_contacts": 69783,
+      "contact_capacity": 286720,
+      "onnx_native_max_error": 1.043081283569336e-07,
+      "report": "/home/l40-vm01/data2/experiments/v3-rise6804-20261101/batch8192-report.json",
+      "report_sha256": "080a843df99e3b1edfda4b1bac666849581a210d9455ee905934d7be11c33f7f",
+      "gpu_samples": null,
+      "gpu_samples_sha256": null,
+      "relative_control_throughput": 1.0,
+      "relative_update_time": 1.0
+    },
+    {
+      "envs": 16384,
+      "steps_per_update": 393216,
+      "minibatch_samples": 98304,
+      "median_update_s": 2.565210060478421,
+      "median_control_steps_per_s": 153288.2013555934,
+      "sampled_gpu0_peak_mib": 18111,
+      "max_contacts": 140016,
+      "contact_capacity": 573440,
+      "onnx_native_max_error": 1.1920928955078125e-07,
+      "report": "/home/l40-vm01/data2/experiments/v3-rise6804-20261101/batch16384-report.json",
+      "report_sha256": "b033f0512677799d3275e86ac532b30df05b7c4da9224e64bcf6169afc558209",
+      "gpu_samples": "/home/l40-vm01/data2/experiments/v3-rise6804-20261101/batch16384-gpu-samples.csv",
+      "gpu_samples_sha256": "87662c7ad6ec3c28e627f0c22b1d311fdcfd5cbd35c031252d9904b40330e9c7",
+      "relative_control_throughput": 1.1941931632184652,
+      "relative_update_time": 1.6747566148868063
+    },
+    {
+      "envs": 24576,
+      "steps_per_update": 589824,
+      "minibatch_samples": 147456,
+      "median_update_s": 3.5812381920113694,
+      "median_control_steps_per_s": 164698.38475872937,
+      "sampled_gpu0_peak_mib": 26179,
+      "max_contacts": 209689,
+      "contact_capacity": 860160,
+      "onnx_native_max_error": 8.940696716308594e-08,
+      "report": "/home/l40-vm01/data2/experiments/v3-rise6804-20261101/batch24576-report.json",
+      "report_sha256": "9ed9b7e704c1c3a105b04e1ed5823c3240d4c155c8e185f8beb0d189551fd3bc",
+      "gpu_samples": "/home/l40-vm01/data2/experiments/v3-rise6804-20261101/batch24576-gpu-samples.csv",
+      "gpu_samples_sha256": "7d113c31ea03a8bd1422c9c8bb9d68b614a4b6f7d4e535c6bd370af70c211d66",
+      "relative_control_throughput": 1.2830843035058035,
+      "relative_update_time": 2.338094039143802
+    }
+  ],
+  "interpretation": "Short fresh-policy throughput only; environment count changes PPO minibatch and samples per update. Speed is not convergence or trained-policy equivalence. GPU memory is sampled, not an allocator peak; 8192 was not sampled."
+}

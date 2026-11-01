@@ -25,6 +25,7 @@ from mjlab_microduck.custom_v2 import recovery
 from mjlab_microduck.custom_v2.microduck_v2 import POLICY_JOINTS, ASSETS, HOME_HEIGHT, HOME_JOINT_POSITIONS, NOMINAL_MASS_KG
 from mjlab_microduck.custom_v2.head_metrics import response_metrics,summarize_response,camera_metrics
 from mjlab_microduck.tasks import mdp
+from train_v2_standup import restrict_evaluation_events
 
 JOINTS=('neck_pitch','head_pitch','head_yaw','head_roll')
 
@@ -65,9 +66,7 @@ def evaluate_seed(args,seed,cases,output):
     cfg.curriculum,cfg.terminations={},{}
     head_reward=cfg.rewards['head_pose_tracking']
     cfg.rewards={'stable_standing':RewardTermCfg(func=recovery.sc0090_stable_standing,weight=1.)}
-    cfg.events={n:t for n,t in cfg.events.items() if n in {
-        'expand_bam_friction_fields','v2_runtime','mouth_reset','mouth_hold',
-        'reset_base','set_ground_state','v2_reset_joint_guards','v3_reset_ground_clearance','paired_error_reset'}}
+    restrict_evaluation_events(cfg)
     ground=cfg.events['set_ground_state']
     allowed=inspect.signature(mdp.set_random_ground_state).parameters
     ground.params={k:v for k,v in ground.params.items() if k in allowed}
@@ -118,6 +117,11 @@ def evaluate_seed(args,seed,cases,output):
         head_offset=sum(math.prod(dim) for dim in actor_dims[:head_index])
         assert head_offset==51 and actor_dims[head_index]==(4,)
         initial=robot.data.joint_pos[:,ids]-robot.data.default_joint_pos[:,ids]
+        all_ids,all_names=robot.find_joints(POLICY_JOINTS+('mouth',),preserve_order=True)
+        assert tuple(all_names)==POLICY_JOINTS+('mouth',)
+        initial_all=robot.data.joint_pos[:,all_ids].clone()
+        torch.testing.assert_close(initial_all,robot.data.default_joint_pos[:,all_ids],rtol=0,atol=1e-6,
+                                   msg='Head evaluation did not start at full V3 HOME')
         positions=torch.empty(count,n,4,device=args.device)
         commands=torch.empty_like(positions)
         health=torch.empty(count,n,4,device=args.device)
@@ -208,7 +212,8 @@ def evaluate_seed(args,seed,cases,output):
         np.savez_compressed(output/f'traces-{seed}.npz',
             physical_head_rad=positions.cpu().numpy(),command_rad=commands.cpu().numpy(),
             camera_quat_w=camera.cpu().numpy(),health=health.cpu().numpy(),
-            invalid=invalid.cpu().numpy(),qpos=qpos.cpu().numpy(),env_origins=env.scene.env_origins.cpu().numpy())
+            invalid=invalid.cpu().numpy(),qpos=qpos.cpu().numpy(),env_origins=env.scene.env_origins.cpu().numpy(),
+            initial_all_joint_rad=initial_all.cpu().numpy(),initial_all_joint_names=np.array(all_names))
         return results
     finally:
         env.close()

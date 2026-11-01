@@ -20,6 +20,7 @@ from mjlab.envs import ManagerBasedRlEnv
 from mjlab.rl import RslRlVecEnvWrapper
 from mjlab.tasks.registry import load_env_cfg, load_rl_cfg, load_runner_cls
 from mjlab_microduck.custom_v2 import recovery
+from train_v2_standup import restrict_evaluation_events
 
 
 def write_json(path, value):
@@ -46,9 +47,7 @@ def evaluate(task, policy, device, stage, samples, *, position_recipe=None,evide
             from mjlab.managers import RewardTermCfg
             cfg.curriculum, cfg.terminations = {}, {}
             cfg.rewards = {'stable_standing': RewardTermCfg(func=recovery.sc0090_stable_standing, weight=1.)}
-            cfg.events = {n:t for n,t in cfg.events.items() if n in {
-                'expand_bam_friction_fields','v2_runtime','mouth_reset','mouth_hold',
-                'reset_base','set_ground_state','v2_reset_joint_guards','v3_reset_ground_clearance','paired_error_reset'}}
+            restrict_evaluation_events(cfg)
             cfg.events['set_ground_state'].params['evaluation_buckets'] = True
             cfg.observations['actor'].enable_corruption = False
             for name in ('head_pose','body_pose'):

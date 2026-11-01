@@ -28,6 +28,42 @@ def write_json(path, value):
     temporary.replace(path)
 
 
+def inherited_control_steps(info, parent_run, steps_per_env):
+    """Recover exact cumulative sample count without retroactive batch scaling."""
+    recorded=info['v2'].get('total_environment_steps')
+    if recorded is not None:
+        if type(recorded) is not int or recorded < 0:
+            raise ValueError('Invalid checkpoint total_environment_steps')
+        return recorded
+    completed=info['v2']['completed_updates']
+    if parent_run.get('resume') is not None:
+        raise ValueError('Historical resumed parent lacks exact cumulative controls; reconstruct lineage first')
+    if parent_run['agent']['num_steps_per_env'] != steps_per_env:
+        raise ValueError('Parent rollout length differs')
+    if not 0 <= completed <= parent_run['allocation_updates']:
+        raise ValueError('Checkpoint update count is outside parent allocation')
+    return completed * parent_run['num_envs'] * steps_per_env
+
+
+EVALUATION_EVENTS = frozenset({'expand_bam_friction_fields','v2_runtime','mouth_reset','mouth_hold',
+    'reset_base','reset_robot_joints','reset_action_history','set_ground_state',
+    'v2_reset_joint_guards','v3_reset_ground_clearance','paired_error_reset'})
+
+
+def restrict_evaluation_events(cfg):
+    """Retain ordered V3 reset events; dropping joint reset silently changes HOME."""
+    required={'reset_base','reset_robot_joints','reset_action_history','set_ground_state',
+              'v2_reset_joint_guards','v3_reset_ground_clearance'}
+    missing=required-cfg.events.keys()
+    if missing:
+        raise ValueError(f'V3 evaluation missing required reset events: {sorted(missing)}')
+    cfg.events={name:term for name,term in cfg.events.items() if name in EVALUATION_EVENTS}
+    ordered=list(cfg.events)
+    if not (ordered.index('reset_robot_joints') < ordered.index('set_ground_state')
+            < ordered.index('v2_reset_joint_guards') < ordered.index('v3_reset_ground_clearance')):
+        raise ValueError('V3 evaluation reset event order is invalid')
+
+
 def evaluate(task, policy, device, stage, samples, *, position_recipe=None,evidence_dir=None):
     cpu_rng, cuda_rng = torch.get_rng_state(), torch.cuda.get_rng_state_all()
     numpy_rng, python_rng = np.random.get_state(), random.getstate()
@@ -46,9 +82,7 @@ def evaluate(task, policy, device, stage, samples, *, position_recipe=None,evide
             from mjlab.managers import RewardTermCfg
             cfg.curriculum, cfg.terminations = {}, {}
             cfg.rewards = {'stable_standing': RewardTermCfg(func=recovery.sc0090_stable_standing, weight=1.)}
-            cfg.events = {n:t for n,t in cfg.events.items() if n in {
-                'expand_bam_friction_fields','v2_runtime','mouth_reset','mouth_hold',
-                'reset_base','set_ground_state','v2_reset_joint_guards','v3_reset_ground_clearance','paired_error_reset'}}
+            restrict_evaluation_events(cfg)
             cfg.events['set_ground_state'].params['evaluation_buckets'] = True
             cfg.observations['actor'].enable_corruption = False
             for name in ('head_pose','body_pose'):
@@ -112,15 +146,16 @@ def main():
     p.add_argument('--head-precision-stage',type=int,choices=(1,2,3,4),default=1)
     p.add_argument("--position-robustness-stage",type=int,choices=(0,1,2),default=0)
     args = p.parse_args()
-    if args.num_envs != 8192 and not args.validation_only:
-        p.error('This baseline allocation uses the preflighted 8192 environments')
+    if args.num_envs not in (8192,16384,24576) and not args.validation_only:
+        p.error('Formal V3 allocation must use one of the preflighted 8192, 16384, or 24576 environment counts')
     smoke = json.loads(args.preflight.read_text())
     assert smoke['status'] == 'PASS' and smoke['task'] == args.task
     assert bool(smoke.get('head_precision_recipe')) == args.head_precision, 'Preflight head recipe differs'
     assert not args.head_precision or args.resume is not None, 'Head precision requires a mastered recovery parent'
     assert smoke['physics_cuda_graph'] and min(smoke['motor_graph_replays']) > 0
+    assert smoke['envs'] == args.num_envs, 'Preflight environment count differs from requested allocation'
     if not args.validation_only:
-        assert smoke['envs'] == 8192 and smoke['throughput']['measured_updates'] >= 10
+        assert smoke['throughput']['measured_updates'] >= 10
         assert smoke['throughput']['median_end_to_end_steps_per_s'] > 100_000, 'Throughput admission failed'
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
@@ -132,7 +167,12 @@ def main():
     for name, digest in asset_manifest['files'].items():
         assert hashlib.sha256((asset_root/name).read_bytes()).hexdigest() == digest, f'V3 asset changed: {name}'
     assert smoke['robot_xml_sha256'] == asset_manifest['files']['assets/robot.xml'], 'Smoke used different robot XML'
+    if not args.validation_only:
+        assert smoke.get('numerical_source_sha256'), 'Formal allocation requires source-hashed preflight'
+    for name,digest in smoke.get('numerical_source_sha256',{}).items():
+        assert hashlib.sha256((root/name).read_bytes()).hexdigest()==digest, f'Preflight source changed: {name}'
     sources = sorted([*root.glob('src/**/*.py'), *root.glob('src/**/*.cpp'),
+                      *(p for p in (root/'src/mjlab_microduck/actuator/params').rglob('*') if p.is_file()),
                       *(p for p in (asset_root/'assets').rglob('*') if p.is_file()),
                       *(p for p in (asset_root/'training-assets').rglob('*') if p.is_file()),
                       asset_root/'assembly-install.json', root/'pyproject.toml', root/'uv.lock',
@@ -214,9 +254,12 @@ def main():
     from mjlab_microduck.ppo_diagnostics import attach_ppo_diagnostics
     diagnostics = attach_ppo_diagnostics(runner, output/'ppo-diagnostics.jsonl')
     completed = 0
+    prior_controls = 0
     if args.resume:
         infos = runner.load(str(args.resume))
         completed = infos['v2']['completed_updates']
+        parent_run=json.loads((args.resume.parent/'run.json').read_text())
+        prior_controls=inherited_control_steps(infos,parent_run,agent.num_steps_per_env)
         checkpoint_state = torch.load(args.resume, map_location='cpu', weights_only=False)
         def same_state(actual, expected):
             if isinstance(expected, torch.Tensor):
@@ -240,6 +283,9 @@ def main():
             status='PASS',checkpoint_sha256=hashlib.sha256(args.resume.read_bytes()).hexdigest(),
             completed_updates=completed,common_step_counter=env.common_step_counter,
             learning_rate=runner.alg.learning_rate,
+            parent_num_envs=parent_run['num_envs'],new_num_envs=args.num_envs,
+            cumulative_environment_steps=prior_controls,
+            feedback_rng='new deterministic per-environment stream; historical proxy generator was not checkpointed',
             actor_critic_normalizers_optimizer_exact=True,
             previous_bootstrap_contract=checkpoint_state.get('terminal_critic_bootstrap'),
             current_bootstrap_contract=restored.get('terminal_critic_bootstrap'),
@@ -275,6 +321,8 @@ def main():
             physics_resume='native-new-episodes after restoring clocks and RNG'))
 
     start = completed
+    def total_controls():
+        return prior_controls + (completed-start)*args.num_envs*agent.num_steps_per_env
     original_update = runner.alg.update
     def checked_update():
         nonlocal completed
@@ -285,7 +333,7 @@ def main():
         if completed % 10 == 0 or completed <= start+5:
             write_json(output/'status.json', dict(status='RUNNING',pid=os.getpid(),
                 completed_updates=completed, allocation_end=start+args.iterations,
-                controls=completed*args.num_envs*agent.num_steps_per_env,
+                controls=total_controls(),
                 common_step_counter=env.common_step_counter,
                 updated_unix=time.time(), losses=result, command_exposure=exposure.report(),
                 recovery_stage=recovery._sc0090_recovery_state(env).stage))
@@ -297,6 +345,7 @@ def main():
     def save(path, infos=None):
         state = recovery._sc0090_recovery_state(env)
         infos = {**(infos or {}),'v2':dict(completed_updates=completed,
+            total_environment_steps=total_controls(),
             recovery=state.state_dict(),eval_history=getattr(env,'_sc0090_eval_history',{}),
             source_sha256=hashes, physics_resume='native-new-episodes',
             head_precision_recipe=head_recipe,position_robustness_recipe=position_recipe,
@@ -347,6 +396,7 @@ def main():
             save(str(last_resume_path))
         write_json(output/'status.json', dict(status='STOPPED' if stopping else 'ALLOCATION_COMPLETE',
             pid=os.getpid(),completed_updates=completed,updated_unix=time.time(),
+            controls=total_controls(),
             goal_complete=False, resume_checkpoint=str(last_resume_path),
             command_exposure=exposure.report(),
             exposure_segment_start_update=start,

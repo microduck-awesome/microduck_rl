@@ -12,10 +12,10 @@ HOME 是 assembly 选定的第二组站立姿态，不是把 CAD 关节全设为
 
 `scripts/evaluate_v3_recovery_clearance.py` 在原评估上额外按 200 Hz 记录全部 14 个策略关节距模型限位、连续靠近限位的时间及头壳/嘴、其他身体、双足与地面和自碰接触。末 0.5 秒还逐关节报告相对于 V3 HOME 的平均绝对误差、带符号误差和最大误差，包含 14 个策略关节及独立嘴；5°内样本数仅作描述，不代表自定的资格门槛。恢复期间接触可用于支撑，接触本身不自动判失败；报告包含末 0.5 秒，用于区分恢复过程和最终站立。模型限位不等于实测机械止挡。
 
-两种 seed、每类各 1 条、8 秒的 CPU 端到端验证已完成，确认真实环境使用上述 15 关节 HOME、七类分组、14 关节限位、V3 头部碰撞体，以及每类末段 15 关节相对 HOME 的误差记录。含 HOME 误差的报告在 `/home/l40-vm01/data2/experiments/v3-rise6804-20261101/diagnostic-fixture/cpu-home-e2e/`。其输入是一次性 64×5 smoke 临时模型，不能作为正式策略成绩。
+此前 CPU 端到端检查只核对了评测配置 HOME，没有核对实际 reset 后的 qpos；轨迹发现非坐姿初态实际为全零，原因是评测过滤掉 `reset_robot_joints`。此外旧 guard 将独立嘴的 0 HOME 推至 0.002 rad，训练也受此嘴初态偏差影响。此前端到端及 500 次评测的初态 HOME 结论作废。现已恢复关节重置、使 guard 只作用于 14 个策略关节，并增加非坐姿的 15 关节真实初态断言；修复后两种子、每类 1 条的 CPU 端到端测试，非坐姿初态 15 关节与 HOME 最大误差为 0。证据在 `/home/l40-vm01/data2/experiments/v3-rise6804-20261101/diagnostic-fixture/cpu-home-reset-fixed/`。正式训练配置原本保留关节重置，但 500 次的晋级判定需使用评测前检查点重新评估。一次性 smoke 临时模型只用于验证评测路径，不能作为正式策略成绩。
 
 ## 头部与回 HOME
 
 `scripts/evaluate_v2_head.py` 保留历史文件名，但从本分支 V3 环境读取模型与 HOME：头四轴物理位置减各自 `default_joint_pos` 后再与相对 HOME 的命令比较，阶段范围也已按各关节的 V3 HOME 和限位计算。协议为 2 秒零命令、2 秒阶跃、2 秒回零，记录关节误差、身体稳定与 200 Hz 相机角运动；该相机位姿仍是 CAD 占位，并非实测相机标定。报告记录模型 SHA、质量、15 关节 HOME 和初始化根高。
 
-头部评测已以一次性 smoke 模型通过 CPU 端到端检查：2 seeds、每个 seed 三个诊断指令（零、正颈俯仰、负头俯仰），核对 15 关节 HOME、根高、阶跃与回零时间、头部奖励计算及 200 Hz 相机轨迹，见 `/home/l40-vm01/data2/experiments/v3-rise6804-20261101/diagnostic-fixture/head-cpu-e2e/fixture-audit.json`。这只验证评测路径，正式完整命令网格及训练后策略评估仍未进行。`repro/compare.py` 是父分支的 V2 严格复现比较，要求 V2 相同头命令范围，不可直接拿来宣称 V3 与 V2 同模型或同 HOME；如需跨版本比较，应标明不同的模型、HOME、命令范围并仅比较共同协议。
+此前头部 CPU 检查也仅核对配置 HOME，实际初态结论作废。恢复关节重置并修正嘴的限位保护后，已重新通过两种 seed、每 seed 三个诊断指令的 CPU 检查；实际初始 15 关节角与 V3 HOME 的误差均小于 1e-6 rad，同时核对阶跃/回零时序与头部奖励。证据在 `/home/l40-vm01/data2/experiments/v3-rise6804-20261101/diagnostic-fixture/head-cpu-e2e-fixed2/`，只验证评测路径。正式完整命令网格及训练后策略评估仍未进行。`repro/compare.py` 是父分支的 V2 严格复现比较，要求 V2 相同头命令范围，不可直接拿来宣称 V3 与 V2 同模型或同 HOME；如需跨版本比较，应标明不同的模型、HOME、命令范围并仅比较共同协议。

@@ -60,6 +60,11 @@ def main():
         position_recipe=configure_position_robustness_learning(cfg,args.position_robustness_stage)
     cfg.scene.num_envs = args.num_envs
     cfg.seed = 42
+    repo_root=Path(__file__).resolve().parents[1]
+    numerical_files=sorted([*repo_root.glob('src/**/*.py'),*repo_root.glob('src/**/*.cpp'),
+                            *(p for p in (repo_root/'src/mjlab_microduck/actuator/params').rglob('*') if p.is_file()),
+                            *(p for p in (repo_root/'src/mjlab_microduck/custom_v2/training-assets').rglob('*') if p.is_file())])
+    numerical_hashes={str(p.relative_to(repo_root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in numerical_files}
     agent = load_rl_cfg(args.task)
     agent.logger = "tensorboard"
     agent.upload_model = False
@@ -125,6 +130,8 @@ def main():
             status="PASS",head_precision_recipe=head_recipe,position_robustness_recipe=position_recipe,
             task=args.task,
             device=args.device,
+            cuda_visible_devices=os.environ.get('CUDA_VISIBLE_DEVICES'),
+            numerical_source_sha256=numerical_hashes,
             envs=args.num_envs,
             iterations=args.iterations,
             steps_per_env=agent.num_steps_per_env,
@@ -217,6 +224,8 @@ def main():
             }
         if args.force_timeouts:
             assert runner.alg.terminal_bootstrap_samples >= args.num_envs//2
+        assert all(hashlib.sha256((repo_root/name).read_bytes()).hexdigest()==digest
+                   for name,digest in numerical_hashes.items()), 'Numerical source changed during preflight'
         destination = args.report or output / "report.json"
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_text(json.dumps(report, indent=2), encoding="utf-8")

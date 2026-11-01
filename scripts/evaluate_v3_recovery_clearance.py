@@ -113,8 +113,21 @@ def main():
         terminal = {name:torch.zeros(n,device=device,dtype=torch.int32) for name in counts}
         contact_depth = {name:torch.zeros(n,device=device) for name in counts}
         num_substeps = 0
+        original_reset=env.reset
         original_substep = env.metrics_manager.compute_substep
         original_close = env.close
+        initial_home_error=None
+
+        def checked_reset(*args,**kwargs):
+            nonlocal initial_home_error
+            result=original_reset(*args,**kwargs)
+            state=recovery._sc0090_recovery_state(env)
+            non_sit=state.bucket!=1
+            delta=(robot.data.joint_pos[:,home_ids]-robot.data.default_joint_pos[:,home_ids]).abs()
+            assert bool(non_sit.any())
+            initial_home_error=float(delta[non_sit].max())
+            assert initial_home_error < 1e-6, f'Non-sitting reset not at V3 HOME: {initial_home_error}'
+            return result
 
         def capture():
             nonlocal num_substeps,smallest,streak,longest,violation,home_abs_sum,home_signed_sum,home_abs_max
@@ -173,6 +186,7 @@ def main():
                     'joint_threshold_deg':5.,'joint_results':joint_results,
                     'home_joint_positions_rad':HOME_JOINT_POSITIONS,
                     'home_reference':'assembly V3 default joint positions, including independent mouth',
+                    'non_sitting_initial_home_max_abs_error_rad':initial_home_error,
                     'final_half_second_home_results':home_results,
                     'contact_substeps':{name:summarize_by_bucket(value,group_size) for name,value in counts.items()},
                     'final_half_second_contact_substeps':{name:summarize_by_bucket(value,group_size) for name,value in terminal.items()},
@@ -184,6 +198,7 @@ def main():
                 (args.output/f'clearance-{cfg.seed}.json').write_text(json.dumps(report,indent=2,allow_nan=False)+'\n')
             finally:
                 original_close()
+        env.reset = checked_reset
         env.metrics_manager.compute_substep = capture
         env.close = close
         return env

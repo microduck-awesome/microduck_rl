@@ -162,10 +162,15 @@ def guard_reset_joints(env, env_ids):
     asset = env.scene['robot']
     if env_ids is None:
         env_ids = torch.arange(env.num_envs, device=env.device)
-    q = asset.data.joint_pos[env_ids].clone()
-    lim = asset.data.joint_pos_limits[env_ids]
+    ids,names=asset.find_joints(v2.POLICY_JOINTS,preserve_order=True)
+    if tuple(names)!=v2.POLICY_JOINTS:
+        raise ValueError('Reset policy joint order mismatch')
+    # The independent mouth has HOME exactly at its lower stop. It is reset
+    # and held separately, so a policy-joint safety margin must not move it.
+    q = asset.data.joint_pos[env_ids][:,ids].clone()
+    lim = asset.data.joint_pos_limits[env_ids][:,ids,:]
     q = q.clamp(lim[..., 0] + .002, lim[..., 1] - .002)
-    asset.write_joint_state_to_sim(q, torch.zeros_like(q), env_ids=env_ids)
+    asset.write_joint_state_to_sim(q, torch.zeros_like(q), joint_ids=ids, env_ids=env_ids)
 
 
 def guard_ground_clearance(env, env_ids):

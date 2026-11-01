@@ -36,6 +36,9 @@ def main():
         assert init['joint_pos']==HOME_JOINT_POSITIONS
         assert abs(init['pos'][2]-HOME_HEIGHT)<1e-12
         trace=np.load(args.output/f'traces-{seed}.npz')
+        names=trace['initial_all_joint_names'].tolist()
+        expected_home=np.array([HOME_JOINT_POSITIONS[n] for n in names],dtype=np.float32)
+        np.testing.assert_allclose(trace['initial_all_joint_rad'],np.broadcast_to(expected_home,(len(cases),15)),atol=1e-6,rtol=0)
         assert trace['physical_head_rad'].shape==(300,3,4)
         assert trace['camera_quat_w'].shape==(1201,3,4)
         assert np.isfinite(trace['physical_head_rad']).all() and np.isfinite(trace['camera_quat_w']).all()

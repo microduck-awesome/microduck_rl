@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "protocol": "CPU compile of registered paired-error standup task; compare named robot entity to raw V3 assembly model before per-environment randomization",
+  "model_sha256": "45a9ce13c521ac07080381e9d5597b040e1988b98fb9f89c981008a7dac778dd",
+  "entity_counts": {
+    "body": 16,
+    "joint": 16,
+    "geom": 78,
+    "site": 9,
+    "mesh": 74
+  },
+  "source_total_mass_kg": 0.6419063756849083,
+  "compiled_robot_total_mass_kg": 0.6419063756849083,
+  "physics_timestep_s": 0.005,
+  "control_period_s": 0.02,
+  "mismatches": [],
+  "limitation": "Named body/joint/geom/site fields and mesh bindings, vertices and faces only; no claim about real robot, randomization or complete dynamic parity."
+}

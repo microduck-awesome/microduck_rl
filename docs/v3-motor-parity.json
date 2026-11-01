@@ -1,0 +1,185 @@
+{
+  "status": "PASS",
+  "v2_branch_base": "67120c2fc9c5f4be8323ce04588ab18c9a643e45",
+  "v3_training_commit": "f4024078334e69fd4142e9d85b081c80136270ef",
+  "identical_dependencies": {
+    "torch": "2.9.1",
+    "mjlab": "1.3.0",
+    "mujoco": "3.13.0",
+    "mujoco-warp": "3.8.1",
+    "warp-lang": "1.12.0",
+    "better-actuator-models": "1.0.1",
+    "rsl-rl-lib": "5.0.1"
+  },
+  "identical_actuator_cfg_excluding_file_path": [
+    {
+      "target_names_expr": [
+        "^(left_hip_yaw|left_hip_roll|left_hip_pitch|left_knee|left_ankle|neck_pitch|head_pitch|head_yaw|head_roll|right_hip_yaw|right_hip_roll|right_hip_pitch|right_knee|right_ankle)$"
+      ],
+      "transmission_type": "joint",
+      "armature": null,
+      "frictionloss": null,
+      "viscous_damping": null,
+      "delay_min_lag": 0,
+      "delay_max_lag": 0,
+      "delay_hold_prob": 0.0,
+      "delay_update_period": 0,
+      "delay_per_env_phase": true,
+      "motor_name": null,
+      "model": null,
+      "vin": 11.1,
+      "kp_fw": 15.0,
+      "vin_range": null,
+      "vin_drop_gain_range": null,
+      "vin_min": null,
+      "stiff_frictionloss": true,
+      "kd_fw": 30.0,
+      "graph_compute": true,
+      "fast_friction_force": true
+    },
+    {
+      "target_names_expr": [
+        "^mouth$"
+      ],
+      "transmission_type": "joint",
+      "armature": null,
+      "frictionloss": null,
+      "viscous_damping": null,
+      "delay_min_lag": 0,
+      "delay_max_lag": 0,
+      "delay_hold_prob": 0.0,
+      "delay_update_period": 0,
+      "delay_per_env_phase": true,
+      "motor_name": null,
+      "model": null,
+      "vin": 11.1,
+      "kp_fw": 15.0,
+      "vin_range": null,
+      "vin_drop_gain_range": null,
+      "vin_min": null,
+      "stiff_frictionloss": true,
+      "kd_fw": 30.0,
+      "graph_compute": true,
+      "fast_friction_force": true
+    }
+  ],
+  "unchanged_actuator_directory": true,
+  "files": {
+    "src/mjlab_microduck/actuator/sc0090_v5.py": {
+      "v2_source_sha256": "c42a7e54aac610c9ef1f142b32706821e54ea42163480393842632f35924e451",
+      "v3_commit_sha256": "c42a7e54aac610c9ef1f142b32706821e54ea42163480393842632f35924e451",
+      "v2_run_manifest_sha256": "c42a7e54aac610c9ef1f142b32706821e54ea42163480393842632f35924e451",
+      "v3_run_manifest_sha256": "c42a7e54aac610c9ef1f142b32706821e54ea42163480393842632f35924e451"
+    },
+    "src/mjlab_microduck/custom_v2/paired_randomization.py": {
+      "v2_source_sha256": "65a96253b1530e03659f9c31cb933bff4ccba6e1c82a9013c80ae96436a3f45d",
+      "v3_commit_sha256": "65a96253b1530e03659f9c31cb933bff4ccba6e1c82a9013c80ae96436a3f45d",
+      "v2_run_manifest_sha256": "65a96253b1530e03659f9c31cb933bff4ccba6e1c82a9013c80ae96436a3f45d",
+      "v3_run_manifest_sha256": "65a96253b1530e03659f9c31cb933bff4ccba6e1c82a9013c80ae96436a3f45d"
+    },
+    "src/mjlab_microduck/custom_v2/error_proxy.py": {
+      "v2_source_sha256": "5b1449037b5ee33d74e350cd5e44f02592618152f24166ce054f1e44d2670874",
+      "v3_commit_sha256": "5b1449037b5ee33d74e350cd5e44f02592618152f24166ce054f1e44d2670874",
+      "v2_run_manifest_sha256": "5b1449037b5ee33d74e350cd5e44f02592618152f24166ce054f1e44d2670874",
+      "v3_run_manifest_sha256": "5b1449037b5ee33d74e350cd5e44f02592618152f24166ce054f1e44d2670874"
+    },
+    "src/mjlab_microduck/actuator/params/sc0090_v5_m6.json": {
+      "v2_source_sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+      "v3_commit_sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+      "v2_run_manifest_sha256": null,
+      "v3_run_manifest_sha256": null
+    },
+    "src/mjlab_microduck/custom_v2/training-assets/repaired-paired-errors-v2/error-blocks.npz": {
+      "v2_source_sha256": "d2eaedd5e76d315765f9ceb8f3cdf93baa628d3944b0660331c693822562a0af",
+      "v3_commit_sha256": "d2eaedd5e76d315765f9ceb8f3cdf93baa628d3944b0660331c693822562a0af",
+      "v2_run_manifest_sha256": null,
+      "v3_run_manifest_sha256": "d2eaedd5e76d315765f9ceb8f3cdf93baa628d3944b0660331c693822562a0af"
+    }
+  },
+  "v2_model_xml_sha256": "8ae0d89041950d565bbcd6272ab87317f46132ff1eef99b922782ecbe2b95308",
+  "matched_15_joint_armature_damping_frictionloss": {
+    "left_hip_yaw": {
+      "dof_armature": 1e-05,
+      "dof_damping": 0.0,
+      "dof_frictionloss": 0.0
+    },
+    "left_hip_roll": {
+      "dof_armature": 1e-05,
+      "dof_damping": 0.0,
+      "dof_frictionloss": 0.0
+    },
+    "left_hip_pitch": {
+      "dof_armature": 1e-05,
+      "dof_damping": 0.0,
+      "dof_frictionloss": 0.0
+    },
+    "left_knee": {
+      "dof_armature": 1e-05,
+      "dof_damping": 0.0,
+      "dof_frictionloss": 0.0
+    },
+    "left_ankle": {
+      "dof_armature": 1e-05,
+      "dof_damping": 0.0,
+      "dof_frictionloss": 0.0
+    },
+    "neck_pitch": {
+      "dof_armature": 1e-05,
+      "dof_damping": 0.0,
+      "dof_frictionloss": 0.0
+    },
+    "head_pitch": {
+      "dof_armature": 1e-05,
+      "dof_damping": 0.0,
+      "dof_frictionloss": 0.0
+    },
+    "head_yaw": {
+      "dof_armature": 1e-05,
+      "dof_damping": 0.0,
+      "dof_frictionloss": 0.0
+    },
+    "head_roll": {
+      "dof_armature": 1e-05,
+      "dof_damping": 0.0,
+      "dof_frictionloss": 0.0
+    },
+    "mouth": {
+      "dof_armature": 1e-05,
+      "dof_damping": 0.0,
+      "dof_frictionloss": 0.0
+    },
+    "right_hip_yaw": {
+      "dof_armature": 1e-05,
+      "dof_damping": 0.0,
+      "dof_frictionloss": 0.0
+    },
+    "right_hip_roll": {
+      "dof_armature": 1e-05,
+      "dof_damping": 0.0,
+      "dof_frictionloss": 0.0
+    },
+    "right_hip_pitch": {
+      "dof_armature": 1e-05,
+      "dof_damping": 0.0,
+      "dof_frictionloss": 0.0
+    },
+    "right_knee": {
+      "dof_armature": 1e-05,
+      "dof_damping": 0.0,
+      "dof_frictionloss": 0.0
+    },
+    "right_ankle": {
+      "dof_armature": 1e-05,
+      "dof_damping": 0.0,
+      "dof_frictionloss": 0.0
+    }
+  },
+  "paired_voltage_v": [
+    10.2,
+    11.1,
+    12.4
+  ],
+  "supplement": "/home/l40-vm01/data2/experiments/v3-rise6804-20261101/motor-provenance/sc0090_v5_m6.json",
+  "supplement_sha256": "7c35a732575bfad135d5bf7c7eeb44f268ffd96862064f04e9e7a5105bbf6fb4",
+  "provenance_note": "First V3 run source.tar.gz does not contain the motor JSON; frozen source commit, loader hash and supplemental bytes establish identity. This audit does not assert identical robot dynamics across different structures."
+}

@@ -14,7 +14,7 @@ import torch
 import warp as wp
 import train_v2_standup as evaluator
 from mjlab_microduck.custom_v2 import recovery
-from mjlab_microduck.custom_v2.microduck_v2 import POLICY_JOINTS
+from mjlab_microduck.custom_v2.microduck_v2 import POLICY_JOINTS, HOME_JOINT_POSITIONS
 
 
 def summarize_by_bucket(values, group_size):
@@ -38,6 +38,12 @@ def update_joint_metrics(q, limits, smallest, streak, longest, violation, thresh
     longest = torch.maximum(longest,streak)
     violation = violation + (clearance < 0).to(torch.int32)
     return smallest,streak,longest,violation
+
+
+def update_home_metrics(q, home, absolute_sum, signed_sum, absolute_max):
+    """Accumulate physical joint error relative to the model's HOME."""
+    error=q-home
+    return absolute_sum+error.abs(), signed_sum+error, torch.maximum(absolute_max,error.abs())
 
 
 def reduce_contacts(world,pair,dist,count,n,terrain,head,feet):
@@ -78,6 +84,11 @@ def main():
         robot = env.scene['robot']
         ids,names = robot.find_joints(POLICY_JOINTS,preserve_order=True)
         assert tuple(names) == POLICY_JOINTS
+        home_names=POLICY_JOINTS+('mouth',)
+        home_ids,found=robot.find_joints(home_names,preserve_order=True)
+        assert tuple(found)==home_names
+        expected_home=torch.tensor([HOME_JOINT_POSITIONS[name] for name in home_names],device=device)
+        torch.testing.assert_close(robot.data.default_joint_pos[0,home_ids],expected_home,rtol=0,atol=1e-7)
         model = env.sim.mj_model
         terrain = [i for i in range(model.ngeom) if model.geom(i).name == 'terrain']
         assert len(terrain) == 1
@@ -94,6 +105,9 @@ def main():
         streak = torch.zeros((n,14),device=device,dtype=torch.int32)
         longest = torch.zeros_like(streak)
         violation = torch.zeros_like(streak)
+        home_abs_sum=torch.zeros((n,15),device=device)
+        home_signed_sum=torch.zeros((n,15),device=device)
+        home_abs_max=torch.zeros((n,15),device=device)
         counts = {name:torch.zeros(n,device=device,dtype=torch.int32)
                   for name in ('head_ground','other_body_ground','feet_ground','self')}
         terminal = {name:torch.zeros(n,device=device,dtype=torch.int32) for name in counts}
@@ -103,12 +117,16 @@ def main():
         original_close = env.close
 
         def capture():
-            nonlocal num_substeps,smallest,streak,longest,violation
+            nonlocal num_substeps,smallest,streak,longest,violation,home_abs_sum,home_signed_sum,home_abs_max
             original_substep()
             q = robot.data.joint_pos[:,ids]
             limits = robot.data.joint_pos_limits[:,ids,:]
             smallest,streak,longest,violation = update_joint_metrics(
                 q,limits,smallest,streak,longest,violation,threshold)
+            if num_substeps >= 1500:
+                home_abs_sum,home_signed_sum,home_abs_max=update_home_metrics(
+                    robot.data.joint_pos[:,home_ids],robot.data.default_joint_pos[:,home_ids],
+                    home_abs_sum,home_signed_sum,home_abs_max)
             c = env.sim.wp_data.contact
             world = wp.to_torch(c.worldid).long()
             pair = wp.to_torch(c.geom).long()
@@ -129,6 +147,7 @@ def main():
                         json.dumps({'seed':cfg.seed,'recorded_substeps':num_substeps,'expected_substeps':1600})+'\n')
                     return
                 joint_results = {}
+                home_results = {}
                 for group,bucket in enumerate(recovery.SC0090_RECOVERY_BUCKETS):
                     sl = slice(group*group_size,(group+1)*group_size)
                     joint_results[bucket] = {}
@@ -140,10 +159,21 @@ def main():
                             'samples_within_5deg_over_1s':int((longest[sl,index]>200).sum()),
                             'max_continuous_within_5deg_s':float(longest[sl,index].max())*.005,
                         }
+                    home_results[bucket] = {}
+                    for index,name in enumerate(home_names):
+                        home_results[bucket][name] = {
+                            'final_half_second_mean_abs_error_deg':float(home_abs_sum[sl,index].mean())/100*180/math.pi,
+                            'final_half_second_mean_signed_error_deg':float(home_signed_sum[sl,index].mean())/100*180/math.pi,
+                            'final_half_second_max_abs_error_deg':float(home_abs_max[sl,index].max())*180/math.pi,
+                            'samples_with_all_final_errors_within_5deg':int((home_abs_max[sl,index]<=math.radians(5)).sum()),
+                        }
                 report = {
                     'seed':cfg.seed,'samples_per_bucket':group_size,'physics_dt_s':env.physics_dt,
                     'duration_s':num_substeps*env.physics_dt,
                     'joint_threshold_deg':5.,'joint_results':joint_results,
+                    'home_joint_positions_rad':HOME_JOINT_POSITIONS,
+                    'home_reference':'assembly V3 default joint positions, including independent mouth',
+                    'final_half_second_home_results':home_results,
                     'contact_substeps':{name:summarize_by_bucket(value,group_size) for name,value in counts.items()},
                     'final_half_second_contact_substeps':{name:summarize_by_bucket(value,group_size) for name,value in terminal.items()},
                     'max_contact_penetration_m':{name:summarize_by_bucket(value,group_size) for name,value in contact_depth.items()},

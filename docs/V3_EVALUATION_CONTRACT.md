@@ -10,9 +10,9 @@ HOME 是 assembly 选定的第二组站立姿态，不是把 CAD 关节全设为
 
 训练器的评估和 `scripts/evaluate3762_recovery.py` 使用同一 V3 环境、HOME、重置几何保护和接触模型，保留 standing、sitting、prone、frontier、left_side、right_side、supine 七类。正式完整协议为 2 seeds × 每类每 seed 128 条 × 8 秒，无自动重置；当前课程阶段评估使用该阶段 frontier，最终对照另固定 stage 5。原评价是末段连续站稳，不单凭总奖励或一个姿态通过判定全部行为。
 
-`scripts/evaluate_v3_recovery_clearance.py` 在原评估上额外按 200 Hz 记录全部 14 个策略关节距模型限位、连续靠近限位的时间及头壳/嘴、其他身体、双足与地面和自碰接触。恢复期间接触可用于支撑，接触本身不自动判失败；报告包含末 0.5 秒，用于区分恢复过程和最终站立。模型限位不等于实测机械止挡。
+`scripts/evaluate_v3_recovery_clearance.py` 在原评估上额外按 200 Hz 记录全部 14 个策略关节距模型限位、连续靠近限位的时间及头壳/嘴、其他身体、双足与地面和自碰接触。末 0.5 秒还逐关节报告相对于 V3 HOME 的平均绝对误差、带符号误差和最大误差，包含 14 个策略关节及独立嘴；5°内样本数仅作描述，不代表自定的资格门槛。恢复期间接触可用于支撑，接触本身不自动判失败；报告包含末 0.5 秒，用于区分恢复过程和最终站立。模型限位不等于实测机械止挡。
 
-两种 seed、每类各 1 条、8 秒的 CPU 端到端验证已完成，确认真实环境使用上述 15 关节 HOME、七类分组、14 关节和 V3 头部碰撞体，报告在 `/home/l40-vm01/data2/experiments/v3-rise6804-20261101/diagnostic-fixture/cpu-end-to-end/`。其输入是一次性 64×5 smoke 临时模型，不能作为正式策略成绩。
+两种 seed、每类各 1 条、8 秒的 CPU 端到端验证已完成，确认真实环境使用上述 15 关节 HOME、七类分组、14 关节限位、V3 头部碰撞体，以及每类末段 15 关节相对 HOME 的误差记录。含 HOME 误差的报告在 `/home/l40-vm01/data2/experiments/v3-rise6804-20261101/diagnostic-fixture/cpu-home-e2e/`。其输入是一次性 64×5 smoke 临时模型，不能作为正式策略成绩。
 
 ## 头部与回 HOME
 

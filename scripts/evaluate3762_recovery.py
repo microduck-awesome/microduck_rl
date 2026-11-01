@@ -12,6 +12,7 @@ import mjlab.tasks
 from mjlab.tasks.registry import load_rl_cfg
 from rsl_rl.utils import resolve_callable,resolve_obs_groups
 from train_v2_standup import evaluate
+from mjlab_microduck.custom_v2.microduck_v2 import HOME_HEIGHT, HOME_JOINT_POSITIONS, NOMINAL_MASS_KG
 
 
 def main():
@@ -52,6 +53,8 @@ def main():
         torch.testing.assert_close(policy.state_dict()[name],value,rtol=0,atol=0)
     report=dict(schema=1,task=task,evaluation_stage=args.stage,
         robot_xml_sha256=hashlib.sha256(Path('src/mjlab_microduck/custom_v2/assets/robot.xml').read_bytes()).hexdigest(),
+        robot_mass_kg=NOMINAL_MASS_KG,home_height_m=HOME_HEIGHT,home_joint_positions_rad=HOME_JOINT_POSITIONS,
+        home_semantics='Assembly V3 model HOME; not a verified physical servo calibration',
         checkpoint=str(args.checkpoint.resolve()),
         checkpoint_sha256=hashlib.sha256(args.checkpoint.read_bytes()).hexdigest(),
         completed_updates=state['infos']['v2']['completed_updates'],

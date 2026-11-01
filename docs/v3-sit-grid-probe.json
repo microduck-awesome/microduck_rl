@@ -1,0 +1,928 @@
+{
+  "protocol": "one exact symmetric pose per grid candidate; no pushes/DR, 11.1 V SC0090 V5, 3 s fixed target, starts 2 mm above floor; self-intersecting candidates excluded",
+  "device": "physical GPU 0",
+  "not_qualification": "noise, other voltages and recovery untested",
+  "count": 92,
+  "candidates": [
+    {
+      "hip": -0.9,
+      "knee": -1.0,
+      "ankle": 0.4,
+      "spawn_z": 0.08278531412119797,
+      "initial_self_m": 0.0,
+      "final_z": 0.08021647483110428,
+      "final_tilt_deg": 0.3951527178287506,
+      "max_tilt_deg": 0.47022220492362976
+    },
+    {
+      "hip": -0.9,
+      "knee": -0.8,
+      "ankle": -0.4,
+      "spawn_z": 0.08277035611304265,
+      "initial_self_m": 0.0,
+      "final_z": 0.08024892210960388,
+      "final_tilt_deg": 1.2056094408035278,
+      "max_tilt_deg": 1.2314645051956177
+    },
+    {
+      "hip": 0.3,
+      "knee": -0.6,
+      "ankle": 0.4,
+      "spawn_z": 0.10845614031584044,
+      "initial_self_m": 0.0,
+      "final_z": 0.10273008048534393,
+      "final_tilt_deg": 2.2776122093200684,
+      "max_tilt_deg": 2.6317288875579834
+    },
+    {
+      "hip": 0.0,
+      "knee": -0.8,
+      "ankle": 0.8,
+      "spawn_z": 0.1066426395998472,
+      "initial_self_m": 0.0,
+      "final_z": 0.10212501138448715,
+      "final_tilt_deg": 3.8639652729034424,
+      "max_tilt_deg": 3.8639652729034424
+    },
+    {
+      "hip": 0.3,
+      "knee": -1.0,
+      "ankle": 0.8,
+      "spawn_z": 0.10048447305590813,
+      "initial_self_m": 0.0,
+      "final_z": 0.09340909868478775,
+      "final_tilt_deg": 1.0281246900558472,
+      "max_tilt_deg": 5.14380407333374
+    },
+    {
+      "hip": -0.9,
+      "knee": -1.0,
+      "ankle": 0.0,
+      "spawn_z": 0.08278531412119797,
+      "initial_self_m": 0.0,
+      "final_z": 0.07968130707740784,
+      "final_tilt_deg": 7.8733744621276855,
+      "max_tilt_deg": 7.8733744621276855
+    },
+    {
+      "hip": -0.9,
+      "knee": -1.2,
+      "ankle": 0.8,
+      "spawn_z": 0.08276465277962272,
+      "initial_self_m": 0.0,
+      "final_z": 0.0794546902179718,
+      "final_tilt_deg": 9.086423873901367,
+      "max_tilt_deg": 9.086423873901367
+    },
+    {
+      "hip": 0.3,
+      "knee": -1.2,
+      "ankle": 0.8,
+      "spawn_z": 0.0931009116959848,
+      "initial_self_m": 0.0,
+      "final_z": 0.08525453507900238,
+      "final_tilt_deg": 11.720623016357422,
+      "max_tilt_deg": 11.720623016357422
+    },
+    {
+      "hip": -0.9,
+      "knee": -1.2,
+      "ankle": 0.4,
+      "spawn_z": 0.08276465277962272,
+      "initial_self_m": 0.0,
+      "final_z": 0.07772866636514664,
+      "final_tilt_deg": 16.337188720703125,
+      "max_tilt_deg": 16.337188720703125
+    },
+    {
+      "hip": 0.3,
+      "knee": -0.8,
+      "ankle": -0.8,
+      "spawn_z": 0.10356160679571912,
+      "initial_self_m": 0.0,
+      "final_z": 0.039926677942276,
+      "final_tilt_deg": 71.4006576538086,
+      "max_tilt_deg": 74.12532043457031
+    },
+    {
+      "hip": 0.3,
+      "knee": -0.6,
+      "ankle": 0.8,
+      "spawn_z": 0.11658139572671965,
+      "initial_self_m": 0.0,
+      "final_z": 0.03991508111357689,
+      "final_tilt_deg": 71.50751495361328,
+      "max_tilt_deg": 74.50068664550781
+    },
+    {
+      "hip": 0.3,
+      "knee": -0.6,
+      "ankle": -0.8,
+      "spawn_z": 0.10866570714343309,
+      "initial_self_m": 0.0,
+      "final_z": 0.0403011254966259,
+      "final_tilt_deg": 70.63697052001953,
+      "max_tilt_deg": 74.6432113647461
+    },
+    {
+      "hip": 0.3,
+      "knee": -0.6,
+      "ankle": -1.2,
+      "spawn_z": 0.10435853042253718,
+      "initial_self_m": 0.0,
+      "final_z": 0.0403410829603672,
+      "final_tilt_deg": 70.4601058959961,
+      "max_tilt_deg": 74.67316436767578
+    },
+    {
+      "hip": 0.3,
+      "knee": -0.6,
+      "ankle": 0.0,
+      "spawn_z": 0.10882333454804716,
+      "initial_self_m": 0.0,
+      "final_z": 0.039285991340875626,
+      "final_tilt_deg": 73.4498291015625,
+      "max_tilt_deg": 76.01822662353516
+    },
+    {
+      "hip": 0.3,
+      "knee": -0.8,
+      "ankle": -0.4,
+      "spawn_z": 0.10655529222129304,
+      "initial_self_m": 0.0,
+      "final_z": 0.03977876529097557,
+      "final_tilt_deg": 72.3971939086914,
+      "max_tilt_deg": 76.32722473144531
+    },
+    {
+      "hip": 0.3,
+      "knee": -0.8,
+      "ankle": 0.4,
+      "spawn_z": 0.10381266611298426,
+      "initial_self_m": 0.0,
+      "final_z": 0.04125319793820381,
+      "final_tilt_deg": 74.25836944580078,
+      "max_tilt_deg": 76.66825866699219
+    },
+    {
+      "hip": 0.3,
+      "knee": -0.6,
+      "ankle": -0.4,
+      "spawn_z": 0.11023785625627729,
+      "initial_self_m": 0.0,
+      "final_z": 0.03985472396016121,
+      "final_tilt_deg": 71.72096252441406,
+      "max_tilt_deg": 76.8245849609375
+    },
+    {
+      "hip": 0.3,
+      "knee": -0.8,
+      "ankle": 0.0,
+      "spawn_z": 0.10665399260957395,
+      "initial_self_m": 0.0,
+      "final_z": 0.04219391942024231,
+      "final_tilt_deg": 74.26964569091797,
+      "max_tilt_deg": 77.45510864257812
+    },
+    {
+      "hip": 0.3,
+      "knee": -1.0,
+      "ankle": 0.0,
+      "spawn_z": 0.10226618899634497,
+      "initial_self_m": 0.0,
+      "final_z": 0.04520292952656746,
+      "final_tilt_deg": 75.17922973632812,
+      "max_tilt_deg": 77.97655487060547
+    },
+    {
+      "hip": 0.3,
+      "knee": -1.2,
+      "ankle": 0.4,
+      "spawn_z": 0.0959422381925745,
+      "initial_self_m": 0.0,
+      "final_z": 0.04883265495300293,
+      "final_tilt_deg": 77.3348159790039,
+      "max_tilt_deg": 79.12429809570312
+    },
+    {
+      "hip": 0.3,
+      "knee": -1.0,
+      "ankle": 0.4,
+      "spawn_z": 0.10085166728811484,
+      "initial_self_m": 0.0,
+      "final_z": 0.045604608952999115,
+      "final_tilt_deg": 76.36430358886719,
+      "max_tilt_deg": 79.46049499511719
+    },
+    {
+      "hip": 0.0,
+      "knee": -0.6,
+      "ankle": 0.4,
+      "spawn_z": 0.11410965986788486,
+      "initial_self_m": 0.0,
+      "final_z": 0.04715946689248085,
+      "final_tilt_deg": 77.58019256591797,
+      "max_tilt_deg": 80.00033569335938
+    },
+    {
+      "hip": 0.0,
+      "knee": -0.6,
+      "ankle": 0.0,
+      "spawn_z": 0.11625033159852832,
+      "initial_self_m": 0.0,
+      "final_z": 0.04804423078894615,
+      "final_tilt_deg": 77.20669555664062,
+      "max_tilt_deg": 80.36011505126953
+    },
+    {
+      "hip": 0.3,
+      "knee": -1.4,
+      "ankle": 0.8,
+      "spawn_z": 0.0878268695597582,
+      "initial_self_m": 0.0,
+      "final_z": 0.05153805390000343,
+      "final_tilt_deg": 78.58734130859375,
+      "max_tilt_deg": 80.92906951904297
+    },
+    {
+      "hip": 0.0,
+      "knee": -0.8,
+      "ankle": 0.4,
+      "spawn_z": 0.11015676621384145,
+      "initial_self_m": 0.0,
+      "final_z": 0.05150812864303589,
+      "final_tilt_deg": 79.47406768798828,
+      "max_tilt_deg": 82.53803253173828
+    },
+    {
+      "hip": 0.0,
+      "knee": -1.0,
+      "ankle": 0.8,
+      "spawn_z": 0.10218179414949181,
+      "initial_self_m": 0.0,
+      "final_z": 0.05354953929781914,
+      "final_tilt_deg": 80.84046936035156,
+      "max_tilt_deg": 83.80657958984375
+    },
+    {
+      "hip": 0.0,
+      "knee": -1.0,
+      "ankle": -0.4,
+      "spawn_z": 0.09980253631195123,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896774888038635,
+      "final_tilt_deg": 87.0732421875,
+      "max_tilt_deg": 91.19347381591797
+    },
+    {
+      "hip": -0.3,
+      "knee": -0.8,
+      "ankle": 0.4,
+      "spawn_z": 0.11031933630227604,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896855726838112,
+      "final_tilt_deg": 87.06452178955078,
+      "max_tilt_deg": 91.37721252441406
+    },
+    {
+      "hip": 0.0,
+      "knee": -1.2,
+      "ankle": 0.4,
+      "spawn_z": 0.09682185674671265,
+      "initial_self_m": 0.0,
+      "final_z": 0.04893596097826958,
+      "final_tilt_deg": 87.16062927246094,
+      "max_tilt_deg": 91.51923370361328
+    },
+    {
+      "hip": 0.3,
+      "knee": -1.4,
+      "ankle": 0.4,
+      "spawn_z": 0.08924139126798834,
+      "initial_self_m": 0.0,
+      "final_z": 0.04895142838358879,
+      "final_tilt_deg": 87.14957427978516,
+      "max_tilt_deg": 91.54345703125
+    },
+    {
+      "hip": -0.9,
+      "knee": -0.8,
+      "ankle": 0.0,
+      "spawn_z": 0.08748773534888292,
+      "initial_self_m": 0.0,
+      "final_z": 0.048968058079481125,
+      "final_tilt_deg": 87.07026672363281,
+      "max_tilt_deg": 91.60575103759766
+    },
+    {
+      "hip": 0.0,
+      "knee": -1.2,
+      "ankle": 0.0,
+      "spawn_z": 0.09453247897948958,
+      "initial_self_m": 0.0,
+      "final_z": 0.048963479697704315,
+      "final_tilt_deg": 87.08487701416016,
+      "max_tilt_deg": 91.62137603759766
+    },
+    {
+      "hip": -0.3,
+      "knee": -0.6,
+      "ankle": 0.0,
+      "spawn_z": 0.11692148283858128,
+      "initial_self_m": 0.0,
+      "final_z": 0.048968832939863205,
+      "final_tilt_deg": 87.06244659423828,
+      "max_tilt_deg": 91.63214111328125
+    },
+    {
+      "hip": 0.0,
+      "knee": -0.8,
+      "ankle": -0.8,
+      "spawn_z": 0.10368807367599368,
+      "initial_self_m": 0.0,
+      "final_z": 0.048917293548583984,
+      "final_tilt_deg": 87.17276000976562,
+      "max_tilt_deg": 91.7176284790039
+    },
+    {
+      "hip": -0.9,
+      "knee": -0.8,
+      "ankle": 0.4,
+      "spawn_z": 0.09257905851451986,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896818473935127,
+      "final_tilt_deg": 87.068603515625,
+      "max_tilt_deg": 91.73609924316406
+    },
+    {
+      "hip": 0.0,
+      "knee": -1.2,
+      "ankle": 0.8,
+      "spawn_z": 0.09616517594899726,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896439239382744,
+      "final_tilt_deg": 87.0801010131836,
+      "max_tilt_deg": 91.77116394042969
+    },
+    {
+      "hip": 0.0,
+      "knee": -1.4,
+      "ankle": 0.4,
+      "spawn_z": 0.0879828150281906,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896949604153633,
+      "final_tilt_deg": 87.07283782958984,
+      "max_tilt_deg": 91.8157730102539
+    },
+    {
+      "hip": -0.9,
+      "knee": -0.6,
+      "ankle": -0.8,
+      "spawn_z": 0.08783447123922854,
+      "initial_self_m": 0.0,
+      "final_z": 0.0489356629550457,
+      "final_tilt_deg": 87.156494140625,
+      "max_tilt_deg": 91.82271575927734
+    },
+    {
+      "hip": -0.6,
+      "knee": -0.6,
+      "ankle": 0.8,
+      "spawn_z": 0.1124597872957588,
+      "initial_self_m": 0.0,
+      "final_z": 0.048969220370054245,
+      "final_tilt_deg": 87.05982208251953,
+      "max_tilt_deg": 91.85108947753906
+    },
+    {
+      "hip": -0.9,
+      "knee": -1.0,
+      "ankle": 0.8,
+      "spawn_z": 0.08629237460346481,
+      "initial_self_m": 0.0,
+      "final_z": 0.048953134566545486,
+      "final_tilt_deg": 87.13880157470703,
+      "max_tilt_deg": 91.86051940917969
+    },
+    {
+      "hip": 0.3,
+      "knee": -1.0,
+      "ankle": -0.4,
+      "spawn_z": 0.10069403988350077,
+      "initial_self_m": 0.0,
+      "final_z": 0.0489700511097908,
+      "final_tilt_deg": 87.0713882446289,
+      "max_tilt_deg": 91.89651489257812
+    },
+    {
+      "hip": -0.3,
+      "knee": -0.6,
+      "ankle": -0.4,
+      "spawn_z": 0.11392779741300736,
+      "initial_self_m": 0.0,
+      "final_z": 0.048967085778713226,
+      "final_tilt_deg": 87.06428527832031,
+      "max_tilt_deg": 91.91925048828125
+    },
+    {
+      "hip": 0.0,
+      "knee": -1.4,
+      "ankle": 0.8,
+      "spawn_z": 0.08882495161968296,
+      "initial_self_m": 0.0,
+      "final_z": 0.048915959894657135,
+      "final_tilt_deg": 87.1880111694336,
+      "max_tilt_deg": 92.02690124511719
+    },
+    {
+      "hip": -0.3,
+      "knee": -0.8,
+      "ankle": 0.0,
+      "spawn_z": 0.10874718718943184,
+      "initial_self_m": 0.0,
+      "final_z": 0.04897068440914154,
+      "final_tilt_deg": 87.0595703125,
+      "max_tilt_deg": 92.05438232421875
+    },
+    {
+      "hip": -0.3,
+      "knee": -1.4,
+      "ankle": 0.8,
+      "spawn_z": 0.08551701538301858,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896831139922142,
+      "final_tilt_deg": 87.07402038574219,
+      "max_tilt_deg": 92.08963012695312
+    },
+    {
+      "hip": 0.3,
+      "knee": -1.2,
+      "ankle": 0.0,
+      "spawn_z": 0.09584353780429358,
+      "initial_self_m": 0.0,
+      "final_z": 0.048969924449920654,
+      "final_tilt_deg": 87.07191467285156,
+      "max_tilt_deg": 92.09766387939453
+    },
+    {
+      "hip": -0.9,
+      "knee": -0.6,
+      "ankle": -1.2,
+      "spawn_z": 0.08779630189070091,
+      "initial_self_m": 0.0,
+      "final_z": 0.048934292048215866,
+      "final_tilt_deg": 87.15879821777344,
+      "max_tilt_deg": 92.1100845336914
+    },
+    {
+      "hip": -0.9,
+      "knee": -0.8,
+      "ankle": 0.8,
+      "spawn_z": 0.0955727439400938,
+      "initial_self_m": 0.0,
+      "final_z": 0.048968520015478134,
+      "final_tilt_deg": 87.06645202636719,
+      "max_tilt_deg": 92.21180725097656
+    },
+    {
+      "hip": -0.6,
+      "knee": -1.2,
+      "ankle": 0.8,
+      "spawn_z": 0.087656980314733,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896708205342293,
+      "final_tilt_deg": 87.075927734375,
+      "max_tilt_deg": 92.24176025390625
+    },
+    {
+      "hip": -0.9,
+      "knee": -0.6,
+      "ankle": 0.8,
+      "spawn_z": 0.1043534658345502,
+      "initial_self_m": 0.0,
+      "final_z": 0.048968277871608734,
+      "final_tilt_deg": 87.06163787841797,
+      "max_tilt_deg": 92.3156509399414
+    },
+    {
+      "hip": -0.9,
+      "knee": -0.6,
+      "ankle": -0.4,
+      "spawn_z": 0.09291555307047297,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896840453147888,
+      "final_tilt_deg": 87.0676498413086,
+      "max_tilt_deg": 92.35648345947266
+    },
+    {
+      "hip": -0.9,
+      "knee": -0.6,
+      "ankle": 0.4,
+      "spawn_z": 0.102781316721706,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896913841366768,
+      "final_tilt_deg": 87.06291961669922,
+      "max_tilt_deg": 92.37435150146484
+    },
+    {
+      "hip": 0.3,
+      "knee": -1.0,
+      "ankle": -0.8,
+      "spawn_z": 0.09638686316260485,
+      "initial_self_m": 0.00047355591459774266,
+      "final_z": 0.0489177480340004,
+      "final_tilt_deg": 87.18031311035156,
+      "max_tilt_deg": 92.38286590576172
+    },
+    {
+      "hip": -0.3,
+      "knee": -0.8,
+      "ankle": 0.8,
+      "spawn_z": 0.10890481459404591,
+      "initial_self_m": 0.0,
+      "final_z": 0.048968225717544556,
+      "final_tilt_deg": 87.06443786621094,
+      "max_tilt_deg": 92.38631439208984
+    },
+    {
+      "hip": -0.9,
+      "knee": -0.6,
+      "ankle": 0.0,
+      "spawn_z": 0.09847414000081008,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896730184555054,
+      "final_tilt_deg": 87.06449890136719,
+      "max_tilt_deg": 92.41315460205078
+    },
+    {
+      "hip": -0.6,
+      "knee": -0.6,
+      "ankle": 0.4,
+      "spawn_z": 0.11311646809347421,
+      "initial_self_m": 0.0,
+      "final_z": 0.048968203365802765,
+      "final_tilt_deg": 87.06197357177734,
+      "max_tilt_deg": 92.4471206665039
+    },
+    {
+      "hip": 0.0,
+      "knee": -1.0,
+      "ankle": 0.0,
+      "spawn_z": 0.10348032928864291,
+      "initial_self_m": 0.0,
+      "final_z": 0.048967260867357254,
+      "final_tilt_deg": 87.0748062133789,
+      "max_tilt_deg": 92.49730682373047
+    },
+    {
+      "hip": 0.0,
+      "knee": -0.8,
+      "ankle": -0.4,
+      "spawn_z": 0.10852406924433379,
+      "initial_self_m": 0.0,
+      "final_z": 0.04897081479430199,
+      "final_tilt_deg": 87.06137084960938,
+      "max_tilt_deg": 92.55040740966797
+    },
+    {
+      "hip": 0.3,
+      "knee": -0.8,
+      "ankle": -1.2,
+      "spawn_z": 0.09847028363008219,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896873980760574,
+      "final_tilt_deg": 87.07402801513672,
+      "max_tilt_deg": 92.59785461425781
+    },
+    {
+      "hip": -0.3,
+      "knee": -0.6,
+      "ankle": 0.4,
+      "spawn_z": 0.1170201832268622,
+      "initial_self_m": 0.0,
+      "final_z": 0.04897289723157883,
+      "final_tilt_deg": 87.05226135253906,
+      "max_tilt_deg": 92.62751007080078
+    },
+    {
+      "hip": -0.3,
+      "knee": -1.0,
+      "ankle": 0.8,
+      "spawn_z": 0.10220159977045193,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896825924515724,
+      "final_tilt_deg": 87.0644302368164,
+      "max_tilt_deg": 92.66118621826172
+    },
+    {
+      "hip": 0.0,
+      "knee": -0.6,
+      "ankle": -1.2,
+      "spawn_z": 0.10640398307225452,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896331951022148,
+      "final_tilt_deg": 87.08766174316406,
+      "max_tilt_deg": 92.67398834228516
+    },
+    {
+      "hip": 0.0,
+      "knee": -0.8,
+      "ankle": -1.2,
+      "spawn_z": 0.09786479043283329,
+      "initial_self_m": 0.0,
+      "final_z": 0.0489543192088604,
+      "final_tilt_deg": 87.12195587158203,
+      "max_tilt_deg": 92.69969940185547
+    },
+    {
+      "hip": -0.3,
+      "knee": -0.6,
+      "ankle": -0.8,
+      "spawn_z": 0.1088364742473704,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896918684244156,
+      "final_tilt_deg": 87.0628890991211,
+      "max_tilt_deg": 92.73738098144531
+    },
+    {
+      "hip": -0.6,
+      "knee": -1.2,
+      "ankle": 0.4,
+      "spawn_z": 0.08397918733804131,
+      "initial_self_m": 0.0,
+      "final_z": 0.048970311880111694,
+      "final_tilt_deg": 87.06761169433594,
+      "max_tilt_deg": 92.7680435180664
+    },
+    {
+      "hip": -0.3,
+      "knee": -1.0,
+      "ankle": 0.4,
+      "spawn_z": 0.10210289938217101,
+      "initial_self_m": 0.0,
+      "final_z": 0.04895082861185074,
+      "final_tilt_deg": 87.1387710571289,
+      "max_tilt_deg": 92.77850341796875
+    },
+    {
+      "hip": -0.6,
+      "knee": -0.8,
+      "ankle": -0.4,
+      "spawn_z": 0.09527321444017071,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896929860115051,
+      "final_tilt_deg": 87.06588745117188,
+      "max_tilt_deg": 92.83697509765625
+    },
+    {
+      "hip": 0.0,
+      "knee": -1.0,
+      "ankle": 0.4,
+      "spawn_z": 0.10432246588013527,
+      "initial_self_m": 0.0,
+      "final_z": 0.0489690862596035,
+      "final_tilt_deg": 87.06344604492188,
+      "max_tilt_deg": 92.8399658203125
+    },
+    {
+      "hip": -0.3,
+      "knee": -0.6,
+      "ankle": -1.2,
+      "spawn_z": 0.10255917975506569,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896849766373634,
+      "final_tilt_deg": 87.06607055664062,
+      "max_tilt_deg": 92.89974212646484
+    },
+    {
+      "hip": -0.6,
+      "knee": -0.8,
+      "ankle": 0.8,
+      "spawn_z": 0.10511956296644452,
+      "initial_self_m": 0.0,
+      "final_z": 0.048968877643346786,
+      "final_tilt_deg": 87.06204986572266,
+      "max_tilt_deg": 92.90721893310547
+    },
+    {
+      "hip": -0.6,
+      "knee": -1.0,
+      "ankle": 0.0,
+      "spawn_z": 0.08960549349018056,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896903038024902,
+      "final_tilt_deg": 87.06863403320312,
+      "max_tilt_deg": 92.96183776855469
+    },
+    {
+      "hip": -0.6,
+      "knee": -0.8,
+      "ankle": -1.2,
+      "spawn_z": 0.08865247627430857,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896673560142517,
+      "final_tilt_deg": 87.07520294189453,
+      "max_tilt_deg": 93.00470733642578
+    },
+    {
+      "hip": -0.3,
+      "knee": -0.8,
+      "ankle": -1.2,
+      "spawn_z": 0.0940829578840708,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896895959973335,
+      "final_tilt_deg": 87.0696029663086,
+      "max_tilt_deg": 93.02197265625
+    },
+    {
+      "hip": -0.6,
+      "knee": -1.0,
+      "ankle": 0.8,
+      "spawn_z": 0.09673086682574371,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896732047200203,
+      "final_tilt_deg": 87.07060241699219,
+      "max_tilt_deg": 93.08184814453125
+    },
+    {
+      "hip": -0.6,
+      "knee": -0.6,
+      "ankle": -1.2,
+      "spawn_z": 0.09669715988786876,
+      "initial_self_m": 0.0,
+      "final_z": 0.04895809665322304,
+      "final_tilt_deg": 87.09291076660156,
+      "max_tilt_deg": 93.09169006347656
+    },
+    {
+      "hip": -0.6,
+      "knee": -0.6,
+      "ankle": -0.8,
+      "spawn_z": 0.10016781151475065,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896797984838486,
+      "final_tilt_deg": 87.06403350830078,
+      "max_tilt_deg": 93.10025787353516
+    },
+    {
+      "hip": -0.3,
+      "knee": -1.2,
+      "ankle": 0.8,
+      "spawn_z": 0.094297737277475,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896840080618858,
+      "final_tilt_deg": 87.07080841064453,
+      "max_tilt_deg": 93.1179428100586
+    },
+    {
+      "hip": -0.3,
+      "knee": -1.2,
+      "ankle": 0.4,
+      "spawn_z": 0.09272558816463079,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896920174360275,
+      "final_tilt_deg": 87.06878662109375,
+      "max_tilt_deg": 93.17384338378906
+    },
+    {
+      "hip": 0.0,
+      "knee": -0.8,
+      "ankle": 0.0,
+      "spawn_z": 0.11081344701155686,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896920546889305,
+      "final_tilt_deg": 87.06365966796875,
+      "max_tilt_deg": 93.17410278320312
+    },
+    {
+      "hip": -0.6,
+      "knee": -0.8,
+      "ankle": 0.0,
+      "spawn_z": 0.10059963339826046,
+      "initial_self_m": 0.0,
+      "final_z": 0.048967424780130386,
+      "final_tilt_deg": 87.06937408447266,
+      "max_tilt_deg": 93.20633697509766
+    },
+    {
+      "hip": -0.3,
+      "knee": -0.6,
+      "ankle": 0.8,
+      "spawn_z": 0.1141788567302725,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896893352270126,
+      "final_tilt_deg": 87.05939483642578,
+      "max_tilt_deg": 93.23390197753906
+    },
+    {
+      "hip": -0.6,
+      "knee": -0.6,
+      "ankle": 0.0,
+      "spawn_z": 0.11082709032625113,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896696284413338,
+      "final_tilt_deg": 87.06524658203125,
+      "max_tilt_deg": 93.24180603027344
+    },
+    {
+      "hip": 0.3,
+      "knee": -0.8,
+      "ankle": 0.8,
+      "spawn_z": 0.1096832031711575,
+      "initial_self_m": 0.0,
+      "final_z": 0.04897000268101692,
+      "final_tilt_deg": 87.06737518310547,
+      "max_tilt_deg": 93.27938079833984
+    },
+    {
+      "hip": -0.6,
+      "knee": -1.0,
+      "ankle": 0.4,
+      "spawn_z": 0.09444148905852064,
+      "initial_self_m": 0.0,
+      "final_z": 0.048969440162181854,
+      "final_tilt_deg": 87.06697082519531,
+      "max_tilt_deg": 93.3919906616211
+    },
+    {
+      "hip": 0.0,
+      "knee": -0.6,
+      "ankle": -0.8,
+      "spawn_z": 0.11173040203034428,
+      "initial_self_m": 0.0,
+      "final_z": 0.048968106508255005,
+      "final_tilt_deg": 87.06324005126953,
+      "max_tilt_deg": 93.42030334472656
+    },
+    {
+      "hip": -0.3,
+      "knee": -0.8,
+      "ankle": -0.4,
+      "spawn_z": 0.10444001046853592,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896826669573784,
+      "final_tilt_deg": 87.06776428222656,
+      "max_tilt_deg": 93.52428436279297
+    },
+    {
+      "hip": -0.3,
+      "knee": -1.0,
+      "ankle": 0.0,
+      "spawn_z": 0.0991092139565971,
+      "initial_self_m": 0.0,
+      "final_z": 0.048969823867082596,
+      "final_tilt_deg": 87.06702423095703,
+      "max_tilt_deg": 93.58548736572266
+    },
+    {
+      "hip": -0.6,
+      "knee": -0.8,
+      "ankle": 0.4,
+      "spawn_z": 0.10427742637495216,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896707460284233,
+      "final_tilt_deg": 87.0650405883789,
+      "max_tilt_deg": 93.7241439819336
+    },
+    {
+      "hip": -0.6,
+      "knee": -0.6,
+      "ankle": -0.4,
+      "spawn_z": 0.10599109475791105,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896695166826248,
+      "final_tilt_deg": 87.06475830078125,
+      "max_tilt_deg": 93.73021697998047
+    },
+    {
+      "hip": -0.3,
+      "knee": -0.8,
+      "ankle": -0.8,
+      "spawn_z": 0.09888142353819881,
+      "initial_self_m": 0.0,
+      "final_z": 0.048968080431222916,
+      "final_tilt_deg": 87.0692138671875,
+      "max_tilt_deg": 94.06839752197266
+    },
+    {
+      "hip": 0.0,
+      "knee": -0.6,
+      "ankle": 0.8,
+      "spawn_z": 0.11687514885395735,
+      "initial_self_m": 0.0,
+      "final_z": 0.04896923527121544,
+      "final_tilt_deg": 87.06088256835938,
+      "max_tilt_deg": 94.25250244140625
+    },
+    {
+      "hip": 0.0,
+      "knee": -0.6,
+      "ankle": -0.4,
+      "spawn_z": 0.11540819500703597,
+      "initial_self_m": 0.0,
+      "final_z": 0.04897049814462662,
+      "final_tilt_deg": 87.0609359741211,
+      "max_tilt_deg": 94.27529907226562
+    }
+  ]
+}

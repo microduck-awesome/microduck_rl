@@ -67,7 +67,7 @@ def evaluate_seed(args,seed,cases,output):
     cfg.rewards={'stable_standing':RewardTermCfg(func=recovery.sc0090_stable_standing,weight=1.)}
     cfg.events={n:t for n,t in cfg.events.items() if n in {
         'expand_bam_friction_fields','v2_runtime','mouth_reset','mouth_hold',
-        'reset_base','set_ground_state','v2_reset_joint_guards','paired_error_reset'}}
+        'reset_base','set_ground_state','v2_reset_joint_guards','v3_reset_ground_clearance','paired_error_reset'}}
     ground=cfg.events['set_ground_state']
     allowed=inspect.signature(mdp.set_random_ground_state).parameters
     ground.params={k:v for k,v in ground.params.items() if k in allowed}

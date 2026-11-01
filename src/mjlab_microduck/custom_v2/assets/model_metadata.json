@@ -19,30 +19,61 @@
   "home_qpos": [
     0.0,
     0.0,
-    0.11638049189959615,
+    0.12857121733465776,
     1.0,
     0.0,
     0.0,
     0.0,
     0.0,
+    -0.07002708511546707,
+    -0.41313949159902463,
+    0.017596039052062706,
+    0.3955434710762585,
+    -0.3491,
+    0.3491,
     0.0,
     0.0,
     0.0,
     0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0,
-    0.0
+    0.07002708511546707,
+    -0.41313949159902463,
+    0.017596039052062706,
+    0.3955434710762585
   ],
-  "home_height_m": 0.11638049189959615,
-  "zero_reference": "SolidWorks saved assembly pose",
+  "home_height_m": 0.12857121733465776,
+  "home_joint_positions_rad": {
+    "left_hip_yaw": 0.0,
+    "left_hip_roll": -0.07002708511546707,
+    "left_hip_pitch": -0.41313949159902463,
+    "left_knee": 0.017596039052062706,
+    "left_ankle": 0.3955434710762585,
+    "neck_pitch": -0.3491,
+    "head_pitch": 0.3491,
+    "head_yaw": 0.0,
+    "head_roll": 0.0,
+    "mouth": 0.0,
+    "right_hip_yaw": 0.0,
+    "right_hip_roll": 0.07002708511546707,
+    "right_hip_pitch": -0.41313949159902463,
+    "right_knee": 0.017596039052062706,
+    "right_ankle": 0.3955434710762585
+  },
+  "cad_zero_height_m": 0.11814200606857131,
+  "zero_reference": "SolidWorks saved assembly pose; home is a separate standing keyframe",
   "physics_status": "Preview PD only; SC0090 BAM calibration pending",
+  "mass_calibration": {
+    "schema": "microduck-v3-measured-groups-v1",
+    "target_mass_kg": 0.6419063756849082,
+    "component_mass_kg": 0.6337063756849082,
+    "raw_cad_mass_kg": 0.604693809,
+    "wiring": {
+      "total_mass_kg": 0.0082,
+      "source": "Owner identified the difference between CSV component sum and complete robot as wiring.",
+      "distribution": "equal_point_masses_at_servo_housing_com",
+      "approximation": "Each of the 15 servo housings carries 1/15 of wiring mass at its CAD COM. Cable routes and separate segment masses were not supplied; this is an editable approximation, not measured cable COM/inertia."
+    },
+    "distribution": "Owner requests native CAD density for modified components; retain previous measured allocation on unchanged components and 8.2 g wiring."
+  },
   "collision_profiles": {
     "full": {
       "profile": "official_task_topology",
@@ -70,8 +101,8 @@
         2
       ],
       "structure_condim": 3,
-      "active_collision_geoms": 10,
-      "groundcontact_difference": "V2 one-piece head shell replaces upstream top/bottom shell pair",
+      "active_collision_geoms": 11,
+      "groundcontact_difference": "V3 one-piece head shell replaces upstream top/bottom shell pair; extra V3 mainboard housing ground proxy",
       "exclude_body_pairs": []
     },
     "walk": {
@@ -110,9 +141,9 @@
       "parent": "trunk_base",
       "child": "imu_raw",
       "translation_m": [
-        -0.0403,
+        -0.015586163149,
         -0.023475,
-        0.0332
+        0.027677181512
       ],
       "quaternion_wxyz": [
         0.0,
@@ -142,7 +173,7 @@
           -1.0,
           0.0,
           0.0,
-          -0.0403
+          -0.015586163149
         ],
         [
           0.0,
@@ -154,7 +185,7 @@
           0.0,
           0.0,
           -1.0,
-          0.0332
+          0.027677181512
         ],
         [
           0.0,

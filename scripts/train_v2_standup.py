@@ -48,7 +48,7 @@ def evaluate(task, policy, device, stage, samples, *, position_recipe=None,evide
             cfg.rewards = {'stable_standing': RewardTermCfg(func=recovery.sc0090_stable_standing, weight=1.)}
             cfg.events = {n:t for n,t in cfg.events.items() if n in {
                 'expand_bam_friction_fields','v2_runtime','mouth_reset','mouth_hold',
-                'reset_base','set_ground_state','v2_reset_joint_guards','paired_error_reset'}}
+                'reset_base','set_ground_state','v2_reset_joint_guards','v3_reset_ground_clearance','paired_error_reset'}}
             cfg.events['set_ground_state'].params['evaluation_buckets'] = True
             cfg.observations['actor'].enable_corruption = False
             for name in ('head_pose','body_pose'):
@@ -126,7 +126,16 @@ def main():
     output.mkdir(parents=True, exist_ok=False)
     torch.set_num_threads(2)
     root = Path(__file__).resolve().parents[1]
+    asset_root = root/'src/mjlab_microduck/custom_v2'
+    asset_manifest = json.loads((asset_root/'assembly-install.json').read_text())
+    assert asset_manifest['assembly_revision'] == '46a1b2c1d371def5775d33e67424755f253e9881'
+    for name, digest in asset_manifest['files'].items():
+        assert hashlib.sha256((asset_root/name).read_bytes()).hexdigest() == digest, f'V3 asset changed: {name}'
+    assert smoke['robot_xml_sha256'] == asset_manifest['files']['assets/robot.xml'], 'Smoke used different robot XML'
     sources = sorted([*root.glob('src/**/*.py'), *root.glob('src/**/*.cpp'),
+                      *(p for p in (asset_root/'assets').rglob('*') if p.is_file()),
+                      *(p for p in (asset_root/'training-assets').rglob('*') if p.is_file()),
+                      asset_root/'assembly-install.json', root/'pyproject.toml', root/'uv.lock',
                       root/'scripts/train_v2_standup.py', root/'scripts/v2_python.sh'])
     hashes = {str(f.relative_to(root)):hashlib.sha256(f.read_bytes()).hexdigest() for f in sources}
     with tarfile.open(output/'source.tar.gz', 'w:gz') as archive:

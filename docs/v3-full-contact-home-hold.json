@@ -1,0 +1,83 @@
+{
+  "status": "PASS_NO_FALL",
+  "model_sha256": "45a9ce13c521ac07080381e9d5597b040e1988b98fb9f89c981008a7dac778dd",
+  "duration_s": 3.0,
+  "actuator": "SC0090 V5 P15/D30",
+  "device": "physical GPU 0",
+  "protocol": "3 s fixed HOME target; no DR or pushes; two perturbed and one exact initial joint state",
+  "limitations": "Not recovery training or hardware qualification",
+  "trials": [
+    {
+      "voltage_v": 10.2,
+      "seed": 0,
+      "maximum_tilt_deg": 3.9028432369232178,
+      "final_tilt_deg": 3.9028432369232178,
+      "final_root_height_m": 0.1247515082359314,
+      "final_joint_error_max_rad": 0.045136839151382446
+    },
+    {
+      "voltage_v": 10.2,
+      "seed": 1,
+      "maximum_tilt_deg": 3.8602640628814697,
+      "final_tilt_deg": 3.8602640628814697,
+      "final_root_height_m": 0.12477611005306244,
+      "final_joint_error_max_rad": 0.046448610723018646
+    },
+    {
+      "voltage_v": 10.2,
+      "seed": 2,
+      "maximum_tilt_deg": 3.5518155097961426,
+      "final_tilt_deg": 3.5518155097961426,
+      "final_root_height_m": 0.12485811859369278,
+      "final_joint_error_max_rad": 0.04400835558772087
+    },
+    {
+      "voltage_v": 11.1,
+      "seed": 0,
+      "maximum_tilt_deg": 3.5542404651641846,
+      "final_tilt_deg": 3.5305287837982178,
+      "final_root_height_m": 0.12486458569765091,
+      "final_joint_error_max_rad": 0.04267137125134468
+    },
+    {
+      "voltage_v": 11.1,
+      "seed": 1,
+      "maximum_tilt_deg": 3.6646320819854736,
+      "final_tilt_deg": 3.6646320819854736,
+      "final_root_height_m": 0.12484452873468399,
+      "final_joint_error_max_rad": 0.04358590766787529
+    },
+    {
+      "voltage_v": 11.1,
+      "seed": 2,
+      "maximum_tilt_deg": 3.465714693069458,
+      "final_tilt_deg": 3.465714693069458,
+      "final_root_height_m": 0.12489299476146698,
+      "final_joint_error_max_rad": 0.04199709743261337
+    },
+    {
+      "voltage_v": 12.4,
+      "seed": 0,
+      "maximum_tilt_deg": 3.462606191635132,
+      "final_tilt_deg": 3.462606191635132,
+      "final_root_height_m": 0.12491251528263092,
+      "final_joint_error_max_rad": 0.040132224559783936
+    },
+    {
+      "voltage_v": 12.4,
+      "seed": 1,
+      "maximum_tilt_deg": 3.5525875091552734,
+      "final_tilt_deg": 3.5525875091552734,
+      "final_root_height_m": 0.12488538026809692,
+      "final_joint_error_max_rad": 0.04186210036277771
+    },
+    {
+      "voltage_v": 12.4,
+      "seed": 2,
+      "maximum_tilt_deg": 3.3798558712005615,
+      "final_tilt_deg": 3.3798558712005615,
+      "final_root_height_m": 0.1249392181634903,
+      "final_joint_error_max_rad": 0.03966386616230011
+    }
+  ]
+}

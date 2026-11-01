@@ -1,0 +1,5 @@
+# Preserve the byte-identical assembly model and metadata regardless of a
+# contributor's autocrlf setting. The assembly source uses CRLF in XML/JSON.
+src/mjlab_microduck/custom_v2/assets/*.xml -text whitespace=cr-at-eol
+src/mjlab_microduck/custom_v2/assets/model_metadata.json -text whitespace=cr-at-eol
+src/mjlab_microduck/custom_v2/assets/assets/*.stl -text

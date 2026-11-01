@@ -16,14 +16,15 @@ OFFICIAL_TO_V2_SIGNS = (-1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, -1, 1, -1)
 OFFICIAL_HOME = (0., -.0873, -.4579, -.0049, .4530, .3491, .3491,
                  0., 0., 0., .0873, .4579, .0049, -.4530)
 
-# The old seated knee target maps outside V2's -1.19276 rad lower limit.
-# Use an explicit feasible candidate, then measure its equilibrium in preflight.
-# Left/right pitch-chain joints have the SAME signs in the V2 CAD frame.
-# Both measured GPU hold surveys: ~.112 m standing and .06337 m seated.
-STAND_HEIGHT = .112
-SIT_HEIGHT = .0634
-SIT_CANDIDATE = {1: .0873, 2: -.10, 3: -1.10, 4: -.85,
-                 10: -.0873, 11: -.10, 12: -1.10, 13: -.85}
+# V3 static screening found that the old V2 seated knee/ankle combination
+# penetrates the V3 hip/foot colliders. This replacement is provisional until
+# validated under the full noisy reset and dynamic preflight.
+# V3 full-contact HOME hold with SC0090 V5 settles near 0.1248 m;
+# see docs/v3-full-contact-home-hold.json. Reset poses still require preflight.
+STAND_HEIGHT = .1248
+SIT_HEIGHT = .0934  # Fixed-target V3 diagnostic; sitting is a recovery initial state.
+SIT_CANDIDATE = {1: -.0700270851, 2: .30, 3: -1.00, 4: .80,
+                 10: .0700270851, 11: .30, 12: -1.00, 13: .80}
 
 
 def get_full_spec():
@@ -97,6 +98,7 @@ def make_standup_env_cfg(play=False, stage='nominal'):
     # The final reset event guards every sampled pose, including prone and sit.
     from mjlab.managers import EventTermCfg
     cfg.events['v2_reset_joint_guards'] = EventTermCfg(func=guard_reset_joints, mode='reset')
+    cfg.events['v3_reset_ground_clearance'] = EventTermCfg(func=guard_ground_clearance, mode='reset')
     for section in (cfg.rewards, cfg.curriculum):
         for term in section.values():
             _replace_standing_height(term.params)
@@ -106,8 +108,8 @@ def make_standup_env_cfg(play=False, stage='nominal'):
     for curriculum in ('head_pose_range',):
         for stage_cfg in cfg.curriculum[curriculum].params['range_stages']:
             stage_cfg['ranges'] = tuple(
-                (max(lo, float(limits.joint(n).range[0]) * .8),
-                 min(hi, float(limits.joint(n).range[1]) * .8))
+                (max(lo, float(limits.joint(n).range[0]) * .8 - v2.HOME_JOINT_POSITIONS[n]),
+                 min(hi, float(limits.joint(n).range[1]) * .8 - v2.HOME_JOINT_POSITIONS[n]))
                 for n, (lo, hi) in zip(head, stage_cfg['ranges']))
     cfg.sim.mujoco.timestep = .005
     cfg.decimation = 4
@@ -164,6 +166,57 @@ def guard_reset_joints(env, env_ids):
     lim = asset.data.joint_pos_limits[env_ids]
     q = q.clamp(lim[..., 0] + .002, lim[..., 1] - .002)
     asset.write_joint_state_to_sim(q, torch.zeros_like(q), env_ids=env_ids)
+
+
+def guard_ground_clearance(env, env_ids):
+    """Lift only reset worlds whose sampled V3 geometry penetrates terrain.
+
+    The historical z intervals were measured on V2. Retain them wherever
+    geometrically possible; where they intersect terrain, use the actual
+    forward-contact depth and add a 2 mm initial gap. A seated sample with
+    over 2 mm self-intersection falls back to the unperturbed candidate pose;
+    all other sampled poses are preserved. No contacts are disabled.
+    """
+    import torch
+    import warp as wp
+
+    if env_ids is None:
+        env_ids = torch.arange(env.num_envs, device=env.device)
+    if not len(env_ids):
+        return
+    model = env.sim.mj_model
+    terrain = [i for i in range(model.ngeom) if model.geom(i).name == 'terrain']
+    if len(terrain) != 1:
+        raise ValueError(f'Expected one flat terrain geom, got {terrain}')
+    env.sim.forward()
+    def depths():
+        contacts = env.sim.wp_data.contact
+        world = wp.to_torch(contacts.worldid).long()
+        pair = wp.to_torch(contacts.geom).long()
+        distance = wp.to_torch(contacts.dist)
+        count = wp.to_torch(env.sim.wp_data.nacon)
+        valid = (torch.arange(len(world),device=env.device) < count) & (world >= 0) & (world < env.num_envs)
+        is_ground = (pair[:,0] == terrain[0]) | (pair[:,1] == terrain[0])
+        result = []
+        for mask in (is_ground, ~is_ground):
+            value = torch.where(valid & mask, (-distance).clamp_min(0), 0.)
+            per_world = torch.zeros(env.num_envs,device=env.device)
+            per_world.scatter_reduce_(0,world.clamp(0,env.num_envs-1),value,reduce='amax',include_self=True)
+            result.append(per_world)
+        return result
+    _, self_depth = depths()
+    from .recovery import _sc0090_recovery_state
+    bad = (self_depth[env_ids] > .002) & (_sc0090_recovery_state(env).bucket[env_ids] == 1)
+    for index, name in enumerate(v2.POLICY_JOINTS):
+        address = int(model.joint('robot/' + name).qposadr[0])
+        target = SIT_CANDIDATE.get(index, v2.HOME_JOINT_POSITIONS[name])
+        current = env.sim.data.qpos[env_ids,address]
+        env.sim.data.qpos[env_ids,address] = torch.where(bad, target, current)
+    # Re-evaluate ground after correcting the self-intersecting samples.
+    env.sim.forward()
+    lift, _ = depths()
+    correction = torch.where(lift[env_ids] > 0, lift[env_ids] + .002, 0.)
+    env.sim.data.qpos[env_ids,2] += correction
 
 
 def register_training_tasks():

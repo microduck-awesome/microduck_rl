@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<mujoco model="microduck_v2_scene">
+<mujoco model="microduck_v3_scene">
   <include file="robot.xml" />
   <visual>
     <global offwidth="1920" offheight="1080" />

@@ -48,7 +48,7 @@ def evaluate(task, policy, device, stage, samples, *, position_recipe=None,evide
             cfg.rewards = {'stable_standing': RewardTermCfg(func=recovery.sc0090_stable_standing, weight=1.)}
             cfg.events = {n:t for n,t in cfg.events.items() if n in {
                 'expand_bam_friction_fields','v2_runtime','mouth_reset','mouth_hold',
-                'reset_base','set_ground_state','v2_reset_joint_guards','paired_error_reset'}}
+                'reset_base','set_ground_state','v2_reset_joint_guards','v3_reset_ground_clearance','paired_error_reset'}}
             cfg.events['set_ground_state'].params['evaluation_buckets'] = True
             cfg.observations['actor'].enable_corruption = False
             for name in ('head_pose','body_pose'):

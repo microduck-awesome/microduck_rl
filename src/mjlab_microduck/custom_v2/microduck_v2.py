@@ -36,9 +36,10 @@ POLICY_PATTERN = "^(" + "|".join(POLICY_JOINTS) + ")$"
 ASSETS = Path(__file__).resolve().parent / "assets"
 META = json.loads((ASSETS / "model_metadata.json").read_text(encoding="utf-8"))
 HOME_HEIGHT = META["home_height_m"]
+HOME_JOINT_POSITIONS = META["home_joint_positions_rad"]
 TASK_ID = "Mjlab-Velocity-Flat-MicroDuck-V2-Official-Baseline"
-RUNTIME = "microduck-v2-sc0090-official-baseline-v1"
-NOMINAL_MASS_KG = 0.600941825
+RUNTIME = "microduck-v3-sc0090-rise6804-adaptation-v1"
+NOMINAL_MASS_KG = 0.6419063756849083
 
 
 def get_spec():
@@ -87,7 +88,7 @@ def install_policy_mapping():
                 "default_joint_pos",
             ):
                 result[field] = [result[field][i] for i in ids]
-            result["microduck_robot"] = "microduck-v2-sc0090"
+            result["microduck_robot"] = "microduck-v3-sc0090"
             result["microduck_runtime"] = RUNTIME
             result["microduck_feedback"] = "official-joint-noise-delay-and-encoder-bias"
             result["microduck_motor_sha256"] = MODEL_SHA256
@@ -249,7 +250,7 @@ def _make_v2_geometry_env_cfg(play=False):
     cfg.scene.entities["robot"] = EntityCfg(
         spec_fn=get_spec,
         init_state=EntityCfg.InitialStateCfg(
-            pos=(0.0, 0.0, HOME_HEIGHT), joint_pos={".*": 0.0}, joint_vel={".*": 0.0}
+            pos=(0.0, 0.0, HOME_HEIGHT), joint_pos=HOME_JOINT_POSITIONS.copy(), joint_vel={".*": 0.0}
         ),
         collisions=collisions,
         articulation=EntityArticulationInfoCfg(
@@ -293,8 +294,8 @@ def _make_v2_geometry_env_cfg(play=False):
     for stage in cfg.curriculum["head_pose_range"].params["range_stages"]:
         stage["ranges"] = tuple(
             (
-                max(lo, float(model.joint(n).range[0]) * 0.8),
-                min(hi, float(model.joint(n).range[1]) * 0.8),
+                max(lo, float(model.joint(n).range[0]) * 0.8 - HOME_JOINT_POSITIONS[n]),
+                min(hi, float(model.joint(n).range[1]) * 0.8 - HOME_JOINT_POSITIONS[n]),
             )
             for n, (lo, hi) in zip(head, stage["ranges"])
         )

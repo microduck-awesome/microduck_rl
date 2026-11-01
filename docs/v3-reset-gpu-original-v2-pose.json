@@ -1,0 +1,685 @@
+{
+  "task": "Mjlab-StandUp-Flat-MicroDuck-V2-PairedError-Baseline",
+  "device": "physical GPU 0",
+  "terrain_geom_ids": [
+    0
+  ],
+  "terrain_geom_names": [
+    "terrain"
+  ],
+  "protocol": "six stages, 16 actual reset worlds per bucket, contact after forward; no physics step",
+  "results": [
+    {
+      "stage": 0,
+      "bucket": "standing",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.004107232671231031
+    },
+    {
+      "stage": 0,
+      "bucket": "sitting",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 11,
+      "max_m": 0.019541805610060692
+    },
+    {
+      "stage": 0,
+      "bucket": "prone",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 11,
+      "max_m": 0.026947226375341415
+    },
+    {
+      "stage": 0,
+      "bucket": "frontier",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 9,
+      "max_m": 0.030604908242821693
+    },
+    {
+      "stage": 0,
+      "bucket": "left_side",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 4,
+      "max_m": 0.01196244265884161
+    },
+    {
+      "stage": 0,
+      "bucket": "right_side",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 6,
+      "max_m": 0.01240827701985836
+    },
+    {
+      "stage": 0,
+      "bucket": "supine",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 0,
+      "bucket": "standing",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 0,
+      "bucket": "sitting",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 15,
+      "max_m": 0.008651666343212128
+    },
+    {
+      "stage": 0,
+      "bucket": "prone",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 0,
+      "bucket": "frontier",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 0,
+      "bucket": "left_side",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 0,
+      "bucket": "right_side",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 0,
+      "bucket": "supine",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 1,
+      "bucket": "standing",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 1,
+      "max_m": 0.005841928068548441
+    },
+    {
+      "stage": 1,
+      "bucket": "sitting",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 10,
+      "max_m": 0.03572196513414383
+    },
+    {
+      "stage": 1,
+      "bucket": "prone",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 9,
+      "max_m": 0.025814149528741837
+    },
+    {
+      "stage": 1,
+      "bucket": "frontier",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 7,
+      "max_m": 0.026657357811927795
+    },
+    {
+      "stage": 1,
+      "bucket": "left_side",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 5,
+      "max_m": 0.012092038989067078
+    },
+    {
+      "stage": 1,
+      "bucket": "right_side",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 2,
+      "max_m": 0.01184962596744299
+    },
+    {
+      "stage": 1,
+      "bucket": "supine",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 1,
+      "bucket": "standing",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 1,
+      "bucket": "sitting",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 16,
+      "max_m": 0.008674532175064087
+    },
+    {
+      "stage": 1,
+      "bucket": "prone",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 1,
+      "bucket": "frontier",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 1,
+      "bucket": "left_side",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 1,
+      "bucket": "right_side",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 1,
+      "bucket": "supine",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 2,
+      "bucket": "standing",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.004974281415343285
+    },
+    {
+      "stage": 2,
+      "bucket": "sitting",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 12,
+      "max_m": 0.030741950497031212
+    },
+    {
+      "stage": 2,
+      "bucket": "prone",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 10,
+      "max_m": 0.026550602167844772
+    },
+    {
+      "stage": 2,
+      "bucket": "frontier",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 5,
+      "max_m": 0.012871876358985901
+    },
+    {
+      "stage": 2,
+      "bucket": "left_side",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 5,
+      "max_m": 0.011867359280586243
+    },
+    {
+      "stage": 2,
+      "bucket": "right_side",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 4,
+      "max_m": 0.00992624368518591
+    },
+    {
+      "stage": 2,
+      "bucket": "supine",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 2,
+      "bucket": "standing",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 2,
+      "bucket": "sitting",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 15,
+      "max_m": 0.008729148656129837
+    },
+    {
+      "stage": 2,
+      "bucket": "prone",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 2,
+      "bucket": "frontier",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 2,
+      "bucket": "left_side",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 2,
+      "bucket": "right_side",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 2,
+      "bucket": "supine",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 3,
+      "bucket": "standing",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0040145143866539
+    },
+    {
+      "stage": 3,
+      "bucket": "sitting",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 14,
+      "max_m": 0.027140643447637558
+    },
+    {
+      "stage": 3,
+      "bucket": "prone",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 8,
+      "max_m": 0.026586519554257393
+    },
+    {
+      "stage": 3,
+      "bucket": "frontier",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 7,
+      "max_m": 0.014509418979287148
+    },
+    {
+      "stage": 3,
+      "bucket": "left_side",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 4,
+      "max_m": 0.01387028768658638
+    },
+    {
+      "stage": 3,
+      "bucket": "right_side",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 3,
+      "max_m": 0.012804296799004078
+    },
+    {
+      "stage": 3,
+      "bucket": "supine",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 3,
+      "bucket": "standing",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 3,
+      "bucket": "sitting",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 15,
+      "max_m": 0.0087252426892519
+    },
+    {
+      "stage": 3,
+      "bucket": "prone",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 3,
+      "bucket": "frontier",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 3,
+      "bucket": "left_side",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 3,
+      "bucket": "right_side",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 3,
+      "bucket": "supine",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 4,
+      "bucket": "standing",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 1,
+      "max_m": 0.005568895488977432
+    },
+    {
+      "stage": 4,
+      "bucket": "sitting",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 12,
+      "max_m": 0.02940048649907112
+    },
+    {
+      "stage": 4,
+      "bucket": "prone",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 9,
+      "max_m": 0.025136783719062805
+    },
+    {
+      "stage": 4,
+      "bucket": "frontier",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 6,
+      "max_m": 0.00911931786686182
+    },
+    {
+      "stage": 4,
+      "bucket": "left_side",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 1,
+      "max_m": 0.012216813862323761
+    },
+    {
+      "stage": 4,
+      "bucket": "right_side",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 5,
+      "max_m": 0.013781022280454636
+    },
+    {
+      "stage": 4,
+      "bucket": "supine",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 4,
+      "bucket": "standing",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 4,
+      "bucket": "sitting",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 16,
+      "max_m": 0.00878933910280466
+    },
+    {
+      "stage": 4,
+      "bucket": "prone",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 4,
+      "bucket": "frontier",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 4,
+      "bucket": "left_side",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 4,
+      "bucket": "right_side",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 4,
+      "bucket": "supine",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 5,
+      "bucket": "standing",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0036258946638554335
+    },
+    {
+      "stage": 5,
+      "bucket": "sitting",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 12,
+      "max_m": 0.028282124549150467
+    },
+    {
+      "stage": 5,
+      "bucket": "prone",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 9,
+      "max_m": 0.023359132930636406
+    },
+    {
+      "stage": 5,
+      "bucket": "frontier",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.004845010116696358
+    },
+    {
+      "stage": 5,
+      "bucket": "left_side",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 3,
+      "max_m": 0.011932057328522205
+    },
+    {
+      "stage": 5,
+      "bucket": "right_side",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 4,
+      "max_m": 0.01052041444927454
+    },
+    {
+      "stage": 5,
+      "bucket": "supine",
+      "kind": "floor",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 5,
+      "bucket": "standing",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 5,
+      "bucket": "sitting",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 16,
+      "max_m": 0.008698542602360249
+    },
+    {
+      "stage": 5,
+      "bucket": "prone",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 5,
+      "bucket": "frontier",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 5,
+      "bucket": "left_side",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 5,
+      "bucket": "right_side",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    },
+    {
+      "stage": 5,
+      "bucket": "supine",
+      "kind": "self",
+      "samples": 16,
+      "over_5mm": 0,
+      "max_m": 0.0
+    }
+  ]
+}

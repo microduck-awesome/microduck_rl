@@ -22,7 +22,7 @@ from mjlab.managers import RewardTermCfg
 from mjlab.rl import RslRlVecEnvWrapper
 from mjlab.tasks.registry import load_env_cfg,load_rl_cfg,load_runner_cls
 from mjlab_microduck.custom_v2 import recovery
-from mjlab_microduck.custom_v2.microduck_v2 import POLICY_JOINTS
+from mjlab_microduck.custom_v2.microduck_v2 import POLICY_JOINTS, ASSETS, HOME_HEIGHT, HOME_JOINT_POSITIONS, NOMINAL_MASS_KG
 from mjlab_microduck.custom_v2.head_metrics import response_metrics,summarize_response,camera_metrics
 from mjlab_microduck.tasks import mdp
 
@@ -179,7 +179,8 @@ def evaluate_seed(args,seed,cases,output):
                 obs,_,_,_=wrapped.step(action)
                 qpos[step].copy_(env.sim.data.qpos[...])
             camera[-1].copy_(robot.data.site_quat_w[:,site_ids[0]])
-        torch.cuda.synchronize(args.device)
+        if torch.device(args.device).type == 'cuda':
+            torch.cuda.synchronize(args.device)
         assert substep[0]==1200
         torch.testing.assert_close(commands[:100],torch.zeros_like(commands[:100]),rtol=0,atol=0)
         torch.testing.assert_close(commands[100:200],target[None].expand(100,-1,-1),rtol=0,atol=0)
@@ -254,6 +255,10 @@ def main():
     for seed in (2026101503,2026101504):records.extend(evaluate_seed(args,seed,cases,args.output))
     report=dict(schema=1,task=args.task,checkpoint=str(args.checkpoint.resolve()),
         checkpoint_sha256=hashlib.sha256(args.checkpoint.read_bytes()).hexdigest(),
+        robot_xml_sha256=hashlib.sha256((ASSETS/'robot.xml').read_bytes()).hexdigest(),
+        robot_mass_kg=NOMINAL_MASS_KG,home_height_m=HOME_HEIGHT,
+        home_joint_positions_rad=HOME_JOINT_POSITIONS,
+        home_semantics='Assembly V3 model coordinates; commands and physical errors are relative to this HOME. Physical servo calibration is not established.',
         completed_updates=checkpoint['infos']['v2']['completed_updates'],
         action_mode=('diagnostic_direct_head_motor_target_with_policy_legs' if args.direct_head_target
                      else 'checkpoint_policy'),
